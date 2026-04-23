@@ -1,0 +1,755 @@
+{
+  "nodes": {
+    "active-inactive-relay-pair": {
+      "text": "Each imported agent gets exactly two infrastructure nodes: `agent:active` (premise, starts IN) and `agent:inactive` (derived via SL with `outlist=[active_id]`, starts OUT); every imported belief includes `inactive_id` in its outlist",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "active-not-in-antecedents": {
+      "text": "The `active` premise is deliberately excluded from imported beliefs' antecedents; if it were an antecedent, it would provide a second always-valid justification path that defeats per-belief retraction semantics",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-nogood-always-records": {
+      "text": "`add_nogood` appends a `Nogood` record unconditionally before checking whether the contradiction is active, so nogoods are preserved even when not all member nodes are currently IN",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-nogood-fallback-uses-dependent-count": {
+      "text": "When `find_culprits` returns no candidates (all nogood nodes are premises with no justification chains), the fallback retracts the nogood member with the fewest direct dependents",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-nogood-retraction-prefers-least-entrenched": {
+      "text": "The primary retraction path traces back through justification chains to premises and chooses the one with the lowest entrenchment score (speculative assumptions before evidence-backed observations)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "agent-cascades-are-isolated-by-namespace": {
+      "text": "Retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "any-mode-creates-per-premise-justifications": {
+      "text": "When `any_mode=True` and multiple antecedents are given, each antecedent gets its own SL justification (OR semantics: node is IN if *any* antecedent is IN), rather than the default single multi-antecedent justification (AND semantics).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-functions-return-dicts": {
+      "text": "Every public API function returns a `dict` (or `str` for markdown/compact), never a `Network` or `Node` object, ensuring JSON-serializability at the boundary for CLI, HTTP, and tool-call consumers.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-uses-with-network-context-manager": {
+      "text": "`api.py` uses a `_with_network` context manager to ensure load-operate-save atomicity for all network mutations.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/scan-ftl-reasons.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "backtracking-retracts-least-entrenched": {
+      "text": "`add_nogood` resolves contradictions via dependency-directed backtracking: `find_culprits` traces to premises, scores by `_entrenchment`, and retracts the least-entrenched premise to minimize disruption.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "challenge-converts-premises-to-justified": {
+      "text": "When a premise (node with no justifications) is challenged, it is converted to a justified node with an SL justification containing empty antecedents and the challenge in the outlist.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-challenge.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "challenge-id-auto-generation": {
+      "text": "Auto-generated challenge IDs follow the pattern `challenge-{target}`, then `challenge-{target}-2`, `-3`, etc.; explicit IDs that collide raise `ValueError` rather than auto-deduplicating.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-challenge.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "challenge-is-outlist-injection": {
+      "text": "The challenge mechanism creates a new premise node and adds it to the target's outlist; all truth-value changes flow through normal BFS propagation, not direct mutation",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "challenge-modifies-all-justifications": {
+      "text": "When the target has multiple justifications, the challenge node is added to the outlist of every justification, ensuring no single justification can independently keep the target IN.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-challenge.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "challenge-uses-outlist-mechanism": {
+      "text": "`challenge` works by creating an IN premise node and adding it to the target's outlist in every justification, reusing the same non-monotonic mechanism as `supersede`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-challenge.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-exits-nonzero": {
+      "text": "`cmd_check_stale` calls `sys.exit(1)` when any stale nodes are found, making it usable as a CI or pre-commit gate.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-is-read-only": {
+      "text": "`check_stale` never mutates the network; it returns a list of stale-node dicts and leaves all nodes unchanged \u2014 staleness detection is separated from staleness resolution.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-requires-both-source-fields": {
+      "text": "A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-skips-out-nodes": {
+      "text": "Only nodes with `truth_value == \"IN\"` are checked for staleness; retracted (OUT) nodes are ignored even if their source file has changed.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-is-pure-formatter": {
+      "text": "Every `cmd_*` function delegates to `api.*` and only formats the returned dict for terminal output; no business logic lives in the CLI layer (sole exception: `cmd_propagate` touches `Storage` directly).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "colon-means-already-namespaced": {
+      "text": "`_resolve_namespace` treats a colon in a node ID as \"already namespaced\" and never double-prefixes; this is the convention for cross-namespace references.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-budget-only-limits-in-nodes": {
+      "text": "The token budget only constrains the IN nodes section; nogoods and OUT nodes are always emitted regardless of budget, so compact output can exceed the specified budget value.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-in-nodes-ordered-by-dependents": {
+      "text": "IN nodes are sorted by descending dependent count so structurally important nodes (those depended on by many others) are emitted first and survive budget truncation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-summary-hiding-requires-in": {
+      "text": "A summary node only hides its covered nodes when the summary itself is IN; if the summary goes OUT, covered nodes reappear in the compact output.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-token-estimate-is-word-count": {
+      "text": "`estimate_tokens` counts whitespace-separated words, not BPE tokens; the budget parameter throughout the compact module is measured in this unit.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cp-and-sl-evaluated-identically": {
+      "text": "CP and SL justifications use the same validity check in `_justification_valid`; the distinction is semantic (support vs. consistency), not computational.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-doyle-1979-tms.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cp-equals-sl": {
+      "text": "CP (conditional-proof) justifications are evaluated with the exact same logic as SL justifications, despite being a distinct type in Doyle's TMS \u2014 either an intentional simplification or incomplete implementation",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "defend-is-challenge-of-challenge": {
+      "text": "`defend` works by calling `challenge` on the challenge node itself, creating a recursive dialectical structure where truth values resolve automatically through the same outlist mechanism.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-challenge.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "defend-is-recursive-challenge": {
+      "text": "Defense is implemented by calling `challenge()` on the challenge node itself, enabling arbitrarily deep dialectical chains using the same outlist mechanism recursively with no special-case code",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dependents-bidirectional-index": {
+      "text": "Each node maintains a `dependents` set (reverse of antecedent/outlist edges), eagerly maintained by `add_node`, `add_justification`, `supersede`, `challenge`, and `convert_to_premise`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dependents-index-derived-on-load": {
+      "text": "The `node.dependents` set is never persisted to SQLite; it is rebuilt by walking all justification antecedents and outlists during `load()`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dependents-is-manual-reverse-index": {
+      "text": "`Node.dependents` is a denormalized reverse pointer set that must be kept in sync by external code (primarily `network.py`); nothing in the data model enforces consistency.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-agent-budget-proportional": {
+      "text": "When agents are present, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-agent-count-bug": {
+      "text": "`_build_beliefs_section` has a bug: `count += len(belief_ids)` is inside the per-belief loop instead of outside it, inflating the count and shrinking the non-agent budget below intended size",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-depth-cycle-guard": {
+      "text": "`_get_depth` sets `memo[node_id] = 0` before recursing to prevent infinite recursion on cyclic justification chains; cycles resolve to depth 0",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-fail-soft-validation": {
+      "text": "`validate_proposals` filters invalid proposals into a skipped list rather than raising; `apply_proposals` catches per-item exceptions so one bad proposal never blocks others",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-prompt-roundtrips-through-parser": {
+      "text": "The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT` LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-retraction-guard-uses-jaccard": {
+      "text": "`validate_proposals` rejects any proposed belief ID with Jaccard similarity >= 0.5 to an existing OUT node, preventing re-derivation of retracted beliefs",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-strips-claudecode-env": {
+      "text": "`_derive_one_round` explicitly removes the `CLAUDECODE` environment variable before spawning the model subprocess, preventing recursive Claude Code invocation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "empty-antecedents-vacuously-valid": {
+      "text": "An SL justification with an empty antecedent list is valid (vacuous truth via `all([])`), allowing outlist-only justifications to function as \"IN unless Y\" \u2014 used by `challenge` and `supersede` for converted premises",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "exhaust-implies-auto": {
+      "text": "In `_derive_one_round`, proposals are auto-applied when either `args.auto` or `args.exhaust` is true; the `--exhaust` flag does not require the user to also pass `--auto`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-truncation-is-16-hex": {
+      "text": "Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), reducing collision resistance to ~32 bits for birthday attacks compared to the full 256-bit hash.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-agent-namespace-prefix": {
+      "text": "Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-skips-existing-sync-is-remote-wins": {
+      "text": "Import mode (`import_agent`) is a one-time load that skips existing nodes; sync mode updates text/justifications/truth values with remote-wins semantics and retracts locally any beliefs removed from the remote",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-topo-sort-tolerates-cycles": {
+      "text": "`_topo_sort_claims` attempts topological ordering but appends remaining nodes when progress stalls, gracefully handling dependency cycles instead of erroring",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-two-phase-truth-maintenance": {
+      "text": "Import/sync adds all nodes first, then runs `recompute_all()` to propagate truth values, then performs explicit retractions \u2014 this ordering prevents incorrect cascades from partially-constructed networks",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "init-is-pure-data-model": {
+      "text": "`reasons_lib/__init__.py` contains only dataclass definitions (`Node`, `Justification`, `Nogood`) with no behavior, validation, or I/O; it imports nothing from the project and sits at the bottom of the import graph.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "justification-order-preserved-via-rowid": {
+      "text": "Justification insertion order is preserved across save/load cycles using `AUTOINCREMENT` rowid and `ORDER BY rowid` on read, which matters because justification priority affects truth maintenance.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "justification-valid-is-pure": {
+      "text": "`_justification_valid` is a pure query with no side effects, no logging, and no mutations to network state",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "justification-validity-requires-inlist-in-and-outlist-out": {
+      "text": "A justification is valid iff all antecedents are IN and all outlist nodes are OUT; this single rule drives retraction cascades, kill-switch behavior, challenges, and supersession",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "kill-switch-cascade-is-reversible": {
+      "text": "Retracting `agent:active` cascades all agent beliefs to OUT via the inactive relay flipping IN; re-asserting `agent:active` reverses the cascade, restoring all beliefs to IN via the same BFS propagation",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "kill-switch-uses-outlist-not-antecedent": {
+      "text": "The `agent:inactive` node is placed in each imported belief's outlist (not antecedents) so that retracting `agent:active` cascades all imported beliefs to OUT, while per-belief retraction still works independently",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "missing-outlist-nodes-pass-validation": {
+      "text": "In `_justification_valid`, missing antecedent nodes cause the check to fail (node goes OUT), but missing outlist nodes pass (don't block) \u2014 an open-world default.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "missing-source-file-is-silent": {
+      "text": "If a node's source file no longer exists on disk, `check_stale` silently skips it; callers cannot distinguish \"file deleted\" from \"file never tracked.\"",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "multiple-outlist-is-conjunction": {
+      "text": "When a justification has multiple outlist entries, ALL must be OUT for the justification to be valid; any single outlist node going IN defeats the entire justification",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "namespace-active-premise-invariant": {
+      "text": "When `namespace` is set, `add_node` auto-creates a `{namespace}:active` premise node and wires it as an antecedent into every namespaced justification; retracting that single premise cascades OUT every belief from that namespace.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "namespace-prefix-is-colon-separated": {
+      "text": "Agent namespacing uses the format `agent_name:belief_id`; `_resolve_namespace()` skips prefixing any ID that already contains a colon, preventing double-prefixing of cross-namespace references",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-is-central-dependency": {
+      "text": "`network.py` is imported by essentially every other module \u2014 api, storage, import, export, compact, check_stale, and all test files \u2014 making it the central data structure of the project.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/scan-ftl-reasons.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "node-in-if-any-justification-valid": {
+      "text": "A Node is IN when at least one of its Justifications is valid; a Justification is valid when all antecedents are IN and all outlist nodes are OUT (disjunctive over justifications, conjunctive within each).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-ids-assume-append-only": {
+      "text": "Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "out-beliefs-imported-without-justifications": {
+      "text": "Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "outlist-absent-means-out": {
+      "text": "An outlist node that doesn't exist in the network is treated as OUT (justification satisfied); absent antecedent nodes fail validation \u2014 this asymmetry makes missing counter-evidence permissive while missing supporting evidence is strict",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "outlist-enables-non-monotonic-reasoning": {
+      "text": "The `outlist` field on `Justification` allows beliefs to be retracted when a defeating node becomes IN \u2014 this is the core non-monotonic mechanism powering `supersede`, `challenge`, and default-logic patterns.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "outlist-relationships-survive-persistence": {
+      "text": "Outlists are stored as `outlist_json` in the SQLite `justifications` table; on load, the dependent index is rebuilt for both antecedents and outlist nodes, preserving propagation behavior across save/load cycles",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premise-defaults-to-in": {
+      "text": "A node with no justifications (a premise) defaults to IN; `_compute_truth` preserves its current truth value rather than recomputing it.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premises-have-no-justifications": {
+      "text": "A premise node is represented by an empty `justifications` list and defaults to `truth_value=\"IN\"`; the system treats the empty-justifications case as a special unconditional belief.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "propagate-assumes-dependents-exist": {
+      "text": "Every ID in `node.dependents` is accessed via `self.nodes[dep_id]` without a membership check; a dangling dependent reference will raise `KeyError` \u2014 this is intentional (broken invariant = bug)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_propagate.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "propagate-cascade-stops-on-unchanged": {
+      "text": "If a dependent's recomputed truth value equals its current value, it is not enqueued \u2014 the cascade terminates along that path, making propagation selective rather than exhaustive",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_propagate.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "propagate-does-not-change-trigger": {
+      "text": "The seed node (`changed_id`) is added to `visited` immediately and never has its own truth value recomputed; callers must update it before calling `_propagate`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_propagate.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "propagate-skips-retracted-nodes": {
+      "text": "`_propagate` never recomputes truth values for nodes with `_retracted` in metadata, even if their justifications would support IN; only `assert_node` can restore them",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_propagate.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "propagation-is-bfs": {
+      "text": "Truth value propagation in `_propagate` uses `deque`-based BFS through the `dependents` graph, not DFS, ensuring breadth-first wavefront expansion.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "recompute-all-uses-fixpoint": {
+      "text": "`recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "retracted-nodes-skipped-in-propagation": {
+      "text": "Retracted nodes (marked with `_retracted` metadata) are skipped during BFS propagation but remain in the network for potential restoration.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sl-justification-semantics": {
+      "text": "An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes are OUT; a node is IN iff ANY of its justifications is valid (conjunction within a justification, disjunction across justifications).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sl-outlist-asymmetry": {
+      "text": "Missing antecedents invalidate a justification, but missing outlist nodes do not \u2014 this asymmetry enables \"believe X unless Y\" where Y may not yet exist in the network",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-load-bypasses-propagation": {
+      "text": "`load()` constructs nodes directly into `network.nodes` rather than calling `add_node`, so truth maintenance propagation does not fire during deserialization.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-save-is-full-replace": {
+      "text": "`Storage.save()` deletes all rows from every table before re-inserting the entire network; there is no incremental or differential update path.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-trusts-stored-truth-values": {
+      "text": "`load()` trusts the stored `truth_value` without re-running propagation, making the database the source of truth for node status.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "supersession-is-reversible": {
+      "text": "`supersede()` adds the new node's ID to the old node's outlist rather than deleting the old node; retracting the new belief automatically restores the old one through normal propagation",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-is-remote-wins": {
+      "text": "`_sync_claims` implements remote-wins reconciliation: remote text/metadata overwrites local, beliefs removed from remote are retracted locally, and beliefs remotely IN but locally OUT are re-asserted",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "three-layer-architecture": {
+      "text": "The codebase is a three-layer stack: data model (`__init__.py`), TMS engine (`network.py`), and persistence (`storage.py`), with `api.py` providing functional API and `cli.py` as a thin argparse wrapper.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/scan-ftl-reasons.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "transaction-per-function": {
+      "text": "Every API function opens the database, does its work, and closes \u2014 no shared state, no connection pooling, no long-lived sessions; each invocation is fully independent.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "write-false-prevents-persistence": {
+      "text": "Functions using `_with_network(write=False)` can mutate the in-memory network (as `what_if_retract` does) but changes are never saved to SQLite; write-or-not is declared upfront and never conditional.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    }
+  },
+  "nogoods": [],
+  "repos": {
+    "ftl-reasons": "/Users/ben/git/ftl-reasons"
+  }
+}

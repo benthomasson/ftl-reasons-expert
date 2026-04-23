@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Core data model: Node, Justification, Nogood dataclasses shared across all modules",
+    "kind": "file",
+    "target": "reasons_lib/__init__.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "TMS engine: propagation, retraction cascades, restoration, BFS, truth computation",
+    "kind": "file",
+    "target": "reasons_lib/network.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "BFS cascade through dependents \u2014 the central algorithm",
+    "kind": "function",
+    "target": "reasons_lib/network.py:_propagate",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Truth computation: SL/CP with inlist AND and outlist negation",
+    "kind": "function",
+    "target": "reasons_lib/network.py:_justification_valid",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Dependency-directed backtracking to resolve contradictions",
+    "kind": "function",
+    "target": "reasons_lib/network.py:add_nogood",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Dialectical argumentation via outlist mechanism",
+    "kind": "function",
+    "target": "reasons_lib/network.py:challenge",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "SQLite persistence: schema, save/load, FTS5 index, dependent rebuild",
+    "kind": "file",
+    "target": "reasons_lib/storage.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Functional API: _with_network pattern, namespace support, what-if simulation, dedup",
+    "kind": "file",
+    "target": "reasons_lib/api.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Multi-agent federation: namespacing, active/inactive relay, sync semantics",
+    "kind": "file",
+    "target": "reasons_lib/import_agent.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "LLM-driven derivation: prompt building, proposal parsing, exhaustive mode",
+    "kind": "file",
+    "target": "reasons_lib/derive.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Token-budgeted summary with priority ordering and summary node compression",
+    "kind": "file",
+    "target": "reasons_lib/compact.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "Non-monotonic reasoning: how outlists enable \"believe X unless Y\", supersession, and challenges",
+    "kind": "general",
+    "target": "outlist-semantics",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "How agents are namespaced, the active/inactive relay pattern, and kill-switch cascades",
+    "kind": "general",
+    "target": "multi-agent-federation",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "CLI entry point: 35+ subcommands, derive orchestration with async model invocation",
+    "kind": "file",
+    "target": "reasons_lib/cli.py",
+    "source": "scan:ftl-reasons",
+    "status": "done",
+    "added": "2026-04-23T16:29:08"
+  },
+  {
+    "title": "How `source_hash` on Node is used to detect beliefs that may be outdated relative to their source files",
+    "kind": "function",
+    "target": "reasons_lib/check_stale.py:check_stale",
+    "source": "file:reasons_lib/__init__.py",
+    "status": "done",
+    "added": "2026-04-23T16:30:47"
+  },
+  {
+    "title": "Doyle's original Truth Maintenance System paper; understanding SL/CP justification semantics and the non-monotonic reasoning model this code implements",
+    "kind": "general",
+    "target": "doyle-1979-tms",
+    "source": "file:reasons_lib/__init__.py",
+    "status": "done",
+    "added": "2026-04-23T16:30:47"
+  },
+  {
+    "title": "How nodes are pruned from the network while preserving semantic integrity (interacts with `summarize` and `recompute_all`)",
+    "kind": "function",
+    "target": "reasons_lib/compact.py:compact",
+    "source": "file:reasons_lib/network.py",
+    "status": "pending",
+    "added": "2026-04-23T16:33:51"
+  },
+  {
+    "title": "Test cases for the challenge/defend cycle; the best way to understand the dialectical layering in practice",
+    "kind": "file",
+    "target": "tests/test_dialectical.py",
+    "source": "file:reasons_lib/network.py",
+    "status": "pending",
+    "added": "2026-04-23T16:33:51"
+  },
+  {
+    "title": "The truth evaluation function that `_propagate` calls at each step; understanding its semantics (especially the outlist / non-monotonic reasoning) is essential to predicting cascade behavior",
+    "kind": "function",
+    "target": "reasons_lib/network.py:_compute_truth",
+    "source": "function:reasons_lib/network.py:_propagate",
+    "status": "pending",
+    "added": "2026-04-23T16:34:42"
+  },
+  {
+    "title": "An alternative to BFS propagation that iterates to a fixpoint over all nodes; compare when each strategy is appropriate",
+    "kind": "function",
+    "target": "reasons_lib/network.py:recompute_all",
+    "source": "function:reasons_lib/network.py:_propagate",
+    "status": "pending",
+    "added": "2026-04-23T16:34:42"
+  },
+  {
+    "title": "The primary caller that sets `_retracted` metadata before propagating; understanding the retract/assert lifecycle clarifies why `_propagate` skips retracted nodes",
+    "kind": "function",
+    "target": "reasons_lib/network.py:retract",
+    "source": "function:reasons_lib/network.py:_propagate",
+    "status": "pending",
+    "added": "2026-04-23T16:34:42"
+  },
+  {
+    "title": "Test cases that exercise cascade and restoration scenarios, showing concrete examples of multi-hop propagation",
+    "kind": "file",
+    "target": "tests/test_network.py",
+    "source": "function:reasons_lib/network.py:_propagate",
+    "status": "pending",
+    "added": "2026-04-23T16:34:42"
+  },
+  {
+    "title": "The 1979 paper by Jon Doyle on Truth Maintenance Systems that this implementation follows; understanding SL justifications and dependency-directed backtracking gives the theoretical foundation",
+    "kind": "general",
+    "target": "doyle-tms-algorithm",
+    "source": "function:reasons_lib/network.py:_propagate",
+    "status": "pending",
+    "added": "2026-04-23T16:34:42"
+  },
+  {
+    "title": "Key user of the outlist mechanism: makes old beliefs go OUT when replacements arrive",
+    "kind": "function",
+    "target": "reasons_lib/network.py:supersede",
+    "source": "function:reasons_lib/network.py:_justification_valid",
+    "status": "pending",
+    "added": "2026-04-23T16:35:27"
+  },
+  {
+    "title": "Doyle's 1979 paper on Support-List justifications and non-monotonic reasoning, the theoretical foundation for this code",
+    "kind": "general",
+    "target": "doyle-tms-sl-justifications",
+    "source": "function:reasons_lib/network.py:_justification_valid",
+    "status": "pending",
+    "added": "2026-04-23T16:35:27"
+  },
+  {
+    "title": "The entrenchment-sorted backtracking logic that decides *which* premise to sacrifice; understanding the scoring in `_entrenchment` is key to predicting system behavior",
+    "kind": "function",
+    "target": "reasons_lib/network.py:find_culprits",
+    "source": "function:reasons_lib/network.py:add_nogood",
+    "status": "pending",
+    "added": "2026-04-23T16:36:23"
+  },
+  {
+    "title": "Test cases that exercise the dependency-directed backtracking path, including edge cases around which premise gets chosen",
+    "kind": "file",
+    "target": "tests/test_backtracking.py",
+    "source": "function:reasons_lib/network.py:add_nogood",
+    "status": "pending",
+    "added": "2026-04-23T16:36:23"
+  },
+  {
+    "title": "Doyle's 1979 \"A Truth Maintenance System\" paper, specifically Section 4 on dependency-directed backtracking, which this code implements",
+    "kind": "general",
+    "target": "doyle-tms-nogoods",
+    "source": "function:reasons_lib/network.py:add_nogood",
+    "status": "pending",
+    "added": "2026-04-23T16:36:23"
+  },
+  {
+    "title": "The counterpart to challenge; uses `challenge` internally to attack the challenge node, creating the reversible dialectical cycle",
+    "kind": "function",
+    "target": "reasons_lib/network.py:defend",
+    "source": "function:reasons_lib/network.py:challenge",
+    "status": "pending",
+    "added": "2026-04-23T16:37:31"
+  },
+  {
+    "title": "The truth maintenance algorithm whose results Storage persists but never invokes",
+    "kind": "function",
+    "target": "reasons_lib/network.py:propagate",
+    "source": "file:reasons_lib/storage.py",
+    "status": "pending",
+    "added": "2026-04-23T16:38:25"
+  },
+  {
+    "title": "Round-trip tests that verify save/load preserves network state exactly",
+    "kind": "file",
+    "target": "tests/test_storage.py",
+    "source": "file:reasons_lib/storage.py",
+    "status": "pending",
+    "added": "2026-04-23T16:38:25"
+  },
+  {
+    "title": "The `parse_beliefs` and `parse_nogoods` parsers that convert markdown to the intermediate dict format consumed by `_normalize_markdown`",
+    "kind": "file",
+    "target": "reasons_lib/import_beliefs.py",
+    "source": "file:reasons_lib/import_agent.py",
+    "status": "pending",
+    "added": "2026-04-23T16:40:40"
+  },
+  {
+    "title": "Sync has complex edge cases (remote retraction, local re-assertion, `_retracted` flag lifecycle) \u2014 the tests document the expected behavior",
+    "kind": "file",
+    "target": "tests/test_sync_agent.py",
+    "source": "file:reasons_lib/import_agent.py",
+    "status": "pending",
+    "added": "2026-04-23T16:40:40"
+  },
+  {
+    "title": "The distinction between placing a node in antecedents (positive support) vs. outlist (defeater) is central to why the kill switch works correctly",
+    "kind": "general",
+    "target": "outlist-vs-antecedent-semantics",
+    "source": "file:reasons_lib/import_agent.py",
+    "status": "pending",
+    "added": "2026-04-23T16:40:40"
+  },
+  {
+    "title": "Test cases that reveal edge cases in prompt building, parsing, and validation",
+    "kind": "file",
+    "target": "tests/test_derive.py",
+    "source": "file:reasons_lib/derive.py",
+    "status": "pending",
+    "added": "2026-04-23T16:41:40"
+  },
+  {
+    "title": "Produces the `nodes` dict that `build_prompt` consumes; understanding its schema is essential",
+    "kind": "function",
+    "target": "reasons_lib/network.py:export_network",
+    "source": "file:reasons_lib/derive.py",
+    "status": "pending",
+    "added": "2026-04-23T16:41:40"
+  },
+  {
+    "title": "Creates summary nodes with `metadata[\"summarizes\"]`, which is the mechanism compact uses for compression",
+    "kind": "function",
+    "target": "reasons_lib/network.py:summarize",
+    "source": "file:reasons_lib/compact.py",
+    "status": "pending",
+    "added": "2026-04-23T16:42:41"
+  },
+  {
+    "title": "Likely the full (non-budgeted) Markdown export; compare with compact to understand what gets lost during triage",
+    "kind": "file",
+    "target": "reasons_lib/export_markdown.py",
+    "source": "file:reasons_lib/compact.py",
+    "status": "pending",
+    "added": "2026-04-23T16:42:41"
+  },
+  {
+    "title": "The public API entry point that loads the network from SQLite and delegates to this function",
+    "kind": "function",
+    "target": "reasons_lib/api.py:compact",
+    "source": "file:reasons_lib/compact.py",
+    "status": "pending",
+    "added": "2026-04-23T16:42:41"
+  },
+  {
+    "title": "Nogoods and OUT nodes bypass the budget, so compact output can exceed the specified limit; worth verifying whether callers account for this",
+    "kind": "general",
+    "target": "budget-overflow-behavior",
+    "source": "file:reasons_lib/compact.py",
+    "status": "pending",
+    "added": "2026-04-23T16:42:41"
+  },
+  {
+    "title": "How `find_culprits` scores premises by dependent count and entrenchment metadata to choose minimal-disruption retractions",
+    "kind": "general",
+    "target": "entrenchment-and-backtracking",
+    "source": "general:outlist-semantics",
+    "status": "pending",
+    "added": "2026-04-23T16:44:12"
+  },
+  {
+    "title": "Simulates a retraction without committing it, useful for understanding cascade blast radius before pulling the trigger",
+    "kind": "function",
+    "target": "reasons_lib/api.py:what_if_retract",
+    "source": "general:multi-agent-federation",
+    "status": "pending",
+    "added": "2026-04-23T16:46:21"
+  },
+  {
+    "title": "What happens when agent-a's beliefs depend on agent-b's beliefs and agent-b is killed; how `_resolve_namespace` enables these cross-agent references",
+    "kind": "general",
+    "target": "cross-namespace-dependencies",
+    "source": "general:multi-agent-federation",
+    "status": "pending",
+    "added": "2026-04-23T16:46:21"
+  },
+  {
+    "title": "How the derivation prompt is constructed from the belief network, including filtering, sampling, and budget constraints",
+    "kind": "function",
+    "target": "reasons_lib/derive.py:build_prompt",
+    "source": "file:reasons_lib/cli.py",
+    "status": "pending",
+    "added": "2026-04-23T16:47:18"
+  },
+  {
+    "title": "The most complex function in this file; worth understanding the subprocess invocation, timeout handling, and exhaust-loop interaction",
+    "kind": "function",
+    "target": "reasons_lib/cli.py:_derive_one_round",
+    "source": "file:reasons_lib/cli.py",
+    "status": "pending",
+    "added": "2026-04-23T16:47:18"
+  },
+  {
+    "title": "How `what_if_retract`/`what_if_assert` achieve read-only simulation while reporting cascading effects with depth information",
+    "kind": "general",
+    "target": "what-if-simulation",
+    "source": "file:reasons_lib/cli.py",
+    "status": "pending",
+    "added": "2026-04-23T16:47:18"
+  },
+  {
+    "title": "The complementary function that backfills or updates `source_hash` on nodes; used after confirming a stale source change is expected",
+    "kind": "function",
+    "target": "reasons_lib/check_stale.py:hash_sources",
+    "source": "function:reasons_lib/check_stale.py:check_stale",
+    "status": "pending",
+    "added": "2026-04-23T16:48:18"
+  },
+  {
+    "title": "The path resolution logic and its `~/git/<name>` fallback convention, which is an implicit contract with the user's filesystem layout",
+    "kind": "function",
+    "target": "reasons_lib/check_stale.py:resolve_source_path",
+    "source": "function:reasons_lib/check_stale.py:check_stale",
+    "status": "pending",
+    "added": "2026-04-23T16:48:18"
+  },
+  {
+    "title": "How the CLI orchestrates check-stale \u2192 user review \u2192 retract/re-hash, and what happens to downstream derived beliefs when a source-backed premise is retracted",
+    "kind": "general",
+    "target": "staleness-resolution-workflow",
+    "source": "function:reasons_lib/check_stale.py:check_stale",
+    "status": "pending",
+    "added": "2026-04-23T16:48:18"
+  },
+  {
+    "title": "How agent namespaces (e.g., `agent-name:belief-id`) partition the belief space, with a single `ns:active` premise that can cascade-retract an entire agent's contributions",
+    "kind": "general",
+    "target": "namespace-agent-model",
+    "source": "general:doyle-1979-tms",
+    "status": "pending",
+    "added": "2026-04-23T16:49:35"
+  }
+]
