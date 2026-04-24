@@ -6,6 +6,10 @@
 
 ## Claims
 
+### absence-has-consistent-dual-semantics [IN] DERIVED
+Absence has deliberate, defined semantics throughout the system at two levels: structural absence (no justifications) creates premise behavior via vacuous truth over empty lists, while referential absence (missing nodes) follows conservative/permissive asymmetry — both forms of absence produce predictable behavior rather than errors or undefined state.
+- Depends on: premise-behavior-emerges-from-absence, missing-nodes-have-asymmetric-fail-semantics
+
 ### active-inactive-relay-pair [IN] OBSERVATION
 Each imported agent gets exactly two infrastructure nodes: `agent:active` (premise, starts IN) and `agent:inactive` (derived via SL with `outlist=[active_id]`, starts OUT); every imported belief includes `inactive_id` in its outlist
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
@@ -30,6 +34,22 @@ The primary retraction path traces back through justification chains to premises
 Retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
 
+### agent-isolation-through-namespace-and-relay [IN] DERIVED
+Agent beliefs are doubly isolated: namespace prefixing prevents ID collisions, while the active/inactive relay pair provides per-agent kill-switch semantics without cross-agent interference
+- Depends on: import-agent-namespace-prefix, agent-cascades-are-isolated-by-namespace, active-inactive-relay-pair, active-not-in-antecedents
+
+### agent-subsystem-is-self-contained [IN] DERIVED
+The agent subsystem provides complete lifecycle management: import handles mixed truth states and topological cycles, namespace/relay pairs provide isolation and kill-switches, and all defeat operations are reversible for agent reactivation.
+- Depends on: agent-isolation-through-namespace-and-relay, import-handles-heterogeneous-truth-states, all-defeat-mechanisms-are-reversible
+
+### all-defeat-mechanisms-are-reversible [IN] DERIVED
+Every outlist-based defeat operation (challenge, kill-switch, supersession) is inherently reversible because outlist semantics flip truth values without deleting nodes
+- Depends on: kill-switch-cascade-is-reversible, supersession-is-reversible, challenge-uses-outlist-mechanism, defend-is-recursive-challenge
+
+### all-semantic-edge-cases-are-uniform [IN] DERIVED
+All semantic edge cases — absence of justifications yielding premise behavior, absence of nodes producing asymmetric fail semantics, and empty antecedent lists satisfying vacuous truth — emerge from the same uniform evaluation rules without special-case handling, including the emergent disjunctive-over-conjunctive truth structure.
+- Depends on: truth-semantics-are-emergent-and-uniform, absence-has-consistent-dual-semantics
+
 ### any-mode-creates-per-premise-justifications [IN] OBSERVATION
 When `any_mode=True` and multiple antecedents are given, each antecedent gets its own SL justification (OR semantics: node is IN if *any* antecedent is IN), rather than the default single multi-antecedent justification (AND semantics).
 - Source: entries/2026/04/23/reasons_lib-api.md
@@ -37,6 +57,10 @@ When `any_mode=True` and multiple antecedents are given, each antecedent gets it
 ### api-functions-return-dicts [IN] OBSERVATION
 Every public API function returns a `dict` (or `str` for markdown/compact), never a `Network` or `Node` object, ensuring JSON-serializability at the boundary for CLI, HTTP, and tool-call consumers.
 - Source: entries/2026/04/23/reasons_lib-api.md
+
+### api-layer-ensures-atomic-isolated-mutations [IN] DERIVED
+The API layer enforces mutation safety through four mechanisms: context-managed load/save, per-function transaction scope, write-flag gating to prevent unintended persistence, and dict-only returns that prevent callers from holding live network references.
+- Depends on: api-uses-with-network-context-manager, transaction-per-function, write-false-prevents-persistence, api-functions-return-dicts
 
 ### api-uses-with-network-context-manager [IN] OBSERVATION
 `api.py` uses a `_with_network` context manager to ensure load-operate-save atomicity for all network mutations.
@@ -46,9 +70,21 @@ Every public API function returns a `dict` (or `str` for markdown/compact), neve
 `add_nogood` resolves contradictions via dependency-directed backtracking: `find_culprits` traces to premises, scores by `_entrenchment`, and retracts the least-entrenched premise to minimize disruption.
 - Source: entries/2026/04/23/reasons_lib-network.md
 
+### belief-revision-covers-all-cases-uniformly [IN] DERIVED
+The belief revision system handles normal beliefs and all edge cases (premises from absent justifications, asymmetric missing-node semantics, vacuously valid empty antecedents) through the same minimal mechanisms (outlist defeat and dependency-directed backtracking) — no edge case requires special-case logic.
+- Depends on: all-semantic-edge-cases-are-uniform, belief-revision-is-comprehensive-and-minimal
+
+### belief-revision-is-comprehensive-and-minimal [IN] DERIVED
+The system handles all forms of belief revision through two complementary minimal mechanisms: the outlist primitive provides a single reversible defeat mechanism for challenges, kill-switches, and supersession, while dependency-directed backtracking resolves detected contradictions by retracting the least-entrenched premise with minimal disruption.
+- Depends on: non-monotonic-system-is-single-reversible-primitive, contradiction-resolution-is-minimal-disruption
+
 ### challenge-converts-premises-to-justified [IN] OBSERVATION
 When a premise (node with no justifications) is challenged, it is converted to a justified node with an SL justification containing empty antecedents and the challenge in the outlist.
 - Source: entries/2026/04/23/reasons_lib-network-challenge.md
+
+### challenge-destroys-premise-identity [IN] DERIVED
+When a premise is challenged, it loses its defining characteristic: premise identity emerges from absence of justifications, but challenge adds a justification (converting the premise to a justified node), meaning the target's truth value becomes conditional on the challenge node being OUT rather than unconditionally held — challenge reclassifies the target in the node type system.
+- Depends on: challenge-converts-premises-to-justified, premise-behavior-emerges-from-absence
 
 ### challenge-id-auto-generation [IN] OBSERVATION
 Auto-generated challenge IDs follow the pattern `challenge-{target}`, then `challenge-{target}-2`, `-3`, etc.; explicit IDs that collide raise `ValueError` rather than auto-deduplicating.
@@ -106,6 +142,18 @@ A summary node only hides its covered nodes when the summary itself is IN; if th
 `estimate_tokens` counts whitespace-separated words, not BPE tokens; the budget parameter throughout the compact module is measured in this unit.
 - Source: entries/2026/04/23/reasons_lib-compact.md
 
+### contradiction-resolution-is-lifecycle-safe [IN] DERIVED
+When contradictions are detected, the entire resolution pipeline respects node lifecycle: backtracking identifies the least-entrenched culprit premise deterministically, retraction cascades through BFS propagation that skips retracted nodes and stops on unchanged truth values, ensuring resolution terminates without disturbing lifecycle-inert nodes.
+- Depends on: contradiction-triggers-deterministic-resolution, propagation-is-safe-and-terminating
+
+### contradiction-resolution-is-minimal-disruption [IN] DERIVED
+The nogood resolution system minimizes network disruption through layered heuristics: the primary path traces justification chains back to premises and selects the least-entrenched for retraction, the fallback uses dependent count when no traceable chain exists, and all contradictions are unconditionally recorded regardless of resolution outcome.
+- Depends on: add-nogood-retraction-prefers-least-entrenched, add-nogood-fallback-uses-dependent-count, add-nogood-always-records, backtracking-retracts-least-entrenched
+
+### contradiction-triggers-deterministic-resolution [IN] DERIVED
+When contradictions are detected, resolution and propagation form a deterministic pipeline: backtracking identifies the least-entrenched culprit premise, retraction triggers BFS propagation that terminates via stop-on-unchanged, producing a new consistent state with minimal network disruption and guaranteed convergence.
+- Depends on: contradiction-resolution-is-minimal-disruption, propagation-terminates-deterministically
+
 ### cp-and-sl-evaluated-identically [IN] OBSERVATION
 CP and SL justifications use the same validity check in `_justification_valid`; the distinction is semantic (support vs. consistency), not computational.
 - Source: entries/2026/04/23/topic-doyle-1979-tms.md
@@ -122,24 +170,8 @@ CP (conditional-proof) justifications are evaluated with the exact same logic as
 Defense is implemented by calling `challenge()` on the challenge node itself, enabling arbitrarily deep dialectical chains using the same outlist mechanism recursively with no special-case code
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
-### dependents-bidirectional-index [IN] OBSERVATION
-Each node maintains a `dependents` set (reverse of antecedent/outlist edges), eagerly maintained by `add_node`, `add_justification`, `supersede`, `challenge`, and `convert_to_premise`.
-- Source: entries/2026/04/23/reasons_lib-network.md
-
-### dependents-index-derived-on-load [IN] OBSERVATION
-The `node.dependents` set is never persisted to SQLite; it is rebuilt by walking all justification antecedents and outlists during `load()`.
-- Source: entries/2026/04/23/reasons_lib-storage.md
-
-### dependents-is-manual-reverse-index [IN] OBSERVATION
-`Node.dependents` is a denormalized reverse pointer set that must be kept in sync by external code (primarily `network.py`); nothing in the data model enforces consistency.
-- Source: entries/2026/04/23/reasons_lib-__init__.md
-
 ### derive-agent-budget-proportional [IN] OBSERVATION
 When agents are present, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent
-- Source: entries/2026/04/23/reasons_lib-derive.md
-
-### derive-agent-count-bug [IN] OBSERVATION
-`_build_beliefs_section` has a bug: `count += len(belief_ids)` is inside the per-belief loop instead of outside it, inflating the count and shrinking the non-agent budget below intended size
 - Source: entries/2026/04/23/reasons_lib-derive.md
 
 ### derive-depth-cycle-guard [IN] OBSERVATION
@@ -149,6 +181,10 @@ When agents are present, `_build_beliefs_section` allocates prompt token budget 
 ### derive-fail-soft-validation [IN] OBSERVATION
 `validate_proposals` filters invalid proposals into a skipped list rather than raising; `apply_proposals` catches per-item exceptions so one bad proposal never blocks others
 - Source: entries/2026/04/23/reasons_lib-derive.md
+
+### derive-pipeline-is-defensive [IN] DERIVED
+The derive pipeline applies multiple defensive measures: fail-soft validation, Jaccard-based retraction guard, and environment variable stripping to prevent recursive spawning
+- Depends on: derive-fail-soft-validation, derive-retraction-guard-uses-jaccard, derive-strips-claudecode-env
 
 ### derive-prompt-roundtrips-through-parser [IN] OBSERVATION
 The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT` LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop
@@ -162,6 +198,26 @@ The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT
 `_derive_one_round` explicitly removes the `CLAUDECODE` environment variable before spawning the model subprocess, preventing recursive Claude Code invocation.
 - Source: entries/2026/04/23/reasons_lib-cli.md
 
+### dialectical-structure-is-recursive-outlist [IN] DERIVED
+The entire challenge/defend dialectical system is implemented as recursive outlist injection with no dedicated dialectical machinery
+- Depends on: challenge-is-outlist-injection, challenge-uses-outlist-mechanism, defend-is-recursive-challenge, challenge-modifies-all-justifications
+
+### dialectical-transformation-preserves-semantics [IN] DERIVED
+Challenging a premise irreversibly transforms its identity from unjustified to justified node, but the resulting dialectical structure inherits complete outlist semantics — conjunction over multiple outlists, absence-as-OUT permissiveness, and persistence survival — ensuring the transformation preserves well-defined evaluable behavior.
+- Depends on: challenge-destroys-premise-identity, dialectics-inherit-complete-outlist-semantics
+
+### dialectics-are-semantically-transparent [IN] DERIVED
+Challenge/defend dialectics are semantically indistinguishable from ordinary beliefs: they inherit fully-specified outlist semantics (conjunction, absence-as-OUT, persistence) and are evaluated by the same uniform pure rules that govern all truth maintenance — no dialectical special cases exist anywhere in the engine.
+- Depends on: dialectics-inherit-complete-outlist-semantics, truth-semantics-are-emergent-and-uniform
+
+### dialectics-inherit-complete-outlist-semantics [IN] DERIVED
+The recursive challenge/defend dialectical system inherits fully-specified semantics from the outlist primitive: conjunction over multiple outlists, absent-means-OUT permissiveness, and persistence guarantees all apply to dialectical structures without additional rules.
+- Depends on: dialectical-structure-is-recursive-outlist, outlist-semantics-are-fully-specified
+
+### edge-case-uniformity-follows-from-minimality [IN] DERIVED
+Uniform handling of all semantic edge cases — vacuous premises, asymmetric absence, empty antecedents — is a consequence of semantic minimality: because every edge case derives from the same primitives that drive deterministic core semantics, no special-case logic exists.
+- Depends on: belief-revision-covers-all-cases-uniformly, semantic-minimality-with-operational-determinism
+
 ### empty-antecedents-vacuously-valid [IN] OBSERVATION
 An SL justification with an empty antecedent list is valid (vacuous truth via `all([])`), allowing outlist-only justifications to function as "IN unless Y" — used by `challenge` and `supersede` for converted premises
 - Source: entries/2026/04/23/reasons_lib-network-_justification_valid.md
@@ -169,6 +225,14 @@ An SL justification with an empty antecedent list is valid (vacuous truth via `a
 ### exhaust-implies-auto [IN] OBSERVATION
 In `_derive_one_round`, proposals are auto-applied when either `args.auto` or `args.exhaust` is true; the `--exhaust` flag does not require the user to also pass `--auto`.
 - Source: entries/2026/04/23/reasons_lib-cli.md
+
+### external-belief-ingestion-is-defensively-layered [IN] DERIVED
+External beliefs enter the system through defensively-layered pipelines regardless of source: LLM derivation applies fail-soft validation, Jaccard retraction guards, and environment isolation, while agent import provides dual reconciliation modes with heterogeneous truth state handling — both converge on the same underlying mutation infrastructure.
+- Depends on: derive-pipeline-is-defensive, import-sync-has-dual-reconciliation-modes
+
+### external-beliefs-defensively-contained [IN] DERIVED
+External beliefs pass through two independent safety layers: defensive ingestion pipelines (fail-soft validation, Jaccard guards, dual import/sync reconciliation modes) filter and validate beliefs on entry, while the self-contained agent subsystem (namespace isolation, relay-pair kill-switches, reversible lifecycle management) constrains their operational footprint after ingestion.
+- Depends on: external-belief-ingestion-is-defensively-layered, agent-subsystem-is-self-contained
 
 ### hash-truncation-is-16-hex [IN] OBSERVATION
 Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), reducing collision resistance to ~32 bits for birthday attacks compared to the full 256-bit hash.
@@ -178,9 +242,21 @@ Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), re
 Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
 
+### import-handles-heterogeneous-truth-states [IN] DERIVED
+The import pipeline handles mixed truth states: OUT/STALE beliefs arrive without justifications, topological sort tolerates cycles, and two-phase truth maintenance reconciles everything post-import
+- Depends on: out-beliefs-imported-without-justifications, import-topo-sort-tolerates-cycles, import-two-phase-truth-maintenance
+
+### import-provides-complete-reconciliation [IN] DERIVED
+The import subsystem provides complete reconciliation coverage: heterogeneous truth states are handled correctly on initial load, dual modes support additive import and remote-wins sync for different operational needs, and the colon-based namespace convention with auto-wiring prevents ID collisions across agents.
+- Depends on: import-handles-heterogeneous-truth-states, import-sync-has-dual-reconciliation-modes, namespace-is-colon-convention-with-auto-wiring
+
 ### import-skips-existing-sync-is-remote-wins [IN] OBSERVATION
 Import mode (`import_agent`) is a one-time load that skips existing nodes; sync mode updates text/justifications/truth values with remote-wins semantics and retracts locally any beliefs removed from the remote
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
+
+### import-sync-has-dual-reconciliation-modes [IN] DERIVED
+The import/sync subsystem offers two distinct reconciliation strategies: import is additive (skips existing nodes), while sync is remote-wins (overwrites text, justifications, and truth values from the remote source).
+- Depends on: import-skips-existing-sync-is-remote-wins, sync-is-remote-wins
 
 ### import-topo-sort-tolerates-cycles [IN] OBSERVATION
 `_topo_sort_claims` attempts topological ordering but appends remaining nodes when progress stalls, gracefully handling dependency cycles instead of erroring
@@ -193,6 +269,10 @@ Import/sync adds all nodes first, then runs `recompute_all()` to propagate truth
 ### init-is-pure-data-model [IN] OBSERVATION
 `reasons_lib/__init__.py` contains only dataclass definitions (`Node`, `Justification`, `Nogood`) with no behavior, validation, or I/O; it imports nothing from the project and sits at the bottom of the import graph.
 - Source: entries/2026/04/23/reasons_lib-__init__.md
+
+### justification-evaluation-is-uniform-and-pure [IN] DERIVED
+All justification types (SL and CP) use the same validity rule (antecedents IN, outlist OUT), evaluated as a pure function with no side effects
+- Depends on: cp-and-sl-evaluated-identically, justification-valid-is-pure, justification-validity-requires-inlist-in-and-outlist-out
 
 ### justification-order-preserved-via-rowid [IN] OBSERVATION
 Justification insertion order is preserved across save/load cycles using `AUTOINCREMENT` rowid and `ORDER BY rowid` on read, which matters because justification priority affects truth maintenance.
@@ -214,13 +294,25 @@ Retracting `agent:active` cascades all agent beliefs to OUT via the inactive rel
 The `agent:inactive` node is placed in each imported belief's outlist (not antecedents) so that retracting `agent:active` cascades all imported beliefs to OUT, while per-belief retraction still works independently
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
 
+### lifecycle-awareness-spans-checking-and-propagation [IN] DERIVED
+Both read-only inspection and mutation-driven propagation respect node lifecycle consistently: staleness checking skips OUT nodes and never mutates state, while propagation skips retracted nodes and preserves trigger identity — lifecycle state is honored across the system regardless of whether the operation is read or write.
+- Depends on: staleness-is-conservative-ci-gate, propagation-respects-node-lifecycle
+
+### llm-driven-mutations-are-safely-bounded [IN] DERIVED
+LLM-driven belief derivation is safely bounded by defense in depth: the derive pipeline validates proposals with fail-soft filtering, Jaccard retraction guards, and environment stripping at the LLM boundary, while the API layer enforces atomic load/save with write-flag gating and dict-only returns at the persistence boundary — malformed or adversarial LLM output cannot corrupt the network.
+- Depends on: derive-pipeline-is-defensive, api-layer-ensures-atomic-isolated-mutations
+
+### llm-mutations-are-bounded-end-to-end [IN] DERIVED
+LLM-driven belief derivation is bounded at every stage of the pipeline: input validation (fail-soft filtering, Jaccard retraction guard, environment isolation), atomic persistence (context-managed load/save), and output propagation (deterministic terminating BFS with lifecycle-aware traversal).
+- Depends on: llm-driven-mutations-are-safely-bounded, propagation-is-safe-and-terminating
+
+### missing-nodes-have-asymmetric-fail-semantics [IN] DERIVED
+Missing nodes are treated asymmetrically: absent antecedents fail validation (conservative), absent outlist nodes pass (permissive), creating a "believe unless proven otherwise" default
+- Depends on: missing-outlist-nodes-pass-validation, sl-outlist-asymmetry, outlist-absent-means-out
+
 ### missing-outlist-nodes-pass-validation [IN] OBSERVATION
 In `_justification_valid`, missing antecedent nodes cause the check to fail (node goes OUT), but missing outlist nodes pass (don't block) — an open-world default.
 - Source: entries/2026/04/23/reasons_lib-network.md
-
-### missing-source-file-is-silent [IN] OBSERVATION
-If a node's source file no longer exists on disk, `check_stale` silently skips it; callers cannot distinguish "file deleted" from "file never tracked."
-- Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
 ### multiple-outlist-is-conjunction [IN] OBSERVATION
 When a justification has multiple outlist entries, ALL must be OUT for the justification to be valid; any single outlist node going IN defeats the entire justification
@@ -229,6 +321,10 @@ When a justification has multiple outlist entries, ALL must be OUT for the justi
 ### namespace-active-premise-invariant [IN] OBSERVATION
 When `namespace` is set, `add_node` auto-creates a `{namespace}:active` premise node and wires it as an antecedent into every namespaced justification; retracting that single premise cascades OUT every belief from that namespace.
 - Source: entries/2026/04/23/reasons_lib-api.md
+
+### namespace-is-colon-convention-with-auto-wiring [IN] DERIVED
+The namespace system is a colon-based convention with automatic infrastructure wiring: colon presence prevents double-prefixing, the `agent:id` format provides scoping, and node creation auto-wires a `{ns}:active` premise as an antecedent.
+- Depends on: namespace-prefix-is-colon-separated, colon-means-already-namespaced, namespace-active-premise-invariant
 
 ### namespace-prefix-is-colon-separated [IN] OBSERVATION
 Agent namespacing uses the format `agent_name:belief_id`; `_resolve_namespace()` skips prefixing any ID that already contains a colon, preventing double-prefixing of cross-namespace references
@@ -246,6 +342,10 @@ A Node is IN when at least one of its Justifications is valid; a Justification i
 Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls
 - Source: entries/2026/04/23/reasons_lib-network-add_nogood.md
 
+### non-monotonic-system-is-single-reversible-primitive [IN] DERIVED
+The entire non-monotonic reasoning system — challenges, kill-switches, supersession, and dialectics — is built on a single primitive (outlist) that is inherently reversible, with no dedicated machinery for any defeat pattern.
+- Depends on: outlist-is-universal-defeat-mechanism, all-defeat-mechanisms-are-reversible, dialectical-structure-is-recursive-outlist
+
 ### out-beliefs-imported-without-justifications [IN] OBSERVATION
 Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
@@ -258,9 +358,21 @@ An outlist node that doesn't exist in the network is treated as OUT (justificati
 The `outlist` field on `Justification` allows beliefs to be retracted when a defeating node becomes IN — this is the core non-monotonic mechanism powering `supersede`, `challenge`, and default-logic patterns.
 - Source: entries/2026/04/23/reasons_lib-__init__.md
 
+### outlist-is-universal-defeat-mechanism [IN] DERIVED
+The outlist primitive is the sole defeat mechanism underlying all non-monotonic features: challenges, agent kill-switches, supersession, and direct defeasible reasoning
+- Depends on: outlist-enables-non-monotonic-reasoning, challenge-is-outlist-injection, kill-switch-uses-outlist-not-antecedent, supersession-is-reversible
+
 ### outlist-relationships-survive-persistence [IN] OBSERVATION
 Outlists are stored as `outlist_json` in the SQLite `justifications` table; on load, the dependent index is rebuilt for both antecedents and outlist nodes, preserving propagation behavior across save/load cycles
 - Source: entries/2026/04/23/topic-outlist-semantics.md
+
+### outlist-semantics-are-fully-specified [IN] DERIVED
+The outlist primitive has complete, well-defined semantics: multiple entries form a conjunction (all must be OUT), absent nodes are treated as OUT (permissive default), and outlist relationships survive persistence through JSON serialization with rebuilt dependent indexes.
+- Depends on: multiple-outlist-is-conjunction, outlist-absent-means-out, outlist-relationships-survive-persistence
+
+### premise-behavior-emerges-from-absence [IN] DERIVED
+Premise behavior is not explicitly implemented — it emerges from three defaults: nodes with no justifications default to IN, empty antecedent lists are vacuously valid, and the system preserves a premise's current truth value rather than deriving it.
+- Depends on: premises-have-no-justifications, premise-defaults-to-in, empty-antecedents-vacuously-valid
 
 ### premise-defaults-to-in [IN] OBSERVATION
 A node with no justifications (a premise) defaults to IN; `_compute_truth` preserves its current truth value rather than recomputing it.
@@ -269,10 +381,6 @@ A node with no justifications (a premise) defaults to IN; `_compute_truth` prese
 ### premises-have-no-justifications [IN] OBSERVATION
 A premise node is represented by an empty `justifications` list and defaults to `truth_value="IN"`; the system treats the empty-justifications case as a special unconditional belief.
 - Source: entries/2026/04/23/reasons_lib-__init__.md
-
-### propagate-assumes-dependents-exist [IN] OBSERVATION
-Every ID in `node.dependents` is accessed via `self.nodes[dep_id]` without a membership check; a dangling dependent reference will raise `KeyError` — this is intentional (broken invariant = bug)
-- Source: entries/2026/04/23/reasons_lib-network-_propagate.md
 
 ### propagate-cascade-stops-on-unchanged [IN] OBSERVATION
 If a dependent's recomputed truth value equals its current value, it is not enqueued — the cascade terminates along that path, making propagation selective rather than exhaustive
@@ -290,6 +398,22 @@ The seed node (`changed_id`) is added to `visited` immediately and never has its
 Truth value propagation in `_propagate` uses `deque`-based BFS through the `dependents` graph, not DFS, ensuring breadth-first wavefront expansion.
 - Source: entries/2026/04/23/reasons_lib-network.md
 
+### propagation-is-safe-and-terminating [IN] DERIVED
+Truth propagation is both lifecycle-safe and guaranteed to terminate: retracted nodes are skipped, trigger nodes are never recomputed, BFS prevents stack overflow, and stop-on-unchanged prevents oscillation — propagation respects every node state it encounters.
+- Depends on: propagation-terminates-deterministically, propagation-respects-node-lifecycle
+
+### propagation-respects-node-lifecycle [IN] DERIVED
+Truth propagation respects node lifecycle states: retracted nodes are skipped during BFS traversal, and the trigger node itself is never recomputed — callers must set its truth value before invoking propagation.
+- Depends on: retracted-nodes-skipped-in-propagation, propagate-does-not-change-trigger
+
+### propagation-terminates-deterministically [IN] DERIVED
+Truth propagation is guaranteed to terminate: BFS prevents stack overflow, stop-on-unchanged prevents oscillation, and fixpoint iteration bounds the outer loop
+- Depends on: propagation-is-bfs, propagate-cascade-stops-on-unchanged, recompute-all-uses-fixpoint
+
+### reasoning-engine-is-deterministic-and-reversible [IN] DERIVED
+The TMS engine achieves deterministic reversible non-monotonic reasoning: truth maintenance produces predictable terminating results through uniform evaluation and conservative asym­metry, while every non-monotonic operation (challenge, kill-switch, supersession, dialectics) is inherently undoable through the single outlist primitive.
+- Depends on: tms-core-is-deterministic-and-conservative, non-monotonic-system-is-single-reversible-primitive
+
 ### recompute-all-uses-fixpoint [IN] OBSERVATION
 `recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.
 - Source: entries/2026/04/23/reasons_lib-network.md
@@ -298,6 +422,14 @@ Truth value propagation in `_propagate` uses `deque`-based BFS through the `depe
 Retracted nodes (marked with `_retracted` metadata) are skipped during BFS propagation but remain in the network for potential restoration.
 - Source: entries/2026/04/23/reasons_lib-network.md
 
+### revision-is-lifecycle-safe-and-semantics-preserving [IN] DERIVED
+Both revision entry points — reactive contradiction resolution (backtracking to least-entrenched premise, skipping retracted nodes) and proactive dialectical challenge (outlist injection preserving evaluation semantics) — respect node lifecycle and preserve semantic consistency despite operating through different mechanisms.
+- Depends on: contradiction-resolution-is-lifecycle-safe, dialectical-transformation-preserves-semantics
+
+### semantic-minimality-with-operational-determinism [IN] DERIVED
+The system unifies semantic minimality (all non-monotonic features and truth semantics derive from uniform outlist/disjunction primitives) with operational determinism (all operations terminate predictably via BFS fixpoint with conservative failure semantics), yielding a small trusted kernel that powers all reasoning.
+- Depends on: system-semantics-are-minimal-and-complete, reasoning-engine-is-deterministic-and-reversible
+
 ### sl-justification-semantics [IN] OBSERVATION
 An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes are OUT; a node is IN iff ANY of its justifications is valid (conjunction within a justification, disjunction across justifications).
 - Source: entries/2026/04/23/reasons_lib-network.md
@@ -305,6 +437,10 @@ An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes ar
 ### sl-outlist-asymmetry [IN] OBSERVATION
 Missing antecedents invalidate a justification, but missing outlist nodes do not — this asymmetry enables "believe X unless Y" where Y may not yet exist in the network
 - Source: entries/2026/04/23/reasons_lib-network-_justification_valid.md
+
+### staleness-is-conservative-ci-gate [IN] DERIVED
+Staleness checking is designed as a safe CI gate: it never mutates state, only checks IN nodes, requires both source fields, and exits nonzero to fail the pipeline
+- Depends on: check-stale-is-read-only, check-stale-exits-nonzero, check-stale-skips-out-nodes, check-stale-requires-both-source-fields
 
 ### storage-load-bypasses-propagation [IN] OBSERVATION
 `load()` constructs nodes directly into `network.nodes` rather than calling `add_node`, so truth maintenance propagation does not fire during deserialization.
@@ -326,15 +462,337 @@ Missing antecedents invalidate a justification, but missing outlist nodes do not
 `_sync_claims` implements remote-wins reconciliation: remote text/metadata overwrites local, beliefs removed from remote are retracted locally, and beliefs remotely IN but locally OUT are re-asserted
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
 
+### system-semantics-are-minimal-and-complete [IN] DERIVED
+The entire TMS — both monotonic truth maintenance and non-monotonic defeat — derives from a minimal set of uniform primitives: emergent truth rules (disjunction over conjunction, premise-from-absence) combined with a single reversible outlist mechanism that underlies all defeat features, with no additional machinery required.
+- Depends on: truth-semantics-are-emergent-and-uniform, non-monotonic-system-is-single-reversible-primitive
+
 ### three-layer-architecture [IN] OBSERVATION
 The codebase is a three-layer stack: data model (`__init__.py`), TMS engine (`network.py`), and persistence (`storage.py`), with `api.py` providing functional API and `cli.py` as a thin argparse wrapper.
 - Source: entries/2026/04/23/scan-ftl-reasons.md
+
+### three-layer-stack-has-clean-boundaries [IN] DERIVED
+The architecture enforces strict layer separation: pure data model at bottom, context-managed API with dict returns in the middle, and pure-formatter CLI at the top
+- Depends on: three-layer-architecture, init-is-pure-data-model, api-uses-with-network-context-manager, cli-is-pure-formatter
+
+### tms-core-is-deterministic-and-conservative [IN] DERIVED
+The TMS engine produces deterministic, terminating truth maintenance through uniform pure evaluation, guaranteed convergence, and conservative asymmetric failure semantics for missing nodes.
+- Depends on: justification-evaluation-is-uniform-and-pure, propagation-terminates-deterministically, missing-nodes-have-asymmetric-fail-semantics
 
 ### transaction-per-function [IN] OBSERVATION
 Every API function opens the database, does its work, and closes — no shared state, no connection pooling, no long-lived sessions; each invocation is fully independent.
 - Source: entries/2026/04/23/reasons_lib-api.md
 
+### truth-is-disjunctive-over-conjunctive-rules [IN] DERIVED
+A node's truth is a disjunction over justifications (any valid justification makes it IN), where each justification is a conjunction (all antecedents IN and all outlist OUT), and any-mode explicitly reifies OR semantics as per-premise justifications.
+- Depends on: node-in-if-any-justification-valid, sl-justification-semantics, any-mode-creates-per-premise-justifications
+
+### truth-semantics-are-emergent-and-uniform [IN] DERIVED
+Truth maintenance semantics are fully emergent from simple uniform rules: premise behavior arises from empty justification lists, evaluation is pure and type-agnostic across SL/CP, and node truth is a clean disjunction-of-conjunctions — no special cases exist anywhere in the evaluation path.
+- Depends on: premise-behavior-emerges-from-absence, truth-is-disjunctive-over-conjunctive-rules, justification-evaluation-is-uniform-and-pure
+
 ### write-false-prevents-persistence [IN] OBSERVATION
 Functions using `_with_network(write=False)` can mutate the in-memory network (as `what_if_retract` does) but changes are never saved to SQLite; write-or-not is declared upfront and never conditional.
 - Source: entries/2026/04/23/reasons_lib-api.md
 
+### all-belief-modification-paths-are-operationally-safe [OUT] DERIVED
+Both human-initiated belief modifications (dialectical challenge/defend with irreversible premise transformation) and machine-generated belief modifications (LLM derivation with fail-soft validation, agent import with namespace containment) are operationally safe through independent but compositionally compatible safety mechanisms.
+- Depends on: dialectical-transformation-is-operationally-safe, external-inputs-face-defense-in-depth
+
+### all-external-belief-paths-are-safely-bounded [OUT] DERIVED
+Both external belief integration pathways — LLM-driven derivation (bounded by fail-soft validation, Jaccard retraction guards, environment isolation, and safe propagation) and multi-agent import (bounded by namespace isolation, reversible kill-switches, and layered architecture) — are defense-in-depth pipelines that cannot corrupt the host network.
+- Depends on: llm-mutations-are-bounded-end-to-end, multi-agent-safety-spans-all-layers
+
+### all-external-inputs-produce-correct-state [OUT] DERIVED
+Both external input pathways (LLM derivation and multi-agent import) produce a fully correct persisted network state — bounded validation prevents invalid beliefs, namespace isolation prevents cross-contamination, and layered reconciliation handles all truth states — provided the agent count bug is fixed and missing source files are detected.
+- Depends on: llm-mutations-are-bounded-end-to-end, multi-agent-safety-spans-all-layers
+- Unless: derive-agent-count-bug, missing-source-file-is-silent
+
+### all-external-inputs-safely-integrated [OUT] DERIVED
+Both LLM-derived beliefs and agent-imported beliefs are safely integrated into the network: defensive validation with retraction guards bounds LLM output, while complete reconciliation with dual modes and heterogeneous truth handling manages agent imports.
+- Depends on: llm-driven-mutations-are-safely-bounded, import-provides-complete-reconciliation
+- Unless: derive-agent-count-bug
+
+### all-mutation-sources-are-safe-and-uniform [OUT] DERIVED
+Every belief modification path — human-initiated dialectical challenge/defend, LLM-derived proposals, and multi-agent import/sync — is simultaneously operationally safe (atomic, bounded, deterministic) and semantically uniform (same outlist/disjunction evaluation, same edge-case handling), with no source-specific exceptions or special-case machinery at any level.
+- Depends on: all-belief-modification-paths-are-operationally-safe, multi-agent-revision-is-semantically-uniform
+
+### all-safety-dimensions-converge [OUT] DERIVED
+Four independently-established safety dimensions — dialectical determinism, edge-case uniformity, node lifecycle awareness, and mutation-source coverage — converge into a single comprehensive safety property, because each was independently derived from the same minimal evaluation core and they impose no conflicting constraints on each other.
+- Depends on: safety-and-uniformity-are-co-derived, revision-spans-lifecycle-and-all-sources
+
+### belief-revision-is-fully-reliable [OUT] DERIVED
+The complete belief revision pipeline — outlist-based defeat for proactive retraction plus dependency-directed backtracking for reactive contradiction resolution — produces correct, consistent, auditable results with deterministic propagation settling all consequences.
+- Depends on: non-monotonic-system-is-single-reversible-primitive, contradiction-resolution-is-minimal-disruption, propagation-terminates-deterministically
+- Unless: propagate-assumes-dependents-exist, nogood-ids-assume-append-only
+
+### challenge-defense-is-crash-safe [OUT] DERIVED
+The dialectical challenge/defend system reaches correct truth states through recursive outlist injection evaluated by deterministic terminating propagation.
+- Depends on: dialectical-structure-is-recursive-outlist, propagation-terminates-deterministically
+- Unless: propagate-assumes-dependents-exist
+
+### compact-budget-controls-output-size [OUT] DERIVED
+The compact module's token budget reliably constrains total output size
+- Depends on: compact-in-nodes-ordered-by-dependents, compact-summary-hiding-requires-in
+- Unless: compact-token-estimate-is-word-count, compact-budget-only-limits-in-nodes
+
+### complete-operational-uniformity-across-all-sources [OUT] DERIVED
+All mutation sources produce fully correct persisted network state — operationally safe, semantically uniform, and consistent across all graph configurations — only when propagation handles dangling dependents without crashing and the derive pipeline's agent-count bug does not skew budget allocation.
+- Depends on: all-belief-modification-paths-are-operationally-safe, multi-agent-revision-is-semantically-uniform
+- Unless: propagate-assumes-dependents-exist, derive-agent-count-bug
+
+### complete-unified-system-is-production-ready [OUT] DERIVED
+The fully unified minimal-dialectical-scalable system with end-to-end integrity is production-ready — all mutations produce correct state, all revision is reliable, all extensions compose safely — but only when every known fragility and bug is resolved.
+- Depends on: system-is-unified-minimal-dialectical-and-scalable, internal-and-external-integrity-are-unified
+- Unless: derive-agent-count-bug, propagate-assumes-dependents-exist, dependents-index-is-fragile-denormalization, missing-source-file-is-silent, nogood-ids-assume-append-only
+
+### data-integrity-spans-architecture [OUT] DERIVED
+Data integrity is enforced across all three architectural layers: clean layer boundaries prevent cross-cutting mutations, snapshot persistence ensures atomic state transitions, and conservative staleness checking gates CI pipelines.
+- Depends on: three-layer-stack-has-clean-boundaries, persistence-is-snapshot-not-incremental, staleness-is-conservative-ci-gate
+
+### dependents-bidirectional-index [STALE] OBSERVATION
+Each node maintains a `dependents` set (reverse of antecedent/outlist edges), eagerly maintained by `add_node`, `add_justification`, `supersede`, `challenge`, and `convert_to_premise`.
+- Source: entries/2026/04/23/reasons_lib-network.md
+- Stale reason: Fixed in PR #31
+
+### dependents-index-derived-on-load [STALE] OBSERVATION
+The `node.dependents` set is never persisted to SQLite; it is rebuilt by walking all justification antecedents and outlists during `load()`.
+- Source: entries/2026/04/23/reasons_lib-storage.md
+- Stale reason: Fixed in PR #31
+
+### dependents-index-is-fragile-denormalization [OUT] DERIVED
+The dependents set is a manually-maintained denormalized reverse index that is never persisted and must be rebuilt on every load, creating a consistency obligation on all mutation paths
+- Depends on: dependents-is-manual-reverse-index, dependents-index-derived-on-load, dependents-bidirectional-index
+
+### dependents-is-manual-reverse-index [STALE] OBSERVATION
+`Node.dependents` is a denormalized reverse pointer set that must be kept in sync by external code (primarily `network.py`); nothing in the data model enforces consistency.
+- Source: entries/2026/04/23/reasons_lib-__init__.md
+- Stale reason: Fixed in PR #31
+
+### derive-agent-count-bug [STALE] OBSERVATION
+`_build_beliefs_section` has a bug: `count += len(belief_ids)` is inside the per-belief loop instead of outside it, inflating the count and shrinking the non-agent budget below intended size
+- Source: entries/2026/04/23/reasons_lib-derive.md
+- Stale reason: Fixed in PR #33
+
+### derive-budget-allocation-is-accurate [STALE] DERIVED
+The derive pipeline's proportional belief-budget allocation produces correct per-agent token counts
+- Depends on: derive-agent-budget-proportional, derive-prompt-roundtrips-through-parser
+- Unless: derive-agent-count-bug
+- Stale reason: Fixed in PR #33
+
+### derive-pipeline-is-production-ready [STALE] DERIVED
+The derive pipeline correctly allocates budgets, validates proposals defensively, and produces well-formed beliefs through a round-trippable prompt contract.
+- Depends on: derive-pipeline-is-defensive, derive-prompt-roundtrips-through-parser
+- Unless: derive-agent-count-bug
+- Stale reason: Fixed in PR #33
+
+### determinism-enables-safe-dialectical-extension [OUT] DERIVED
+Dialectical transformation is operationally safe precisely because it composes with the minimal deterministic engine — the irreversible premise-to-justified conversion inherits deterministic propagation and uniform evaluation, so dialectics need no dedicated safety machinery beyond what the core already provides.
+- Depends on: semantic-minimality-with-operational-determinism, dialectical-transformation-is-operationally-safe
+
+### dialectical-transformation-is-operationally-safe [OUT] DERIVED
+The irreversible premise-to-justified transformation during challenge is both semantically safe (inherits uniform outlist evaluation and truth maintenance properties from the dialectical structure) and operationally safe (executes within atomic load/save transactions with deterministic BFS propagation).
+- Depends on: dialectical-transformation-preserves-semantics, mutations-are-atomic-and-safely-propagated
+
+### dialectics-are-atomic-and-transparent [OUT] DERIVED
+Challenge/defend dialectics are both semantically transparent (indistinguishable from ordinary beliefs, evaluated by uniform outlist rules) and atomically safe (mutations follow the same context-managed load/save pipeline as all other operations), requiring no special transaction handling.
+- Depends on: dialectics-are-semantically-transparent, mutations-are-atomic-and-safely-propagated
+
+### dialectics-complete-the-revision-system [OUT] DERIVED
+The system handles both automated belief revision (outlist defeat for proactive retraction, dependency-directed backtracking for reactive contradiction resolution) and interactive dialectics (challenge/defend for human-driven contestation) — both operating atomically through the same outlist primitive with transparent, uniform evaluation semantics.
+- Depends on: dialectics-are-atomic-and-transparent, belief-revision-is-comprehensive-and-minimal
+
+### extensions-compose-transparently-on-core [OUT] DERIVED
+Both extension systems — dialectical challenge/defend and multi-agent federation — compose transparently on the core TMS because each is evaluated by uniform outlist rules, propagated deterministically, reversed by the same primitive, and isolated from the other's namespace.
+- Depends on: dialectics-are-atomic-and-transparent, multi-agent-reasoning-is-sound-and-scalable
+
+### external-belief-lifecycle-is-complete [OUT] DERIVED
+The system manages external beliefs across their full lifecycle: import/sync provides dual reconciliation modes with heterogeneous truth state handling and namespace auto-wiring, while staleness checking detects source drift for CI gating — beliefs are tracked from initial ingestion through ongoing validity monitoring.
+- Depends on: import-provides-complete-reconciliation, staleness-is-conservative-ci-gate
+- Unless: missing-source-file-is-silent
+
+### external-inputs-face-defense-in-depth [OUT] DERIVED
+External beliefs face defense in depth across two independent containment layers: input-level containment (defensive validation pipelines, agent namespace isolation) prevents bad data from entering, while system-level containment (architectural layer boundaries, lifecycle-aware checking and propagation) prevents bad data from persisting or spreading.
+- Depends on: external-beliefs-defensively-contained, integrity-enforced-across-architecture-and-lifecycle
+
+### full-system-integrity-is-gap-free [OUT] DERIVED
+The system achieves gap-free integrity — enforced across all architectural layers, lifecycle states, and mutation paths — only when the dependents reverse index is reliably maintained and propagation handles dangling references gracefully.
+- Depends on: integrity-enforced-across-architecture-and-lifecycle, mutations-are-atomic-and-safely-propagated
+- Unless: dependents-index-is-fragile-denormalization, propagate-assumes-dependents-exist
+
+### integrity-and-scalability-are-complementary [OUT] DERIVED
+The system achieves comprehensive integrity (unified across all internal mutations and external belief ingestion) and sound multi-agent scalability (isolated namespaces, minimal primitives, deterministic propagation) simultaneously — these properties reinforce rather than trade off against each other because both derive from the same uniform evaluation rules.
+- Depends on: internal-and-external-integrity-are-unified, system-is-minimal-sound-and-scalable
+
+### integrity-enforced-across-architecture-and-lifecycle [OUT] DERIVED
+Integrity is enforced along two orthogonal dimensions: vertically across architectural layers (clean data-model/TMS/persistence boundaries with snapshot persistence and CI gating) and horizontally across node lifecycle states (staleness checking skips OUT nodes without mutating, propagation skips retracted nodes while preserving them for restoration).
+- Depends on: lifecycle-awareness-spans-checking-and-propagation, data-integrity-spans-architecture
+
+### integrity-is-an-emergent-consequence-of-minimality [OUT] DERIVED
+End-to-end integrity across all mutation paths and architectural boundaries is not an independently-achieved property requiring separate enforcement — it falls out of minimality as another emergent consequence, because uniform primitive evaluation leaves no gaps for inconsistency to enter.
+- Depends on: minimality-is-the-universal-generative-principle, unified-system-maintains-end-to-end-integrity
+
+### integrity-is-boundary-and-source-agnostic [OUT] DERIVED
+System integrity is enforced agnostically along two independent dimensions — across the internal/external boundary (local mutations vs. external ingestion) and across mutation sources (human dialectics, LLM derivation, agent import) — because the same atomic-deterministic pipeline processes all combinations without branching on origin or direction.
+- Depends on: internal-and-external-integrity-are-unified, operational-safety-spans-all-mutation-sources
+
+### internal-and-external-integrity-are-unified [OUT] DERIVED
+Every operation — internal mutations (atomic transactions, deterministic propagation) and external belief ingestion (defensive validation, environment isolation, agent containment) — maintains end-to-end integrity through complementary safety mechanisms.
+- Depends on: operational-integrity-is-end-to-end, all-external-belief-paths-are-safely-bounded
+
+### minimality-is-both-generative-and-unifying [OUT] DERIVED
+Minimality is simultaneously the generative source of each individual system property (extensibility, robustness, revision completeness) and the unifying principle that makes them cohere — the system achieves unity not by coordinating independently-designed features but because every feature is a different manifestation of the same minimal primitive set.
+- Depends on: minimality-is-the-universal-generative-principle, system-properties-emerge-from-unified-design
+
+### minimality-is-the-universal-generative-principle [OUT] DERIVED
+Minimality is the single generative architectural principle underlying all emergent system properties — extensibility and robustness arise from transparent extension composition on the minimal core, while revision completeness arises from uniform edge-case handling within the same core — revealing that these typically independent qualities share a common origin rather than requiring separate design effort.
+- Depends on: minimality-yields-extensibility-and-robustness, revision-completeness-follows-from-minimality
+
+### minimality-yields-extensibility-and-robustness [OUT] DERIVED
+The minimal core simultaneously enables two independent emergent properties — transparent extension composition (dialectics, multi-agent federation) and uniform edge-case handling (vacuous premises, asymmetric absence) — demonstrating that minimality is operationally productive, not merely aesthetically elegant.
+- Depends on: extensions-compose-transparently-on-core, edge-case-uniformity-follows-from-minimality
+
+### missing-source-file-is-silent [STALE] OBSERVATION
+If a node's source file no longer exists on disk, `check_stale` silently skips it; callers cannot distinguish "file deleted" from "file never tracked."
+- Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
+- Stale reason: Fixed in PR #32
+
+### multi-agent-reasoning-is-sound-and-scalable [OUT] DERIVED
+The system provides both individually sound reasoning (deterministic, reversible, terminating truth maintenance) and safe multi-agent operation (isolated namespaces, reversible lifecycle control, clean architectural boundaries), enabling arbitrarily many agents without sacrificing correctness guarantees.
+- Depends on: reasoning-engine-is-deterministic-and-reversible, multi-agent-safety-spans-all-layers
+
+### multi-agent-revision-is-semantically-uniform [OUT] DERIVED
+Multi-agent operation does not carve out exceptions to the universal revision semantics — agent beliefs undergo the same uniform revision (outlist defeat, contradiction backtracking, edge-case handling) as local beliefs because agent namespacing and relay pairs operate above the evaluation layer, not within it.
+- Depends on: multi-agent-reasoning-is-sound-and-scalable, belief-revision-covers-all-cases-uniformly
+
+### multi-agent-safety-spans-all-layers [OUT] DERIVED
+Multi-agent operation is safe across the full system: agent isolation prevents cross-contamination between namespaces with reversible lifecycle control, while data integrity is enforced across all three architectural layers through clean boundaries and snapshot persistence.
+- Depends on: agent-subsystem-is-self-contained, data-integrity-spans-architecture
+
+### mutation-pipeline-is-atomic-snapshot [OUT] DERIVED
+Every network mutation follows an atomic snapshot pipeline: API context management ensures load/save atomicity with write-flag gating, while storage performs full-replace persistence — no partial state is ever visible between operations.
+- Depends on: api-layer-ensures-atomic-isolated-mutations, persistence-is-snapshot-not-incremental
+
+### mutation-pipeline-produces-consistent-state [OUT] DERIVED
+Every mutation produces a fully consistent persisted network: atomic load/save ensures no partial writes, deterministic propagation ensures all truth values are correctly derived, and lifecycle-aware traversal prevents stale recomputations.
+- Depends on: mutation-pipeline-is-atomic-snapshot, propagation-is-safe-and-terminating
+- Unless: dependents-index-is-fragile-denormalization, propagate-assumes-dependents-exist
+
+### mutation-safety-spans-all-dimensions [OUT] DERIVED
+Every mutation is safe along three orthogonal dimensions simultaneously: source dimension (human, LLM, or agent), semantic dimension (uniform revision via outlist defeat and backtracking), and lifecycle dimension (respects retraction state and propagation bounds) — no mutation path is exempt from any dimension.
+- Depends on: all-mutation-sources-are-safe-and-uniform, revision-spans-lifecycle-and-all-sources
+
+### mutations-are-atomic-and-safely-propagated [OUT] DERIVED
+Every network mutation follows an end-to-end safety pipeline: API context management ensures atomic load/save with write-flag gating, truth propagation terminates deterministically with lifecycle-aware BFS traversal, and snapshot persistence captures the final consistent state — no mutation can produce an inconsistent or divergent network.
+- Depends on: mutation-pipeline-is-atomic-snapshot, propagation-is-safe-and-terminating
+
+### nogood-resolution-maintains-consistent-ids [OUT] DERIVED
+Nogood recording and resolution produces a consistent, referenceable history of contradictions
+- Depends on: backtracking-retracts-least-entrenched, add-nogood-always-records
+- Unless: nogood-ids-assume-append-only
+
+### operational-integrity-is-end-to-end [OUT] DERIVED
+Every network operation achieves both transactional atomicity (load/save gating, snapshot persistence) and semantic determinism (uniform pure evaluation, terminating propagation, reversible defeat), ensuring every mutation produces a predictable, recoverable network state.
+- Depends on: mutations-are-atomic-and-safely-propagated, reasoning-engine-is-deterministic-and-reversible
+
+### operational-integrity-survives-all-graph-states [OUT] DERIVED
+End-to-end operational integrity holds across all semantic edge cases — including vacuous premises, asymmetric absence, and empty antecedents — only when the dependents graph is consistent and propagation handles all node references safely.
+- Depends on: operational-integrity-is-end-to-end, belief-revision-covers-all-cases-uniformly
+- Unless: propagate-assumes-dependents-exist, dependents-index-is-fragile-denormalization
+
+### operational-safety-spans-all-mutation-sources [OUT] DERIVED
+Operational safety extends across both internal mutation pipelines (atomic load/save transactions, deterministic propagation, write-flag gating) and external belief ingestion pathways (defensive validation, Jaccard retraction guards, environment isolation, agent namespace containment), ensuring every mutation source — whether programmatic, LLM-driven, or agent-imported — passes through integrity enforcement.
+- Depends on: operational-integrity-is-end-to-end, all-external-belief-paths-are-safely-bounded
+
+### persistence-is-snapshot-not-incremental [OUT] DERIVED
+The storage layer operates as a full snapshot: save replaces all rows, load trusts stored values without re-propagation, and the dependents index is rebuilt from scratch
+- Depends on: storage-save-is-full-replace, storage-trusts-stored-truth-values, storage-load-bypasses-propagation, dependents-index-derived-on-load
+
+### persistence-round-trip-is-lossless [OUT] DERIVED
+The save/load round trip preserves all network state faithfully: snapshot persistence captures the full graph, stored truth values are trusted without re-propagation, justification insertion order is preserved via rowid, and outlist relationships survive serialization.
+- Depends on: persistence-is-snapshot-not-incremental, justification-order-preserved-via-rowid, outlist-relationships-survive-persistence
+- Unless: dependents-index-is-fragile-denormalization
+
+### propagate-assumes-dependents-exist [STALE] OBSERVATION
+Every ID in `node.dependents` is accessed via `self.nodes[dep_id]` without a membership check; a dangling dependent reference will raise `KeyError` — this is intentional (broken invariant = bug)
+- Source: entries/2026/04/23/reasons_lib-network-_propagate.md
+- Stale reason: Fixed in PR #27
+
+### propagation-is-crash-free [STALE] DERIVED
+Truth propagation completes without runtime errors across all reachable nodes
+- Depends on: propagation-is-bfs, propagate-cascade-stops-on-unchanged, derive-depth-cycle-guard
+- Unless: propagate-assumes-dependents-exist
+- Stale reason: Fixed in PR #27
+
+### revision-completeness-follows-from-minimality [OUT] DERIVED
+The complete revision system — covering both proactive dialectical defeat and reactive contradiction resolution — handles all semantic edge cases uniformly because both revision mechanisms and edge-case handling derive from the same minimal outlist primitive, making completeness an emergent consequence of minimality rather than an engineering feat.
+- Depends on: dialectics-complete-the-revision-system, edge-case-uniformity-follows-from-minimality
+
+### revision-spans-lifecycle-and-all-sources [OUT] DERIVED
+The revision system is safe across two orthogonal dimensions: node lifecycle (backtracking skips retracted nodes, propagation respects lifecycle states, challenge preserves semantics through irreversible transformation) and modification source (dialectical, LLM, multi-agent) — ensuring no revision path is unsafe regardless of the node's lifecycle state or the belief's origin.
+- Depends on: revision-is-lifecycle-safe-and-semantics-preserving, all-belief-modification-paths-are-operationally-safe
+
+### safe-universal-revisability [OUT] DERIVED
+Any mutation source — human dialectical challenge, LLM-derived proposal, or multi-agent import — can safely revise any belief in the network through complete minimal mechanisms; the system imposes no restrictions on who can revise what, while guaranteeing that every revision path preserves consistency.
+- Depends on: all-mutation-sources-are-safe-and-uniform, revision-completeness-follows-from-minimality
+
+### safety-and-uniformity-are-co-derived [OUT] DERIVED
+Dialectical safety (deterministic evaluation of irreversible premise transformations) and edge-case uniformity (consistent handling of vacuous premises, asymmetric absence, and empty antecedents) are independently derived from the same shared root — semantic minimality with operational determinism — revealing them as two faces of a single architectural property rather than independent design achievements.
+- Depends on: determinism-enables-safe-dialectical-extension, edge-case-uniformity-follows-from-minimality
+
+### safety-integrity-and-uniformity-converge [OUT] DERIVED
+Three independently-established properties — boundary-agnostic integrity (internal/external indifference), dialectical safety (deterministic evaluation of irreversible transformations), and edge-case uniformity (consistent handling of vacuous and asymmetric cases) — converge to a single architectural invariant because all three derive from the same minimal evaluation rules applied uniformly.
+- Depends on: integrity-is-boundary-and-source-agnostic, safety-and-uniformity-are-co-derived
+
+### staleness-checking-is-comprehensive [STALE] DERIVED
+Staleness checking detects all nodes whose source material has changed on disk
+- Depends on: check-stale-requires-both-source-fields, check-stale-exits-nonzero
+- Unless: missing-source-file-is-silent
+- Stale reason: Fixed in PR #32
+
+### staleness-gate-catches-all-drift [OUT] DERIVED
+The staleness CI gate detects all forms of source material drift without false negatives.
+- Depends on: staleness-is-conservative-ci-gate
+- Unless: missing-source-file-is-silent, hash-truncation-is-16-hex
+
+### system-achieves-full-correctness [OUT] DERIVED
+The system achieves correctness at every level: deterministic conservative truth maintenance, a single reversible primitive for all non-monotonic features, and data integrity spanning all architectural layers — the system is sound end-to-end.
+- Depends on: tms-core-is-deterministic-and-conservative, non-monotonic-system-is-single-reversible-primitive, data-integrity-spans-architecture
+- Unless: derive-agent-count-bug, propagate-assumes-dependents-exist
+
+### system-is-minimal-sound-and-scalable [OUT] DERIVED
+The entire system — from single-node truth semantics through multi-agent operation — achieves semantic minimality (all features derive from uniform primitives), operational soundness (deterministic reversible truth maintenance), and safe scalability (isolated multi-agent operation) simultaneously.
+- Depends on: multi-agent-reasoning-is-sound-and-scalable, system-semantics-are-minimal-and-complete
+
+### system-is-unified-minimal-dialectical-and-scalable [OUT] DERIVED
+The entire system — minimal primitives, sound multi-agent scaling, and complete dialectical revision — forms a unified design where every feature derives from the same core outlist/disjunction semantics with deterministic, reversible behavior.
+- Depends on: dialectics-complete-the-revision-system, system-is-minimal-sound-and-scalable
+
+### system-operations-never-crash [STALE] DERIVED
+Every system operation is crash-free: atomic mutations prevent partial state corruption, deterministic reversible reasoning prevents oscillation and ambiguity, and uniform evaluation prevents dispatch errors — provided no dangling dependent references exist in the graph.
+- Depends on: mutations-are-atomic-and-safely-propagated, reasoning-engine-is-deterministic-and-reversible
+- Unless: propagate-assumes-dependents-exist
+- Stale reason: Fixed in PR #27
+
+### system-properties-emerge-from-unified-design [OUT] DERIVED
+All four primary system properties — integrity, scalability, extensibility, and robustness — emerge from a single unified architectural design rather than requiring independent engineering effort; integrity and scalability are complementary consequences of unified internal/external integrity with sound multi-agent scaling, while extensibility and robustness are jointly yielded by minimality, and the design that produces both pairs is the same.
+- Depends on: integrity-and-scalability-are-complementary, minimality-yields-extensibility-and-robustness
+
+### tms-core-is-crash-safe [STALE] DERIVED
+The TMS core provides crash-free truth maintenance: deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes.
+- Depends on: justification-evaluation-is-uniform-and-pure, propagation-terminates-deterministically
+- Unless: propagate-assumes-dependents-exist
+- Stale reason: Fixed in PR #27
+
+### unified-system-is-a-closed-self-maintaining-architecture [OUT] DERIVED
+The system forms a closed self-maintaining belief architecture: end-to-end integrity ensures no operation corrupts consistency, while revision completeness ensures any valid belief configuration is reachable — together guaranteeing the system can evolve to any target state while preserving all invariants — only when all known defects and fragilities are resolved.
+- Depends on: unified-system-maintains-end-to-end-integrity, revision-completeness-follows-from-minimality
+- Unless: derive-agent-count-bug, propagate-assumes-dependents-exist, dependents-index-is-fragile-denormalization, missing-source-file-is-silent, nogood-ids-assume-append-only
+
+### unified-system-maintains-end-to-end-integrity [OUT] DERIVED
+The fully unified system — minimal primitives, sound multi-agent scaling, and complete dialectical revision — also maintains end-to-end integrity across all internal and external operations, meaning the design's unification extends from semantic minimality through operational safety to produce a system where every component inherits both the expressiveness and the integrity guarantees of the core.
+- Depends on: system-is-unified-minimal-dialectical-and-scalable, internal-and-external-integrity-are-unified
+
+### verified-mutation-correctness-across-boundaries [OUT] DERIVED
+Every mutation source produces fully correct persisted state that preserves boundary-agnostic integrity — not just safe operation, but verified output correctness across internal/external boundaries and all source types — only when implementation-level defects in propagation and budget allocation are resolved.
+- Depends on: all-mutation-sources-are-safe-and-uniform, integrity-is-boundary-and-source-agnostic
+- Unless: derive-agent-count-bug, propagate-assumes-dependents-exist
