@@ -6,17 +6,20 @@ This repo contains structured exploration entries, extracted beliefs, multi-mode
 
 ## Belief State
 
-- **122 IN** beliefs (held as true)
-- **55 OUT** beliefs (retracted or defeated)
+- **130 IN** beliefs (held as true) / **59 OUT** (retracted or defeated) — 189 total
+- **83 premises** (direct observations from code) / **106 derived** (reasoned from other beliefs)
+- **10 retracted premises** — defects fixed via PRs merged back into ftl-reasons
+- **0 active blockers** — all GATE beliefs resolved
 - Beliefs are tracked in `reasons.db` (gitignored) and exported to `beliefs.md` and `network.json`
 
-Beliefs range from low-level observations ("add_nogood always records") to high-level derived conclusions ("the TMS architecture exhibits structural duality between local and federated reasoning"). OUT beliefs include defects that were fixed via PRs and merged back into ftl-reasons.
+Beliefs range from low-level observations ("add-nogood-always-records") to depth-5 derived conclusions ("edge-case-uniformity-follows-from-minimality"). The 19 terminal derived beliefs represent the highest-level conclusions about the system's architecture, safety, and correctness.
 
 ## Contents
 
 ```
 beliefs.md              # Portable belief registry (markdown)
 network.json            # Lossless belief network export (JSON)
+reasons.db              # SQLite belief store (gitignored)
 proposed-beliefs.md     # Beliefs proposed but not yet accepted
 .code-expert/           # Scanner config, topic queue, proposed entries
 entries/2026/04/23/     # 17 exploration entries covering:
@@ -25,6 +28,7 @@ entries/2026/04/23/     # 17 exploration entries covering:
                         #   - Design patterns (outlist semantics, multi-agent federation)
                         #   - Doyle 1979 TMS theory
 reviews/                # 18 multi-model code review reports (Claude + Gemini)
+                        #   PRs #5-#7, #12-#15, #18, #27-#35 on ftl-reasons
 logs/                   # 8 SDLC pipeline artifact archives
 ```
 
@@ -36,10 +40,25 @@ This knowledge base was built using the following pipeline:
 2. **Explore** -- `code-expert explore --loop` generated detailed entries for each topic
 3. **Extract beliefs** -- `code-expert propose-beliefs` then `code-expert accept-beliefs`
 4. **Derive** -- `reasons derive --exhaust` built multi-round reasoning chains via LLM
-5. **Identify defects** -- OUT beliefs with active blockers were identified as potential bugs
+5. **Identify defects** -- GATE beliefs with active blockers were identified as potential bugs
 6. **File issues** -- `code-expert file-issues` created GitHub issues on ftl-reasons
-7. **Fix** -- `ftl-sdlc-loop` generated PRs, `code-review` validated them
+7. **Fix** -- `ftl-sdlc-loop` generated PRs, `code-review` validated them with multi-model consensus
 8. **Merge and retract** -- `ftl-merge --auto-retract` merged PRs and retracted fixed-defect beliefs
+9. **Verify** -- GATE beliefs flipped IN via TMS propagation, confirming fixes resolved the defects
+
+## Issues Fixed
+
+All 10 defect premises were retracted after their fixes merged:
+
+| Issue | Defect Premise | PR |
+|-------|---------------|-----|
+| [#22](https://github.com/benthomasson/ftl-reasons/issues/22) | `propagate-assumes-dependents-exist` | [#27](https://github.com/benthomasson/ftl-reasons/pull/27) |
+| [#23](https://github.com/benthomasson/ftl-reasons/issues/23) | `derive-agent-count-bug` | [#27](https://github.com/benthomasson/ftl-reasons/pull/27) |
+| [#24](https://github.com/benthomasson/ftl-reasons/issues/24) | `dependents-bidirectional-index`, `dependents-index-derived-on-load`, `dependents-is-manual-reverse-index` | [#31](https://github.com/benthomasson/ftl-reasons/pull/31) |
+| [#25](https://github.com/benthomasson/ftl-reasons/issues/25) | `missing-source-file-is-silent` | [#32](https://github.com/benthomasson/ftl-reasons/pull/32) |
+| [#26](https://github.com/benthomasson/ftl-reasons/issues/26) | `nogood-ids-assume-append-only` | [#33](https://github.com/benthomasson/ftl-reasons/pull/33) |
+| [#36](https://github.com/benthomasson/ftl-reasons/issues/36) | `compact-token-estimate-is-word-count`, `compact-budget-only-limits-in-nodes` | [#39](https://github.com/benthomasson/ftl-reasons/pull/39) |
+| [#37](https://github.com/benthomasson/ftl-reasons/issues/37) | `hash-truncation-is-16-hex` | [#40](https://github.com/benthomasson/ftl-reasons/pull/40) |
 
 ## Tools
 
