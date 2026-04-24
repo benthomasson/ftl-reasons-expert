@@ -1,5 +1,24 @@
 {
   "nodes": {
+    "absence-and-outlist-form-complete-negative-semantics": {
+      "text": "The system has complete semantics for all forms of negation: structural absence produces emergent premise behavior and asymmetric fail modes, while explicit outlist entries provide conjunctive defeat with defined absent-node handling and persistence \u2014 together covering every mechanism by which beliefs can be negated or defeated.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "absence-has-consistent-dual-semantics",
+            "outlist-semantics-are-fully-specified"
+          ],
+          "outlist": [],
+          "label": "Structural absence semantics and explicit outlist semantics together cover the full negation space (depth-3)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "absence-has-consistent-dual-semantics": {
       "text": "Absence has deliberate, defined semantics throughout the system at two levels: structural absence (no justifications) creates premise behavior via vacuous truth over empty lists, while referential absence (missing nodes) follows conservative/permissive asymmetry \u2014 both forms of absence produce predictable behavior rather than errors or undefined state.",
       "truth_value": "IN",
@@ -60,6 +79,25 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "agent-beliefs-undergo-full-revision": {
+      "text": "Agent-imported beliefs participate in the full revision system: the self-contained agent subsystem provides isolated lifecycle management and reversible defeat, while the comprehensive revision system ensures agent beliefs are subject to the same outlist defeat and contradiction resolution as locally-created beliefs \u2014 no revision exception exists for external provenance.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "agent-subsystem-is-self-contained",
+            "belief-revision-is-comprehensive-and-minimal"
+          ],
+          "outlist": [],
+          "label": "agent isolation composes with universal revision semantics (depth-4 from depth-2 + depth-3 IN)"
+        }
+      ],
+      "source": "",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -133,6 +171,44 @@
       "date": "",
       "metadata": {}
     },
+    "all-belief-origins-share-deterministic-revision": {
+      "text": "All belief origins \u2014 human-initiated dialectical challenges, LLM-derived proposals, and multi-agent imports \u2014 participate in the same deterministic revision system: dialectics receive deterministic evaluation through semantic transparency (no special-casing), while agent beliefs undergo full revision through the comprehensive minimal revision primitives \u2014 no belief source escapes uniform treatment.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-deterministic-by-transparency",
+            "agent-beliefs-undergo-full-revision"
+          ],
+          "outlist": [],
+          "label": "Neither human dialectics nor agent imports carve out revision exceptions; both inherit deterministic behavior from the same core engine, establishing source-agnostic revision"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-corrections-are-reliable-and-auditable": {
+      "text": "Every belief correction \u2014 whether intentional (dialectical challenge/defend) or automated (contradiction-triggered backtracking, staleness-driven revision) \u2014 is both reliable (reaching correct truth state through complete mechanisms) and auditable (maintaining full traceable history of nogoods and resolutions).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dispute-resolution-is-complete-and-reliable",
+            "self-correction-has-complete-traceable-history"
+          ],
+          "outlist": [],
+          "label": "reliability from complete dispute resolution combined with traceability from self-correction history"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "all-defeat-mechanisms-are-reversible": {
       "text": "Every outlist-based defeat operation (challenge, kill-switch, supersession) is inherently reversible because outlist semantics flip truth values without deleting nodes",
       "truth_value": "IN",
@@ -147,6 +223,27 @@
           ],
           "outlist": [],
           "label": "Reversibility is an emergent property of using outlists rather than deletion for defeat"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-exceptions-are-safely-handled": {
+      "text": "The system handles both automated exceptions (contradictions triggering dependency-directed backtracking) and manual challenges (irreversible premise-to-justified transformation via dialectics) safely \u2014 exceptional conditions from any origin reach correct truth states through deterministic propagation, and no exception pathway corrupts network consistency.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "tms-handles-all-conditions-safely",
+            "dialectical-transformation-is-fully-reliable"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "both automated and manual exceptions converge on deterministic propagation (depth-5 GATE from depth-3 + depth-4 GATE)"
         }
       ],
       "source": "",
@@ -216,6 +313,25 @@
       "date": "",
       "metadata": {}
     },
+    "all-identification-is-deterministic-and-collision-free": {
+      "text": "All system-generated identifiers \u2014 dialectical artifact auto-IDs, unconditionally-recorded nogood records, and colon-based agent namespace prefixes \u2014 follow deterministic patterns that prevent collisions across all three identifier spaces: dialectical, contradiction, and multi-agent.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-artifacts-maintain-consistent-identification",
+            "namespace-is-colon-convention-with-auto-wiring"
+          ],
+          "outlist": [],
+          "label": "Auto-generated artifact IDs and colon-convention namespacing together eliminate identifier collision across all system domains (depth-3)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "all-mutation-sources-are-safe-and-uniform": {
       "text": "Every belief modification path \u2014 human-initiated dialectical challenge/defend, LLM-derived proposals, and multi-agent import/sync \u2014 is simultaneously operationally safe (atomic, bounded, deterministic) and semantically uniform (same outlist/disjunction evaluation, same edge-case handling), with no source-specific exceptions or special-case machinery at any level.",
       "truth_value": "OUT",
@@ -273,6 +389,25 @@
       "date": "",
       "metadata": {}
     },
+    "all-state-transitions-are-deterministic-and-traceable": {
+      "text": "Every belief state change \u2014 whether initiated by intentional dialectical challenge/defend or by automated contradiction resolution \u2014 follows a deterministic evaluation path and produces a complete traceable history, ensuring no state transition is opaque or unpredictable.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-deterministic-by-transparency",
+            "contradiction-management-is-complete-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Intentional and automated state changes independently achieve determinism and traceability; their union covers all state transitions"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "any-mode-creates-per-premise-justifications": {
       "text": "When `any_mode=True` and multiple antecedents are given, each antecedent gets its own SL justification (OR semantics: node is IN if *any* antecedent is IN), rather than the default single multi-antecedent justification (AND semantics).",
       "truth_value": "IN",
@@ -321,11 +456,96 @@
       "date": "",
       "metadata": {}
     },
+    "architecture-enforces-structural-and-operational-safety": {
+      "text": "Architectural safety is enforced along two independent dimensions: structurally, the central network dependency is contained within clean three-layer boundaries preventing cross-layer corruption; operationally, every mutation path is atomic and isolated preventing within-layer partial state \u2014 neither dimension alone is sufficient, but together they eliminate both classes of corruption.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "central-dependency-is-safely-contained",
+            "api-layer-ensures-atomic-isolated-mutations"
+          ],
+          "outlist": [],
+          "label": "Structural containment (layer boundaries) and operational containment (atomic mutations) are orthogonal safety dimensions that together prevent all corruption vectors"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "architecture-has-no-hidden-fragility": {
+      "text": "The system's architectural safety is robust end-to-end: structural containment via clean layer boundaries and operational atomicity via context-managed mutations leave no hidden consistency hazards across the persistence boundary.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "central-dependency-is-safely-contained",
+            "api-layer-ensures-atomic-isolated-mutations"
+          ],
+          "outlist": [
+            "dependents-index-is-fragile-denormalization"
+          ],
+          "label": "Architectural safety is robust only when no cross-layer denormalization hazard exists; the dependents index fragility would undermine the containment claim if it were active"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "architecture-sustains-gapless-lifecycle": {
+      "text": "Architectural safety (clean layer boundaries with atomic isolated mutations) sustains gapless lifecycle management (staleness detection plus propagation lifecycle awareness) \u2014 beliefs are correctly managed at every point in their lifecycle, backed by structural guarantees that lifecycle operations execute atomically and without cross-layer leakage.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "architecture-enforces-structural-and-operational-safety",
+            "lifecycle-management-is-gapless"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "architectural enforcement ensures lifecycle operations execute correctly and without gaps"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "backtracking-retracts-least-entrenched": {
       "text": "`add_nogood` resolves contradictions via dependency-directed backtracking: `find_culprits` traces to premises, scores by `_entrenchment`, and retracts the least-entrenched premise to minimize disruption.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "belief-currency-is-actively-managed": {
+      "text": "The system actively manages belief currency bidirectionally: the production-ready derive pipeline safely introduces new beliefs through defensive validation, while the staleness CI gate detects drift in existing beliefs against source material \u2014 together preventing both unsafe additions and undetected obsolescence.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-pipeline-is-production-ready",
+            "staleness-gate-catches-all-drift"
+          ],
+          "outlist": [
+            "derive-agent-count-bug",
+            "missing-source-file-is-silent",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "New-belief derivation plus existing-belief drift detection yields bidirectional currency assurance"
+        }
+      ],
+      "source": "",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -384,6 +604,44 @@
             "nogood-ids-assume-append-only"
           ],
           "label": "depth-3, gated \u2014 dangling dependents could crash propagation mid-cascade (violating the determinism guarantee), and append-only nogood IDs could collide if nogoods are ever deleted (corrupting the contradiction audit trail)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "both-revision-paths-preserve-system-invariants": {
+      "text": "Both forms of belief modification \u2014 reactive contradiction resolution (backtracking to least-entrenched premise, skipping retracted nodes) and proactive dialectical challenge (irreversible premise transformation with inherited outlist semantics) \u2014 preserve system invariants despite operating through fundamentally different mechanisms, confirming that invariant preservation is architectural rather than mechanism-specific.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "contradiction-resolution-is-lifecycle-safe",
+            "dialectical-transformation-preserves-semantics"
+          ],
+          "outlist": [],
+          "label": "Two independent revision mechanisms both preserve invariants \u2014 safety is structural, not incidental"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "central-dependency-is-safely-contained": {
+      "text": "Despite `network.py` being imported by virtually every module in the codebase, the three-layer architecture with clean boundaries ensures this central coupling does not create cross-cutting mutation paths \u2014 layer separation contains the dependency's blast radius so that the hub topology does not compromise architectural integrity.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "network-is-central-dependency",
+            "three-layer-stack-has-clean-boundaries"
+          ],
+          "outlist": [],
+          "label": "clean layer boundaries contain the impact of the central network dependency (depth-2 from depth-0 + depth-1, integrates orphaned base belief)"
         }
       ],
       "source": "",
@@ -521,6 +779,44 @@
       "date": "",
       "metadata": {}
     },
+    "closed-loop-is-origin-agnostic": {
+      "text": "The minimality-sustained closed maintenance loop operates identically across all belief origins \u2014 external beliefs achieve full integration parity within the same forward-computation and backward-revision cycle as internally-derived beliefs, making the maintenance loop source-agnostic.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-sustains-closed-loop-maintenance",
+            "external-beliefs-achieve-integration-parity"
+          ],
+          "outlist": [],
+          "label": "integration parity means external beliefs participate identically in the closed loop"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "closed-loop-preserves-all-invariants": {
+      "text": "The closed revision-and-lifecycle maintenance loop not only sustains belief consistency but preserves all system invariants through architecturally grounded enforcement \u2014 the loop is both self-maintaining and invariant-preserving.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-and-lifecycle-form-closed-loop",
+            "invariant-preservation-is-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "the closed loop inherits invariant preservation from its architectural grounding"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "colon-means-already-namespaced": {
       "text": "`_resolve_namespace` treats a colon in a node ID as \"already namespaced\" and never double-prefixes; this is the convention for cross-namespace references.",
       "truth_value": "IN",
@@ -592,6 +888,65 @@
         "retract_reason": "Fixed in PR #39"
       }
     },
+    "complete-architecture-achieves-verified-production-correctness": {
+      "text": "The complete reasoning-and-revision architecture \u2014 deterministic in state trajectories, lifecycle-complete in monitoring, and architecturally grounded in invariant preservation \u2014 achieves verified production correctness across all operation types when propagation correctly tracks all dependents.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-architecture-is-deterministic-and-lifecycle-complete",
+            "invariant-preservation-is-architecturally-grounded"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Depth-8 GATE \u2014 production correctness requires that propagation doesn't silently miss dependents; with that assumption removed (defect fixed), deterministic lifecycle-complete architecture with grounded invariants IS production-correct"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "complete-architecture-is-deterministic-and-lifecycle-complete": {
+      "text": "The complete reasoning-and-revision architecture is both deterministic in its state trajectories and lifecycle-complete in its monitoring coverage \u2014 no belief can escape either guarantee, creating a system where every belief is both predictably computed and fully tracked.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-and-revision-form-complete-architecture",
+            "deterministic-reasoning-with-gapless-lifecycle"
+          ],
+          "outlist": [],
+          "label": "Architectural completeness (all operations covered) unified with lifecycle completeness (all states monitored) under shared deterministic foundation"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "complete-architecture-preserves-invariants-minimally": {
+      "text": "The complete reasoning-and-revision architecture preserves all system invariants through shared minimal foundations rather than through independent enforcement mechanisms \u2014 both architectural completeness (forward reasoning paired with backward revision) and invariant preservation (reactive contradiction resolution paired with proactive dialectical challenge) flow from the same outlist/disjunction primitives.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "completeness-and-minimality-are-unified",
+            "revision-invariants-follow-from-shared-foundations"
+          ],
+          "outlist": [],
+          "label": "Completeness and invariant preservation are independently established as consequences of minimality; their combination shows that the architecture's correctness guarantees derive from a single generative root"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "complete-operational-uniformity-across-all-sources": {
       "text": "All mutation sources produce fully correct persisted network state \u2014 operationally safe, semantically uniform, and consistent across all graph configurations \u2014 only when propagation handles dangling dependents without crashing and the derive pipeline's agent-count bug does not skew budget allocation.",
       "truth_value": "OUT",
@@ -607,6 +962,49 @@
             "derive-agent-count-bug"
           ],
           "label": "The combined safety+uniformity guarantee is defeated by either a propagation crash from dangling dependents or incorrect LLM budget allocation from the agent count bug"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "complete-system-history-is-deterministic-and-traceable": {
+      "text": "Every state change throughout the system's operational history \u2014 intentional dialectical transformations and automated contradiction resolutions alike \u2014 follows deterministic paths and produces a complete traceable record, yielding a fully auditable deterministic history with no unrecorded transitions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-state-transitions-are-deterministic-and-traceable",
+            "self-correction-has-complete-traceable-history"
+          ],
+          "outlist": [],
+          "label": "Deterministic state transitions (depth-5 leaf) combined with temporally complete self-correction tracing yield a unified deterministic history \u2014 connects two independently-established traceability guarantees spanning intentional and automated corrections"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "complete-system-is-self-correcting": {
+      "text": "The system actively maintains its own consistency along two independent dimensions: the TMS core handles exceptional conditions (contradictions trigger deterministic resolution, propagation respects lifecycle state), while belief currency management detects and surfaces drift in source material \u2014 no inconsistency persists undetected or unresolved.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "tms-handles-all-conditions-safely",
+            "belief-currency-is-actively-managed"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist",
+            "derive-agent-count-bug",
+            "missing-source-file-is-silent",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "automated contradiction resolution + active currency tracking = self-correction (depth-4 GATE from two depth-3 GATE)"
         }
       ],
       "source": "",
@@ -632,6 +1030,44 @@
             "nogood-ids-assume-append-only"
           ],
           "label": "The positive claim is the system's grand thesis; the negatives are every known defect \u2014 any one of them breaks the production-readiness guarantee, creating a punch list for hardening"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "completeness-and-minimality-are-unified": {
+      "text": "The reasoning-and-revision architecture achieves completeness through minimality rather than despite it \u2014 both forward truth computation and backward belief revision derive from the same small set of primitives (outlist, disjunctive truth, vacuous validity), so completeness requires no feature accumulation beyond what minimality already provides.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-and-revision-form-complete-architecture",
+            "semantics-and-revision-share-minimal-foundations"
+          ],
+          "outlist": [],
+          "label": "shared minimal foundations make completeness and minimality co-entailing (depth-5 from two depth-4 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradiction-management-is-complete-and-traceable": {
+      "text": "The system provides complete contradiction management: the revision pipeline reliably resolves contradictions through outlist defeat and dependency-directed backtracking with guaranteed termination, while nogood resolution maintains a consistent referenceable history of all detected contradictions \u2014 enabling both automated resolution and post-hoc forensic analysis of belief conflicts.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "nogood-resolution-maintains-consistent-ids",
+            "belief-revision-is-fully-reliable"
+          ],
+          "outlist": [],
+          "label": "Reliable automated resolution combined with consistent historical records yields a contradiction management system that is both operationally complete and analytically traceable"
         }
       ],
       "source": "",
@@ -691,6 +1127,25 @@
           ],
           "outlist": [],
           "label": "depth-2 \u2014 contradiction resolution selects what to retract (minimal disruption), propagation determines how to settle (deterministic termination); the pipeline composition is the emergent property"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "corrections-span-all-origins-with-full-auditability": {
+      "text": "Every correction mechanism \u2014 intentional dialectical challenge/defend and automated contradiction resolution \u2014 is both reliable and fully auditable with traceable history, and this complete correction coverage spans all belief origins (human, LLM, agent) \u2014 no belief from any provenance can undergo an untraced or unreliable correction.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-corrections-are-reliable-and-auditable",
+            "dispute-resolution-spans-all-origins"
+          ],
+          "outlist": [],
+          "label": "Correction reliability/auditability combined with origin-spanning dispute resolution ensures universal traceable correction regardless of provenance"
         }
       ],
       "source": "",
@@ -888,6 +1343,25 @@
       "date": "",
       "metadata": {}
     },
+    "derive-pipeline-is-exhaustive-and-terminating": {
+      "text": "The derive pipeline supports exhaustive exploration mode while guaranteeing termination: `--exhaust` enables automatic application of all discovered proposals, and depth-based cycle detection with pre-recursion memoization prevents infinite loops even when justification chains are cyclic.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "exhaust-implies-auto",
+            "derive-depth-cycle-guard"
+          ],
+          "outlist": [],
+          "label": "Depth-1 \u2014 completeness mode (exhaust) and termination guarantee (cycle guard) together yield the strongest usable exploration strategy: explore everything, stop safely"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-pipeline-is-production-ready": {
       "text": "The derive pipeline correctly allocates budgets, validates proposals defensively, and produces well-formed beliefs through a round-trippable prompt contract.",
       "truth_value": "IN",
@@ -910,6 +1384,25 @@
       "metadata": {
         "retract_reason": "Fixed in PR #33"
       }
+    },
+    "derive-pipeline-is-safe-and-complete": {
+      "text": "The derive pipeline simultaneously provides safety (fail-soft validation, Jaccard retraction guards, environment isolation) and completeness (exhaustive exploration with guaranteed cycle-free termination), ensuring LLM-driven belief generation discovers all derivable conclusions without corruption risk.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-pipeline-is-defensive",
+            "derive-pipeline-is-exhaustive-and-terminating"
+          ],
+          "outlist": [],
+          "label": "Defensive validation prevents harmful output while exhaustive mode with cycle guard ensures the derivation space is fully explored (depth-2)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "derive-prompt-roundtrips-through-parser": {
       "text": "The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT` LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop",
@@ -957,6 +1450,82 @@
       "date": "",
       "metadata": {}
     },
+    "deterministic-history-extends-to-all-origins": {
+      "text": "Every state change for every belief \u2014 including externally-originated beliefs at full integration parity \u2014 follows a deterministic path with complete traceable history, meaning origin can never be used as an excuse for opacity.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-system-history-is-deterministic-and-traceable",
+            "external-beliefs-achieve-integration-parity"
+          ],
+          "outlist": [],
+          "label": "Depth-8 \u2014 integration parity means external beliefs get the same deterministic traceable history as internal ones, eliminating provenance as a source of audit gaps"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "deterministic-reasoning-operates-on-sound-architecture": {
+      "text": "The deterministic reversible reasoning engine operates on architecture with no hidden fragility \u2014 architectural stability ensures that determinism holds in deployed operation, not just in theoretical isolation.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-engine-is-deterministic-and-reversible",
+            "architecture-has-no-hidden-fragility"
+          ],
+          "outlist": [],
+          "label": "Engine determinism is practically guaranteed because the substrate has no hidden fragility that could violate it"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "deterministic-reasoning-with-gapless-lifecycle": {
+      "text": "The system's belief-state trajectory is both fully determined and fully monitored: deterministic reversible reasoning ensures any given set of premises produces exactly one truth-value assignment, while gapless lifecycle management ensures no belief escapes monitoring across any lifecycle phase \u2014 the state at any point is predictable from its inputs and verifiable through its monitoring infrastructure.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-engine-is-deterministic-and-reversible",
+            "lifecycle-management-is-gapless"
+          ],
+          "outlist": [],
+          "label": "Deterministic reasoning (from TMS core branch) plus gapless lifecycle monitoring (from staleness/propagation branch) bridges predictability with verifiability"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "deterministic-self-correction-spans-all-temporal-dimensions": {
+      "text": "Self-correction operates deterministically across both temporal dimensions \u2014 creation-time contradiction resolution and maintenance-time staleness detection \u2014 on architecturally sound foundations, meaning the system's corrective behavior is predictable at every timescale.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "deterministic-reasoning-operates-on-sound-architecture",
+            "self-correction-spans-creation-and-maintenance"
+          ],
+          "outlist": [],
+          "label": "Depth-5 \u2014 determinism on sound architecture combined with full temporal coverage yields predictable self-correction: no timescale produces surprising corrective behavior"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dialectical-structure-is-recursive-outlist": {
       "text": "The entire challenge/defend dialectical system is implemented as recursive outlist injection with no dedicated dialectical machinery",
       "truth_value": "IN",
@@ -971,6 +1540,27 @@
           ],
           "outlist": [],
           "label": "Dialectics emerge from composing a single primitive (outlist injection) recursively"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dialectical-transformation-is-fully-reliable": {
+      "text": "The irreversible premise-to-justified transformation during challenge is both semantics-preserving (the resulting node inherits complete outlist evaluation with conjunction, absence, and persistence semantics) and crash-safe (recursive dialectical chains terminate deterministically), making dialectical operations reliable despite their irreversibility.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-transformation-preserves-semantics",
+            "challenge-defense-is-crash-safe"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Irreversibility is safe because both semantic inheritance and operational termination are guaranteed"
         }
       ],
       "source": "",
@@ -1035,6 +1625,25 @@
       "date": "",
       "metadata": {}
     },
+    "dialectics-are-deterministic-by-transparency": {
+      "text": "Dialectical challenge/defend structures receive deterministic reversible evaluation without special-casing \u2014 semantic transparency ensures the deterministic engine treats dialectical nodes identically to ordinary beliefs, so dialectical correctness requires no independent proof.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-semantically-transparent",
+            "reasoning-engine-is-deterministic-and-reversible"
+          ],
+          "outlist": [],
+          "label": "transparent nodes evaluated by deterministic engine without distinction (depth-4 from two depth-3 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dialectics-are-semantically-transparent": {
       "text": "Challenge/defend dialectics are semantically indistinguishable from ordinary beliefs: they inherit fully-specified outlist semantics (conjunction, absence-as-OUT, persistence) and are evaluated by the same uniform pure rules that govern all truth maintenance \u2014 no dialectical special cases exist anywhere in the engine.",
       "truth_value": "IN",
@@ -1085,6 +1694,63 @@
           ],
           "outlist": [],
           "label": "Dialectical structure is pure outlist, so all outlist semantic guarantees transfer directly"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dispute-resolution-is-complete-and-reliable": {
+      "text": "Both dispute resolution mechanisms \u2014 intentional (dialectical challenge/defend with irreversible premise transformation) and automated (contradiction detection with dependency-directed backtracking) \u2014 are individually fully reliable, crash-safe, and traceable, leaving no dispute pathway that could silently fail or lose history.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-transformation-is-fully-reliable",
+            "contradiction-management-is-complete-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Dialectical reliability (depth-4) and contradiction traceability (depth-4) are independently established; together they show the system resolves disputes at every level without silent failure"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dispute-resolution-spans-all-origins": {
+      "text": "Both dispute resolution mechanisms (intentional dialectical and automated contradiction) are complete and reliable, and all belief origins participate in the same deterministic revision pipeline \u2014 every belief from any source can be disputed and resolved through identical mechanisms.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dispute-resolution-is-complete-and-reliable",
+            "all-belief-origins-share-deterministic-revision"
+          ],
+          "outlist": [],
+          "label": "complete dispute resolution plus origin-agnostic deterministic revision ensures all beliefs are uniformly disputable"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "edge-case-safety-spans-creation-and-maintenance": {
+      "text": "The system handles edge cases safely across both temporal dimensions: at creation time, uniform revision covers all semantic edge cases (vacuous premises, asymmetric absence, empty antecedents) through minimal primitives; at maintenance time, contradiction resolution and staleness detection actively catch drift \u2014 no edge case is safe only at one point in time.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "edge-case-uniformity-follows-from-minimality",
+            "self-correction-spans-creation-and-maintenance"
+          ],
+          "outlist": [],
+          "label": "Edge-case uniformity at creation (depth-5) combined with bidirectional self-correction at maintenance (depth-4) closes the temporal gap where edge cases could escape handling"
         }
       ],
       "source": "",
@@ -1188,6 +1854,164 @@
       "date": "",
       "metadata": {}
     },
+    "external-belief-management-is-complete": {
+      "text": "External beliefs are managed across their entire lifecycle with no gap between any management phase: safely integrated through defensive validation pipelines, lifecycle-managed across dual import/sync reconciliation modes, and actively kept current through staleness detection and derive pipeline refresh \u2014 providing complete external belief management from ingestion through retirement.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-safe-and-current",
+            "all-external-inputs-safely-integrated"
+          ],
+          "outlist": [],
+          "label": "End-to-end external belief management emerges from combining safe-and-current lifecycle properties with safely-integrated ingestion properties, closing the gap between intake and ongoing maintenance"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-achieve-integration-parity": {
+      "text": "External beliefs achieve full parity with internal beliefs: they are managed across their complete lifecycle with no gap between any management phase AND participate in the same deterministic revision engine as all other belief origins \u2014 external provenance is a property of ingestion, not of ongoing maintenance.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-belief-management-is-complete",
+            "all-belief-origins-share-deterministic-revision"
+          ],
+          "outlist": [],
+          "label": "Complete lifecycle management (depth-6) combined with origin-agnostic deterministic revision (depth-5) shows external beliefs are first-class citizens with no semantic distinction after ingestion"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-achieve-total-integration": {
+      "text": "External beliefs achieve total integration along all quality axes simultaneously: grounded across every invariant dimension (origin, time, structure), participating in all correction mechanisms with full auditability, and fully equivalent to internal beliefs \u2014 no property distinguishes external from internal.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-correctable-and-invariant-equivalent",
+            "external-beliefs-are-fully-invariant-grounded"
+          ],
+          "outlist": [],
+          "label": "Correctable-and-equivalent (quality parity along revision axes) and fully-invariant-grounded (dimensional coverage) are independently derived from different chains; their conjunction closes all integration gaps."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-are-correctable-and-invariant-equivalent": {
+      "text": "External beliefs achieve full parity along two independent quality axes: invariant equivalence ensures they participate in the same consistency guarantees as internal beliefs, while origin-spanning auditability ensures they are fully correctable with complete traceable history.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-invariant-equivalent",
+            "corrections-span-all-origins-with-full-auditability"
+          ],
+          "outlist": [],
+          "label": "External parity extends from invariant equivalence to correction auditability \u2014 no second-class beliefs"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-are-defended-and-lifecycle-managed": {
+      "text": "External beliefs are managed end-to-end across a complete trust boundary: defensively contained at ingestion through layered validation pipelines and namespace isolation, then actively lifecycle-managed through dual reconciliation modes, staleness detection against source material, and CI gating \u2014 no phase of external belief existence lacks oversight.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-defensively-contained",
+            "external-belief-lifecycle-is-complete"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent"
+          ],
+          "label": "Defensive ingestion plus ongoing lifecycle management yields complete external trust boundary"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-are-fully-invariant-grounded": {
+      "text": "External beliefs achieve complete invariant equivalence with internal beliefs, and those invariants are anchored along all three dimensions \u2014 origin, temporal, and structural \u2014 meaning external integration participates in the system's deepest invariant guarantees, not merely surface-level safety.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-invariant-equivalent",
+            "invariants-are-origin-time-and-structurally-grounded"
+          ],
+          "outlist": [],
+          "label": "External equivalence combined with triple-dimensional invariant grounding yields complete external invariant coverage"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-are-invariant-equivalent": {
+      "text": "External beliefs achieve complete equivalence with internal beliefs at every system level: they participate in identical invariant-preserving revision systems and achieve full behavioral integration parity \u2014 the system provides no mechanism to distinguish external from internal beliefs in terms of protection or management.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-integration-preserves-all-invariants",
+            "external-beliefs-achieve-integration-parity"
+          ],
+          "outlist": [],
+          "label": "Invariant-protection parity plus behavioral integration parity yields full external/internal belief equivalence"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-beliefs-are-safe-and-current": {
+      "text": "External beliefs are managed end-to-end across their complete lifecycle with no gap between ingestion safety and ongoing maintenance: defensively contained at ingestion through layered validation, correctly lifecycle-managed through import reconciliation and staleness checking, and actively tracked for currency \u2014 no external belief enters unvalidated, drifts undetected, or persists without lifecycle oversight.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-defended-and-lifecycle-managed",
+            "belief-currency-is-actively-managed"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent",
+            "derive-agent-count-bug",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "ingestion defense + currency tracking = complete external belief management (depth-5 GATE from depth-4 + depth-3 GATE)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "external-beliefs-defensively-contained": {
       "text": "External beliefs pass through two independent safety layers: defensive ingestion pipelines (fail-soft validation, Jaccard guards, dual import/sync reconciliation modes) filter and validate beliefs on entry, while the self-contained agent subsystem (namespace isolation, relay-pair kill-switches, reversible lifecycle management) constrains their operational footprint after ingestion.",
       "truth_value": "IN",
@@ -1226,6 +2050,88 @@
       "date": "",
       "metadata": {}
     },
+    "external-integration-is-architecturally-safe": {
+      "text": "External beliefs are end-to-end safe within the system's architecture: defensively contained at ingestion and lifecycle-managed thereafter (external belief thread) within the same three-layer boundaries and atomic mutation guarantees that protect internal operations (architecture thread).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-beliefs-are-defended-and-lifecycle-managed",
+            "architecture-enforces-structural-and-operational-safety"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent",
+            "derive-agent-count-bug"
+          ],
+          "label": "External belief safety (depth-4) and architectural safety (depth-3) are from completely independent antecedent chains; their conjunction shows external beliefs inherit the same architectural guarantees as internal operations, gated on ingestion-related defects being resolved"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-integration-preserves-all-invariants": {
+      "text": "External beliefs are architecturally safe at ingestion and participate in the same invariant-preserving revision system as all other belief origins \u2014 architectural containment and revision parity together ensure external integration cannot corrupt system invariants.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-integration-is-architecturally-safe",
+            "revision-invariants-span-all-origins"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent",
+            "derive-agent-count-bug"
+          ],
+          "label": "architectural safety plus revision parity closes the invariant gap for external beliefs"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-interface-is-bidirectionally-bounded": {
+      "text": "The system's interaction with external systems is bounded in both directions: output is budget-limited through accurate token estimation ensuring context windows are respected, and input drift is comprehensively detected through staleness checking \u2014 no unbounded data flows cross the system boundary.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "compact-budget-controls-output-size",
+            "staleness-checking-is-comprehensive"
+          ],
+          "outlist": [],
+          "label": "Depth-2 \u2014 output bounding (compact) and input monitoring (staleness) together characterize the system's complete external interface as fully managed"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-surface-is-fully-controlled": {
+      "text": "The system's external surface is fully controlled along independent axes: bidirectional bounds constrain output size (token budgets) and input quality (staleness detection), while defensive containment layers (validation pipelines, namespace isolation) prevent external beliefs from violating internal invariants.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-interface-is-bidirectionally-bounded",
+            "external-beliefs-defensively-contained"
+          ],
+          "outlist": [],
+          "label": "Bidirectional I/O bounding and defensive containment together control the full external surface (depth-4)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "full-system-integrity-is-gap-free": {
       "text": "The system achieves gap-free integrity \u2014 enforced across all architectural layers, lifecycle states, and mutation paths \u2014 only when the dependents reverse index is reliably maintained and propagation handles dangling references gracefully.",
       "truth_value": "OUT",
@@ -1241,6 +2147,25 @@
             "propagate-assumes-dependents-exist"
           ],
           "label": "depth-4 gate \u2014 both antecedents implicitly assume a well-formed dependents graph; the fragile denormalization and unchecked lookup are the two known gaps that could break this assumption"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "fully-characterized-loop-sustains-indefinitely": {
+      "text": "The fully characterized self-maintaining loop \u2014 origin-agnostic, fully observable, and minimality-sustained \u2014 can operate without temporal bound because its self-correction is resource-sustainable within a deterministic, structurally sound lifecycle; characterization completeness combined with resource sustainability yields indefinite operability.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-is-fully-characterized-self-maintaining-loop",
+            "self-correction-sustains-lifecycle-indefinitely"
+          ],
+          "outlist": [],
+          "label": "Connects the depth-7 leaf (indefinite sustainability) with the depth-10 full characterization \u2014 the characterized loop doesn't just describe what the system does, but guarantees it can do so forever"
         }
       ],
       "source": "",
@@ -1354,6 +2279,25 @@
       "date": "",
       "metadata": {}
     },
+    "indefinite-self-correction-is-fully-auditable": {
+      "text": "The system's indefinitely sustainable self-correction produces a fully auditable history without temporal degradation: every self-correction, maintenance action, and belief revision throughout the system's unbounded operational lifetime is traceable through nogoods, retraction records, and staleness metadata \u2014 auditability scales with time rather than decaying.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-correction-sustains-lifecycle-indefinitely",
+            "self-maintenance-is-fully-auditable"
+          ],
+          "outlist": [],
+          "label": "Connects the depth-7 leaf (indefinite sustainability) with depth-11 auditability \u2014 establishes that auditability is not merely a snapshot property but extends across unbounded operation, because both self-correction and its audit trail are sustained by the same minimality fixed-point"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "init-is-pure-data-model": {
       "text": "`reasons_lib/__init__.py` contains only dataclass definitions (`Node`, `Justification`, `Nogood`) with no behavior, validation, or I/O; it imports nothing from the project and sits at the bottom of the import graph.",
       "truth_value": "IN",
@@ -1458,6 +2402,158 @@
       "date": "",
       "metadata": {}
     },
+    "invariant-preservation-is-architecturally-grounded": {
+      "text": "The complete reasoning-and-revision architecture preserves invariants through minimal foundations not in a vacuum but atop concrete architectural safety \u2014 three-layer containment and atomic mutations provide the structural substrate within which minimal invariant preservation operates.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-architecture-preserves-invariants-minimally",
+            "architecture-enforces-structural-and-operational-safety"
+          ],
+          "outlist": [],
+          "label": "The logical property (invariant preservation through minimality, depth-6) and the physical substrate (three-layer boundaries + atomic mutations, depth-3) come from independent antecedent chains; their conjunction grounds the abstract in the concrete"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariant-preservation-is-comprehensive": {
+      "text": "System invariants are comprehensively preserved through two complementary mechanisms: the closed revision/lifecycle loop ensures temporal coverage across forward computation and backward revision, while dual structural/dynamic enforcement provides orthogonal protection through architectural grounding and minimality-enforced self-correction.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "closed-loop-preserves-all-invariants",
+            "invariants-are-structurally-and-dynamically-preserved"
+          ],
+          "outlist": [],
+          "label": "Temporal invariant coverage from the closed loop combines with structural/dynamic enforcement for multi-mechanism comprehensive protection"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariant-preservation-is-self-sustaining": {
+      "text": "Comprehensive invariant preservation \u2014 spanning revision loops, lifecycle management, and architectural grounding \u2014 is itself sustained by minimality's fixed-point property: the minimal primitives that preserve invariants are themselves invariants of the system, closing a meta-level consistency loop.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariant-preservation-is-comprehensive",
+            "minimality-is-self-sustaining"
+          ],
+          "outlist": [],
+          "label": "Minimality's fixed-point property applies reflexively to invariant preservation itself"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariant-preservation-is-total": {
+      "text": "Invariant preservation is both comprehensive in scope (spanning revision loops, lifecycle management, and structural/dynamic enforcement) and grounded across all independent dimensions (origin, time, and structure), achieving total invariant coverage with no gaps in either what is preserved or where preservation holds.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariant-preservation-is-comprehensive",
+            "invariants-are-origin-time-and-structurally-grounded"
+          ],
+          "outlist": [],
+          "label": "Comprehensive scope (the \"what\" of preservation) combined with multi-dimensional grounding (the \"where/when\" of preservation) yields total coverage; these address orthogonal aspects \u2014 mechanism vs. dimensions."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariant-preservation-is-total-and-self-sustaining": {
+      "text": "Invariant preservation is simultaneously total in scope (spanning all invariant dimensions and encompassing all belief types including externally-integrated ones) and self-sustaining in mechanism (maintained by minimality's fixed-point that dynamically corrects any departure) \u2014 comprehensiveness and sustainability are co-achieved rather than traded off.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "total-invariant-preservation-encompasses-all-beliefs",
+            "self-sustaining-preservation-encompasses-external-beliefs"
+          ],
+          "outlist": [],
+          "label": "Cross-connects two parallel depth-11 branches that independently established totality and self-sustainability of invariant preservation \u2014 neither is an antecedent of the other, yet they describe complementary aspects of the same system property"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariants-are-origin-time-and-structurally-grounded": {
+      "text": "System invariants are anchored along three dimensions: they hold across all belief origins and through time (comprehensive scope), and they are grounded in the concrete architecture's clean layer boundaries and atomic operations (structural foundation) \u2014 the invariants are both broad in what they cover and deep in how they are enforced.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariants-hold-across-origin-and-time",
+            "invariant-preservation-is-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "Origin-time coverage and architectural grounding converge to establish invariants with both comprehensive scope and structural foundation"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariants-are-structurally-and-dynamically-preserved": {
+      "text": "System invariants are preserved through two complementary layers: architectural grounding provides structural enforcement via clean layer boundaries and atomic mutations, while minimality-enforced self-correction actively detects and resolves violations through contradiction resolution and staleness detection.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariant-preservation-is-architecturally-grounded",
+            "self-correction-is-minimality-enforced"
+          ],
+          "outlist": [],
+          "label": "static architectural structure and dynamic minimality-enforced correction jointly prevent invariant violations from persisting"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "invariants-hold-across-origin-and-time": {
+      "text": "System invariants hold along every independent dimension: across all belief origins (human-initiated, LLM-derived, agent-imported) via shared minimal foundations, and across both temporal phases (creation-time edge-case handling and maintenance-time staleness detection) including all semantic edge cases.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-invariants-span-all-origins",
+            "edge-case-safety-spans-creation-and-maintenance"
+          ],
+          "outlist": [],
+          "label": "origin-spanning invariants plus temporal-spanning edge-case safety cover the full correctness matrix"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "justification-evaluation-is-uniform-and-pure": {
       "text": "All justification types (SL and CP) use the same validity rule (antecedents IN, outlist OUT), evaluated as a pure function with no side effects",
       "truth_value": "IN",
@@ -1542,6 +2638,85 @@
       "date": "",
       "metadata": {}
     },
+    "lifecycle-is-deterministic-and-architecturally-grounded": {
+      "text": "Gapless lifecycle management is doubly reinforced: deterministic reasoning ensures predictable state trajectories with full monitoring, while architectural safety provides the structural foundation through clean layer boundaries and atomic mutations.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "deterministic-reasoning-with-gapless-lifecycle",
+            "architecture-sustains-gapless-lifecycle"
+          ],
+          "outlist": [],
+          "label": "Two independent foundations for lifecycle robustness converge \u2014 determinism from reasoning engine, structure from architecture"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-is-deterministic-grounded-and-structurally-sound": {
+      "text": "Gapless lifecycle management is triply reinforced: deterministic reasoning ensures predictable state trajectories, architectural grounding provides structural enforcement via clean layer boundaries, and the underlying architecture is verified free of hidden fragilities \u2014 eliminating both behavioral unpredictability and structural failure modes simultaneously.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "lifecycle-is-deterministic-and-architecturally-grounded",
+            "lifecycle-operates-on-unfragile-architecture"
+          ],
+          "outlist": [],
+          "label": "Deterministic prediction (behavioral soundness) and structural soundness (no hidden fragility) are independently established; their conjunction eliminates both failure mode categories for lifecycle management."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-management-is-gapless": {
+      "text": "The system manages belief lifecycle without gaps across all operation types: staleness checking detects all forms of source drift, propagation respects node lifecycle states, and both read and write paths enforce consistent lifecycle semantics \u2014 no operation ignores or corrupts lifecycle state.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "staleness-gate-catches-all-drift",
+            "lifecycle-awareness-spans-checking-and-propagation"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "drift detection + lifecycle-aware propagation = complete lifecycle management (depth-3 GATE from two depth-2)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-operates-on-unfragile-architecture": {
+      "text": "Gapless lifecycle management \u2014 spanning staleness detection, propagation lifecycle awareness, and import reconciliation \u2014 operates on an architecture verified to have no hidden fragility points, ensuring lifecycle operations cannot be undermined by latent structural weaknesses in the central dependency or layer boundaries.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "architecture-has-no-hidden-fragility",
+            "lifecycle-management-is-gapless"
+          ],
+          "outlist": [],
+          "label": "Lifecycle robustness is grounded in verified absence of architectural fragility"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "llm-driven-mutations-are-safely-bounded": {
       "text": "LLM-driven belief derivation is safely bounded by defense in depth: the derive pipeline validates proposals with fail-soft filtering, Jaccard retraction guards, and environment stripping at the LLM boundary, while the API layer enforces atomic load/save with write-flag gating and dict-only returns at the persistence boundary \u2014 malformed or adversarial LLM output cannot corrupt the network.",
       "truth_value": "IN",
@@ -1580,6 +2755,46 @@
       "date": "",
       "metadata": {}
     },
+    "maintenance-loop-is-fully-observable": {
+      "text": "The minimality-sustained closed maintenance loop has complete observability: every self-correction leaves traceable history (nogoods, retraction records, staleness reports), enabling full audit of how the system maintains itself over time.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-sustains-closed-loop-maintenance",
+            "self-correction-has-complete-traceable-history"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "closed-loop maintenance combined with traceable correction history yields full observability of all maintenance activity"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "minimality-generates-universal-revision-safety": {
+      "text": "Universal revision safety is a consequence of minimality: the system has no revision blind spots because both uniform edge-case handling and comprehensive lifecycle coverage emerge from the same minimal primitives that power truth maintenance \u2014 minimality does not merely simplify the design but actively prevents the coverage gaps that would arise from feature-specific revision paths.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-is-universally-safe",
+            "edge-case-uniformity-follows-from-minimality"
+          ],
+          "outlist": [],
+          "label": "both universal coverage and uniform handling trace to same minimal source (depth-6 from two depth-5 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "minimality-is-both-generative-and-unifying": {
       "text": "Minimality is simultaneously the generative source of each individual system property (extensibility, robustness, revision completeness) and the unifying principle that makes them cohere \u2014 the system achieves unity not by coordinating independently-designed features but because every feature is a different manifestation of the same minimal primitive set.",
       "truth_value": "OUT",
@@ -1599,6 +2814,25 @@
       "date": "",
       "metadata": {}
     },
+    "minimality-is-self-sustaining": {
+      "text": "Minimality is a fixed point: it generates the closed forward/backward maintenance loop and the self-correction mechanisms that actively maintain that loop, so the generative principle sustains itself through its own consequences.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-sustains-closed-loop-maintenance",
+            "self-correction-is-minimality-enforced"
+          ],
+          "outlist": [],
+          "label": "self-correction preserves the loop that minimality generates, closing the generative circle"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "minimality-is-the-universal-generative-principle": {
       "text": "Minimality is the single generative architectural principle underlying all emergent system properties \u2014 extensibility and robustness arise from transparent extension composition on the minimal core, while revision completeness arises from uniform edge-case handling within the same core \u2014 revealing that these typically independent qualities share a common origin rather than requiring separate design effort.",
       "truth_value": "OUT",
@@ -1611,6 +2845,63 @@
           ],
           "outlist": [],
           "label": "Both depth-6 conclusions independently derive different system properties from the same minimal core; combining them reveals minimality as a universal generative principle rather than multiple independent design decisions"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "minimality-produces-uniformity-and-determinism": {
+      "text": "Minimality is the shared generative root of two independently-established system properties: edge-case uniformity (all cases handled by the same rules without special-casing) and operational determinism (predictable terminating evaluation with conservative failure), demonstrating that a single design principle produces both semantic and operational guarantees simultaneously.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "edge-case-uniformity-follows-from-minimality",
+            "semantic-minimality-with-operational-determinism"
+          ],
+          "outlist": [],
+          "label": "Two independent consequences of minimality \u2014 one semantic, one operational \u2014 confirm it as the single generative principle"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "minimality-spans-computation-and-revision": {
+      "text": "Minimality is the shared generative root of both forward and backward system properties: forward computation achieves uniformity and determinism, backward revision achieves universal safety covering all edge cases and lifecycle states \u2014 the same minimal primitives produce correctness in both directions without requiring separate design efforts or independent correctness arguments.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-produces-uniformity-and-determinism",
+            "revision-is-universally-safe"
+          ],
+          "outlist": [],
+          "label": "forward computation correctness and backward revision safety both trace to minimality (depth-7 from depth-6 IN + depth-5 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "minimality-sustains-closed-loop-maintenance": {
+      "text": "Minimality generates both forward computation properties (uniformity, determinism) and backward revision properties (universal safety), while lifecycle management ensures every generated belief remains under active maintenance with no escape path \u2014 together forming a self-sustaining architecture where the generative principle and the maintenance loop are co-dependent.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-spans-computation-and-revision",
+            "revision-and-lifecycle-form-closed-loop"
+          ],
+          "outlist": [],
+          "label": "The two depth-7 IN beliefs represent complementary halves \u2014 one establishing minimality as the shared root of computation and revision, the other closing the loop so no belief escapes maintenance; their conjunction is a self-sustaining system"
         }
       ],
       "source": "",
@@ -1990,6 +3281,85 @@
       "date": "",
       "metadata": {}
     },
+    "origin-agnostic-guarantees-are-verifiable-and-self-sustaining": {
+      "text": "The origin-agnostic closed loop delivers both trustworthiness and invariant grounding from a single architectural source, and these guarantees are independently verifiable through the same self-sustaining maintenance loop's observability \u2014 verification and origin-agnosticism are inherently coupled rather than independently achieved.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "origin-agnosticism-unifies-trustworthiness-and-grounding",
+            "self-sustaining-invariants-are-independently-verifiable"
+          ],
+          "outlist": [],
+          "label": "Depth-12 \u2014 the maintenance loop simultaneously provides origin-agnosticism, self-sustainability, and observability for verification, making these three properties inseparable consequences of a single mechanism"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "origin-agnostic-loop-grounds-external-invariants": {
+      "text": "External beliefs achieve complete invariant grounding along all three dimensions (origin, time, structure) precisely because the closed maintenance loop operates origin-agnostically \u2014 the loop's indifference to belief provenance is the mechanism that delivers invariant parity to external beliefs.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "closed-loop-is-origin-agnostic",
+            "external-beliefs-are-fully-invariant-grounded"
+          ],
+          "outlist": [],
+          "label": "Causal connection: origin-agnostic loop is the mechanism producing external invariant grounding; the loop's indifference explains the parity"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "origin-agnostic-trustworthiness-is-fully-verifiable": {
+      "text": "The system's complete revision trustworthiness holds identically across all belief origins and is independently verifiable through full maintenance loop observability \u2014 trustworthiness is not merely claimed but provable through origin-agnostic audit trails \u2014 provided propagation's dependents invariant holds.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-achieves-complete-trustworthiness",
+            "closed-loop-is-origin-agnostic",
+            "maintenance-loop-is-fully-observable"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Triple convergence of three independent depth-9 achievements; gated because broken propagation dependents would make observability misleading and trustworthiness incomplete"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "origin-agnosticism-unifies-trustworthiness-and-grounding": {
+      "text": "The system's origin-agnostic closed loop simultaneously delivers two independent guarantees from a single architectural source: verifiable trustworthiness across all belief origins and complete invariant grounding for external beliefs \u2014 origin indifference is not merely a property but the shared mechanism producing both guarantees.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "origin-agnostic-trustworthiness-is-fully-verifiable",
+            "origin-agnostic-loop-grounds-external-invariants"
+          ],
+          "outlist": [],
+          "label": "Two leaf depth-10 conclusions sharing the origin-agnostic loop as common source produce distinct guarantees (trustworthiness verification and invariant grounding) that unify into a single comprehensive origin-agnostic property"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "out-beliefs-imported-without-justifications": {
       "text": "Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN",
       "truth_value": "IN",
@@ -2277,6 +3647,44 @@
       "date": "",
       "metadata": {}
     },
+    "read-and-write-paths-are-both-reliable": {
+      "text": "Both the read path (staleness checking detects all forms of source drift without false negatives) and the write path (truth propagation completes without runtime errors across all reachable nodes) are operationally reliable, ensuring the system functions correctly in both observational and mutational modes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "staleness-checking-is-comprehensive",
+            "propagation-is-crash-free"
+          ],
+          "outlist": [],
+          "label": "Independent operational reliability of the read-only inspection path and the write-path propagation engine combine to cover both system operation modes"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "reasoning-and-revision-form-complete-architecture": {
+      "text": "The system provides a complete reasoning-and-revision architecture: the deterministic reversible engine reliably computes truth states in the forward direction, while the comprehensive minimal revision system handles all forms of belief change (outlist defeat, contradiction resolution, dialectical challenge) in the corrective direction \u2014 together covering the full lifecycle of belief management.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-engine-is-deterministic-and-reversible",
+            "belief-revision-is-comprehensive-and-minimal"
+          ],
+          "outlist": [],
+          "label": "Forward inference engine plus corrective revision system yields complete belief lifecycle coverage"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "reasoning-engine-is-deterministic-and-reversible": {
       "text": "The TMS engine achieves deterministic reversible non-monotonic reasoning: truth maintenance produces predictable terminating results through uniform evaluation and conservative asym\u00admetry, while every non-monotonic operation (challenge, kill-switch, supersession, dialectics) is inherently undoable through the single outlist primitive.",
       "truth_value": "IN",
@@ -2296,6 +3704,25 @@
       "date": "",
       "metadata": {}
     },
+    "reasoning-is-exhaustively-deterministic": {
+      "text": "The reasoning system produces deterministic, reversible truth evaluations AND can exhaustively explore all derivable conclusions with guaranteed termination, ensuring the system finds every reachable belief state with predictable outcomes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "reasoning-engine-is-deterministic-and-reversible",
+            "derive-pipeline-is-exhaustive-and-terminating"
+          ],
+          "outlist": [],
+          "label": "Deterministic reversible TMS evaluation combined with exhaustive terminating derive exploration guarantees complete predictable inference (depth-4)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "recompute-all-uses-fixpoint": {
       "text": "`recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.",
       "truth_value": "IN",
@@ -2305,11 +3732,89 @@
       "date": "",
       "metadata": {}
     },
+    "resource-management-supports-belief-currency": {
+      "text": "Active belief currency management \u2014 sustainable derivation of new beliefs and staleness detection for existing ones \u2014 operates with accurate bidirectional token budget control, ensuring derivation rounds allocate resources correctly per agent and output fits context-limited consumer constraints.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "token-budgets-are-accurate-bidirectionally",
+            "belief-currency-is-actively-managed"
+          ],
+          "outlist": [],
+          "label": "Token accuracy provides the resource foundation for sustainable belief derivation and maintenance"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "resource-sustainable-lifecycle-has-no-gaps": {
+      "text": "Gapless lifecycle management is resource-sustainable: accurate bidirectional token budgets support both new belief derivation and existing belief staleness detection, ensuring no lifecycle gap arises from resource exhaustion.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "resource-management-supports-belief-currency",
+            "lifecycle-management-is-gapless"
+          ],
+          "outlist": [],
+          "label": "Depth-5 \u2014 token budget accuracy prevents the specific failure mode where resource exhaustion creates lifecycle gaps, connecting the resource and lifecycle subsystems"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "retracted-nodes-skipped-in-propagation": {
       "text": "Retracted nodes (marked with `_retracted` metadata) are skipped during BFS propagation but remain in the network for potential restoration.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-achieves-complete-trustworthiness": {
+      "text": "The revision system simultaneously achieves three independent trustworthiness properties: verifiable soundness (complete two-dimensional provenance/temporal coverage with reliable propagation), end-to-end reliability (across logical and infrastructure layers), and complete auditability (every correction leaves traceable history).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-coverage-is-verifiably-sound",
+            "revision-system-is-reliable-and-auditable"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Verifiable soundness and reliability-with-auditability are established through different chains; soundness is gated on propagation correctness, which the combined claim inherits."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-and-lifecycle-form-closed-loop": {
+      "text": "The system forms a closed maintenance loop with no escape path for unmanaged beliefs: revision safety covers all belief origins regardless of provenance (internal creation and external ingestion), while gapless lifecycle management tracks every belief from creation through staleness \u2014 together ensuring that every belief in the network is both revisable and monitored throughout its existence.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-safety-spans-internal-and-external",
+            "lifecycle-management-is-gapless"
+          ],
+          "outlist": [],
+          "label": "Provenance-spanning revision safety and gapless lifecycle tracking are complementary coverage properties; their union closes the maintenance loop so no belief escapes both revision and monitoring"
+        }
+      ],
+      "source": "",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2326,6 +3831,105 @@
           ],
           "outlist": [],
           "label": "Connects the revision completeness narrative (dialectics + backtracking) with the edge-case uniformity narrative; both trace to outlist primitives, so their combination reveals that revision completeness wasn't designed \u2014 it followed from minimality"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-coverage-is-verifiably-sound": {
+      "text": "Revision coverage spans the complete two-dimensional space (provenance axis and temporal axis) with end-to-end reliability across logical and infrastructure layers, forming a verifiably sound revision system \u2014 conditional on propagation not assuming the dependents index exists for all referenced nodes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-coverage-requires-sound-propagation",
+            "revision-is-end-to-end-reliable"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Dimensional coverage and infrastructure reliability jointly establish soundness when propagation is trustworthy"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-coverage-requires-sound-propagation": {
+      "text": "Revision safety covers the complete two-dimensional space \u2014 the provenance axis (internal via comprehensive edge-case handling, external via defensive containment) and the temporal axis (creation-time contradiction resolution, maintenance-time staleness detection) \u2014 but this coverage is contingent on propagation correctly discovering all dependent nodes to complete revision cascades.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-safety-spans-internal-and-external",
+            "edge-case-safety-spans-creation-and-maintenance"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Provenance-axis and temporal-axis revision coverage combine into full two-dimensional coverage but depend on propagation soundness for cascade completeness"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-invariants-follow-from-shared-foundations": {
+      "text": "Both revision paths (reactive contradiction resolution and proactive dialectical challenge) preserve system invariants not through path-specific correctness arguments but because they operate through the same minimal primitives \u2014 shared foundations guarantee that any revision entry point inherits the same invariant-preserving behavior.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "both-revision-paths-preserve-system-invariants",
+            "semantics-and-revision-share-minimal-foundations"
+          ],
+          "outlist": [],
+          "label": "shared primitives make per-path invariant proofs redundant (depth-5 from two depth-4 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-invariants-span-all-origins": {
+      "text": "Both revision paths (reactive contradiction resolution and proactive dialectical challenge) preserve system invariants across all belief origins \u2014 human, LLM, and agent \u2014 because invariant preservation flows from shared minimal foundations and all origins share the same deterministic revision engine.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-invariants-follow-from-shared-foundations",
+            "all-belief-origins-share-deterministic-revision"
+          ],
+          "outlist": [],
+          "label": "Shared minimal foundations guarantee invariant preservation (depth-5) while all origins share the same engine (depth-5); together they show invariants hold regardless of belief provenance"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-is-end-to-end-reliable": {
+      "text": "The revision system achieves end-to-end reliability across both logical and infrastructure layers: logically, every belief including all semantic edge cases is revisable with lifecycle-safe semantics-preserving operations \u2014 and infrastructurally, the I/O substrate supporting revision (staleness detection and truth propagation) completes without errors or false negatives.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-is-universally-safe",
+            "read-and-write-paths-are-both-reliable"
+          ],
+          "outlist": [],
+          "label": "Logical revision completeness from the belief-revision branch and I/O infrastructure reliability from the staleness/propagation branch converge across independent evidence chains"
         }
       ],
       "source": "",
@@ -2352,6 +3956,44 @@
       "date": "",
       "metadata": {}
     },
+    "revision-is-universally-safe": {
+      "text": "The complete revision system has no blind spots: every belief \u2014 including all semantic edge cases (vacuous premises, asymmetric absence, empty antecedents) \u2014 can be revised through either reactive or proactive paths while preserving semantic identity and respecting node lifecycle states.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "belief-revision-covers-all-cases-uniformly",
+            "revision-is-lifecycle-safe-and-semantics-preserving"
+          ],
+          "outlist": [],
+          "label": "Uniform case coverage plus lifecycle/semantics preservation means revision is safe for any belief in any state"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-safety-spans-internal-and-external": {
+      "text": "The revision system is universally safe across both belief provenance boundaries: internally-originated beliefs are covered by comprehensive edge-case handling and lifecycle awareness with no blind spots, while externally-originated beliefs are defensively contained through layered ingestion pipelines \u2014 the same revision guarantees apply regardless of whether a belief was created locally, derived by LLM, or imported from another agent.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-is-universally-safe",
+            "external-beliefs-defensively-contained"
+          ],
+          "outlist": [],
+          "label": "internal universal safety + external defensive containment = provenance-agnostic revision (depth-6 from depth-5 IN + depth-3 IN)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "revision-spans-lifecycle-and-all-sources": {
       "text": "The revision system is safe across two orthogonal dimensions: node lifecycle (backtracking skips retracted nodes, propagation respects lifecycle states, challenge preserves semantics through irreversible transformation) and modification source (dialectical, LLM, multi-agent) \u2014 ensuring no revision path is unsafe regardless of the node's lifecycle state or the belief's origin.",
       "truth_value": "OUT",
@@ -2364,6 +4006,25 @@
           ],
           "outlist": [],
           "label": "Combines lifecycle safety (an orphan at depth-4 not yet used in any depth-5 conclusion) with operational safety across all modification sources, covering the full two-dimensional revision safety matrix"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "revision-system-is-reliable-and-auditable": {
+      "text": "The revision system achieves two independent trustworthiness properties simultaneously: end-to-end reliability across logical and infrastructure layers with no blind spots, and complete auditability with traceable correction history spanning all belief origins.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-is-end-to-end-reliable",
+            "corrections-span-all-origins-with-full-auditability"
+          ],
+          "outlist": [],
+          "label": "Reliability (no revision blind spots) and auditability (traceable history) are orthogonal trustworthiness dimensions"
         }
       ],
       "source": "",
@@ -2428,6 +4089,203 @@
       "date": "",
       "metadata": {}
     },
+    "self-correction-has-complete-traceable-history": {
+      "text": "The system's self-correction is both temporally complete (spanning creation-time contradiction resolution and maintenance-time staleness detection) and historically traceable (nogoods recorded consistently with stable IDs), ensuring corrections can be audited and understood after the fact.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-correction-spans-creation-and-maintenance",
+            "contradiction-management-is-complete-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Temporal completeness of self-correction (depth-4) combined with traceable contradiction history (depth-4) shows the system both corrects and remembers its corrections"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-is-exhaustive-across-lifecycle": {
+      "text": "Self-correction is exhaustive across the complete belief lifecycle: at creation time, the derive pipeline exhaustively discovers all derivable conclusions with guaranteed termination; at maintenance time, contradiction resolution and staleness detection ensure existing beliefs remain consistent and current.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-pipeline-is-exhaustive-and-terminating",
+            "self-correction-spans-creation-and-maintenance"
+          ],
+          "outlist": [],
+          "label": "Exhaustive derive exploration covers creation-time completeness while lifecycle-spanning contradiction and staleness correction covers maintenance-time consistency (depth-5)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-is-minimality-enforced": {
+      "text": "The system's active self-correction (contradiction resolution, staleness detection, exception handling) preserves the same universal revision safety that minimality generates \u2014 self-correction enforces minimality's guarantees rather than adding independent safety layers, making the two properties mutually reinforcing.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "minimality-generates-universal-revision-safety",
+            "system-is-self-correcting-and-exception-proof"
+          ],
+          "outlist": [],
+          "label": "Minimality generates the revision rules (depth-6) while self-correction enforces them (depth-6); together they show the system's maintenance is both principled and active"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-is-resource-sustainable": {
+      "text": "The system's self-correction capability \u2014 contradiction resolution at derivation time and staleness detection at maintenance time \u2014 is resource-sustainable: accurate bidirectional token budgets support continuous belief derivation and maintenance, ensuring the correction loop can operate indefinitely without resource exhaustion.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "resource-management-supports-belief-currency",
+            "complete-system-is-self-correcting"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist",
+            "derive-agent-count-bug",
+            "missing-source-file-is-silent",
+            "hash-truncation-is-16-hex"
+          ],
+          "label": "Self-correction requires sustainable resources; resource management requires correction targets that consume budgets; the gate inherits all deficiency conditions from both antecedents' dependency chains."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-is-structurally-and-resource-sustainable": {
+      "text": "The system's self-correction is doubly sustainable: resource-sustainable through accurate bounded token budgets that prevent exhaustion, and structurally sustainable through operation on architecture free of hidden fragility \u2014 neither resource scarcity nor architectural decay can undermine the self-correction loop.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-correction-is-resource-sustainable",
+            "lifecycle-operates-on-unfragile-architecture"
+          ],
+          "outlist": [],
+          "label": "Depth-6 \u2014 two independent sustainability guarantees (resource and structural) close off both failure modes that could degrade self-correction over time"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-spans-creation-and-maintenance": {
+      "text": "The system self-corrects along both temporal axes: it detects and resolves active contradictions through lifecycle-safe backtracking at derivation time, and it detects and flags source material drift through conservative staleness checking over a belief's lifetime \u2014 ensuring beliefs are correct both when first derived and as their evidential basis evolves.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "contradiction-resolution-is-lifecycle-safe",
+            "belief-currency-is-actively-managed"
+          ],
+          "outlist": [],
+          "label": "Two independent self-correction mechanisms (reactive contradiction resolution and proactive staleness detection) cover the full temporal span from belief creation through ongoing maintenance"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-correction-sustains-lifecycle-indefinitely": {
+      "text": "Resource-sustainable self-correction operating within a deterministic, architecturally-grounded, structurally-sound lifecycle means the system can maintain belief quality indefinitely \u2014 resource efficiency prevents degradation while structural soundness prevents architectural drift.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-correction-is-resource-sustainable",
+            "lifecycle-is-deterministic-grounded-and-structurally-sound"
+          ],
+          "outlist": [],
+          "label": "Duration claim: resource sustainability prevents exhaustion, structural grounding prevents drift \u2014 together they enable indefinite maintenance"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-maintenance-is-fully-auditable": {
+      "text": "The fully characterized self-maintaining loop provides complete operational auditability: every self-correction, maintenance action, and belief revision leaves traceable history across all belief origins and correction types \u2014 conditional on propagation soundness guaranteeing that cascade effects are faithfully recorded.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-is-fully-characterized-self-maintaining-loop",
+            "corrections-span-all-origins-with-full-auditability"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Self-maintenance gains full transparency when propagation faithfully records all cascade effects"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-sustaining-invariants-are-independently-verifiable": {
+      "text": "The system's self-sustaining invariant preservation does not require blind trust: the same maintenance loop observability that enables trustworthiness verification independently confirms that minimality's fixed-point continues to sustain invariant preservation \u2014 self-sustainability is verifiable, not merely claimed.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "trustworthiness-is-verifiable-through-observability",
+            "invariant-preservation-is-self-sustaining"
+          ],
+          "outlist": [],
+          "label": "Two leaf depth-10 conclusions on parallel branches combine to establish that self-sustainability is independently verifiable through observability \u2014 the system can prove its own continued correctness"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "self-sustaining-preservation-encompasses-external-beliefs": {
+      "text": "Self-sustaining invariant preservation fully encompasses external beliefs: the correction and equivalence guarantees for external beliefs are dynamically sustained by minimality's fixed-point property, not merely statically established \u2014 external integration quality is actively maintained as part of the system's self-maintenance loop.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariant-preservation-is-self-sustaining",
+            "external-beliefs-are-correctable-and-invariant-equivalent"
+          ],
+          "outlist": [],
+          "label": "Static external-belief equivalence (from integration chain) combined with dynamic self-sustaining preservation (from minimality chain) yields the stronger claim that external integration is actively maintained; cross-chain combination."
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "semantic-minimality-with-operational-determinism": {
       "text": "The system unifies semantic minimality (all non-monotonic features and truth semantics derive from uniform outlist/disjunction primitives) with operational determinism (all operations terminate predictably via BFS fixpoint with conservative failure semantics), yielding a small trusted kernel that powers all reasoning.",
       "truth_value": "IN",
@@ -2440,6 +4298,25 @@
           ],
           "outlist": [],
           "label": "depth-4 \u2014 the minimal primitive set is also the deterministic primitive set; no tension between expressiveness and predictability"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "semantics-and-revision-share-minimal-foundations": {
+      "text": "Both truth maintenance semantics and belief revision achieve comprehensive coverage through the same minimal primitives \u2014 the outlist primitive simultaneously enables emergent truth evaluation (disjunction over conjunction with absence semantics) and all non-monotonic revision mechanisms (defeat, backtracking, dialectics), confirming minimality as a cross-cutting architectural principle rather than a property of any single subsystem.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-semantics-are-minimal-and-complete",
+            "belief-revision-is-comprehensive-and-minimal"
+          ],
+          "outlist": [],
+          "label": "Both subsystems derive comprehensiveness from shared outlist/disjunction primitives \u2014 minimality is cross-cutting"
         }
       ],
       "source": "",
@@ -2596,6 +4473,102 @@
       "date": "",
       "metadata": {}
     },
+    "system-artifacts-maintain-consistent-identification": {
+      "text": "Both automatically-generated dialectical structures (challenge nodes with deterministic auto-ID generation) and contradiction records (nogoods with unconditional recording) maintain consistent, referenceable identification schemes \u2014 system-generated artifacts are as addressable as user-created beliefs.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "challenge-id-auto-generation",
+            "nogood-resolution-maintains-consistent-ids"
+          ],
+          "outlist": [],
+          "label": "Depth-2 \u2014 connects two orphaned identification properties into a unified claim about artifact addressability"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-guarantees-are-universal-and-permanent": {
+      "text": "The system's ultimate properties are both permanent (maintained indefinitely without temporal degradation) and universal (extending fully to all beliefs regardless of origin) \u2014 no belief can escape the system's guarantees along either the time or scope dimension.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-properties-are-indefinitely-maintained",
+            "system-properties-extend-fully-to-external-beliefs"
+          ],
+          "outlist": [],
+          "label": "Depth-14 apex \u2014 the two independent depth-13 conclusions close off both escape dimensions (temporal and provenance), yielding a single universal-permanence guarantee"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-guarantees-are-universal-permanent-and-verifiable": {
+      "text": "The system's ultimate guarantees are simultaneously universal (extending fully to all belief types including externally-integrated ones), permanent (maintained indefinitely without temporal degradation), and independently verifiable (origin-agnostic observability enables external audit without requiring trust in the system's internal state).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-guarantees-are-universal-and-permanent",
+            "origin-agnostic-guarantees-are-verifiable-and-self-sustaining"
+          ],
+          "outlist": [],
+          "label": "Universality and permanence from the system-properties branch combined with independent verifiability from the origin-agnostic observability branch yield the three ultimate meta-properties (depth-15)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-history-is-consistently-referenceable": {
+      "text": "Every event in the system's operational history follows a deterministic path with complete traceability AND produces consistently-identifiable artifacts (auto-generated challenge IDs, unconditionally-recorded nogoods), making the complete history both causally traceable and individually referenceable by stable identifiers.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-artifacts-maintain-consistent-identification",
+            "complete-system-history-is-deterministic-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Deterministic traceable history plus consistent artifact identification enables stable reference to any historical system event (depth-7)"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-is-fully-characterized-self-maintaining-loop": {
+      "text": "The closed maintenance loop is fully characterized along three independent dimensions: it operates identically regardless of belief origin, every self-correction leaves traceable history, and minimality generates the mechanisms that sustain the loop itself \u2014 no dimension of the loop's behavior is unspecified or opaque.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "closed-loop-is-origin-agnostic",
+            "maintenance-loop-is-fully-observable",
+            "minimality-is-self-sustaining"
+          ],
+          "outlist": [],
+          "label": "Three depth-9 properties (origin-agnosticism, observability, self-sustenance) converge to fully characterize the maintenance loop with no unspecified dimension"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "system-is-minimal-sound-and-scalable": {
       "text": "The entire system \u2014 from single-node truth semantics through multi-agent operation \u2014 achieves semantic minimality (all features derive from uniform primitives), operational soundness (deterministic reversible truth maintenance), and safe scalability (isolated multi-agent operation) simultaneously.",
       "truth_value": "OUT",
@@ -2608,6 +4581,63 @@
           ],
           "outlist": [],
           "label": "depth-5 apex \u2014 the three independent architectural achievements (minimality, soundness, scalability) are co-satisfied by the same codebase"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-is-self-correcting-and-exception-proof": {
+      "text": "The system is both actively self-correcting (maintaining consistency through the derive pipeline for new beliefs and staleness detection for existing ones) and passively exception-proof (handling contradictions through deterministic backtracking and challenges through reliable dialectical transformation) \u2014 providing comprehensive fault tolerance that covers both anticipated maintenance and unanticipated disruptions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-exceptions-are-safely-handled",
+            "complete-system-is-self-correcting"
+          ],
+          "outlist": [],
+          "label": "Active self-correction (staleness, derive) and passive exception handling (nogoods, challenges) are independent fault-tolerance dimensions that together eliminate both proactive and reactive failure modes"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-is-self-sustaining-and-invariant-preserving": {
+      "text": "The fully characterized self-maintaining loop not only sustains its own operation through minimality's fixed-point property but also comprehensively preserves all system invariants through both temporal coverage (revision loops) and structural coverage (architectural grounding).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-is-fully-characterized-self-maintaining-loop",
+            "invariant-preservation-is-comprehensive"
+          ],
+          "outlist": [],
+          "label": "The depth-10 self-maintaining loop subsumes comprehensive invariant preservation as a new depth-11 apex"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-is-self-sustaining-auditable-and-invariant-complete": {
+      "text": "The system simultaneously achieves three ultimate properties: self-sustainability through minimality's fixed-point, comprehensive invariant preservation, and complete operational auditability for every maintenance action \u2014 a single closed architecture that maintains itself, preserves all guarantees, and traces every action.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-maintenance-is-fully-auditable",
+            "system-is-self-sustaining-and-invariant-preserving"
+          ],
+          "outlist": [],
+          "label": "The two depth-11 apex properties are independently established along orthogonal quality dimensions (auditability vs. invariant preservation); their conjunction characterizes the complete system."
         }
       ],
       "source": "",
@@ -2657,6 +4687,27 @@
         "retract_reason": "Fixed in PR #27"
       }
     },
+    "system-properties-are-indefinitely-maintained": {
+      "text": "The system's three ultimate properties \u2014 self-sustainability, comprehensive auditability, and complete invariant preservation \u2014 extend beyond external beliefs to unlimited temporal scope: resource-sustainable self-correction within a deterministic lifecycle ensures these properties hold not just now but indefinitely, provided propagation correctness is maintained.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-is-self-sustaining-auditable-and-invariant-complete",
+            "self-correction-sustains-lifecycle-indefinitely"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Extends the depth-12 apex claim from static achievement to temporal permanence \u2014 the system doesn't just have these properties, it keeps them; gated on propagation correctness because indefinite operation amplifies any propagation assumption violation from a latent defect to eventual failure"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "system-properties-emerge-from-unified-design": {
       "text": "All four primary system properties \u2014 integrity, scalability, extensibility, and robustness \u2014 emerge from a single unified architectural design rather than requiring independent engineering effort; integrity and scalability are complementary consequences of unified internal/external integrity with sound multi-agent scaling, while extensibility and robustness are jointly yielded by minimality, and the design that produces both pairs is the same.",
       "truth_value": "OUT",
@@ -2669,6 +4720,25 @@
           ],
           "outlist": [],
           "label": "Combines two independent depth-6 claims covering four system properties (integrity+scalability, extensibility+robustness) to show all four share a common architectural origin"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "system-properties-extend-fully-to-external-beliefs": {
+      "text": "The system's three ultimate properties \u2014 self-sustainability through minimality's fixed-point, comprehensive auditability through fully-characterized maintenance, and complete invariant preservation \u2014 extend fully to externally-sourced beliefs through self-sustaining invariant preservation that dynamically encompasses external beliefs as first-class participants.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "system-is-self-sustaining-auditable-and-invariant-complete",
+            "self-sustaining-preservation-encompasses-external-beliefs"
+          ],
+          "outlist": [],
+          "label": "The depth-12 capstone characterizes internal achievement; this extends it to external beliefs via the independent external-encompassment chain, creating the true apex claim"
         }
       ],
       "source": "",
@@ -2768,11 +4838,108 @@
       "date": "",
       "metadata": {}
     },
+    "tms-handles-all-conditions-safely": {
+      "text": "The TMS core handles both normal operation (crash-free truth propagation via BFS with stop-on-unchanged) and exceptional conditions (deterministic contradiction resolution via backtracking with least-entrenched selection) through shared propagation infrastructure \u2014 no reachable execution state leads to undefined behavior.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "tms-core-is-crash-safe",
+            "contradiction-triggers-deterministic-resolution"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Normal and exceptional paths share infrastructure and both terminate correctly"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "token-budgets-are-accurate-bidirectionally": {
+      "text": "Token budget management is accurate in both directions: the compact module reliably constrains output size for context-limited consumers, while the derive pipeline correctly allocates input budgets per agent \u2014 ensuring resource-bounded operation across the entire LLM integration surface.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "compact-budget-controls-output-size",
+            "derive-budget-allocation-is-accurate"
+          ],
+          "outlist": [],
+          "label": "Both token budget mechanisms (output-constraining compact and input-allocating derive) are independently accurate, yielding bidirectional budget correctness across the LLM boundary"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "total-invariant-preservation-encompasses-all-beliefs": {
+      "text": "Total invariant preservation \u2014 comprehensive in scope and architecturally grounded \u2014 fully encompasses externally-integrated beliefs that achieve integration parity along all quality axes, establishing that the system's invariant regime makes no distinction between internal and external beliefs at any level.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "invariant-preservation-is-total",
+            "external-beliefs-achieve-total-integration"
+          ],
+          "outlist": [],
+          "label": "Two independent \"totality\" claims (preservation scope and integration quality) combine to yield total invariant coverage over all belief origins"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "total-preservation-is-indefinitely-auditable": {
+      "text": "Total invariant preservation \u2014 comprehensive in scope and self-sustaining through minimality \u2014 is accompanied by indefinite auditability: every invariant-preserving action across all time leaves traceable history without temporal degradation, meaning the system can prove its own correctness at any point.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "indefinite-self-correction-is-fully-auditable",
+            "invariant-preservation-is-total-and-self-sustaining"
+          ],
+          "outlist": [],
+          "label": "Depth-13 \u2014 combines totality of preservation with indefinite auditability to yield provable correctness: the system doesn't just preserve invariants forever, it can demonstrate it did so"
+        }
+      ],
+      "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "transaction-per-function": {
       "text": "Every API function opens the database, does its work, and closes \u2014 no shared state, no connection pooling, no long-lived sessions; each invocation is fully independent.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "trustworthiness-is-verifiable-through-observability": {
+      "text": "The revision system's complete trustworthiness (verifiable soundness, end-to-end reliability, full auditability) is independently verifiable because the minimality-sustained maintenance loop provides complete observability \u2014 every self-correction and maintenance action leaves traceable evidence that can be inspected.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-achieves-complete-trustworthiness",
+            "maintenance-loop-is-fully-observable"
+          ],
+          "outlist": [],
+          "label": "Trustworthiness is claimed; observability makes it verifiable \u2014 the combination elevates trust from assertion to auditable property"
+        }
+      ],
+      "source": "",
       "source_hash": "",
       "date": "",
       "metadata": {}

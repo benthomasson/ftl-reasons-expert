@@ -79,12 +79,12 @@ Only nodes with `truth_value == "IN"` are checked for staleness; retracted (OUT)
 A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
-### [ACCEPT] hash-truncation-is-16-hex
-Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), reducing collision resistance to ~32 bits for birthday attacks compared to the full 256-bit hash.
+### [REJECT] hash-truncation-is-16-hex
+STALE: Fixed in PR #40 — now uses full SHA-256 hash.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
-### [ACCEPT] missing-source-file-is-silent
-If a node's source file no longer exists on disk, `check_stale` silently skips it; callers cannot distinguish "file deleted" from "file never tracked."
+### [REJECT] missing-source-file-is-silent
+STALE: Fixed in PR #32 (issue #25) — check_stale now reports source_deleted for missing files.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
 ---
@@ -150,8 +150,8 @@ When agents are present, `_build_beliefs_section` allocates prompt token budget 
 `validate_proposals` filters invalid proposals into a skipped list rather than raising; `apply_proposals` catches per-item exceptions so one bad proposal never blocks others
 - Source: entries/2026/04/23/reasons_lib-derive.md
 
-### [ACCEPT] derive-agent-count-bug
-`_build_beliefs_section` has a bug: `count += len(belief_ids)` is inside the per-belief loop instead of outside it, inflating the count and shrinking the non-agent budget below intended size
+### [REJECT] derive-agent-count-bug
+STALE: Fixed in PR #33 (issue #23).
 - Source: entries/2026/04/23/reasons_lib-derive.md
 
 ### [ACCEPT] import-agent-namespace-prefix
@@ -206,8 +206,8 @@ The seed node (`changed_id`) is added to `visited` immediately and never has its
 If a dependent's recomputed truth value equals its current value, it is not enqueued — the cascade terminates along that path, making propagation selective rather than exhaustive
 - Source: entries/2026/04/23/reasons_lib-network-_propagate.md
 
-### [ACCEPT] propagate-assumes-dependents-exist
-Every ID in `node.dependents` is accessed via `self.nodes[dep_id]` without a membership check; a dangling dependent reference will raise `KeyError` — this is intentional (broken invariant = bug)
+### [REJECT] propagate-assumes-dependents-exist
+STALE: Fixed in PR #27 (issue #22) — _propagate now guards against dangling dependent references.
 - Source: entries/2026/04/23/reasons_lib-network-_propagate.md
 
 ### [ACCEPT] add-nogood-always-records
@@ -222,8 +222,8 @@ The primary retraction path traces back through justification chains to premises
 When `find_culprits` returns no candidates (all nogood nodes are premises with no justification chains), the fallback retracts the nogood member with the fewest direct dependents
 - Source: entries/2026/04/23/reasons_lib-network-add_nogood.md
 
-### [ACCEPT] nogood-ids-assume-append-only
-Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls
+### [REJECT] nogood-ids-assume-append-only
+STALE: Fixed in PR #35 (issue #26) — now uses a persisted monotonic counter.
 - Source: entries/2026/04/23/reasons_lib-network-add_nogood.md
 
 ### [REJECT] unknown-type-returns-false
@@ -384,8 +384,8 @@ Retracting `agent:active` cascades all agent beliefs to OUT via the inactive rel
 Retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
 
-### [ACCEPT] justification-validity-requires-inlist-in-and-outlist-out
-A justification is valid iff all antecedents are IN and all outlist nodes are OUT; this single rule drives retraction cascades, kill-switch behavior, challenges, and supersession
+### [REJECT] justification-validity-requires-inlist-in-and-outlist-out
+Redundant with sl-justification-semantics.
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
 
 ### [ACCEPT] import-skips-existing-sync-is-remote-wins
@@ -396,20 +396,20 @@ Import mode (`import_agent`) is a one-time load that skips existing nodes; sync 
 
 ## From `entries/2026/04/23/topic-outlist-semantics.md`
 
-### [ACCEPT] outlist-absent-means-out
-An outlist node that doesn't exist in the network is treated as OUT (justification satisfied); absent antecedent nodes fail validation — this asymmetry makes missing counter-evidence permissive while missing supporting evidence is strict
+### [REJECT] outlist-absent-means-out
+Redundant with missing-outlist-nodes-pass-validation and sl-outlist-asymmetry.
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
-### [ACCEPT] node-in-if-any-justification-valid
-A node's truth value is IN if any single justification is valid (disjunctive semantics); a node can survive an outlist violation if it has a backup justification through a different path
+### [REJECT] node-in-if-any-justification-valid
+Duplicate of node-in-if-any-justification-valid proposed earlier.
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
-### [ACCEPT] challenge-is-outlist-injection
-The challenge mechanism creates a new premise node and adds it to the target's outlist; all truth-value changes flow through normal BFS propagation, not direct mutation
+### [REJECT] challenge-is-outlist-injection
+Redundant with challenge-uses-outlist-mechanism.
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
-### [ACCEPT] defend-is-recursive-challenge
-Defense is implemented by calling `challenge()` on the challenge node itself, enabling arbitrarily deep dialectical chains using the same outlist mechanism recursively with no special-case code
+### [REJECT] defend-is-recursive-challenge
+Redundant with defend-is-challenge-of-challenge.
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
 ### [ACCEPT] supersession-is-reversible
