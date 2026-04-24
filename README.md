@@ -6,13 +6,23 @@ This repo contains structured exploration entries, extracted beliefs, multi-mode
 
 ## Belief State
 
-- **130 IN** beliefs (held as true) / **59 OUT** (retracted or defeated) — 189 total
-- **83 premises** (direct observations from code) / **106 derived** (reasoned from other beliefs)
+- **241 IN** beliefs (held as true) / **59 OUT** (retracted or defeated) — 300 total
+- **24 premises** (direct observations from code) / **217 derived** (reasoned from other beliefs)
 - **10 retracted premises** — defects fixed via PRs merged back into ftl-reasons
 - **0 active blockers** — all GATE beliefs resolved
+- **Max derivation depth: 14** — 16 beliefs at depth 11+, 2 terminal beliefs at depth 14
 - Beliefs are tracked in `reasons.db` (gitignored) and exported to `beliefs.md` and `network.json`
 
-Beliefs range from low-level observations ("add-nogood-always-records") to depth-5 derived conclusions ("edge-case-uniformity-follows-from-minimality"). The 19 terminal derived beliefs represent the highest-level conclusions about the system's architecture, safety, and correctness.
+Beliefs range from low-level code observations ("add-nogood-always-records") through mid-level architectural properties ("revision-is-universally-safe", "external-beliefs-achieve-integration-parity") to the depth-14 apex belief `system-guarantees-are-universal-permanent-and-verifiable` — the conclusion that the system's guarantees extend to all belief types, hold indefinitely, and are independently auditable.
+
+### Derivation Depth Distribution
+
+| Depth | Count | Examples |
+|-------|-------|---------|
+| 0 | 24 | Premises: `sl-justification-semantics`, `propagation-is-bfs` |
+| 1-4 | 120 | `revision-is-universally-safe`, `tms-handles-all-conditions-safely` |
+| 5-10 | 95 | `self-correction-has-complete-traceable-history`, `invariant-preservation-is-comprehensive` |
+| 11-14 | 16 | `system-guarantees-are-universal-permanent-and-verifiable` (apex) |
 
 ## Contents
 
@@ -22,13 +32,14 @@ network.json            # Lossless belief network export (JSON)
 reasons.db              # SQLite belief store (gitignored)
 proposed-beliefs.md     # Beliefs proposed but not yet accepted
 .code-expert/           # Scanner config, topic queue, proposed entries
-entries/2026/04/23/     # 17 exploration entries covering:
+entries/                # 18 exploration entries covering:
                         #   - Core modules (network, storage, api, cli)
                         #   - Key algorithms (propagation, justification, nogood resolution)
                         #   - Design patterns (outlist semantics, multi-agent federation)
                         #   - Doyle 1979 TMS theory
+                        #   - Defect resolution writeup
 reviews/                # 18 multi-model code review reports (Claude + Gemini)
-                        #   PRs #5-#7, #12-#15, #18, #27-#35 on ftl-reasons
+                        #   PRs #5-#7, #12-#15, #18, #27-#35, #42 on ftl-reasons
 logs/                   # 8 SDLC pipeline artifact archives
 ```
 
@@ -59,6 +70,7 @@ All 10 defect premises were retracted after their fixes merged:
 | [#26](https://github.com/benthomasson/ftl-reasons/issues/26) | `nogood-ids-assume-append-only` | [#33](https://github.com/benthomasson/ftl-reasons/pull/33) |
 | [#36](https://github.com/benthomasson/ftl-reasons/issues/36) | `compact-token-estimate-is-word-count`, `compact-budget-only-limits-in-nodes` | [#39](https://github.com/benthomasson/ftl-reasons/pull/39) |
 | [#37](https://github.com/benthomasson/ftl-reasons/issues/37) | `hash-truncation-is-16-hex` | [#40](https://github.com/benthomasson/ftl-reasons/pull/40) |
+| [#38](https://github.com/benthomasson/ftl-reasons/issues/38) | (feature) access_tags for data source provenance | [#42](https://github.com/benthomasson/ftl-reasons/pull/42) |
 
 ## Tools
 
