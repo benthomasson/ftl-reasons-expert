@@ -2484,9 +2484,7 @@
       "source": "",
       "source_hash": "",
       "date": "",
-      "metadata": {
-        "retract_reason": "Fixed in PR #32"
-      }
+      "metadata": {}
     },
     "staleness-gate-catches-all-drift": {
       "text": "The staleness CI gate detects all forms of source material drift without false negatives.",
