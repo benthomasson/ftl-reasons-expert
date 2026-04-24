@@ -197,7 +197,7 @@
     },
     "all-external-inputs-safely-integrated": {
       "text": "Both LLM-derived beliefs and agent-imported beliefs are safely integrated into the network: defensive validation with retraction guards bounds LLM output, while complete reconciliation with dual modes and heterogeneous truth handling manages agent imports.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -370,7 +370,7 @@
     },
     "belief-revision-is-fully-reliable": {
       "text": "The complete belief revision pipeline \u2014 outlist-based defeat for proactive retraction plus dependency-directed backtracking for reactive contradiction resolution \u2014 produces correct, consistent, auditable results with deterministic propagation settling all consequences.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -402,7 +402,7 @@
     },
     "challenge-defense-is-crash-safe": {
       "text": "The dialectical challenge/defend system reaches correct truth states through recursive outlist injection evaluated by deterministic terminating propagation.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -532,7 +532,7 @@
     },
     "compact-budget-controls-output-size": {
       "text": "The compact module's token budget reliably constrains total output size",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -554,12 +554,14 @@
     },
     "compact-budget-only-limits-in-nodes": {
       "text": "The token budget only constrains the IN nodes section; nogoods and OUT nodes are always emitted regardless of budget, so compact output can exceed the specified budget value.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-compact.md",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Fixed in PR #39"
+      }
     },
     "compact-in-nodes-ordered-by-dependents": {
       "text": "IN nodes are sorted by descending dependent count so structurally important nodes (those depended on by many others) are emitted first and survive budget truncation.",
@@ -581,12 +583,14 @@
     },
     "compact-token-estimate-is-word-count": {
       "text": "`estimate_tokens` counts whitespace-separated words, not BPE tokens; the budget parameter throughout the compact module is measured in this unit.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-compact.md",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Fixed in PR #39"
+      }
     },
     "complete-operational-uniformity-across-all-sources": {
       "text": "All mutation sources produce fully correct persisted network state \u2014 operationally safe, semantically uniform, and consistent across all graph configurations \u2014 only when propagation handles dangling dependents without crashing and the derive pipeline's agent-count bug does not skew budget allocation.",
@@ -825,7 +829,7 @@
     },
     "derive-budget-allocation-is-accurate": {
       "text": "The derive pipeline's proportional belief-budget allocation produces correct per-agent token counts",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -886,7 +890,7 @@
     },
     "derive-pipeline-is-production-ready": {
       "text": "The derive pipeline correctly allocates budgets, validates proposals defensively, and produces well-formed beliefs through a round-trippable prompt contract.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -1165,7 +1169,7 @@
     },
     "external-belief-lifecycle-is-complete": {
       "text": "The system manages external beliefs across their full lifecycle: import/sync provides dual reconciliation modes with heterogeneous truth state handling and namespace auto-wiring, while staleness checking detects source drift for CI gating \u2014 beliefs are tracked from initial ingestion through ongoing validity monitoring.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -1246,12 +1250,14 @@
     },
     "hash-truncation-is-16-hex": {
       "text": "Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), reducing collision resistance to ~32 bits for birthday attacks compared to the full 256-bit hash.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Fixed in PR #40"
+      }
     },
     "import-agent-namespace-prefix": {
       "text": "Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs",
@@ -1874,16 +1880,18 @@
     },
     "nogood-ids-assume-append-only": {
       "text": "Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network-add_nogood.md",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Fixed in PR #35"
+      }
     },
     "nogood-resolution-maintains-consistent-ids": {
       "text": "Nogood recording and resolution produces a consistent, referenceable history of contradictions",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -2189,7 +2197,7 @@
     },
     "propagation-is-crash-free": {
       "text": "Truth propagation completes without runtime errors across all reachable nodes",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -2459,7 +2467,7 @@
     },
     "staleness-checking-is-comprehensive": {
       "text": "Staleness checking detects all nodes whose source material has changed on disk",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -2482,7 +2490,7 @@
     },
     "staleness-gate-catches-all-drift": {
       "text": "The staleness CI gate detects all forms of source material drift without false negatives.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -2721,7 +2729,7 @@
     },
     "tms-core-is-crash-safe": {
       "text": "The TMS core provides crash-free truth maintenance: deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
