@@ -1,0 +1,42 @@
+### `reasons_lib/api.py`
+VERDICT: BLOCK
+CORRECTNESS: BROKEN
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: PARTIAL
+REASONING: The `deduplicate` function only sets `cluster["kept"] = keep` inside the `if auto:` block (around line 1235). When run in manual mode (`auto=False`), `cluster.get("kept")` evaluates to `None`. This causes `write_dedup_plan` to write `[RETRACT]` for every single node in the proposed plan, failing to propose a default `[KEEP]` node. If a user runs `reasons deduplicate --accept proposed-dedup.md` without manually editing the file to add a `[KEEP]` to each cluster, `parse_dedup_plan` will silently drop all clusters (since `current_keep` remains `None`), resulting in a "No clusters found in plan file" message. The manual deduplication workflow is functionally broken out of the box. To fix this, extract the `keep` calculation in `deduplicate` so it runs unconditionally for every cluster, allowing `write_dedup_plan` to propose a default node to keep. The `_rewrite_dependents` logic itself is sound and correctly handles non-cascading retractions.
+
+---
+
+### `reasons_lib/cli.py`
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The CLI changes correctly wire up the new `--accept` and `--output` flags and provide clear feedback. However, because of the bug in `api.py` where `cluster.get("kept")` is not populated in manual mode, the CLI will never actually print the `<- kept` indicator when listing clusters in manual mode, which violates the intended UX. Additionally, there appears to be no test coverage for the CLI parsing or formatting logic for the new deduplication plan workflow.
+
+---
+
+### `tests/test_derive.py`
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The tests are well-structured and successfully verify the dependent rewriting logic and the parsing/application of dedup plans. However, `test_write_and_parse_dedup_plan` manually constructs a mock `clusters` dictionary that already includes `"kept": "gl108-validation-disabled"`. Because it bypasses calling `deduplicate(auto=False)` to generate this payload, the test fails to exercise the integration gap that causes the all-`[RETRACT]` bug. Adding an end-to-end test for the manual workflow (calling `deduplicate` with `auto=False`, passing the result to `write_dedup_plan`, and parsing it back) would ensure the entire feature works as expected.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: I initially lacked the full context of `deduplicate` in `api.py` outside of the provided diff hunks, which obscured the `if auto:` conditional logic. I was able to retrieve this using the read file and grep tools to confirm the bug.
+---
+
+### FEATURE_REQUESTS
+- Include the full file context for modified functions, not just diff hunks. Bugs often hide in the unedited lines of a modified function (like the `if auto:` block that was omitted from the diff).

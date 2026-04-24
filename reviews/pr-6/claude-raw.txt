@@ -1,0 +1,105 @@
+Confirmed. Here's my review:
+
+---
+
+### reasons_lib/api.py:_rewrite_dependents
+VERDICT: PASS
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Logic is sound for the common case. Uses `list()` for safe iteration during set mutation — good. Two edge cases: (1) If `new_id` is already in a justification's antecedents/outlist, the rewrite creates duplicate entries (e.g., `["new_id", "new_id"]`). Unlikely in practice since duplicates have *similar* IDs, not both appearing in the same justification. (2) After rewriting outlist from a retracted duplicate to the kept node, the outlist condition may change validity (outlist node was OUT, is now IN). This is semantically correct — if duplicates are the same belief, "unless A" should become "unless B" — but the truth value change is a side-effect the user might not expect. Tests exist for both antecedent and outlist rewrites.
+
+---
+
+### reasons_lib/api.py:write_dedup_plan
+VERDICT: BLOCK
+CORRECTNESS: BROKEN
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: PARTIAL
+REASONING: **Bug in the primary new workflow.** When called from the non-auto dedup path (the only path that calls this function — `cli.py:538`), clusters don't have a `"kept"` key set. `cluster.get("kept")` returns `None`, so `b["id"] == None` is always false, and **every belief is marked `[RETRACT]`** with none marked `[KEEP]`. When the user then runs `--accept`, `parse_dedup_plan` requires `current_keep` to be truthy to emit a cluster, so all clusters are silently dropped — "No clusters found in plan file." The test `test_write_and_parse_dedup_plan` doesn't catch this because it manually constructs a cluster dict **with `kept` already set**, which doesn't match the real call path. Fix: either always compute `kept` in `deduplicate()` (move the `max(members, ...)` line outside the `if auto:` block), or add a fallback in `write_dedup_plan`.
+
+---
+
+### reasons_lib/api.py:parse_dedup_plan
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: The parser logic is correct for well-formed input. However: (1) A cluster with multiple `[KEEP]` entries silently uses the last one — should this warn? (2) A cluster with zero `[KEEP]` entries is silently dropped, which contributes to the write_dedup_plan bug being invisible. (3) No test for malformed input (missing KEEP, extra KEEP, garbled lines). The regex `\S+?` is fine for hyphenated IDs but would break on IDs containing backticks, which is unlikely.
+
+---
+
+### reasons_lib/api.py:apply_dedup_plan
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Good error handling — missing nodes report errors rather than crashing, already-OUT nodes are skipped. Correctly calls `_rewrite_dependents` before `net.retract`. Uses `_with_network(write=True)` so changes are persisted. Minor: doesn't warn when the `keep` node is already OUT (dependents would be rewritten to point at an OUT node, making their justifications invalid). Tests cover: happy path, missing node errors, and user-edited keep selection.
+
+---
+
+### reasons_lib/api.py:deduplicate (modified)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The addition of `_rewrite_dependents` before `net.retract` is the right order — rewrite the references while the old node is still in `net.nodes`, then retract. The `cluster["kept"]` assignment is only inside `if auto:`, which is the root cause of the `write_dedup_plan` bug (see above). The `kept` computation should be moved outside the `if auto:` block so it's always available.
+
+---
+
+### reasons_lib/cli.py:cmd_deduplicate (modified)
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The `--accept` path is well-structured: validates file exists, parses, applies, reports errors. The non-auto path now writes a plan file instead of suggesting `--auto`, which is the intended workflow change. However: (1) The behavior change from "suggest --auto" to "write plan file" means `reasons deduplicate` now has a **side effect** (creates `proposed-dedup.md` in CWD) on every non-auto run — users might not expect file creation from a query command. (2) If `--auto` and `--accept` are both passed, `--accept` takes precedence (checked first), which is fine but undocumented. (3) The `←` to `<-` change is a minor encoding fix. (4) No CLI-level tests for either `--accept` or the plan-writing path.
+
+---
+
+### tests/test_derive.py (new tests)
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: N/A
+REASONING: Tests are well-structured and cover: antecedent rewrite, outlist rewrite, plan round-trip, plan application, missing node errors, and user-edited keep. However: (1) `test_write_and_parse_dedup_plan` manually sets `kept` in the cluster dict, masking the bug that `deduplicate(auto=False)` doesn't set `kept`. An integration-level test that calls `deduplicate()` then `write_dedup_plan()` then `parse_dedup_plan()` would catch this. (2) No test for a cluster with 3+ duplicates in the plan workflow. (3) `test_deduplicate_rewrites_outlist` doesn't assert the resulting truth value of `safe-to-deploy`, which would document the semantic impact of outlist rewriting.
+
+---
+
+## Summary
+
+**One BLOCK issue:** `write_dedup_plan` produces broken output for the only call path that uses it (non-auto dedup). All beliefs are marked `[RETRACT]`, making the review-then-accept workflow non-functional. The fix is straightforward: move the `keep = max(members, ...)` computation in `deduplicate()` outside the `if auto:` block so `cluster["kept"]` is always set.
+
+**Three CONCERN issues:** (1) Test for plan round-trip doesn't exercise the real call path, (2) No CLI-level tests for the new flags, (3) `_rewrite_dependents` doesn't deduplicate antecedent/outlist entries if `new_id` is already present.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Could not run tests to verify they pass (permission denied). Did not see the full `add_node` API to verify how `sl`/`unless` params construct justifications and whether truth values in tests match expectations. Did not see `_propagate` to verify rewrite + retract ordering doesn't cause stale truth values.
+
+---
+
+### FEATURE_REQUESTS
+- Include the full function body for callers of modified functions (e.g., show `add_node` when tests call it with specific params)
+- Run the test suite automatically and include pass/fail results
+- Show the actual file written by `write_dedup_plan` for a non-auto cluster to make the BLOCK bug immediately visible

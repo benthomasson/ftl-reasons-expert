@@ -1,0 +1,31 @@
+Good — `(\S+)` will match `` `cross-validated-readiness` `` including the backticks, then `.strip("`")` removes them. The antecedent/unless groups use `(.+?)` which captures the full comma-separated line including backticks, then each element gets `.strip().strip("`")`.
+
+---
+
+### reasons_lib/derive.py:parse_proposals
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: LLMs frequently emit backtick-wrapped identifiers even when not instructed to. The fix correctly applies `.strip("`")` after `.strip()` on the ID, antecedent list items, and unless list items. The old format parser (line 334-335) already had identical `.strip("`")` calls, so this brings the new format parser to parity. The regex `(\S+)` correctly matches backtick-wrapped tokens since backticks are non-whitespace. The `label` field is intentionally not stripped of backticks, which is reasonable since labels are freeform text, not node IDs used for lookups.
+
+---
+
+### tests/test_derive.py:test_parse_proposals_strips_backticks
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The test exercises the exact scenario — backticks on the ID, on each antecedent, and on the unless entry. Assertions verify all three are stripped. The test input is realistic (matches what LLMs actually produce). Coverage is thorough for the new format path. One minor observation: the test doesn't verify the GATE variant with backticks, but the code change is identical for both DERIVE and GATE since they share the same parsing block.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Did not verify whether any downstream consumers of `parse_proposals` (e.g., `validate_proposals`, `apply_proposals`, or LangGraph integration) would break if backticks somehow survived past this point — but since the fix only strips characters that shouldn't be in IDs, this is low risk. Did not run the test suite to confirm the new test passes.
+---

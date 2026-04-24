@@ -1,0 +1,24 @@
+### reasons_lib/derive.py:_build_beliefs_section
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The `count += len(belief_ids)` statement was unindented so that it executes once per agent rather than once per belief in the agent. This corrects the N² bug to correctly accumulate N beliefs per agent, directly addressing the described issue.
+
+### tests/test_derive_budget.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Adds comprehensive test coverage for `_build_beliefs_section` and its budget constraints, including tests specifically targeting the N² accumulation bug and budget starvation for local beliefs, as well as tests handling multiple agents, budget floors, and random sampling modes.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: None. The issue description and provided diff directly align with the expected changes and provide complete clarity on the intent and resolution.

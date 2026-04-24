@@ -1,0 +1,27 @@
+### reasons_lib/api.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: The logic correctly records the state of all nodes before an operation and compares it with the state afterward to properly separate the cascade effects into `went_out` and `went_in`. By preserving the `changed` key, this maintains backward compatibility with existing callers and tests. However, no new test assertions were added to `tests/test_api.py` to explicitly verify the correctness of the new `went_out` and `went_in` lists.
+
+### reasons_lib/cli.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The changes cleanly wire up the new API response fields to the CLI output, resulting in a significantly more readable breakdown of cascades (differentiating nodes that went OUT vs those restored IN). It handles empty cascades gracefully and relies safely on `.get()`. There are no automated tests for the CLI layer itself, so these presentation changes remain untested.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: None. I was able to search the workspace to verify that `truth_value` only uses `"IN"` and `"OUT"` states, confirm that existing API tests don't strictly assert the dictionary structure (so they won't break), and verify that `_propagate` / `retract` methods under the hood behave exactly as expected.
+
+### FEATURE_REQUESTS
+- Automatically surface corresponding test files when reviewing API or library changes so that reviewers can verify if test coverage was updated.

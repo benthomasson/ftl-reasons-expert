@@ -1,0 +1,25 @@
+### reasons_lib/derive.py:parse_proposals
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The modification correctly and safely strips backticks from the `id`, `antecedents`, and `unless` fields after stripping whitespaces. The conditional expression `[u.strip().strip("`") for u in match.group(5).split(",")] if match.group(5) else []` correctly evaluates the condition before the list comprehension to avoid AttributeError on `None`.
+---
+
+### tests/test_derive.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The test effectively checks the backtick-stripping functionality for all three modified fields (id, antecedents, unless) and validates that the extracted lists are properly cleaned.
+---
+
+### SELF_REVIEW
+LIMITATIONS: None. The diff is small, self-contained, and accompanied by a corresponding test that validates the introduced behavior.
+---

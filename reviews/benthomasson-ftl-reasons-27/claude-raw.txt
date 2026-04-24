@@ -1,0 +1,67 @@
+The diff hasn't been applied yet — this is a review of the proposed changes. I have enough context to complete the review.
+
+---
+
+## Code Review
+
+### `reasons_lib/network.py:_propagate`
+**VERDICT:** PASS
+**CORRECTNESS:** VALID
+**SPEC_COMPLIANCE:** N/A
+**ISSUE_COMPLIANCE:** ADDRESSES
+**BELIEF_COMPLIANCE:** N/A
+**TEST_COVERAGE:** COVERED
+**INTEGRATION:** WIRED
+**REASONING:** The guard is placed at exactly the right location — after the `visited` check and before the `self.nodes[dep_id]` access that would raise `KeyError`. The `continue` means dangling IDs are skipped without being added to `visited` or `changed`, which is correct: a dangling ID shouldn't pollute either set. The warning log via `self._log("warn", dep_id, ...)` uses the existing log infrastructure with a clear message identifying both the dangling ID and its parent. The fix is minimal and surgical — no unnecessary refactoring.
+
+One subtlety worth noting: `current_id` on line 739 is accessed via `self.nodes[current_id]` without a guard, but this is safe because `current_id` is either the initial `changed_id` (which callers validate) or was previously confirmed to exist when it was added to the queue at line 757.
+
+---
+
+### `tests/test_dangling_dependents.py` (new file)
+**VERDICT:** PASS
+**CORRECTNESS:** VALID
+**SPEC_COMPLIANCE:** N/A
+**ISSUE_COMPLIANCE:** ADDRESSES
+**BELIEF_COMPLIANCE:** N/A
+**TEST_COVERAGE:** COVERED
+**INTEGRATION:** WIRED
+**REASONING:** Thorough test file organized into four well-scoped test classes:
+
+1. **TestDanglingDependentNoCrash** — verifies the core fix: no `KeyError` on retract/assert with dangling refs, including alongside valid dependents.
+2. **TestDanglingDependentWarningLogs** — verifies warning emission, message content, timestamp presence, and coverage of both retract and assert paths.
+3. **TestDanglingDependentPropagationContinues** — verifies that valid dependents still propagate correctly past dangling refs, including chain and diamond topologies.
+4. **TestDanglingDependentEdgeCases** — covers same ghost in multiple nodes, dangling not in changed list, `challenge()` and `add_justification()` paths, and the important test that a previously-dangling ID can later become a real node and work normally.
+
+The `test_dangling_does_not_enter_visited` test (line ~204) is particularly valuable — it verifies the `continue` skips `visited.add()`, meaning a later-created node with that ID won't be silently skipped. This matches the implementation where the guard is placed before the `visited.add` call.
+
+Minor note: `test_same_dangling_in_multiple_nodes` asserts `>= 1` warnings rather than exactly 2. This is acceptable because the BFS `visited` check may prevent the second node from being reached if its truth value doesn't change, but the assertion could be tighter with a comment explaining why.
+
+---
+
+### `tests/test_network.py::TestDanglingDependents`
+**VERDICT:** CONCERN
+**CORRECTNESS:** VALID
+**SPEC_COMPLIANCE:** N/A
+**ISSUE_COMPLIANCE:** ADDRESSES
+**BELIEF_COMPLIANCE:** N/A
+**TEST_COVERAGE:** COVERED
+**INTEGRATION:** WIRED
+**REASONING:** These two tests duplicate coverage already provided by `tests/test_dangling_dependents.py`. `test_propagate_skips_dangling_dependent` is identical in intent to `TestDanglingDependentNoCrash::test_retract_with_single_dangling_dependent`. `test_propagate_logs_dangling_warning` is identical to `TestDanglingDependentWarningLogs::test_single_warning_logged`. Having both is not harmful, but it's redundant — the dedicated test file is comprehensive enough to stand alone. If the team prefers keeping some tests in `test_network.py` for discoverability alongside other propagation tests, that's a valid convention, but it should be intentional rather than accidental duplication.
+
+---
+
+### Overall Assessment
+
+**The change is correct and well-tested.** The 3-line guard in `_propagate` directly addresses the issue: dangling dependents no longer crash propagation, and a warning is logged identifying both the dangling ID and the parent that references it. The test suite is thorough, covering crash prevention, warning verification, continued propagation of valid dependents, and several edge cases including topology variants (chains, diamonds) and multiple entry points (`retract`, `assert_node`, `challenge`, `add_justification`).
+
+---
+
+### SELF_REVIEW
+**LIMITATIONS:** Could not run the tests to verify they actually pass with the applied diff. Reviewed the test logic against the implementation statically. Could not verify whether `challenge()` and `add_justification()` actually route through `_propagate` (the tests assume they do) — would need to read those methods to confirm.
+
+---
+
+### FEATURE_REQUESTS
+- Include full method bodies for all methods called by the changed code (e.g., `challenge`, `add_justification`, `assert_node`, `retract`) so the reviewer can verify integration claims in tests
+- Flag duplicate test coverage across files automatically in the review prompt

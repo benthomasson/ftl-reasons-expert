@@ -1,0 +1,82 @@
+Now I have the full picture. Here's my review:
+
+---
+
+### reasons_lib/api.py:retract_node
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: Logic is correct. `before` snapshot captures all truth values before mutation, then `changed` is iterated to classify transitions. `before.get(nid)` is safe — though `before[nid]` would also work since `changed` only contains existing node IDs (verified in `network.py:76-100`). The `net.nodes[nid]` access on the post-mutation side is also safe for the same reason. Existing tests in `test_api.py` (lines 51-73) only assert on `result["changed"]`, so they still pass but don't verify the new fields.
+
+---
+
+### reasons_lib/api.py:assert_node
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: Identical pattern to `retract_node` — same analysis applies. The `assert_node` path in `network.py:102-120` can trigger `_propagate`, which may flip dependents OUT (e.g., nodes with outlist containing the asserted node). The `went_out` list correctly captures this non-monotonic case, which is the interesting edge case here.
+
+---
+
+### reasons_lib/cli.py:_print_cascade
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The helper is clean and defensive (uses `.get()` with default `[]`). One concern: the retracted/asserted node itself appears in `went_out`/`went_in` alongside its dependents, so the output mixes the explicitly targeted node with cascade effects. For example, `retract A` prints `Retracted A` then also lists `A` under `Went OUT`. This is mildly redundant but not incorrect. No CLI tests exist to verify the output format.
+
+---
+
+### reasons_lib/cli.py:cmd_retract
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: Output changed from flat `"Retracted: a, b, c"` to structured `"Retracted a"` + cascade breakdown. The new format is more informative — users can distinguish what went OUT vs IN during a retraction cascade. No tests to break.
+
+---
+
+### reasons_lib/cli.py:cmd_assert
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: Mirror of `cmd_retract` changes. Same analysis applies.
+
+---
+
+### Overall Assessment
+
+The code is **correct and well-integrated**. Two things worth noting:
+
+1. **Test gap**: The new `went_out`/`went_in` fields are not tested. The existing `test_api.py` tests pass because they only check `result["changed"]`, but a test that retracts a node with dependents and verifies the split would lock in the behavior. Particularly valuable: testing the non-monotonic case where `assert_node` causes some nodes to go OUT (via outlist).
+
+2. **Minor redundancy in CLI output**: The targeted node (e.g., `A` in `retract A`) appears both in the header line ("Retracted A") and in the cascade list ("Went OUT: [-] A"). Consider filtering `args.node_id` from the cascade output, or leaving it if the intent is to show the complete picture.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Could not see `_propagate()` to verify it never returns IDs absent from `net.nodes`. Verified indirectly via `retract` and `assert_node` which only seed `changed` with existing IDs, but `_propagate` could theoretically add synthetic IDs. Also did not have access to the full test suite output to confirm existing tests still pass.
+
+---
+
+### FEATURE_REQUESTS
+- Include the full body of helper methods called by modified functions (e.g., `_propagate`) so reviewers can verify invariants end-to-end
+- Show existing test assertions that reference modified return values, to flag tests that should be updated

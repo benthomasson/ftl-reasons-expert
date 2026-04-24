@@ -1,0 +1,54 @@
+### `reasons_lib/api.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The `_node_depth` function correctly calculates node depth from premises (depth 0) and includes a necessary cycle guard to prevent infinite recursion in graph cycles. The `list_nodes` filtering logic handles the new `min_depth` and `max_depth` parameters properly, executing the filters smoothly.
+
+### `reasons_lib/cli.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: Successfully wires the new depth, premises, and dependents filtering parameters from CLI arguments through to `derive.build_prompt` and `api.list_nodes`. Adds helpful logging for depth filtering to stderr using bounds (e.g. 0–∞). Missing direct CLI tests in the diff, but the core logic is covered in API and derive tests.
+
+### `reasons_lib/derive.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Filtering logic in `build_prompt` is robust. It properly evaluates depth and dependencies against the *full* original network before filtering out nodes, guaranteeing that node depth is consistently measured regardless of the filter applied. Recomputing `max_depth` for the stats dictionary correctly provides the max depth of the *filtered* network.
+
+### `tests/test_api.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Provides appropriate and direct coverage for `min_depth` and `max_depth` options in `api.list_nodes()`.
+
+### `tests/test_derive.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Provides excellent test coverage mapping to the newly introduced prompt generation filters: depth range, min/max depths, premises only, and dependents. Assertions correctly validate prompt exclusions and metadata stats.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: I assumed the `db` fixture in `test_derive.py` is properly established in `conftest.py` or the suite structure since it's used instead of `db_path` (which appears in `test_api.py`), though it is standard practice. No major limitations impeded reviewing the logic correctly.

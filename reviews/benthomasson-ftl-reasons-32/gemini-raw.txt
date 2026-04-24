@@ -1,0 +1,45 @@
+### reasons_lib/check_stale.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The `check_stale` function correctly detects when `path` is `None` (missing source) and appends a `source_deleted` dictionary rather than skipping silently. The shape of the return dicts aligns perfectly with the issue description, including a new `reason` key for both cases.
+
+### reasons_lib/cli.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The CLI correctly utilizes the new `reason` field, using `.get("reason")` defensively, and appropriately changes output to "DELETED" without accessing `new_hash` (which is `None` in the `source_deleted` case). No tests for this CLI module change were included in the provided diff.
+
+### tests/test_check_stale.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Existing tests were correctly updated to assert `reason: content_changed` and `reason: source_deleted` when verifying stale reports or missing sources.
+
+### tests/test_check_stale_issue25.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Extensive new tests thoroughly cover permutations of missing sources, normal modifications, correct result dictionary structure, and skip behaviors. Excellent isolation and validation of edge cases.
+
+### SELF_REVIEW
+LIMITATIONS: The diff for `tests/test_check_stale_issue25.py` appeared truncated at line 204. I was unable to verify any potential CLI tests that may exist past that line, leading to an UNTESTED rating for `reasons_lib/cli.py` based strictly on the provided diff.
+
+### FEATURE_REQUESTS
+- Ensure complete file diffs or appended files are provided without truncation, especially for new test files, so that all coverage (such as CLI assertions) can be properly evaluated.

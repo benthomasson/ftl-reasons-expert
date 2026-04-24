@@ -1,0 +1,119 @@
+Let me proceed with the review based on the code I've already read. I have enough context.
+
+---
+
+## Code Review: Depth Filter for `list` and `derive`
+
+### `reasons_lib/api.py:_node_depth`
+VERDICT: PASS
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The cycle guard (`memo[nid] = 0`) prevents infinite recursion but silently produces incorrect depths for cyclic justification chains — a node in a cycle gets depth 0+1=1 regardless of its actual position. This is acceptable since TMS cycles are pathological, but worth noting. The mutable default argument `memo=None` pattern is correct (guarded by `if memo is None`). One concern: this duplicates logic from `derive.py:_get_depth` — same algorithm, different data structures (Network objects vs dicts). This is a minor maintainability issue but not a blocker.
+
+---
+
+### `reasons_lib/api.py:list_nodes`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The `memo` dict is lazily created only when depth filters are active, which is efficient. Depth filtering is applied after all other filters, so nodes already excluded by status/premises/namespace checks don't incur depth computation cost. The shared `memo` across all nodes in the loop ensures O(n) depth computation total. CLI integration at `cli.py:cmd_list` passes both `min_depth` and `max_depth` correctly.
+
+---
+
+### `reasons_lib/derive.py:_get_depth` (cycle guard fix)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: Adding `memo[node_id] = 0` as a cycle guard before recursing fixes infinite recursion on cyclic graphs. This mirrors the same pattern in `api.py:_node_depth`. No dedicated test for the cycle case exists, but the fix is clearly correct — without it, a cycle would recurse infinitely; with it, a cycle breaks at depth 0 (consistent with the api.py version).
+
+---
+
+### `reasons_lib/derive.py:build_prompt` (filter additions)
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The approach of computing depth from the full graph *before* filtering is correct — this ensures depth values don't shift when nodes are removed. However, the `max_depth` recomputation on line 400 (`max_depth = max((_get_depth(k, nodes, all_derived, memo) for k in derived), default=0)`) passes `nodes` (the filtered set) but `all_derived` (from the pre-filter set). This is fine for depth lookup since `memo` is already populated, but the intent is unclear — it's computing max depth over the *filtered* `derived` set using *pre-filter* derivation data via the memoized values. This works correctly because memo already has all values, but is fragile if someone later clears or modifies memo.
+
+A more substantive concern: `premises_only` and `has_dependents` are new `build_prompt` parameters that are **not documented in the docstring**. The docstring mentions `min_depth` and `max_depth_filter` but omits the two new boolean params.
+
+---
+
+### `reasons_lib/cli.py:_derive_one_round`
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: The depth filter display logic on line 597 (`if stats.get("min_depth") is not None or stats.get("max_depth_filter") is not None`) has a subtle bug: `stats.get("min_depth")` returns `None` when the key is absent, so `is not None` is correct. **But** `stats.get("min_depth")` also returns `None` when `min_depth` was not passed — and `min_depth` is only added to `stats` when it's not None (line 456-457 in derive.py). So this works, but only because the `is not None` check catches both "key absent" and "value is None" — it's coincidentally correct. A more robust pattern would be `if "min_depth" in stats or "max_depth_filter" in stats`. 
+
+Also: the `--premises` and `--has-dependents` flags for `derive` are not tested through the CLI path.
+
+---
+
+### `reasons_lib/cli.py` (argparse additions)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: UNTESTED
+INTEGRATION: WIRED
+REASONING: Both `derive` and `list` subcommands get the new `--min-depth`, `--max-depth`, `--premises`, and `--has-dependents` flags. The `list` subcommand already had `--premises` and `--has-dependents` so no duplication there. The `derive` subcommand correctly maps `args.max_depth` to `max_depth_filter` parameter. `list` correctly maps to `max_depth`.
+
+---
+
+### `tests/test_api.py:TestListNodesDepth`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Three tests covering min-only, max-only, and range filtering. Each builds a small network and verifies correct inclusion/exclusion. The depth range test verifies exact equality (`ids == ["mid"]`), which is good. Tests use the `db_path` fixture correctly.
+
+---
+
+### `tests/test_derive.py` (new tests)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Five new tests covering `min_depth`, `max_depth_filter`, depth range, `premises_only`, and `has_dependents` through `build_prompt`. The `has_dependents` test correctly expects 2 nodes (fact-a and fact-b are referenced by derived-ab; fact-c is not). The depth range test uses unique prefixed node IDs (`zz-*`) to avoid collisions with the fixture. Good coverage of the derive path.
+
+---
+
+## Summary
+
+The implementation is solid overall. Two duplicated depth-computation functions (`_node_depth` in api.py and `_get_depth` in derive.py) do the same thing for different data structures — not ideal but pragmatic given the Network-object vs dict-export split. The cycle guard fix in `_get_depth` is correct and important. Test coverage for the new features is good through the API and derive layers, though CLI-level integration tests are absent.
+
+### SELF_REVIEW
+LIMITATIONS: Could not run the test suite to verify all tests pass. Did not see the full `_derive_one_round` function to verify `args.premises` and `args.has_dependents` are accessible (though argparse additions confirm they're defined). Did not check whether the `--premises` flag for `derive` conflicts with any existing arg in the derive parser.
+---
+
+### FEATURE_REQUESTS
+- Include full function bodies for all modified functions in the observations, not just the diff hunks — I had to do manual reads to verify surrounding logic
+- Show callers of modified functions to verify integration completeness
+- Auto-run the test suite and include results in the review context
+---

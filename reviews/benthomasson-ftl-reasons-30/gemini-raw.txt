@@ -1,0 +1,39 @@
+### `reasons_lib/derive.py:_build_beliefs_section`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The `count += len(belief_ids)` statement was correctly dedented to be outside the per-belief inner loop and inside the per-agent loop. This strictly implements the suggested fix, preventing quadratic count inflation and accurately allocating proportional token budget to non-agent local beliefs.
+---
+
+### `tests/test_derive.py:test_build_prompt_agent_count_does_not_starve_local`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The regression test correctly sets up a scenario with premise agent beliefs and >5 local beliefs to exceed the `max(5, ...)` floor. By setting a specific budget (15), the test reliably discriminates between buggy and fixed code based on the presence of the alphabetic tail of local beliefs.
+---
+
+### `tests/test_derive_budget.py`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: CONSISTENT
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: This file provides exceptionally comprehensive test coverage for budget allocations. Its 15 distinct tests handle multi-agent summing, zero agents, network boundaries, degenerate single-belief cases, derived exclusions, and sampling constraints, validating that the underlying logic in `_build_beliefs_section` remains stable.
+---
+
+### SELF_REVIEW
+LIMITATIONS: None directly limiting the review accuracy, though the prompt's provided markdown diff did not include the actual `.py` implementation or test diffs. I used workspace context commands (`grep_search`, `list_directory`) to inspect the real source changes and test files in `/Users/ben/git/ftl-reasons/` to complete the review.
+---
+
+### FEATURE_REQUESTS
+- Include actual source code file modifications (e.g., `.py` or `.ts` files) in the provided diff output, rather than just the agent's markdown artifacts and documentation logs.

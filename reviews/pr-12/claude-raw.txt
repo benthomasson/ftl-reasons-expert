@@ -1,0 +1,99 @@
+Now I have the full picture. Here's my review:
+
+---
+
+## Code Review
+
+### reasons_lib/network.py:recompute_all
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The fixpoint loop is sound for the monotone case, and the iteration cap (`len(self.nodes) + 1`) prevents infinite oscillation in non-monotone graphs (outlist cycles). However, `recompute_all` does not distinguish between nodes that are OUT because their justifications are invalid vs. nodes that were **explicitly retracted** via `retract()`. It calls `_compute_truth`, which only checks justifications — it has no concept of explicit retraction. This means `recompute_all()` will **undo intentional retractions** on any derived node whose justification happens to still be valid. This is the root of the gamma-stale semantic issue (see import_agent review). As a general-purpose `Network` method, this is dangerous: any caller using `retract()` to override a derived node's truth value will have that override silently reversed by a subsequent `recompute_all()`.
+
+---
+
+### reasons_lib/import_agent.py (line 168)
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: `recompute_all()` is called after all nodes are imported and STALE/OUT nodes are retracted (lines 143-146). This resurrects gamma-stale: it was parsed as STALE, explicitly retracted on line 145, then `recompute_all()` on line 168 re-evaluates its justification (antecedent `active` is IN), finds it valid, and flips it back to IN. The staleness reason ("gamma is actually third") is metadata — it doesn't affect the justification graph. This means the import flow now **silently overrides the source agent's STALE/OUT designations** for any node whose import-generated justification is satisfied. The `claims_retracted` count in the result (still 1 for gamma-stale) is now misleading since the retraction is immediately undone. If the intent is to honor the justification graph over source status, the retraction on line 145 is wasted work and should be removed. If the intent is to honor source status, `recompute_all()` needs to skip explicitly-retracted nodes.
+
+---
+
+### reasons_lib/cli.py:cmd_propagate
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: Clean extraction — replaces inline single-pass logic with `net.recompute_all()`, which is strictly better (fixpoint iteration catches cascading changes the old single-pass missed). The old inline code had the same semantic issue (no retraction awareness), so this isn't a regression.
+
+---
+
+### reasons_lib/cli.py:cmd_import_agent (lines 390-391)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: PARTIAL
+INTEGRATION: WIRED
+REASONING: Uses `.get('claims_propagated')` defensively, correct formatting consistent with surrounding output. Minor note: the label says "truth values recomputed" which is accurate.
+
+---
+
+### tests/test_import_agent.py (modified tests)
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The updated assertions in `test_import_agent_retract_premise_cascades` (2→3) and `test_import_agent_retract_premise_actually_cascades` (3→4) are internally consistent with the new behavior: gamma-stale is now IN after import, so retracting `active` cascades to it too. The comments explain this. However, the tests encode and normalize what I consider a semantic concern — a STALE belief being silently resurrected. If this is the intended design, the tests are correct. If not, these tests lock in the wrong behavior.
+
+---
+
+### tests/test_import_agent.py:test_import_agent_propagates_truth_values
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: N/A
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Good targeted test for the golden path: a derived node marked OUT in the source snapshot with a valid justification should flip to IN after propagation. The test constructs a minimal beliefs file and verifies both the propagation count and the final truth value. This is a clean demonstration of the feature's intent.
+
+---
+
+## Summary
+
+The refactoring is clean — extracting `recompute_all()` and wiring it into both `cmd_propagate` and `import_agent` is solid engineering. The fixpoint iteration is a genuine improvement over the old single-pass approach.
+
+The core concern is semantic: **`recompute_all()` fights with `retract()`**. In the import flow, nodes marked STALE/OUT in the source are explicitly retracted, then immediately un-retracted by `recompute_all()` because their import-generated justification (depending on `agent:active`) is trivially valid. This means the source agent's STALE designation is silently discarded.
+
+Two clean resolutions:
+1. **If justification graph wins**: Remove the retraction on import line 145 for STALE/OUT nodes (don't retract then un-retract — just let `_compute_truth` handle it). But this loses the intent that the source said STALE.
+2. **If source status wins**: Have `recompute_all()` skip nodes with `retract_reason` in metadata, or don't call it on explicitly-retracted nodes.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Could not see the full `_propagate` BFS to verify whether it has the same retraction-awareness gap. Did not see `parse_beliefs` to verify how STALE status maps to the claim dict. Did not run the test suite to confirm the 211 tests still pass with these changes. Could not verify whether any other callers of `recompute_all()` exist beyond CLI and import_agent.
+
+---
+
+### FEATURE_REQUESTS
+- Include the full function body for all modified functions (not just diff hunks) in an observations section
+- Show callers of newly added methods (`recompute_all`) to verify integration completeness
+- Include the test fixture data (`SAMPLE_BELIEFS`) alongside modified test assertions so reviewers can trace test logic without reading the full test file

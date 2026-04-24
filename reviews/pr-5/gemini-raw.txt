@@ -1,0 +1,20 @@
+Model gemini failed: Error when talking to Gemini API Full report available at: /var/folders/nj/ypj45mm145j6dttg0sz0t02h0000gn/T/gemini-client-error-Turn.run-sendMessageStream-2026-04-17T18-52-41-303Z.json TypeError: fetch failed
+    at node:internal/deps/undici/undici:16416:13
+    at async Models.generateContentStream (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/genai/dist/node/index.mjs:13358:24)
+    at async file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/loggingContentGenerator.js:256:26
+    at async file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/telemetry/trace.js:81:20
+    at async retryWithBackoff (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/utils/retry.js:130:28)
+    at async GeminiChat.makeApiCallAndProcessStream (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/geminiChat.js:445:32)
+    at async GeminiChat.streamWithRetries (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/geminiChat.js:265:40)
+    at async Turn.run (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js:70:30)
+    at async GeminiClient.processTurn (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/client.js:477:26)
+    at async GeminiClient.sendMessageStream (file:///Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/client.js:577:20) {
+  [cause]: HeadersTimeoutError: Headers Timeout Error
+      at FastTimer.onParserTimeout [as _onTimeout] (/Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/undici/lib/dispatcher/client-h1.js:749:28)
+      at Timeout.onTick [as _onTimeout] (/Users/ben/.npm-global/lib/node_modules/@google/gemini-cli/node_modules/undici/lib/util/timers.js:162:13)
+      at listOnTimeout (node:internal/timers:605:17)
+      at process.processTimers (node:internal/timers:541:7) {
+    code: 'UND_ERR_HEADERS_TIMEOUT'
+  }
+}
+An unexpected critical error occurred:[object Object]

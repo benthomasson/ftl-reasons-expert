@@ -1,0 +1,112 @@
+Now I have full context to deliver the review.
+
+---
+
+## Code Review: Dependents Index Centralization
+
+### `reasons_lib/network.py:_rebuild_dependents`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Correctly clears all dependents sets then rebuilds from justifications in a two-pass approach. Handles both antecedents and outlist. The `if ant_id in self.nodes` guards correctly skip dangling references. This eliminates three copy-pasted rebuild implementations (storage.py:load, import_agent._fixup_dependents, import_agent._update_node_justifications) and replaces them with a single canonical source. Clean implementation.
+
+---
+
+### `reasons_lib/network.py:verify_dependents`
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: PARTIAL
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: PARTIAL
+REASONING: The implementation correctly computes expected dependents from justifications and compares against the live index. Error messages are clear and actionable. However, the issue's suggested fix #3 says "Adding an integrity check that validates dependents against justifications **after mutations**" — but `verify_dependents()` is never called from any mutation path or production code. It exists only as a test utility. To fully address the issue, it should either be called after mutations (at least in debug/assert mode) or documented as test-only. As-is, it detects corruption only when someone remembers to call it.
+
+---
+
+### `reasons_lib/storage.py:load`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Clean replacement of inline rebuild loop with `network._rebuild_dependents()`. The comment is updated to reference "canonical method." Since dependents are not persisted to SQLite (confirmed by examining `save()`), this rebuild-on-load is the correct approach.
+
+---
+
+### `reasons_lib/import_agent.py:_fixup_dependents`
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Simple delegation to `network._rebuild_dependents()`. The docstring is updated to describe the delegation. Callers at lines 312 and 444 (`_import_claims`, `_sync_claims`) are unchanged and continue to work correctly.
+
+---
+
+### `reasons_lib/import_agent.py:_update_node_justifications`
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Correctness is improved — the old code did targeted add/discard that could drift from the rebuild logic. The new code is simpler and provably correct. **However, there's a performance regression**: the old code did O(J) targeted updates; the new code does an O(N\*J) full rebuild. In `_sync_claims`, `_update_node_justifications` can be called multiple times per sync (lines 384 and 392 in a loop over claims), meaning the full network gets rebuilt once per changed claim. For large networks this could be significant. Consider either: (a) deferring the rebuild to after the loop and doing one `_fixup_dependents` call, or (b) documenting the trade-off.
+
+---
+
+### `tests/test_dependents_integrity.py` (new file)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Excellent test coverage organized into logical groups:
+
+- **TestRebuildDependents** (5 tests): empty, premises-only, antecedent, outlist, mixed, stale cleanup
+- **TestVerifyDependents** (4 tests): clean detection, extra detection, missing detection, read-only verification
+- **TestMutationPathIntegrity** (9 tests): covers add_node, retract/restore, add_justification, supersede, challenge, challenge+defend, convert_to_premise, add_nogood, summarize
+- **TestCorruptionAndRepair** (3 tests): detect+repair extra, detect+repair missing, idempotency
+- **TestStorageRoundTripDependents** (2 tests): simple and diamond-pattern round-trips
+- **TestEdgeCases** (5 tests): dangling refs, duplicate antecedents, self-reference, `_rewrite_dependents` antecedent and outlist
+
+One note on `test_self_referencing_justification` (line 286): it manually constructs a self-referencing node outside the normal API, which is fine for testing the degenerate case but doesn't test whether the API would allow or prevent self-references.
+
+The `test_api_rewrite_dependents_stays_clean` test correctly validates that `_rewrite_dependents` in api.py (which does incremental updates, NOT a full rebuild) leaves the index consistent. Good coverage of a function that wasn't centralized.
+
+---
+
+## Overall Assessment
+
+**The change addresses the core issue** — three independent copy-pasted rebuild implementations are consolidated into one canonical `_rebuild_dependents()` method on Network. This directly fixes the "fragile denormalization" problem for the rebuild path.
+
+**What remains unaddressed:**
+
+1. **Incremental mutation paths are still fragile.** The methods `add_node` (line 112-118), `add_justification` (line 406-411), `supersede` (line 374), `challenge` (line 484), and `convert_to_premise` (lines 568-574) all do manual incremental `dependents.add()`/`dependents.discard()` updates. These are the exact paths the issue warns about. If any of them gets the logic wrong, the index silently drifts. The `_rebuild_dependents` docstring claims "All other rebuild call sites should delegate here" but these incremental sites don't rebuild — they do targeted adds/discards that could diverge from the canonical logic.
+
+2. **`verify_dependents()` is test-only.** The issue suggested an integrity check after mutations. The method exists but is never called in production. Adding an `assert not self.verify_dependents()` in debug builds or after key mutations would fully close the gap.
+
+3. **Performance regression in `_update_node_justifications`** — full rebuild per call in a loop. Not a correctness issue but worth noting.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: I was able to read all modified files and their full method implementations, which gave good context. I could not see the full `_sync_claims` loop to count exactly how many times `_update_node_justifications` is called per invocation — the performance concern is based on the pattern described by the explore agent. I also could not run the test suite to verify all 376 lines of test code pass.
+
+---
+
+### FEATURE_REQUESTS
+- Show all callers of modified/deleted functions (e.g., grep for `_fixup_dependents` and `_update_node_justifications` callers) to verify no call sites are broken
+- Include the ability to run the test suite and report pass/fail as part of the review
+- When a method's docstring makes a claim ("All other rebuild call sites should delegate here"), automatically verify the claim by searching for counter-examples

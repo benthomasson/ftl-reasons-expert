@@ -1,0 +1,54 @@
+### reasons_lib/import_agent.py:_update_node_justifications
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: PARTIAL
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: While functionally correct and guaranteed to maintain consistency, replacing the targeted $O(J)$ dependent update logic with a full network $O(V+E)$ rebuild (`network._rebuild_dependents()`) is highly problematic for performance. `_update_node_justifications` is typically called in a loop when synchronizing agent beliefs. This changes the sync complexity to $O(M \times N)$ where M is the number of updated nodes and N is the total network size. This could cause severe performance degradation on large networks. Consider restoring the targeted removal/addition of dependent references, or batching the rebuild so it only occurs once at the end of the import process.
+
+### reasons_lib/import_agent.py:_fixup_dependents
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Correctly refactored to delegate to the new canonical `_rebuild_dependents()` method, reducing duplication. Since this is a one-time fixup per import, the full rebuild is acceptable.
+
+### reasons_lib/network.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Correctly introduces `_rebuild_dependents()` as a single source of truth for rebuilding the index, and `verify_dependents()` to calculate and diff the expected state vs. the live state. The logic flawlessly accounts for both `antecedents` and `outlist` dependencies.
+
+### reasons_lib/storage.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Replaces inline manual rebuilding during load with the new centralized `_rebuild_dependents()` method, improving maintainability.
+
+### tests/test_dependents_integrity.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Very comprehensive and excellent test suite. It effectively addresses the core issue by ensuring all existing network mutation paths (`add_node`, `retract`, `add_justification`, `supersede`, etc.) are exhaustively verified against the `verify_dependents()` integrity check, preventing silent regressions.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: None. Context was clear, the issue description was well-scoped, and the provided tests verified the behavior thoroughly. The only context missing was whether an `ASSERT` runtime check on mutation paths would have been preferred over just test coverage, but adding comprehensive integrity tests generally satisfies the "adding an integrity check" criteria safely.

@@ -1,0 +1,101 @@
+I'll proceed with the review based on the code I've read. The test execution was blocked by permissions, but I have enough context from the source files.
+
+---
+
+# Code Review: Issue #25 — check_stale reports missing source files
+
+## Implementation Changes Review
+
+### reasons_lib/check_stale.py:check_stale
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The fix is surgical and correct. Lines 68-77 replace the old `continue` with a result dict carrying `reason: "source_deleted"`, `new_hash: None`, `source_path: None`. Lines 81-88 add `reason: "content_changed"` and `source_path: str(path)` to the existing content-changed path. Both result types now have a uniform 6-key dict shape. The docstring at lines 48-58 accurately documents the new return format. `hash_sources` (line 114-115) correctly continues to skip missing files — it can't hash what doesn't exist. No regressions introduced.
+
+---
+
+### reasons_lib/cli.py:cmd_check_stale
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Lines 547-555 correctly branch on `item.get("reason") == "source_deleted"` to print `DELETED` label without the hash line (since `new_hash` is `None`). The `else` branch preserves existing `STALE` display. The summary line at 558 still says "STALE" for all results — this is a minor UX nit (could say "N stale, M deleted") but not incorrect since deleted sources are a subset of stale. `sys.exit(1)` at line 559 correctly fires for any stale results including deleted sources.
+
+---
+
+### reasons_lib/api.py:check_stale
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: No changes needed here and none were made — correct decision. `api.check_stale()` at lines 1026-1036 returns `{"stale": results, ...}` where `results` comes directly from the core function. It doesn't filter on dict keys, so `reason` and `source_path` pass through cleanly. The `checked` count (`in_with_source`) counts nodes with `truth_value == "IN" and source and source_hash`, which correctly includes nodes whose source file was later deleted.
+
+---
+
+### tests/test_check_stale.py
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The existing test `test_skips_missing_source_files` was correctly renamed to `test_reports_missing_source_files` (line 101) and now asserts the node IS included in results with all expected fields. Line 78 adds a `reason` assertion to `test_stale_node`. All existing tests remain intact — no regressions from the rename.
+
+---
+
+### tests/test_check_stale_issue25.py
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: 24 well-structured tests across 6 classes. Covers core detection, result shape uniformity, mixed scenarios, exclusions, API passthrough, and CLI output. The `_set_source_hash` helper (lines 237-243) is a reasonable workaround for `api.add_node` not exposing `source_hash`. The CLI test at line 337 correctly patches `resolve_source_path` to test content-changed display. **Concern: this test file substantially duplicates coverage from `test_check_stale.py`** — `TestDeletedSourceDetection` tests the same behavior as `test_reports_missing_source_files`, and `TestExclusions` duplicates `test_skips_out_nodes`/`test_skips_nodes_without_hash`. These should eventually be consolidated to avoid maintenance burden. Tests could not be executed to confirm they pass.
+
+---
+
+### Process/documentation files (FINAL_REPORT.md, IMPLEMENTATION_1_1.md, ITERATION_*.md, PLAN_1.md, REVIEW_1_1.md, TASK.md, TESTER_1_1.md, planner/PLAN.md, reviewer/REVIEW.md, tester/TEST_RESULTS.md, tester/USAGE.md, implementer/IMPLEMENTATION.md, entries/iteration-1/*.md, beliefs.md, nogoods.md)
+VERDICT: BLOCK
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: UNRELATED
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: N/A
+INTEGRATION: N/A
+REASONING: **16+ process/documentation files are included in the diff that should not be committed.** These are multi-agent pipeline artifacts (planner notes, reviewer summaries, iteration logs, final reports, usage guides) that are not part of the codebase. They add ~600 lines of noise to the diff and would pollute the repository. Files like `FINAL_REPORT.md`, `TASK.md`, `PLAN_1.md`, `REVIEW_1_1.md`, `IMPLEMENTATION_1_1.md`, `TESTER_1_1.md`, `ITERATION_1_*.md`, `planner/PLAN.md`, `reviewer/REVIEW.md`, `tester/TEST_RESULTS.md`, `tester/USAGE.md`, `implementer/IMPLEMENTATION.md`, `entries/iteration-1/`, `beliefs.md`, and `nogoods.md` should all be excluded from the commit or gitignored.
+
+---
+
+## Summary
+
+The **core implementation is correct and well-scoped**: ~15 lines in `check_stale.py`, ~8 lines in `cli.py`, and updated tests. The fix directly addresses issue #25 — missing source files now produce a result with `reason: "source_deleted"` instead of being silently skipped. The API layer passes through cleanly with no changes needed.
+
+**Two issues to resolve before merging:**
+
+1. **BLOCK: Remove process artifacts** — 16+ documentation/pipeline files (FINAL_REPORT.md, TASK.md, PLAN_1.md, etc.) must be excluded from the commit. These are agent workflow byproducts, not source code.
+
+2. **CONCERN: Duplicate test coverage** — `tests/test_check_stale_issue25.py` substantially overlaps with the updated `tests/test_check_stale.py`. Consider consolidating the unique tests (API passthrough, CLI output, mixed scenarios) into the existing test file and dropping the issue-specific file.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Could not execute tests to confirm they pass — permissions were denied. Relied on static analysis of test code. Could not verify whether the git diff shows all unstaged changes or just a subset — the modified files listed in git status include `api.py`, `network.py`, `storage.py`, `derive.py`, `import_agent.py`, `import_beliefs.py` which are not in the diff, suggesting the diff may be incomplete or those changes are unrelated.
+
+---
+
+### FEATURE_REQUESTS
+- Include git diff output for ALL modified files listed in git status, not just a curated subset — unstated changes in `api.py`, `network.py`, etc. could interact with the reviewed changes
+- Auto-detect and flag process/pipeline artifact files that shouldn't be committed (files matching patterns like `*_REPORT.md`, `PLAN_*.md`, `REVIEW_*.md`, `TASK.md`)
+- Run the test suite automatically as part of the review and include results

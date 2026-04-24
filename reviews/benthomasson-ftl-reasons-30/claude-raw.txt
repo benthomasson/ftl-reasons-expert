@@ -1,0 +1,112 @@
+Let me proceed with the review based on my code reading. I've verified the fix and tests by reading them directly.
+
+---
+
+# Code Review: Fix `_build_beliefs_section` belief count inflation (Issue #23)
+
+## Production Code Changes
+
+### reasons_lib/derive.py:_build_beliefs_section
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: The fix is exactly one indentation change at line 214. Before: `count += len(belief_ids)` was indented under `for belief_id in belief_ids:`, running N times per agent (accumulating N*N). After: it's dedented to align with the `for` statement, running once per agent (accumulating N). This is the minimal correct fix — `count` now accumulates the actual number of shown beliefs per agent, and `remaining = max(5, max_beliefs - count)` on line 218 computes the non-agent budget correctly. No signature changes, no side effects.
+
+---
+
+## Test Changes
+
+### tests/test_derive.py:test_build_prompt_agent_count_does_not_starve_local
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Well-designed regression test. Uses 5 premise agent beliefs (no `sl=`, so they stay in `in_nodes` where N=5 and N^2=25 diverges), 8 local beliefs (exceeding the `max(5,...)` floor), and `budget=15`. The arithmetic is documented inline: fixed gives `remaining=max(5,15-5)=10` (all 8 locals fit), buggy gives `remaining=max(5,15-25)=5` (only 5 fit). Asserting on `local-belief-07` (the 8th, alphabetically last) is a clean canary. The test uses the existing `db` fixture appropriately.
+
+---
+
+### tests/test_derive_budget.py (new file, 15 tests)
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: ADDRESSES
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: COVERED
+INTEGRATION: WIRED
+REASONING: Comprehensive edge-case coverage — multiple agents, single belief, no agents, empty network, derived agent beliefs, sampling mode, budget floor, direct `_build_beliefs_section` call. All tests are logically sound with documented arithmetic. However, this creates **duplicate test coverage** with `test_derive.py` — both files test the same regression through overlapping scenarios. The `test_count_is_linear_not_quadratic` test in this file is essentially a copy of the implementer's test with slightly different numbers. Minor concern: this is a lot of test infrastructure for a one-line indentation fix. Also note that `test_three_agents_count_accumulates` (line 252) has a buggy comment: it says "buggy count=9+9+9=27" but the actual bug would produce 3^2 + 3^2 + 3^2 = 27 — the comment is right by coincidence but describes the wrong calculation (should be "3*3 + 3*3 + 3*3 = 27").
+
+---
+
+## Process Documentation (new files)
+
+### FINAL_REPORT.md, IMPLEMENTATION_1_1.md, IMPLEMENTATION_1_2.md, ITERATION_1_*.md, PLAN_1.md, REVIEW_1_*.md, TASK.md, TESTER_1_1.md, planner/PLAN.md, reviewer/REVIEW.md, tester/TEST_REPORT.md, entries/iteration-1/*.md
+VERDICT: CONCERN
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: PARTIAL
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: N/A
+INTEGRATION: N/A
+REASONING: These are ~15 process artifact files from the multi-agent SDLC pipeline. They document the planning, implementation, review, and testing process in detail. **None of these should be committed to the repository** — they are ephemeral workflow state, not production artifacts. The issue was a one-line fix; committing 400+ lines of process documentation would be noise in the git history. These should either be gitignored or cleaned up before committing.
+
+---
+
+### beliefs.md (new file)
+VERDICT: CONCERN
+CORRECTNESS: QUESTIONABLE
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: UNRELATED
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: N/A
+INTEGRATION: N/A
+REASONING: This file contains beliefs from the planning process (plan-1-1, plan-1-2, plan-1-3, test-1-1) that are meta-observations about the fix process, not actual domain beliefs about the codebase. Per the CLAUDE.md, `beliefs.md` should be a "Belief registry (read-only view, generated from reasons)" — these entries don't match that contract. They should not be committed as-is.
+
+---
+
+### nogoods.md (new file)
+VERDICT: PASS
+CORRECTNESS: VALID
+SPEC_COMPLIANCE: N/A
+ISSUE_COMPLIANCE: UNRELATED
+BELIEF_COMPLIANCE: N/A
+TEST_COVERAGE: N/A
+INTEGRATION: N/A
+REASONING: Empty tracked contradictions file. Harmless, matches the project structure described in CLAUDE.md.
+
+---
+
+## Other Modified Files (not in the provided diff but in git status)
+
+Note: The git status shows modifications to `api.py`, `check_stale.py`, `cli.py`, `import_agent.py`, `import_beliefs.py`, `network.py`, `storage.py`, and their tests. These are **not part of issue #23** and appear to be separate work. They should not be included in a commit for this fix.
+
+---
+
+## Summary
+
+The **production fix is correct** — one indentation change that moves `count += len(belief_ids)` outside the per-belief loop, fixing the N^2 budget inflation. The **regression test in `test_derive.py` is well-designed** and would fail with the bug present. The **15 additional tests in `test_derive_budget.py`** are comprehensive but excessive for a one-line fix and create duplicate coverage.
+
+**Main concerns:**
+1. ~15 process documentation files should not be committed — they are workflow artifacts, not production code
+2. `beliefs.md` contains process meta-observations, not domain beliefs
+3. The changeset mixes unrelated modifications to other source files (visible in git status)
+
+**Recommended action:** Commit only `reasons_lib/derive.py` and `tests/test_derive.py` (and optionally `tests/test_derive_budget.py`). Discard or gitignore all process documentation files.
+
+---
+
+### SELF_REVIEW
+LIMITATIONS: Could not run the tests to verify they pass (permission denied on `uv run`). Reviewed correctness by reading the code and tracing the arithmetic manually. Could not verify the other modified files (api.py, network.py, etc.) are truly unrelated — only inferred from git diff --stat showing they have large, unrelated-looking diffs.
+
+---
+
+### FEATURE_REQUESTS
+- Include the actual production code diffs in the provided changeset, not just new files — the `derive.py` and `test_derive.py` diffs were missing from what was supplied
+- Flag when git status shows modified files not represented in the provided diff, so the reviewer can explicitly note mixed changesets
+- Auto-detect and flag process artifact files (PLAN.md, REVIEW.md, IMPLEMENTATION.md patterns) that shouldn't be committed
