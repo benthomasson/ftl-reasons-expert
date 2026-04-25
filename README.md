@@ -32,7 +32,7 @@ network.json            # Lossless belief network export (JSON)
 reasons.db              # SQLite belief store (gitignored)
 proposed-beliefs.md     # Beliefs proposed but not yet accepted
 .code-expert/           # Scanner config, topic queue, proposed entries
-entries/                # 18 exploration entries covering:
+entries/                # 44 exploration entries covering:
                         #   - Core modules (network, storage, api, cli)
                         #   - Key algorithms (propagation, justification, nogood resolution)
                         #   - Design patterns (outlist semantics, multi-agent federation)
