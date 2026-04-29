@@ -14,6 +14,18 @@ The system has complete semantics for all forms of negation: structural absence 
 Absence has deliberate, defined semantics throughout the system at two levels: structural absence (no justifications) creates premise behavior via vacuous truth over empty lists, while referential absence (missing nodes) follows conservative/permissive asymmetry — both forms of absence produce predictable behavior rather than errors or undefined state.
 - Depends on: premise-behavior-emerges-from-absence, missing-nodes-have-asymmetric-fail-semantics
 
+### access-control-enforced-at-read-not-write [IN] OBSERVATION
+Access control (`_is_visible`) is enforced at read/query boundaries (`show_node`, `explain_node`, `trace_assumptions`) via `PermissionError`, but write operations (`add_node`, `retract_node`, `assert_node`) do not check visibility.
+- Source: entries/2026/04/29/reasons_lib-api.md
+
+### access-tags-subset-gate [IN] OBSERVATION
+A tagged node is visible only when its `access_tags` are a subset of the caller's `visible_to` set; partial overlap (intersection without containment) is insufficient for access.
+- Source: entries/2026/04/29/tests-test_access_tags.md
+
+### access-tags-union-inheritance [IN] OBSERVATION
+A derived node's `access_tags` is the sorted, deduplicated union of all antecedent tags across all justifications, merged with any explicit tags on the node itself.
+- Source: entries/2026/04/24/tests-test_access_tags.md
+
 ### active-inactive-relay-pair [IN] OBSERVATION
 Each imported agent gets exactly two infrastructure nodes: `agent:active` (premise, starts IN) and `agent:inactive` (derived via SL with `outlist=[active_id]`, starts OUT); every imported belief includes `inactive_id` in its outlist
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
@@ -21,6 +33,30 @@ Each imported agent gets exactly two infrastructure nodes: `agent:active` (premi
 ### active-not-in-antecedents [IN] OBSERVATION
 The `active` premise is deliberately excluded from imported beliefs' antecedents; if it were an antecedent, it would provide a second always-valid justification path that defeats per-belief retraction semantics
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
+
+### active-premise-not-in-antecedents [IN] OBSERVATION
+Covered by existing `active-not-in-antecedents` and `kill-switch-uses-outlist-not-antecedent`
+- Source: entries/2026/04/24/tests-test_import_agent.md
+
+### add-justification-propagates-tags-downstream [IN] OBSERVATION
+Calling `add_justification` on an existing node recomputes `access_tags` for the target and all its transitive dependents, enabling retroactive tag propagation.
+- Source: entries/2026/04/29/tests-test_access_tags.md
+
+### add-justification-registers-dependents [IN] OBSERVATION
+`add_justification` updates the `dependents` set on both antecedent and outlist nodes so that future retraction/restoration propagation reaches the target node.
+- Source: entries/2026/04/24/tests-test_add_justification.md
+
+### add-justification-returns-change-dict [IN] OBSERVATION
+`Network.add_justification` returns a dict with keys `node_id`, `old_truth_value`, `new_truth_value`, and `changed` (list of all nodes whose truth value changed).
+- Source: entries/2026/04/24/tests-test_add_justification.md
+
+### add-justification-triggers-propagation [IN] OBSERVATION
+Adding a justification that changes a node's truth value triggers BFS propagation that cascades to all transitive dependents, including restoring OUT nodes whose justifications become valid.
+- Source: entries/2026/04/24/tests-test_add_justification.md
+
+### add-node-evaluates-justification-at-insertion [IN] OBSERVATION
+When `add_node` is called with justifications, the node's initial truth value is computed immediately from the current state of its antecedents — a derived node added when its antecedent is OUT starts OUT
+- Source: entries/2026/04/29/tests-test_network.md
 
 ### add-nogood-always-records [IN] OBSERVATION
 `add_nogood` appends a `Nogood` record unconditionally before checking whether the contradiction is active, so nogoods are preserved even when not all member nodes are currently IN
@@ -41,6 +77,10 @@ Agent-imported beliefs participate in the full revision system: the self-contain
 ### agent-cascades-are-isolated-by-namespace [IN] OBSERVATION
 Retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
+
+### agent-import-creates-two-control-nodes [IN] OBSERVATION
+Covered by existing `active-inactive-relay-pair` which captures the same two-node control structure
+- Source: entries/2026/04/24/tests-test_import_agent.md
 
 ### agent-isolation-through-namespace-and-relay [IN] DERIVED
 Agent beliefs are doubly isolated: namespace prefixing prevents ID collisions, while the active/inactive relay pair provides per-agent kill-switch semantics without cross-agent interference
@@ -88,17 +128,73 @@ Every belief state change — whether initiated by intentional dialectical chall
 When `any_mode=True` and multiple antecedents are given, each antecedent gets its own SL justification (OR semantics: node is IN if *any* antecedent is IN), rather than the default single multi-antecedent justification (AND semantics).
 - Source: entries/2026/04/23/reasons_lib-api.md
 
+### any-mode-is-structural-expansion [IN] OBSERVATION
+Duplicates existing belief `any-mode-creates-per-premise-justifications` which already captures that any_mode expands N premises into N single-premise SL justifications.
+- Source: entries/2026/04/24/tests-test_any_mode.md
+
+### any-mode-outlist-preserved [IN] OBSERVATION
+When `any_mode` expands `sl="a,b" unless="enemy"`, each resulting single-premise justification inherits `"enemy"` in its outlist.
+- Source: entries/2026/04/24/tests-test_any_mode.md
+
+### api-add-justification-requires-justification-arg [IN] OBSERVATION
+`api.add_justification` raises `ValueError` if none of `sl`, `cp`, or `unless` is provided — at least one justification specification is mandatory.
+- Source: entries/2026/04/24/tests-test_add_justification.md
+
+### api-cascade-symmetry-tested [IN] OBSERVATION
+Test coverage claim; the underlying behavioral invariant (symmetric retract/restore cascades) is already covered by existing beliefs including `reasoning-engine-is-deterministic-and-reversible`.
+- Source: entries/2026/04/24/tests-test_api.md
+
 ### api-functions-return-dicts [IN] OBSERVATION
 Every public API function returns a `dict` (or `str` for markdown/compact), never a `Network` or `Node` object, ensuring JSON-serializability at the boundary for CLI, HTTP, and tool-call consumers.
 - Source: entries/2026/04/23/reasons_lib-api.md
+
+### api-idempotent-retract-assert [IN] OBSERVATION
+Already exists as an accepted belief with the same ID and content.
+- Source: entries/2026/04/24/tests-test_api.md
 
 ### api-layer-ensures-atomic-isolated-mutations [IN] DERIVED
 The API layer enforces mutation safety through four mechanisms: context-managed load/save, per-function transaction scope, write-flag gating to prevent unintended persistence, and dict-only returns that prevent callers from holding live network references.
 - Depends on: api-uses-with-network-context-manager, transaction-per-function, write-false-prevents-persistence, api-functions-return-dicts
 
+### api-list-negative-filters-hallucinated-ids [IN] OBSERVATION
+`list_negative()` discards any node IDs returned by the LLM that don't exist in the database, preventing hallucinated IDs from appearing in results.
+- Source: entries/2026/04/29/tests-test_api.md
+
+### api-list-negative-graceful-on-malformed-llm [IN] OBSERVATION
+When the LLM returns unparseable output, `list_negative()` returns `count == 0` rather than raising an exception — graceful degradation over failure.
+- Source: entries/2026/04/29/tests-test_api.md
+
+### api-mutating-ops-use-before-after-diffing [IN] OBSERVATION
+Mutating operations (`retract_node`, `assert_node`, `what_if_retract`, `what_if_assert`) snapshot all truth values before the operation and diff afterward to classify changes into `went_out`/`went_in` lists.
+- Source: entries/2026/04/29/reasons_lib-api.md
+
+### api-retract-cascade-is-transitive [IN] OBSERVATION
+`api.retract_node()` propagates OUT to all transitively dependent SL-derived nodes, not just direct children — retracting a root premise retracts the entire downstream chain.
+- Source: entries/2026/04/29/tests-test_api.md
+
+### api-superseded-nodes-excluded-from-gated [IN] OBSERVATION
+`list_gated()` omits nodes that have been superseded via `api.supersede()`, even if they still have active blockers — stale conclusions don't pollute the blocker view.
+- Source: entries/2026/04/29/tests-test_api.md
+
+### api-tests-black-box [IN] OBSERVATION
+Test methodology claim, not a behavioral invariant about the codebase. Developers learn this from reading the tests, not from a belief registry.
+- Source: entries/2026/04/24/tests-test_api.md
+
+### api-tests-cover-subset [IN] OBSERVATION
+Test coverage inventory, not a behavioral claim about the codebase. Coverage gaps are better tracked as project-level issues.
+- Source: entries/2026/04/24/tests-test_api.md
+
+### api-uses-lazy-imports [IN] OBSERVATION
+Heavy modules (`derive`, `compact`, `export_markdown`, `check_stale`, `import_beliefs`, `import_agent`) are imported inside function bodies in `api.py`, not at module level, to keep the module fast to import for callers that only need a subset of operations.
+- Source: entries/2026/04/24/reasons_lib-api.md
+
 ### api-uses-with-network-context-manager [IN] OBSERVATION
 `api.py` uses a `_with_network` context manager to ensure load-operate-save atomicity for all network mutations.
 - Source: entries/2026/04/23/scan-ftl-reasons.md
+
+### api-visible-to-filters-both-result-and-prompt [IN] OBSERVATION
+Already exists as `api-visible-to-filters-both-result-and-prompt`
+- Source: entries/2026/04/29/tests-test_api.md
 
 ### architecture-enforces-structural-and-operational-safety [IN] DERIVED
 Architectural safety is enforced along two independent dimensions: structurally, the central network dependency is contained within clean three-layer boundaries preventing cross-layer corruption; operationally, every mutation path is atomic and isolated preventing within-layer partial state — neither dimension alone is sufficient, but together they eliminate both classes of corruption.
@@ -113,6 +209,38 @@ The system's architectural safety is robust end-to-end: structural containment v
 Architectural safety (clean layer boundaries with atomic isolated mutations) sustains gapless lifecycle management (staleness detection plus propagation lifecycle awareness) — beliefs are correctly managed at every point in their lifecycle, backed by structural guarantees that lifecycle operations execute atomically and without cross-layer leakage.
 - Depends on: architecture-enforces-structural-and-operational-safety, lifecycle-management-is-gapless
 - Unless: missing-source-file-is-silent, hash-truncation-is-16-hex
+
+### ask-agentic-loop-is-bounded [IN] OBSERVATION
+The tool-call loop in `ask()` has a maximum iteration count; an LLM that perpetually requests more searches is terminated and the raw response is returned.
+- Source: entries/2026/04/29/tests-test_ask.md
+
+### ask-always-returns-string [IN] OBSERVATION
+`ask()` returns a string on every code path — LLM response, raw search results, or fallback; it never raises an exception to the caller.
+- Source: entries/2026/04/29/reasons_lib-ask.md
+
+### ask-falls-back-to-raw-search [IN] OBSERVATION
+When LLM synthesis fails for any reason (timeout, missing CLI, non-zero exit), `ask()` returns the raw FTS5 search results as fallback.
+- Source: entries/2026/04/29/reasons_lib-ask.md
+
+### ask-never-raises-on-llm-failure [IN] OBSERVATION
+`ask()` catches `TimeoutExpired` and `RuntimeError` from `_invoke_claude()` and returns raw FTS5 search results instead of propagating the exception — the function guarantees a string return.
+- Source: entries/2026/04/29/tests-test_ask.md
+
+### ask-no-synth-bypasses-llm [IN] OBSERVATION
+When `no_synth=True`, `ask()` returns raw `api.search()` results without invoking the Claude CLI.
+- Source: entries/2026/04/29/reasons_lib-ask.md
+
+### ask-strips-claudecode-env [IN] OBSERVATION
+`_invoke_claude` removes the `CLAUDECODE` environment variable to prevent recursive invocation when running inside Claude Code.
+- Source: entries/2026/04/29/reasons_lib-ask.md
+
+### ask-tool-loop-capped-at-three [IN] OBSERVATION
+The LLM synthesis loop runs at most `MAX_ITERATIONS` (3) rounds, with `FINAL_TURN_INSTRUCTION` appended on the last iteration to force a final answer.
+- Source: entries/2026/04/29/reasons_lib-ask.md
+
+### ask-uses-text-based-tool-protocol [IN] OBSERVATION
+`ask.py` implements tool use by parsing JSON lines with a `"tool"` key from LLM text output, not Claude's native tool-use API, because it invokes `claude -p` (pipe mode) which doesn't support function calling.
+- Source: entries/2026/04/29/reasons_lib-ask.md
 
 ### backtracking-retracts-least-entrenched [IN] OBSERVATION
 `add_nogood` resolves contradictions via dependency-directed backtracking: `find_culprits` traces to premises, scores by `_entrenchment`, and retracts the least-entrenched premise to minimize disruption.
@@ -139,6 +267,10 @@ The complete belief revision pipeline — outlist-based defeat for proactive ret
 ### both-revision-paths-preserve-system-invariants [IN] DERIVED
 Both forms of belief modification — reactive contradiction resolution (backtracking to least-entrenched premise, skipping retracted nodes) and proactive dialectical challenge (irreversible premise transformation with inherited outlist semantics) — preserve system invariants despite operating through fundamentally different mechanisms, confirming that invariant preservation is architectural rather than mechanism-specific.
 - Depends on: contradiction-resolution-is-lifecycle-safe, dialectical-transformation-preserves-semantics
+
+### budget-floor-is-five [IN] OBSERVATION
+`_build_beliefs_section` guarantees local beliefs get at least 5 slots regardless of agent count, enforced by `max(5, max_beliefs - count)`
+- Source: entries/2026/04/24/tests-test_derive_budget.md
 
 ### central-dependency-is-safely-contained [IN] DERIVED
 Despite `network.py` being imported by virtually every module in the codebase, the three-layer architecture with clean boundaries ensures this central coupling does not create cross-cutting mutation paths — layer separation contains the dependency's blast radius so that the hub topology does not compromise architectural integrity.
@@ -181,17 +313,65 @@ When the target has multiple justifications, the challenge node is added to the 
 `check_stale` never mutates the network; it returns a list of stale-node dicts and leaves all nodes unchanged — staleness detection is separated from staleness resolution.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
+### check-stale-never-raises-on-missing-files [IN] OBSERVATION
+`check_stale()` returns a structured `source_deleted` dict for nodes whose source files don't exist on disk; it never raises `FileNotFoundError` or any exception.
+- Source: entries/2026/04/24/tests-test_check_stale_issue25.md
+
+### check-stale-no-dedup-by-source-path [IN] OBSERVATION
+Multiple nodes referencing the same missing source file each produce independent `source_deleted` results — no deduplication by file path.
+- Source: entries/2026/04/29/tests-test_check_stale_issue25.md
+
+### check-stale-report-only [IN] OBSERVATION
+Duplicate of existing belief `check-stale-is-read-only`.
+- Source: entries/2026/04/24/reasons_lib-check_stale.md
+
 ### check-stale-requires-both-source-fields [IN] OBSERVATION
 A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
+
+### check-stale-result-schema-uniform [IN] OBSERVATION
+All `check_stale` result dicts share the same 6-key schema (`node_id`, `old_hash`, `new_hash`, `source`, `source_path`, `reason`) regardless of reason type, so consumers can iterate results without type-checking.
+- Source: entries/2026/04/29/tests-test_check_stale_issue25.md
+
+### check-stale-results-sorted-by-node-id [IN] OBSERVATION
+The list returned by `check_stale` is sorted ascending by `node_id`, providing deterministic output for consumers.
+- Source: entries/2026/04/29/tests-test_check_stale_issue25.md
 
 ### check-stale-skips-out-nodes [IN] OBSERVATION
 Only nodes with `truth_value == "IN"` are checked for staleness; retracted (OUT) nodes are ignored even if their source file has changed.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 
+### check-stale-source-deleted-returns-none-hashes [IN] OBSERVATION
+When a source file is missing, `check_stale` returns a result dict with `reason="source_deleted"`, `new_hash=None`, and `source_path=None` (fix for issue #25 — previously this case was silently skipped).
+- Source: entries/2026/04/29/tests-test_check_stale_issue25.md
+
+### cli-dispatch-is-flat-dict-lookup [IN] OBSERVATION
+CLI dispatch uses a flat `commands` dict mapping subcommand strings to `cmd_*` handler functions — no plugin system or subclass hierarchy.
+- Source: entries/2026/04/29/reasons_lib-cli.md
+
+### cli-errors-use-stderr-success-uses-stdout [IN] OBSERVATION
+CLI error diagnostics are written to stderr and success output to stdout; tests consistently assert on the correct stream.
+- Source: entries/2026/04/29/tests-test_cli.md
+
+### cli-exit-1-on-error [IN] OBSERVATION
+All CLI error paths catch specific exceptions from the API (`KeyError`, `ValueError`, `PermissionError`, `FileNotFoundError`), print to stderr, and call `sys.exit(1)`.
+- Source: entries/2026/04/29/reasons_lib-cli.md
+
+### cli-exit-code-contract-is-binary [IN] OBSERVATION
+Every CLI subcommand returns exit code 0 for success and 1 for any user-facing error; no other exit codes are used or tested.
+- Source: entries/2026/04/29/tests-test_cli.md
+
 ### cli-is-pure-formatter [IN] OBSERVATION
 Every `cmd_*` function delegates to `api.*` and only formats the returned dict for terminal output; no business logic lives in the CLI layer (sole exception: `cmd_propagate` touches `Storage` directly).
 - Source: entries/2026/04/23/reasons_lib-cli.md
+
+### cli-tests-are-black-box-integration [IN] OBSERVATION
+All CLI tests invoke `main()` through the full argv-parsing pipeline via the `run_cli` harness rather than calling internal APIs, with one exception (`TestPropagateWithChanges` directly mutates storage to create inconsistent state).
+- Source: entries/2026/04/29/tests-test_cli.md
+
+### cli-uses-lazy-imports-for-heavy-modules [IN] OBSERVATION
+`asyncio`, `derive`, `ask`, and `Storage` are imported inside function bodies rather than at module level, keeping `reasons --help` fast.
+- Source: entries/2026/04/29/reasons_lib-cli.md
 
 ### closed-loop-is-origin-agnostic [IN] DERIVED
 The minimality-sustained closed maintenance loop operates identically across all belief origins — external beliefs achieve full integration parity within the same forward-computation and backward-revision cycle as internally-derived beliefs, making the maintenance loop source-agnostic.
@@ -200,6 +380,10 @@ The minimality-sustained closed maintenance loop operates identically across all
 ### closed-loop-preserves-all-invariants [IN] DERIVED
 The closed revision-and-lifecycle maintenance loop not only sustains belief consistency but preserves all system invariants through architecturally grounded enforcement — the loop is both self-maintaining and invariant-preserving.
 - Depends on: revision-and-lifecycle-form-closed-loop, invariant-preservation-is-architecturally-grounded
+
+### cmd-propagate-bypasses-api [IN] OBSERVATION
+`cmd_propagate` is the only CLI handler that bypasses `api.py`, going directly to `Storage` → `Network.recompute_all()` → `Storage.save()` — a design inconsistency in the otherwise pure-presentation CLI layer.
+- Source: entries/2026/04/24/reasons_lib-cli.md
 
 ### colon-means-already-namespaced [IN] OBSERVATION
 `_resolve_namespace` treats a colon in a node ID as "already namespaced" and never double-prefixes; this is the convention for cross-namespace references.
@@ -210,13 +394,85 @@ The compact module's token budget reliably constrains total output size
 - Depends on: compact-in-nodes-ordered-by-dependents, compact-summary-hiding-requires-in
 - Unless: compact-token-estimate-is-word-count, compact-budget-only-limits-in-nodes
 
+### compact-budget-guarantee [IN] OBSERVATION
+`compact()` output estimated token count never exceeds the `budget` parameter; every line is gated by `_over_budget` before appending.
+- Source: entries/2026/04/24/reasons_lib-compact.md
+
+### compact-budget-is-soft-cap [IN] OBSERVATION
+The compact token budget is approximate; structural overhead (section headers, truncation messages) can cause up to ~25% overshoot beyond the specified budget.
+- Source: entries/2026/04/29/tests-test_compact.md
+
+### compact-budget-soft-ceiling [IN] OBSERVATION
+The `compact` function treats the token budget as approximate; structural overhead (headers, truncation messages) can cause output to exceed the budget by up to ~25%.
+- Source: entries/2026/04/24/tests-test_compact.md
+
+### compact-char-tracking-o1 [IN] OBSERVATION
+Budget tracking uses a running `_char_count` integer, making per-line budget checks O(1) instead of O(n).
+- Source: entries/2026/04/24/reasons_lib-compact.md
+
+### compact-estimate-tokens-chars-div-4 [IN] OBSERVATION
+`estimate_tokens` uses `len(text) // 4` with a floor of 1, not word count or any external tokenizer.
+- Source: entries/2026/04/29/tests-test_compact.md
+
+### compact-footer-pre-reserved [IN] OBSERVATION
+The footer line's token cost is pre-computed and reserved before any section starts filling, guaranteeing it always fits within the budget.
+- Source: entries/2026/04/24/reasons_lib-compact.md
+
 ### compact-in-nodes-ordered-by-dependents [IN] OBSERVATION
 IN nodes are sorted by descending dependent count so structurally important nodes (those depended on by many others) are emitted first and survive budget truncation.
 - Source: entries/2026/04/23/reasons_lib-compact.md
 
+### compact-is-infallible [IN] OBSERVATION
+`compact()` handles empty networks, zero-budget, and missing metadata without raising exceptions — designed to always produce a valid string.
+- Source: entries/2026/04/29/tests-test_compact.md
+
+### compact-is-pure-function [IN] OBSERVATION
+`compact()` performs no I/O, no database access, no mutations, and no side effects; it is a pure transformation from `Network` to `str`.
+- Source: entries/2026/04/29/reasons_lib-compact.md
+
+### compact-never-exceeds-budget [IN] OBSERVATION
+`compact()` guarantees the returned string's estimated token count (chars/4) does not exceed the `budget` parameter, enforced by pre-checking every line addition against remaining space.
+- Source: entries/2026/04/29/reasons_lib-compact.md
+
+### compact-priority-order [IN] OBSERVATION
+Sections are emitted in fixed order: nogoods, OUT nodes, IN nodes; a later section never displaces content from an earlier one.
+- Source: entries/2026/04/24/reasons_lib-compact.md
+
+### compact-priority-order-is-nogoods-out-in [IN] OBSERVATION
+Sections are emitted in strict priority order: nogoods first, then OUT nodes, then IN nodes; if the budget is exhausted early, lower-priority sections are entirely omitted.
+- Source: entries/2026/04/29/reasons_lib-compact.md
+
+### compact-pure-function [IN] OBSERVATION
+`compact()` has no side effects, performs no I/O, and does not mutate the `Network` instance.
+- Source: entries/2026/04/24/reasons_lib-compact.md
+
+### compact-self-reports-tokens [IN] OBSERVATION
+When given a budget, the `compact` output includes a `Token count: N / B budget` line for auditability.
+- Source: entries/2026/04/24/tests-test_compact.md
+
+### compact-sorts-by-dependents [IN] OBSERVATION
+Duplicate of existing `compact-in-nodes-ordered-by-dependents`.
+- Source: entries/2026/04/24/tests-test_compact.md
+
+### compact-sorts-in-nodes-by-dependents-descending [IN] OBSERVATION
+Duplicates existing belief `compact-in-nodes-ordered-by-dependents`.
+- Source: entries/2026/04/29/tests-test_compact.md
+
 ### compact-summary-hiding-requires-in [IN] OBSERVATION
 A summary node only hides its covered nodes when the summary itself is IN; if the summary goes OUT, covered nodes reappear in the compact output.
 - Source: entries/2026/04/23/reasons_lib-compact.md
+
+### compact-summary-nodes-hide-covered [IN] OBSERVATION
+IN nodes whose IDs appear in another node's `summarizes` metadata list are excluded from compact output to avoid redundancy; the hidden count is reported.
+- Source: entries/2026/04/29/reasons_lib-compact.md
+
+### compact-surfaces-stale-reason-metadata [IN] OBSERVATION
+OUT nodes with `stale_reason` in their metadata include the reason string in the compact output.
+- Source: entries/2026/04/29/tests-test_compact.md
+
+### compact-three-sections [IN] OBSERVATION
+The `compact` output is organized into three markdown sections: `## IN (active)`, `## OUT (retracted)`, and `## Nogoods`, each present only when the network contains nodes of that type.
+- Source: entries/2026/04/24/tests-test_compact.md
 
 ### complete-architecture-achieves-verified-production-correctness [IN] DERIVED
 The complete reasoning-and-revision architecture — deterministic in state trajectories, lifecycle-complete in monitoring, and architecturally grounded in invariant preservation — achieves verified production correctness across all operation types when propagation correctly tracks all dependents.
@@ -260,9 +516,17 @@ The nogood resolution system minimizes network disruption through layered heuris
 When contradictions are detected, resolution and propagation form a deterministic pipeline: backtracking identifies the least-entrenched culprit premise, retraction triggers BFS propagation that terminates via stop-on-unchanged, producing a new consistent state with minimal network disruption and guaranteed convergence.
 - Depends on: contradiction-resolution-is-minimal-disruption, propagation-terminates-deterministically
 
+### convert-to-premise-removes-dependents [IN] OBSERVATION
+When a derived node is converted to a premise via `convert_to_premise`, it is removed from its former antecedents' `dependents` sets because the old justification edges are deleted.
+- Source: entries/2026/04/24/tests-test_dependents_integrity.md
+
 ### corrections-span-all-origins-with-full-auditability [IN] DERIVED
 Every correction mechanism — intentional dialectical challenge/defend and automated contradiction resolution — is both reliable and fully auditable with traceable history, and this complete correction coverage spans all belief origins (human, LLM, agent) — no belief from any provenance can undergo an untraced or unreliable correction.
 - Depends on: all-corrections-are-reliable-and-auditable, dispute-resolution-spans-all-origins
+
+### count-accumulates-linearly [IN] OBSERVATION
+Documents the bug fix for issue #23 — already covered by existing `derive-agent-count-bug` which tracks this defect
+- Source: entries/2026/04/24/tests-test_derive_budget.md
 
 ### cp-and-sl-evaluated-identically [IN] OBSERVATION
 CP and SL justifications use the same validity check in `_justification_valid`; the distinction is semantic (support vs. consistency), not computational.
@@ -272,6 +536,50 @@ CP and SL justifications use the same validity check in `_justification_valid`; 
 CP (conditional-proof) justifications are evaluated with the exact same logic as SL justifications, despite being a distinct type in Doyle's TMS — either an intentional simplification or incomplete implementation
 - Source: entries/2026/04/23/reasons_lib-network-_justification_valid.md
 
+### dangling-dependent-guard-skips-missing-nodes [IN] OBSERVATION
+`_propagate` skips dependent IDs not present in `net.nodes` rather than raising `KeyError`, and emits a structured warning log entry for each (fix for issue #22).
+- Source: entries/2026/04/29/tests-test_dangling_dependents.md
+
+### dangling-dependents-log-not-crash [IN] OBSERVATION
+Covered by existing `propagate-assumes-dependents-exist` (documents the assumption) and `tms-core-is-crash-safe` (documents crash safety)
+- Source: entries/2026/04/24/tests-test_network.md
+
+### dangling-guard-is-continue-not-raise [IN] OBSERVATION
+When `_propagate` encounters a dependent ID not in `self.nodes`, it logs a structured warning and continues the BFS loop rather than raising `KeyError` or silently skipping.
+- Source: entries/2026/04/24/tests-test_dangling_dependents.md
+
+### dangling-ids-excluded-from-changed [IN] OBSERVATION
+The `changed` set returned by `retract()` and `assert_node()` never contains IDs that don't correspond to real nodes in the network.
+- Source: entries/2026/04/24/tests-test_dangling_dependents.md
+
+### dangling-ids-excluded-from-visited [IN] OBSERVATION
+The propagation visited set does not include dangling IDs, so a formerly-dangling ID that becomes a real node will propagate correctly on subsequent operations.
+- Source: entries/2026/04/24/tests-test_dangling_dependents.md
+
+### dangling-refs-excluded-from-changed-set [IN] OBSERVATION
+The `changed` set returned by `retract`/`assert_node` never contains node IDs that don't exist in the network.
+- Source: entries/2026/04/29/tests-test_dangling_dependents.md
+
+### dangling-refs-excluded-from-visited-set [IN] OBSERVATION
+Dangling dependent IDs are not added to the propagation visited set, so later-created nodes with the same ID propagate normally.
+- Source: entries/2026/04/29/tests-test_dangling_dependents.md
+
+### dedup-auto-keeps-most-dependents [IN] OBSERVATION
+In auto mode, `deduplicate` retains the cluster member with the most dependents and retracts all others
+- Source: entries/2026/04/24/tests-test_derive.md
+
+### dedup-keeps-most-connected-node [IN] OBSERVATION
+In auto-dedup mode, the node with the most dependents survives each cluster; ties break by lexicographic ID, and losers are retracted after dependents are rewired.
+- Source: entries/2026/04/24/reasons_lib-api.md
+
+### dedup-plan-is-user-editable [IN] OBSERVATION
+The dedup plan format uses KEEP/RETRACT markers that users can swap before applying, making deduplication decisions reviewable and overridable
+- Source: entries/2026/04/24/tests-test_derive.md
+
+### dedup-rewrites-both-antecedents-and-outlist [IN] OBSERVATION
+When a duplicate is retracted via dedup, all justification references (both antecedent and outlist) across the network are rewritten to point at the kept node
+- Source: entries/2026/04/24/tests-test_derive.md
+
 ### defend-is-challenge-of-challenge [IN] OBSERVATION
 `defend` works by calling `challenge` on the challenge node itself, creating a recursive dialectical structure where truth values resolve automatically through the same outlist mechanism.
 - Source: entries/2026/04/23/reasons_lib-network-challenge.md
@@ -280,14 +588,42 @@ CP (conditional-proof) justifications are evaluated with the exact same logic as
 Defense is implemented by calling `challenge()` on the challenge node itself, enabling arbitrarily deep dialectical chains using the same outlist mechanism recursively with no special-case code
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
+### deferred-retraction-ordering [IN] OBSERVATION
+During agent import, nodes are added and truth values propagated before explicit retractions are applied, ensuring the dependency graph is fully wired before OUT transitions are forced.
+- Source: entries/2026/04/24/reasons_lib-import_agent.md
+
+### dependents-survive-storage-roundtrip [IN] OBSERVATION
+After `Storage.save()` followed by `Storage.load()`, the loaded network's dependents index passes `verify_dependents()` with no errors.
+- Source: entries/2026/04/24/tests-test_dependents_integrity.md
+
 ### derive-agent-budget-proportional [IN] OBSERVATION
 When agents are present, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent
 - Source: entries/2026/04/23/reasons_lib-derive.md
+
+### derive-apply-isolates-per-proposal-errors [IN] OBSERVATION
+`apply_proposals` wraps each `api.add_node()` call in try/except and accumulates `(proposal, error_string)` tuples, so one malformed proposal does not abort the batch.
+- Source: entries/2026/04/29/reasons_lib-derive.md
 
 ### derive-budget-allocation-is-accurate [IN] DERIVED
 The derive pipeline's proportional belief-budget allocation produces correct per-agent token counts
 - Depends on: derive-agent-budget-proportional, derive-prompt-roundtrips-through-parser
 - Unless: derive-agent-count-bug
+
+### derive-budget-count-is-linear [IN] OBSERVATION
+Agent belief counting in `_build_beliefs_section` accumulates as N (number of beliefs shown per agent), not N² — the corrected behavior after the issue #23 fix where `count += len(belief_ids)` was moved outside the per-belief loop
+- Source: entries/2026/04/29/tests-test_derive_budget.md
+
+### derive-budget-floor-five [IN] OBSERVATION
+Each agent group and the non-agent group are guaranteed at least 5 belief slots in the prompt regardless of proportional budget allocation.
+- Source: entries/2026/04/24/reasons_lib-derive.md
+
+### derive-budget-local-floor-is-five [IN] OBSERVATION
+`_build_beliefs_section` guarantees at least 5 local beliefs are shown regardless of agent budget pressure, via `max(5, max_beliefs - count)`
+- Source: entries/2026/04/29/tests-test_derive_budget.md
+
+### derive-budget-tests-parse-output-headers [IN] OBSERVATION
+Test implementation detail (regex parsing of `"showing N"` headers), not a production code invariant
+- Source: entries/2026/04/29/tests-test_derive_budget.md
 
 ### derive-depth-cycle-guard [IN] OBSERVATION
 `_get_depth` sets `memo[node_id] = 0` before recursing to prevent infinite recursion on cyclic justification chains; cycles resolve to depth 0
@@ -297,9 +633,29 @@ The derive pipeline's proportional belief-budget allocation produces correct per
 `validate_proposals` filters invalid proposals into a skipped list rather than raising; `apply_proposals` catches per-item exceptions so one bad proposal never blocks others
 - Source: entries/2026/04/23/reasons_lib-derive.md
 
+### derive-min-antecedents-is-prompt-only [IN] OBSERVATION
+The minimum-2-antecedents rule for derived beliefs is enforced only by the LLM prompt instructions, not validated in code by `validate_proposals`.
+- Source: entries/2026/04/29/reasons_lib-derive.md
+
+### derive-no-llm-call [IN] OBSERVATION
+`derive.py` builds prompts and parses responses but never calls an LLM itself; the caller (CLI or API) is responsible for the model invocation.
+- Source: entries/2026/04/24/reasons_lib-derive.md
+
+### derive-parse-supports-two-format-versions [IN] OBSERVATION
+`parse_proposals` tries the new `### DERIVE id` format first, falling back to the older `### DERIVE: \`id\`` format only when the new parser returns zero matches.
+- Source: entries/2026/04/29/reasons_lib-derive.md
+
+### derive-parse-supports-two-formats [IN] OBSERVATION
+`parse_proposals` tries the new format first (v0.10+: `### DERIVE id`), falls back to old format (v0.9: `### DERIVE: \`id\``) only when no new-format matches are found
+- Source: entries/2026/04/24/tests-test_derive.md
+
 ### derive-pipeline-is-defensive [IN] DERIVED
 The derive pipeline applies multiple defensive measures: fail-soft validation, Jaccard-based retraction guard, and environment variable stripping to prevent recursive spawning
 - Depends on: derive-fail-soft-validation, derive-retraction-guard-uses-jaccard, derive-strips-claudecode-env
+
+### derive-pipeline-is-error-accumulating [IN] OBSERVATION
+Covered by existing `derive-fail-soft-validation` (validation returns skipped entries with reasons) and `derive-pipeline-is-defensive` (broader defensive characterization)
+- Source: entries/2026/04/24/tests-test_derive.md
 
 ### derive-pipeline-is-exhaustive-and-terminating [IN] DERIVED
 The derive pipeline supports exhaustive exploration mode while guaranteeing termination: `--exhaust` enables automatic application of all discovered proposals, and depth-based cycle detection with pre-recursion memoization prevents infinite loops even when justification chains are cyclic.
@@ -322,9 +678,33 @@ The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT
 `validate_proposals` rejects any proposed belief ID with Jaccard similarity >= 0.5 to an existing OUT node, preventing re-derivation of retracted beliefs
 - Source: entries/2026/04/23/reasons_lib-derive.md
 
+### derive-returns-negative-one-on-error [IN] OBSERVATION
+`_derive_one_round` returns -1 on error, 0 on saturation, and a positive int for the number of beliefs added, which `cmd_derive` uses to control the exhaust loop.
+- Source: entries/2026/04/29/reasons_lib-cli.md
+
+### derive-round-returns-negative-on-error [IN] OBSERVATION
+`_derive_one_round` returns -1 on error, 0 on saturation, and a positive count on success — using return values instead of exceptions for flow control in the exhaust loop.
+- Source: entries/2026/04/24/reasons_lib-cli.md
+
 ### derive-strips-claudecode-env [IN] OBSERVATION
 `_derive_one_round` explicitly removes the `CLAUDECODE` environment variable before spawning the model subprocess, preventing recursive Claude Code invocation.
 - Source: entries/2026/04/23/reasons_lib-cli.md
+
+### derive-unused-imports [IN] OBSERVATION
+Dead code observation (`subprocess`, `sys`, `Path` imported but unused) — unstable detail that will change when cleaned up.
+- Source: entries/2026/04/24/reasons_lib-derive.md
+
+### derive-uses-subprocess-not-sdk [IN] OBSERVATION
+The derive command invokes LLMs by shelling out to `claude` or `gemini` CLI binaries via `asyncio.create_subprocess_exec`, not through any Python SDK.
+- Source: entries/2026/04/24/reasons_lib-cli.md
+
+### derive-validate-before-apply [IN] OBSERVATION
+`apply_proposals` trusts its input unconditionally; callers must run `validate_proposals` first or risk database errors from missing antecedents or duplicate IDs.
+- Source: entries/2026/04/24/reasons_lib-derive.md
+
+### derive-validate-rejects-similar-to-out [IN] OBSERVATION
+Covered by existing `derive-retraction-guard-uses-jaccard` which captures the same invariant
+- Source: entries/2026/04/24/tests-test_derive.md
 
 ### deterministic-history-extends-to-all-origins [IN] DERIVED
 Every state change for every belief — including externally-originated beliefs at full integration parity — follows a deterministic path with complete traceable history, meaning origin can never be used as an excuse for opacity.
@@ -367,6 +747,10 @@ Challenge/defend dialectics are semantically indistinguishable from ordinary bel
 The recursive challenge/defend dialectical system inherits fully-specified semantics from the outlist primitive: conjunction over multiple outlists, absent-means-OUT permissiveness, and persistence guarantees all apply to dialectical structures without additional rules.
 - Depends on: dialectical-structure-is-recursive-outlist, outlist-semantics-are-fully-specified
 
+### direct-access-raises-list-access-filters [IN] OBSERVATION
+API functions for single-node access (`show_node`, `explain_node`, `trace_assumptions`) raise `PermissionError` on forbidden nodes, while list/export functions (`list_nodes`, `search`, `export_network`) silently exclude them from results.
+- Source: entries/2026/04/29/tests-test_access_tags.md
+
 ### dispute-resolution-is-complete-and-reliable [IN] DERIVED
 Both dispute resolution mechanisms — intentional (dialectical challenge/defend with irreversible premise transformation) and automated (contradiction detection with dependency-directed backtracking) — are individually fully reliable, crash-safe, and traceable, leaving no dispute pathway that could silently fail or lose history.
 - Depends on: dialectical-transformation-is-fully-reliable, contradiction-management-is-complete-and-traceable
@@ -374,6 +758,14 @@ Both dispute resolution mechanisms — intentional (dialectical challenge/defend
 ### dispute-resolution-spans-all-origins [IN] DERIVED
 Both dispute resolution mechanisms (intentional dialectical and automated contradiction) are complete and reliable, and all belief origins participate in the same deterministic revision pipeline — every belief from any source can be disputed and resolved through identical mechanisms.
 - Depends on: dispute-resolution-is-complete-and-reliable, all-belief-origins-share-deterministic-revision
+
+### duplicate-node-id-raises-valueerror [IN] OBSERVATION
+`api.add_node()` raises `ValueError` when given a node ID that already exists in the network — node IDs are unique.
+- Source: entries/2026/04/24/tests-test_api.md
+
+### each-cli-test-creates-isolated-db [IN] OBSERVATION
+Every CLI test method initializes a fresh SQLite database via `run_cli("init")` in a pytest `tmp_path`, ensuring zero shared state between tests.
+- Source: entries/2026/04/29/tests-test_cli.md
 
 ### edge-case-safety-spans-creation-and-maintenance [IN] DERIVED
 The system handles edge cases safely across both temporal dimensions: at creation time, uniform revision covers all semantic edge cases (vacuous premises, asymmetric absence, empty antecedents) through minimal primitives; at maintenance time, contradiction resolution and staleness detection actively catch drift — no edge case is safe only at one point in time.
@@ -386,6 +778,22 @@ Uniform handling of all semantic edge cases — vacuous premises, asymmetric abs
 ### empty-antecedents-vacuously-valid [IN] OBSERVATION
 An SL justification with an empty antecedent list is valid (vacuous truth via `all([])`), allowing outlist-only justifications to function as "IN unless Y" — used by `challenge` and `supersede` for converted premises
 - Source: entries/2026/04/23/reasons_lib-network-_justification_valid.md
+
+### entry-point-mapping [IN] OBSERVATION
+The `reasons` CLI command maps to `reasons_lib.cli:main` via `[project.scripts]` in `pyproject.toml` and is the only registered script entry point.
+- Source: entries/2026/04/24/pyproject.md
+
+### estimate-tokens-chars-div-4 [IN] OBSERVATION
+`estimate_tokens` uses `len(text) // 4` with a minimum return value of 1; it never returns 0, even for empty strings.
+- Source: entries/2026/04/24/tests-test_compact.md
+
+### every-network-mutation-maintains-dependents [IN] OBSERVATION
+After any public mutation method on `Network` (`add_node`, `retract`, `assert_node`, `add_justification`, `supersede`, `challenge`, `defend`, `convert_to_premise`, `add_nogood`, `summarize`), `verify_dependents()` returns an empty list.
+- Source: entries/2026/04/24/tests-test_dependents_integrity.md
+
+### every-network-mutation-maintains-dependents-invariant [IN] OBSERVATION
+After any public Network mutation (add_node, retract, assert_node, add_justification, supersede, challenge, defend, convert_to_premise, add_nogood, summarize), the dependents index passes `verify_dependents()` — completeness and minimality are maintained incrementally
+- Source: entries/2026/04/29/tests-test_dependents_integrity.md
 
 ### exhaust-implies-auto [IN] OBSERVATION
 In `_derive_one_round`, proposals are auto-applied when either `args.auto` or `args.exhaust` is true; the `--exhaust` flag does not require the user to also pass `--auto`.
@@ -438,6 +846,10 @@ External beliefs are managed end-to-end across their complete lifecycle with no 
 External beliefs pass through two independent safety layers: defensive ingestion pipelines (fail-soft validation, Jaccard guards, dual import/sync reconciliation modes) filter and validate beliefs on entry, while the self-contained agent subsystem (namespace isolation, relay-pair kill-switches, reversible lifecycle management) constrains their operational footprint after ingestion.
 - Depends on: external-belief-ingestion-is-defensively-layered, agent-subsystem-is-self-contained
 
+### external-deps-become-premises [IN] OBSERVATION
+A claim whose `depends_on` references are all absent from the beliefs file gets no justifications and is added as a premise (IN by default).
+- Source: entries/2026/04/24/reasons_lib-import_beliefs.md
+
 ### external-integration-is-architecturally-safe [IN] DERIVED
 External beliefs are end-to-end safe within the system's architecture: defensively contained at ingestion and lifecycle-managed thereafter (external belief thread) within the same three-layer boundaries and atomic mutation guarantees that protect internal operations (architecture thread).
 - Depends on: external-beliefs-are-defended-and-lifecycle-managed, architecture-enforces-structural-and-operational-safety
@@ -456,21 +868,97 @@ The system's interaction with external systems is bounded in both directions: ou
 The system's external surface is fully controlled along independent axes: bidirectional bounds constrain output size (token budgets) and input quality (staleness detection), while defensive containment layers (validation pipelines, namespace isolation) prevent external beliefs from violating internal invariants.
 - Depends on: external-interface-is-bidirectionally-bounded, external-beliefs-defensively-contained
 
+### extract-tool-call-returns-first-match [IN] OBSERVATION
+When LLM output contains multiple JSON objects with a `"tool"` key, `extract_tool_call()` returns only the first valid match and ignores the rest; malformed JSON lines are silently skipped.
+- Source: entries/2026/04/29/tests-test_ask.md
+
 ### fully-characterized-loop-sustains-indefinitely [IN] DERIVED
 The fully characterized self-maintaining loop — origin-agnostic, fully observable, and minimality-sustained — can operate without temporal bound because its self-correction is resource-sustainable within a deterministic, structurally sound lifecycle; characterization completeness combined with resource sustainability yields indefinite operability.
 - Depends on: system-is-fully-characterized-self-maintaining-loop, self-correction-sustains-lifecycle-indefinitely
+
+### hash-file-full-sha256 [IN] OBSERVATION
+`hash_file` returns a full 64-character hex SHA-256 digest (per the fix in PR #40 that removed the earlier `[:16]` truncation).
+- Source: entries/2026/04/24/reasons_lib-check_stale.md
+
+### hash-file-import-unused [IN] OBSERVATION
+Trivial/unstable detail about an unused import; not a meaningful architectural invariant.
+- Source: entries/2026/04/24/tests-test_check_stale_issue25.md
+
+### hash-sources-idempotent-without-force [IN] OBSERVATION
+`hash_sources` with default `force=False` skips nodes that already have a `source_hash`, making repeated backfill calls safe; `force=True` rehashes unconditionally.
+- Source: entries/2026/04/24/tests-test_check_stale.md
+
+### hash-sources-is-additive-by-default [IN] OBSERVATION
+`hash_sources` without `force=True` never overwrites an existing non-empty `source_hash`; it only backfills nodes with empty or missing hashes.
+- Source: entries/2026/04/29/tests-test_check_stale.md
+
+### hash-sources-mutates-network [IN] OBSERVATION
+`hash_sources` writes directly to `node.source_hash` on the in-memory network, while `check_stale` is purely read-only — an intentional asymmetry.
+- Source: entries/2026/04/29/reasons_lib-check_stale.md
+
+### hash-sources-no-overwrite-default [IN] OBSERVATION
+`hash_sources` with `force=False` (the default) only backfills missing hashes and will never modify a node that already has a `source_hash` value.
+- Source: entries/2026/04/24/reasons_lib-check_stale.md
+
+### hints-exclude-directly-retracted-node [IN] OBSERVATION
+The node passed to `retract_node` never appears in the `restoration_hints` list — only cascade victims with surviving premises do.
+- Source: entries/2026/04/24/tests-test_any_mode.md
+
+### idempotent-reimport-skips-all [IN] OBSERVATION
+Covered by existing `import-skips-existing-sync-is-remote-wins` which captures the idempotent import behavior
+- Source: entries/2026/04/24/tests-test_import_agent.md
+
+### import-agent-infra-nodes-excluded-from-removal [IN] OBSERVATION
+`_sync_claims()` filters out infrastructure nodes (active/inactive) via `infra_ids` before computing the removal set, so the kill-switch pair is never retracted by remote-wins sync.
+- Source: entries/2026/04/29/reasons_lib-import_agent.md
 
 ### import-agent-namespace-prefix [IN] OBSERVATION
 Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
 
+### import-agent-normalizers-share-intermediate-schema [IN] OBSERVATION
+Both `_normalize_markdown()` and `_normalize_json()` produce identical intermediate dicts (id, text, is_out, source, source_hash, date, metadata, raw_justifications) before hitting shared `_import_claims`/`_sync_claims` logic.
+- Source: entries/2026/04/29/reasons_lib-import_agent.md
+
+### import-agent-outlist-not-antecedent [IN] OBSERVATION
+Duplicates existing belief `kill-switch-uses-outlist-not-antecedent`.
+- Source: entries/2026/04/24/reasons_lib-import_agent.md
+
+### import-beliefs-nogood-id-uses-high-water-mark [IN] OBSERVATION
+`_next_nogood_id` is set to `max(current, parsed_id + 1)` during import, preventing future auto-generated nogood IDs from colliding with imported ones.
+- Source: entries/2026/04/29/reasons_lib-import_beliefs.md
+
+### import-beliefs-parser-is-forward-compatible [IN] OBSERVATION
+Unknown `- ` metadata lines in belief markdown are silently skipped via a `pass` branch, making the parser forward-compatible with new export format fields.
+- Source: entries/2026/04/29/reasons_lib-import_beliefs.md
+
+### import-beliefs-path-import-unused [IN] OBSERVATION
+Vestigial import detail — too trivial and unstable to track as a belief; it could be cleaned up at any time.
+- Source: entries/2026/04/29/reasons_lib-import_beliefs.md
+
 ### import-handles-heterogeneous-truth-states [IN] DERIVED
 The import pipeline handles mixed truth states: OUT/STALE beliefs arrive without justifications, topological sort tolerates cycles, and two-phase truth maintenance reconciles everything post-import
 - Depends on: out-beliefs-imported-without-justifications, import-topo-sort-tolerates-cycles, import-two-phase-truth-maintenance
 
+### import-is-idempotent [IN] OBSERVATION
+Covered by existing `import-skips-existing-sync-is-remote-wins`
+- Source: entries/2026/04/24/tests-test_import_beliefs.md
+
+### import-json-uses-topological-sort [IN] OBSERVATION
+`api.import_json()` reconstructs networks via a multi-pass topological sort loop — repeatedly adding nodes whose dependencies are already loaded — with a force-add fallback for cycles or missing deps.
+- Source: entries/2026/04/24/reasons_lib-api.md
+
+### import-paths-bump-nogood-counter [IN] OBSERVATION
+Both `import_json` and `import_into_network` update `_next_nogood_id` to at least `max_imported_id + 1`, ensuring imported nogoods with explicit IDs don't create future collisions
+- Source: entries/2026/04/29/tests-test_nogood_id.md
+
 ### import-provides-complete-reconciliation [IN] DERIVED
 The import subsystem provides complete reconciliation coverage: heterogeneous truth states are handled correctly on initial load, dual modes support additive import and remote-wins sync for different operational needs, and the colon-based namespace convention with auto-wiring prevents ID collisions across agents.
 - Depends on: import-handles-heterogeneous-truth-states, import-sync-has-dual-reconciliation-modes, namespace-is-colon-convention-with-auto-wiring
+
+### import-skips-existing-nodes [IN] OBSERVATION
+Duplicates existing belief `import-skips-existing-sync-is-remote-wins`.
+- Source: entries/2026/04/24/reasons_lib-import_beliefs.md
 
 ### import-skips-existing-sync-is-remote-wins [IN] OBSERVATION
 Import mode (`import_agent`) is a one-time load that skips existing nodes; sync mode updates text/justifications/truth values with remote-wins semantics and retracts locally any beliefs removed from the remote
@@ -488,9 +976,17 @@ The import/sync subsystem offers two distinct reconciliation strategies: import 
 Import/sync adds all nodes first, then runs `recompute_all()` to propagate truth values, then performs explicit retractions — this ordering prevents incorrect cascades from partially-constructed networks
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
 
+### import-wires-reverse-index [IN] OBSERVATION
+Covered by existing `dependents-is-manual-reverse-index` which captures that the reverse index is manually maintained
+- Source: entries/2026/04/24/tests-test_import_beliefs.md
+
 ### indefinite-self-correction-is-fully-auditable [IN] DERIVED
 The system's indefinitely sustainable self-correction produces a fully auditable history without temporal degradation: every self-correction, maintenance action, and belief revision throughout the system's unbounded operational lifetime is traceable through nogoods, retraction records, and staleness metadata — auditability scales with time rather than decaying.
 - Depends on: self-correction-sustains-lifecycle-indefinitely, self-maintenance-is-fully-auditable
+
+### init-db-refuses-existing-without-force [IN] OBSERVATION
+`api.init_db()` raises `FileExistsError` when the database file already exists, unless `force=True` is passed to allow overwrite.
+- Source: entries/2026/04/24/tests-test_api.md
 
 ### init-is-pure-data-model [IN] OBSERVATION
 `reasons_lib/__init__.py` contains only dataclass definitions (`Node`, `Justification`, `Nogood`) with no behavior, validation, or I/O; it imports nothing from the project and sits at the bottom of the import graph.
@@ -528,9 +1024,17 @@ System invariants are preserved through two complementary layers: architectural 
 System invariants hold along every independent dimension: across all belief origins (human-initiated, LLM-derived, agent-imported) via shared minimal foundations, and across both temporal phases (creation-time edge-case handling and maintenance-time staleness detection) including all semantic edge cases.
 - Depends on: revision-invariants-span-all-origins, edge-case-safety-spans-creation-and-maintenance
 
+### invoke-claude-raises-when-binary-missing [IN] OBSERVATION
+`_invoke_claude()` raises `FileNotFoundError` if the `claude` CLI is not on `PATH`, rather than returning an error string — this is the one exception that `ask()` does not catch internally.
+- Source: entries/2026/04/29/tests-test_ask.md
+
 ### justification-evaluation-is-uniform-and-pure [IN] DERIVED
 All justification types (SL and CP) use the same validity rule (antecedents IN, outlist OUT), evaluated as a pure function with no side effects
 - Depends on: cp-and-sl-evaluated-identically, justification-valid-is-pure, justification-validity-requires-inlist-in-and-outlist-out
+
+### justification-order-preserved-by-rowid [IN] OBSERVATION
+Already exists as `justification-order-preserved-via-rowid`
+- Source: entries/2026/04/29/reasons_lib-storage.md
 
 ### justification-order-preserved-via-rowid [IN] OBSERVATION
 Justification insertion order is preserved across save/load cycles using `AUTOINCREMENT` rowid and `ORDER BY rowid` on read, which matters because justification priority affects truth maintenance.
@@ -573,6 +1077,10 @@ The system manages belief lifecycle without gaps across all operation types: sta
 Gapless lifecycle management — spanning staleness detection, propagation lifecycle awareness, and import reconciliation — operates on an architecture verified to have no hidden fragility points, ensuring lifecycle operations cannot be undermined by latent structural weaknesses in the central dependency or layer boundaries.
 - Depends on: architecture-has-no-hidden-fragility, lifecycle-management-is-gapless
 
+### list-negative-uses-two-stage-classification [IN] OBSERVATION
+`list_negative` uses keyword pre-filtering against a hardcoded `NEGATIVE_TERMS` list (~50 words), then LLM classification via `ask._invoke_claude` to eliminate false positives.
+- Source: entries/2026/04/29/reasons_lib-api.md
+
 ### llm-driven-mutations-are-safely-bounded [IN] DERIVED
 LLM-driven belief derivation is safely bounded by defense in depth: the derive pipeline validates proposals with fail-soft filtering, Jaccard retraction guards, and environment stripping at the LLM boundary, while the API layer enforces atomic load/save with write-flag gating and dict-only returns at the persistence boundary — malformed or adversarial LLM output cannot corrupt the network.
 - Depends on: derive-pipeline-is-defensive, api-layer-ensures-atomic-isolated-mutations
@@ -585,6 +1093,14 @@ LLM-driven belief derivation is bounded at every stage of the pipeline: input va
 The minimality-sustained closed maintenance loop has complete observability: every self-correction leaves traceable history (nogoods, retraction records, staleness reports), enabling full audit of how the system maintains itself over time.
 - Depends on: minimality-sustains-closed-loop-maintenance, self-correction-has-complete-traceable-history
 - Unless: propagate-assumes-dependents-exist
+
+### make-nodes-excludes-active-premises [IN] OBSERVATION
+Test helper implementation detail, not a claim about production code behavior
+- Source: entries/2026/04/29/tests-test_derive_budget.md
+
+### make-nodes-omits-active-premises [IN] OBSERVATION
+Test helper implementation detail, not a production code invariant
+- Source: entries/2026/04/24/tests-test_derive_budget.md
 
 ### minimality-generates-universal-revision-safety [IN] DERIVED
 Universal revision safety is a consequence of minimality: the system has no revision blind spots because both uniform edge-case handling and comprehensive lifecycle coverage emerge from the same minimal primitives that power truth maintenance — minimality does not merely simplify the design but actively prevents the coverage gaps that would arise from feature-specific revision paths.
@@ -626,26 +1142,114 @@ When `namespace` is set, `add_node` auto-creates a `{namespace}:active` premise 
 The namespace system is a colon-based convention with automatic infrastructure wiring: colon presence prevents double-prefixing, the `agent:id` format provides scoping, and node creation auto-wires a `{ns}:active` premise as an antecedent.
 - Depends on: namespace-prefix-is-colon-separated, colon-means-already-namespaced, namespace-active-premise-invariant
 
+### namespace-prefix-is-agent-colon [IN] OBSERVATION
+Covered by existing `namespace-prefix-is-colon-separated` and `import-agent-namespace-prefix`
+- Source: entries/2026/04/24/tests-test_import_agent.md
+
 ### namespace-prefix-is-colon-separated [IN] OBSERVATION
 Agent namespacing uses the format `agent_name:belief_id`; `_resolve_namespace()` skips prefixing any ID that already contains a colon, preventing double-prefixing of cross-namespace references
 - Source: entries/2026/04/23/topic-multi-agent-federation.md
+
+### network-add-node-rejects-duplicates [IN] OBSERVATION
+`Network.add_node()` raises `ValueError` if a node with the given ID already exists in the network.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-any-mode-justification [IN] OBSERVATION
+Duplicates existing belief `node-in-if-any-justification-valid`.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-dependents-eagerly-maintained [IN] OBSERVATION
+Duplicates existing beliefs `dependents-bidirectional-index` and `dependents-is-manual-reverse-index`.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-has-zero-external-dependencies [IN] OBSERVATION
+The Network class imports only stdlib (`collections.deque`, `datetime`) plus package data types (`Node`, `Justification`, `Nogood`); it has zero external dependencies.
+- Source: entries/2026/04/29/reasons_lib-network.md
 
 ### network-is-central-dependency [IN] OBSERVATION
 `network.py` is imported by essentially every other module — api, storage, import, export, compact, check_stale, and all test files — making it the central data structure of the project.
 - Source: entries/2026/04/23/scan-ftl-reasons.md
 
+### network-metadata-carries-structured-state [IN] OBSERVATION
+Node state such as `_retracted`, `retract_reason`, `superseded_by`, `challenges`, `access_tags`, and `summarized_by` lives in the generic `metadata` dict rather than typed Node fields, keeping the dataclass stable while features layer on behavior.
+- Source: entries/2026/04/29/reasons_lib-network.md
+
+### network-missing-outlist-passes [IN] OBSERVATION
+Duplicates existing belief `missing-outlist-nodes-pass-validation`.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-mutations-append-to-audit-log [IN] OBSERVATION
+Every network mutation records a timestamped event in `self.log`, an append-only list that serves as the propagation audit trail.
+- Source: entries/2026/04/29/reasons_lib-network.md
+
+### network-no-external-deps [IN] OBSERVATION
+`network.py` depends only on stdlib (`deque`, `datetime`) and project dataclasses; it has zero external package dependencies.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-retracted-skips-propagation [IN] OBSERVATION
+Duplicates existing belief `retracted-nodes-skipped-in-propagation`.
+- Source: entries/2026/04/24/reasons_lib-network.md
+
+### network-tests-are-database-free [IN] OBSERVATION
+Test infrastructure detail, not a production code claim
+- Source: entries/2026/04/29/tests-test_network.md
+
+### no-synth-mode-skips-llm [IN] OBSERVATION
+When `no_synth=True`, `ask()` returns formatted FTS5 search results without invoking `_invoke_claude()` — the LLM is never contacted.
+- Source: entries/2026/04/29/tests-test_ask.md
+
 ### node-in-if-any-justification-valid [IN] OBSERVATION
 A Node is IN when at least one of its Justifications is valid; a Justification is valid when all antecedents are IN and all outlist nodes are OUT (disjunctive over justifications, conjunctive within each).
 - Source: entries/2026/04/23/reasons_lib-__init__.md
+
+### nogood-id-backwards-compat [IN] OBSERVATION
+Databases created before the monotonic counter fix (lacking `network_meta` table) load without error; the counter is derived from max existing nogood ID + 1, or defaults to 1 if none exist
+- Source: entries/2026/04/24/tests-test_nogood_id.md
+
+### nogood-id-collision-prevention [IN] OBSERVATION
+After importing nogoods, `_next_nogood_id` is set to one past the highest imported ID, preventing `network.record_nogood` from generating a conflicting ID later.
+- Source: entries/2026/04/24/reasons_lib-import_beliefs.md
+
+### nogood-id-counter-is-monotonic [IN] OBSERVATION
+`Network._next_nogood_id` only ever increases — deletion, clearing, save/load, and import never decrease it, preventing ID reuse after the issue #26 fix
+- Source: entries/2026/04/29/tests-test_nogood_id.md
+
+### nogood-id-format-is-zero-padded [IN] OBSERVATION
+Nogood IDs follow the format `nogood-NNN` with 3-digit zero-padded integers (e.g., `nogood-001`), and `_next_nogood_id` holds the next integer to assign, not the last used
+- Source: entries/2026/04/29/tests-test_nogood_id.md
+
+### nogood-id-import-sync [IN] OBSERVATION
+Both `import_json` and `import_into_network` must advance `_next_nogood_id` past the highest imported nogood ID to prevent collisions with pre-existing IDs
+- Source: entries/2026/04/24/tests-test_nogood_id.md
+
+### nogood-id-monotonic [IN] OBSERVATION
+`Network._next_nogood_id` only ever increases; deletions and clears do not decrement it, preventing ID reuse (fix for issue #26)
+- Source: entries/2026/04/24/tests-test_nogood_id.md
+
+### nogood-id-persisted-in-meta [IN] OBSERVATION
+The nogood counter is stored in the `network_meta` SQLite table and survives save/load cycles as a high-water mark, not a count of current nogoods
+- Source: entries/2026/04/24/tests-test_nogood_id.md
 
 ### nogood-resolution-maintains-consistent-ids [IN] DERIVED
 Nogood recording and resolution produces a consistent, referenceable history of contradictions
 - Depends on: backtracking-retracts-least-entrenched, add-nogood-always-records
 - Unless: nogood-ids-assume-append-only
 
+### nogoods-require-valid-nodes [IN] OBSERVATION
+Nogoods whose `Affects` list references node IDs not present in the network are silently skipped rather than raising an error during import
+- Source: entries/2026/04/24/tests-test_import_beliefs.md
+
 ### non-monotonic-system-is-single-reversible-primitive [IN] DERIVED
 The entire non-monotonic reasoning system — challenges, kill-switches, supersession, and dialectics — is built on a single primitive (outlist) that is inherently reversible, with no dedicated machinery for any defeat pattern.
 - Depends on: outlist-is-universal-defeat-mechanism, all-defeat-mechanisms-are-reversible, dialectical-structure-is-recursive-outlist
+
+### normalization-drops-unknown-refs [IN] OBSERVATION
+Both `_normalize_markdown` and `_normalize_json` silently drop antecedent/outlist references to IDs not present in the import set, preventing dangling edges in the dependency graph.
+- Source: entries/2026/04/24/reasons_lib-import_agent.md
+
+### only-reasons-lib-packaged [IN] OBSERVATION
+Setuptools is configured to include only the `reasons_lib` package in distributions; tests, entries, reviews, and knowledge-base artifacts are excluded from wheels
+- Source: entries/2026/04/29/pyproject.md
 
 ### origin-agnostic-guarantees-are-verifiable-and-self-sustaining [IN] DERIVED
 The origin-agnostic closed loop delivers both trustworthiness and invariant grounding from a single architectural source, and these guarantees are independently verifiable through the same self-sustaining maintenance loop's observability — verification and origin-agnosticism are inherently coupled rather than independently achieved.
@@ -664,9 +1268,17 @@ The system's complete revision trustworthiness holds identically across all beli
 The system's origin-agnostic closed loop simultaneously delivers two independent guarantees from a single architectural source: verifiable trustworthiness across all belief origins and complete invariant grounding for external beliefs — origin indifference is not merely a property but the shared mechanism producing both guarantees.
 - Depends on: origin-agnostic-trustworthiness-is-fully-verifiable, origin-agnostic-loop-grounds-external-invariants
 
+### out-beliefs-imported-as-bare-premises [IN] OBSERVATION
+Covered by existing `out-beliefs-imported-without-justifications` which captures the same invariant
+- Source: entries/2026/04/24/tests-test_import_agent.md
+
 ### out-beliefs-imported-without-justifications [IN] OBSERVATION
 Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
+
+### out-nodes-excluded-from-staleness [IN] OBSERVATION
+Duplicate of existing `check-stale-skips-out-nodes`.
+- Source: entries/2026/04/24/tests-test_check_stale_issue25.md
 
 ### outlist-absent-means-out [IN] OBSERVATION
 An outlist node that doesn't exist in the network is treated as OUT (justification satisfied); absent antecedent nodes fail validation — this asymmetry makes missing counter-evidence permissive while missing supporting evidence is strict
@@ -680,6 +1292,10 @@ The `outlist` field on `Justification` allows beliefs to be retracted when a def
 The outlist primitive is the sole defeat mechanism underlying all non-monotonic features: challenges, agent kill-switches, supersession, and direct defeasible reasoning
 - Depends on: outlist-enables-non-monotonic-reasoning, challenge-is-outlist-injection, kill-switch-uses-outlist-not-antecedent, supersession-is-reversible
 
+### outlist-nodes-not-in-dependents-index [IN] OBSERVATION
+Outlist nodes are not tracked in the `dependents` index, so when an outlist node is retracted (goes OUT), dependent GATE beliefs are not enqueued for re-evaluation by `_propagate` — requiring manual `reasons assert` as a workaround.
+- Source: entries/2026/04/24/defect-resolution-clean-network.md
+
 ### outlist-relationships-survive-persistence [IN] OBSERVATION
 Outlists are stored as `outlist_json` in the SQLite `justifications` table; on load, the dependent index is rebuilt for both antecedents and outlist nodes, preserving propagation behavior across save/load cycles
 - Source: entries/2026/04/23/topic-outlist-semantics.md
@@ -688,9 +1304,97 @@ Outlists are stored as `outlist_json` in the SQLite `justifications` table; on l
 The outlist primitive has complete, well-defined semantics: multiple entries form a conjunction (all must be OUT), absent nodes are treated as OUT (permissive default), and outlist relationships survive persistence through JSON serialization with rebuilt dependent indexes.
 - Depends on: multiple-outlist-is-conjunction, outlist-absent-means-out, outlist-relationships-survive-persistence
 
+### package-name-split [IN] OBSERVATION
+The pip-installable name is `ftl-reasons` but the importable Python package is `reasons_lib`; these are deliberately decoupled.
+- Source: entries/2026/04/24/pyproject.md
+
+### parse-beliefs-returns-dicts [IN] OBSERVATION
+Too granular — the dict-return pattern is partially covered by `api-functions-return-dicts`, and the specific field list is an implementation detail likely to evolve
+- Source: entries/2026/04/24/tests-test_import_beliefs.md
+
+### pg-access-control-raises-permission-error [IN] OBSERVATION
+`PgApi.show_node()` raises `PermissionError` when called with a `visible_to` list that doesn't intersect the node's `access_tags`, enforcing per-node access control at the API boundary
+- Source: entries/2026/04/29/tests-test_pg.md
+
+### pg-antecedent-refs-have-no-fk-constraints [IN] OBSERVATION
+Antecedent and outlist references in `rms_justifications` are JSONB arrays without foreign key constraints; nonexistent referenced nodes default to truth value OUT via `truth_cache.get(a, "OUT")`.
+- Source: entries/2026/04/29/reasons_lib-pg.md
+
+### pg-api-what-if-never-mutates [IN] OBSERVATION
+`PgApi.what_if_retract()` and `what_if_assert()` are read-only operations — they return cascade analysis (changed/went_in/went_out) without modifying database state, verified by checking `get_status()` before and after
+- Source: entries/2026/04/29/tests-test_pg.md
+
+### pg-cleanup-covers-five-tables [IN] OBSERVATION
+Fixture teardown deletes from exactly `rms_propagation_log`, `rms_justifications`, `rms_nogoods`, `rms_network_meta`, and `rms_nodes` — adding a new `project_id`-scoped table without updating the fixture will leak test data.
+- Source: entries/2026/04/29/tests-conftest.md
+
+### pg-compact-generates-budget-constrained-markdown [IN] OBSERVATION
+`PgApi.compact()` produces a markdown summary of the belief network constrained by a token budget, filtered by `visible_to` access tags, sorted by dependent count, with summary-node elision and nogood inclusion
+- Source: entries/2026/04/29/tests-test_pg.md
+
+### pg-fixture-uses-uuid-isolation [IN] OBSERVATION
+Each `pg_api` test fixture partitions its data by a unique UUID v4 `project_id` rather than using transactions or ephemeral databases, enabling safe concurrent test execution against a shared database.
+- Source: entries/2026/04/29/tests-conftest.md
+
+### pg-import-is-deferred [IN] OBSERVATION
+`PgApi` is imported inside the `pg_api` fixture body, not at module top-level, so the test suite loads without Postgres dependencies when running SQLite-only tests.
+- Source: entries/2026/04/29/tests-conftest.md
+
+### pg-multi-tenancy-via-project-id [IN] OBSERVATION
+`PgApi` isolates beliefs by `project_id` so identical node IDs in different projects store independent data with no cross-contamination — each test gets a unique UUID project
+- Source: entries/2026/04/29/tests-test_pg.md
+
+### pg-reimplements-network-in-sql [IN] OBSERVATION
+`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.
+- Source: entries/2026/04/29/reasons_lib-pg.md
+
+### pg-teardown-rollback-before-delete [IN] OBSERVATION
+The `pg_api` fixture calls `conn.rollback()` before cleanup deletes to recover from any failed-transaction state left by the test, preventing cleanup failures from cascading.
+- Source: entries/2026/04/29/tests-conftest.md
+
+### pg-uses-project-id-for-multi-tenancy [IN] OBSERVATION
+Every `PgApi` query includes `project_id` in its WHERE clause, providing multi-tenant isolation with no cross-project queries and composite primary keys `(id, project_id)`.
+- Source: entries/2026/04/29/reasons_lib-pg.md
+
+### pg-what-if-uses-transaction-rollback [IN] OBSERVATION
+`what_if_retract`/`what_if_assert` perform real mutations inside a transaction, collect cascade effects, then rollback — reusing the propagation engine without duplicating logic.
+- Source: entries/2026/04/29/reasons_lib-pg.md
+
+### pgapi-bfs-propagation-in-python [IN] OBSERVATION
+PgApi implements BFS propagation in application-level Python (not stored procedures), using JSONB containment queries (`@>`) against GIN indexes to find dependents
+- Source: entries/2026/04/28/reasons_lib-pg.md
+
+### pgapi-multi-tenant-composite-keys [IN] OBSERVATION
+All PgApi tables use composite primary keys `(id, project_id)` for multi-tenancy, with JSONB columns (not TEXT) for antecedents, outlist, and metadata
+- Source: entries/2026/04/28/reasons_lib-pg.md
+
+### pgapi-no-in-memory-network [IN] OBSERVATION
+`PgApi` executes all operations as direct SQL against PostgreSQL — no in-memory `Network` object is ever constructed, enabling concurrent writers
+- Source: entries/2026/04/28/reasons_lib-pg.md
+
+### pgapi-one-transaction-per-method [IN] OBSERVATION
+Each `PgApi` public method is a single PostgreSQL transaction that commits at the end; `__exit__` rolls back on exception
+- Source: entries/2026/04/28/reasons_lib-pg.md
+
+### pgapi-partial-api-coverage [IN] OBSERVATION
+PgApi implements core operations (add/retract/assert/search/nogood/explain) but defers simulation, dialectics, namespace support, import/export, and maintenance operations to future work
+- Source: entries/2026/04/28/reasons_lib-pg.md
+
 ### premise-behavior-emerges-from-absence [IN] DERIVED
 Premise behavior is not explicitly implemented — it emerges from three defaults: nodes with no justifications default to IN, empty antecedent lists are vacuously valid, and the system preserves a premise's current truth value rather than deriving it.
 - Depends on: premises-have-no-justifications, premise-defaults-to-in, empty-antecedents-vacuously-valid
+
+### premise-can-receive-justification [IN] OBSERVATION
+A premise node (initially no justifications) can receive a justification via `add_justification`, giving it a derived backup path that keeps it IN even if its premise status is retracted.
+- Source: entries/2026/04/24/tests-test_add_justification.md
+
+### premise-count-is-per-justification-max [IN] OBSERVATION
+`premise_count` in the return value reports the maximum antecedent count across the node's justifications, not the total across all justifications (any_mode with 3 premises returns 1, not 3).
+- Source: entries/2026/04/24/tests-test_any_mode.md
+
+### premise-default-in [IN] OBSERVATION
+Covered by existing `premise-behavior-emerges-from-absence` which captures this as an emergent property
+- Source: entries/2026/04/24/tests-test_network.md
 
 ### premise-defaults-to-in [IN] OBSERVATION
 A node with no justifications (a premise) defaults to IN; `_compute_truth` preserves its current truth value rather than recomputing it.
@@ -721,6 +1425,10 @@ Truth propagation completes without runtime errors across all reachable nodes
 - Depends on: propagation-is-bfs, propagate-cascade-stops-on-unchanged, derive-depth-cycle-guard
 - Unless: propagate-assumes-dependents-exist
 
+### propagation-is-immediate [IN] OBSERVATION
+Covered by existing `mutations-are-atomic-and-safely-propagated` and `propagation-is-safe-and-terminating`
+- Source: entries/2026/04/24/tests-test_network.md
+
 ### propagation-is-safe-and-terminating [IN] DERIVED
 Truth propagation is both lifecycle-safe and guaranteed to terminate: retracted nodes are skipped, trigger nodes are never recomputed, BFS prevents stack overflow, and stop-on-unchanged prevents oscillation — propagation respects every node state it encounters.
 - Depends on: propagation-terminates-deterministically, propagation-respects-node-lifecycle
@@ -732,6 +1440,10 @@ Truth propagation respects node lifecycle states: retracted nodes are skipped du
 ### propagation-terminates-deterministically [IN] DERIVED
 Truth propagation is guaranteed to terminate: BFS prevents stack overflow, stop-on-unchanged prevents oscillation, and fixpoint iteration bounds the outer loop
 - Depends on: propagation-is-bfs, propagate-cascade-stops-on-unchanged, recompute-all-uses-fixpoint
+
+### python-310-floor [IN] OBSERVATION
+The project requires Python 3.10+ (`requires-python = ">=3.10"`), establishing the minimum language features available throughout the codebase.
+- Source: entries/2026/04/24/pyproject.md
 
 ### read-and-write-paths-are-both-reliable [IN] DERIVED
 Both the read path (staleness checking detects all forms of source drift without false negatives) and the write path (truth propagation completes without runtime errors across all reachable nodes) are operationally reliable, ensuring the system functions correctly in both observational and mutational modes.
@@ -749,9 +1461,37 @@ The TMS engine achieves deterministic reversible non-monotonic reasoning: truth 
 The reasoning system produces deterministic, reversible truth evaluations AND can exhaustively explore all derivable conclusions with guaranteed termination, ensuring the system finds every reachable belief state with predictable outcomes.
 - Depends on: reasoning-engine-is-deterministic-and-reversible, derive-pipeline-is-exhaustive-and-terminating
 
+### rebuild-dependents-clears-before-rebuilding [IN] OBSERVATION
+`_rebuild_dependents()` wipes all existing dependent sets before recomputing from justifications, so stale entries are always removed rather than incrementally patched
+- Source: entries/2026/04/29/tests-test_dependents_integrity.md
+
+### rebuild-dependents-is-idempotent [IN] OBSERVATION
+Calling `_rebuild_dependents()` twice in succession produces identical `dependents` sets on every node.
+- Source: entries/2026/04/24/tests-test_dependents_integrity.md
+
 ### recompute-all-uses-fixpoint [IN] OBSERVATION
 `recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.
 - Source: entries/2026/04/23/reasons_lib-network.md
+
+### rename-from-rms-at-0.3.0 [IN] OBSERVATION
+The project was renamed from `rms` to `reasons` in version 0.3.0, driven by a measured 5 percentage-point LLM accuracy improvement in ablation study
+- Source: entries/2026/04/29/CHANGELOG.md
+
+### resolve-source-defaults-to-home-git [IN] OBSERVATION
+When no `repos` mapping is provided, `resolve_source_path` falls back to `~/git/<repo-name>/<rel-path>` by convention.
+- Source: entries/2026/04/29/reasons_lib-check_stale.md
+
+### resolve-source-fallback-path [IN] OBSERVATION
+When no `repos` mapping is provided, `resolve_source_path` constructs paths as `~/git/<repo-name>/<relative-path>` by convention.
+- Source: entries/2026/04/24/reasons_lib-check_stale.md
+
+### resolve-source-path-never-raises [IN] OBSERVATION
+`resolve_source_path` returns `None` for nonexistent files instead of raising exceptions; callers must check the `None` case.
+- Source: entries/2026/04/29/reasons_lib-check_stale.md
+
+### resolve-source-path-returns-none-on-missing [IN] OBSERVATION
+`resolve_source_path` returns `None` (not an exception) when the resolved file does not exist on disk or when the source string is empty.
+- Source: entries/2026/04/29/tests-test_check_stale.md
 
 ### resource-management-supports-belief-currency [IN] DERIVED
 Active belief currency management — sustainable derivation of new beliefs and staleness detection for existing ones — operates with accurate bidirectional token budget control, ensuring derivation rounds allocate resources correctly per agent and output fits context-limited consumer constraints.
@@ -761,9 +1501,33 @@ Active belief currency management — sustainable derivation of new beliefs and 
 Gapless lifecycle management is resource-sustainable: accurate bidirectional token budgets support both new belief derivation and existing belief staleness detection, ensuring no lifecycle gap arises from resource exhaustion.
 - Depends on: resource-management-supports-belief-currency, lifecycle-management-is-gapless
 
+### restoration-hints-require-surviving-premises [IN] OBSERVATION
+A retraction cascade only produces a `restoration_hint` for a node if it has a multi-premise SL justification and at least one of its premises is still IN after the cascade.
+- Source: entries/2026/04/24/tests-test_any_mode.md
+
+### result-schema-uniformity [IN] OBSERVATION
+Both `content_changed` and `source_deleted` results from `check_stale` share exactly the same six keys: `node_id`, `old_hash`, `new_hash`, `source`, `source_path`, `reason` — consumers can handle both uniformly.
+- Source: entries/2026/04/24/tests-test_check_stale_issue25.md
+
+### results-sorted-by-node-id [IN] OBSERVATION
+`check_stale()` returns results sorted lexicographically by `node_id`, enforced by iterating `sorted(network.nodes.items())`.
+- Source: entries/2026/04/24/tests-test_check_stale_issue25.md
+
+### retract-computes-restoration-hints [IN] OBSERVATION
+`retract_node` computes `restoration_hints` by examining surviving premises of multi-antecedent justifications, enabling callers to identify which premises could rebuild retracted derived beliefs.
+- Source: entries/2026/04/29/reasons_lib-api.md
+
+### retract-returns-changed-set [IN] OBSERVATION
+`Network.retract()` returns a list of all node IDs whose truth value changed, including the target and all transitively affected dependents; retracting an already-OUT node returns `[]`
+- Source: entries/2026/04/29/tests-test_network.md
+
 ### retracted-nodes-skipped-in-propagation [IN] OBSERVATION
 Retracted nodes (marked with `_retracted` metadata) are skipped during BFS propagation but remain in the network for potential restoration.
 - Source: entries/2026/04/23/reasons_lib-network.md
+
+### retracted-pin-survives-recompute [IN] OBSERVATION
+A node explicitly retracted via `retract()` gets a `_retracted` metadata flag that pins it OUT — surviving both `assert_node` on its antecedents and `recompute_all()`, clearable only by `assert_node` on the pinned node itself
+- Source: entries/2026/04/24/tests-test_network.md
 
 ### revision-achieves-complete-trustworthiness [IN] DERIVED
 The revision system simultaneously achieves three independent trustworthiness properties: verifiable soundness (complete two-dimensional provenance/temporal coverage with reliable propagation), end-to-end reliability (across logical and infrastructure layers), and complete auditability (every correction leaves traceable history).
@@ -811,6 +1575,26 @@ The revision system is universally safe across both belief provenance boundaries
 ### revision-system-is-reliable-and-auditable [IN] DERIVED
 The revision system achieves two independent trustworthiness properties simultaneously: end-to-end reliability across logical and infrastructure layers with no blind spots, and complete auditability with traceable correction history spanning all belief origins.
 - Depends on: revision-is-end-to-end-reliable, corrections-span-all-origins-with-full-auditability
+
+### rewrite-dependents-updates-both-antecedents-and-outlists [IN] OBSERVATION
+`_rewrite_dependents(net, old, new)` in `api.py` rewrites justification references and dependent sets for both antecedent and outlist occurrences of the old node ID, not just one or the other
+- Source: entries/2026/04/29/tests-test_dependents_integrity.md
+
+### run-cli-helper-catches-systemexit [IN] OBSERVATION
+The `run_cli` test harness intercepts `SystemExit` to extract exit codes, preventing argparse errors or explicit `sys.exit()` calls from terminating the test process.
+- Source: entries/2026/04/29/tests-test_cli.md
+
+### sample-mode-is-deterministic [IN] OBSERVATION
+`_build_beliefs_section` with `sample=True` and a fixed `seed` produces identical output across calls, enabling reproducible derive prompts
+- Source: entries/2026/04/24/tests-test_derive_budget.md
+
+### search-falls-back-to-substring [IN] OBSERVATION
+`api.search()` tries FTS5 full-text search first, then falls back to substring matching if FTS5 tables don't exist or error; it always produces results if substring matches exist.
+- Source: entries/2026/04/24/reasons_lib-api.md
+
+### search-uses-fts5-with-substring-fallback [IN] OBSERVATION
+`api.search()` tries FTS5 first (`_fts_search`), falls back to substring matching (`_substring_search`), then expands results with 1-hop neighbors from the dependency graph.
+- Source: entries/2026/04/29/reasons_lib-api.md
 
 ### self-correction-has-complete-traceable-history [IN] DERIVED
 The system's self-correction is both temporally complete (spanning creation-time contradiction resolution and maintenance-time staleness detection) and historically traceable (nogoods recorded consistently with stable IDs), ensuring corrections can be audited and understood after the fact.
@@ -862,6 +1646,18 @@ The system unifies semantic minimality (all non-monotonic features and truth sem
 Both truth maintenance semantics and belief revision achieve comprehensive coverage through the same minimal primitives — the outlist primitive simultaneously enables emergent truth evaluation (disjunction over conjunction with absence semantics) and all non-monotonic revision mechanisms (defeat, backtracking, dialectics), confirming minimality as a cross-cutting architectural principle rather than a property of any single subsystem.
 - Depends on: system-semantics-are-minimal-and-complete, belief-revision-is-comprehensive-and-minimal
 
+### single-cli-entry-point [IN] OBSERVATION
+The only registered console script is `reasons`, pointing to `reasons_lib.cli:main`; all subcommands are dispatched internally
+- Source: entries/2026/04/29/pyproject.md
+
+### single-node-api-raises-permissionerror [IN] OBSERVATION
+API functions that target a single node by ID (`show_node`, `explain_node`, `trace_assumptions`, `trace_access_tags`) raise `PermissionError` when the caller lacks clearance; collection endpoints silently filter instead.
+- Source: entries/2026/04/24/tests-test_access_tags.md
+
+### sl-conjunction-any-disjunction [IN] OBSERVATION
+Covered by existing `sl-justification-semantics`, `truth-is-disjunctive-over-conjunctive-rules`, and `node-in-if-any-justification-valid`
+- Source: entries/2026/04/24/tests-test_network.md
+
 ### sl-justification-semantics [IN] OBSERVATION
 An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes are OUT; a node is IN iff ANY of its justifications is valid (conjunction within a justification, disjunction across justifications).
 - Source: entries/2026/04/23/reasons_lib-network.md
@@ -869,6 +1665,26 @@ An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes ar
 ### sl-outlist-asymmetry [IN] OBSERVATION
 Missing antecedents invalidate a justification, but missing outlist nodes do not — this asymmetry enables "believe X unless Y" where Y may not yet exist in the network
 - Source: entries/2026/04/23/reasons_lib-network-_justification_valid.md
+
+### source-path-format [IN] OBSERVATION
+Source references use `"reponame/relative/path"` format; `resolve_source_path` splits on the first `/` to look up the repo key in a `repos: dict[str, Path]` mapping.
+- Source: entries/2026/04/24/tests-test_check_stale.md
+
+### source-paths-use-repo-alias-prefix [IN] OBSERVATION
+Node source paths follow a `repo-alias/relative-path` convention where the first `/`-delimited segment is a key into the `repos` dict that maps aliases to filesystem roots, decoupling belief source references from absolute paths.
+- Source: entries/2026/04/29/tests-test_check_stale.md
+
+### stale-maps-to-out [IN] OBSERVATION
+STALE status in `beliefs.md` is mapped to OUT (retracted) in the network; there is no distinct STALE state in the TMS data model.
+- Source: entries/2026/04/24/reasons_lib-import_beliefs.md
+
+### stale-maps-to-out-on-import [IN] OBSERVATION
+Nodes marked `[STALE]` in beliefs.md are stored with truth value OUT during both initial import and subsequent syncs
+- Source: entries/2026/04/24/tests-test_sync_agent.md
+
+### stale-result-reasons [IN] OBSERVATION
+`check_stale` uses two distinct reason codes: `"content_changed"` when the source file exists but its hash differs, and `"source_deleted"` when the file is gone from disk.
+- Source: entries/2026/04/24/tests-test_check_stale.md
 
 ### staleness-checking-is-comprehensive [IN] DERIVED
 Staleness checking detects all nodes whose source material has changed on disk
@@ -884,9 +1700,57 @@ The staleness CI gate detects all forms of source material drift without false n
 Staleness checking is designed as a safe CI gate: it never mutates state, only checks IN nodes, requires both source fields, and exits nonzero to fail the pipeline
 - Depends on: check-stale-is-read-only, check-stale-exits-nonzero, check-stale-skips-out-nodes, check-stale-requires-both-source-fields
 
+### staleness-results-are-dicts-not-exceptions [IN] OBSERVATION
+Both `check_stale` and `hash_sources` report problems (missing files, changed content, deleted sources) as list-of-dict return values, never raising exceptions — designed for batch audit operations that report all problems rather than aborting on the first.
+- Source: entries/2026/04/29/tests-test_check_stale.md
+
+### staleness-uses-full-sha256 [IN] OBSERVATION
+Staleness detection compares full 64-character SHA-256 hex digests via exact string equality, not truncated prefixes or fuzzy comparison.
+- Source: entries/2026/04/29/reasons_lib-check_stale.md
+
+### sticky-retraction-survives-recompute-all [IN] OBSERVATION
+A node with `_retracted` metadata stays OUT even when `recompute_all()` re-evaluates the entire network — sticky retraction is a durable pin that only `assert_node` can clear
+- Source: entries/2026/04/29/tests-test_network.md
+
+### storage-derives-counter-from-existing-nogoods [IN] OBSERVATION
+When loading a database without the `network_meta` table (pre-fix schema), `Storage.load()` derives `_next_nogood_id` from the max ID of existing nogoods rather than defaulting to 1, enabling backward-compatible upgrades
+- Source: entries/2026/04/29/tests-test_nogood_id.md
+
+### storage-fts-is-derived-index [IN] OBSERVATION
+The FTS5 full-text search index is rebuilt from scratch during every `save()`; it is a derived index, never the source of truth.
+- Source: entries/2026/04/24/reasons_lib-storage.md
+
+### storage-fts-rebuilt-on-every-save [IN] OBSERVATION
+The `nodes_fts` full-text index is deleted and rebuilt from scratch on each `save()`, guaranteeing consistency with the `nodes` table at the cost of full-reindex overhead.
+- Source: entries/2026/04/29/reasons_lib-storage.md
+
+### storage-handles-schema-evolution-via-try-except [IN] OBSERVATION
+Missing tables from older database versions (`repos`, `network_meta`) are handled by swallowing exceptions during `load()` rather than formal migrations — a backward-compatibility substitute that silently degrades.
+- Source: entries/2026/04/29/reasons_lib-storage.md
+
+### storage-lists-as-json-columns [IN] OBSERVATION
+Antecedents, outlist, nogood node sets, and metadata dicts are stored as JSON text columns rather than normalized join tables, simplifying the schema at the cost of individual field queryability.
+- Source: entries/2026/04/24/reasons_lib-storage.md
+
 ### storage-load-bypasses-propagation [IN] OBSERVATION
 `load()` constructs nodes directly into `network.nodes` rather than calling `add_node`, so truth maintenance propagation does not fire during deserialization.
 - Source: entries/2026/04/23/reasons_lib-storage.md
+
+### storage-no-partial-load [IN] OBSERVATION
+`Storage.load()` either returns a complete `Network` with all state or fails; there is no streaming, lazy-loading, or partial deserialization.
+- Source: entries/2026/04/24/reasons_lib-storage.md
+
+### storage-old-schema-compat [IN] OBSERVATION
+`load()` tolerates missing `network_meta` and `repos` tables via silent `try/except`, supporting databases created before those tables were added; `next_nogood_id` is derived from existing IDs as a fallback.
+- Source: entries/2026/04/24/reasons_lib-storage.md
+
+### storage-round-trip-preserves-dependents [IN] OBSERVATION
+Covered by existing belief `persistence-round-trip-is-lossless` — dependents are part of the persisted state
+- Source: entries/2026/04/29/tests-test_dependents_integrity.md
+
+### storage-save-is-atomic-snapshot [IN] OBSERVATION
+Duplicate of existing `storage-save-is-full-replace` and `mutation-pipeline-is-atomic-snapshot`
+- Source: entries/2026/04/29/reasons_lib-storage.md
 
 ### storage-save-is-full-replace [IN] OBSERVATION
 `Storage.save()` deletes all rows from every table before re-inserting the entire network; there is no incremental or differential update path.
@@ -896,13 +1760,41 @@ Staleness checking is designed as a safe CI gate: it never mutates state, only c
 `load()` trusts the stored `truth_value` without re-running propagation, making the database the source of truth for node status.
 - Source: entries/2026/04/23/reasons_lib-storage.md
 
+### storage-uses-json-columns-for-lists [IN] OBSERVATION
+Antecedent IDs, outlist IDs, nogood node sets, and node metadata are stored as JSON text columns rather than junction tables — acceptable because the code always loads the full network, never queries relationships via SQL joins.
+- Source: entries/2026/04/29/reasons_lib-storage.md
+
+### storage-uses-wal-mode [IN] OBSERVATION
+SQLite connections enable WAL mode on initialization, allowing concurrent readers without blocking writes.
+- Source: entries/2026/04/24/reasons_lib-storage.md
+
 ### supersession-is-reversible [IN] OBSERVATION
 `supersede()` adds the new node's ID to the old node's outlist rather than deleting the old node; retracting the new belief automatically restores the old one through normal propagation
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 
+### sync-agent-first-call-equals-import [IN] OBSERVATION
+Calling `sync_agent` for an agent with no prior import produces identical results to `import_agent`, including all node creation and namespace wiring
+- Source: entries/2026/04/24/tests-test_sync_agent.md
+
+### sync-agent-idempotent [IN] OBSERVATION
+Two consecutive `sync_agent` calls with identical file content produce zero additions, removals, and updates on the second call
+- Source: entries/2026/04/24/tests-test_sync_agent.md
+
+### sync-agent-remote-wins [IN] OBSERVATION
+Duplicates existing belief `sync-is-remote-wins`
+- Source: entries/2026/04/24/tests-test_sync_agent.md
+
+### sync-agent-returns-count-dict [IN] OBSERVATION
+`sync_agent` returns a dict with keys `beliefs_added`, `beliefs_removed`, `beliefs_updated`, and `beliefs_unchanged` for accurate accounting of what changed
+- Source: entries/2026/04/24/tests-test_sync_agent.md
+
 ### sync-is-remote-wins [IN] OBSERVATION
 `_sync_claims` implements remote-wins reconciliation: remote text/metadata overwrites local, beliefs removed from remote are retracted locally, and beliefs remotely IN but locally OUT are re-asserted
 - Source: entries/2026/04/23/reasons_lib-import_agent.md
+
+### sync-preserves-cascade-wiring [IN] OBSERVATION
+After `sync_agent` runs, the `agent:inactive` outlist entries on beliefs are preserved, so retracting `agent:active` still cascades all agent beliefs to OUT
+- Source: entries/2026/04/24/tests-test_sync_agent.md
 
 ### system-artifacts-maintain-consistent-identification [IN] DERIVED
 Both automatically-generated dialectical structures (challenge nodes with deterministic auto-ID generation) and contradiction records (nogoods with unconditional recording) maintain consistent, referenceable identification schemes — system-generated artifacts are as addressable as user-created beliefs.
@@ -949,6 +1841,22 @@ The system's three ultimate properties — self-sustainability through minimalit
 The entire TMS — both monotonic truth maintenance and non-monotonic defeat — derives from a minimal set of uniform primitives: emergent truth rules (disjunction over conjunction, premise-from-absence) combined with a single reversible outlist mechanism that underlies all defeat features, with no additional machinery required.
 - Depends on: truth-semantics-are-emergent-and-uniform, non-monotonic-system-is-single-reversible-primitive
 
+### tag-inheritance-is-transitive-union [IN] OBSERVATION
+Derived nodes inherit the sorted union of all ancestor `access_tags`, propagating transitively through arbitrarily long justification chains including diamond dependencies.
+- Source: entries/2026/04/29/tests-test_access_tags.md
+
+### tag-propagation-is-dynamic [IN] OBSERVATION
+Adding a justification to an existing node triggers access tag recomputation that cascades through all downstream dependents via BFS, not just at node creation time.
+- Source: entries/2026/04/24/tests-test_access_tags.md
+
+### test-network-covers-all-propagation-paths [IN] OBSERVATION
+Test coverage claim, not a codebase invariant — what the test suite covers can change without affecting production behavior
+- Source: entries/2026/04/29/tests-test_network.md
+
+### tests-verify-via-output-headers [IN] OBSERVATION
+Test methodology detail (how assertions parse output), not a codebase architectural invariant
+- Source: entries/2026/04/24/tests-test_derive_budget.md
+
 ### three-layer-architecture [IN] OBSERVATION
 The codebase is a three-layer stack: data model (`__init__.py`), TMS engine (`network.py`), and persistence (`storage.py`), with `api.py` providing functional API and `cli.py` as a thin argparse wrapper.
 - Source: entries/2026/04/23/scan-ftl-reasons.md
@@ -975,6 +1883,10 @@ The TMS core handles both normal operation (crash-free truth propagation via BFS
 Token budget management is accurate in both directions: the compact module reliably constrains output size for context-limited consumers, while the derive pipeline correctly allocates input budgets per agent — ensuring resource-bounded operation across the entire LLM integration surface.
 - Depends on: compact-budget-controls-output-size, derive-budget-allocation-is-accurate
 
+### topo-sort-breaks-cycles [IN] OBSERVATION
+Duplicates existing belief `import-topo-sort-tolerates-cycles`.
+- Source: entries/2026/04/24/reasons_lib-import_agent.md
+
 ### total-invariant-preservation-encompasses-all-beliefs [IN] DERIVED
 Total invariant preservation — comprehensive in scope and architecturally grounded — fully encompasses externally-integrated beliefs that achieve integration parity along all quality axes, establishing that the system's invariant regime makes no distinction between internal and external beliefs at any level.
 - Depends on: invariant-preservation-is-total, external-beliefs-achieve-total-integration
@@ -999,9 +1911,65 @@ A node's truth is a disjunction over justifications (any valid justification mak
 Truth maintenance semantics are fully emergent from simple uniform rules: premise behavior arises from empty justification lists, evaluation is pure and type-agnostic across SL/CP, and node truth is a clean disjunction-of-conjunctions — no special cases exist anywhere in the evaluation path.
 - Depends on: premise-behavior-emerges-from-absence, truth-is-disjunctive-over-conjunctive-rules, justification-evaluation-is-uniform-and-pure
 
+### untagged-always-visible [IN] OBSERVATION
+Nodes with no `access_tags` key in metadata are never filtered by `visible_to` — they are treated as unconditionally public.
+- Source: entries/2026/04/24/tests-test_access_tags.md
+
+### untagged-nodes-always-visible [IN] OBSERVATION
+Nodes without `access_tags` metadata pass all `visible_to` filters unconditionally and are never hidden by access control.
+- Source: entries/2026/04/29/tests-test_access_tags.md
+
+### unused-node-import-in-dangling-test [IN] OBSERVATION
+Unstable trivia — an unused import is likely to be cleaned up and is not an architectural invariant.
+- Source: entries/2026/04/29/tests-test_dangling_dependents.md
+
+### unused-path-import [IN] OBSERVATION
+Dead code observation (`Path` imported but unused) — unstable detail that will change when cleaned up.
+- Source: entries/2026/04/24/reasons_lib-import_beliefs.md
+
+### verify-dependents-is-read-only [IN] OBSERVATION
+`Network.verify_dependents()` never modifies the dependents index; it returns a list of human-readable error strings without side effects
+- Source: entries/2026/04/29/tests-test_dependents_integrity.md
+
+### verify-dependents-is-readonly [IN] OBSERVATION
+`verify_dependents()` never modifies `node.dependents`; it only reads and reports discrepancies as a list of human-readable strings containing `"extra"` or `"missing"`.
+- Source: entries/2026/04/24/tests-test_dependents_integrity.md
+
+### version-is-manual [IN] OBSERVATION
+The version is statically declared in `pyproject.toml` with no dynamic version plugin, `__version__` import, or SCM-based versioning — it must be bumped manually.
+- Source: entries/2026/04/24/pyproject.md
+
+### visibility-is-subset-check [IN] OBSERVATION
+`_is_visible` requires ALL of a node's `access_tags` to be present in the caller's `visible_to` list (subset check, not intersection); nodes with no tags are always visible.
+- Source: entries/2026/04/24/reasons_lib-api.md
+
+### visible-to-is-optional-filter [IN] OBSERVATION
+`_parse_visible_to` returns `None` when `--visible-to` is absent, which the API interprets as "no access restriction"; it never defaults to an empty list.
+- Source: entries/2026/04/24/reasons_lib-cli.md
+
+### visible-to-superset-semantics [IN] OBSERVATION
+A node with `access_tags: ["finance", "hr"]` is only visible to callers whose `visible_to` list contains both tags (superset/subset check, not intersection).
+- Source: entries/2026/04/24/tests-test_access_tags.md
+
+### warning-log-contract-action-target-value [IN] OBSERVATION
+Dangling-dependent warnings in `net.log` have `action="warn"`, a `target` field with the ghost node ID, and a `value` string containing both `"dangling"` and the parent node ID.
+- Source: entries/2026/04/29/tests-test_dangling_dependents.md
+
+### warning-log-schema-stable [IN] OBSERVATION
+Dangling-dependent warnings use the dict schema `{action: "warn", target: <ghost_id>, value: <str containing "dangling" and parent_id>, timestamp: <str>}` and tests enforce all four fields.
+- Source: entries/2026/04/24/tests-test_dangling_dependents.md
+
 ### write-false-prevents-persistence [IN] OBSERVATION
 Functions using `_with_network(write=False)` can mutate the in-memory network (as `what_if_retract` does) but changes are never saved to SQLite; write-or-not is declared upfront and never conditional.
 - Source: entries/2026/04/23/reasons_lib-api.md
+
+### zero-runtime-dependencies [IN] OBSERVATION
+`ftl-reasons` declares `dependencies = []` in pyproject.toml; the entire `reasons_lib` package runs on Python's standard library alone (sqlite3, json, argparse); PostgreSQL support is opt-in via the `pg` extra
+- Source: entries/2026/04/29/pyproject.md
+
+### zero-runtime-deps [IN] OBSERVATION
+`ftl-reasons` has zero runtime dependencies; the entire library runs on Python's stdlib alone (SQLite via `sqlite3`, dataclasses, etc.).
+- Source: entries/2026/04/24/pyproject.md
 
 ### all-belief-modification-paths-are-operationally-safe [OUT] DERIVED
 Both human-initiated belief modifications (dialectical challenge/defend with irreversible premise transformation) and machine-generated belief modifications (LLM derivation with fail-soft validation, agent import with namespace containment) are operationally safe through independent but compositionally compatible safety mechanisms.
@@ -1260,3 +2228,4 @@ The fully unified system — minimal primitives, sound multi-agent scaling, and 
 Every mutation source produces fully correct persisted state that preserves boundary-agnostic integrity — not just safe operation, but verified output correctness across internal/external boundaries and all source types — only when implementation-level defects in propagation and budget allocation are resolved.
 - Depends on: all-mutation-sources-are-safe-and-uniform, integrity-is-boundary-and-source-agnostic
 - Unless: derive-agent-count-bug, propagate-assumes-dependents-exist
+

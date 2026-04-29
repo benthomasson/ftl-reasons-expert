@@ -38,6 +38,33 @@
       "date": "",
       "metadata": {}
     },
+    "access-control-enforced-at-read-not-write": {
+      "text": "Access control (`_is_visible`) is enforced at read/query boundaries (`show_node`, `explain_node`, `trace_assumptions`) via `PermissionError`, but write operations (`add_node`, `retract_node`, `assert_node`) do not check visibility.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "access-tags-subset-gate": {
+      "text": "A tagged node is visible only when its `access_tags` are a subset of the caller's `visible_to` set; partial overlap (intersection without containment) is insufficient for access.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "access-tags-union-inheritance": {
+      "text": "A derived node's `access_tags` is the sorted, deduplicated union of all antecedent tags across all justifications, merged with any explicit tags on the node itself.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "active-inactive-relay-pair": {
       "text": "Each imported agent gets exactly two infrastructure nodes: `agent:active` (premise, starts IN) and `agent:inactive` (derived via SL with `outlist=[active_id]`, starts OUT); every imported belief includes `inactive_id` in its outlist",
       "truth_value": "IN",
@@ -52,6 +79,60 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "active-premise-not-in-antecedents": {
+      "text": "Covered by existing `active-not-in-antecedents` and `kill-switch-uses-outlist-not-antecedent`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-justification-propagates-tags-downstream": {
+      "text": "Calling `add_justification` on an existing node recomputes `access_tags` for the target and all its transitive dependents, enabling retroactive tag propagation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-justification-registers-dependents": {
+      "text": "`add_justification` updates the `dependents` set on both antecedent and outlist nodes so that future retraction/restoration propagation reaches the target node.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_add_justification.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-justification-returns-change-dict": {
+      "text": "`Network.add_justification` returns a dict with keys `node_id`, `old_truth_value`, `new_truth_value`, and `changed` (list of all nodes whose truth value changed).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_add_justification.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-justification-triggers-propagation": {
+      "text": "Adding a justification that changes a node's truth value triggers BFS propagation that cascades to all transitive dependents, including restoring OUT nodes whose justifications become valid.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_add_justification.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "add-node-evaluates-justification-at-insertion": {
+      "text": "When `add_node` is called with justifications, the node's initial truth value is computed immediately from the current state of its antecedents \u2014 a derived node added when its antecedent is OUT starts OUT",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_network.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -107,6 +188,15 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "agent-import-creates-two-control-nodes": {
+      "text": "Covered by existing `active-inactive-relay-pair` which captures the same two-node control structure",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_agent.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -417,11 +507,56 @@
       "date": "",
       "metadata": {}
     },
+    "any-mode-is-structural-expansion": {
+      "text": "Duplicates existing belief `any-mode-creates-per-premise-justifications` which already captures that any_mode expands N premises into N single-premise SL justifications.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_any_mode.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "any-mode-outlist-preserved": {
+      "text": "When `any_mode` expands `sl=\"a,b\" unless=\"enemy\"`, each resulting single-premise justification inherits `\"enemy\"` in its outlist.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_any_mode.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-add-justification-requires-justification-arg": {
+      "text": "`api.add_justification` raises `ValueError` if none of `sl`, `cp`, or `unless` is provided \u2014 at least one justification specification is mandatory.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_add_justification.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-cascade-symmetry-tested": {
+      "text": "Test coverage claim; the underlying behavioral invariant (symmetric retract/restore cascades) is already covered by existing beliefs including `reasoning-engine-is-deterministic-and-reversible`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "api-functions-return-dicts": {
       "text": "Every public API function returns a `dict` (or `str` for markdown/compact), never a `Network` or `Node` object, ensuring JSON-serializability at the boundary for CLI, HTTP, and tool-call consumers.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-idempotent-retract-assert": {
+      "text": "Already exists as an accepted belief with the same ID and content.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -447,11 +582,92 @@
       "date": "",
       "metadata": {}
     },
+    "api-list-negative-filters-hallucinated-ids": {
+      "text": "`list_negative()` discards any node IDs returned by the LLM that don't exist in the database, preventing hallucinated IDs from appearing in results.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-list-negative-graceful-on-malformed-llm": {
+      "text": "When the LLM returns unparseable output, `list_negative()` returns `count == 0` rather than raising an exception \u2014 graceful degradation over failure.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-mutating-ops-use-before-after-diffing": {
+      "text": "Mutating operations (`retract_node`, `assert_node`, `what_if_retract`, `what_if_assert`) snapshot all truth values before the operation and diff afterward to classify changes into `went_out`/`went_in` lists.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-retract-cascade-is-transitive": {
+      "text": "`api.retract_node()` propagates OUT to all transitively dependent SL-derived nodes, not just direct children \u2014 retracting a root premise retracts the entire downstream chain.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-superseded-nodes-excluded-from-gated": {
+      "text": "`list_gated()` omits nodes that have been superseded via `api.supersede()`, even if they still have active blockers \u2014 stale conclusions don't pollute the blocker view.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-tests-black-box": {
+      "text": "Test methodology claim, not a behavioral invariant about the codebase. Developers learn this from reading the tests, not from a belief registry.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-tests-cover-subset": {
+      "text": "Test coverage inventory, not a behavioral claim about the codebase. Coverage gaps are better tracked as project-level issues.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-uses-lazy-imports": {
+      "text": "Heavy modules (`derive`, `compact`, `export_markdown`, `check_stale`, `import_beliefs`, `import_agent`) are imported inside function bodies in `api.py`, not at module level, to keep the module fast to import for callers that only need a subset of operations.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "api-uses-with-network-context-manager": {
       "text": "`api.py` uses a `_with_network` context manager to ensure load-operate-save atomicity for all network mutations.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/scan-ftl-reasons.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "api-visible-to-filters-both-result-and-prompt": {
+      "text": "Already exists as `api-visible-to-filters-both-result-and-prompt`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_api.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -514,6 +730,78 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-agentic-loop-is-bounded": {
+      "text": "The tool-call loop in `ask()` has a maximum iteration count; an LLM that perpetually requests more searches is terminated and the raw response is returned.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-always-returns-string": {
+      "text": "`ask()` returns a string on every code path \u2014 LLM response, raw search results, or fallback; it never raises an exception to the caller.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-falls-back-to-raw-search": {
+      "text": "When LLM synthesis fails for any reason (timeout, missing CLI, non-zero exit), `ask()` returns the raw FTS5 search results as fallback.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-never-raises-on-llm-failure": {
+      "text": "`ask()` catches `TimeoutExpired` and `RuntimeError` from `_invoke_claude()` and returns raw FTS5 search results instead of propagating the exception \u2014 the function guarantees a string return.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-no-synth-bypasses-llm": {
+      "text": "When `no_synth=True`, `ask()` returns raw `api.search()` results without invoking the Claude CLI.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-strips-claudecode-env": {
+      "text": "`_invoke_claude` removes the `CLAUDECODE` environment variable to prevent recursive invocation when running inside Claude Code.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-tool-loop-capped-at-three": {
+      "text": "The LLM synthesis loop runs at most `MAX_ITERATIONS` (3) rounds, with `FINAL_TURN_INSTRUCTION` appended on the last iteration to force a final answer.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-uses-text-based-tool-protocol": {
+      "text": "`ask.py` implements tool use by parsing JSON lines with a `\"tool\"` key from LLM text output, not Claude's native tool-use API, because it invokes `claude -p` (pipe mode) which doesn't support function calling.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-ask.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -626,6 +914,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "budget-floor-is-five": {
+      "text": "`_build_beliefs_section` guarantees local beliefs get at least 5 slots regardless of agent count, enforced by `max(5, max_beliefs - count)`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive_budget.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -752,11 +1049,56 @@
       "date": "",
       "metadata": {}
     },
+    "check-stale-never-raises-on-missing-files": {
+      "text": "`check_stale()` returns a structured `source_deleted` dict for nodes whose source files don't exist on disk; it never raises `FileNotFoundError` or any exception.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-no-dedup-by-source-path": {
+      "text": "Multiple nodes referencing the same missing source file each produce independent `source_deleted` results \u2014 no deduplication by file path.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-report-only": {
+      "text": "Duplicate of existing belief `check-stale-is-read-only`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "check-stale-requires-both-source-fields": {
       "text": "A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-check_stale-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-result-schema-uniform": {
+      "text": "All `check_stale` result dicts share the same 6-key schema (`node_id`, `old_hash`, `new_hash`, `source`, `source_path`, `reason`) regardless of reason type, so consumers can iterate results without type-checking.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "check-stale-results-sorted-by-node-id": {
+      "text": "The list returned by `check_stale` is sorted ascending by `node_id`, providing deterministic output for consumers.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale_issue25.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -770,11 +1112,74 @@
       "date": "",
       "metadata": {}
     },
+    "check-stale-source-deleted-returns-none-hashes": {
+      "text": "When a source file is missing, `check_stale` returns a result dict with `reason=\"source_deleted\"`, `new_hash=None`, and `source_path=None` (fix for issue #25 \u2014 previously this case was silently skipped).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-dispatch-is-flat-dict-lookup": {
+      "text": "CLI dispatch uses a flat `commands` dict mapping subcommand strings to `cmd_*` handler functions \u2014 no plugin system or subclass hierarchy.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-errors-use-stderr-success-uses-stdout": {
+      "text": "CLI error diagnostics are written to stderr and success output to stdout; tests consistently assert on the correct stream.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-exit-1-on-error": {
+      "text": "All CLI error paths catch specific exceptions from the API (`KeyError`, `ValueError`, `PermissionError`, `FileNotFoundError`), print to stderr, and call `sys.exit(1)`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-exit-code-contract-is-binary": {
+      "text": "Every CLI subcommand returns exit code 0 for success and 1 for any user-facing error; no other exit codes are used or tested.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "cli-is-pure-formatter": {
       "text": "Every `cmd_*` function delegates to `api.*` and only formats the returned dict for terminal output; no business logic lives in the CLI layer (sole exception: `cmd_propagate` touches `Storage` directly).",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-tests-are-black-box-integration": {
+      "text": "All CLI tests invoke `main()` through the full argv-parsing pipeline via the `run_cli` harness rather than calling internal APIs, with one exception (`TestPropagateWithChanges` directly mutates storage to create inconsistent state).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-uses-lazy-imports-for-heavy-modules": {
+      "text": "`asyncio`, `derive`, `ask`, and `Storage` are imported inside function bodies rather than at module level, keeping `reasons --help` fast.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-cli.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -817,6 +1222,15 @@
       "date": "",
       "metadata": {}
     },
+    "cmd-propagate-bypasses-api": {
+      "text": "`cmd_propagate` is the only CLI handler that bypasses `api.py`, going directly to `Storage` \u2192 `Network.recompute_all()` \u2192 `Storage.save()` \u2014 a design inconsistency in the otherwise pure-presentation CLI layer.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "colon-means-already-namespaced": {
       "text": "`_resolve_namespace` treats a colon in a node ID as \"already namespaced\" and never double-prefixes; this is the convention for cross-namespace references.",
       "truth_value": "IN",
@@ -848,6 +1262,24 @@
       "date": "",
       "metadata": {}
     },
+    "compact-budget-guarantee": {
+      "text": "`compact()` output estimated token count never exceeds the `budget` parameter; every line is gated by `_over_budget` before appending.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-budget-is-soft-cap": {
+      "text": "The compact token budget is approximate; structural overhead (section headers, truncation messages) can cause up to ~25% overshoot beyond the specified budget.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "compact-budget-only-limits-in-nodes": {
       "text": "The token budget only constrains the IN nodes section; nogoods and OUT nodes are always emitted regardless of budget, so compact output can exceed the specified budget value.",
       "truth_value": "OUT",
@@ -859,6 +1291,42 @@
         "retract_reason": "Fixed in PR #39"
       }
     },
+    "compact-budget-soft-ceiling": {
+      "text": "The `compact` function treats the token budget as approximate; structural overhead (headers, truncation messages) can cause output to exceed the budget by up to ~25%.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-char-tracking-o1": {
+      "text": "Budget tracking uses a running `_char_count` integer, making per-line budget checks O(1) instead of O(n).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-estimate-tokens-chars-div-4": {
+      "text": "`estimate_tokens` uses `len(text) // 4` with a floor of 1, not word count or any external tokenizer.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-footer-pre-reserved": {
+      "text": "The footer line's token cost is pre-computed and reserved before any section starts filling, guaranteeing it always fits within the budget.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "compact-in-nodes-ordered-by-dependents": {
       "text": "IN nodes are sorted by descending dependent count so structurally important nodes (those depended on by many others) are emitted first and survive budget truncation.",
       "truth_value": "IN",
@@ -868,11 +1336,119 @@
       "date": "",
       "metadata": {}
     },
+    "compact-is-infallible": {
+      "text": "`compact()` handles empty networks, zero-budget, and missing metadata without raising exceptions \u2014 designed to always produce a valid string.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-is-pure-function": {
+      "text": "`compact()` performs no I/O, no database access, no mutations, and no side effects; it is a pure transformation from `Network` to `str`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-never-exceeds-budget": {
+      "text": "`compact()` guarantees the returned string's estimated token count (chars/4) does not exceed the `budget` parameter, enforced by pre-checking every line addition against remaining space.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-priority-order": {
+      "text": "Sections are emitted in fixed order: nogoods, OUT nodes, IN nodes; a later section never displaces content from an earlier one.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-priority-order-is-nogoods-out-in": {
+      "text": "Sections are emitted in strict priority order: nogoods first, then OUT nodes, then IN nodes; if the budget is exhausted early, lower-priority sections are entirely omitted.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-pure-function": {
+      "text": "`compact()` has no side effects, performs no I/O, and does not mutate the `Network` instance.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-self-reports-tokens": {
+      "text": "When given a budget, the `compact` output includes a `Token count: N / B budget` line for auditability.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-sorts-by-dependents": {
+      "text": "Duplicate of existing `compact-in-nodes-ordered-by-dependents`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-sorts-in-nodes-by-dependents-descending": {
+      "text": "Duplicates existing belief `compact-in-nodes-ordered-by-dependents`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "compact-summary-hiding-requires-in": {
       "text": "A summary node only hides its covered nodes when the summary itself is IN; if the summary goes OUT, covered nodes reappear in the compact output.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-summary-nodes-hide-covered": {
+      "text": "IN nodes whose IDs appear in another node's `summarizes` metadata list are excluded from compact output to avoid redundancy; the hidden count is reported.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-surfaces-stale-reason-metadata": {
+      "text": "OUT nodes with `stale_reason` in their metadata include the reason string in the compact output.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "compact-three-sections": {
+      "text": "The `compact` output is organized into three markdown sections: `## IN (active)`, `## OUT (retracted)`, and `## Nogoods`, each present only when the network contains nodes of that type.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_compact.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1134,6 +1710,15 @@
       "date": "",
       "metadata": {}
     },
+    "convert-to-premise-removes-dependents": {
+      "text": "When a derived node is converted to a premise via `convert_to_premise`, it is removed from its former antecedents' `dependents` sets because the old justification edges are deleted.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "corrections-span-all-origins-with-full-auditability": {
       "text": "Every correction mechanism \u2014 intentional dialectical challenge/defend and automated contradiction resolution \u2014 is both reliable and fully auditable with traceable history, and this complete correction coverage spans all belief origins (human, LLM, agent) \u2014 no belief from any provenance can undergo an untraced or unreliable correction.",
       "truth_value": "IN",
@@ -1153,6 +1738,15 @@
       "date": "",
       "metadata": {}
     },
+    "count-accumulates-linearly": {
+      "text": "Documents the bug fix for issue #23 \u2014 already covered by existing `derive-agent-count-bug` which tracks this defect",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "cp-and-sl-evaluated-identically": {
       "text": "CP and SL justifications use the same validity check in `_justification_valid`; the distinction is semantic (support vs. consistency), not computational.",
       "truth_value": "IN",
@@ -1167,6 +1761,69 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-dependent-guard-skips-missing-nodes": {
+      "text": "`_propagate` skips dependent IDs not present in `net.nodes` rather than raising `KeyError`, and emits a structured warning log entry for each (fix for issue #22).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-dependents-log-not-crash": {
+      "text": "Covered by existing `propagate-assumes-dependents-exist` (documents the assumption) and `tms-core-is-crash-safe` (documents crash safety)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-guard-is-continue-not-raise": {
+      "text": "When `_propagate` encounters a dependent ID not in `self.nodes`, it logs a structured warning and continues the BFS loop rather than raising `KeyError` or silently skipping.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-ids-excluded-from-changed": {
+      "text": "The `changed` set returned by `retract()` and `assert_node()` never contains IDs that don't correspond to real nodes in the network.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-ids-excluded-from-visited": {
+      "text": "The propagation visited set does not include dangling IDs, so a formerly-dangling ID that becomes a real node will propagate correctly on subsequent operations.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-refs-excluded-from-changed-set": {
+      "text": "The `changed` set returned by `retract`/`assert_node` never contains node IDs that don't exist in the network.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dangling-refs-excluded-from-visited-set": {
+      "text": "Dangling dependent IDs are not added to the propagation visited set, so later-created nodes with the same ID propagate normally.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dangling_dependents.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1191,6 +1848,42 @@
       "date": "",
       "metadata": {}
     },
+    "dedup-auto-keeps-most-dependents": {
+      "text": "In auto mode, `deduplicate` retains the cluster member with the most dependents and retracts all others",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dedup-keeps-most-connected-node": {
+      "text": "In auto-dedup mode, the node with the most dependents survives each cluster; ties break by lexicographic ID, and losers are retracted after dependents are rewired.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dedup-plan-is-user-editable": {
+      "text": "The dedup plan format uses KEEP/RETRACT markers that users can swap before applying, making deduplication decisions reviewable and overridable",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dedup-rewrites-both-antecedents-and-outlist": {
+      "text": "When a duplicate is retracted via dedup, all justification references (both antecedent and outlist) across the network are rewritten to point at the kept node",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "defend-is-challenge-of-challenge": {
       "text": "`defend` works by calling `challenge` on the challenge node itself, creating a recursive dialectical structure where truth values resolve automatically through the same outlist mechanism.",
       "truth_value": "IN",
@@ -1205,6 +1898,15 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/topic-outlist-semantics.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "deferred-retraction-ordering": {
+      "text": "During agent import, nodes are added and truth values propagated before explicit retractions are applied, ensuring the dependency graph is fully wired before OUT transitions are forced.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_agent.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1262,6 +1964,15 @@
         "retract_reason": "Fixed in PR #31"
       }
     },
+    "dependents-survive-storage-roundtrip": {
+      "text": "After `Storage.save()` followed by `Storage.load()`, the loaded network's dependents index passes `verify_dependents()` with no errors.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-agent-budget-proportional": {
       "text": "When agents are present, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent",
       "truth_value": "IN",
@@ -1281,6 +1992,15 @@
       "metadata": {
         "retract_reason": "Fixed in PR #33"
       }
+    },
+    "derive-apply-isolates-per-proposal-errors": {
+      "text": "`apply_proposals` wraps each `api.add_node()` call in try/except and accumulates `(proposal, error_string)` tuples, so one malformed proposal does not abort the batch.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "derive-budget-allocation-is-accurate": {
       "text": "The derive pipeline's proportional belief-budget allocation produces correct per-agent token counts",
@@ -1305,6 +2025,42 @@
         "retract_reason": "Fixed in PR #33"
       }
     },
+    "derive-budget-count-is-linear": {
+      "text": "Agent belief counting in `_build_beliefs_section` accumulates as N (number of beliefs shown per agent), not N\u00b2 \u2014 the corrected behavior after the issue #23 fix where `count += len(belief_ids)` was moved outside the per-belief loop",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-budget-floor-five": {
+      "text": "Each agent group and the non-agent group are guaranteed at least 5 belief slots in the prompt regardless of proportional budget allocation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-budget-local-floor-is-five": {
+      "text": "`_build_beliefs_section` guarantees at least 5 local beliefs are shown regardless of agent budget pressure, via `max(5, max_beliefs - count)`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-budget-tests-parse-output-headers": {
+      "text": "Test implementation detail (regex parsing of `\"showing N\"` headers), not a production code invariant",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-depth-cycle-guard": {
       "text": "`_get_depth` sets `memo[node_id] = 0` before recursing to prevent infinite recursion on cyclic justification chains; cycles resolve to depth 0",
       "truth_value": "IN",
@@ -1319,6 +2075,42 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-min-antecedents-is-prompt-only": {
+      "text": "The minimum-2-antecedents rule for derived beliefs is enforced only by the LLM prompt instructions, not validated in code by `validate_proposals`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-no-llm-call": {
+      "text": "`derive.py` builds prompts and parses responses but never calls an LLM itself; the caller (CLI or API) is responsible for the model invocation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-parse-supports-two-format-versions": {
+      "text": "`parse_proposals` tries the new `### DERIVE id` format first, falling back to the older `### DERIVE: \\`id\\`` format only when the new parser returns zero matches.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-parse-supports-two-formats": {
+      "text": "`parse_proposals` tries the new format first (v0.10+: `### DERIVE id`), falls back to old format (v0.9: `### DERIVE: \\`id\\``) only when no new-format matches are found",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1339,6 +2131,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-pipeline-is-error-accumulating": {
+      "text": "Covered by existing `derive-fail-soft-validation` (validation returns skipped entries with reasons) and `derive-pipeline-is-defensive` (broader defensive characterization)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1422,11 +2223,65 @@
       "date": "",
       "metadata": {}
     },
+    "derive-returns-negative-one-on-error": {
+      "text": "`_derive_one_round` returns -1 on error, 0 on saturation, and a positive int for the number of beliefs added, which `cmd_derive` uses to control the exhaust loop.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-round-returns-negative-on-error": {
+      "text": "`_derive_one_round` returns -1 on error, 0 on saturation, and a positive count on success \u2014 using return values instead of exceptions for flow control in the exhaust loop.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-strips-claudecode-env": {
       "text": "`_derive_one_round` explicitly removes the `CLAUDECODE` environment variable before spawning the model subprocess, preventing recursive Claude Code invocation.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-unused-imports": {
+      "text": "Dead code observation (`subprocess`, `sys`, `Path` imported but unused) \u2014 unstable detail that will change when cleaned up.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-uses-subprocess-not-sdk": {
+      "text": "The derive command invokes LLMs by shelling out to `claude` or `gemini` CLI binaries via `asyncio.create_subprocess_exec`, not through any Python SDK.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-validate-before-apply": {
+      "text": "`apply_proposals` trusts its input unconditionally; callers must run `validate_proposals` first or risk database errors from missing antecedents or duplicate IDs.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-derive.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-validate-rejects-similar-to-out": {
+      "text": "Covered by existing `derive-retraction-guard-uses-jaccard` which captures the same invariant",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1701,6 +2556,15 @@
       "date": "",
       "metadata": {}
     },
+    "direct-access-raises-list-access-filters": {
+      "text": "API functions for single-node access (`show_node`, `explain_node`, `trace_assumptions`) raise `PermissionError` on forbidden nodes, while list/export functions (`list_nodes`, `search`, `export_network`) silently exclude them from results.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dispute-resolution-is-complete-and-reliable": {
       "text": "Both dispute resolution mechanisms \u2014 intentional (dialectical challenge/defend with irreversible premise transformation) and automated (contradiction detection with dependency-directed backtracking) \u2014 are individually fully reliable, crash-safe, and traceable, leaving no dispute pathway that could silently fail or lose history.",
       "truth_value": "IN",
@@ -1735,6 +2599,24 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "duplicate-node-id-raises-valueerror": {
+      "text": "`api.add_node()` raises `ValueError` when given a node ID that already exists in the network \u2014 node IDs are unique.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "each-cli-test-creates-isolated-db": {
+      "text": "Every CLI test method initializes a fresh SQLite database via `run_cli(\"init\")` in a pytest `tmp_path`, ensuring zero shared state between tests.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_cli.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -1782,6 +2664,42 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "entry-point-mapping": {
+      "text": "The `reasons` CLI command maps to `reasons_lib.cli:main` via `[project.scripts]` in `pyproject.toml` and is the only registered script entry point.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/pyproject.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "estimate-tokens-chars-div-4": {
+      "text": "`estimate_tokens` uses `len(text) // 4` with a minimum return value of 1; it never returns 0, even for empty strings.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_compact.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "every-network-mutation-maintains-dependents": {
+      "text": "After any public mutation method on `Network` (`add_node`, `retract`, `assert_node`, `add_justification`, `supersede`, `challenge`, `defend`, `convert_to_premise`, `add_nogood`, `summarize`), `verify_dependents()` returns an empty list.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "every-network-mutation-maintains-dependents-invariant": {
+      "text": "After any public Network mutation (add_node, retract, assert_node, add_justification, supersede, challenge, defend, convert_to_premise, add_nogood, summarize), the dependents index passes `verify_dependents()` \u2014 completeness and minimality are maintained incrementally",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2031,6 +2949,15 @@
       "date": "",
       "metadata": {}
     },
+    "external-deps-become-premises": {
+      "text": "A claim whose `depends_on` references are all absent from the beliefs file gets no justifications and is added as a premise (IN by default).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "external-inputs-face-defense-in-depth": {
       "text": "External beliefs face defense in depth across two independent containment layers: input-level containment (defensive validation pipelines, agent namespace isolation) prevents bad data from entering, while system-level containment (architectural layer boundaries, lifecycle-aware checking and propagation) prevents bad data from persisting or spreading.",
       "truth_value": "OUT",
@@ -2132,6 +3059,15 @@
       "date": "",
       "metadata": {}
     },
+    "extract-tool-call-returns-first-match": {
+      "text": "When LLM output contains multiple JSON objects with a `\"tool\"` key, `extract_tool_call()` returns only the first valid match and ignores the rest; malformed JSON lines are silently skipped.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "full-system-integrity-is-gap-free": {
       "text": "The system achieves gap-free integrity \u2014 enforced across all architectural layers, lifecycle states, and mutation paths \u2014 only when the dependents reverse index is reliably maintained and propagation handles dangling references gracefully.",
       "truth_value": "OUT",
@@ -2173,6 +3109,60 @@
       "date": "",
       "metadata": {}
     },
+    "hash-file-full-sha256": {
+      "text": "`hash_file` returns a full 64-character hex SHA-256 digest (per the fix in PR #40 that removed the earlier `[:16]` truncation).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-file-import-unused": {
+      "text": "Trivial/unstable detail about an unused import; not a meaningful architectural invariant.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-sources-idempotent-without-force": {
+      "text": "`hash_sources` with default `force=False` skips nodes that already have a `source_hash`, making repeated backfill calls safe; `force=True` rehashes unconditionally.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-sources-is-additive-by-default": {
+      "text": "`hash_sources` without `force=True` never overwrites an existing non-empty `source_hash`; it only backfills nodes with empty or missing hashes.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-sources-mutates-network": {
+      "text": "`hash_sources` writes directly to `node.source_hash` on the in-memory network, while `check_stale` is purely read-only \u2014 an intentional asymmetry.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "hash-sources-no-overwrite-default": {
+      "text": "`hash_sources` with `force=False` (the default) only backfills missing hashes and will never modify a node that already has a `source_hash` value.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "hash-truncation-is-16-hex": {
       "text": "Source hashes are SHA-256 truncated to the first 16 hex characters (64 bits), reducing collision resistance to ~32 bits for birthday attacks compared to the full 256-bit hash.",
       "truth_value": "OUT",
@@ -2184,11 +3174,83 @@
         "retract_reason": "Fixed in PR #40"
       }
     },
+    "hints-exclude-directly-retracted-node": {
+      "text": "The node passed to `retract_node` never appears in the `restoration_hints` list \u2014 only cascade victims with surviving premises do.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_any_mode.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "idempotent-reimport-skips-all": {
+      "text": "Covered by existing `import-skips-existing-sync-is-remote-wins` which captures the idempotent import behavior",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-agent-infra-nodes-excluded-from-removal": {
+      "text": "`_sync_claims()` filters out infrastructure nodes (active/inactive) via `infra_ids` before computing the removal set, so the kill-switch pair is never retracted by remote-wins sync.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "import-agent-namespace-prefix": {
       "text": "Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-agent-normalizers-share-intermediate-schema": {
+      "text": "Both `_normalize_markdown()` and `_normalize_json()` produce identical intermediate dicts (id, text, is_out, source, source_hash, date, metadata, raw_justifications) before hitting shared `_import_claims`/`_sync_claims` logic.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-agent-outlist-not-antecedent": {
+      "text": "Duplicates existing belief `kill-switch-uses-outlist-not-antecedent`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-beliefs-nogood-id-uses-high-water-mark": {
+      "text": "`_next_nogood_id` is set to `max(current, parsed_id + 1)` during import, preventing future auto-generated nogood IDs from colliding with imported ones.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-beliefs-parser-is-forward-compatible": {
+      "text": "Unknown `- ` metadata lines in belief markdown are silently skipped via a `pass` branch, making the parser forward-compatible with new export format fields.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-beliefs-path-import-unused": {
+      "text": "Vestigial import detail \u2014 too trivial and unstable to track as a belief; it could be cleaned up at any time.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-import_beliefs.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2213,6 +3275,33 @@
       "date": "",
       "metadata": {}
     },
+    "import-is-idempotent": {
+      "text": "Covered by existing `import-skips-existing-sync-is-remote-wins`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-json-uses-topological-sort": {
+      "text": "`api.import_json()` reconstructs networks via a multi-pass topological sort loop \u2014 repeatedly adding nodes whose dependencies are already loaded \u2014 with a force-add fallback for cycles or missing deps.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-paths-bump-nogood-counter": {
+      "text": "Both `import_json` and `import_into_network` update `_next_nogood_id` to at least `max_imported_id + 1`, ensuring imported nogoods with explicit IDs don't create future collisions",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "import-provides-complete-reconciliation": {
       "text": "The import subsystem provides complete reconciliation coverage: heterogeneous truth states are handled correctly on initial load, dual modes support additive import and remote-wins sync for different operational needs, and the colon-based namespace convention with auto-wiring prevents ID collisions across agents.",
       "truth_value": "IN",
@@ -2229,6 +3318,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-skips-existing-nodes": {
+      "text": "Duplicates existing belief `import-skips-existing-sync-is-remote-wins`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2279,6 +3377,15 @@
       "date": "",
       "metadata": {}
     },
+    "import-wires-reverse-index": {
+      "text": "Covered by existing `dependents-is-manual-reverse-index` which captures that the reverse index is manually maintained",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "indefinite-self-correction-is-fully-auditable": {
       "text": "The system's indefinitely sustainable self-correction produces a fully auditable history without temporal degradation: every self-correction, maintenance action, and belief revision throughout the system's unbounded operational lifetime is traceable through nogoods, retraction records, and staleness metadata \u2014 auditability scales with time rather than decaying.",
       "truth_value": "IN",
@@ -2294,6 +3401,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "init-db-refuses-existing-without-force": {
+      "text": "`api.init_db()` raises `FileExistsError` when the database file already exists, unless `force=True` is passed to allow overwrite.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_api.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2554,6 +3670,15 @@
       "date": "",
       "metadata": {}
     },
+    "invoke-claude-raises-when-binary-missing": {
+      "text": "`_invoke_claude()` raises `FileNotFoundError` if the `claude` CLI is not on `PATH`, rather than returning an error string \u2014 this is the one exception that `ask()` does not catch internally.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "justification-evaluation-is-uniform-and-pure": {
       "text": "All justification types (SL and CP) use the same validity rule (antecedents IN, outlist OUT), evaluated as a pure function with no side effects",
       "truth_value": "IN",
@@ -2570,6 +3695,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "justification-order-preserved-by-rowid": {
+      "text": "Already exists as `justification-order-preserved-via-rowid`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-storage.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -2717,6 +3851,15 @@
       "date": "",
       "metadata": {}
     },
+    "list-negative-uses-two-stage-classification": {
+      "text": "`list_negative` uses keyword pre-filtering against a hardcoded `NEGATIVE_TERMS` list (~50 words), then LLM classification via `ask._invoke_claude` to eliminate false positives.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "llm-driven-mutations-are-safely-bounded": {
       "text": "LLM-driven belief derivation is safely bounded by defense in depth: the derive pipeline validates proposals with fail-soft filtering, Jaccard retraction guards, and environment stripping at the LLM boundary, while the API layer enforces atomic load/save with write-flag gating and dict-only returns at the persistence boundary \u2014 malformed or adversarial LLM output cannot corrupt the network.",
       "truth_value": "IN",
@@ -2772,6 +3915,24 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "make-nodes-excludes-active-premises": {
+      "text": "Test helper implementation detail, not a claim about production code behavior",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "make-nodes-omits-active-premises": {
+      "text": "Test helper implementation detail, not a production code invariant",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive_budget.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3142,11 +4303,56 @@
       "date": "",
       "metadata": {}
     },
+    "namespace-prefix-is-agent-colon": {
+      "text": "Covered by existing `namespace-prefix-is-colon-separated` and `import-agent-namespace-prefix`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "namespace-prefix-is-colon-separated": {
       "text": "Agent namespacing uses the format `agent_name:belief_id`; `_resolve_namespace()` skips prefixing any ID that already contains a colon, preventing double-prefixing of cross-namespace references",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/topic-multi-agent-federation.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-add-node-rejects-duplicates": {
+      "text": "`Network.add_node()` raises `ValueError` if a node with the given ID already exists in the network.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-any-mode-justification": {
+      "text": "Duplicates existing belief `node-in-if-any-justification-valid`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-dependents-eagerly-maintained": {
+      "text": "Duplicates existing beliefs `dependents-bidirectional-index` and `dependents-is-manual-reverse-index`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-has-zero-external-dependencies": {
+      "text": "The Network class imports only stdlib (`collections.deque`, `datetime`) plus package data types (`Node`, `Justification`, `Nogood`); it has zero external dependencies.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-network.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3160,11 +4366,137 @@
       "date": "",
       "metadata": {}
     },
+    "network-metadata-carries-structured-state": {
+      "text": "Node state such as `_retracted`, `retract_reason`, `superseded_by`, `challenges`, `access_tags`, and `summarized_by` lives in the generic `metadata` dict rather than typed Node fields, keeping the dataclass stable while features layer on behavior.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-missing-outlist-passes": {
+      "text": "Duplicates existing belief `missing-outlist-nodes-pass-validation`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-mutations-append-to-audit-log": {
+      "text": "Every network mutation records a timestamped event in `self.log`, an append-only list that serves as the propagation audit trail.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-no-external-deps": {
+      "text": "`network.py` depends only on stdlib (`deque`, `datetime`) and project dataclasses; it has zero external package dependencies.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-retracted-skips-propagation": {
+      "text": "Duplicates existing belief `retracted-nodes-skipped-in-propagation`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-tests-are-database-free": {
+      "text": "Test infrastructure detail, not a production code claim",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "no-synth-mode-skips-llm": {
+      "text": "When `no_synth=True`, `ask()` returns formatted FTS5 search results without invoking `_invoke_claude()` \u2014 the LLM is never contacted.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_ask.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "node-in-if-any-justification-valid": {
       "text": "A Node is IN when at least one of its Justifications is valid; a Justification is valid when all antecedents are IN and all outlist nodes are OUT (disjunctive over justifications, conjunctive within each).",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-backwards-compat": {
+      "text": "Databases created before the monotonic counter fix (lacking `network_meta` table) load without error; the counter is derived from max existing nogood ID + 1, or defaults to 1 if none exist",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-collision-prevention": {
+      "text": "After importing nogoods, `_next_nogood_id` is set to one past the highest imported ID, preventing `network.record_nogood` from generating a conflicting ID later.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-counter-is-monotonic": {
+      "text": "`Network._next_nogood_id` only ever increases \u2014 deletion, clearing, save/load, and import never decrease it, preventing ID reuse after the issue #26 fix",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-format-is-zero-padded": {
+      "text": "Nogood IDs follow the format `nogood-NNN` with 3-digit zero-padded integers (e.g., `nogood-001`), and `_next_nogood_id` holds the next integer to assign, not the last used",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-import-sync": {
+      "text": "Both `import_json` and `import_into_network` must advance `_next_nogood_id` past the highest imported nogood ID to prevent collisions with pre-existing IDs",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-monotonic": {
+      "text": "`Network._next_nogood_id` only ever increases; deletions and clears do not decrement it, preventing ID reuse (fix for issue #26)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "nogood-id-persisted-in-meta": {
+      "text": "The nogood counter is stored in the `network_meta` SQLite table and survives save/load cycles as a high-water mark, not a count of current nogoods",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_nogood_id.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3201,6 +4533,15 @@
       "date": "",
       "metadata": {}
     },
+    "nogoods-require-valid-nodes": {
+      "text": "Nogoods whose `Affects` list references node IDs not present in the network are silently skipped rather than raising an error during import",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "non-monotonic-system-is-single-reversible-primitive": {
       "text": "The entire non-monotonic reasoning system \u2014 challenges, kill-switches, supersession, and dialectics \u2014 is built on a single primitive (outlist) that is inherently reversible, with no dedicated machinery for any defeat pattern.",
       "truth_value": "IN",
@@ -3217,6 +4558,24 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "normalization-drops-unknown-refs": {
+      "text": "Both `_normalize_markdown` and `_normalize_json` silently drop antecedent/outlist references to IDs not present in the import set, preventing dangling edges in the dependency graph.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "only-reasons-lib-packaged": {
+      "text": "Setuptools is configured to include only the `reasons_lib` package in distributions; tests, entries, reviews, and knowledge-base artifacts are excluded from wheels",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/pyproject.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3360,11 +4719,29 @@
       "date": "",
       "metadata": {}
     },
+    "out-beliefs-imported-as-bare-premises": {
+      "text": "Covered by existing `out-beliefs-imported-without-justifications` which captures the same invariant",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "out-beliefs-imported-without-justifications": {
       "text": "Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "out-nodes-excluded-from-staleness": {
+      "text": "Duplicate of existing `check-stale-skips-out-nodes`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale_issue25.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3408,6 +4785,15 @@
       "date": "",
       "metadata": {}
     },
+    "outlist-nodes-not-in-dependents-index": {
+      "text": "Outlist nodes are not tracked in the `dependents` index, so when an outlist node is retracted (goes OUT), dependent GATE beliefs are not enqueued for re-evaluation by `_propagate` \u2014 requiring manual `reasons assert` as a workaround.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/defect-resolution-clean-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "outlist-relationships-survive-persistence": {
       "text": "Outlists are stored as `outlist_json` in the SQLite `justifications` table; on load, the dependent index is rebuilt for both antecedents and outlist nodes, preserving propagation behavior across save/load cycles",
       "truth_value": "IN",
@@ -3433,6 +4819,24 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "package-name-split": {
+      "text": "The pip-installable name is `ftl-reasons` but the importable Python package is `reasons_lib`; these are deliberately decoupled.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/pyproject.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "parse-beliefs-returns-dicts": {
+      "text": "Too granular \u2014 the dict-return pattern is partially covered by `api-functions-return-dicts`, and the specific field list is an implementation detail likely to evolve",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_import_beliefs.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3480,6 +4884,159 @@
       "date": "",
       "metadata": {}
     },
+    "pg-access-control-raises-permission-error": {
+      "text": "`PgApi.show_node()` raises `PermissionError` when called with a `visible_to` list that doesn't intersect the node's `access_tags`, enforcing per-node access control at the API boundary",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-antecedent-refs-have-no-fk-constraints": {
+      "text": "Antecedent and outlist references in `rms_justifications` are JSONB arrays without foreign key constraints; nonexistent referenced nodes default to truth value OUT via `truth_cache.get(a, \"OUT\")`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-api-what-if-never-mutates": {
+      "text": "`PgApi.what_if_retract()` and `what_if_assert()` are read-only operations \u2014 they return cascade analysis (changed/went_in/went_out) without modifying database state, verified by checking `get_status()` before and after",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-cleanup-covers-five-tables": {
+      "text": "Fixture teardown deletes from exactly `rms_propagation_log`, `rms_justifications`, `rms_nogoods`, `rms_network_meta`, and `rms_nodes` \u2014 adding a new `project_id`-scoped table without updating the fixture will leak test data.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-conftest.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-compact-generates-budget-constrained-markdown": {
+      "text": "`PgApi.compact()` produces a markdown summary of the belief network constrained by a token budget, filtered by `visible_to` access tags, sorted by dependent count, with summary-node elision and nogood inclusion",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-fixture-uses-uuid-isolation": {
+      "text": "Each `pg_api` test fixture partitions its data by a unique UUID v4 `project_id` rather than using transactions or ephemeral databases, enabling safe concurrent test execution against a shared database.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-conftest.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-import-is-deferred": {
+      "text": "`PgApi` is imported inside the `pg_api` fixture body, not at module top-level, so the test suite loads without Postgres dependencies when running SQLite-only tests.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-conftest.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-multi-tenancy-via-project-id": {
+      "text": "`PgApi` isolates beliefs by `project_id` so identical node IDs in different projects store independent data with no cross-contamination \u2014 each test gets a unique UUID project",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-reimplements-network-in-sql": {
+      "text": "`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-teardown-rollback-before-delete": {
+      "text": "The `pg_api` fixture calls `conn.rollback()` before cleanup deletes to recover from any failed-transaction state left by the test, preventing cleanup failures from cascading.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-conftest.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-uses-project-id-for-multi-tenancy": {
+      "text": "Every `PgApi` query includes `project_id` in its WHERE clause, providing multi-tenant isolation with no cross-project queries and composite primary keys `(id, project_id)`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-what-if-uses-transaction-rollback": {
+      "text": "`what_if_retract`/`what_if_assert` perform real mutations inside a transaction, collect cascade effects, then rollback \u2014 reusing the propagation engine without duplicating logic.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pgapi-bfs-propagation-in-python": {
+      "text": "PgApi implements BFS propagation in application-level Python (not stored procedures), using JSONB containment queries (`@>`) against GIN indexes to find dependents",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/28/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pgapi-multi-tenant-composite-keys": {
+      "text": "All PgApi tables use composite primary keys `(id, project_id)` for multi-tenancy, with JSONB columns (not TEXT) for antecedents, outlist, and metadata",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/28/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pgapi-no-in-memory-network": {
+      "text": "`PgApi` executes all operations as direct SQL against PostgreSQL \u2014 no in-memory `Network` object is ever constructed, enabling concurrent writers",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/28/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pgapi-one-transaction-per-method": {
+      "text": "Each `PgApi` public method is a single PostgreSQL transaction that commits at the end; `__exit__` rolls back on exception",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/28/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pgapi-partial-api-coverage": {
+      "text": "PgApi implements core operations (add/retract/assert/search/nogood/explain) but defers simulation, dialectics, namespace support, import/export, and maintenance operations to future work",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/28/reasons_lib-pg.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "premise-behavior-emerges-from-absence": {
       "text": "Premise behavior is not explicitly implemented \u2014 it emerges from three defaults: nodes with no justifications default to IN, empty antecedent lists are vacuously valid, and the system preserves a premise's current truth value rather than deriving it.",
       "truth_value": "IN",
@@ -3496,6 +5053,33 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premise-can-receive-justification": {
+      "text": "A premise node (initially no justifications) can receive a justification via `add_justification`, giving it a derived backup path that keeps it IN even if its premise status is retracted.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_add_justification.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premise-count-is-per-justification-max": {
+      "text": "`premise_count` in the return value reports the maximum antecedent count across the node's justifications, not the total across all justifications (any_mode with 3 premises returns 1, not 3).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_any_mode.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premise-default-in": {
+      "text": "Covered by existing `premise-behavior-emerges-from-absence` which captures this as an emergent property",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_network.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3589,6 +5173,15 @@
         "retract_reason": "Fixed in PR #27"
       }
     },
+    "propagation-is-immediate": {
+      "text": "Covered by existing `mutations-are-atomic-and-safely-propagated` and `propagation-is-safe-and-terminating`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "propagation-is-safe-and-terminating": {
       "text": "Truth propagation is both lifecycle-safe and guaranteed to terminate: retracted nodes are skipped, trigger nodes are never recomputed, BFS prevents stack overflow, and stop-on-unchanged prevents oscillation \u2014 propagation respects every node state it encounters.",
       "truth_value": "IN",
@@ -3643,6 +5236,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "python-310-floor": {
+      "text": "The project requires Python 3.10+ (`requires-python = \">=3.10\"`), establishing the minimum language features available throughout the codebase.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/pyproject.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3723,11 +5325,74 @@
       "date": "",
       "metadata": {}
     },
+    "rebuild-dependents-clears-before-rebuilding": {
+      "text": "`_rebuild_dependents()` wipes all existing dependent sets before recomputing from justifications, so stale entries are always removed rather than incrementally patched",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rebuild-dependents-is-idempotent": {
+      "text": "Calling `_rebuild_dependents()` twice in succession produces identical `dependents` sets on every node.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "recompute-all-uses-fixpoint": {
       "text": "`recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rename-from-rms-at-0.3.0": {
+      "text": "The project was renamed from `rms` to `reasons` in version 0.3.0, driven by a measured 5 percentage-point LLM accuracy improvement in ablation study",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/CHANGELOG.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "resolve-source-defaults-to-home-git": {
+      "text": "When no `repos` mapping is provided, `resolve_source_path` falls back to `~/git/<repo-name>/<rel-path>` by convention.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "resolve-source-fallback-path": {
+      "text": "When no `repos` mapping is provided, `resolve_source_path` constructs paths as `~/git/<repo-name>/<relative-path>` by convention.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "resolve-source-path-never-raises": {
+      "text": "`resolve_source_path` returns `None` for nonexistent files instead of raising exceptions; callers must check the `None` case.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "resolve-source-path-returns-none-on-missing": {
+      "text": "`resolve_source_path` returns `None` (not an exception) when the resolved file does not exist on disk or when the source string is empty.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -3770,11 +5435,65 @@
       "date": "",
       "metadata": {}
     },
+    "restoration-hints-require-surviving-premises": {
+      "text": "A retraction cascade only produces a `restoration_hint` for a node if it has a multi-premise SL justification and at least one of its premises is still IN after the cascade.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_any_mode.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "result-schema-uniformity": {
+      "text": "Both `content_changed` and `source_deleted` results from `check_stale` share exactly the same six keys: `node_id`, `old_hash`, `new_hash`, `source`, `source_path`, `reason` \u2014 consumers can handle both uniformly.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "results-sorted-by-node-id": {
+      "text": "`check_stale()` returns results sorted lexicographically by `node_id`, enforced by iterating `sorted(network.nodes.items())`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale_issue25.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "retract-computes-restoration-hints": {
+      "text": "`retract_node` computes `restoration_hints` by examining surviving premises of multi-antecedent justifications, enabling callers to identify which premises could rebuild retracted derived beliefs.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "retract-returns-changed-set": {
+      "text": "`Network.retract()` returns a list of all node IDs whose truth value changed, including the target and all transitively affected dependents; retracting an already-OUT node returns `[]`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "retracted-nodes-skipped-in-propagation": {
       "text": "Retracted nodes (marked with `_retracted` metadata) are skipped during BFS propagation but remain in the network for potential restoration.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "retracted-pin-survives-recompute": {
+      "text": "A node explicitly retracted via `retract()` gets a `_retracted` metadata flag that pins it OUT \u2014 surviving both `assert_node` on its antecedents and `recompute_all()`, clearable only by `assert_node` on the pinned node itself",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_network.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -4032,6 +5751,24 @@
       "date": "",
       "metadata": {}
     },
+    "rewrite-dependents-updates-both-antecedents-and-outlists": {
+      "text": "`_rewrite_dependents(net, old, new)` in `api.py` rewrites justification references and dependent sets for both antecedent and outlist occurrences of the old node ID, not just one or the other",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "run-cli-helper-catches-systemexit": {
+      "text": "The `run_cli` test harness intercepts `SystemExit` to extract exit codes, preventing argparse errors or explicit `sys.exit()` calls from terminating the test process.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "safe-universal-revisability": {
       "text": "Any mutation source \u2014 human dialectical challenge, LLM-derived proposal, or multi-agent import \u2014 can safely revise any belief in the network through complete minimal mechanisms; the system imposes no restrictions on who can revise what, while guaranteeing that every revision path preserves consistency.",
       "truth_value": "OUT",
@@ -4085,6 +5822,33 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sample-mode-is-deterministic": {
+      "text": "`_build_beliefs_section` with `sample=True` and a fixed `seed` produces identical output across calls, enabling reproducible derive prompts",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "search-falls-back-to-substring": {
+      "text": "`api.search()` tries FTS5 full-text search first, then falls back to substring matching if FTS5 tables don't exist or error; it always produces results if substring matches exist.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "search-uses-fts5-with-substring-fallback": {
+      "text": "`api.search()` tries FTS5 first (`_fts_search`), falls back to substring matching (`_substring_search`), then expands results with 1-hop neighbors from the dependency graph.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-api.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -4324,6 +6088,33 @@
       "date": "",
       "metadata": {}
     },
+    "single-cli-entry-point": {
+      "text": "The only registered console script is `reasons`, pointing to `reasons_lib.cli:main`; all subcommands are dispatched internally",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/pyproject.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "single-node-api-raises-permissionerror": {
+      "text": "API functions that target a single node by ID (`show_node`, `explain_node`, `trace_assumptions`, `trace_access_tags`) raise `PermissionError` when the caller lacks clearance; collection endpoints silently filter instead.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sl-conjunction-any-disjunction": {
+      "text": "Covered by existing `sl-justification-semantics`, `truth-is-disjunctive-over-conjunctive-rules`, and `node-in-if-any-justification-valid`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "sl-justification-semantics": {
       "text": "An SL justification is valid iff ALL antecedents are IN AND ALL outlist nodes are OUT; a node is IN iff ANY of its justifications is valid (conjunction within a justification, disjunction across justifications).",
       "truth_value": "IN",
@@ -4338,6 +6129,51 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-network-_justification_valid.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-path-format": {
+      "text": "Source references use `\"reponame/relative/path\"` format; `resolve_source_path` splits on the first `/` to look up the repo key in a `repos: dict[str, Path]` mapping.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-paths-use-repo-alias-prefix": {
+      "text": "Node source paths follow a `repo-alias/relative-path` convention where the first `/`-delimited segment is a key into the `repos` dict that maps aliases to filesystem roots, decoupling belief source references from absolute paths.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "stale-maps-to-out": {
+      "text": "STALE status in `beliefs.md` is mapped to OUT (retracted) in the network; there is no distinct STALE state in the TMS data model.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "stale-maps-to-out-on-import": {
+      "text": "Nodes marked `[STALE]` in beliefs.md are stored with truth value OUT during both initial import and subsequent syncs",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "stale-result-reasons": {
+      "text": "`check_stale` uses two distinct reason codes: `\"content_changed\"` when the source file exists but its hash differs, and `\"source_deleted\"` when the file is gone from disk.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_check_stale.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -4405,11 +6241,119 @@
       "date": "",
       "metadata": {}
     },
+    "staleness-results-are-dicts-not-exceptions": {
+      "text": "Both `check_stale` and `hash_sources` report problems (missing files, changed content, deleted sources) as list-of-dict return values, never raising exceptions \u2014 designed for batch audit operations that report all problems rather than aborting on the first.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "staleness-uses-full-sha256": {
+      "text": "Staleness detection compares full 64-character SHA-256 hex digests via exact string equality, not truncated prefixes or fuzzy comparison.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-check_stale.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sticky-retraction-survives-recompute-all": {
+      "text": "A node with `_retracted` metadata stays OUT even when `recompute_all()` re-evaluates the entire network \u2014 sticky retraction is a durable pin that only `assert_node` can clear",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-derives-counter-from-existing-nogoods": {
+      "text": "When loading a database without the `network_meta` table (pre-fix schema), `Storage.load()` derives `_next_nogood_id` from the max ID of existing nogoods rather than defaulting to 1, enabling backward-compatible upgrades",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_nogood_id.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-fts-is-derived-index": {
+      "text": "The FTS5 full-text search index is rebuilt from scratch during every `save()`; it is a derived index, never the source of truth.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-fts-rebuilt-on-every-save": {
+      "text": "The `nodes_fts` full-text index is deleted and rebuilt from scratch on each `save()`, guaranteeing consistency with the `nodes` table at the cost of full-reindex overhead.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-handles-schema-evolution-via-try-except": {
+      "text": "Missing tables from older database versions (`repos`, `network_meta`) are handled by swallowing exceptions during `load()` rather than formal migrations \u2014 a backward-compatibility substitute that silently degrades.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-lists-as-json-columns": {
+      "text": "Antecedents, outlist, nogood node sets, and metadata dicts are stored as JSON text columns rather than normalized join tables, simplifying the schema at the cost of individual field queryability.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "storage-load-bypasses-propagation": {
       "text": "`load()` constructs nodes directly into `network.nodes` rather than calling `add_node`, so truth maintenance propagation does not fire during deserialization.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-no-partial-load": {
+      "text": "`Storage.load()` either returns a complete `Network` with all state or fails; there is no streaming, lazy-loading, or partial deserialization.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-old-schema-compat": {
+      "text": "`load()` tolerates missing `network_meta` and `repos` tables via silent `try/except`, supporting databases created before those tables were added; `next_nogood_id` is derived from existing IDs as a fallback.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-round-trip-preserves-dependents": {
+      "text": "Covered by existing belief `persistence-round-trip-is-lossless` \u2014 dependents are part of the persisted state",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-save-is-atomic-snapshot": {
+      "text": "Duplicate of existing `storage-save-is-full-replace` and `mutation-pipeline-is-atomic-snapshot`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-storage.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -4432,6 +6376,24 @@
       "date": "",
       "metadata": {}
     },
+    "storage-uses-json-columns-for-lists": {
+      "text": "Antecedent IDs, outlist IDs, nogood node sets, and node metadata are stored as JSON text columns rather than junction tables \u2014 acceptable because the code always loads the full network, never queries relationships via SQL joins.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "storage-uses-wal-mode": {
+      "text": "SQLite connections enable WAL mode on initialization, allowing concurrent readers without blocking writes.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-storage.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "supersession-is-reversible": {
       "text": "`supersede()` adds the new node's ID to the old node's outlist rather than deleting the old node; retracting the new belief automatically restores the old one through normal propagation",
       "truth_value": "IN",
@@ -4441,11 +6403,56 @@
       "date": "",
       "metadata": {}
     },
+    "sync-agent-first-call-equals-import": {
+      "text": "Calling `sync_agent` for an agent with no prior import produces identical results to `import_agent`, including all node creation and namespace wiring",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-agent-idempotent": {
+      "text": "Two consecutive `sync_agent` calls with identical file content produce zero additions, removals, and updates on the second call",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-agent-remote-wins": {
+      "text": "Duplicates existing belief `sync-is-remote-wins`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-agent-returns-count-dict": {
+      "text": "`sync_agent` returns a dict with keys `beliefs_added`, `beliefs_removed`, `beliefs_updated`, and `beliefs_unchanged` for accurate accounting of what changed",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "sync-is-remote-wins": {
       "text": "`_sync_claims` implements remote-wins reconciliation: remote text/metadata overwrites local, beliefs removed from remote are retracted locally, and beliefs remotely IN but locally OUT are re-asserted",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-preserves-cascade-wiring": {
+      "text": "After `sync_agent` runs, the `agent:inactive` outlist entries on beliefs are preserved, so retracting `agent:active` still cascades all agent beliefs to OUT",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_sync_agent.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -4765,6 +6772,42 @@
       "date": "",
       "metadata": {}
     },
+    "tag-inheritance-is-transitive-union": {
+      "text": "Derived nodes inherit the sorted union of all ancestor `access_tags`, propagating transitively through arbitrarily long justification chains including diamond dependencies.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "tag-propagation-is-dynamic": {
+      "text": "Adding a justification to an existing node triggers access tag recomputation that cascades through all downstream dependents via BFS, not just at node creation time.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "test-network-covers-all-propagation-paths": {
+      "text": "Test coverage claim, not a codebase invariant \u2014 what the test suite covers can change without affecting production behavior",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_network.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "tests-verify-via-output-headers": {
+      "text": "Test methodology detail (how assertions parse output), not a codebase architectural invariant",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_derive_budget.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "three-layer-architecture": {
       "text": "The codebase is a three-layer stack: data model (`__init__.py`), TMS engine (`network.py`), and persistence (`storage.py`), with `api.py` providing functional API and `cli.py` as a thin argparse wrapper.",
       "truth_value": "IN",
@@ -4874,6 +6917,15 @@
         }
       ],
       "source": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "topo-sort-breaks-cycles": {
+      "text": "Duplicates existing belief `import-topo-sort-tolerates-cycles`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_agent.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
@@ -5028,6 +7080,42 @@
       "date": "",
       "metadata": {}
     },
+    "untagged-always-visible": {
+      "text": "Nodes with no `access_tags` key in metadata are never filtered by `visible_to` \u2014 they are treated as unconditionally public.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "untagged-nodes-always-visible": {
+      "text": "Nodes without `access_tags` metadata pass all `visible_to` filters unconditionally and are never hidden by access control.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "unused-node-import-in-dangling-test": {
+      "text": "Unstable trivia \u2014 an unused import is likely to be cleaned up and is not an architectural invariant.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "unused-path-import": {
+      "text": "Dead code observation (`Path` imported but unused) \u2014 unstable detail that will change when cleaned up.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "verified-mutation-correctness-across-boundaries": {
       "text": "Every mutation source produces fully correct persisted state that preserves boundary-agnostic integrity \u2014 not just safe operation, but verified output correctness across internal/external boundaries and all source types \u2014 only when implementation-level defects in propagation and budget allocation are resolved.",
       "truth_value": "OUT",
@@ -5050,11 +7138,101 @@
       "date": "",
       "metadata": {}
     },
+    "verify-dependents-is-read-only": {
+      "text": "`Network.verify_dependents()` never modifies the dependents index; it returns a list of human-readable error strings without side effects",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "verify-dependents-is-readonly": {
+      "text": "`verify_dependents()` never modifies `node.dependents`; it only reads and reports discrepancies as a list of human-readable strings containing `\"extra\"` or `\"missing\"`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dependents_integrity.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "version-is-manual": {
+      "text": "The version is statically declared in `pyproject.toml` with no dynamic version plugin, `__version__` import, or SCM-based versioning \u2014 it must be bumped manually.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/pyproject.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "visibility-is-subset-check": {
+      "text": "`_is_visible` requires ALL of a node's `access_tags` to be present in the caller's `visible_to` list (subset check, not intersection); nodes with no tags are always visible.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "visible-to-is-optional-filter": {
+      "text": "`_parse_visible_to` returns `None` when `--visible-to` is absent, which the API interprets as \"no access restriction\"; it never defaults to an empty list.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/reasons_lib-cli.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "visible-to-superset-semantics": {
+      "text": "A node with `access_tags: [\"finance\", \"hr\"]` is only visible to callers whose `visible_to` list contains both tags (superset/subset check, not intersection).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_access_tags.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "warning-log-contract-action-target-value": {
+      "text": "Dangling-dependent warnings in `net.log` have `action=\"warn\"`, a `target` field with the ghost node ID, and a `value` string containing both `\"dangling\"` and the parent node ID.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "warning-log-schema-stable": {
+      "text": "Dangling-dependent warnings use the dict schema `{action: \"warn\", target: <ghost_id>, value: <str containing \"dangling\" and parent_id>, timestamp: <str>}` and tests enforce all four fields.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/tests-test_dangling_dependents.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "write-false-prevents-persistence": {
       "text": "Functions using `_with_network(write=False)` can mutate the in-memory network (as `what_if_retract` does) but changes are never saved to SQLite; write-or-not is declared upfront and never conditional.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-api.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "zero-runtime-dependencies": {
+      "text": "`ftl-reasons` declares `dependencies = []` in pyproject.toml; the entire `reasons_lib` package runs on Python's standard library alone (sqlite3, json, argparse); PostgreSQL support is opt-in via the `pg` extra",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/29/pyproject.md",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "zero-runtime-deps": {
+      "text": "`ftl-reasons` has zero runtime dependencies; the entire library runs on Python's stdlib alone (SQLite via `sqlite3`, dataclasses, etc.).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/04/24/pyproject.md",
       "source_hash": "",
       "date": "",
       "metadata": {}
