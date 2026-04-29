@@ -30,13 +30,7 @@ _None_
 
 ## Critical Watch List
 
-### Active Issues
-
-- **belief-currency-is-actively-managed**: The system actively manages belief currency bidirectionally: the production-ready derive pipeline safely introduces new beliefs through defensive validation, while the staleness CI gate detects drift in existing beliefs against source material — together preventing both unsafe additions and undetected obsolescence.
-- **challenge-defense-is-crash-safe**: The dialectical challenge/defend system reaches correct truth states through recursive outlist injection evaluated by deterministic terminating propagation.
-- **dialectical-structure-is-recursive-outlist**: The entire challenge/defend dialectical system is implemented as recursive outlist injection with no dedicated dialectical machinery
-- **resource-sustainable-lifecycle-has-no-gaps**: Gapless lifecycle management is resource-sustainable: accurate bidirectional token budgets support both new belief derivation and existing belief staleness detection, ensuring no lifecycle gap arises from resource exhaustion.
-- **revision-is-lifecycle-safe-and-semantics-preserving**: Both revision entry points — reactive contradiction resolution (backtracking to least-entrenched premise, skipping retracted nodes) and proactive dialectical challenge (outlist injection preserving evaluation semantics) — respect node lifecycle and preserve semantic consistency despite operating through different mechanisms.
+No active issues. All 10 defect premises have been retracted and their GATE beliefs resolved.
 
 
 ## Statistics
