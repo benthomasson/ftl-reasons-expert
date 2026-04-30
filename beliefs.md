@@ -462,9 +462,19 @@ Every CLI subcommand returns exit code 0 for success and 1 for any user-facing e
 The CLI achieves full scriptability through three deterministic properties: flat dict dispatch with no dynamic plugin resolution, binary exit codes (0 success, 1 error) with no ambiguous intermediate codes, and clean stream separation (diagnostics to stderr, results to stdout)
 - Depends on: cli-dispatch-is-flat-dict-lookup, cli-exit-code-contract-is-binary, cli-errors-use-stderr-success-uses-stdout
 
+### cli-is-pure-delegation-layer [IN] DERIVED
+The CLI is a pure delegation layer: every handler dispatches through a flat dict lookup to API functions with no business logic, producing binary exit codes and correct stream separation — a complete separation of formatting from computation.
+- Depends on: cli-is-pure-formatter, cli-dispatch-is-flat-dict-lookup
+- Unless: cmd-propagate-bypasses-api
+
 ### cli-is-pure-formatter [IN] OBSERVATION
 Every `cmd_*` function delegates to `api.*` and only formats the returned dict for terminal output; no business logic lives in the CLI layer (sole exception: `cmd_propagate` touches `Storage` directly).
 - Source: entries/2026/04/23/reasons_lib-cli.md
+
+### cli-is-verified-end-to-end [IN] DERIVED
+The CLI is verified through hermetic end-to-end integration tests (isolated databases per test, full argv-parsing pipeline, deterministic stream-correct output) — unless cmd_propagate bypasses the API layer, leaving one code path's safety guarantees unverifiable through the standard integration testing harness.
+- Depends on: cli-is-deterministic-and-stream-correct, each-cli-test-creates-isolated-db
+- Unless: cmd-propagate-bypasses-api
 
 ### cli-tests-are-black-box-integration [IN] OBSERVATION
 All CLI tests invoke `main()` through the full argv-parsing pipeline via the `run_cli` harness rather than calling internal APIs, with one exception (`TestPropagateWithChanges` directly mutates storage to create inconsistent state).
@@ -481,10 +491,6 @@ The minimality-sustained closed maintenance loop operates identically across all
 ### closed-loop-preserves-all-invariants [IN] DERIVED
 The closed revision-and-lifecycle maintenance loop not only sustains belief consistency but preserves all system invariants through architecturally grounded enforcement — the loop is both self-maintaining and invariant-preserving.
 - Depends on: revision-and-lifecycle-form-closed-loop, invariant-preservation-is-architecturally-grounded
-
-### cmd-propagate-bypasses-api [IN] OBSERVATION
-`cmd_propagate` is the only CLI handler that bypasses `api.py`, going directly to `Storage` → `Network.recompute_all()` → `Storage.save()` — a design inconsistency in the otherwise pure-presentation CLI layer.
-- Source: entries/2026/04/24/reasons_lib-cli.md
 
 ### colon-means-already-namespaced [IN] OBSERVATION
 `_resolve_namespace` treats a colon in a node ID as "already namespaced" and never double-prefixes; this is the convention for cross-namespace references.
@@ -2449,15 +2455,10 @@ Every belief modification path — human-initiated dialectical challenge/defend,
 Four independently-established safety dimensions — dialectical determinism, edge-case uniformity, node lifecycle awareness, and mutation-source coverage — converge into a single comprehensive safety property, because each was independently derived from the same minimal evaluation core and they impose no conflicting constraints on each other.
 - Depends on: safety-and-uniformity-are-co-derived, revision-spans-lifecycle-and-all-sources
 
-### cli-is-pure-delegation-layer [OUT] DERIVED
-The CLI is a pure delegation layer: every handler dispatches through a flat dict lookup to API functions with no business logic, producing binary exit codes and correct stream separation — a complete separation of formatting from computation.
-- Depends on: cli-is-pure-formatter, cli-dispatch-is-flat-dict-lookup
-- Unless: cmd-propagate-bypasses-api
-
-### cli-is-verified-end-to-end [OUT] DERIVED
-The CLI is verified through hermetic end-to-end integration tests (isolated databases per test, full argv-parsing pipeline, deterministic stream-correct output) — unless cmd_propagate bypasses the API layer, leaving one code path's safety guarantees unverifiable through the standard integration testing harness.
-- Depends on: cli-is-deterministic-and-stream-correct, each-cli-test-creates-isolated-db
-- Unless: cmd-propagate-bypasses-api
+### cmd-propagate-bypasses-api [STALE] OBSERVATION
+`cmd_propagate` is the only CLI handler that bypasses `api.py`, going directly to `Storage` → `Network.recompute_all()` → `Storage.save()` — a design inconsistency in the otherwise pure-presentation CLI layer.
+- Source: entries/2026/04/24/reasons_lib-cli.md
+- Stale reason: Fixed in PR #62 — cmd_propagate now delegates to api.propagate()
 
 ### compact-budget-only-limits-in-nodes [STALE] OBSERVATION
 The token budget only constrains the IN nodes section; nogoods and OUT nodes are always emitted regardless of budget, so compact output can exceed the specified budget value.

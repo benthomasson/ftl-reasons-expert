@@ -1643,7 +1643,7 @@
     },
     "cli-is-pure-delegation-layer": {
       "text": "The CLI is a pure delegation layer: every handler dispatches through a flat dict lookup to API functions with no business logic, producing binary exit codes and correct stream separation \u2014 a complete separation of formatting from computation.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -1673,7 +1673,7 @@
     },
     "cli-is-verified-end-to-end": {
       "text": "The CLI is verified through hermetic end-to-end integration tests (isolated databases per test, full argv-parsing pipeline, deterministic stream-correct output) \u2014 unless cmd_propagate bypasses the API layer, leaving one code path's safety guarantees unverifiable through the standard integration testing harness.",
-      "truth_value": "OUT",
+      "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
@@ -1750,12 +1750,14 @@
     },
     "cmd-propagate-bypasses-api": {
       "text": "`cmd_propagate` is the only CLI handler that bypasses `api.py`, going directly to `Storage` \u2192 `Network.recompute_all()` \u2192 `Storage.save()` \u2014 a design inconsistency in the otherwise pure-presentation CLI layer.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-cli.md",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Fixed in PR #62 \u2014 cmd_propagate now delegates to api.propagate()"
+      }
     },
     "colon-means-already-namespaced": {
       "text": "`_resolve_namespace` treats a colon in a node ID as \"already namespaced\" and never double-prefixes; this is the convention for cross-namespace references.",
