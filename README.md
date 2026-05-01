@@ -6,23 +6,48 @@ This repo contains structured exploration entries, extracted beliefs, multi-mode
 
 ## Belief State
 
-- **241 IN** beliefs (held as true) / **59 OUT** (retracted or defeated) — 300 total
-- **24 premises** (direct observations from code) / **217 derived** (reasoned from other beliefs)
+- **596 IN** beliefs (held as true) / **65 OUT** (retracted or defeated) — 661 total
+- **313 premises** (direct observations from code) / **283 derived** (reasoned from other beliefs)
 - **10 retracted premises** — defects fixed via PRs merged back into ftl-reasons
 - **0 active blockers** — all GATE beliefs resolved
-- **Max derivation depth: 14** — 16 beliefs at depth 11+, 2 terminal beliefs at depth 14
+- **Max derivation depth: 15** — 16 beliefs at depth 11+
 - Beliefs are tracked in `reasons.db` (gitignored) and exported to `beliefs.md` and `network.json`
-
-Beliefs range from low-level code observations ("add-nogood-always-records") through mid-level architectural properties ("revision-is-universally-safe", "external-beliefs-achieve-integration-parity") to the depth-14 apex belief `system-guarantees-are-universal-permanent-and-verifiable` — the conclusion that the system's guarantees extend to all belief types, hold indefinitely, and are independently auditable.
 
 ### Derivation Depth Distribution
 
 | Depth | Count | Examples |
 |-------|-------|---------|
-| 0 | 24 | Premises: `sl-justification-semantics`, `propagation-is-bfs` |
-| 1-4 | 120 | `revision-is-universally-safe`, `tms-handles-all-conditions-safely` |
-| 5-10 | 95 | `self-correction-has-complete-traceable-history`, `invariant-preservation-is-comprehensive` |
-| 11-14 | 16 | `system-guarantees-are-universal-permanent-and-verifiable` (apex) |
+| 0 | 313 | Premises: `sl-justification-semantics`, `propagation-is-bfs`, `access-control-enforced-at-read-not-write` |
+| 1-4 | 177 | `propagation-is-safe-and-terminating`, `tms-core-is-crash-safe`, `ask-is-fault-tolerant-and-bounded` |
+| 5-10 | 90 | `invariant-preservation-is-comprehensive`, `external-beliefs-achieve-integration-parity` |
+| 11-15 | 16 | `system-guarantees-are-universal-permanent-and-verifiable` (apex, depth 15) |
+
+### Key Derived Beliefs
+
+Selected beliefs illustrating the derivation chain from code observations to system-level conclusions:
+
+**Core safety** (depth 1-3):
+- `tms-core-is-crash-safe` — Deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes
+- `propagation-is-safe-and-terminating` — BFS prevents stack overflow, stop-on-unchanged prevents oscillation, retracted nodes are skipped
+- `retraction-cascade-is-transitive-and-terminating` — Cascades propagate OUT to all transitively dependent nodes and are guaranteed to terminate safely
+
+**Revision and contradiction** (depth 3-6):
+- `revision-is-universally-safe` — Every belief, including all semantic edge cases, can be revised through either reactive or proactive paths
+- `belief-revision-is-comprehensive-and-minimal` — All revision handled through two minimal mechanisms: the outlist primitive and least-entrenched culprit selection
+- `contradiction-resolution-is-traceable-and-recoverable` — Minimizes disruption with guided recovery and maintains consistent artifact identification
+
+**Architecture and integration** (depth 5-8):
+- `architecture-is-self-contained-and-safely-layered` — Zero runtime dependencies externally, clean three-layer boundaries internally
+- `external-beliefs-achieve-integration-parity` — External beliefs achieve full parity with internal beliefs across lifecycle management and deterministic revision
+- `all-mutations-preserve-integrity-under-adverse-conditions` — Every structural modification preserves integrity even under adverse graph conditions
+
+**Self-maintenance** (depth 8-12):
+- `invariant-preservation-is-comprehensive` — Invariants preserved through closed revision/lifecycle loop and structural/dynamic enforcement
+- `self-correction-has-complete-traceable-history` — Temporally complete and historically traceable across creation-time and maintenance-time
+- `system-is-fully-characterized-self-maintaining-loop` — Closed loop characterized along origin-agnosticism, observability, and self-sustainability
+
+**Apex** (depth 15):
+- `system-guarantees-are-universal-permanent-and-verifiable` — The system's guarantees are simultaneously universal (all belief types), permanent (no temporal degradation), and verifiable (independently auditable through the maintenance loop)
 
 ## Contents
 
@@ -32,7 +57,7 @@ network.json            # Lossless belief network export (JSON)
 reasons.db              # SQLite belief store (gitignored)
 proposed-beliefs.md     # Beliefs proposed but not yet accepted
 .code-expert/           # Scanner config, topic queue, proposed entries
-entries/                # 44 exploration entries covering:
+entries/                # 75 exploration entries covering:
                         #   - Core modules (network, storage, api, cli)
                         #   - Key algorithms (propagation, justification, nogood resolution)
                         #   - Design patterns (outlist semantics, multi-agent federation)
