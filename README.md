@@ -24,30 +24,30 @@ This repo contains structured exploration entries, extracted beliefs, multi-mode
 
 ### Key Derived Beliefs
 
-Selected beliefs illustrating the derivation chain from code observations to system-level conclusions:
-
-**Core safety** (depth 1-3):
-- `tms-core-is-crash-safe` — Deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes
-- `propagation-is-safe-and-terminating` — BFS prevents stack overflow, stop-on-unchanged prevents oscillation, retracted nodes are skipped
-- `retraction-cascade-is-transitive-and-terminating` — Cascades propagate OUT to all transitively dependent nodes and are guaranteed to terminate safely
-
-**Revision and contradiction** (depth 3-6):
-- `revision-is-universally-safe` — Every belief, including all semantic edge cases, can be revised through either reactive or proactive paths
-- `belief-revision-is-comprehensive-and-minimal` — All revision handled through two minimal mechanisms: the outlist primitive and least-entrenched culprit selection
-- `contradiction-resolution-is-traceable-and-recoverable` — Minimizes disruption with guided recovery and maintains consistent artifact identification
-
-**Architecture and integration** (depth 5-8):
-- `architecture-is-self-contained-and-safely-layered` — Zero runtime dependencies externally, clean three-layer boundaries internally
-- `external-beliefs-achieve-integration-parity` — External beliefs achieve full parity with internal beliefs across lifecycle management and deterministic revision
-- `all-mutations-preserve-integrity-under-adverse-conditions` — Every structural modification preserves integrity even under adverse graph conditions
-
-**Self-maintenance** (depth 8-12):
-- `invariant-preservation-is-comprehensive` — Invariants preserved through closed revision/lifecycle loop and structural/dynamic enforcement
-- `self-correction-has-complete-traceable-history` — Temporally complete and historically traceable across creation-time and maintenance-time
-- `system-is-fully-characterized-self-maintaining-loop` — Closed loop characterized along origin-agnosticism, observability, and self-sustainability
+Selected beliefs illustrating the derivation chain from system-level conclusions down to code observations:
 
 **Apex** (depth 15):
 - `system-guarantees-are-universal-permanent-and-verifiable` — The system's guarantees are simultaneously universal (all belief types), permanent (no temporal degradation), and verifiable (independently auditable through the maintenance loop)
+
+**Self-maintenance** (depth 8-12):
+- `system-is-fully-characterized-self-maintaining-loop` — Closed loop characterized along origin-agnosticism, observability, and self-sustainability
+- `self-correction-has-complete-traceable-history` — Temporally complete and historically traceable across creation-time and maintenance-time
+- `invariant-preservation-is-comprehensive` — Invariants preserved through closed revision/lifecycle loop and structural/dynamic enforcement
+
+**Architecture and integration** (depth 5-8):
+- `all-mutations-preserve-integrity-under-adverse-conditions` — Every structural modification preserves integrity even under adverse graph conditions
+- `external-beliefs-achieve-integration-parity` — External beliefs achieve full parity with internal beliefs across lifecycle management and deterministic revision
+- `architecture-is-self-contained-and-safely-layered` — Zero runtime dependencies externally, clean three-layer boundaries internally
+
+**Revision and contradiction** (depth 3-6):
+- `contradiction-resolution-is-traceable-and-recoverable` — Minimizes disruption with guided recovery and maintains consistent artifact identification
+- `belief-revision-is-comprehensive-and-minimal` — All revision handled through two minimal mechanisms: the outlist primitive and least-entrenched culprit selection
+- `revision-is-universally-safe` — Every belief, including all semantic edge cases, can be revised through either reactive or proactive paths
+
+**Core safety** (depth 1-3):
+- `retraction-cascade-is-transitive-and-terminating` — Cascades propagate OUT to all transitively dependent nodes and are guaranteed to terminate safely
+- `propagation-is-safe-and-terminating` — BFS prevents stack overflow, stop-on-unchanged prevents oscillation, retracted nodes are skipped
+- `tms-core-is-crash-safe` — Deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes
 
 ## Contents
 
