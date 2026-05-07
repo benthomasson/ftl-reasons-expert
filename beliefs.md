@@ -453,10 +453,6 @@ All CLI tests invoke `main()` through the full argv-parsing pipeline via the `ru
 Adding a CLI subcommand requires entries in both the argparse subparser definitions and the `commands` dispatch dict in `main()`; omitting either silently breaks the command.
 - Source: entries/2026/05/05/reasons_lib-cli.md
 
-### compact-budget-guarantee [IN] OBSERVATION
-`compact()` output estimated token count never exceeds the `budget` parameter; every line is gated by `_over_budget` before appending.
-- Source: entries/2026/04/24/reasons_lib-compact.md
-
 ### compact-budget-is-soft-cap [IN] OBSERVATION
 The compact token budget is approximate; structural overhead (section headers, truncation messages) can cause up to ~25% overshoot beyond the specified budget.
 - Source: entries/2026/04/29/tests-test_compact.md
@@ -746,10 +742,6 @@ Test implementation detail (regex parsing of `"showing N"` headers), not a produ
 ### derive-min-antecedents-is-prompt-only [IN] OBSERVATION
 The minimum-2-antecedents rule for derived beliefs is enforced only by the LLM prompt instructions, not validated in code by `validate_proposals`.
 - Source: entries/2026/04/29/reasons_lib-derive.md
-
-### derive-no-llm-call [IN] OBSERVATION
-`derive.py` builds prompts and parses responses but never calls an LLM itself; the caller (CLI or API) is responsible for the model invocation.
-- Source: entries/2026/04/24/reasons_lib-derive.md
 
 ### derive-parse-supports-two-format-versions [IN] OBSERVATION
 `parse_proposals` tries the new `### DERIVE id` format first, falling back to the older `### DERIVE: \`id\`` format only when the new parser returns zero matches.
@@ -1243,10 +1235,6 @@ The Network class imports only stdlib (`collections.deque`, `datetime`) plus pac
 `network.py` is imported by essentially every other module — api, storage, import, export, compact, check_stale, and all test files — making it the central data structure of the project.
 - Source: entries/2026/04/23/scan-ftl-reasons.md
 
-### network-is-sole-truth-propagation-engine [IN] OBSERVATION
-All truth value computation and propagation in the system flows through `Network._propagate()` and `Network._compute_truth()`; no other module modifies truth values directly.
-- Source: entries/2026/05/05/reasons_lib-network.md
-
 ### network-metadata-carries-structured-state [IN] OBSERVATION
 Node state such as `_retracted`, `retract_reason`, `superseded_by`, `challenges`, `access_tags`, and `summarized_by` lives in the generic `metadata` dict rather than typed Node fields, keeping the dataclass stable while features layer on behavior.
 - Source: entries/2026/04/29/reasons_lib-network.md
@@ -1432,10 +1420,6 @@ When `add_node` references a nonexistent node in `sl=` or `unless=`, PgApi raise
 `PgApi` isolates beliefs by `project_id` so identical node IDs in different projects store independent data with no cross-contamination — each test gets a unique UUID project
 - Source: entries/2026/04/29/tests-test_pg.md
 
-### pg-reimplements-network-in-sql [IN] OBSERVATION
-`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.
-- Source: entries/2026/04/29/reasons_lib-pg.md
-
 ### pg-teardown-rollback-before-delete [IN] OBSERVATION
 The `pg_api` fixture calls `conn.rollback()` before cleanup deletes to recover from any failed-transaction state left by the test, preventing cleanup failures from cascading.
 - Source: entries/2026/04/29/tests-conftest.md
@@ -1485,7 +1469,7 @@ All PgApi tables use composite primary keys `(id, project_id)` for multi-tenancy
 - Source: entries/2026/04/28/reasons_lib-pg.md
 
 ### pgapi-one-transaction-per-method [IN] OBSERVATION
-Each `PgApi` public method is a single PostgreSQL transaction that commits at the end; `__exit__` rolls back on exception
+Each PgApi public method is a single PostgreSQL transaction that commits or rolls back at the end; __exit__ rolls back on exception
 - Source: entries/2026/04/28/reasons_lib-pg.md
 
 ### pgapi-partial-api-coverage [IN] OBSERVATION
@@ -2361,6 +2345,11 @@ The compact module's token budget reliably constrains total output size
 - Unless: compact-token-estimate-is-word-count, compact-budget-only-limits-in-nodes
 - Stale reason: Invalid derivation identified by review-beliefs
 
+### compact-budget-guarantee [STALE] OBSERVATION
+`compact()` output estimated token count never exceeds the `budget` parameter; every line is gated by `_over_budget` before appending.
+- Source: entries/2026/04/24/reasons_lib-compact.md
+- Stale reason: Contradicted by compact-budget-is-soft-cap and compact-budget-soft-ceiling: budget can be exceeded by ~25%
+
 ### compact-budget-only-limits-in-nodes [STALE] OBSERVATION
 The token budget only constrains the IN nodes section; nogoods and OUT nodes are always emitted regardless of budget, so compact output can exceed the specified budget value.
 - Source: entries/2026/04/23/reasons_lib-compact.md
@@ -2484,6 +2473,11 @@ The dependents set is a manually-maintained denormalized reverse index that is n
 `_build_beliefs_section` has a bug: `count += len(belief_ids)` is inside the per-belief loop instead of outside it, inflating the count and shrinking the non-agent budget below intended size
 - Source: entries/2026/04/23/reasons_lib-derive.md
 - Stale reason: Fixed in PR #33
+
+### derive-no-llm-call [STALE] OBSERVATION
+`derive.py` builds prompts and parses responses but never calls an LLM itself; the caller (CLI or API) is responsible for the model invocation.
+- Source: entries/2026/04/24/reasons_lib-derive.md
+- Stale reason: Contradicted by derive-strips-claudecode-env: _derive_one_round spawns the model subprocess
 
 ### derive-pipeline-has-complete-coverage [OUT] DERIVED
 The derive pipeline achieves complete coverage along three axes: safety (fail-soft validation, Jaccard retraction guards, environment isolation), completeness (exhaustive exploration with guaranteed termination), and production-readiness (accurate proportional budgets, roundtrippable prompt format).
@@ -3030,6 +3024,11 @@ Every network mutation follows an end-to-end safety pipeline: API context manage
 The system's complete negative semantics — structural absence creating premise behavior, explicit outlist defeat with automatic reversal, and guided recovery — operate within transformation-invariant truth evaluation: negation mechanisms alter belief topology but never create special-case evaluation paths, because the same uniform rules evaluate all resulting structures identically regardless of how they were produced.
 - Depends on: negative-semantics-are-complete-reversible-and-recoverable, truth-evaluation-is-transformation-invariant
 
+### network-is-sole-truth-propagation-engine [STALE] OBSERVATION
+All truth value computation and propagation in the system flows through `Network._propagate()` and `Network._compute_truth()`; no other module modifies truth values directly.
+- Source: entries/2026/05/05/reasons_lib-network.md
+- Stale reason: Contradicted by pg-reimplements-network-in-sql: PgApi has its own SQL-based propagation
+
 ### nogood-ids-assume-append-only [STALE] OBSERVATION
 Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls
 - Source: entries/2026/04/23/reasons_lib-network-add_nogood.md
@@ -3133,6 +3132,11 @@ PgApi's data integrity achieves defense-in-depth through both application-level 
 PgApi's multi-tenant isolation with composite primary keys and application-level BFS propagation prevents all cross-project data leakage and ensures consistent truth maintenance — unless antecedent references stored as JSONB arrays lack foreign key constraints, allowing phantom node references within a project.
 - Depends on: pgapi-is-sql-native-multi-tenant, pgapi-bfs-propagation-in-python
 - Unless: pg-antecedent-refs-have-no-fk-constraints
+
+### pg-reimplements-network-in-sql [STALE] OBSERVATION
+`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.
+- Source: entries/2026/04/29/reasons_lib-pg.md
+- Stale reason: Over-generalizes: claims dialectical operations are reimplemented in SQL, contradicted by pgapi-partial-api-coverage which says dialectics are deferred
 
 ### pgapi-achieves-implementation-parity [OUT] DERIVED
 PgApi achieves full behavioral parity with the in-memory Network implementation: it reimplements the core algorithms (entrenchment scoring, nogood resolution, BFS propagation, dialectics) in SQL with BFS propagation executed in application-level Python.

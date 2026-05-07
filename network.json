@@ -2545,13 +2545,15 @@
     },
     "compact-budget-guarantee": {
       "text": "`compact()` output estimated token count never exceeds the `budget` parameter; every line is gated by `_over_budget` before appending.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-compact.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Contradicted by compact-budget-is-soft-cap and compact-budget-soft-ceiling: budget can be exceeded by ~25%"
+      }
     },
     "compact-budget-is-soft-cap": {
       "text": "The compact token budget is approximate; structural overhead (section headers, truncation messages) can cause up to ~25% overshoot beyond the specified budget.",
@@ -4038,13 +4040,15 @@
     },
     "derive-no-llm-call": {
       "text": "`derive.py` builds prompts and parses responses but never calls an LLM itself; the caller (CLI or API) is responsible for the model invocation.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-derive.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Contradicted by derive-strips-claudecode-env: _derive_one_round spawns the model subprocess"
+      }
     },
     "derive-parse-supports-two-format-versions": {
       "text": "`parse_proposals` tries the new `### DERIVE id` format first, falling back to the older `### DERIVE: \\`id\\`` format only when the new parser returns zero matches.",
@@ -8373,13 +8377,15 @@
     },
     "network-is-sole-truth-propagation-engine": {
       "text": "All truth value computation and propagation in the system flows through `Network._propagate()` and `Network._compute_truth()`; no other module modifies truth values directly.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/05/05/reasons_lib-network.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Contradicted by pg-reimplements-network-in-sql: PgApi has its own SQL-based propagation"
+      }
     },
     "network-metadata-carries-structured-state": {
       "text": "Node state such as `_retracted`, `retract_reason`, `superseded_by`, `challenges`, `access_tags`, and `summarized_by` lives in the generic `metadata` dict rather than typed Node fields, keeping the dataclass stable while features layer on behavior.",
@@ -9401,13 +9407,15 @@
     },
     "pg-reimplements-network-in-sql": {
       "text": "`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/29/reasons_lib-pg.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Over-generalizes: claims dialectical operations are reimplemented in SQL, contradicted by pgapi-partial-api-coverage which says dialectics are deferred"
+      }
     },
     "pg-teardown-rollback-before-delete": {
       "text": "The `pg_api` fixture calls `conn.rollback()` before cleanup deletes to recover from any failed-transaction state left by the test, preventing cleanup failures from cascading.",
@@ -9605,14 +9613,16 @@
       "metadata": {}
     },
     "pgapi-one-transaction-per-method": {
-      "text": "Each `PgApi` public method is a single PostgreSQL transaction that commits at the end; `__exit__` rolls back on exception",
+      "text": "Each PgApi public method is a single PostgreSQL transaction that commits or rolls back at the end; __exit__ rolls back on exception",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/28/reasons_lib-pg.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Imprecise: said commit only, but what-if uses rollback. Re-adding with corrected text."
+      }
     },
     "pgapi-partial-api-coverage": {
       "text": "PgApi implements core operations (add/retract/assert/search/nogood/explain) but defers simulation, dialectics, namespace support, import/export, and maintenance operations to future work",
