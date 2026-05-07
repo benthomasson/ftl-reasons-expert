@@ -2231,13 +2231,15 @@
     },
     "check-stale-report-only": {
       "text": "Duplicate of existing belief `check-stale-is-read-only`.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-check_stale.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "retract_reason": "Stale duplicate of check-stale-is-read-only; also contradicted by check-stale-and-hash-sources-mutate-in-place (issue #101)"
+      }
     },
     "check-stale-requires-both-source-fields": {
       "text": "A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.",

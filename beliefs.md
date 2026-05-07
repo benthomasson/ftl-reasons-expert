@@ -384,10 +384,6 @@ Multiple nodes referencing the same missing source file each produce independent
 Staleness checking produces deterministic (sorted by node ID), uniformly structured (consistent 6-key schema across all result types), and exception-free (returns structured dicts for missing files rather than raising) output suitable for programmatic consumption and diffing.
 - Depends on: check-stale-results-sorted-by-node-id, check-stale-result-schema-uniform, check-stale-never-raises-on-missing-files
 
-### check-stale-report-only [IN] OBSERVATION
-Duplicate of existing belief `check-stale-is-read-only`.
-- Source: entries/2026/04/24/reasons_lib-check_stale.md
-
 ### check-stale-requires-both-source-fields [IN] OBSERVATION
 A node must have both `source` (non-empty) and `source_hash` (non-empty) to be eligible for staleness checking; nodes missing either field are silently skipped.
 - Source: entries/2026/04/23/reasons_lib-check_stale-check_stale.md
@@ -2315,6 +2311,11 @@ Both bulk modification operations — deduplication and import/sync — preserve
 ### canonical-equilibria-are-negation-transparent [OUT] DERIVED
 The system converges to canonical evaluation-invariant equilibria where negative semantics are fully transparent — the final stable state is determined solely by the logical content of justifications, independent of both the transformation path taken and whether beliefs were established through positive assertion or negative defeat.
 - Depends on: convergence-produces-evaluation-invariant-equilibria, negation-is-transparent-to-evaluation
+
+### check-stale-report-only [STALE] OBSERVATION
+Duplicate of existing belief `check-stale-is-read-only`.
+- Source: entries/2026/04/24/reasons_lib-check_stale.md
+- Stale reason: Stale duplicate of check-stale-is-read-only; also contradicted by check-stale-and-hash-sources-mutate-in-place (issue #101)
 
 ### cli-is-pure-delegation-layer [STALE] DERIVED
 The CLI is a pure delegation layer: every handler dispatches through a flat dict lookup to API functions with no business logic, producing binary exit codes and correct stream separation — a complete separation of formatting from computation.
