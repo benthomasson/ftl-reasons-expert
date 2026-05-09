@@ -329,7 +329,7 @@
     },
     "all-belief-inspection-is-non-mutating-and-fault-tolerant": {
       "text": "All belief inspection operations \u2014 quality review (read-only with fault-tolerant batch handling), staleness checking (conservative non-mutating CI gate), and negative classification (defensively bounded with graceful degradation) \u2014 are uniformly non-mutating and fault-tolerant, ensuring observation never perturbs the observed system.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -952,6 +952,26 @@
       "date": "",
       "metadata": {}
     },
+    "all-revision-mechanisms-are-traceable-and-recoverable": {
+      "text": "Every belief revision mechanism \u2014 contradiction resolution (dependency-directed backtracking with consistent nogood IDs) and defeat reversal (automatic outlist-driven recovery with surgical restoration hints) \u2014 provides complete traceability and guided recovery across all revision paths.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "contradiction-management-is-complete-and-traceable",
+            "defeat-reversal-is-automatic-with-guided-recovery"
+          ],
+          "outlist": [],
+          "label": "Complete traceable contradiction management + automatic recoverable defeat reversal \u2192 all revision is traceable and recoverable"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "all-safety-dimensions-converge": {
       "text": "Four independently-established safety dimensions \u2014 dialectical determinism, edge-case uniformity, node lifecycle awareness, and mutation-source coverage \u2014 converge into a single comprehensive safety property, because each was independently derived from the same minimal evaluation core and they impose no conflicting constraints on each other.",
       "truth_value": "OUT",
@@ -1075,6 +1095,26 @@
       "metadata": {
         "retract_reason": "Invalid derivation identified by review-beliefs"
       }
+    },
+    "all-truth-changes-are-topology-complete-and-robust": {
+      "text": "All forms of truth change \u2014 both cascading propagation and justification addition \u2014 achieve topology-complete multi-dimensional consistency under all graph states: truth values, dependents index, and access tags cascade to every transitively dependent node including through outlist connections, even when the graph contains dangling references.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "propagation-is-topology-complete-and-inconsistency-safe",
+            "justification-addition-is-robust-across-graph-states"
+          ],
+          "outlist": [],
+          "label": "Topology-complete propagation + robust justification addition \u2192 universally robust truth changes"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "any-mode-creates-per-premise-justifications": {
       "text": "When `any_mode=True` and multiple antecedents are given, each antecedent gets its own SL justification (OR semantics: node is IN if *any* antecedent is IN), rather than the default single multi-antecedent justification (AND semantics).",
@@ -1890,6 +1930,16 @@
       "date": "",
       "metadata": {}
     },
+    "belief-source-metadata-is-file-level": {
+      "text": "Belief source tracking uses flat file-level pointers (source path + source_hash) with no structural awareness of where within a document the claim originated \u2014 section, page, or paragraph level provenance is not supported.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/06/pageindex-and-tms-integration.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "bootstrap-bypasses-incremental-propagation": {
       "text": "Both persistence loading and import construct the full node graph before truth maintenance \u2014 load trusts stored truth values and skips propagation entirely, while import adds all nodes then propagates via recompute_all \u2014 sharing a bulk-construction pattern that avoids per-node incremental propagation.",
       "truth_value": "IN",
@@ -2168,6 +2218,16 @@
       "date": "",
       "metadata": {}
     },
+    "check-stale-detects-source-staleness-only": {
+      "text": "`check-stale` detects source staleness (source file changed on disk) via hash comparison but cannot detect world staleness (the belief is outdated even though the source file hasn't changed) \u2014 beliefs can silently decay without any artifact triggering re-examination.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/06/belief-staleness-in-business-planning.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "check-stale-exits-nonzero": {
       "text": "`cmd_check_stale` calls `sys.exit(1)` when any stale nodes are found, making it usable as a CI or pre-commit gate.",
       "truth_value": "IN",
@@ -2377,7 +2437,7 @@
       }
     },
     "cli-is-pure-formatter": {
-      "text": "Every `cmd_*` function delegates to `api.*` and only formats the returned dict for terminal output; no business logic lives in the CLI layer (sole exception: `cmd_propagate` touches `Storage` directly).",
+      "text": "Every cmd_* function delegates to api.* and only formats the returned dict for terminal output; no business logic lives in the CLI layer.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-cli.md",
@@ -2483,6 +2543,136 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-and-sample-are-mutually-exclusive": {
+      "text": "The `--cluster` and `--sample` flags in `cmd_derive` are mutually exclusive, enforced with an explicit check and `sys.exit(1)` \u2014 they represent competing strategies for belief subset selection.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cli.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-auto-k-heuristic": {
+      "text": "Auto cluster count is computed as `len(beliefs) // 5`, clamped between 2 and `min(budget // 3, 20)`, targeting approximately 5 beliefs per cluster with at least 3 beliefs per cluster given the budget.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-beliefs-deterministic-with-seed": {
+      "text": "Given the same beliefs dict, budget, and seed, `cluster_beliefs` produces identical output across calls.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-beliefs-respects-budget": {
+      "text": "`cluster_beliefs` never returns more IDs than the `budget` parameter; each cluster's allocation is individually capped by `min(alloc, len(members))`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-beliefs-returns-exact-budget": {
+      "text": "`cluster_beliefs` returns exactly `budget` belief IDs when the input set is larger than the budget, and all items when the input set is smaller.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-cache-keys-include-content-hash": {
+      "text": "`ClusterCache` keys embeddings by `(node_id, sha256_prefix)`, so editing a belief's text with the same ID forces re-embedding rather than serving stale vectors.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-cache-no-recompute": {
+      "text": "`ClusterCache.embed()` does not recompute embeddings for previously cached belief texts; cache size stays constant on repeated calls with the same input and grows by exactly the count of new texts on superset calls.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-deps-are-optional": {
+      "text": "`sentence-transformers` and `scikit-learn` are optional dependencies behind a `HAS_CLUSTER_DEPS` gate; the module degrades to a clear `ImportError` with install instructions when they are absent.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-deps-optional-with-graceful-skip": {
+      "text": "The clustering module (`reasons_lib.cluster`) is behind an optional `[cluster]` install extra; when `sentence-transformers` or `scikit-learn` are missing, `_require_cluster_deps` raises `ImportError` and all dependent tests skip cleanly.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-embed-order-is-deterministic": {
+      "text": "Beliefs are sorted by ID before embedding (`ids = sorted(beliefs.keys())`), making cluster assignments reproducible given the same random seed.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-remainder-favors-largest": {
+      "text": "When the budget doesn't divide evenly across clusters, extra slots are distributed one-per-cluster to the largest clusters first via descending size sort.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-skips-ml-when-under-budget": {
+      "text": "When the number of beliefs is less than or equal to the budget, all ML work (embedding, clustering, sampling) is skipped and every belief is returned directly.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-stats-sizes-sum-to-input": {
+      "text": "The `cluster_sizes` list in the stats dict returned by `cluster_beliefs` always sums to the total number of input beliefs, enforcing that every belief is assigned to exactly one cluster.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_cluster.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -2919,6 +3109,28 @@
       "date": "",
       "metadata": {}
     },
+    "complete-architecture-is-backend-portable": {
+      "text": "The deterministic lifecycle-complete architecture \u2014 with its predictable state trajectories, gapless lifecycle monitoring, and uniform safety enforcement \u2014 operates identically across all storage backends, achieving full portability between SQLite and PostgreSQL.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-architecture-is-deterministic-and-lifecycle-complete",
+            "safety-is-enforced-across-all-layers-and-backends"
+          ],
+          "outlist": [
+            "pgapi-partial-api-coverage"
+          ],
+          "label": "Deterministic architecture + cross-backend safety \u2192 full backend portability; gated on PgApi achieving complete API coverage"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "complete-architecture-is-deterministic-and-lifecycle-complete": {
       "text": "The complete reasoning-and-revision architecture is both deterministic in its state trajectories and lifecycle-complete in its monitoring coverage \u2014 no belief can escape either guarantee, creating a system where every belief is both predictably computed and fully tracked.",
       "truth_value": "IN",
@@ -2937,7 +3149,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "complete-architecture-preserves-invariants-minimally": {
       "text": "The complete reasoning-and-revision architecture preserves all system invariants through shared minimal foundations rather than through independent enforcement mechanisms \u2014 both architectural completeness (forward reasoning paired with backward revision) and invariant preservation (reactive contradiction resolution paired with proactive dialectical challenge) flow from the same outlist/disjunction primitives.",
@@ -3095,6 +3310,53 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
+    "context-agnosticism-follows-from-minimality": {
+      "text": "Context-agnostic evaluation \u2014 producing identical results regardless of evaluation timing, attachment history, or structural origin \u2014 is a consequence of semantic minimality with operational determinism: because truth evaluation derives from uniform minimal rules with deterministic pure evaluation, it naturally cannot distinguish between contexts.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "evaluation-is-uniformly-context-and-origin-agnostic",
+            "semantic-minimality-with-operational-determinism"
+          ],
+          "outlist": [],
+          "label": "Context-agnostic evaluation + semantic minimality \u2192 agnosticism as minimality consequence"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "False causal claim: context-agnosticism comes from evaluation purity, not from minimality. They co-occur but are not causally linked."
+      }
+    },
+    "contradiction-dry-run-overrides-auto-apply": {
+      "text": "When both `--dry-run` and `--auto-apply` are passed to the `contradictions` CLI subcommand, no nogoods are recorded in the database (applied count is 0).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradiction-in-only-filter": {
+      "text": "`detect_contradictions` excludes OUT nodes from LLM prompts even when explicitly listed in `belief_ids`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "contradiction-management-is-complete-and-traceable": {
@@ -3112,6 +3374,19 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
+    "contradiction-min-two-claims": {
+      "text": "`parse_contradiction_response` drops any nogood with fewer than 2 valid claim IDs; this is enforced both before and after `valid_ids` filtering.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_contradictions.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -3135,7 +3410,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "contradiction-resolution-is-minimal-disruption": {
       "text": "The nogood resolution system minimizes network disruption through layered heuristics: the primary path traces justification chains back to premises and selects the least-entrenched for retraction, the fallback uses dependent count when no traceable chain exists, and all contradictions are unconditionally recorded regardless of resolution outcome.",
@@ -3157,7 +3435,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "contradiction-resolution-is-traceable-and-recoverable": {
       "text": "Contradiction resolution provides complete operational support along two independent dimensions: it minimizes disruption with guided recovery (least-entrenched culprit selection plus surgical restoration hints for cascade victims), AND creates consistently identifiable artifacts (nogoods with durable collision-free IDs, challenge nodes with deterministic auto-IDs), enabling both forensic root-cause analysis and practical guided recovery.",
@@ -3177,7 +3458,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "contradiction-resolution-minimizes-disruption-and-guides-recovery": {
       "text": "Contradiction resolution achieves both minimal impact and guided recovery: dependency-directed backtracking selects the least-entrenched culprit premise to minimize the retraction cascade, while restoration hints identify specific cascade victims that have surviving alternative premises \u2014 providing a complete resolve-and-recover pipeline",
@@ -3197,7 +3481,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "contradiction-triggers-deterministic-resolution": {
       "text": "When contradictions are detected, resolution and propagation form a deterministic pipeline: backtracking identifies the least-entrenched culprit premise, retraction triggers BFS propagation that terminates via stop-on-unchanged, producing a new consistent state with minimal network disruption and guaranteed convergence.",
@@ -3214,6 +3501,69 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
+    "contradictions-cross-batch-pairs-undetected": {
+      "text": "Batch boundaries are non-overlapping \u2014 each belief appears in exactly one batch per run \u2014 so contradictions between beliefs in different batches cannot be detected in a single run.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-min-two-claims-per-nogood": {
+      "text": "The contradiction parser enforces that every returned nogood has at least 2 valid claim IDs; single-claim or empty results are silently dropped.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-no-storage-dependency": {
+      "text": "`contradictions.py` operates on in-memory node dicts and has no import of `storage.py` or any database layer, making it testable in full isolation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-only-checks-in-beliefs": {
+      "text": "`detect_contradictions` filters all input to `truth_value == \"IN\"` before processing; OUT beliefs are never sent to the LLM for contradiction checking.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-shuffle-prevents-deterministic-batching": {
+      "text": "Belief IDs are randomly shuffled before batching so that repeated runs cover different pairwise combinations across batch boundaries, increasing cross-batch contradiction coverage.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-shuffles-before-batching": {
+      "text": "The `contradictions` command randomly shuffles all IN beliefs before partitioning into batches of 50, ensuring that repeated runs probabilistically cover cross-belief comparisons that fixed sequential batching would never surface.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/06/contradictions-first-run.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -3319,7 +3669,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "convert-to-premise-removes-dependents": {
       "text": "When a derived node is converted to a premise via `convert_to_premise`, it is removed from its former antecedents' `dependents` sets because the old justification edges are deleted.",
@@ -3433,7 +3786,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dangling-dependents-log-not-crash": {
       "text": "Covered by existing `propagate-assumes-dependents-exist` (documents the assumption) and `tms-core-is-crash-safe` (documents crash safety)",
@@ -3555,7 +3911,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dedup-keeps-most-connected-node": {
       "text": "In auto-dedup mode, the node with the most dependents survives each cluster; ties break by lexicographic ID, and losers are retracted after dependents are rewired.",
@@ -3597,7 +3956,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dedup-rewrites-both-antecedents-and-outlist": {
       "text": "When a duplicate is retracted via dedup, all justification references (both antecedent and outlist) across the network are rewritten to point at the kept node",
@@ -3629,7 +3991,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "defeat-reversal-is-automatic-with-guided-recovery": {
       "text": "All outlist-based defeat mechanisms (challenge, kill-switch, supersession) not only reverse automatically through BFS propagation cascades \u2014 recovering all transitively dependent nodes \u2014 but also provide surgical recovery guidance through restoration hints that target cascade victims with surviving premises, enabling both automatic and manual recovery paths.",
@@ -3649,7 +4014,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "defeat-reversal-propagates-automatically": {
       "text": "All outlist-based defeat mechanisms (challenge, kill-switch, supersession) not only reverse in principle but propagate recovery automatically through safe terminating BFS \u2014 when a defeating node is retracted, the outlist entry becomes satisfied, and propagation cascades truth-value restoration to all affected nodes without manual re-assertion",
@@ -3671,7 +4039,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "defeat-reversal-with-guided-recovery": {
       "text": "All defeat mechanisms (challenge, kill-switch, supersession) are reversible through outlist semantics, and the system provides surgical restoration hints for cascade victims with viable recovery paths \u2014 enabling complete guided recovery from any retraction cascade.",
@@ -3693,7 +4064,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "insufficient"
+      }
     },
     "defend-is-challenge-of-challenge": {
       "text": "`defend` works by calling `challenge` on the challenge node itself, creating a recursive dialectical structure where truth values resolve automatically through the same outlist mechanism.",
@@ -3783,7 +4157,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dependency-tracking-is-complete-for-all-reference-types": {
       "text": "The dependents index fully tracks all relationship types \u2014 both antecedent references and outlist references \u2014 enabling complete incremental propagation for every truth value change without requiring periodic full recompute as a fallback",
@@ -3805,7 +4182,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "dependents-bidirectional-index": {
       "text": "Each node maintains a `dependents` set (reverse of antecedent/outlist edges), eagerly maintained by `add_node`, `add_justification`, `supersede`, `challenge`, and `convert_to_premise`.",
@@ -3914,7 +4294,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "derive-apply-isolates-per-proposal-errors": {
       "text": "`apply_proposals` wraps each `api.add_node()` call in try/except and accumulates `(proposal, error_string)` tuples, so one malformed proposal does not abort the batch.",
@@ -3947,7 +4330,9 @@
       "source_hash": "",
       "date": "",
       "metadata": {
-        "retract_reason": "Fixed in PR #33"
+        "retract_reason": "Fixed in PR #33",
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
       }
     },
     "derive-budget-count-is-linear": {
@@ -3988,7 +4373,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "derive-budget-local-floor-is-five": {
       "text": "`_build_beliefs_section` guarantees at least 5 local beliefs are shown regardless of agent budget pressure, via `max(5, max_beliefs - count)`",
@@ -4005,6 +4393,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/tests-test_derive_budget.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-budget-three-strategies": {
+      "text": "`_build_beliefs_section` supports three budget strategies \u2014 alphabetical truncation (default), random sampling (`sample=True`), and semantic clustering (`cluster=True`) \u2014 all controlled by a single `max_beliefs` parameter.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-derive.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4133,7 +4531,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "derive-pipeline-is-error-accumulating": {
       "text": "Covered by existing `derive-fail-soft-validation` (validation returns skipped entries with reasons) and `derive-pipeline-is-defensive` (broader defensive characterization)",
@@ -4209,7 +4610,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "derive-pipeline-is-reproducible-and-fully-assured": {
       "text": "The derive pipeline achieves quadruple assurance: reproducibility (deterministic sampling with fixed seeds and accurate budget allocation), safety (fail-soft validation, Jaccard retraction guards, environment isolation), completeness (exhaustive exploration with guaranteed termination), and efficiency (O(N) budget accumulation with guaranteed floor) \u2014 four independently established properties reinforcing pipeline trustworthiness.",
@@ -4289,7 +4693,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "derive-prompt-roundtrips-through-parser": {
       "text": "The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT` LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop",
@@ -4318,6 +4725,26 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-report-json-has-rounds-array": {
+      "text": "The `reasons derive --auto --report-dir` command writes a JSON report containing a `rounds` array where each entry has `proposals_found` and `added` counts.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-reports-survive-partial-runs": {
+      "text": "`cmd_derive` and `cmd_review_beliefs` write partial JSON reports after each round/batch via `_write_derive_report`, so crash recovery is possible from the last completed step.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-cli.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4388,6 +4815,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-validate-rejects-duplicate-ids": {
+      "text": "`validate_proposals` rejects any proposal whose belief ID already exists in the network, preventing overwrites of existing beliefs through the derive pipeline.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-derive.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4533,7 +4970,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "deterministic-reasoning-within-evolution-tolerant-boundaries": {
       "text": "The deterministic reversible reasoning engine \u2014 producing predictable terminating results through uniform evaluation \u2014 operates within system boundaries that gracefully handle format and schema evolution, ensuring deterministic correctness remains stable as external data formats change over time.",
@@ -4593,7 +5033,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dialectical-structure-is-recursive-outlist": {
       "text": "The entire challenge/defend dialectical system is implemented as recursive outlist injection with no dedicated dialectical machinery",
@@ -4615,7 +5058,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "dialectical-transformation-is-fully-reliable": {
       "text": "The irreversible premise-to-justified transformation during challenge is both semantics-preserving (the resulting node inherits complete outlist evaluation with conjunction, absence, and persistence semantics) and crash-safe (recursive dialectical chains terminate deterministically), making dialectical operations reliable despite their irreversibility.",
@@ -4637,7 +5083,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dialectical-transformation-is-operationally-safe": {
       "text": "The irreversible premise-to-justified transformation during challenge is both semantically safe (inherits uniform outlist evaluation and truth maintenance properties from the dialectical structure) and operationally safe (executes within atomic load/save transactions with deterministic BFS propagation).",
@@ -4677,7 +5126,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dialectics-are-atomic-and-transparent": {
       "text": "Challenge/defend dialectics are both semantically transparent (indistinguishable from ordinary beliefs, evaluated by uniform outlist rules) and atomically safe (mutations follow the same context-managed load/save pipeline as all other operations), requiring no special transaction handling.",
@@ -4699,6 +5151,29 @@
       "date": "",
       "metadata": {}
     },
+    "dialectics-are-deterministic-and-reliable": {
+      "text": "Dialectical challenge/defend operations are simultaneously deterministic (through semantic transparency inheriting uniform evaluation rules from the core TMS) and fully reliable (semantics-preserving with crash safety through terminating propagation) \u2014 achieving safe predictable behavior without dedicated dialectical machinery.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-deterministic-by-transparency",
+            "dialectical-transformation-is-fully-reliable"
+          ],
+          "outlist": [],
+          "label": "Deterministic dialectics (via transparency) + reliable dialectics (via crash-safe propagation) \u2192 dialectics are both predictable and dependable"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
     "dialectics-are-deterministic-by-transparency": {
       "text": "Dialectical challenge/defend structures receive deterministic reversible evaluation without special-casing \u2014 semantic transparency ensures the deterministic engine treats dialectical nodes identically to ordinary beliefs, so dialectical correctness requires no independent proof.",
       "truth_value": "IN",
@@ -4717,7 +5192,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dialectics-are-semantically-transparent": {
       "text": "Challenge/defend dialectics are semantically indistinguishable from ordinary beliefs: they inherit fully-specified outlist semantics (conjunction, absence-as-OUT, persistence) and are evaluated by the same uniform pure rules that govern all truth maintenance \u2014 no dialectical special cases exist anywhere in the engine.",
@@ -4737,7 +5215,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "dialectics-complete-the-revision-system": {
       "text": "The system handles both automated belief revision (outlist defeat for proactive retraction, dependency-directed backtracking for reactive contradiction resolution) and interactive dialectics (challenge/defend for human-driven contestation) \u2014 both operating atomically through the same outlist primitive with transparent, uniform evaluation semantics.",
@@ -4777,7 +5258,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "direct-access-raises-list-access-filters": {
       "text": "API functions for single-node access (`show_node`, `explain_node`, `trace_assumptions`) raise `PermissionError` on forbidden nodes, while list/export functions (`list_nodes`, `search`, `export_network`) silently exclude them from results.",
@@ -4846,6 +5330,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dry-run-prevents-both-retraction-and-metadata": {
+      "text": "The `dry_run` flag in review-beliefs prevents both truth-value changes (retraction of invalid beliefs) and metadata side-effects (`last_reviewed` timestamp, `review_result` classification), making it fully read-only \u2014 extending beyond what `auto-retract-respects-dry-run` covers.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_review.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4973,7 +5467,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "egress-is-resilient-governed-and-self-correcting": {
       "text": "All information leaving the system is simultaneously resilient (queries degrade gracefully across all access paths with deterministic output), governed (authorized, budget-constrained, and CI-ready), and serves a self-correcting knowledge base \u2014 the system's complete information egress is both trustworthy and operationally sustainable.",
@@ -5123,6 +5620,30 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
+    "evaluation-purity-grounds-agnosticism-and-minimality": {
+      "text": "Evaluation purity (uniform, deterministic, no metadata inspection) independently grounds both context-agnosticism (identical results regardless of timing/origin) and semantic minimality (no special-case logic), making them co-occurring consequences of the same architectural choice rather than causally related.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "justification-evaluation-is-uniform-and-pure",
+            "evaluation-is-uniformly-context-and-origin-agnostic",
+            "semantic-minimality-with-operational-determinism"
+          ],
+          "outlist": [],
+          "label": "Pure uniform evaluation is the single architectural choice that produces both properties independently"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "evaluation-traceability-persists-through-equilibria": {
@@ -5188,6 +5709,29 @@
       "date": "",
       "metadata": {}
     },
+    "exception-safety-spans-tms-and-source-lifecycle": {
+      "text": "The system handles failures safely across both domains: the TMS core resolves exceptional conditions (contradictions via backtracking, challenges via deterministic propagation) while the source integrity pipeline handles its failure modes (missing files, changed content, deleted sources) \u2014 no exception in either domain can produce inconsistent or undefined state.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-exceptions-are-safely-handled",
+            "source-lifecycle-is-fail-safe-and-gapless"
+          ],
+          "outlist": [],
+          "label": "TMS exception safety + fail-safe source lifecycle \u2192 unified failure safety across both domains"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
     "exhaust-implies-auto": {
       "text": "In `_derive_one_round`, proposals are auto-applied when either `args.auto` or `args.exhaust` is true; the `--exhaust` flag does not require the user to also pass `--auto`.",
       "truth_value": "IN",
@@ -5213,6 +5757,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "expert-pipeline-extracts-per-document": {
+      "text": "The expert-agent-builder pipeline extracts beliefs per-document (summarize entire document \u2192 propose beliefs \u2192 record file path), not per-section \u2014 the connection between a belief and its source material is a file-level pointer, not a section-level one.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/06/pageindex-and-tms-integration.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -5280,7 +5834,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "external-belief-management-is-complete": {
       "text": "External beliefs are managed across their entire lifecycle with no gap between any management phase: safely integrated through defensive validation pipelines, lifecycle-managed across dual import/sync reconciliation modes, and actively kept current through staleness detection and derive pipeline refresh \u2014 providing complete external belief management from ingestion through retirement.",
@@ -5758,6 +6315,16 @@
       "date": "",
       "metadata": {}
     },
+    "extras-map-one-to-one-to-modules": {
+      "text": "Each optional dependency group maps 1:1 to a specific module: `pg` extra gates `reasons_lib/pg.py`, `cluster` extra gates `reasons_lib/cluster.py`, and `test-pg` is a superset combining `pg` and `test`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/pyproject.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "fault-tolerance-spans-inspection-through-self-correction": {
       "text": "Fault tolerance covers the complete belief quality spectrum: passive inspection operations (review, staleness checking, list-negative classification) degrade gracefully with fail-safe defaults and never mutate state, AND active self-correction (contradiction resolution via backtracking, staleness detection via source hashing) continues operating without external LLM dependencies \u2014 the system maintains quality assurance autonomously even when LLMs, external files, or network resources are unavailable.",
       "truth_value": "OUT",
@@ -5780,7 +6347,7 @@
     },
     "format-resilience-spans-all-external-interfaces": {
       "text": "The system tolerates format variation at every external interface \u2014 derive output parsers support version fallback, import parsers silently skip unknown fields, storage handles schema evolution \u2014 and extends this resilience to LLM response parsing, where the list-negative parser uses regex extraction to recover structured data from prose-laden responses.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -5796,7 +6363,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "format-resilient-boundaries-enforce-validated-trust": {
       "text": "All system boundaries simultaneously tolerate format variation at every level \u2014 from LLM response parsing through schema migration to derive output versioning \u2014 while enforcing strict validated trust through typed exceptions, referential integrity checks, and hallucination filtering.",
@@ -5828,11 +6398,41 @@
       "date": "",
       "metadata": {}
     },
+    "fts-progressive-relaxation": {
+      "text": "When a multi-term FTS query returns no results, the search engine progressively drops terms until it finds matches or exhausts all subsets.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "fts-relaxation-bounded": {
       "text": "Progressive FTS query relaxation is bounded: a 20-term query produces at most 51 `_fts_query` invocations, preventing unbounded search expansion on long input queries.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "fts-relaxation-capped-at-fifty-queries": {
+      "text": "`_fts_search` caps progressive term relaxation at 50 FTS5 queries to prevent combinatorial explosion on long search inputs, dropping terms one at a time via `combinations` down to `len(terms) // 2`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "fts-stop-words-filtered-before-query": {
+      "text": "FTS queries filter a `_STOP_WORDS` frozenset before querying FTS5; if all terms are stop words, the search falls back to terms longer than 1 character.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-api.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -6187,6 +6787,16 @@
       "date": "",
       "metadata": {}
     },
+    "import-agent-out-beliefs-not-resurrected": {
+      "text": "Beliefs marked OUT or STALE in the source are imported as OUT and are never resurrected by `recompute_all`, even when their justification antecedents are all IN in the local database.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "import-agent-outlist-not-antecedent": {
       "text": "Duplicates existing belief `kill-switch-uses-outlist-not-antecedent`.",
       "truth_value": "IN",
@@ -6202,6 +6812,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-agent-topo-sort-breaks-cycles": {
+      "text": "`_topo_sort_claims` breaks dependency cycles by appending all remaining unsorted nodes after `max_passes = len(remaining) + 1` iterations rather than raising an error, ensuring import always completes.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-import_agent.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -6256,7 +6876,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "import-is-idempotent": {
       "text": "Covered by existing `import-skips-existing-sync-is-remote-wins`",
@@ -6296,7 +6919,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "import-paths-bump-nogood-counter": {
       "text": "Both `import_json` and `import_into_network` update `_next_nogood_id` to at least `max_imported_id + 1`, ensuring imported nogoods with explicit IDs don't create future collisions",
@@ -6327,7 +6953,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "import-reconciliation-converges-deterministically": {
       "text": "Import reconciliation achieves both completeness and convergence: dual import/sync modes handle heterogeneous truth states with namespace isolation and topological cycle tolerance (completeness), while all reconciliation operations \u2014 individual propagation, agent sync, and global recompute \u2014 converge to deterministic fixed points on repeated application (convergence), ensuring that import never introduces oscillation or nondeterminism.",
@@ -6387,7 +7016,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "import-topo-sort-tolerates-cycles": {
       "text": "`_topo_sort_claims` attempts topological ordering but appends remaining nodes when progress stalls, gracefully handling dependency cycles instead of erroring",
@@ -6439,7 +7071,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "indefinite-self-correction-is-fully-auditable": {
       "text": "The system's indefinitely sustainable self-correction produces a fully auditable history without temporal degradation: every self-correction, maintenance action, and belief revision throughout the system's unbounded operational lifetime is traceable through nogoods, retraction records, and staleness metadata \u2014 auditability scales with time rather than decaying.",
@@ -6639,7 +7274,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "integrity-and-scalability-are-complementary": {
       "text": "The system achieves comprehensive integrity (unified across all internal mutations and external belief ingestion) and sound multi-agent scalability (isolated namespaces, minimal primitives, deterministic propagation) simultaneously \u2014 these properties reinforce rather than trade off against each other because both derive from the same uniform evaluation rules.",
@@ -6911,6 +7549,36 @@
       "date": "",
       "metadata": {}
     },
+    "issue-121-evolution-tolerance-audit": {
+      "text": "Issue #121: Audit evolution tolerance at all system boundaries \u2014 not all boundaries have documented forward-compatibility mechanisms",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "issue-122-review-fault-tolerance-audit": {
+      "text": "Issue #122: Audit review module for unhandled failure modes \u2014 three specific handlers do not establish coverage of all failure modes",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "issue-123-resource-footprint-audit": {
+      "text": "Issue #123: Audit resource footprint across all lifecycle phases \u2014 only deployment and startup phases are currently evidenced",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "justification-addition-is-robust-across-graph-states": {
       "text": "Adding a justification to an existing node achieves fully consistent multi-dimensional propagation \u2014 truth values, dependents index, and access tags \u2014 even when the dependency graph contains dangling references or lifecycle-marked nodes, because propagation safely handles both graph anomalies and node lifecycle states.",
       "truth_value": "IN",
@@ -6929,7 +7597,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "justification-evaluation-is-context-independent": {
       "text": "Justification evaluation produces identical results regardless of evaluation context: it is pure (no side effects), uniform across types (SL/CP use the same validity rule), and temporally invariant (attaching a justification at creation or later yields the same truth outcome) \u2014 making truth computation fully context-free",
@@ -6949,7 +7620,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "justification-evaluation-is-uniform-and-pure": {
       "text": "All justification types (SL and CP) use the same validity rule (antecedents IN, outlist OUT), evaluated as a pure function with no side effects",
@@ -6970,7 +7644,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "justification-order-preserved-by-rowid": {
       "text": "Already exists as `justification-order-preserved-via-rowid`",
@@ -7010,7 +7687,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "insufficient"
+      }
     },
     "justification-valid-is-pure": {
       "text": "`_justification_valid` is a pure query with no side effects, no logging, and no mutations to network state",
@@ -7250,7 +7930,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "lifecycle-is-deterministic-and-architecturally-grounded": {
       "text": "Gapless lifecycle management is doubly reinforced: deterministic reasoning ensures predictable state trajectories with full monitoring, while architectural safety provides the structural foundation through clean layer boundaries and atomic mutations.",
@@ -7270,7 +7953,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "lifecycle-is-deterministic-grounded-and-structurally-sound": {
       "text": "Gapless lifecycle management is triply reinforced: deterministic reasoning ensures predictable state trajectories, architectural grounding provides structural enforcement via clean layer boundaries, and the underlying architecture is verified free of hidden fragilities \u2014 eliminating both behavioral unpredictability and structural failure modes simultaneously.",
@@ -7313,7 +7999,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "lifecycle-operates-on-unfragile-architecture": {
       "text": "Gapless lifecycle management \u2014 spanning staleness detection, propagation lifecycle awareness, and import reconciliation \u2014 operates on an architecture verified to have no hidden fragility points, ensuring lifecycle operations cannot be undermined by latent structural weaknesses in the central dependency or layer boundaries.",
@@ -7330,6 +8019,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "list-negative-batches-at-40": {
+      "text": "`api.list_negative` splits candidates into batches of 40, so 120 keyword-matching nodes produce exactly 3 LLM calls.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_api.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -7386,7 +8085,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "list-negative-json-parser-tolerates-prose-preamble": {
       "text": "The `list_negative` LLM classification response parser uses `re.finditer` to extract JSON objects from responses that include prose preamble, handling the common LLM pattern of prefacing structured output with natural language rather than requiring clean JSON.",
@@ -7416,7 +8118,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "list-negative-uses-two-stage-classification": {
       "text": "`list_negative` uses keyword pre-filtering against a hardcoded `NEGATIVE_TERMS` list (~50 words), then LLM classification via `ask._invoke_claude` to eliminate false positives.",
@@ -7488,7 +8193,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "llm-fault-tolerance-is-multi-granular": {
       "text": "LLM fault tolerance operates at two independent granularities: module-level fail-soft handling ensures entire operations degrade gracefully when the LLM is unavailable, while item-level batch fault isolation ensures individual failures within derive and review batches are contained without affecting other items in the same batch.",
@@ -7622,7 +8330,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "llm-prompt-always-via-stdin": {
       "text": "Prompts are passed to LLM subprocesses via `subprocess.run(input=...)`, never as command-line arguments \u2014 avoiding shell injection and argument length limits.",
@@ -7662,7 +8373,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "insufficient"
+      }
     },
     "llm-thinking-strip-ollama-only": {
       "text": "Thinking-marker stripping (`Thinking...` / `...done thinking.`) is applied only to Ollama model output; Claude and Gemini output passes through unmodified even if it contains the same markers.",
@@ -7734,7 +8448,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "metadata-enables-lifecycle-governance-beyond-binary-truth": {
       "text": "Node metadata enables lifecycle governance capabilities that transcend the binary IN/OUT truth model: extensible metadata provides structured lifecycle state (retraction flags, stale reasons, access tags, supersession markers) that actively governs both read and write paths, while staleness information is preserved and surfaced in compact output despite having no dedicated truth state in the TMS data model.",
@@ -7754,7 +8471,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "metadata-governs-lifecycle-across-read-and-write-paths": {
       "text": "Node lifecycle state carried in metadata actively governs both mutation behavior (retracted nodes skipped during truth propagation, sticky retraction surviving recompute) and inspection behavior (staleness checking skips OUT nodes, compact surfaces stale reasons) \u2014 a single metadata mechanism controls the system's complete operational surface.",
@@ -7774,7 +8494,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "metadata-is-universal-extension-mechanism": {
       "text": "Node metadata is the universal extension mechanism carrying all structured lifecycle state (retraction flags, stale reasons, challenges, access tags, supersession markers), and retraction flags pinned in metadata survive recomputation to enforce sticky retraction.",
@@ -7794,7 +8517,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "metadata-provides-extensible-lifecycle-governance": {
       "text": "Node metadata is simultaneously the universal extension mechanism for network state (carrying all structured lifecycle properties with consistent audit tracking) and the active governor of truth propagation behavior across both read and write paths \u2014 retracted and stale nodes are skipped in propagation and staleness checking respectively, driven by the same metadata fields.",
@@ -7814,7 +8540,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "minimality-generates-universal-revision-safety": {
       "text": "Universal revision safety is a consequence of minimality: the system has no revision blind spots because both uniform edge-case handling and comprehensive lifecycle coverage emerge from the same minimal primitives that power truth maintenance \u2014 minimality does not merely simplify the design but actively prevents the coverage gaps that would arise from feature-specific revision paths.",
@@ -7999,7 +8728,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "missing-outlist-nodes-pass-validation": {
       "text": "In `_justification_valid`, missing antecedent nodes cause the check to fail (node goes OUT), but missing outlist nodes pass (don't block) \u2014 an open-world default.",
@@ -8194,7 +8926,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "mutations-are-observable-audited-and-index-consistent": {
       "text": "Every network mutation achieves triple-layered traceability: callers receive structured before/after diffs at the API level, the internal audit log records timestamped events for historical analysis, and the dependents index is simultaneously maintained \u2014 providing both external and internal observability.",
@@ -8214,7 +8949,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "namespace-active-premise-invariant": {
       "text": "When `namespace` is set, `add_node` auto-creates a `{namespace}:active` premise node and wires it as an antecedent into every namespaced justification; retracting that single premise cascades OUT every belief from that namespace.",
@@ -8245,7 +8983,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "namespace-prefix-is-agent-colon": {
       "text": "Covered by existing `namespace-prefix-is-colon-separated` and `import-agent-namespace-prefix`",
@@ -8305,7 +9046,34 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
+    "negative-semantics-are-uniform-through-minimality": {
+      "text": "The system's complete negative semantics \u2014 structural absence creating premise behavior, explicit outlist defeat with automatic reversal, permanent identity effects from challenge \u2014 handle all edge cases uniformly because they derive from the same minimal primitives as all other truth evaluation, with no special-case handling for negation.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "negative-semantics-are-complete-reversible-and-recoverable",
+            "edge-case-uniformity-follows-from-minimality"
+          ],
+          "outlist": [],
+          "label": "Complete negative semantics + minimality-derived uniformity \u2192 negation is uniform through minimality"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "Internal contradiction: claims 'permanent identity effects from challenge' but antecedent (negative-semantics-are-complete-reversible-and-recoverable) characterizes negative semantics as fully reversible and recoverable"
+      }
     },
     "negative-semantics-have-reversible-defeat-but-permanent-identity-effects": {
       "text": "The system's complete negative semantics \u2014 structural absence creating premise behavior and explicit outlist defeat \u2014 exhibit a fundamental asymmetry: all outlist-based defeat operations (challenge, kill-switch, supersession) are fully reversible in truth value, but dialectical challenge permanently destroys premise identity by injecting a justification into a formerly unjustified node, an irreversible structural transformation.",
@@ -8325,7 +9093,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "network-add-node-rejects-duplicates": {
       "text": "`Network.add_node()` raises `ValueError` if a node with the given ID already exists in the network.",
@@ -8437,7 +9208,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "network-no-external-deps": {
       "text": "`network.py` depends only on stdlib (`deque`, `datetime`) and project dataclasses; it has zero external package dependencies.",
@@ -8477,7 +9251,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "network-tests-are-database-free": {
       "text": "Test infrastructure detail, not a production code claim",
@@ -8608,7 +9385,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "nogood-ids-assume-append-only": {
       "text": "Nogood IDs are derived from `len(self.nogoods) + 1`, so deleting a nogood from the list would cause ID collisions on subsequent calls",
@@ -8642,7 +9422,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "nogoods-require-valid-nodes": {
       "text": "Nogoods whose `Affects` list references node IDs not present in the network are silently skipped rather than raising an error during import",
@@ -8673,7 +9456,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "normalization-drops-unknown-refs": {
       "text": "Both `_normalize_markdown` and `_normalize_json` silently drop antecedent/outlist references to IDs not present in the import set, preventing dangling edges in the dependency graph.",
@@ -9093,7 +9879,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "outlist-nodes-not-in-dependents-index": {
       "text": "Outlist nodes are not tracked in the `dependents` index, so when an outlist node is retracted (goes OUT), dependent GATE beliefs are not enqueued for re-evaluation by `_propagate` \u2014 requiring manual `reasons assert` as a workaround.",
@@ -9136,7 +9925,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "output-governance-is-complete-authorized-and-ci-ready": {
       "text": "All system output is simultaneously structurally complete (priority-ordered compact summaries with predictable bounds), authorized (access-tag subset gating with transitive inheritance), resource-constrained (accurate bidirectional token budgets), and machine-parseable (deterministic CI-ready staleness reports with nonzero exit codes).",
@@ -9203,6 +9995,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_review.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "parse-review-response-never-raises": {
+      "text": "`parse_review_response` returns an empty list on any malformed input \u2014 bad JSON, non-list JSON, items missing `id` fields \u2014 rather than raising exceptions, with missing boolean fields defaulting to `True`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_review.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -9467,7 +10269,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "pg-what-if-uses-transaction-rollback": {
       "text": "`what_if_retract`/`what_if_assert` perform real mutations inside a transaction, collect cascade effects, then rollback \u2014 reusing the propagation engine without duplicating logic.",
@@ -9529,7 +10334,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "pgapi-find-dependents-queries-outlist": {
       "text": "PgApi's `_find_dependents` queries both `antecedents @>` and `outlist @>` JSONB containment, correctly enqueuing outlist-dependent nodes for re-evaluation \u2014 a capability the in-memory Network historically lacked until PR #31.",
@@ -9592,7 +10400,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "pgapi-multi-tenant-composite-keys": {
       "text": "All PgApi tables use composite primary keys `(id, project_id)` for multi-tenancy, with JSONB columns (not TEXT) for antecedents, outlist, and metadata",
@@ -9697,7 +10508,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "premise-can-receive-justification": {
       "text": "A premise node (initially no justifications) can receive a justification via `add_justification`, giving it a derived backup path that keeps it IN even if its premise status is retracted.",
@@ -9841,7 +10655,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "propagate-assumes-dependents-exist": {
       "text": "Every ID in `node.dependents` is accessed via `self.nodes[dep_id]` without a membership check; a dangling dependent reference will raise `KeyError` \u2014 this is intentional (broken invariant = bug)",
@@ -9934,6 +10751,18 @@
             "propagate-assumes-dependents-exist"
           ],
           "label": "Propagation is safe when all dependent IDs resolve; a dangling dependent reference causes an uncaught KeyError that crashes the BFS walk"
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "propagation-is-bfs",
+            "propagate-cascade-stops-on-unchanged",
+            "propagation-terminates-deterministically"
+          ],
+          "outlist": [
+            "propagate-assumes-dependents-exist"
+          ],
+          "label": "Propagation is safe when all dependent IDs resolve and termination is guaranteed; a dangling dependent reference causes an uncaught KeyError that crashes the BFS walk"
         }
       ],
       "source": "",
@@ -9941,7 +10770,9 @@
       "source_hash": "",
       "date": "",
       "metadata": {
-        "retract_reason": "Fixed in PR #27"
+        "retract_reason": "Replacing wrong antecedent derive-depth-cycle-guard with propagation-terminates-deterministically",
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid"
       }
     },
     "propagation-is-immediate": {
@@ -9972,7 +10803,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "propagation-is-safe-under-graph-inconsistency": {
       "text": "Truth propagation achieves correctness even when the dependency graph contains dangling references: missing nodes are skipped with structured warnings rather than crashing, dangling IDs are excluded from both the changed and visited sets, and this graceful degradation composes with the underlying termination and lifecycle-awareness guarantees for all reachable nodes.",
@@ -9992,7 +10826,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "propagation-is-topology-complete-and-inconsistency-safe": {
       "text": "Truth propagation is both topologically complete \u2014 reaching all transitively dependent nodes including those connected through outlist entries, not just antecedent references \u2014 and safe under graph inconsistency, skipping dangling dependent references with structured warnings rather than crashing, ensuring correct cascading even in networks with imperfect structural integrity such as nodes deleted without full reference cleanup.",
@@ -10012,7 +10849,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "propagation-respects-node-lifecycle": {
       "text": "Truth propagation respects node lifecycle states: retracted nodes are skipped during BFS traversal, and the trigger node itself is never recomputed \u2014 callers must set its truth value before invoking propagation.",
@@ -10032,7 +10872,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "propagation-terminates-deterministically": {
       "text": "Truth propagation is guaranteed to terminate: BFS prevents stack overflow, stop-on-unchanged prevents oscillation, and fixpoint iteration bounds the outer loop",
@@ -10053,13 +10896,26 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "python-310-floor": {
       "text": "The project requires Python 3.10+ (`requires-python = \">=3.10\"`), establishing the minimum language features available throughout the codebase.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/pyproject.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "python-version-floor-3-10": {
+      "text": "The project requires Python >=3.10, allowing use of match statements, union type syntax with `|`, and other 3.10+ features throughout `reasons_lib`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/pyproject.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10183,7 +11039,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "reasoning-and-knowledge-expansion-are-both-exhaustive": {
       "text": "The system achieves exhaustive coverage in both formal reasoning (deterministic reversible truth evaluation with guaranteed-terminating exploration of all derivable conclusions) and LLM-driven knowledge expansion (complete coverage with fault tolerance across all interactive and batch LLM operations)",
@@ -10223,7 +11082,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "reasoning-engine-is-deterministic-and-reversible": {
       "text": "The TMS engine achieves deterministic reversible non-monotonic reasoning: truth maintenance produces predictable terminating results through uniform evaluation and conservative asym\u00admetry, while every non-monotonic operation (challenge, kill-switch, supersession, dialectics) is inherently undoable through the single outlist primitive.",
@@ -10243,7 +11105,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "reasoning-is-exhaustively-deterministic": {
       "text": "The reasoning system produces deterministic, reversible truth evaluations AND can exhaustively explore all derivable conclusions with guaranteed termination, ensuring the system finds every reachable belief state with predictable outcomes.",
@@ -10314,7 +11179,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "insufficient"
+      }
     },
     "references-are-durable-across-persistence-and-evolution": {
       "text": "All system-generated identifiers survive both persistence boundaries (save/load cycles, cross-session durability via high-water marks) and format evolution boundaries (parser versioning, schema migration, forward-compatible metadata) \u2014 references remain valid and resolvable across time and system versions.",
@@ -10556,7 +11424,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "restoration-hints-require-surviving-premises": {
       "text": "A retraction cascade only produces a `restoration_hint` for a node if it has a multi-premise SL justification and at least one of its premises is still IN after the cascade.",
@@ -10646,7 +11517,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "retraction-effects-are-reported-with-recovery-guidance": {
       "text": "Every retraction provides both complete effect reporting (structured before/after diffs for all mutating operations, full changed set) and surgical recovery guidance (restoration hints targeting only cascade victims with surviving premises, excluding the directly retracted node), giving callers full situational awareness and actionable recovery paths from a single operation.",
@@ -10685,6 +11559,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "review-and-contradictions-catch-orthogonal-errors": {
+      "text": "`review-beliefs` catches invalid reasoning within individual derivation steps (over-generalization, missing bridges, strength escalation) while `contradictions` catches incompatible facts across independently valid beliefs (absolute claims vs. documented exceptions) \u2014 the two commands are complementary with different cascade profiles (review: high cascade at depth, contradictions: low cascade at leaves).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/06/contradictions-first-run.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10742,6 +11626,16 @@
       "date": "",
       "metadata": {}
     },
+    "review-evaluates-direct-antecedents-only": {
+      "text": "`review-beliefs` presents each derived belief with only its direct antecedents to the LLM reviewer, not the transitive chain \u2014 producing occasional sufficiency false positives when support exists one level deeper, which must be triaged manually.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/05/review-beliefs-in-practice.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "review-format-handles-missing-antecedents": {
       "text": "`format_belief_for_review` renders `\"(not found in network)\"` for antecedent IDs that don't exist in the nodes dict rather than crashing, and returns an empty string for a nonexistent belief ID.",
       "truth_value": "IN",
@@ -10764,7 +11658,7 @@
     },
     "review-is-read-only-and-fault-tolerant": {
       "text": "The review module operates entirely on in-memory snapshots with no storage dependency, handles missing antecedent references with placeholder text rather than exceptions, and silently skips failed LLM batches \u2014 achieving fault-tolerant read-only operation across all failure modes.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -10773,11 +11667,27 @@
             "review-format-handles-missing-antecedents",
             "review-batch-failure-is-silent-skip"
           ],
-          "outlist": [],
-          "label": "Three independent fault-tolerance properties combine to ensure the review module never crashes or corrupts state regardless of input quality or LLM availability"
+          "outlist": [
+            "issue-122-review-fault-tolerance-audit"
+          ],
+          "label": "Three fault-tolerance properties established; gated on full failure mode audit (issue #122)"
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "Rebuilding with gated justification only"
+      }
+    },
+    "review-multi-justification-disjunctive": {
+      "text": "The review prompt instructs the LLM that a belief is valid if ANY of its justifications is sound, matching Doyle's TMS disjunctive support semantics.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-review.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10788,6 +11698,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/reasons_lib-review.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "review-only-validates-derived-beliefs": {
+      "text": "The review pipeline filters out premises (nodes with empty justifications) before sending anything to the LLM; premises are never submitted for review validation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_review.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10812,13 +11732,26 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "review-parse-defaults-fail-safe": {
       "text": "`parse_review_response` defaults `valid`, `sufficient`, and `necessary` to `True`, so a missing or malformed field in LLM output never triggers a false alarm.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/reasons_lib-review.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "review-parse-defaults-safe": {
+      "text": "When the LLM response is missing fields, `parse_review_response` defaults to `valid=True`, `sufficient=True`, `necessary=True` \u2014 a parse error never generates a false-positive validity warning.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-review.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10852,7 +11785,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "review-result-schema-is-normalized": {
       "text": "Every result dict returned by `parse_review_response` is guaranteed to have exactly six keys (`id`, `valid`, `sufficient`, `necessary`, `unnecessary_antecedents`, `comment`) regardless of what the LLM returned, via normalization with safe defaults.",
@@ -10998,7 +11934,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "revision-has-complete-semantics-with-controlled-irreversibility": {
       "text": "The belief revision system is simultaneously comprehensive and minimal, with complete negative semantics exhibiting a controlled asymmetry: all defeat mechanisms (challenge, kill-switch, supersession) are truth-value reversible, but the identity transformation during challenge (premise-to-justified) is permanent \u2014 the system can undo the effects of any defeat but cannot restore a node's original unjustified status.",
@@ -11018,7 +11957,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "revision-invariants-follow-from-shared-foundations": {
       "text": "Both revision paths (reactive contradiction resolution and proactive dialectical challenge) preserve system invariants not through path-specific correctness arguments but because they operate through the same minimal primitives \u2014 shared foundations guarantee that any revision entry point inherits the same invariant-preserving behavior.",
@@ -11162,6 +12104,29 @@
       "date": "",
       "metadata": {}
     },
+    "revision-semantics-are-deterministic-and-traceable": {
+      "text": "The complete revision semantics \u2014 including the controlled irreversibility of premise identity transformation via challenge \u2014 produce deterministic, traceable state transitions at every level: every revision operation's outcome is predictable, every effect is auditable, and the asymmetry between reversible defeat and permanent identity change follows a traceable deterministic path.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-has-complete-semantics-with-controlled-irreversibility",
+            "all-state-transitions-are-deterministic-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Complete revision semantics with controlled irreversibility + traceable transitions \u2192 revision is fully traceable"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
+    },
     "revision-spans-lifecycle-and-all-sources": {
       "text": "The revision system is safe across two orthogonal dimensions: node lifecycle (backtracking skips retracted nodes, propagation respects lifecycle states, challenge preserves semantics through irreversible transformation) and modification source (dialectical, LLM, multi-agent) \u2014 ensuring no revision path is unsafe regardless of the node's lifecycle state or the belief's origin.",
       "truth_value": "OUT",
@@ -11207,6 +12172,50 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/tests-test_dependents_integrity.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-emerges-from-minimal-foundations": {
+      "text": "Rich state governance \u2014 metadata-enabled lifecycle management extending beyond binary IN/OUT truth to retraction pins, stale reasons, and access tags \u2014 is achieved through the same minimal foundations that unify truth computation and belief revision, not through additional machinery layered on top.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "completeness-and-minimality-are-unified",
+            "revision-governs-richer-state-than-truth-values"
+          ],
+          "outlist": [],
+          "label": "Completeness-minimality unity + rich revision \u2192 rich governance from minimal roots"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "Invalid: metadata/governance is additional machinery beyond minimal TMS primitives, not emergent from them"
+      }
+    },
+    "rich-governance-is-deterministic-and-lifecycle-complete": {
+      "text": "The deterministic lifecycle-complete architecture governs state richer than binary truth values \u2014 deterministic reasoning ensures predictable state trajectories and gapless lifecycle monitoring ensures no belief escapes management, while metadata-enabled governance extends these guarantees to retraction reasons, staleness tracking, and access control beyond IN/OUT.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-architecture-is-deterministic-and-lifecycle-complete",
+            "revision-governs-richer-state-than-truth-values"
+          ],
+          "outlist": [],
+          "label": "Deterministic lifecycle-complete architecture + rich state governance \u2192 deterministic lifecycle-complete rich governance"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -11337,6 +12346,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "search-has-four-output-formats": {
+      "text": "The `search` function supports four output formats: markdown, json, minimal, and compact \u2014 selected by the caller to match the consumption context (human, API, LLM prompt, compact view).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/reasons_lib-api.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -12149,6 +13168,26 @@
       "date": "",
       "metadata": {}
     },
+    "source-integrity-is-deterministic-and-architecturally-grounded": {
+      "text": "The fail-safe source integrity pipeline \u2014 from convention-based path resolution through collision-resistant SHA-256 hashing to comprehensive staleness detection \u2014 operates within the same deterministic, architecturally-grounded lifecycle framework as all other system operations, ensuring source verification is both predictable and structurally safe.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-lifecycle-is-fail-safe-and-gapless",
+            "lifecycle-is-deterministic-and-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "Fail-safe source lifecycle + deterministic grounded lifecycle \u2192 source integrity anchored in deterministic architecture"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "source-integrity-spans-hashing-through-detection": {
       "text": "Source integrity forms a complete end-to-end pipeline with no gap between measurement and verification: collision-resistant SHA-256 hashing with additive backfill computes integrity markers without overwriting existing hashes, while comprehensive staleness detection with CI gating and nonzero exit codes consumes those markers to catch all source drift.",
       "truth_value": "IN",
@@ -12746,7 +13785,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "sustainable-growth-is-indefinitely-self-correcting": {
       "text": "The system's knowledge growth \u2014 combining exhaustive deterministic reasoning with LLM-driven derivation \u2014 is not merely sustainable but indefinitely so: resource-sustainable self-correction within a deterministically grounded lifecycle means the expanding knowledge base never outstrips the system's ability to maintain its own consistency, regardless of accumulated network size or elapsed time.",
@@ -12778,6 +13820,16 @@
       "date": "",
       "metadata": {}
     },
+    "sync-agent-first-sync-equals-import": {
+      "text": "When no prior import exists for an agent, `sync_agent` behaves identically to `import_agent` \u2014 creating the `agent:active` premise and returning `created_premise: True` \u2014 rather than requiring a separate import step.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_sync_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "sync-agent-idempotent": {
       "text": "Two consecutive `sync_agent` calls with identical file content produce zero additions, removals, and updates on the second call",
       "truth_value": "IN",
@@ -12793,6 +13845,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_sync_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-agent-preserves-cascade-structure": {
+      "text": "After `sync_agent` completes, the agent's outlist-based justification structure remains intact \u2014 revoking `agent:active` still cascades all agent beliefs to OUT, proving sync does not corrupt kill-switch wiring.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_sync_agent.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -12920,7 +13982,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "system-assurance-is-universal-and-multidimensional": {
       "text": "The system's operational assurance spans all dimensions \u2014 temporal completeness of self-correction, end-to-end reliability of read and write paths, and external control through bidirectional bounds and defensive ingestion \u2014 and holds universally across all architectural layers, storage backends, and adverse graph conditions including vacuous premises, asymmetric absence, and empty antecedents.",
@@ -12984,7 +14049,7 @@
     },
     "system-boundaries-are-evolution-tolerant-and-reference-safe": {
       "text": "The system handles boundary interactions safely along two independent dimensions: format and schema evolution is tolerated gracefully (derive parser fallbacks, forward-compatible metadata lines, SQLite schema migration via try/except), while reference validation prevents invalid IDs from crossing any boundary (import normalization drops unknown refs, nogoods skip missing nodes, LLM hallucination filtering discards phantom IDs)",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -13000,7 +14065,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "system-boundaries-are-validating-and-evolution-tolerant": {
       "text": "All system boundaries simultaneously enforce strict input validation (typed exceptions, referential integrity checks, hallucination filtering) and tolerate evolution gracefully (dual format parsers, forward-compatible metadata, schema-tolerant loading) \u2014 boundaries are both strict about current invariants and adaptive to future changes.",
@@ -13493,7 +14561,7 @@
     },
     "system-resource-footprint-is-minimal-at-all-phases": {
       "text": "The system achieves minimal resource footprint across all lifecycle phases: zero external dependencies at both packaging and implementation levels eliminate installation overhead and version conflicts, while lazy module imports in both API and CLI layers defer heavy computation until actually needed \u2014 minimizing deployment complexity, startup time, and memory consumption simultaneously.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -13501,15 +14569,21 @@
             "startup-performance-uses-lazy-loading",
             "project-has-zero-external-coupling"
           ],
-          "outlist": [],
-          "label": "Deployment-time minimality (zero deps) and startup-time minimality (lazy loading) combine to form a complete minimal-footprint strategy"
+          "outlist": [
+            "issue-123-resource-footprint-audit"
+          ],
+          "label": "Deployment and startup minimality established; gated on runtime/shutdown audit (issue #123)"
         }
       ],
       "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "Rebuilding with gated justification only"
+      }
     },
     "system-semantics-are-minimal-and-complete": {
       "text": "The entire TMS \u2014 both monotonic truth maintenance and non-monotonic defeat \u2014 derives from a minimal set of uniform primitives: emergent truth rules (disjunction over conjunction, premise-from-absence) combined with a single reversible outlist mechanism that underlies all defeat features, with no additional machinery required.",
@@ -13529,7 +14603,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "system-sustainably-grows-and-self-corrects": {
       "text": "The system simultaneously grows its knowledge base through exhaustive deterministic reasoning and LLM-driven derivation with guaranteed termination, while sustainably self-correcting through contradiction resolution and staleness detection \u2014 all within bounded resource consumption managed by accurate bidirectional token budgets",
@@ -13553,7 +14630,7 @@
     },
     "system-tolerates-evolution-at-all-boundaries": {
       "text": "The system handles format and schema evolution gracefully at every external boundary: derive output parsers support two format versions with automatic fallback, belief import silently skips unknown metadata fields, and storage tolerates missing tables from older database schemas via exception handling",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -13562,15 +14639,21 @@
             "import-beliefs-parser-is-forward-compatible",
             "storage-handles-schema-evolution-via-try-except"
           ],
-          "outlist": [],
-          "label": "Three independently-implemented forward-compatibility mechanisms \u2014 parser fallback, metadata tolerance, and schema evolution \u2014 reveal a cross-cutting design principle: no boundary breaks on version skew"
+          "outlist": [
+            "issue-121-evolution-tolerance-audit"
+          ],
+          "label": "Three forward-compatibility mechanisms established; gated on full boundary audit (issue #121)"
         }
       ],
       "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid",
+        "retract_reason": "Rebuilding with gated justification only"
+      }
     },
     "tag-inheritance-is-transitive-union": {
       "text": "Derived nodes inherit the sorted union of all ancestor `access_tags`, propagating transitively through arbitrarily long justification chains including diamond dependencies.",
@@ -13642,7 +14725,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "invalid"
+      }
     },
     "tms-core-is-crash-safe": {
       "text": "The TMS core provides crash-free truth maintenance: deterministic termination, pure evaluation, and conservative failure semantics ensure correct results across all reachable nodes.",
@@ -13665,7 +14751,9 @@
       "source_hash": "",
       "date": "",
       "metadata": {
-        "retract_reason": "Fixed in PR #27"
+        "retract_reason": "Fixed in PR #27",
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
       }
     },
     "tms-core-is-deterministic-and-conservative": {
@@ -13687,7 +14775,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "tms-handles-all-conditions-safely": {
       "text": "The TMS core handles both normal operation (crash-free truth propagation via BFS with stop-on-unchanged) and exceptional conditions (deterministic contradiction resolution via backtracking with least-entrenched selection) through shared propagation infrastructure \u2014 no reachable execution state leads to undefined behavior.",
@@ -13709,7 +14800,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "token-budgets-are-accurate-bidirectionally": {
       "text": "Token budget management is accurate in both directions: the compact module reliably constrains output size for context-limited consumers, while the derive pipeline correctly allocates input budgets per agent \u2014 ensuring resource-bounded operation across the entire LLM integration surface.",
@@ -14030,7 +15124,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "unnecessary"
+      }
     },
     "truth-semantics-are-emergent-and-uniform": {
       "text": "Truth maintenance semantics are fully emergent from simple uniform rules: premise behavior arises from empty justification lists, evaluation is pure and type-agnostic across SL/CP, and node truth is a clean disjunction-of-conjunctions \u2014 no special cases exist anywhere in the evaluation path.",
@@ -14051,7 +15148,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-08T16:01:00",
+        "review_result": "pass"
+      }
     },
     "unified-system-is-a-closed-self-maintaining-architecture": {
       "text": "The system forms a closed self-maintaining belief architecture: end-to-end integrity ensures no operation corrupts consistency, while revision completeness ensures any valid belief configuration is reachable \u2014 together guaranteeing the system can evolve to any target state while preserving all invariants \u2014 only when all known defects and fragilities are resolved.",
@@ -14134,6 +15234,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-import_beliefs.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "update-node-preserves-justifications": {
+      "text": "`api.update_node` modifies text and source metadata without altering the node's justification list or truth value.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/08/tests-test_api.md",
       "source_url": "",
       "source_hash": "",
       "date": "",

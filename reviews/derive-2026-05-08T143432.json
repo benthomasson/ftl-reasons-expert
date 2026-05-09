@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-05-08T14:34:32",
+  "status": "partial",
+  "model": "claude",
+  "timeout": 600,
+  "exhaust": true,
+  "filters": {
+    "domain": null,
+    "topic": null,
+    "min_depth": null,
+    "max_depth": null,
+    "premises": false,
+    "has_dependents": false,
+    "budget": 300,
+    "sample": true
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "network_stats": {
+        "total_in": 569,
+        "total_derived": 515,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 12,
+      "valid": 11,
+      "skipped": [
+        {
+          "id": "lifecycle-governance-is-deterministic-and-architecturally-grounded",
+          "reason": "similar to retracted belief: lifecycle-is-deterministic-grounded-and-structurally-sound (56% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "dialectics-are-deterministic-and-reliable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-revision-mechanisms-are-traceable-and-recoverable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "context-agnosticism-follows-from-minimality",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-truth-changes-are-topology-complete-and-robust",
+          "truth_value": "IN"
+        },
+        {
+          "id": "negative-semantics-are-uniform-through-minimality",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-integrity-is-deterministic-and-architecturally-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "revision-semantics-are-deterministic-and-traceable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "exception-safety-spans-tms-and-source-lifecycle",
+          "truth_value": "IN"
+        },
+        {
+          "id": "rich-governance-is-deterministic-and-lifecycle-complete",
+          "truth_value": "IN"
+        },
+        {
+          "id": "rich-governance-emerges-from-minimal-foundations",
+          "truth_value": "IN"
+        },
+        {
+          "id": "complete-architecture-is-backend-portable",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 11
+    }
+  ],
+  "total_added": 11
+}

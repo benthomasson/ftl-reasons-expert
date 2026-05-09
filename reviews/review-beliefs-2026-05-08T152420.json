@@ -1,0 +1,954 @@
+{
+  "timestamp": "2026-05-08T15:24:20",
+  "status": "complete",
+  "model": "claude",
+  "timeout": 300,
+  "dry_run": false,
+  "filters": {
+    "belief_ids": null,
+    "min_depth": null,
+    "depends_on": null,
+    "sample": null,
+    "visible_to": null
+  },
+  "reviewed": 112,
+  "total_derived": 172,
+  "summary": {
+    "invalid": 8,
+    "insufficient": 12,
+    "unnecessary": 16
+  },
+  "results": [
+    {
+      "id": "complete-architecture-is-deterministic-and-lifecycle-complete",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 contributes 'complete architecture' framing and antecedent 2 contributes 'deterministic + lifecycle-complete' \u2014 the conclusion is a straightforward conjunction."
+    },
+    {
+      "id": "completeness-and-minimality-are-unified",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 establishes completeness, antecedent 2 establishes that both subsystems achieve coverage through the same minimal primitives \u2014 their conjunction supports the 'completeness through minimality' claim."
+    },
+    {
+      "id": "context-agnosticism-follows-from-minimality",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents establish that context-agnosticism exists (ant 1) and that semantic minimality exists (ant 2), but co-occurrence does not entail causation \u2014 the claim that agnosticism FOLLOWS FROM minimality requires an unstated premise that uniform primitives cannot produce context-sensitive behavior."
+    },
+    {
+      "id": "contradiction-management-is-complete-and-traceable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean conjunction: antecedent 1 provides traceability (consistent nogood history) and antecedent 2 provides operational completeness (reliable revision pipeline)."
+    },
+    {
+      "id": "contradiction-resolution-is-lifecycle-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 supplies the deterministic resolution mechanism and antecedent 2 supplies the lifecycle-safety guarantees (skip retracted, stop-on-unchanged) \u2014 both are load-bearing."
+    },
+    {
+      "id": "contradiction-resolution-is-minimal-disruption",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "backtracking-retracts-least-entrenched"
+      ],
+      "comment": "backtracking-retracts-least-entrenched is redundant with add-nogood-retraction-prefers-least-entrenched \u2014 both describe the same primary retraction path (trace to premises, score by entrenchment, retract the lowest)."
+    },
+    {
+      "id": "contradiction-resolution-is-traceable-and-recoverable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 provides the disruption-minimization and recovery dimension, antecedent 2 provides the artifact-identification dimension \u2014 the conclusion correctly synthesizes both into a two-dimensional support claim."
+    },
+    {
+      "id": "contradiction-resolution-minimizes-disruption-and-guides-recovery",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Straightforward conjunction: antecedent 1 covers minimal disruption heuristics and antecedent 2 covers surgical restoration hints \u2014 each maps to one half of the claim."
+    },
+    {
+      "id": "contradiction-triggers-deterministic-resolution",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 determines WHAT is retracted (minimal disruption heuristics) and antecedent 2 determines HOW the network settles (deterministic termination) \u2014 their pipeline composition yields the deterministic resolution claim."
+    },
+    {
+      "id": "convert-to-premise-preserves-dependents-invariant",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 provides the specific mechanism (how dependents are removed) and antecedent 2 provides the universal invariant verification \u2014 both are referenced in the claim text."
+    },
+    {
+      "id": "dangling-dependents-are-safely-contained",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent maps to exactly one of the three stated containment mechanisms (skip, exclude from changed, exclude from visited) \u2014 all three are load-bearing."
+    },
+    {
+      "id": "dedup-is-topology-preserving-and-auditable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent maps to one of the three claimed properties (topology preservation, structural survivor selection, user oversight) \u2014 removing any would lose a property."
+    },
+    {
+      "id": "dedup-reflects-complete-dependency-graph",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid as a GATE belief: antecedent 1 provides topology-preserving dedup, antecedent 2 provides reliable survivor selection, and the outlist GATE condition correctly qualifies the 'complete' claim."
+    },
+    {
+      "id": "dedup-survivor-selection-is-topology-reliable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "dedup-rewrites-both-antecedents-and-outlist"
+      ],
+      "comment": "The claim is about selection reliability (choosing the right survivor), which depends on antecedent 1 (selection mechanism) and the GATE condition (index trustworthiness) \u2014 antecedent 2 (post-selection reference rewiring) doesn't bear on whether the initial selection is correct."
+    },
+    {
+      "id": "defeat-reversal-is-automatic-with-guided-recovery",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 provides the automatic-propagation dimension and antecedent 2 provides the guided-recovery dimension \u2014 note that both antecedents carry GATE conditions that are implicitly inherited."
+    },
+    {
+      "id": "defeat-reversal-propagates-automatically",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid as a GATE belief: antecedent 1 establishes reversibility in principle and antecedent 2 establishes safe propagation mechanics \u2014 the GATE condition correctly captures that automatic propagation requires outlist tracking."
+    },
+    {
+      "id": "defeat-reversal-with-guided-recovery",
+      "valid": true,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim of 'complete guided recovery from any retraction cascade' slightly overstates \u2014 antecedent 2 limits hints to cascade victims with multi-premise justifications where at least one premise survives, so single-premise cascade victims receive no guidance."
+    },
+    {
+      "id": "dependency-completeness-enables-accurate-dedup",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 provides the tracking completeness claim and antecedent 2 provides the dedup accuracy claim \u2014 the conclusion correctly frames one as enabling the other, though both carry inherited GATE conditions."
+    },
+    {
+      "id": "dependency-tracking-is-complete-for-all-reference-types",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "outlist-semantics-are-fully-specified"
+      ],
+      "comment": "The tracking completeness claim follows from antecedent 1 (mutations maintain dependents) plus the GATE condition (outlist tracking gap is fixed) \u2014 antecedent 2 specifies outlist semantics (conjunction, absent=OUT, persistence) but this is tangential to whether outlist nodes appear in the dependents index."
+    },
+    {
+      "id": "derive-apply-is-isolated-and-caller-validated",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent 1 establishes the trust boundary (validate before apply) and antecedent 2 establishes the safety net (per-proposal isolation) \u2014 both are needed for the defense-in-depth characterization."
+    },
+    {
+      "id": "derive-budget-allocation-is-accurate",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "derive-prompt-roundtrips-through-parser"
+      ],
+      "comment": "The serialization format contract (roundtrip through parser) has no bearing on whether per-agent token counts are correct \u2014 only the proportional allocation mechanism and the absence of the count bug matter."
+    },
+    {
+      "id": "derive-budget-is-efficient-and-floor-bounded",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean conjunction: one antecedent supplies efficiency (linear counting), the other supplies representation safety (floor of 5), and neither alone covers the full claim."
+    },
+    {
+      "id": "derive-pipeline-is-defensive",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent addresses exactly one of the three named defensive measures; removing any leaves a gap in the claim."
+    },
+    {
+      "id": "derive-pipeline-is-reproducible-and-defense-in-depth",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent covers one of the two stated orthogonal axes (reproducibility and application isolation) with no overlap."
+    },
+    {
+      "id": "derive-prompt-is-deterministic-and-reproducible",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Deterministic sampling ensures the same beliefs are selected; accurate budgets ensure the same allocation \u2014 both are independently required for reproducible prompt construction."
+    },
+    {
+      "id": "deterministic-reasoning-with-gapless-lifecycle",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Deterministic reasoning guarantees predictability from inputs; gapless lifecycle guarantees verifiability through monitoring \u2014 both legs of the 'predictable and verifiable' claim require their own antecedent."
+    },
+    {
+      "id": "dialectical-defeat-is-reversible-but-identity-is-permanent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The asymmetry claim requires both sides: one antecedent establishes the permanent identity transformation, the other establishes the reversible defeat \u2014 neither alone yields an asymmetry."
+    },
+    {
+      "id": "dialectical-structure-is-recursive-outlist",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "challenge-is-outlist-injection",
+        "challenge-modifies-all-justifications"
+      ],
+      "comment": "challenge-uses-outlist-mechanism already states that challenge adds to the outlist 'in every justification' and works via the same non-monotonic mechanism, subsuming both challenge-is-outlist-injection (basic outlist mechanics) and challenge-modifies-all-justifications (all-justification coverage)."
+    },
+    {
+      "id": "dialectical-transformation-is-fully-reliable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Semantics preservation and crash safety are independent reliability properties; both are required for the 'fully reliable' claim, and the unless correctly guards the crash-safety precondition."
+    },
+    {
+      "id": "dialectical-transformation-preserves-semantics",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim requires both the identity destruction (what changes) and the semantic inheritance (what survives) \u2014 either antecedent alone states only half the picture."
+    },
+    {
+      "id": "dialectics-are-deterministic-and-reliable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Direct conjunction of determinism and reliability; each antecedent covers exactly one conjunct."
+    },
+    {
+      "id": "dialectics-are-deterministic-by-transparency",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Sound syllogism: dialectics are indistinguishable from ordinary nodes (transparency) + the engine evaluates all nodes deterministically \u2192 dialectics are evaluated deterministically."
+    },
+    {
+      "id": "dialectics-are-semantically-transparent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Semantic inheritance (what dialectics receive) combined with uniform evaluation (how all nodes are treated) jointly establish indistinguishability \u2014 both are required."
+    },
+    {
+      "id": "dialectics-inherit-complete-outlist-semantics",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Classic substitution argument: dialectics ARE outlist structures (structural identity) + outlist semantics are fully specified \u2192 dialectics inherit those semantics; removing either breaks the chain."
+    },
+    {
+      "id": "edge-case-uniformity-follows-from-minimality",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The causal 'consequence of' claim requires both the observed uniformity (first antecedent) and the minimal primitive set from which it derives (second antecedent) \u2014 the first establishes WHAT, the second establishes WHY."
+    },
+    {
+      "id": "evaluation-is-uniformly-context-and-origin-agnostic",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Context-independence closes the timing/attachment vector while semantic transparency closes the origin/provenance vector \u2014 the claim asserts both agnosticism axes and each antecedent covers exactly one."
+    },
+    {
+      "id": "exception-safety-spans-tms-and-source-lifecycle",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The 'spans both domains' claim requires one antecedent per domain (TMS exceptions and source lifecycle failures); removing either leaves a domain uncovered."
+    },
+    {
+      "id": "external-belief-lifecycle-is-complete",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Import reconciliation covers ingestion, staleness checking covers ongoing monitoring, and the unless correctly guards the known gap in drift detection for missing source files."
+    },
+    {
+      "id": "format-resilience-spans-all-external-interfaces",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent covers system boundary interfaces while the second extends coverage to LLM output parsing \u2014 both are needed for the 'all external interfaces' claim."
+    },
+    {
+      "id": "import-handles-heterogeneous-truth-states",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent addresses a distinct failure mode in mixed-truth-state import (empty justifications, cycles, ordering); all three are independently required."
+    },
+    {
+      "id": "import-ordering-ensures-correct-final-state",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "deferred-retraction-ordering"
+      ],
+      "comment": "Both antecedents describe the same three-phase ordering (add \u2192 propagate \u2192 retract); deferred-retraction-ordering is fully subsumed by import-two-phase-truth-maintenance."
+    },
+    {
+      "id": "import-provides-complete-reconciliation",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim enumerates three specific capabilities and each antecedent provides exactly one, making all three load-bearing; the word 'complete' is self-scoped to the enumerated items rather than an open-ended universal claim."
+    },
+    {
+      "id": "import-sync-has-dual-reconciliation-modes",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "sync-is-remote-wins"
+      ],
+      "comment": "import-skips-existing-sync-is-remote-wins already states that sync uses remote-wins semantics with overwrites and local retraction, making sync-is-remote-wins entirely redundant."
+    },
+    {
+      "id": "incremental-propagation-is-fully-complete",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "With the GATE condition satisfied (outlist tracking gap fixed), safe-terminating BFS provides the traversal mechanism and fully-specified outlist semantics provide the semantic foundation \u2014 both are required for the completeness claim."
+    },
+    {
+      "id": "inspection-outputs-are-uniformly-normalized",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean conjunction: each antecedent covers one of the two inspection mechanisms (review and staleness), and both are required for the 'both mechanisms' claim."
+    },
+    {
+      "id": "justification-addition-is-robust-across-graph-states",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Consistent propagation (normal case) and safety under graph inconsistency (degraded case) are orthogonal properties that together establish robustness 'across graph states.'"
+    },
+    {
+      "id": "justification-evaluation-is-context-independent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Purity/uniformity eliminates dependence on evaluation type and mechanism, temporal invariance eliminates dependence on attachment timing \u2014 together they justify 'context-independent' scoped to evaluation context (not to input values, which the claim correctly excludes)."
+    },
+    {
+      "id": "justification-evaluation-is-uniform-and-pure",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three-part claim (uniform across types, specific rule, pure evaluation) with each antecedent providing exactly one part \u2014 all three are independently load-bearing."
+    },
+    {
+      "id": "justification-timing-is-irrelevant-to-evaluation",
+      "valid": true,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents describe two code paths (add_node immediate evaluation and add_justification BFS propagation) but do not explicitly establish that both use the same justification validity function \u2014 the equivalence claim requires the unstated assumption that both paths apply the same evaluation rule, which is supported by justification-evaluation-is-uniform-and-pure but is not among the listed antecedents."
+    },
+    {
+      "id": "lifecycle-awareness-spans-checking-and-propagation",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent covers one operational mode (read-only staleness vs. mutation-driven propagation) \u2014 both are required for the 'spans checking and propagation' claim."
+    },
+    {
+      "id": "lifecycle-is-deterministic-and-architecturally-grounded",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The 'doubly reinforced' claim requires both foundations; each antecedent provides one independent basis for lifecycle robustness (determinism vs. structural guarantees)."
+    },
+    {
+      "id": "lifecycle-management-is-gapless",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "With the GATE conditions satisfied (silent missing files and hash truncation both OUT), the staleness completeness claim and cross-path lifecycle awareness together support gapless management; both antecedents are load-bearing for different dimensions (detection completeness vs. enforcement consistency)."
+    },
+    {
+      "id": "list-negative-is-defensively-bounded",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent provides one of the three defensive layers (pre-filtering, hallucination filtering, graceful degradation), and the 'defense-in-depth' claim requires all three stages."
+    },
+    {
+      "id": "list-negative-parser-is-fully-resilient",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The two antecedents cover complementary failure modes (partial corruption via prose-preamble regex extraction and total garbling via zero-count fallback), spanning the degradation spectrum."
+    },
+    {
+      "id": "llm-driven-mutations-are-safely-bounded",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent covers one trust boundary (LLM boundary defenses vs. persistence boundary atomicity) \u2014 the 'defense in depth' claim requires both layers."
+    },
+    {
+      "id": "llm-mutations-are-bounded-end-to-end",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent covers input validation and atomic persistence; the second adds output propagation safety \u2014 together they complete the 'every stage' end-to-end coverage."
+    },
+    {
+      "id": "llm-subprocess-isolation-prevents-recursion",
+      "valid": true,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim universally quantifies over 'all LLM subprocess invocations' but the antecedents only establish the invariant for two specific modules (ask and derive) \u2014 sufficiency requires the unstated assumption that no other module invokes LLM subprocesses."
+    },
+    {
+      "id": "metadata-actively-governs-truth-propagation",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent establishes metadata as the representation of lifecycle state, the second establishes that propagation acts on lifecycle state \u2014 both are needed to close the loop between state representation and state enforcement."
+    },
+    {
+      "id": "metadata-enables-lifecycle-governance-beyond-binary-truth",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent establishes general metadata governance; the second provides the specific evidence that staleness (a non-binary concept) is successfully handled \u2014 both are needed for the 'transcends binary truth model' claim."
+    },
+    {
+      "id": "metadata-governs-lifecycle-across-read-and-write-paths",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent links metadata specifically to the write path (propagation), the second establishes that lifecycle awareness operates on both paths \u2014 the transitive inference that metadata governs both is sound since metadata IS the lifecycle state representation."
+    },
+    {
+      "id": "metadata-is-universal-extension-mechanism",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Straightforward conjunction: first antecedent establishes metadata as universal carrier, second establishes recomputation survival \u2014 both halves of the claim map directly."
+    },
+    {
+      "id": "metadata-provides-extensible-lifecycle-governance",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "First antecedent provides extensibility + consistency tracking, second provides governance across read/write paths \u2014 the derived claim is their union with no inferential leap."
+    },
+    {
+      "id": "missing-nodes-have-asymmetric-fail-semantics",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "sl-outlist-asymmetry",
+        "outlist-absent-means-out"
+      ],
+      "comment": "All three antecedents state the identical asymmetry (absent antecedents fail, absent outlist passes) with different framing \u2014 any single one fully supports the conclusion."
+    },
+    {
+      "id": "mutations-are-atomic-audited-and-index-consistent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "First antecedent contributes atomicity (context-managed load/save, write-flag gating), second contributes auditability and index consistency \u2014 all three claimed guarantees are covered with no overlap."
+    },
+    {
+      "id": "mutations-are-observable-audited-and-index-consistent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "First antecedent provides internal traceability (audit log + dependents index), second provides external observability (before/after diffing) \u2014 both are needed for the 'end-to-end across abstraction layers' claim."
+    },
+    {
+      "id": "namespace-is-colon-convention-with-auto-wiring",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "colon-means-already-namespaced"
+      ],
+      "comment": "namespace-prefix-is-colon-separated already establishes both the colon format and the double-prefix prevention; colon-means-already-namespaced restates the same fact."
+    },
+    {
+      "id": "negative-semantics-are-complete-reversible-and-recoverable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "First antecedent provides completeness of negation forms, second provides reversibility with guided recovery \u2014 the lifecycle framing follows directly from their combination."
+    },
+    {
+      "id": "negative-semantics-are-uniform-through-minimality",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim embeds 'permanent identity effects from challenge' as part of the system's negative semantics, but neither antecedent establishes this \u2014 the first antecedent actually characterizes negative semantics as fully 'reversible and recoverable,' which is in tension with permanent effects."
+    },
+    {
+      "id": "negative-semantics-have-reversible-defeat-but-permanent-identity-effects",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "First antecedent establishes completeness of negative semantics, second establishes the reversibility/permanence asymmetry \u2014 the derived claim correctly synthesizes both without inferential leap."
+    },
+    {
+      "id": "network-mutations-are-audited-and-index-consistent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Direct conjunction: first antecedent provides audit log invariant, second provides dependents index invariant \u2014 each covers exactly one of the two 'dual invariants.'"
+    },
+    {
+      "id": "network-state-is-extensible-and-consistently-tracked",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The composability claim \u2014 that new state dimensions are automatically covered by existing mutation tracking \u2014 is a sound inference from combining metadata extensibility with mutation-level consistency guarantees."
+    },
+    {
+      "id": "nogood-ids-are-durable-and-collision-free",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent covers a distinct failure mode: monotonicity prevents reuse, persistence prevents loss across restarts, import-awareness prevents collisions with external IDs \u2014 all three are needed for the 'no operation can produce a reused ID' universal claim."
+    },
+    {
+      "id": "nogood-resolution-maintains-consistent-ids",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "backtracking-retracts-least-entrenched"
+      ],
+      "comment": "The claim is about consistent, referenceable history of contradictions \u2014 unconditional recording (add-nogood-always-records) plus the outlist gating on ID stability establishes this; the backtracking resolution mechanism describes how contradictions are resolved, not whether the history is consistent."
+    },
+    {
+      "id": "non-monotonic-system-is-single-reversible-primitive",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent contributes a distinct part: universality of the primitive, inherent reversibility, and absence of dedicated machinery \u2014 removing any one leaves the 'single reversible primitive with no dedicated machinery' claim unsupported."
+    },
+    {
+      "id": "outlist-is-universal-defeat-mechanism",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "challenge-is-outlist-injection",
+        "supersession-is-reversible"
+      ],
+      "comment": "outlist-enables-non-monotonic-reasoning already states outlist powers 'supersede, challenge, and default-logic patterns' \u2014 the challenge and supersession antecedents restate what the first already claims, while kill-switch-uses-outlist-not-antecedent adds a feature not covered by the first."
+    },
+    {
+      "id": "outlist-semantics-are-fully-specified",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent specifies one of three orthogonal semantic dimensions (conjunction behavior, absence handling, persistence) \u2014 all three are needed for the 'complete behavioral contract' claim."
+    },
+    {
+      "id": "pg-what-if-is-safely-simulated",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "pg-api-what-if-never-mutates"
+      ],
+      "comment": "pg-what-if-uses-transaction-rollback alone establishes both fidelity (real mutations) and safety (rollback) \u2014 the second antecedent provides independent verification but is logically redundant given the mechanism described by the first."
+    },
+    {
+      "id": "pgapi-enforces-referential-integrity-bidirectionally",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent covers exactly one direction: write-time validation and read-time dependent discovery \u2014 both needed for the 'bidirectional' claim."
+    },
+    {
+      "id": "pgapi-is-sql-native-multi-tenant",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three independent architectural properties (no in-memory object, composite keys, per-method transactions) each contribute a distinct aspect of the SQL-native multi-tenant characterization."
+    },
+    {
+      "id": "premise-behavior-emerges-from-absence",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "premises-have-no-justifications"
+      ],
+      "comment": "premise-defaults-to-in subsumes premises-have-no-justifications by restating 'node with no justifications defaults to IN' while also adding the _compute_truth preservation behavior that the first lacks."
+    },
+    {
+      "id": "project-has-zero-external-coupling",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "network-has-zero-external-dependencies"
+      ],
+      "comment": "The first antecedent already states the entire reasons_lib package uses only stdlib, making the Network-specific antecedent redundant."
+    },
+    {
+      "id": "propagation-is-crash-free",
+      "valid": false,
+      "sufficient": false,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "derive-depth-cycle-guard"
+      ],
+      "comment": "Antecedents establish termination properties (no stack overflow, no infinite loop) but 'no runtime errors' requires absence of all error types \u2014 and derive-depth-cycle-guard addresses _get_depth, a different function than _propagate."
+    },
+    {
+      "id": "propagation-is-safe-and-terminating",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean conjunction: one antecedent provides termination guarantees, the other provides lifecycle-awareness \u2014 both are needed and together they match the claim exactly."
+    },
+    {
+      "id": "propagation-is-safe-under-graph-inconsistency",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Dangling-reference containment composes correctly with safe termination to support the inconsistency-safety claim."
+    },
+    {
+      "id": "propagation-is-topology-complete-and-inconsistency-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid conjunction of two independent properties; note however that the completeness antecedent may conflict with the known issue that outlist nodes are not tracked in the dependents index."
+    },
+    {
+      "id": "propagation-respects-node-lifecycle",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Straightforward conjunction of two complementary lifecycle properties \u2014 each antecedent covers exactly one aspect of the claim."
+    },
+    {
+      "id": "propagation-terminates-deterministically",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent addresses a distinct termination failure mode (stack overflow, oscillation, unbounded iteration), and all three are needed for the complete guarantee."
+    },
+    {
+      "id": "read-and-write-paths-are-both-reliable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim defines 'reliable' explicitly in terms matching each antecedent \u2014 comprehensive staleness detection for reads, crash-free propagation for writes \u2014 so the inference is tautological by construction."
+    },
+    {
+      "id": "reasoning-and-revision-form-complete-architecture",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid conjunction within the TMS domain, though 'complete' implicitly scopes to forward inference and corrective revision \u2014 query, explanation, and meta-reasoning are not covered."
+    },
+    {
+      "id": "reasoning-engine-is-deterministic-and-reversible",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean composition: determinism from the core engine and reversibility from the outlist primitive are independent properties that together yield the claim."
+    },
+    {
+      "id": "reference-validation-is-defense-in-depth",
+      "valid": true,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The three antecedents validate the listed boundaries, but the universal claim ('every system boundary') requires proof that no other boundary accepts node IDs without validation \u2014 this exhaustiveness argument is unstated."
+    },
+    {
+      "id": "restoration-hints-are-surgical",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Two independent filtering rules (exclusion of trigger node + surviving-premise requirement) directly support both aspects of 'surgical' \u2014 precision and actionability."
+    },
+    {
+      "id": "retraction-cascade-is-transitive-and-terminating",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid composition assuming retraction cascades use the same propagation mechanism \u2014 a reasonable assumption given both operate on the dependents graph."
+    },
+    {
+      "id": "review-is-read-only-and-fault-tolerant",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim asserts fault tolerance 'across all failure modes' but the antecedents cover only three specific modes \u2014 other failure modes like malformed node data or memory exhaustion are unaddressed."
+    },
+    {
+      "id": "review-output-is-uniform-and-fail-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three complementary mechanisms (safe defaults, strict input format, normalized schema) together ensure uniform output regardless of LLM response quality."
+    },
+    {
+      "id": "review-pipeline-is-scoped-and-mutation-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Clean conjunction: scope restriction (derived only) and mutation gating (dry-run) are independent safety properties that together match the claim exactly."
+    },
+    {
+      "id": "revision-governs-richer-state-than-truth-values",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent establishes revision completeness and the second establishes metadata governance beyond binary truth \u2014 together they support the claim that revision operates on richer state."
+    },
+    {
+      "id": "revision-has-complete-semantics-with-controlled-irreversibility",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The asymmetry antecedent provides the irreversibility insight and the comprehensive-minimal antecedent provides the semantic scope \u2014 both are needed for the combined claim."
+    },
+    {
+      "id": "revision-semantics-are-deterministic-and-traceable",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The first antecedent specifies WHAT revision semantics exist and the second establishes that ALL state transitions are deterministic and traceable \u2014 the claim follows by subsumption."
+    },
+    {
+      "id": "rich-governance-emerges-from-minimal-foundations",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim that rich governance uses the SAME minimal foundations (outlist, disjunctive truth, vacuous validity) is unsupported \u2014 metadata governance (retraction flags, stale reasons, access tags) appears to be additional machinery, not derived from those primitives."
+    },
+    {
+      "id": "supersession-is-reversible-and-view-consistent",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The conclusion is a straightforward conjunction of its two antecedents; the 'first-class lifecycle operation' characterization is editorial but reasonably supported by the combination of mechanical reversibility and presentation-layer integration."
+    },
+    {
+      "id": "system-artifacts-maintain-consistent-identification",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The comparative claim ('as addressable as user-created beliefs') relies on the unstated but reasonable domain assumption that all TMS entities are addressed by their node ID."
+    },
+    {
+      "id": "system-boundaries-are-evolution-tolerant-and-reference-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The conclusion correctly conjoins its two antecedents along independent dimensions, inheriting any overclaims (e.g., 'every boundary') from the antecedents themselves rather than introducing new inferential leaps."
+    },
+    {
+      "id": "system-resource-footprint-is-minimal-at-all-phases",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "'All lifecycle phases' overclaims \u2014 runtime resource usage is unaddressed by either antecedent \u2014 and 'memory consumption' is only weakly implied by lazy loading, which defers but does not eliminate module loads."
+    },
+    {
+      "id": "system-semantics-are-minimal-and-complete",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Monotonic emergent semantics (antecedent 1) and single non-monotonic primitive (antecedent 2) partition the TMS semantic space exhaustively; 'complete' is justified because no third category of truth-maintenance behavior exists outside these two."
+    },
+    {
+      "id": "system-tolerates-evolution-at-all-boundaries",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three examples of evolution tolerance do not establish the universal quantifier 'every external boundary' \u2014 other boundaries such as CLI input parsing and API request validation are unaddressed."
+    },
+    {
+      "id": "three-layer-stack-has-clean-boundaries",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedent cli-is-pure-formatter documents an exception (cmd_propagate touches Storage directly), which directly contradicts the 'strict layer separation' and 'pure-formatter CLI' claims in the conclusion."
+    },
+    {
+      "id": "tms-core-is-crash-safe",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The gated structure correctly qualifies crash-safety on the absence of dangling dependents; purity prevents side-effect crashes and termination prevents infinite loops, covering the main crash vectors for a truth-maintenance engine."
+    },
+    {
+      "id": "tms-core-is-deterministic-and-conservative",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three orthogonal engine properties (purity, termination, asymmetric failure semantics) are correctly composed into a coherent correctness characterization with no inferential gaps."
+    },
+    {
+      "id": "tms-handles-all-conditions-safely",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Normal-path crash-safety and exception-path deterministic resolution plausibly cover the two operational modes of a TMS, with the dangling-dependents gate condition correctly inherited from the crash-safe antecedent."
+    },
+    {
+      "id": "truth-is-disjunctive-over-conjunctive-rules",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "sl-justification-semantics"
+      ],
+      "comment": "node-in-if-any-justification-valid already states the full disjunction-of-conjunctions rule (any justification valid \u2192 IN, each requiring all antecedents IN and all outlist OUT); sl-justification-semantics restates the same rule scoped to SL justifications, adding no new information."
+    },
+    {
+      "id": "truth-semantics-are-emergent-and-uniform",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Three independent properties \u2014 emergent premise behavior, DNF truth computation, and uniform evaluation \u2014 each eliminate a distinct category of special-case logic, collectively supporting the 'no special cases anywhere' claim."
+    }
+  ]
+}
