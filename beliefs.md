@@ -761,7 +761,7 @@ All outlist-based defeat mechanisms (challenge, kill-switch, supersession) not o
 - Unless: outlist-nodes-not-in-dependents-index
 
 ### defeat-reversal-with-guided-recovery [IN] DERIVED
-All defeat mechanisms (challenge, kill-switch, supersession) are reversible through outlist semantics, and the system provides surgical restoration hints for cascade victims with viable recovery paths — enabling complete guided recovery from any retraction cascade.
+All defeat mechanisms (challenge, kill-switch, supersession) are reversible through outlist semantics, and the system provides surgical restoration hints for cascade victims with viable recovery paths — enabling guided recovery from retraction cascades where multi-premise justifications have surviving premises.
 - Depends on: all-defeat-mechanisms-are-reversible, restoration-hints-require-surviving-premises
 - Unless: outlist-nodes-not-in-dependents-index
 
@@ -1198,6 +1198,9 @@ Both inspection mechanisms — belief review and staleness checking — produce 
 `_invoke_claude()` raises `FileNotFoundError` if the `claude` CLI is not on `PATH`, rather than returning an error string — this is the one exception that `ask()` does not catch internally.
 - Source: entries/2026/04/29/tests-test_ask.md
 
+### invoke-model-strips-claudecode-env [IN] OBSERVATION
+invoke_model() in llm.py strips the CLAUDECODE environment variable before all subprocess.run() calls, preventing recursive Claude Code entry from any module that uses the shared LLM interface (ask, derive, review).
+
 ### issue-121-evolution-tolerance-audit [IN] OBSERVATION
 Issue #121: Audit evolution tolerance at all system boundaries — not all boundaries have documented forward-compatibility mechanisms
 
@@ -1206,6 +1209,9 @@ Issue #122: Audit review module for unhandled failure modes — three specific h
 
 ### issue-123-resource-footprint-audit [IN] OBSERVATION
 Issue #123: Audit resource footprint across all lifecycle phases — only deployment and startup phases are currently evidenced
+
+### issue-126-reference-validation-audit [IN] OBSERVATION
+Issue #126: Audit all node ID reference boundaries for validation — three specific boundaries do not establish coverage of every boundary
 
 ### justification-addition-is-robust-across-graph-states [IN] DERIVED
 Adding a justification to an existing node achieves fully consistent multi-dimensional propagation — truth values, dependents index, and access tags — even when the dependency graph contains dangling references or lifecycle-marked nodes, because propagation safely handles both graph anomalies and node lifecycle states.
@@ -1229,7 +1235,7 @@ Justification insertion order is preserved across save/load cycles using `AUTOIN
 
 ### justification-timing-is-irrelevant-to-evaluation [IN] DERIVED
 Justification evaluation produces identical truth semantics regardless of when a justification is attached: add_node evaluates justifications immediately at insertion, and add_justification triggers identical propagation when attached post-creation — the system has no time-of-attachment sensitivity.
-- Depends on: add-node-evaluates-justification-at-insertion, add-justification-triggers-propagation
+- Depends on: add-node-evaluates-justification-at-insertion, add-justification-triggers-propagation, justification-evaluation-is-uniform-and-pure
 
 ### justification-valid-is-pure [IN] OBSERVATION
 `_justification_valid` is a pure query with no side effects, no logging, and no mutations to network state
@@ -1301,8 +1307,8 @@ Prompts are passed to LLM subprocesses via `subprocess.run(input=...)`, never as
 - Source: entries/2026/05/05/tests-test_llm.md
 
 ### llm-subprocess-isolation-prevents-recursion [IN] DERIVED
-All LLM subprocess invocations strip the CLAUDECODE environment variable to prevent recursive Claude Code entry, enforced independently in both the ask and derive modules
-- Depends on: ask-strips-claudecode-env, derive-strips-claudecode-env
+All LLM subprocess invocations strip the CLAUDECODE environment variable to prevent recursive Claude Code entry, enforced centrally in invoke_model() and inherited by all LLM-facing modules (ask, derive, review).
+- Depends on: invoke-model-strips-claudecode-env
 
 ### llm-thinking-strip-ollama-only [IN] OBSERVATION
 Thinking-marker stripping (`Thinking...` / `...done thinking.`) is applied only to Ollama model output; Claude and Gemini output passes through unmodified even if it contains the same markers.
@@ -1761,10 +1767,6 @@ Calling `_rebuild_dependents()` twice in succession produces identical `dependen
 ### recompute-all-uses-fixpoint [IN] OBSERVATION
 `recompute_all` iterates until no truth values change, bounded by `len(nodes) + 1` iterations, handling cascading dependencies from arbitrary node ordering.
 - Source: entries/2026/04/23/reasons_lib-network.md
-
-### reference-validation-is-defense-in-depth [IN] DERIVED
-Every system boundary that accepts node ID references validates them against the actual network: import normalization drops unknown antecedent/outlist refs, nogood recording skips invalid node IDs, and LLM-returned negative-list IDs are filtered against existing nodes.
-- Depends on: normalization-drops-unknown-refs, nogoods-require-valid-nodes, api-list-negative-filters-hallucinated-ids
 
 ### rename-from-rms-at-0.3.0 [IN] OBSERVATION
 The project was renamed from `rms` to `reasons` in version 0.3.0, driven by a measured 5 percentage-point LLM accuracy improvement in ablation study
@@ -3438,6 +3440,11 @@ The system achieves exhaustive coverage in both formal reasoning (deterministic 
 ### reasoning-is-exhaustively-deterministic [OUT] DERIVED
 The reasoning system produces deterministic, reversible truth evaluations AND can exhaustively explore all derivable conclusions with guaranteed termination, ensuring the system finds every reachable belief state with predictable outcomes.
 - Depends on: reasoning-engine-is-deterministic-and-reversible, derive-pipeline-is-exhaustive-and-terminating
+
+### reference-validation-is-defense-in-depth [OUT] DERIVED
+Every system boundary that accepts node ID references validates them against the actual network: import normalization drops unknown antecedent/outlist refs, nogood recording skips invalid node IDs, and LLM-returned negative-list IDs are filtered against existing nodes.
+- Depends on: normalization-drops-unknown-refs, nogoods-require-valid-nodes, api-list-negative-filters-hallucinated-ids
+- Unless: issue-126-reference-validation-audit
 
 ### references-are-durable-across-persistence-and-evolution [OUT] DERIVED
 All system-generated identifiers survive both persistence boundaries (save/load cycles, cross-session durability via high-water marks) and format evolution boundaries (parser versioning, schema migration, forward-compatible metadata) — references remain valid and resolvable across time and system versions.

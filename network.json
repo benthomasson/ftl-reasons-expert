@@ -4045,7 +4045,7 @@
       }
     },
     "defeat-reversal-with-guided-recovery": {
-      "text": "All defeat mechanisms (challenge, kill-switch, supersession) are reversible through outlist semantics, and the system provides surgical restoration hints for cascade victims with viable recovery paths \u2014 enabling complete guided recovery from any retraction cascade.",
+      "text": "All defeat mechanisms (challenge, kill-switch, supersession) are reversible through outlist semantics, and the system provides surgical restoration hints for cascade victims with viable recovery paths \u2014 enabling guided recovery from retraction cascades where multi-premise justifications have surviving premises.",
       "truth_value": "IN",
       "justifications": [
         {
@@ -7549,6 +7549,16 @@
       "date": "",
       "metadata": {}
     },
+    "invoke-model-strips-claudecode-env": {
+      "text": "invoke_model() in llm.py strips the CLAUDECODE environment variable before all subprocess.run() calls, preventing recursive Claude Code entry from any module that uses the shared LLM interface (ask, derive, review).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "issue-121-evolution-tolerance-audit": {
       "text": "Issue #121: Audit evolution tolerance at all system boundaries \u2014 not all boundaries have documented forward-compatibility mechanisms",
       "truth_value": "IN",
@@ -7571,6 +7581,16 @@
     },
     "issue-123-resource-footprint-audit": {
       "text": "Issue #123: Audit resource footprint across all lifecycle phases \u2014 only deployment and startup phases are currently evidenced",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "issue-126-reference-validation-audit": {
+      "text": "Issue #126: Audit all node ID reference boundaries for validation \u2014 three specific boundaries do not establish coverage of every boundary",
       "truth_value": "IN",
       "justifications": [],
       "source": "",
@@ -7677,10 +7697,11 @@
           "type": "SL",
           "antecedents": [
             "add-node-evaluates-justification-at-insertion",
-            "add-justification-triggers-propagation"
+            "add-justification-triggers-propagation",
+            "justification-evaluation-is-uniform-and-pure"
           ],
           "outlist": [],
-          "label": "Two entry points for justification attachment converge on the same evaluation semantics, eliminating ordering sensitivity"
+          "label": "Both entry points use the same pure evaluation function, eliminating time-of-attachment sensitivity"
         }
       ],
       "source": "",
@@ -8356,17 +8377,16 @@
       "metadata": {}
     },
     "llm-subprocess-isolation-prevents-recursion": {
-      "text": "All LLM subprocess invocations strip the CLAUDECODE environment variable to prevent recursive Claude Code entry, enforced independently in both the ask and derive modules",
+      "text": "All LLM subprocess invocations strip the CLAUDECODE environment variable to prevent recursive Claude Code entry, enforced centrally in invoke_model() and inherited by all LLM-facing modules (ask, derive, review).",
       "truth_value": "IN",
       "justifications": [
         {
           "type": "SL",
           "antecedents": [
-            "ask-strips-claudecode-env",
-            "derive-strips-claudecode-env"
+            "invoke-model-strips-claudecode-env"
           ],
           "outlist": [],
-          "label": "Both LLM-facing modules independently implement the same subprocess isolation invariant"
+          "label": "Centralized enforcement in invoke_model covers all LLM-facing modules"
         }
       ],
       "source": "",
@@ -11162,7 +11182,7 @@
     },
     "reference-validation-is-defense-in-depth": {
       "text": "Every system boundary that accepts node ID references validates them against the actual network: import normalization drops unknown antecedent/outlist refs, nogood recording skips invalid node IDs, and LLM-returned negative-list IDs are filtered against existing nodes.",
-      "truth_value": "IN",
+      "truth_value": "OUT",
       "justifications": [
         {
           "type": "SL",
@@ -11171,8 +11191,10 @@
             "nogoods-require-valid-nodes",
             "api-list-negative-filters-hallucinated-ids"
           ],
-          "outlist": [],
-          "label": "Three independently-implemented reference validation boundaries converge on a single invariant \u2014 no phantom node ID survives ingestion"
+          "outlist": [
+            "issue-126-reference-validation-audit"
+          ],
+          "label": "Three boundaries validated; gated on full boundary audit (issue #126)"
         }
       ],
       "source": "",
