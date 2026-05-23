@@ -1,0 +1,612 @@
+{
+  "timestamp": "2026-05-11T13:27:06",
+  "status": "complete",
+  "model": "claude",
+  "timeout": 600,
+  "exhaust": true,
+  "filters": {
+    "domain": null,
+    "topic": null,
+    "min_depth": null,
+    "max_depth": null,
+    "premises": false,
+    "has_dependents": false,
+    "budget": 300,
+    "sample": true,
+    "cluster": false,
+    "embedding_model": null,
+    "n_clusters": null
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "network_stats": {
+        "total_in": 628,
+        "total_derived": 527,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 11,
+      "valid": 11,
+      "skipped": [],
+      "applied": [
+        {
+          "id": "sync-is-safe-for-automated-reconciliation",
+          "truth_value": "IN"
+        },
+        {
+          "id": "belief-modification-is-bidirectionally-complete-and-traceable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-state-transitions-are-topology-complete-and-traceable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "revision-is-exception-safe-and-recoverable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "negative-semantics-ground-deterministic-dialectics",
+          "truth_value": "IN"
+        },
+        {
+          "id": "evaluation-purity-enables-complete-minimal-architecture",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectical-revision-is-deterministic-reliable-and-complete",
+          "truth_value": "IN"
+        },
+        {
+          "id": "lifecycle-governance-is-metadata-enabled-and-source-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "determinism-spans-revision-semantics-through-source-integrity",
+          "truth_value": "IN"
+        },
+        {
+          "id": "rich-governance-is-exception-safe",
+          "truth_value": "IN"
+        },
+        {
+          "id": "verified-revision-completeness-at-all-reference-boundaries",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 11
+    },
+    {
+      "round": 2,
+      "network_stats": {
+        "total_in": 638,
+        "total_derived": 538,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 10,
+      "valid": 10,
+      "skipped": [],
+      "applied": [
+        {
+          "id": "derive-resilience-preserves-progress-on-error",
+          "truth_value": "IN"
+        },
+        {
+          "id": "derive-budget-is-flexible-and-efficient",
+          "truth_value": "IN"
+        },
+        {
+          "id": "bidirectional-modification-achieves-topology-completeness",
+          "truth_value": "IN"
+        },
+        {
+          "id": "edge-case-uniformity-reinforces-complete-negative-semantics",
+          "truth_value": "IN"
+        },
+        {
+          "id": "revision-is-richly-governed-and-exception-safe",
+          "truth_value": "IN"
+        },
+        {
+          "id": "lifecycle-governance-has-deterministic-source-integrity",
+          "truth_value": "IN"
+        },
+        {
+          "id": "topology-complete-transitions-are-exception-safe",
+          "truth_value": "IN"
+        },
+        {
+          "id": "rich-governance-determinism-spans-revision-through-source",
+          "truth_value": "IN"
+        },
+        {
+          "id": "revision-has-code-enforced-derivation-constraints",
+          "truth_value": "OUT"
+        },
+        {
+          "id": "rich-governance-spans-all-backends",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 10
+    },
+    {
+      "round": 3,
+      "network_stats": {
+        "total_in": 646,
+        "total_derived": 548,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 8,
+      "valid": 7,
+      "skipped": [
+        {
+          "id": "minimality-grounds-dialectics-through-uniform-negative-semantics",
+          "reason": "similar to retracted belief: negative-semantics-are-uniform-through-minimality (62% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "rich-governance-is-deterministic-exception-safe-and-source-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "topology-complete-transitions-within-rich-governance",
+          "truth_value": "IN"
+        },
+        {
+          "id": "evaluation-purity-grounds-dialectics-through-minimal-architecture",
+          "truth_value": "IN"
+        },
+        {
+          "id": "lifecycle-governance-is-exception-safe-and-source-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "bidirectional-modification-within-deterministic-lifecycle",
+          "truth_value": "IN"
+        },
+        {
+          "id": "metadata-governance-has-topology-complete-propagation",
+          "truth_value": "IN"
+        },
+        {
+          "id": "defeat-reversal-is-topology-complete-with-guided-recovery",
+          "truth_value": "IN"
+        }
+      ],
+      "added": 7
+    },
+    {
+      "round": 4,
+      "network_stats": {
+        "total_in": 653,
+        "total_derived": 555,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 9,
+      "valid": 9,
+      "skipped": [],
+      "applied": [
+        {
+          "id": "rich-governance-encompasses-topology-complete-transitions",
+          "truth_value": "IN"
+        },
+        {
+          "id": "metadata-governed-modifications-are-bidirectional-and-topology-complete",
+          "truth_value": "IN"
+        },
+        {
+          "id": "bidirectional-modification-is-richly-governed-and-exception-safe",
+          "truth_value": "IN"
+        },
+        {
+          "id": "pure-evaluation-enables-richly-governed-dialectics",
+          "truth_value": "IN"
+        },
+        {
+          "id": "uniform-semantics-transitively-ground-deterministic-dialectics",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-to-tms-integrity-is-deterministic-and-exception-safe",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectical-revision-governs-rich-traceable-state",
+          "truth_value": "IN"
+        },
+        {
+          "id": "completeness-determinism-and-minimality-are-unified",
+          "truth_value": "IN"
+        },
+        {
+          "id": "lifecycle-governance-achieves-gap-free-source-coverage",
+          "truth_value": "IN"
+        }
+      ],
+      "added": 9
+    },
+    {
+      "round": 5,
+      "network_stats": {
+        "total_in": 662,
+        "total_derived": 564,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 10,
+      "valid": 10,
+      "skipped": [],
+      "applied": [
+        {
+          "id": "governance-achieves-topology-and-source-completeness",
+          "truth_value": "IN"
+        },
+        {
+          "id": "topology-complete-governance-produces-rich-traceable-state",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectics-are-dually-grounded-by-purity-and-uniformity",
+          "truth_value": "IN"
+        },
+        {
+          "id": "bidirectional-modifications-achieve-full-governance-triad",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-integrity-unifies-determinism-exception-safety-and-lifecycle",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectical-revision-is-exception-safe-with-rich-traceable-state",
+          "truth_value": "IN"
+        },
+        {
+          "id": "rich-governance-inherits-minimality-completeness-determinism-unity",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectics-achieve-forward-reliability-and-backward-recovery",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-topology-is-reference-verified",
+          "truth_value": "OUT"
+        },
+        {
+          "id": "rich-governance-has-verified-evolution-tolerance",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 10
+    },
+    {
+      "round": 6,
+      "network_stats": {
+        "total_in": 670,
+        "total_derived": 574,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 8,
+      "valid": 7,
+      "skipped": [
+        {
+          "id": "governance-completeness-spans-all-backends",
+          "reason": "similar to retracted belief: rich-governance-spans-all-backends (67% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "governance-is-topology-source-and-traceability-complete",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-modifications-achieve-governance-assured-topology-completeness",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-has-dual-independent-grounding-chains",
+          "truth_value": "IN"
+        },
+        {
+          "id": "grounded-dialectics-achieve-complete-bidirectional-assurance",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-integrity-and-governance-form-closed-loop",
+          "truth_value": "IN"
+        },
+        {
+          "id": "evaluation-purity-grounds-governance-that-exception-safety-preserves",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-determinism-is-minimality-emergent-through-source",
+          "truth_value": "IN"
+        }
+      ],
+      "added": 7
+    },
+    {
+      "round": 7,
+      "network_stats": {
+        "total_in": 677,
+        "total_derived": 581,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 12,
+      "valid": 12,
+      "skipped": [],
+      "applied": [
+        {
+          "id": "derive-pipeline-achieves-end-to-end-fault-tolerance",
+          "truth_value": "IN"
+        },
+        {
+          "id": "derive-achieves-flexibility-with-reproducibility",
+          "truth_value": "IN"
+        },
+        {
+          "id": "initialization-is-path-independent",
+          "truth_value": "IN"
+        },
+        {
+          "id": "automated-sync-achieves-full-lifecycle-coverage",
+          "truth_value": "IN"
+        },
+        {
+          "id": "mutations-achieve-full-traceability",
+          "truth_value": "IN"
+        },
+        {
+          "id": "defeat-reversals-are-lifecycle-governed",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-determinism-is-generated-and-preserved",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-integrity-loop-is-dually-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-modifications-are-dually-grounded-governance-assured",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-completeness-is-dually-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dialectical-assurance-achieves-governance-completeness",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-and-dialectics-have-verified-references",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 12
+    },
+    {
+      "round": 8,
+      "network_stats": {
+        "total_in": 688,
+        "total_derived": 593,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 10,
+      "valid": 8,
+      "skipped": [
+        {
+          "id": "derive-pipeline-is-flexible-reproducible-and-fault-tolerant",
+          "reason": "similar to retracted belief: derive-pipeline-is-reproducible-and-fully-assured (50% overlap)"
+        },
+        {
+          "id": "derive-pipeline-is-fully-quality-assured",
+          "reason": "similar to retracted belief: derive-pipeline-is-reproducible-and-fully-assured (62% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "governance-is-dialectically-assured-and-dually-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-modifications-achieve-dialectically-assured-governance",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-governance-loop-is-dually-grounded-and-deterministic",
+          "truth_value": "IN"
+        },
+        {
+          "id": "mutations-are-traceable-through-transitive-cascades",
+          "truth_value": "IN"
+        },
+        {
+          "id": "external-lifecycle-is-complete-and-automatically-maintained",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-truth-effects-propagate-through-outlist-paths",
+          "truth_value": "IN"
+        },
+        {
+          "id": "defeat-reversals-are-lifecycle-governed-across-all-backends",
+          "truth_value": "IN"
+        },
+        {
+          "id": "initialization-is-safe-and-path-independent-across-backends",
+          "truth_value": "IN"
+        }
+      ],
+      "added": 8
+    },
+    {
+      "round": 9,
+      "network_stats": {
+        "total_in": 696,
+        "total_derived": 601,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 10,
+      "valid": 7,
+      "skipped": [
+        {
+          "id": "derive-pipeline-is-flexible-fault-tolerant-and-reproducible",
+          "reason": "similar to retracted belief: derive-pipeline-is-reproducible-and-fully-assured (50% overlap)"
+        },
+        {
+          "id": "governance-loop-is-complete-across-all-dimensions",
+          "reason": "similar to retracted belief: self-correction-is-complete-across-all-quality-dimensions (50% overlap)"
+        },
+        {
+          "id": "derive-pipeline-achieves-code-enforced-production-quality",
+          "reason": "similar to retracted belief: derived-belief-pipeline-achieves-code-enforced-quality (56% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "ask-mcp-integration-is-safely-bounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "cluster-selection-is-deterministic-and-budget-exact",
+          "truth_value": "IN"
+        },
+        {
+          "id": "mcp-bridge-is-timeout-bounded-at-all-phases",
+          "truth_value": "IN"
+        },
+        {
+          "id": "all-truth-effects-are-topology-complete-and-traceable",
+          "truth_value": "IN"
+        },
+        {
+          "id": "external-lifecycle-operates-within-rich-governance",
+          "truth_value": "IN"
+        },
+        {
+          "id": "governance-assurance-is-universal-and-self-reinforcing",
+          "truth_value": "IN"
+        },
+        {
+          "id": "ask-mcp-tool-use-has-current-catalog",
+          "truth_value": "OUT"
+        }
+      ],
+      "added": 7
+    },
+    {
+      "round": 10,
+      "network_stats": {
+        "total_in": 702,
+        "total_derived": 608,
+        "max_depth": 15,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 13,
+      "valid": 11,
+      "skipped": [
+        {
+          "id": "derive-pipeline-is-flexible-reproducible-and-fault-tolerant",
+          "reason": "similar to retracted belief: derive-pipeline-is-reproducible-and-fully-assured (50% overlap)"
+        },
+        {
+          "id": "derive-flexibility-with-code-enforced-quality",
+          "reason": "similar to retracted belief: derive-quality-is-comprehensively-code-enforced (50% overlap)"
+        }
+      ],
+      "applied": [
+        {
+          "id": "ask-mcp-is-defense-in-depth-bounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "ask-mcp-achieves-accurate-bounded-tool-use",
+          "truth_value": "OUT"
+        },
+        {
+          "id": "agent-isolation-spans-identity-and-authorization",
+          "truth_value": "IN"
+        },
+        {
+          "id": "belief-consistency-spans-structural-and-semantic-dimensions",
+          "truth_value": "IN"
+        },
+        {
+          "id": "metadata-governance-flows-through-safe-topology",
+          "truth_value": "IN"
+        },
+        {
+          "id": "dual-quality-gates-are-complementary-and-non-mutating",
+          "truth_value": "IN"
+        },
+        {
+          "id": "review-achieves-verified-fault-tolerance",
+          "truth_value": "OUT"
+        },
+        {
+          "id": "contradiction-resolution-achieves-minimal-impact-complete-cascades",
+          "truth_value": "IN"
+        },
+        {
+          "id": "cluster-derive-is-semantically-informed-and-deterministic",
+          "truth_value": "IN"
+        },
+        {
+          "id": "source-integrity-is-fail-safe-deterministic-and-grounded",
+          "truth_value": "IN"
+        },
+        {
+          "id": "initialization-and-reconciliation-converge-equivalently",
+          "truth_value": "IN"
+        }
+      ],
+      "added": 11
+    }
+  ],
+  "total_added": 92
+}

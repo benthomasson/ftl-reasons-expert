@@ -284,6 +284,26 @@
       "date": "",
       "metadata": {}
     },
+    "agent-isolation-spans-identity-and-authorization": {
+      "text": "Agent beliefs are isolated through two independent containment mechanisms at different system levels: namespace prefixing with relay pairs provides identity-level isolation (preventing ID collisions and enabling per-agent lifecycle control via kill-switch), while transitive subset-gated access tags provide authorization-level isolation (controlling per-caller visibility with tag inheritance).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "agent-isolation-through-namespace-and-relay",
+            "access-control-is-transitive-subset-gated"
+          ],
+          "outlist": [],
+          "label": "Orthogonal isolation at namespace-identity and access-tag-authorization layers"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "agent-isolation-through-namespace-and-relay": {
       "text": "Agent beliefs are doubly isolated: namespace prefixing prevents ID collisions, while the active/inactive relay pair provides per-agent kill-switch semantics without cross-agent interference",
       "truth_value": "IN",
@@ -322,6 +342,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-api-functions-support-pg-dispatch": {
+      "text": "Every public API function (`export_markdown`, `import_json`, `import_beliefs`, `import_agent`, `sync_agent`, `hash_sources`, `check_stale`, `lookup`, `add_repo`, `list_repos`, `list_negative`) accepts `pg_conninfo`/`project_id` kwargs and routes to the corresponding `PgApi` method",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_pg_dispatch.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -725,6 +755,66 @@
       "date": "",
       "metadata": {}
     },
+    "all-modifications-achieve-dialectically-assured-governance": {
+      "text": "Every belief modification achieves governance assurance that is itself dialectically complete \u2014 modifications operate within dually-grounded governance backed by complete bidirectional dialectical assurance (forward reliability and backward recovery), meaning every modification is simultaneously topology-complete, dually-grounded, and dialectically assured",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-modifications-are-dually-grounded-governance-assured",
+            "dialectical-assurance-achieves-governance-completeness"
+          ],
+          "outlist": [],
+          "label": "Modification-level governance inherits the full dialectical assurance of the governance framework it operates within"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-modifications-achieve-governance-assured-topology-completeness": {
+      "text": "Every belief modification \u2014 forward topology-complete transitions and backward bidirectional modifications alike \u2014 achieves full governance assurance: exception safety, rich state governance, and topology completeness are guaranteed regardless of modification direction.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "bidirectional-modifications-achieve-full-governance-triad",
+            "rich-governance-encompasses-topology-complete-transitions"
+          ],
+          "outlist": [],
+          "label": "Forward transitions and backward corrections both achieve the same governance assurance"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-modifications-are-dually-grounded-governance-assured": {
+      "text": "Every belief modification achieves governance-assured topology completeness where the governance itself rests on dual independent grounding chains \u2014 modifications are universally governed AND that governance is independently grounded by both evaluation purity and edge-case uniformity, providing two independent assurance paths for every modification.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-modifications-achieve-governance-assured-topology-completeness",
+            "governance-has-dual-independent-grounding-chains"
+          ],
+          "outlist": [],
+          "label": "universal governance + dual grounding = every modification has two independent assurance paths"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "all-modifications-converge-with-reporting-and-recovery": {
       "text": "Every modification \u2014 addition, removal, or correction \u2014 converges to a deterministic stable state with complete effect reporting and guided recovery, ensuring the system's operational history is fully transparent and every change can be understood and reversed.",
       "truth_value": "OUT",
@@ -1032,6 +1122,26 @@
       "date": "",
       "metadata": {}
     },
+    "all-state-transitions-are-topology-complete-and-traceable": {
+      "text": "Every belief state transition is simultaneously deterministic with traceable history (through structured diffs and consistent artifact identification), topology-complete (reaching all transitively dependent nodes including outlist-connected ones), and robust under graph inconsistency (dangling references are safely contained) \u2014 the system never produces a state change that is untraced, incomplete, or fragile.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-state-transitions-are-deterministic-and-traceable",
+            "all-truth-changes-are-topology-complete-and-robust"
+          ],
+          "outlist": [],
+          "label": "Deterministic traceability plus topology-complete robustness yields state transitions with no observability or completeness gaps"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "all-structural-changes-are-identified-auditable-and-topology-preserving": {
       "text": "Every structural modification to the belief network is uniquely identifiable (deterministic collision-free IDs for dialectical artifacts and nogoods), historically auditable (timestamped audit log entries with index consistency), and topology-preserving (reference rewrites and dependents index maintenance across mutations and deduplication).",
       "truth_value": "OUT",
@@ -1108,6 +1218,48 @@
           ],
           "outlist": [],
           "label": "Topology-complete propagation + robust justification addition \u2192 universally robust truth changes"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-truth-effects-are-topology-complete-and-traceable": {
+      "text": "All truth effects \u2014 incremental truth changes and outlist-based defeat reversals alike \u2014 propagate completely through outlist-connected paths while maintaining full traceability through transitive cascades with audit logging and consistent artifact identification.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-truth-effects-propagate-through-outlist-paths",
+            "mutations-are-traceable-through-transitive-cascades"
+          ],
+          "outlist": [],
+          "label": "Topology-complete propagation and transitive traceability combine to ensure no truth effect is unaccounted"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "all-truth-effects-propagate-through-outlist-paths": {
+      "text": "All truth effects \u2014 both incremental truth changes and outlist-based defeat reversals \u2014 propagate completely through outlist-connected paths without requiring full network recomputation, ensuring outlist-based non-monotonic reasoning achieves the same incremental efficiency as antecedent-based reasoning",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "incremental-propagation-is-fully-complete",
+            "defeat-reversal-propagates-automatically"
+          ],
+          "outlist": [
+            "outlist-nodes-not-in-dependents-index"
+          ],
+          "label": "Complete outlist propagation requires outlist nodes to be tracked in the dependents index"
         }
       ],
       "source": "",
@@ -1250,6 +1402,16 @@
       "metadata": {
         "retract_reason": "Invalid derivation identified by review-beliefs"
       }
+    },
+    "api-fts-search-bounds-query-calls": {
+      "text": "`_fts_search` makes at most 51 internal `_fts_query` calls regardless of input query length, preventing combinatorial explosion from progressive relaxation on long queries.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "api-functions-return-dicts": {
       "text": "Every public API function returns a `dict` (or `str` for markdown/compact), never a `Network` or `Node` object, ensuring JSON-serializability at the boundary for CLI, HTTP, and tool-call consumers.",
@@ -1398,6 +1560,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/tests-test_api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "apply-dedup-plan-collects-errors-not-raises": {
+      "text": "`apply_dedup_plan` collects errors into `result[\"errors\"]` rather than raising, allowing partial application \u2014 one missing node does not block processing of the remaining dedup plan",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_derive.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -1604,6 +1776,110 @@
       "date": "",
       "metadata": {}
     },
+    "ask-mcp-achieves-accurate-bounded-tool-use": {
+      "text": "MCP tool integration in ask() achieves both bounded safety (iteration caps, error tolerance, transport timeouts at two layers) and accurate tool discovery (catalog reflects current server capabilities rather than a stale snapshot).",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ask-mcp-integration-is-safely-bounded",
+            "mcp-bridge-is-timeout-bounded-at-all-phases"
+          ],
+          "outlist": [
+            "mcp-bridge-tools-snapshot-at-connect"
+          ],
+          "label": "Accurate tool catalog requires live refresh rather than connect-time snapshot"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-mcp-errors-non-fatal": {
+      "text": "When an MCP bridge's `call_tool` raises an exception during the ask loop, `ask()` catches the error, feeds it back to the LLM as context, and continues the tool loop rather than propagating to the caller.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_ask_mcp.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-mcp-integration-is-safely-bounded": {
+      "text": "MCP tool calls in `ask()` are both error-tolerant (exceptions caught and fed back as context for alternative tool selection) and iteration-bounded (5 tool-call rounds max), preventing both crashes from MCP server failures and runaway tool loops.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ask-mcp-errors-non-fatal",
+            "ask-mcp-iteration-limit-is-five"
+          ],
+          "outlist": [],
+          "label": "MCP errors caught + iteration cap independently bound MCP integration risk"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-mcp-is-defense-in-depth-bounded": {
+      "text": "MCP-backed ask queries are bounded at two independent layers: application-level iteration caps with error-tolerant fallback at the ask layer, plus per-call and connection timeouts at the MCP bridge transport layer \u2014 no single timeout failure can cause unbounded execution.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ask-mcp-integration-is-safely-bounded",
+            "mcp-bridge-is-timeout-bounded-at-all-phases"
+          ],
+          "outlist": [],
+          "label": "Layered timeout enforcement across ask application and MCP bridge transport"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-mcp-iteration-limit-is-five": {
+      "text": "When `mcp_servers` is non-empty, `ask()` allows up to 5 tool-call iterations before forcing a final LLM response (6 total invocations), compared to the lower limit without MCP servers.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_ask_mcp.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-mcp-tool-use-has-current-catalog": {
+      "text": "Ask's MCP tool integration achieves full reliability \u2014 errors caught, iterations bounded \u2014 with the tool catalog always reflecting the MCP server's current capabilities rather than a stale connection-time snapshot.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ask-mcp-errors-non-fatal",
+            "ask-mcp-iteration-limit-is-five"
+          ],
+          "outlist": [
+            "mcp-bridge-tools-snapshot-at-connect"
+          ],
+          "label": "Full MCP reliability requires fresh tool catalogs, not just error handling and iteration bounds"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "ask-natural-mode-strips-metadata-and-cite": {
       "text": "When `natural=True`, all belief metadata (`**Status:**`, `### ` headers, `**Source:**`) is stripped from the prompt context and the \"Cite belief IDs\" instruction is replaced with \"plain natural language\".",
       "truth_value": "IN",
@@ -1634,11 +1910,41 @@
       "date": "",
       "metadata": {}
     },
+    "ask-prompt-no-template-placeholders": {
+      "text": "`build_ask_prompt` never leaves `{{` or `}}` template markers in the generated prompt string \u2014 all placeholders are resolved before output.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_ask_mcp.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-source-chunks-persist-across-tool-iterations": {
+      "text": "Source document content included in the initial ask prompt is re-included in all subsequent prompts after tool-call round-trips, ensuring the LLM retains source context across the entire multi-turn loop.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_ask.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "ask-sources-db-failure-silently-degrades": {
       "text": "If the `sources_db` SQLite file is missing or corrupt, `_search_source_chunks` catches `OperationalError`/`DatabaseError` and returns empty string, degrading to belief-only mode without user-visible errors.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/reasons_lib-ask.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ask-stop-word-fallback-ensures-nonempty-query": {
+      "text": "`_search_source_chunks` strips stop words from the question before building the FTS5 query, but falls back to all words longer than 1 character if every word is a stop word \u2014 ensuring the query is never empty",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-ask.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -1699,6 +2005,28 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_review.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "automated-sync-achieves-full-lifecycle-coverage": {
+      "text": "Automated repeated sync safely reconciles external beliefs with complete lifecycle coverage including full source staleness detection \u2014 idempotent cascade-preserving sync combined with conservative staleness gating ensures no lifecycle gap between sync runs.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "sync-is-safe-for-automated-reconciliation",
+            "staleness-gate-catches-all-drift"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent"
+          ],
+          "label": "idempotent sync + staleness gate = full lifecycle coverage, gated on silent missing-file handling"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -1822,6 +2150,26 @@
         "retract_reason": "Invalid derivation identified by review-beliefs"
       }
     },
+    "belief-consistency-spans-structural-and-semantic-dimensions": {
+      "text": "The system maintains belief consistency through two complementary mechanisms targeting different quality dimensions: deduplication resolves structural redundancy (merging equivalent beliefs while preserving topology with user-editable auditable plans), while contradiction management resolves semantic inconsistency (traceable dependency-directed backtracking with consistent nogood IDs and minimal-disruption culprit selection).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dedup-is-topology-preserving-and-auditable",
+            "contradiction-management-is-complete-and-traceable"
+          ],
+          "outlist": [],
+          "label": "Structural dedup and semantic contradiction resolution are complementary consistency mechanisms"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "belief-currency-is-actively-managed": {
       "text": "The system actively manages belief currency bidirectionally: the production-ready derive pipeline safely introduces new beliefs through defensive validation, while the staleness CI gate detects drift in existing beliefs against source material \u2014 together preventing both unsafe additions and undetected obsolescence.",
       "truth_value": "OUT",
@@ -1838,6 +2186,26 @@
             "hash-truncation-is-16-hex"
           ],
           "label": "New-belief derivation plus existing-belief drift detection yields bidirectional currency assurance"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "belief-modification-is-bidirectionally-complete-and-traceable": {
+      "text": "Belief modification is complete in both directions: contradictions that create truth changes are resolved through traceable dependency-directed backtracking with consistent nogood IDs, AND defeats that suppress truth values reverse automatically through BFS propagation with surgical restoration hints \u2014 no truth change is either irresolvable or irreversible without full traceability.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "contradiction-management-is-complete-and-traceable",
+            "defeat-reversal-is-automatic-with-guided-recovery"
+          ],
+          "outlist": [],
+          "label": "Bidirectional completeness \u2014 creating and undoing modifications are both complete and traceable"
         }
       ],
       "source": "",
@@ -1940,6 +2308,96 @@
       "date": "",
       "metadata": {}
     },
+    "belief-text-truncated-at-200-chars": {
+      "text": "`format_beliefs_for_contradiction_check` truncates any belief text longer than 200 characters, appending `...` as a suffix, to keep LLM prompts bounded.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "bidirectional-modification-achieves-topology-completeness": {
+      "text": "Bidirectional belief modification \u2014 contradiction resolution through traceable backtracking and defeat reversal with guided recovery \u2014 achieves topology-complete truth changes that are robust across all graph states, ensuring both directions of modification propagate through the complete dependency graph including under adverse conditions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "belief-modification-is-bidirectionally-complete-and-traceable",
+            "all-truth-changes-are-topology-complete-and-robust"
+          ],
+          "outlist": [],
+          "label": "Bidirectional completeness (both directions of truth change are handled) combined with topology completeness (all reachable nodes are updated) ensures no modification direction leaves orphaned state"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "bidirectional-modification-is-richly-governed-and-exception-safe": {
+      "text": "Every bidirectional belief modification \u2014 contradiction resolution through traceable backtracking and defeat reversal with guided recovery \u2014 operates within richly-governed exception-safe revision that manages state beyond binary truth values, so every modification in either direction produces metadata-enriched recoverable state changes within a deterministic lifecycle.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "bidirectional-modification-within-deterministic-lifecycle",
+            "revision-is-richly-governed-and-exception-safe"
+          ],
+          "outlist": [],
+          "label": "Bidirectional modification achieves topology within deterministic lifecycle; rich governance adds exception-safe metadata management \u2014 combining yields fully characterized bidirectional operations"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "bidirectional-modification-within-deterministic-lifecycle": {
+      "text": "Bidirectional belief modification \u2014 contradiction resolution through traceable backtracking and defeat reversal with guided recovery \u2014 achieves topology completeness within a deterministic architecturally-grounded lifecycle framework that monitors every modification path from creation through maintenance.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "bidirectional-modification-achieves-topology-completeness",
+            "lifecycle-is-deterministic-and-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "Topology-complete bidirectional modification composes with deterministic lifecycle management \u2014 every bidirectional change (forward contradiction resolution and backward defeat reversal) operates within a monitored predictable lifecycle"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "bidirectional-modifications-achieve-full-governance-triad": {
+      "text": "Bidirectional belief modifications \u2014 contradiction resolution through traceable backtracking and defeat reversal with guided recovery \u2014 simultaneously achieve all three governance dimensions: rich revision governance extending beyond binary truth, exception-safe recoverability across all failure modes, and topology-complete metadata propagation through the full dependency graph.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "bidirectional-modification-is-richly-governed-and-exception-safe",
+            "metadata-governed-modifications-are-bidirectional-and-topology-complete"
+          ],
+          "outlist": [],
+          "label": "bidirectional modifications unify rich governance, exception safety, and topology-complete metadata"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "bootstrap-bypasses-incremental-propagation": {
       "text": "Both persistence loading and import construct the full node graph before truth maintenance \u2014 load trusts stored truth values and skips propagation entirely, while import adds all nodes then propagates via recompute_all \u2014 sharing a bulk-construction pattern that avoids per-node incremental propagation.",
       "truth_value": "IN",
@@ -2029,6 +2487,26 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/tests-test_derive_budget.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "build-prompt-validates-custom-templates": {
+      "text": "`build_prompt` raises `ValueError(\"unknown placeholder\")` for unrecognized `{fields}` and `ValueError(\"malformed braces\")` for unclosed braces in custom prompt templates",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "build-tools-section-always-includes-search-beliefs": {
+      "text": "`_build_tools_section` always includes the built-in `search_beliefs` tool in its output regardless of whether MCP bridges are provided \u2014 it is the baseline tool present in every ask prompt.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_ask_mcp.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -2351,6 +2829,16 @@
       "date": "",
       "metadata": {}
     },
+    "cli-backend-kwargs-controls-storage": {
+      "text": "`_backend_kwargs(args)` is the single chokepoint that determines whether a command runs against SQLite or PostgreSQL; every `cmd_*` function must spread its return value into the corresponding `api.*` call",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-cli.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "cli-dispatch-is-flat-dict-lookup": {
       "text": "CLI dispatch uses a flat `commands` dict mapping subcommand strings to `cmd_*` handler functions \u2014 no plugin system or subclass hierarchy.",
       "truth_value": "IN",
@@ -2386,6 +2874,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/tests-test_cli.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-flags-override-env-vars": {
+      "text": "`_backend_kwargs` gives precedence to CLI `--pg`/`--project-id` flags over `REASONS_PG_CONNINFO`/`REASONS_PROJECT_ID` environment variables when both are present",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_pg_dispatch.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -2483,6 +2981,26 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-plan-review-apply-pattern": {
+      "text": "Several commands (`derive`, `deduplicate`, `contradictions`) follow a three-phase workflow: (1) generate proposals to a file, (2) human reviews/edits the file, (3) `--accept FILE` parses and applies the reviewed plan \u2014 with `--auto` collapsing all three phases",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-cli.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cli-sqlite-only-commands-exist": {
+      "text": "Commands `derive`, `ask`, `review-beliefs`, `deduplicate`, and `contradictions` are guarded by `_require_sqlite()` and exit with an error if `--pg` is set \u2014 they do not support PostgreSQL",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-cli.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -2638,6 +3156,26 @@
       "date": "",
       "metadata": {}
     },
+    "cluster-derive-is-semantically-informed-and-deterministic": {
+      "text": "When using cluster-based belief selection, the derive pipeline achieves semantically-informed budget allocation (embedding-based grouping ensures topical diversity across the prompt) with end-to-end determinism (sorted embedding order, fixed-seed clustering, and exact budget counts feed into reproducible prompt construction with accurate token allocation).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "cluster-selection-is-deterministic-and-budget-exact",
+            "derive-prompt-is-deterministic-and-reproducible"
+          ],
+          "outlist": [],
+          "label": "Cluster-embedding determinism chains through to prompt-construction determinism"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "cluster-embed-order-is-deterministic": {
       "text": "Beliefs are sorted by ID before embedding (`ids = sorted(beliefs.keys())`), making cluster assignments reproducible given the same random seed.",
       "truth_value": "IN",
@@ -2653,6 +3191,27 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/08/reasons_lib-cluster.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cluster-selection-is-deterministic-and-budget-exact": {
+      "text": "Cluster-based belief selection produces identical results given the same seed, returns exactly the requested budget count, and processes beliefs in sorted order \u2014 ensuring fully reproducible, precisely-sized belief subsets for derive prompt construction.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "cluster-beliefs-deterministic-with-seed",
+            "cluster-beliefs-returns-exact-budget",
+            "cluster-embed-order-is-deterministic"
+          ],
+          "outlist": [],
+          "label": "Three independent determinism properties combine to guarantee reproducible budget-exact clustering"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -3315,6 +3874,26 @@
         "review_result": "pass"
       }
     },
+    "completeness-determinism-and-minimality-are-unified": {
+      "text": "The reasoning-and-revision architecture achieves completeness through minimality, and that same minimality produces operational determinism \u2014 completeness and determinism are not independently established but co-derived from shared minimal foundations: uniform outlist primitives simultaneously enable complete revision coverage and deterministic evaluation, revealing a single architectural root for both properties.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "completeness-and-minimality-are-unified",
+            "semantic-minimality-with-operational-determinism"
+          ],
+          "outlist": [],
+          "label": "Both trace to the same minimal primitives (outlist/disjunction); combining reveals completeness and determinism share a single generative origin"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "context-agnosticism-follows-from-minimality": {
       "text": "Context-agnostic evaluation \u2014 producing identical results regardless of evaluation timing, attachment history, or structural origin \u2014 is a consequence of semantic minimality with operational determinism: because truth evaluation derives from uniform minimal rules with deterministic pure evaluation, it naturally cannot distinguish between contexts.",
       "truth_value": "OUT",
@@ -3387,6 +3966,36 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/08/tests-test_contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradiction-plan-round-trips-apply-entries": {
+      "text": "Writing a contradiction plan with `write_contradiction_plan` and parsing it back with `parse_contradiction_plan` preserves all `[APPLY]`-tagged NOGOOD entries with their IDs and claims, while discarding `[SKIP]`-tagged entries \u2014 enabling a human review workflow.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradiction-resolution-achieves-minimal-impact-complete-cascades": {
+      "text": "Contradiction resolution simultaneously achieves minimal disruption (least-entrenched culprit selection with surgical recovery hints targeting only cascade victims) and complete effect propagation (retraction cascades transitively through all dependent nodes with guaranteed termination) \u2014 the system minimizes blast radius while ensuring no node escapes the cascade.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "contradiction-resolution-minimizes-disruption-and-guides-recovery",
+            "retraction-cascade-is-transitive-and-terminating"
+          ],
+          "outlist": [],
+          "label": "Minimal-disruption culprit selection feeds into transitive terminating cascades"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -3509,6 +4118,16 @@
         "review_result": "pass"
       }
     },
+    "contradictions-belief-text-truncated-at-200-chars": {
+      "text": "`format_beliefs_for_contradiction_check` truncates each belief's text at 200 characters in the LLM prompt to avoid blowing context windows on large belief descriptions",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "contradictions-cross-batch-pairs-undetected": {
       "text": "Batch boundaries are non-overlapping \u2014 each belief appears in exactly one batch per run \u2014 so contradictions between beliefs in different batches cannot be detected in a single run.",
       "truth_value": "IN",
@@ -3544,6 +4163,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/08/reasons_lib-contradictions.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "contradictions-semantic-skips-singleton-clusters": {
+      "text": "`detect_contradictions_semantic` skips any cluster containing fewer than 2 beliefs, since no pairwise contradiction is possible within a singleton",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-contradictions.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4019,6 +4648,26 @@
         "review_result": "pass"
       }
     },
+    "defeat-reversal-is-topology-complete-with-guided-recovery": {
+      "text": "Automatic defeat reversal with surgical recovery guidance propagates through topology-complete inconsistency-safe cascades \u2014 recovery reaches all transitively affected nodes including outlist-connected ones, handles dangling references gracefully, and provides restoration hints targeting only cascade victims with surviving premises.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "defeat-reversal-is-automatic-with-guided-recovery",
+            "propagation-is-topology-complete-and-inconsistency-safe"
+          ],
+          "outlist": [],
+          "label": "Defeat reversal (automatic with guided recovery from depth-4) composes with topology completeness (inconsistency-safe from depth-4) into robust complete recovery that strengthens the existing depth-3 belief defeat-reversal-propagates-automatically by adding topology completeness and dangling-reference resilience"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "defeat-reversal-propagates-automatically": {
       "text": "All outlist-based defeat mechanisms (challenge, kill-switch, supersession) not only reverse in principle but propagate recovery automatically through safe terminating BFS \u2014 when a defeating node is retracted, the outlist entry becomes satisfied, and propagation cascades truth-value restoration to all affected nodes without manual re-assertion",
       "truth_value": "IN",
@@ -4068,6 +4717,46 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "insufficient"
       }
+    },
+    "defeat-reversals-are-lifecycle-governed": {
+      "text": "All outlist-based defeat reversals (challenge, kill-switch, supersession) operate within metadata-enabled lifecycle governance \u2014 every reversal produces not just a truth-value change but a fully governed lifecycle transition with metadata-tracked state (retraction flags, stale reasons, access tags), ensuring reversals are first-class lifecycle events rather than bare truth flips.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-defeat-mechanisms-are-reversible",
+            "metadata-provides-extensible-lifecycle-governance"
+          ],
+          "outlist": [],
+          "label": "reversible defeats + metadata governance = reversals are governed lifecycle transitions"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "defeat-reversals-are-lifecycle-governed-across-all-backends": {
+      "text": "All outlist-based defeat reversals (challenge, kill-switch, supersession) operate within metadata-enabled lifecycle governance and maintain safety across all architectural layers and storage backends \u2014 the same lifecycle state transitions and safety guarantees hold regardless of whether backed by SQLite or PostgreSQL",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "defeat-reversals-are-lifecycle-governed",
+            "safety-is-enforced-across-all-layers-and-backends"
+          ],
+          "outlist": [],
+          "label": "Lifecycle governance of defeat reversals is backend-independent \u2014 SQLite and PostgreSQL provide equivalent mechanisms"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "defend-is-challenge-of-challenge": {
       "text": "`defend` works by calling `challenge` on the challenge node itself, creating a recursive dialectical structure where truth values resolve automatically through the same outlist mechanism.",
@@ -4254,6 +4943,26 @@
       "date": "",
       "metadata": {}
     },
+    "derive-achieves-flexibility-with-reproducibility": {
+      "text": "The derive pipeline resolves the tension between strategic flexibility and deterministic reproducibility: three budget strategies (alphabetical truncation, random sampling, semantic clustering) provide diverse exploration approaches, while fixed-seed deterministic sampling and accurate proportional allocation ensure each strategy produces identical results across runs.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-budget-is-flexible-and-efficient",
+            "derive-prompt-is-deterministic-and-reproducible"
+          ],
+          "outlist": [],
+          "label": "multiple strategies with deterministic seeds = flexibility without sacrificing reproducibility"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-agent-budget-proportional": {
       "text": "When agents are present, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent",
       "truth_value": "IN",
@@ -4378,6 +5087,26 @@
         "review_result": "pass"
       }
     },
+    "derive-budget-is-flexible-and-efficient": {
+      "text": "The derive pipeline's budget allocation is both strategically flexible (three selection strategies: alphabetical truncation, random sampling, semantic clustering) and computationally efficient (linear accumulation with guaranteed floor of 5 per agent group), enabling callers to trade off reproducibility, diversity, and semantic coherence without performance penalty.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-budget-three-strategies",
+            "derive-budget-is-efficient-and-floor-bounded"
+          ],
+          "outlist": [],
+          "label": "Strategy flexibility (what to select) and computational efficiency (how fast selection runs) are independently established \u2014 combining them shows the system avoids the usual flexibility-performance tradeoff"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-budget-local-floor-is-five": {
       "text": "`_build_beliefs_section` guarantees at least 5 local beliefs are shown regardless of agent budget pressure, via `max(5, max_beliefs - count)`",
       "truth_value": "IN",
@@ -4465,6 +5194,27 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/tests-test_derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-pipeline-achieves-end-to-end-fault-tolerance": {
+      "text": "The derive pipeline achieves end-to-end fault tolerance through three independent layers: proactive defense (fail-soft validation, Jaccard retraction guards, environment isolation), reactive resilience (partial results persisted via JSON reports after each round, error states signaled through return codes), and prompt reproducibility (deterministic sampling with fixed seeds enables consistent re-runs after failures).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-pipeline-is-defensive",
+            "derive-resilience-preserves-progress-on-error",
+            "derive-prompt-is-deterministic-and-reproducible"
+          ],
+          "outlist": [],
+          "label": "proactive defense + reactive resilience + reproducible re-runs = end-to-end fault tolerance"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4698,6 +5448,16 @@
         "review_result": "pass"
       }
     },
+    "derive-prompt-round-trippable": {
+      "text": "`write_proposals_file` output can be parsed back by `parse_proposals` with no data loss, enabling a write-review-accept cycle where humans edit proposals in the same format the parser reads",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-prompt-roundtrips-through-parser": {
       "text": "The `### DERIVE` / `### GATE` format is a shared contract between `DERIVE_PROMPT` LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop",
       "truth_value": "IN",
@@ -4745,6 +5505,26 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/08/reasons_lib-cli.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-resilience-preserves-progress-on-error": {
+      "text": "The derive pipeline is resilient to partial failures: partial results are persisted via JSON reports after each round, and error states are signaled through return codes (-1 for error, 0 for saturation, positive for progress) rather than exceptions, enabling callers to recover and resume.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "derive-reports-survive-partial-runs",
+            "derive-returns-negative-one-on-error"
+          ],
+          "outlist": [],
+          "label": "Two independently-established resilience properties (durable partial output + structured error signaling) combine to ensure no derivation work is lost on failure"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -4820,6 +5600,16 @@
       "date": "",
       "metadata": {}
     },
+    "derive-validate-blocks-retracted-rediscovery": {
+      "text": "`validate_proposals` rejects any proposal whose ID has >= 50% Jaccard token overlap (tokenized on hyphens/colons) with an existing OUT belief, preventing re-derivation of previously retracted conclusions",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "derive-validate-rejects-duplicate-ids": {
       "text": "`validate_proposals` rejects any proposal whose belief ID already exists in the network, preventing overwrites of existing beliefs through the derive pipeline.",
       "truth_value": "IN",
@@ -4884,6 +5674,26 @@
           ],
           "outlist": [],
           "label": "Cross-cuts the minimality/determinism narrative with the dialectical safety narrative; reveals that dialectical safety is not independently engineered but inherited from core determinism"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "determinism-spans-revision-semantics-through-source-integrity": {
+      "text": "Determinism is maintained end-to-end from belief revision semantics through source integrity verification: revision operations produce deterministic traceable state transitions (structured before/after diffs with controlled irreversibility), AND the source verification that triggers revision actions is itself deterministic and architecturally grounded (fail-safe path resolution, exact SHA-256 comparison, clean layer boundaries) \u2014 no step in the revision-triggered-by-source-change pathway introduces non-determinism.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-semantics-are-deterministic-and-traceable",
+            "source-integrity-is-deterministic-and-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "End-to-end determinism from the source change that triggers revision through the revision that responds to it"
         }
       ],
       "source": "",
@@ -5015,6 +5825,26 @@
       "date": "",
       "metadata": {}
     },
+    "dialectical-assurance-achieves-governance-completeness": {
+      "text": "Dialectical operations achieve complete bidirectional assurance (forward reliability and backward recovery with dual semantic grounding) within a governance framework that is complete across topology, source, and traceability \u2014 every dialectical challenge, defend, and reversal produces outcomes that meet the full governance quality bar across all three output dimensions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "grounded-dialectics-achieve-complete-bidirectional-assurance",
+            "governance-is-topology-source-and-traceability-complete"
+          ],
+          "outlist": [],
+          "label": "bidirectional dialectical assurance + three-dimensional governance = dialectics produce governance-complete outcomes"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dialectical-defeat-is-reversible-but-identity-is-permanent": {
       "text": "The dialectical system exhibits a fundamental asymmetry between defeat and identity: the truth-value defeat caused by a challenge is fully reversible (defending or retracting the challenge node restores IN status via outlist semantics), but the premise-to-justified identity transformation is permanent \u2014 a challenged premise can never return to unjustified status because the added justification cannot be removed, only defeated.",
       "truth_value": "IN",
@@ -5037,6 +5867,66 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "pass"
       }
+    },
+    "dialectical-revision-governs-rich-traceable-state": {
+      "text": "Dialectical revision \u2014 deterministic, reliable, and semantically complete with controlled irreversibility \u2014 governs metadata-enriched state beyond binary truth values, producing traceable deterministic changes to retraction flags, stale reasons, and access tags through every challenge/defend operation, not just binary IN/OUT transitions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-revision-is-deterministic-reliable-and-complete",
+            "revision-governs-richer-state-than-truth-values"
+          ],
+          "outlist": [],
+          "label": "Dialectical revision's three trustworthiness properties (determinism, reliability, completeness) apply to the full richly-governed state space, not merely binary truth"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dialectical-revision-is-deterministic-reliable-and-complete": {
+      "text": "The dialectical revision system achieves three independent trustworthiness properties simultaneously: determinism (through semantic transparency inheriting uniform evaluation rules), reliability (through safe crash-free premise-to-justified transformation), and semantic completeness with controlled irreversibility (comprehensive negative semantics where all defeats reverse but identity transformation is permanent) \u2014 making dialectical operations fully production-trustworthy.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-deterministic-and-reliable",
+            "revision-has-complete-semantics-with-controlled-irreversibility"
+          ],
+          "outlist": [],
+          "label": "Deterministic reliable dialectics composed with complete controlled-irreversibility semantics yields production-trustworthy revision"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "dialectical-revision-is-exception-safe-with-rich-traceable-state": {
+      "text": "Dialectical revision \u2014 deterministic, reliable, and semantically complete \u2014 simultaneously governs metadata-enriched traceable state (retraction flags, stale reasons, access tags, supersession) AND operates within an exception-safe richly-governed framework, ensuring that all dialectical operations produce rich auditable state transitions with safe failure recovery across all revision mechanisms.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-revision-governs-rich-traceable-state",
+            "revision-is-richly-governed-and-exception-safe"
+          ],
+          "outlist": [],
+          "label": "dialectical revision unifies rich traceable state with exception-safe governance"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "dialectical-structure-is-recursive-outlist": {
       "text": "The entire challenge/defend dialectical system is implemented as recursive outlist injection with no dedicated dialectical machinery",
@@ -5131,6 +6021,26 @@
         "review_result": "pass"
       }
     },
+    "dialectics-achieve-forward-reliability-and-backward-recovery": {
+      "text": "Dialectical operations achieve complete bidirectional assurance: forward activation is deterministic, reliable, and semantically complete (challenge/defend evaluated uniformly with controlled irreversibility), while backward reversal is topology-complete with surgical guided recovery (recovery reaches all transitively dependent nodes, hints target only cascade victims with surviving premises) \u2014 the full dialectical cycle from engagement through resolution is assured in both directions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-revision-is-deterministic-reliable-and-complete",
+            "defeat-reversal-is-topology-complete-with-guided-recovery"
+          ],
+          "outlist": [],
+          "label": "dialectical operations assured both in forward engagement and backward recovery"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dialectics-are-atomic-and-transparent": {
       "text": "Challenge/defend dialectics are both semantically transparent (indistinguishable from ordinary beliefs, evaluated by uniform outlist rules) and atomically safe (mutations follow the same context-managed load/save pipeline as all other operations), requiring no special transaction handling.",
       "truth_value": "OUT",
@@ -5196,6 +6106,26 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "pass"
       }
+    },
+    "dialectics-are-dually-grounded-by-purity-and-uniformity": {
+      "text": "Dialectical operations achieve dual semantic grounding from independent sources: evaluation purity (uniform, deterministic, side-effect-free validity checking) enables richly-governed exception-safe dialectics, while uniform edge-case semantics transitively ground deterministic reliable dialectics through complete negative semantics \u2014 together ensuring dialectics are both governable and semantically well-founded from first principles.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "pure-evaluation-enables-richly-governed-dialectics",
+            "uniform-semantics-transitively-ground-deterministic-dialectics"
+          ],
+          "outlist": [],
+          "label": "dialectics grounded independently by evaluation purity and semantic uniformity"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "dialectics-are-semantically-transparent": {
       "text": "Challenge/defend dialectics are semantically indistinguishable from ordinary beliefs: they inherit fully-specified outlist semantics (conjunction, absence-as-OUT, persistence) and are evaluated by the same uniform pure rules that govern all truth maintenance \u2014 no dialectical special cases exist anywhere in the engine.",
@@ -5387,6 +6317,26 @@
       "date": "",
       "metadata": {}
     },
+    "dual-quality-gates-are-complementary-and-non-mutating": {
+      "text": "The system enforces belief quality through dual non-mutating gates targeting complementary validity dimensions: review validates logical soundness of derived beliefs (scoped to justified nodes, dry-run gated auto-retraction), while staleness checking validates source currency of all IN beliefs (conservative CI gate with nonzero exit on drift) \u2014 neither gate can corrupt network state.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "review-pipeline-is-scoped-and-mutation-safe",
+            "staleness-is-conservative-ci-gate"
+          ],
+          "outlist": [],
+          "label": "Review validates logical soundness while staleness validates source currency"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "dual-storage-backends-are-interchangeable": {
       "text": "Both SQLite and PostgreSQL backends can be used interchangeably for any operation, with identical safety guarantees through backend-appropriate mechanisms and complete API surface coverage, so applications can switch backends without behavioral changes.",
       "truth_value": "OUT",
@@ -5471,6 +6421,26 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "pass"
       }
+    },
+    "edge-case-uniformity-reinforces-complete-negative-semantics": {
+      "text": "Uniform handling of all semantic edge cases \u2014 vacuous premises, asymmetric absence, empty antecedents \u2014 reinforces the completeness and recoverability of negative semantics: every edge case within the negation lifecycle (missing outlist nodes treated as OUT, challenge of already-justified nodes, recovery from outlist defeat) is handled by the same minimal evaluation rules that ensure reversibility.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "edge-case-uniformity-follows-from-minimality",
+            "negative-semantics-are-complete-reversible-and-recoverable"
+          ],
+          "outlist": [],
+          "label": "Minimality-driven uniformity means negative semantics don't need special-case handling for edge conditions \u2014 the same rules that make negation complete also make edge cases uniform"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "egress-is-resilient-governed-and-self-correcting": {
       "text": "All information leaving the system is simultaneously resilient (queries degrade gracefully across all access paths with deterministic output), governed (authorized, budget-constrained, and CI-ready), and serves a self-correcting knowledge base \u2014 the system's complete information egress is both trustworthy and operationally sustainable.",
@@ -5625,6 +6595,26 @@
         "review_result": "pass"
       }
     },
+    "evaluation-purity-enables-complete-minimal-architecture": {
+      "text": "Evaluation purity \u2014 uniform, deterministic, side-effect-free justification validity checking \u2014 is the concrete computational property that makes the completeness-minimality unification possible: purity simultaneously grounds context-agnosticism (enabling the minimal primitive set to handle all cases uniformly) and ensures that architectural completeness follows from rather than despite minimality (because pure evaluation needs no case-specific logic).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "evaluation-purity-grounds-agnosticism-and-minimality",
+            "completeness-and-minimality-are-unified"
+          ],
+          "outlist": [],
+          "label": "Purity is the bridge between the minimal primitive set and complete architectural coverage"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "evaluation-purity-grounds-agnosticism-and-minimality": {
       "text": "Evaluation purity (uniform, deterministic, no metadata inspection) independently grounds both context-agnosticism (identical results regardless of timing/origin) and semantic minimality (no special-case logic), making them co-occurring consequences of the same architectural choice rather than causally related.",
       "truth_value": "IN",
@@ -5638,6 +6628,46 @@
           ],
           "outlist": [],
           "label": "Pure uniform evaluation is the single architectural choice that produces both properties independently"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "evaluation-purity-grounds-dialectics-through-minimal-architecture": {
+      "text": "Evaluation purity \u2014 uniform, deterministic, side-effect-free justification validity checking \u2014 enables the complete minimal architecture whose negative semantics ground deterministic dialectics, establishing a causal chain from the most fundamental computational property through architectural completeness to dialectical reliability.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "evaluation-purity-enables-complete-minimal-architecture",
+            "negative-semantics-ground-deterministic-dialectics"
+          ],
+          "outlist": [],
+          "label": "Evaluation purity enables architecture and negative semantics ground dialectics; combining reveals the causal chain from the computational foundation (purity) through architecture (completeness via minimality) to the highest-level feature (deterministic dialectics)"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "evaluation-purity-grounds-governance-that-exception-safety-preserves": {
+      "text": "Evaluation purity provides the semantic foundation for richly governed dialectics while exception safety preserves that rich traceable governance through all failure modes \u2014 purity creates the governance properties and exception safety ensures they are never lost, establishing complementary roles in governance assurance.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "pure-evaluation-enables-richly-governed-dialectics",
+            "dialectical-revision-is-exception-safe-with-rich-traceable-state"
+          ],
+          "outlist": [],
+          "label": "Purity creates the governance properties, exception safety preserves them through all failure modes"
         }
       ],
       "source": "",
@@ -5767,6 +6797,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/06/pageindex-and-tms-integration.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "export-markdown-pg-reconstructs-network": {
+      "text": "The `export_markdown` PostgreSQL path reconstructs a full `Network` object from `export_network()` output \u2014 creating Node/Justification objects and wiring the dependents index \u2014 because the markdown exporter requires a wired dependency graph, not a flat dict.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/postgresql-backend-support.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -6205,6 +7245,28 @@
       "date": "",
       "metadata": {}
     },
+    "external-lifecycle-is-complete-and-automatically-maintained": {
+      "text": "External beliefs achieve both complete lifecycle management (dual reconciliation modes with heterogeneous truth state handling and staleness detection) and automated ongoing maintenance (idempotent sync with cascade preservation and full source staleness coverage), enabling zero-touch external belief management",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-belief-lifecycle-is-complete",
+            "automated-sync-achieves-full-lifecycle-coverage"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent"
+          ],
+          "label": "Complete lifecycle plus automated sync enables zero-touch management \u2014 blocked by silent missing-file handling"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "external-lifecycle-is-deterministic-and-trust-bounded": {
       "text": "External beliefs follow a fully deterministic lifecycle from ingestion through ongoing maintenance, enclosed within verified trust boundaries at every phase: structural verification with trust-bounded bidirectional flow control at the perimeter, and deterministic architecturally-grounded lifecycle management governing internal state trajectories.",
       "truth_value": "OUT",
@@ -6217,6 +7279,26 @@
           ],
           "outlist": [],
           "label": "External perimeter trust boundaries (depth-9) combined with deterministic lifecycle management (depth-6) from independent architectural chains ensures external beliefs follow predictable paths within verified perimeters"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "external-lifecycle-operates-within-rich-governance": {
+      "text": "External beliefs achieve complete automated lifecycle management within a metadata-enabled source-grounded governance framework \u2014 creation, reconciliation, staleness detection, and ongoing maintenance all operate under rich governance extending beyond binary truth values to structured lifecycle state.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "external-lifecycle-is-complete-and-automatically-maintained",
+            "lifecycle-governance-is-metadata-enabled-and-source-grounded"
+          ],
+          "outlist": [],
+          "label": "External lifecycle completeness operates within metadata-enabled governance, not independently of it"
         }
       ],
       "source": "",
@@ -6388,6 +7470,16 @@
       "date": "",
       "metadata": {}
     },
+    "ftl-reasons-zero-runtime-deps": {
+      "text": "The core `reasons_lib` package has no mandatory runtime dependencies \u2014 all external packages (psycopg, sentence-transformers, scikit-learn, mcp) are gated behind optional install extras (`[pg]`, `[cluster]`, `[mcp]`).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/pyproject.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "fts-errors-silently-caught-in-search": {
       "text": "FTS5 query errors in `_fts_search` are silently caught and return an empty list, falling back to substring matching \u2014 the only place in the API where errors are deliberately swallowed (FTS5 table may not exist).",
       "truth_value": "IN",
@@ -6413,6 +7505,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_api.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "fts-relaxation-budget-caps-at-50": {
+      "text": "Progressive FTS5 search relaxation \u2014 dropping query terms via combinations when the full-term query returns no results \u2014 is capped at `_MAX_RELAXATION_QUERIES` (50) to prevent combinatorial blowup on many-term queries.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-api.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -6511,6 +7613,210 @@
       "date": "",
       "metadata": {}
     },
+    "governance-achieves-topology-and-source-completeness": {
+      "text": "Rich governance \u2014 deterministic, exception-safe, and source-grounded with topology-complete transitions \u2014 simultaneously achieves gap-free source coverage, ensuring governance completeness along two independent dimensions: propagation reach (every state change reaches all transitively dependent nodes) and integrity coverage (every source file is tracked with no silent gaps).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-encompasses-topology-complete-transitions",
+            "lifecycle-governance-achieves-gap-free-source-coverage"
+          ],
+          "outlist": [],
+          "label": "governance complete across both propagation-reach and source-integrity dimensions"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-and-dialectics-have-verified-references": {
+      "text": "Complete governance across topology, source, and traceability with dually-grounded dialectical operations achieves verified reference integrity at all node ID boundaries \u2014 governance completeness and dialectical assurance are not only independently established but reference-verified.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "governance-is-topology-source-and-traceability-complete",
+            "grounded-dialectics-achieve-complete-bidirectional-assurance"
+          ],
+          "outlist": [
+            "issue-126-reference-validation-audit"
+          ],
+          "label": "governance completeness + dialectical assurance with reference verification, gated on audit issue #126"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-assurance-is-universal-and-self-reinforcing": {
+      "text": "Every belief modification achieves governance assurance that is itself dialectically assured and dually grounded \u2014 the governance framework constraining all modifications is verified by the same dialectical and grounding mechanisms it employs, creating a self-reinforcing quality guarantee at the system's highest abstraction level.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-modifications-achieve-dialectically-assured-governance",
+            "governance-is-dialectically-assured-and-dually-grounded"
+          ],
+          "outlist": [],
+          "label": "Governance that assures modifications is itself assured by the same mechanisms, closing the self-verification loop"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-completeness-is-dually-grounded": {
+      "text": "Complete governance across topology, source, and traceability dimensions rests on two independent grounding chains (evaluation purity and edge-case uniformity), so no single semantic foundation failure can undermine the governance framework's three-dimensional completeness guarantees.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "governance-is-topology-source-and-traceability-complete",
+            "governance-has-dual-independent-grounding-chains"
+          ],
+          "outlist": [],
+          "label": "three-dimensional completeness + dual grounding = governance resilient to single-foundation failure"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-determinism-is-generated-and-preserved": {
+      "text": "Governance determinism has a complete lifecycle: it is generated as an emergent consequence of minimality (not independently engineered) through source integrity, and simultaneously preserved through exception safety underpinned by evaluation purity \u2014 minimality produces the determinism, purity grounds the governance it enables, and exception safety ensures that governance survives all failure modes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "governance-determinism-is-minimality-emergent-through-source",
+            "evaluation-purity-grounds-governance-that-exception-safety-preserves"
+          ],
+          "outlist": [],
+          "label": "determinism generated by minimality + preserved by purity/exception-safety = complete property lifecycle"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-determinism-is-minimality-emergent-through-source": {
+      "text": "Rich governance achieves end-to-end determinism spanning revision semantics through source integrity, and this determinism is itself an emergent consequence of unified minimality, completeness, and determinism rather than an independently-engineered property \u2014 the same minimal foundations that produce governance completeness also produce its end-to-end deterministic reach.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-inherits-minimality-completeness-determinism-unity",
+            "rich-governance-determinism-spans-revision-through-source"
+          ],
+          "outlist": [],
+          "label": "End-to-end determinism (revision through source) emerges from the same unified minimality that produces governance completeness"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-has-dual-independent-grounding-chains": {
+      "text": "The system's governance framework receives assurance from two fully independent grounding chains: dialectical operations are grounded by evaluation purity and semantic uniformity, while the rich governance framework itself is grounded by determinism, exception safety, and source integrity \u2014 five independent assurance dimensions from orthogonal chains.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-dually-grounded-by-purity-and-uniformity",
+            "rich-governance-is-deterministic-exception-safe-and-source-grounded"
+          ],
+          "outlist": [],
+          "label": "Two orthogonal chains (dialectical grounding and governance grounding) contribute five independent assurance dimensions"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-is-dialectically-assured-and-dually-grounded": {
+      "text": "Governance completeness \u2014 spanning topology, source, and traceability dimensions \u2014 is simultaneously dialectically assured through complete bidirectional operations (forward reliability and backward recovery with dual semantic grounding) and independently grounded through two evaluation chains (purity and uniformity), achieving both operational confidence and epistemic independence",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectical-assurance-achieves-governance-completeness",
+            "governance-completeness-is-dually-grounded"
+          ],
+          "outlist": [],
+          "label": "Combining the two depth-13 IN terminals \u2014 dialectical assurance provides operational confidence while dual grounding provides epistemic independence from the same governance foundation"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-is-topology-source-and-traceability-complete": {
+      "text": "Rich governance simultaneously achieves completeness across three independent output dimensions \u2014 topology-complete in reach, source-verified in integrity, and metadata-enriched in traceability \u2014 so every governance action produces a verifiable, traceable, source-grounded state transition.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "governance-achieves-topology-and-source-completeness",
+            "topology-complete-governance-produces-rich-traceable-state"
+          ],
+          "outlist": [],
+          "label": "Unifies what governance covers (topology + source) with what it produces (rich traceable state) into three-dimensional completeness"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "governance-topology-is-reference-verified": {
+      "text": "Rich governance's topology-complete transitions and metadata-governed bidirectional modifications have fully verified reference integrity at all system boundaries \u2014 no node ID reference bypasses validation at any boundary \u2014 when the reference validation audit confirms coverage at the three identified boundary gaps (issue #126).",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-encompasses-topology-complete-transitions",
+            "metadata-governed-modifications-are-bidirectional-and-topology-complete"
+          ],
+          "outlist": [
+            "issue-126-reference-validation-audit"
+          ],
+          "label": "topology-complete governance achieves reference-verified status after audit"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "graph-traversal-is-complete-and-terminating-in-both-directions": {
       "text": "Both forward truth propagation and backward retraction cascades achieve complete graph traversal (reaching all transitively affected nodes through all relationship types including outlists) with guaranteed termination, ensuring the system converges from both assertion and retraction operations.",
       "truth_value": "OUT",
@@ -6532,6 +7838,26 @@
       "metadata": {
         "retract_reason": "Invalid derivation identified by review-beliefs"
       }
+    },
+    "grounded-dialectics-achieve-complete-bidirectional-assurance": {
+      "text": "Dialectical operations achieve both semantic grounding (through evaluation purity and uniform semantics) and operational completeness (forward reliability of challenge/defend with backward recovery of defeat reversal) \u2014 grounding ensures the operations are well-founded while bidirectional reliability ensures they work correctly in both directions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "dialectics-are-dually-grounded-by-purity-and-uniformity",
+            "dialectics-achieve-forward-reliability-and-backward-recovery"
+          ],
+          "outlist": [],
+          "label": "Dialectics are simultaneously grounded (purity + uniformity) and operationally complete (forward + backward)"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "growth-converges-with-topology-and-assurance": {
       "text": "Knowledge growth simultaneously preserves universal multidimensional assurance and converges deterministically with topology preservation and guided recovery \u2014 the expanding knowledge base reaches stable states where all structural relationships are maintained and all safety guarantees hold, regardless of the modification path taken.",
@@ -6747,6 +8073,16 @@
       "date": "",
       "metadata": {}
     },
+    "import-agent-inactive-always-in-outlist": {
+      "text": "Every imported belief unconditionally has `agent:inactive` in its outlist, enforced in `_build_justifications()` with no code path that omits it \u2014 this is the mechanism behind the per-agent kill switch.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "import-agent-infra-nodes-excluded-from-removal": {
       "text": "`_sync_claims()` filters out infrastructure nodes (active/inactive) via `infra_ids` before computing the removal set, so the kill-switch pair is never retracted by remote-wins sync.",
       "truth_value": "IN",
@@ -6852,6 +8188,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/reasons_lib-import_beliefs.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "import-functions-parse-before-dispatch": {
+      "text": "API import functions (`import_json`, `import_beliefs`, `import_agent`) read and parse files into structured data in the API layer before delegating to `PgApi` \u2014 PgApi never receives raw file paths",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_pg_dispatch.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -7020,6 +8366,16 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "unnecessary"
       }
+    },
+    "import-topo-sort-cycle-tolerant": {
+      "text": "Topological sorting of imported claims is best-effort: cycles cause remaining nodes to be appended in arbitrary order rather than raising an error, a pragmatic choice that avoids crashing on circular references.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "import-topo-sort-tolerates-cycles": {
       "text": "`_topo_sort_claims` attempts topological ordering but appends remaining nodes when progress stalls, gracefully handling dependency cycles instead of erroring",
@@ -7231,6 +8587,66 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-__init__.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "initialization-and-reconciliation-converge-equivalently": {
+      "text": "Both initialization paths (stored-state bootstrap trusting persisted values, and deterministic reasoning computing from scratch) and reconciliation operations (dual import/sync modes with heterogeneous truth state handling) converge to equivalent correct belief states \u2014 the system reaches the same outcome regardless of how or when beliefs enter the network.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "initialization-is-path-independent",
+            "import-provides-complete-reconciliation"
+          ],
+          "outlist": [],
+          "label": "Path-independent initialization combined with complete reconciliation ensures convergent ingestion"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "initialization-is-path-independent": {
+      "text": "Whether beliefs enter through stored-state bootstrap (load trusts stored truth values, import builds nodes before recompute_all) or through the deterministic reasoning engine (uniform pure evaluation with guaranteed termination), the system reaches correct truth states \u2014 bootstrap trusts values that were originally computed by the same deterministic engine, and import re-derives them via recompute_all, establishing path independence of initialization.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "bootstrap-bypasses-incremental-propagation",
+            "reasoning-engine-is-deterministic-and-reversible"
+          ],
+          "outlist": [],
+          "label": "bootstrap trusts values computed by deterministic engine; import re-derives via same engine"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "initialization-is-safe-and-path-independent-across-backends": {
+      "text": "System initialization produces identical belief states regardless of both initialization path (stored-state bootstrap vs deterministic reasoning) and storage backend (SQLite vs PostgreSQL providing equivalent safety through backend-appropriate mechanisms), eliminating all bootstrap-time variation",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "initialization-is-path-independent",
+            "safety-is-enforced-across-all-layers-and-backends"
+          ],
+          "outlist": [],
+          "label": "Path independence and backend agnosticism jointly eliminate all initialization-time environmental variation"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -7599,6 +9015,16 @@
       "date": "",
       "metadata": {}
     },
+    "jaccard-tokenizer-splits-on-hyphens-and-colons": {
+      "text": "`_tokenize_id` splits belief IDs on hyphens and colons into token sets for Jaccard similarity comparison, so `foo-bar-baz` and `foo-bar-qux` share 2/4 tokens (0.5 similarity)",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_derive.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "justification-addition-is-robust-across-graph-states": {
       "text": "Adding a justification to an existing node achieves fully consistent multi-dimensional propagation \u2014 truth values, dependents index, and access tags \u2014 even when the dependency graph contains dangling references or lifecycle-marked nodes, because propagation safely handles both graph anomalies and node lifecycle states.",
       "truth_value": "IN",
@@ -7956,6 +9382,88 @@
         "review_result": "pass"
       }
     },
+    "lifecycle-governance-achieves-gap-free-source-coverage": {
+      "text": "Metadata-enabled lifecycle governance with deterministic source integrity and exception-safe recoverability achieves truly gap-free source coverage \u2014 every source file is verified, every lifecycle decision is grounded in verifiable source state, and no silent source gap undermines governance decisions about staleness or retraction.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "lifecycle-governance-has-deterministic-source-integrity",
+            "lifecycle-governance-is-exception-safe-and-source-grounded"
+          ],
+          "outlist": [
+            "missing-source-file-is-silent"
+          ],
+          "label": "Combined lifecycle governance properties establish determinism and exception safety independently; gap-free coverage additionally requires that missing source files are not silently ignored"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-governance-has-deterministic-source-integrity": {
+      "text": "Metadata-enabled lifecycle governance is backed by deterministic, architecturally-grounded source integrity \u2014 lifecycle decisions about staleness and belief currency rest on collision-resistant SHA-256 hashing within clean three-layer boundaries, ensuring that the source-grounding of lifecycle governance is itself structurally sound and deterministic.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "lifecycle-governance-is-metadata-enabled-and-source-grounded",
+            "source-integrity-is-deterministic-and-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "Lifecycle governance depends on source integrity; source integrity is independently shown to be deterministic and architecturally grounded \u2014 so lifecycle governance inherits a verified foundation"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-governance-is-exception-safe-and-source-grounded": {
+      "text": "Metadata-enabled source-grounded lifecycle governance is backed by exception-safe recoverable revision mechanics \u2014 lifecycle decisions about staleness and source integrity are protected by the same exception handling that safeguards contradiction resolution and dialectical transformation.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "lifecycle-governance-is-metadata-enabled-and-source-grounded",
+            "revision-is-exception-safe-and-recoverable"
+          ],
+          "outlist": [],
+          "label": "Independent lifecycle governance (metadata + source verification) and revision safety (exception handling + recovery) compose into a system where source-grounded lifecycle decisions are fault-tolerant"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "lifecycle-governance-is-metadata-enabled-and-source-grounded": {
+      "text": "Rich lifecycle governance \u2014 extending beyond binary IN/OUT truth through extensible metadata carrying retraction flags, stale reasons, access tags, and challenges \u2014 is concretely grounded in fail-safe source integrity: the source pipeline (convention-based resolution, collision-resistant SHA-256 hashing, comprehensive staleness detection) populates and verifies the metadata state that enables lifecycle governance, closing the loop between abstract lifecycle management and concrete source verification.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "metadata-enables-lifecycle-governance-beyond-binary-truth",
+            "source-lifecycle-is-fail-safe-and-gapless"
+          ],
+          "outlist": [],
+          "label": "Metadata enables rich governance and the source pipeline grounds that governance in verifiable reality"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "lifecycle-is-deterministic-and-architecturally-grounded": {
       "text": "Gapless lifecycle management is doubly reinforced: deterministic reasoning ensures predictable state trajectories with full monitoring, while architectural safety provides the structural foundation through clean layer boundaries and atomic mutations.",
       "truth_value": "IN",
@@ -8040,6 +9548,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "list-clusters-partitions-all-beliefs": {
+      "text": "`list_clusters` assigns every input belief to exactly one cluster with no drops or duplicates \u2014 the union of all cluster members equals the input set.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_cluster.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -8450,6 +9968,76 @@
       "date": "",
       "metadata": {}
     },
+    "mcp-bridge-call-tool-timeout-60s": {
+      "text": "`call_tool()` blocks for up to 60 seconds per invocation via `future.result(timeout=60)`; if the MCP server hangs, the calling thread unblocks with `TimeoutError`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-mcp_client.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "mcp-bridge-connect-blocks-up-to-30s": {
+      "text": "`connect()` blocks the calling thread for up to 30 seconds waiting for MCP session initialization via `_ready.wait(timeout=30)`, then raises `TimeoutError` if the server doesn't respond.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-mcp_client.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "mcp-bridge-is-timeout-bounded-at-all-phases": {
+      "text": "MCP bridge operations are timeout-bounded at both connection establishment (30s) and per-tool execution (60s), preventing indefinite blocking on unresponsive MCP servers at any lifecycle phase.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "mcp-bridge-connect-blocks-up-to-30s",
+            "mcp-bridge-call-tool-timeout-60s"
+          ],
+          "outlist": [],
+          "label": "Connection and execution timeouts independently bound both MCP lifecycle phases"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "mcp-bridge-runs-dedicated-event-loop-thread": {
+      "text": "Each `McpBridge` instance runs its own asyncio event loop on a daemon thread; the MCP session stays alive until `close()` signals the shutdown event, bridging the sync/async boundary via `run_coroutine_threadsafe`.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-mcp_client.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "mcp-bridge-tools-snapshot-at-connect": {
+      "text": "The tool catalog and server instructions are populated once during `connect()` and never refreshed \u2014 there is no mechanism to pick up tools added after the initial handshake.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-mcp_client.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "mcp-is-optional-dependency": {
+      "text": "The `mcp` package is guarded by try/except at import time; `_require_mcp()` defers the `ImportError` to `McpBridge` construction so the module can be imported unconditionally without the SDK installed.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-mcp_client.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "metadata-actively-governs-truth-propagation": {
       "text": "Lifecycle state carried in node metadata (retraction flags, stale reasons) is not passive storage but actively governs truth propagation behavior \u2014 retracted nodes are skipped during BFS traversal and trigger nodes are never recomputed \u2014 ensuring that the universal extension mechanism directly controls truth maintenance rather than merely recording state",
       "truth_value": "IN",
@@ -8495,6 +10083,66 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "pass"
       }
+    },
+    "metadata-governance-flows-through-safe-topology": {
+      "text": "Metadata-carried lifecycle state (retraction flags, stale reasons, access tags) actively governs truth propagation that is itself topology-complete and inconsistency-safe \u2014 lifecycle decisions propagate through all transitive dependencies including outlist-connected paths, even in the presence of dangling references, without runtime errors.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "metadata-actively-governs-truth-propagation",
+            "propagation-is-topology-complete-and-inconsistency-safe"
+          ],
+          "outlist": [],
+          "label": "Active metadata governance combined with inconsistency-safe topology-complete propagation"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "metadata-governance-has-topology-complete-propagation": {
+      "text": "The rich lifecycle state carried in metadata \u2014 retraction flags, stale reasons, access tags \u2014 participates in topology-complete robust propagation that reaches all transitively dependent nodes under all graph conditions, ensuring lifecycle governance decisions cascade completely through the network rather than stopping at direct dependents.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "lifecycle-governance-is-metadata-enabled-and-source-grounded",
+            "all-truth-changes-are-topology-complete-and-robust"
+          ],
+          "outlist": [],
+          "label": "Metadata governance and topology-complete propagation are independently established; combining shows lifecycle decisions (retraction pins, access tag inheritance, staleness) cascade completely and robustly through the full dependency graph"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "metadata-governed-modifications-are-bidirectional-and-topology-complete": {
+      "text": "Bidirectional belief modifications \u2014 contradiction resolution and defeat reversal \u2014 propagate metadata-governed lifecycle state (retraction flags, stale reasons, access tags) topology-completely within a deterministic lifecycle, ensuring every modification in either direction carries complete metadata through the entire dependency graph with no governance gap between forward and backward changes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "metadata-governance-has-topology-complete-propagation",
+            "bidirectional-modification-within-deterministic-lifecycle"
+          ],
+          "outlist": [],
+          "label": "Both beliefs share topology-complete propagation within deterministic lifecycle; combining reveals bidirectional modifications are fully metadata-governed"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "metadata-governs-lifecycle-across-read-and-write-paths": {
       "text": "Node lifecycle state carried in metadata actively governs both mutation behavior (retracted nodes skipped during truth propagation, sticky retraction surviving recompute) and inspection behavior (staleness checking skips OUT nodes, compact surfaces stale reasons) \u2014 a single metadata mechanism controls the system's complete operational surface.",
@@ -8908,6 +10556,26 @@
       "date": "",
       "metadata": {}
     },
+    "mutations-achieve-full-traceability": {
+      "text": "Every mutation is fully traceable from initiation to persisted outcome: atomicity ensures operations complete or roll back entirely, the audit log and structured before/after diffs provide historical context, and consistent artifact identification (deterministic challenge auto-IDs, monotonic nogood IDs) enables referencing specific mutation outcomes indefinitely.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "mutations-are-atomic-audited-and-index-consistent",
+            "system-artifacts-maintain-consistent-identification"
+          ],
+          "outlist": [],
+          "label": "atomicity + audit + consistent identification = full operational traceability"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "mutations-are-atomic-and-safely-propagated": {
       "text": "Every network mutation follows an end-to-end safety pipeline: API context management ensures atomic load/save with write-flag gating, truth propagation terminates deterministically with lifecycle-aware BFS traversal, and snapshot persistence captures the final consistent state \u2014 no mutation can produce an inconsistent or divergent network.",
       "truth_value": "OUT",
@@ -8973,6 +10641,26 @@
         "last_reviewed": "2026-05-08T16:01:00",
         "review_result": "pass"
       }
+    },
+    "mutations-are-traceable-through-transitive-cascades": {
+      "text": "Every network mutation and its resulting retraction cascades are simultaneously traceable (atomic operations with audit logging, structured before/after diffs, consistent artifact identification) and transitively complete (propagation reaching all dependent nodes with guaranteed termination), ensuring every cascaded effect is as auditable as the triggering mutation",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "mutations-achieve-full-traceability",
+            "retraction-cascade-is-transitive-and-terminating"
+          ],
+          "outlist": [],
+          "label": "Traceability extends through transitive cascades \u2014 audit coverage does not degrade with cascade depth"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "namespace-active-premise-invariant": {
       "text": "When `namespace` is set, `add_node` auto-creates a `{namespace}:active` premise node and wires it as an antecedent into every namespaced justification; retracting that single premise cascades OUT every belief from that namespace.",
@@ -9095,6 +10783,26 @@
         "retract_reason": "Internal contradiction: claims 'permanent identity effects from challenge' but antecedent (negative-semantics-are-complete-reversible-and-recoverable) characterizes negative semantics as fully reversible and recoverable"
       }
     },
+    "negative-semantics-ground-deterministic-dialectics": {
+      "text": "Complete reversible negative semantics \u2014 structural absence producing emergent premise behavior plus explicit outlist defeat with automatic reversal and guided recovery \u2014 are the foundation that enables deterministic reliable dialectics: challenge/defend operations inherit their determinism from evaluation purity applied to outlist primitives, and their reliability from the inherent reversibility of outlist-based defeat.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "negative-semantics-are-complete-reversible-and-recoverable",
+            "dialectics-are-deterministic-and-reliable"
+          ],
+          "outlist": [],
+          "label": "Dialectical determinism and reliability are inherited properties of the complete negative semantics layer"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "negative-semantics-have-reversible-defeat-but-permanent-identity-effects": {
       "text": "The system's complete negative semantics \u2014 structural absence creating premise behavior and explicit outlist defeat \u2014 exhibit a fundamental asymmetry: all outlist-based defeat operations (challenge, kill-switch, supersession) are fully reversible in truth value, but dialectical challenge permanently destroys premise identity by injecting a justification into a formerly unjustified node, an irreversible structural transformation.",
       "truth_value": "IN",
@@ -9143,6 +10851,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-disjunctive-justification": {
+      "text": "A node is IN if ANY of its justifications is valid (disjunction); each individual justification requires ALL antecedents IN and ALL outlist members OUT (conjunction) \u2014 the SL justification semantics from Doyle's 1979 paper.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-network.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -9243,11 +10961,31 @@
       "date": "",
       "metadata": {}
     },
+    "network-retracted-nodes-persist": {
+      "text": "Retracted nodes remain in `self.nodes` with `_retracted` metadata set; they are never deleted from the graph, enabling later restoration via `assert_node()` without rederivation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-network.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "network-retracted-skips-propagation": {
       "text": "Duplicates existing belief `retracted-nodes-skipped-in-propagation`.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-network.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "network-single-justification-removal-blocked": {
+      "text": "`remove_justification()` raises `ValueError` when a node has exactly one justification, forcing callers to use `convert_to_premise` or `retract` instead \u2014 preventing accidental creation of unjustified non-premise nodes.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-network.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -9486,6 +11224,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/reasons_lib-import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "only-reasons-lib-is-distributed": {
+      "text": "Only the `reasons_lib` package is included in built distributions \u2014 `tests/`, `entries/`, and `reviews/` are excluded by the explicit `packages = [\"reasons_lib\"]` declaration in pyproject.toml.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/pyproject.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10125,6 +11873,16 @@
       "date": "",
       "metadata": {}
     },
+    "pg-conninfo-accepts-flag-envvar-or-both": {
+      "text": "PostgreSQL connection is configured via `--pg`/`--project-id` CLI flags or `REASONS_PG_CONNINFO`/`REASONS_PROJECT_ID` environment variables, with CLI flags taking precedence over env vars \u2014 `_backend_kwargs(args)` handles the dispatch.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/postgresql-backend-support.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "pg-data-integrity-achieves-defense-in-depth": {
       "text": "PgApi's data integrity achieves defense-in-depth through both application-level enforcement (write-time referential validation and outlist-aware dependent queries spanning antecedent and outlist references) and comprehensive input validation at all system boundaries, but full defense-in-depth requires database-level foreign key constraints to provide a second independent enforcement layer",
       "truth_value": "OUT",
@@ -10142,6 +11900,26 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-dispatch-is-function-level-early-return": {
+      "text": "PostgreSQL routing uses a function-level early-return pattern \u2014 each API function checks `pg_conninfo` and short-circuits to `_pg_dispatch`, which instantiates PgApi and calls the matching method via `getattr` \u2014 rather than using abstract base classes, subclassing, or factory patterns.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/postgresql-backend-support.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-dispatch-requires-project-id": {
+      "text": "When `pg_conninfo` is provided (via CLI `--pg` flag or `REASONS_PG_CONNINFO` env var) without a corresponding `project_id`, the system calls `sys.exit()` rather than proceeding with an incomplete configuration",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_pg_dispatch.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10229,6 +12007,16 @@
       "date": "",
       "metadata": {}
     },
+    "pg-psycopg-is-optional-dependency": {
+      "text": "`psycopg` (v3) is soft-imported with fallback to `None`; `_require_psycopg()` raises `ImportError` with install instructions at `PgApi` construction time, mirroring the `mcp_client.py` lazy-guard pattern.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-pg.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "pg-reimplements-network-in-sql": {
       "text": "`PgApi` reimplements the in-memory `Network`'s algorithms (BFS propagation, entrenchment scoring, nogood resolution, dialectical operations) directly in SQL rather than delegating to the `Network` class.",
       "truth_value": "OUT",
@@ -10240,6 +12028,16 @@
       "metadata": {
         "retract_reason": "Over-generalizes: claims dialectical operations are reimplemented in SQL, contradicted by pgapi-partial-api-coverage which says dialectics are deferred"
       }
+    },
+    "pg-search-includes-one-hop-neighbors": {
+      "text": "PostgreSQL full-text search via `plainto_tsquery` includes 1-hop neighbor expansion \u2014 direct antecedents and dependents of matching nodes are included in results, providing richer context than exact-match-only search.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-pg.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "pg-teardown-rollback-before-delete": {
       "text": "The `pg_api` fixture calls `conn.rollback()` before cleanup deletes to recover from any failed-transaction state left by the test, preventing cleanup failures from cascading.",
@@ -10256,6 +12054,26 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/05/05/tests-test_pg.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-unsupported-params-raise-not-implemented": {
+      "text": "When PgApi-routed commands receive unsupported parameters (e.g., search with `depth != 1`, list with `challenged`/`min_depth`, add with `namespace`), the dispatch raises `NotImplementedError` with a clear message rather than silently ignoring the parameter.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/postgresql-backend-support.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "pg-uses-jsonb-with-gin-for-dependent-queries": {
+      "text": "PgApi stores antecedents and outlist as JSONB arrays with GIN indexes, enabling per-operation dependent lookups via `@>` containment queries \u2014 unlike the SQLite backend which loads the full network, PgApi queries relationships incrementally.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/reasons_lib-pg.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -10921,11 +12739,41 @@
         "review_result": "pass"
       }
     },
+    "pure-evaluation-enables-richly-governed-dialectics": {
+      "text": "Evaluation purity \u2014 grounding dialectics through the minimal architecture \u2014 simultaneously enables richly-governed exception-safe revision, so dialectical structures are both minimality-grounded in their computation and richly-governed in the state they produce: challenge/defend operations inherit pure deterministic evaluation while producing metadata-enriched recoverable state changes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "evaluation-purity-grounds-dialectics-through-minimal-architecture",
+            "revision-is-richly-governed-and-exception-safe"
+          ],
+          "outlist": [],
+          "label": "Pure evaluation is the shared computational foundation enabling both minimal dialectics and rich governance; combining reveals dialectics benefit from both"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "python-310-floor": {
       "text": "The project requires Python 3.10+ (`requires-python = \">=3.10\"`), establishing the minimum language features available throughout the codebase.",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/24/pyproject.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "python-310-minimum": {
+      "text": "The project requires Python >= 3.10 (`requires-python = \">=3.10\"`), enabling use of structural pattern matching and `X | Y` union type syntax throughout the codebase.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/pyproject.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -11150,6 +12998,16 @@
       "date": "",
       "metadata": {}
     },
+    "reasons-cli-entrypoint-is-cli-main": {
+      "text": "The `reasons` CLI command is registered as `reasons_lib.cli:main` via `[project.scripts]` in pyproject.toml \u2014 changing that function's signature or module location breaks the installed command.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/pyproject.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "rebuild-dependents-clears-before-rebuilding": {
       "text": "`_rebuild_dependents()` wipes all existing dependent sets before recomputing from justifications, so stale entries are always removed rather than incrementally patched",
       "truth_value": "IN",
@@ -11248,11 +13106,31 @@
         "retract_reason": "Invalid: drops conditional about outlist tracking from antecedent"
       }
     },
+    "remove-justification-enforces-minimum-count": {
+      "text": "`Network.remove_justification` refuses to remove the last justification from a derived node \u2014 a derived node must retain at least one justification, enforced with `ValueError(\"only one justification\")`",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_remove_justification.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "rename-from-rms-at-0.3.0": {
       "text": "The project was renamed from `rms` to `reasons` in version 0.3.0, driven by a measured 5 percentage-point LLM accuracy improvement in ablation study",
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/29/CHANGELOG.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "require-sqlite-blocks-pg-for-guarded-commands": {
+      "text": "`_require_sqlite` enforces that certain subcommands (e.g., `hash-sources`) cannot run against a Postgres backend, checking both CLI flags and environment variables and calling `sys.exit()` if PG is detected",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_pg_dispatch.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -11578,6 +13456,28 @@
             "outlist-nodes-not-in-dependents-index"
           ],
           "label": "Reporting completeness (depth-2) and cascade transitivity (depth-3) together guarantee full-fidelity retraction reporting \u2014 but the accuracy of \"all affected nodes\" depends on the dependents index being complete for all reference types."
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "review-achieves-verified-fault-tolerance": {
+      "text": "The review pipeline's scoped mutation-safe operation combined with uniform fail-safe output achieves verified fault tolerance across all failure modes \u2014 batch failures, missing antecedent references, and malformed LLM responses.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "review-pipeline-is-scoped-and-mutation-safe",
+            "review-output-is-uniform-and-fail-safe"
+          ],
+          "outlist": [
+            "issue-122-review-fault-tolerance-audit"
+          ],
+          "label": "Verified fault tolerance pending completion of fault tolerance audit"
         }
       ],
       "source": "",
@@ -11961,6 +13861,28 @@
         "review_result": "pass"
       }
     },
+    "revision-has-code-enforced-derivation-constraints": {
+      "text": "The deterministic traceable revision system with complete dialectical semantics achieves fully code-enforced derivation quality \u2014 every constraint including minimum antecedent requirements is validated programmatically, not relying solely on LLM prompt instructions for structural invariants.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-semantics-are-deterministic-and-traceable",
+            "dialectical-revision-is-deterministic-reliable-and-complete"
+          ],
+          "outlist": [
+            "derive-min-antecedents-is-prompt-only"
+          ],
+          "label": "Both revision determinism and dialectical completeness are code-enforced, but the minimum-2-antecedent rule for derived beliefs remains prompt-only \u2014 this GATE flips IN when that constraint is moved to code validation"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "revision-has-complete-semantics-with-controlled-irreversibility": {
       "text": "The belief revision system is simultaneously comprehensive and minimal, with complete negative semantics exhibiting a controlled asymmetry: all defeat mechanisms (challenge, kill-switch, supersession) are truth-value reversible, but the identity transformation during challenge (premise-to-justified) is permanent \u2014 the system can undo the effects of any defeat but cannot restore a node's original unjustified status.",
       "truth_value": "IN",
@@ -12064,6 +13986,26 @@
       "date": "",
       "metadata": {}
     },
+    "revision-is-exception-safe-and-recoverable": {
+      "text": "Every revision mechanism \u2014 whether normal (outlist defeat, dialectical challenge/defend) or exceptional (contradiction-triggered backtracking, graph inconsistency) \u2014 is simultaneously safe (handled without crashes or corruption), traceable (producing deterministic artifact trails), and recoverable (providing guided restoration hints for cascade victims) \u2014 the system never enters an unobservable or unrecoverable state regardless of failure mode.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-exceptions-are-safely-handled",
+            "all-revision-mechanisms-are-traceable-and-recoverable"
+          ],
+          "outlist": [],
+          "label": "Exception safety combined with traceable recoverability eliminates all unobservable or unrecoverable revision outcomes"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "revision-is-lifecycle-safe-and-semantics-preserving": {
       "text": "Both revision entry points \u2014 reactive contradiction resolution (backtracking to least-entrenched premise, skipping retracted nodes) and proactive dialectical challenge (outlist injection preserving evaluation semantics) \u2014 respect node lifecycle and preserve semantic consistency despite operating through different mechanisms.",
       "truth_value": "OUT",
@@ -12085,6 +14027,26 @@
       "metadata": {
         "retract_reason": "Invalid: cross-applies properties between mechanisms without support"
       }
+    },
+    "revision-is-richly-governed-and-exception-safe": {
+      "text": "The belief revision system simultaneously governs state richer than binary truth values \u2014 metadata-enabled lifecycle management including retraction reasons, staleness markers, and access tags \u2014 while remaining exception-safe and recoverable under all failure conditions, ensuring that metadata-carried lifecycle state is never corrupted by exceptions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "revision-governs-richer-state-than-truth-values",
+            "revision-is-exception-safe-and-recoverable"
+          ],
+          "outlist": [],
+          "label": "Rich state governance and exception safety are independently established \u2014 combining them establishes that even the richer-than-truth state (metadata, lifecycle flags) survives failures intact"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
     },
     "revision-is-universally-safe": {
       "text": "The complete revision system has no blind spots: every belief \u2014 including all semantic edge cases (vacuous premises, asymmetric absence, empty antecedents) \u2014 can be revised through either reactive or proactive paths while preserving semantic identity and respecting node lifecycle states.",
@@ -12199,6 +14161,26 @@
       "date": "",
       "metadata": {}
     },
+    "rich-governance-determinism-spans-revision-through-source": {
+      "text": "Rich lifecycle governance \u2014 deterministic and lifecycle-complete \u2014 achieves end-to-end determinism from belief revision semantics through source integrity verification, ensuring that metadata-enabled state governance produces predictable outcomes at every pipeline stage from truth evaluation through hash-based staleness detection.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "determinism-spans-revision-semantics-through-source-integrity",
+            "rich-governance-is-deterministic-and-lifecycle-complete"
+          ],
+          "outlist": [],
+          "label": "End-to-end determinism and rich governance are independently depth-7 conclusions \u2014 combining them shows the rich state (not just truth values) is deterministically maintained across the entire revision-to-source pipeline"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "rich-governance-emerges-from-minimal-foundations": {
       "text": "Rich state governance \u2014 metadata-enabled lifecycle management extending beyond binary IN/OUT truth to retraction pins, stale reasons, and access tags \u2014 is achieved through the same minimal foundations that unify truth computation and belief revision, not through additional machinery layered on top.",
       "truth_value": "OUT",
@@ -12223,6 +14205,68 @@
         "retract_reason": "Invalid: metadata/governance is additional machinery beyond minimal TMS primitives, not emergent from them"
       }
     },
+    "rich-governance-encompasses-topology-complete-transitions": {
+      "text": "Rich governance \u2014 deterministic from revision through source integrity, exception-safe across all failure modes, and source-grounded \u2014 encompasses topology-complete state transitions, ensuring every belief modification propagates richly-governed metadata-enriched state changes completely through the dependency graph with deterministic recoverable outcomes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-is-deterministic-exception-safe-and-source-grounded",
+            "topology-complete-transitions-within-rich-governance"
+          ],
+          "outlist": [],
+          "label": "Unifies the system's two deepest IN governance properties (depth 9 + depth 8) into a single depth-10 characterization"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-has-verified-evolution-tolerance": {
+      "text": "The system's rich governance \u2014 deterministic, exception-safe, and source-grounded \u2014 combined with gap-free lifecycle source coverage achieves verified evolution tolerance at all system boundaries when the evolution tolerance audit (issue #121) confirms that all boundaries have documented forward-compatibility, completing the governance guarantee across the format/schema evolution dimension.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-is-deterministic-exception-safe-and-source-grounded",
+            "lifecycle-governance-achieves-gap-free-source-coverage"
+          ],
+          "outlist": [
+            "issue-121-evolution-tolerance-audit"
+          ],
+          "label": "rich governance extends to verified evolution tolerance after audit completion"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-inherits-minimality-completeness-determinism-unity": {
+      "text": "Rich lifecycle governance \u2014 deterministic and lifecycle-complete \u2014 achieves its determinism not as an independently-engineered property but as a consequence of the same minimality that generates completeness: the unified minimality-completeness-determinism triad ensures that rich governance's predictable state trajectories and gapless monitoring arise from the same minimal primitives that produce comprehensive truth maintenance coverage.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "completeness-determinism-and-minimality-are-unified",
+            "rich-governance-is-deterministic-and-lifecycle-complete"
+          ],
+          "outlist": [],
+          "label": "rich governance determinism arises from the same minimality that generates completeness"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "rich-governance-is-deterministic-and-lifecycle-complete": {
       "text": "The deterministic lifecycle-complete architecture governs state richer than binary truth values \u2014 deterministic reasoning ensures predictable state trajectories and gapless lifecycle monitoring ensures no belief escapes management, while metadata-enabled governance extends these guarantees to retraction reasons, staleness tracking, and access control beyond IN/OUT.",
       "truth_value": "IN",
@@ -12235,6 +14279,68 @@
           ],
           "outlist": [],
           "label": "Deterministic lifecycle-complete architecture + rich state governance \u2192 deterministic lifecycle-complete rich governance"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-is-deterministic-exception-safe-and-source-grounded": {
+      "text": "Rich lifecycle governance simultaneously achieves end-to-end determinism from revision semantics through source integrity and exception safety across TMS and source lifecycle \u2014 governance is both predictable in its state trajectories and resilient to all exceptional conditions.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-determinism-spans-revision-through-source",
+            "rich-governance-is-exception-safe"
+          ],
+          "outlist": [],
+          "label": "Two independent depth-8 properties of rich governance (determinism-through-source and exception-safety) compose into fully characterized governance that is both predictable and fault-tolerant"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-is-exception-safe": {
+      "text": "The system's rich lifecycle governance \u2014 deterministic, lifecycle-complete, extending beyond binary truth to metadata-enabled state with full monitoring \u2014 operates within an exception-safe framework spanning both TMS core and source lifecycle: contradictions are resolved through deterministic backtracking, challenges reach correct truth states through crash-safe propagation, and source failures degrade gracefully through fail-safe path resolution \u2014 ensuring that rich state transitions never produce corrupted or inconsistent lifecycle metadata.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-is-deterministic-and-lifecycle-complete",
+            "exception-safety-spans-tms-and-source-lifecycle"
+          ],
+          "outlist": [],
+          "label": "Deterministic lifecycle-complete governance plus exception safety across both TMS and source domains eliminates unsafe rich-state transitions"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "rich-governance-spans-all-backends": {
+      "text": "The system's exception-safe rich lifecycle governance \u2014 deterministic, lifecycle-complete, and spanning revision through source integrity \u2014 operates identically across all storage backends, achieving full behavioral parity between SQLite and PostgreSQL for metadata-enabled lifecycle management.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-is-exception-safe",
+            "rich-governance-is-deterministic-and-lifecycle-complete"
+          ],
+          "outlist": [
+            "pgapi-partial-api-coverage"
+          ],
+          "label": "Rich governance properties are established on the SQLite path; PgApi's partial API coverage is the sole barrier to backend universality \u2014 this GATE flips IN when PgApi achieves full API parity"
         }
       ],
       "source": "",
@@ -13000,6 +15106,36 @@
       "date": "",
       "metadata": {}
     },
+    "semantic-contradiction-reuses-cluster-infrastructure": {
+      "text": "Semantic contradiction detection delegates embedding and clustering to the existing `list_clusters()` from `reasons_lib/cluster.py` \u2014 the same infrastructure that serves deduplication also serves contradiction detection, with no duplicate embedding/clustering implementation.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/semantic-contradiction-detection.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "semantic-contradiction-skips-singleton-clusters": {
+      "text": "Single-belief clusters are skipped during semantic contradiction detection (no contradiction possible within one belief), and clusters exceeding `CONTRADICTION_BATCH_SIZE` are sub-batched within the cluster boundary.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/semantic-contradiction-detection.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "semantic-contradictions-cluster-before-llm": {
+      "text": "The `--semantic` flag on `detect-contradictions` embeds beliefs via sentence-transformers, clusters with KMeans via `list_clusters()`, and sends each cluster to the LLM as a batch \u2014 ensuring topically related beliefs are analyzed together instead of being scattered across random batches of 50.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/semantic-contradiction-detection.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "semantic-minimality-with-operational-determinism": {
       "text": "The system unifies semantic minimality (all non-monotonic features and truth semantics derive from uniform outlist/disjunction primitives) with operational determinism (all operations terminate predictably via BFS fixpoint with conservative failure semantics), yielding a small trusted kernel that powers all reasoning.",
       "truth_value": "IN",
@@ -13130,6 +15266,26 @@
       "date": "",
       "metadata": {}
     },
+    "source-governance-loop-is-dually-grounded-and-deterministic": {
+      "text": "The closed source-integrity-governance loop is both dually grounded (resting on two independent evaluation chains \u2014 purity and uniformity) and fully deterministic (governance determinism emerges from minimality through source integrity and is preserved by exception safety), achieving both epistemic independence and operational predictability from independent foundations",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-integrity-loop-is-dually-grounded",
+            "governance-determinism-is-generated-and-preserved"
+          ],
+          "outlist": [],
+          "label": "The source-governance loop achieves dual grounding and determinism independently \u2014 grounding from evaluation chains, determinism from minimality"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "source-grounded-correction-has-tripartite-assurance": {
       "text": "The system's lifecycle self-correction \u2014 concretely grounded in fail-safe source integrity verification with governed output \u2014 operates within a tripartite assurance framework providing external control (bounded interfaces with defensive ingestion), internal self-correction (contradiction resolution and staleness detection), and query resilience (graceful degradation across all access paths).",
       "truth_value": "OUT",
@@ -13162,6 +15318,26 @@
           ],
           "outlist": [],
           "label": "Source-grounded self-correction (depth-6) detects problems while output governance (depth-5) ensures those problems are communicated through authorized, bounded, automation-friendly channels"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-integrity-and-governance-form-closed-loop": {
+      "text": "Source integrity enables lifecycle governance by unifying determinism, exception safety, and lifecycle management into a single pipeline, while lifecycle governance achieves gap-free source coverage \u2014 forming a self-reinforcing closed loop where source integrity grounds the governance that in turn ensures no source verification gap exists.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-integrity-unifies-determinism-exception-safety-and-lifecycle",
+            "lifecycle-governance-achieves-gap-free-source-coverage"
+          ],
+          "outlist": [],
+          "label": "Source integrity enables governance AND governance ensures gap-free source coverage \u2014 bidirectional reinforcement"
         }
       ],
       "source": "",
@@ -13210,6 +15386,46 @@
       "date": "",
       "metadata": {}
     },
+    "source-integrity-is-fail-safe-deterministic-and-grounded": {
+      "text": "The source integrity pipeline achieves triple assurance from two independent chains: fail-safe operation (convention-based path resolution returning None on missing files, collision-resistant SHA-256 hashing with additive backfill, comprehensive staleness detection) combined with architectural determinism (grounded within clean layer boundaries ensuring predictable state trajectories).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-pipeline-is-end-to-end-fail-safe",
+            "source-integrity-is-deterministic-and-architecturally-grounded"
+          ],
+          "outlist": [],
+          "label": "Fail-safe pipeline properties combined with architectural determinism grounding"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-integrity-loop-is-dually-grounded": {
+      "text": "The closed source-integrity-governance loop is itself dually grounded \u2014 the governance half of the loop rests on two independent semantic foundations (evaluation purity and edge-case uniformity), so the bidirectional feedback cycle between source integrity and lifecycle governance remains sound even if one grounding chain is weakened.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-integrity-and-governance-form-closed-loop",
+            "governance-has-dual-independent-grounding-chains"
+          ],
+          "outlist": [],
+          "label": "closed loop + dual grounding = robust feedback cycle with independent semantic foundations"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "source-integrity-spans-hashing-through-detection": {
       "text": "Source integrity forms a complete end-to-end pipeline with no gap between measurement and verification: collision-resistant SHA-256 hashing with additive backfill computes integrity markers without overwriting existing hashes, while comprehensive staleness detection with CI gating and nonzero exit codes consumes those markers to catch all source drift.",
       "truth_value": "IN",
@@ -13222,6 +15438,26 @@
           ],
           "outlist": [],
           "label": "Hash computation (depth-1) and drift detection (depth-2) are independently sound; combining reveals the complete pipeline from source file \u2192 hash \u2192 comparison \u2192 CI signal with no missing link."
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-integrity-unifies-determinism-exception-safety-and-lifecycle": {
+      "text": "The source integrity pipeline achieves triple assurance from two independent chains: the source-to-TMS path is deterministic (convention-based resolution, collision-resistant SHA-256) and exception-safe (fail-safe across both TMS and source lifecycle domains), while lifecycle governance uses that same deterministic source integrity to drive staleness decisions and belief currency management \u2014 source integrity simultaneously serves pipeline correctness, failure recovery, and lifecycle governance.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-to-tms-integrity-is-deterministic-and-exception-safe",
+            "lifecycle-governance-has-deterministic-source-integrity"
+          ],
+          "outlist": [],
+          "label": "source integrity serves pipeline correctness, exception safety, and lifecycle governance simultaneously"
         }
       ],
       "source": "",
@@ -13310,6 +15546,26 @@
       "date": "",
       "metadata": {}
     },
+    "source-to-tms-integrity-is-deterministic-and-exception-safe": {
+      "text": "The complete integrity pipeline from source files through TMS truth maintenance is both deterministic (convention-based path resolution, collision-resistant SHA-256 hashing, uniform pure evaluation) and exception-safe (fail-safe source resolution, contradiction-triggered backtracking, challenge-to-justified recovery) \u2014 no failure in either source verification or truth maintenance can corrupt system state or produce unpredictable outcomes.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "source-integrity-is-deterministic-and-architecturally-grounded",
+            "exception-safety-spans-tms-and-source-lifecycle"
+          ],
+          "outlist": [],
+          "label": "Source integrity and exception safety are independently deterministic across their domains; combining shows the full pipeline is deterministic and exception-safe end-to-end"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "source-tracking-is-collision-resistant-and-safe": {
       "text": "Source integrity tracking uses full 64-character SHA-256 digests with exact string comparison for collision resistance, and backfills hashes additively without overwriting existing values \u2014 ensuring high-fidelity drift detection with no accidental data loss",
       "truth_value": "IN",
@@ -13326,6 +15582,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sqlite-only-commands-are-filesystem-llm-or-bulk": {
+      "text": "The ~21 SQLite-only CLI commands fall into three categories: filesystem-dependent (hash-sources, check-stale, add-repo), LLM-powered (derive, review-beliefs, detect-contradictions, ask), and bulk import/sync \u2014 all requiring either local file access or load-entire-network-modify-save semantics incompatible with PgApi's per-operation transaction model.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/10/postgresql-backend-support.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -13907,6 +16173,26 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "entries/2026/04/23/reasons_lib-import_agent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "sync-is-safe-for-automated-reconciliation": {
+      "text": "`sync_agent` can be safely re-run on any schedule \u2014 idempotent execution with cascade structure preservation means repeated automated synchronization never corrupts outlist-based justification hierarchies or produces accumulating side effects.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "sync-agent-is-idempotent",
+            "sync-agent-preserves-cascade-structure"
+          ],
+          "outlist": [],
+          "label": "Idempotency plus cascade preservation together make sync safe for unattended periodic execution"
+        }
+      ],
+      "source": "",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -14877,6 +17163,66 @@
       "date": "",
       "metadata": {}
     },
+    "topology-complete-governance-produces-rich-traceable-state": {
+      "text": "Every topology-complete transition within the rich governance framework produces metadata-enriched traceable state \u2014 transitions that reach all transitively dependent nodes simultaneously govern richer state than binary truth values, including retraction flags, stale reasons, access tags, and supersession metadata.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "rich-governance-encompasses-topology-complete-transitions",
+            "dialectical-revision-governs-rich-traceable-state"
+          ],
+          "outlist": [],
+          "label": "topology-complete governance and rich state governance converge"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "topology-complete-transitions-are-exception-safe": {
+      "text": "Every belief state transition is simultaneously topology-complete (reaching all transitively dependent nodes including outlist-connected ones), traceable (producing deterministic structured diffs), exception-safe (handling contradictions and challenges without corruption), and recoverable (providing guided restoration hints for cascade victims).",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "all-state-transitions-are-topology-complete-and-traceable",
+            "revision-is-exception-safe-and-recoverable"
+          ],
+          "outlist": [],
+          "label": "Topology completeness ensures no node is missed; exception safety ensures failures during propagation don't leave partial state \u2014 together they guarantee correct complete outcomes even under adverse conditions"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "topology-complete-transitions-within-rich-governance": {
+      "text": "Every topology-complete exception-safe state transition operates within a richly-governed revision system extending beyond binary truth \u2014 transitions are doubly exception-safe at both the propagation mechanics and governance framework levels.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "topology-complete-transitions-are-exception-safe",
+            "revision-is-richly-governed-and-exception-safe"
+          ],
+          "outlist": [],
+          "label": "Topology-complete transitions and rich governance both independently achieve exception safety; combining reveals double-layered safety where neither mechanism depends on the other for fault tolerance"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "topology-soundness-is-accurate-and-convergent": {
       "text": "All topology-modifying operations are simultaneously accurate (complete dependency tracking ensures dedup survivor selection reflects the true graph structure) and convergent (structural modifications exhaust their effects through complete traversal and reach deterministic stable states) \u2014 topology is both correctly measured and correctly maintained.",
       "truth_value": "OUT",
@@ -15221,6 +17567,26 @@
       "date": "",
       "metadata": {}
     },
+    "uniform-semantics-transitively-ground-deterministic-dialectics": {
+      "text": "Uniform edge-case handling transitively grounds deterministic reliable dialectics through a two-step chain: uniformity reinforces complete negative semantics by ensuring all semantic edge cases (vacuous premises, asymmetric absence, empty antecedents) follow the same rules that produce outlist defeat, and those reinforced semantics in turn ground dialectical challenge/defend with determinism and reliability.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "edge-case-uniformity-reinforces-complete-negative-semantics",
+            "negative-semantics-ground-deterministic-dialectics"
+          ],
+          "outlist": [],
+          "label": "Edge-case uniformity reinforces the negative semantics that ground dialectics \u2014 combining reveals a transitive grounding chain from minimality through semantics to dialectics"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "untagged-always-visible": {
       "text": "Nodes with no `access_tags` key in metadata are never filtered by `visible_to` \u2014 they are treated as unconditionally public.",
       "truth_value": "IN",
@@ -15286,6 +17652,16 @@
         }
       ],
       "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "validate-proposals-rejects-jaccard-similar-to-out": {
+      "text": "`validate_proposals` skips any proposal whose tokenized ID has >= 0.5 Jaccard similarity to an existing OUT belief, returning \"similar to retracted\" in the skip reason \u2014 preventing re-derivation of retracted beliefs under variant names",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "entries/2026/05/11/tests-test_derive.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -15468,6 +17844,28 @@
           ],
           "outlist": [],
           "label": "Connecting two orphan depth-8 beliefs \u2014 verified correctness is not limited to internal beliefs but extends to all origins because deterministic history covers the full provenance space"
+        }
+      ],
+      "source": "",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "verified-revision-completeness-at-all-reference-boundaries": {
+      "text": "The deterministic lifecycle-complete architecture achieves verified uniform revision completeness \u2014 every belief case handled uniformly within predictable monitored state trajectories AND every node ID reference crossing a system boundary validated against the actual network \u2014 eliminating the possibility of revision operations acting on phantom references.",
+      "truth_value": "OUT",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "complete-architecture-is-deterministic-and-lifecycle-complete",
+            "belief-revision-covers-all-cases-uniformly"
+          ],
+          "outlist": [
+            "issue-126-reference-validation-audit"
+          ],
+          "label": "Uniform revision within deterministic architecture achieves full trust only when all reference boundaries have validated coverage"
         }
       ],
       "source": "",

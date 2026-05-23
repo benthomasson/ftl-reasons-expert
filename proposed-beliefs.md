@@ -388,9 +388,10 @@ The `node.dependents` set is never persisted to SQLite; it is rebuilt by walking
 - Source: entries/2026/04/23/reasons_lib-storage.md
 - Rejected: duplicate: already exists as belief `dependents-index-derived-on-load` (currently OUT)
 
-### [ACCEPT] storage-trusts-stored-truth-values
+### [REJECT] storage-trusts-stored-truth-values
 `load()` trusts the stored `truth_value` without re-running propagation, making the database the source of truth for node status.
 - Source: entries/2026/04/23/reasons_lib-storage.md
+- Rejected: duplicate: covered by bootstrap-bypasses-incremental-propagation which already states "load trusts stored truth values"
 
 ---
 
@@ -475,9 +476,10 @@ Redundant with defend-is-challenge-of-challenge.
 - Source: entries/2026/04/23/topic-outlist-semantics.md
 - Rejected: duplicate: already captured by `all-defeat-mechanisms-are-reversible` and `defeat-reversal-propagates-automatically`
 
-### [ACCEPT] multiple-outlist-is-conjunction
+### [REJECT] multiple-outlist-is-conjunction
 When a justification has multiple outlist entries, ALL must be OUT for the justification to be valid; any single outlist node going IN defeats the entire justification
 - Source: entries/2026/04/23/topic-outlist-semantics.md
+- Rejected: duplicate: subsumed by proposed sl-justification-semantics ("ALL outlist nodes are OUT")
 
 ### [REJECT] outlist-relationships-survive-persistence
 Outlists are stored as `outlist_json` in the SQLite `justifications` table; on load, the dependent index is rebuilt for both antecedents and outlist nodes, preserving propagation behavior across save/load cycles
@@ -570,9 +572,10 @@ A node is a premise (believed without justification) iff its `justifications` li
 - Source: entries/2026/05/05/reasons_lib-__init__.md
 - Rejected: duplicate: already captured by `challenge-destroys-premise-identity` (premise identity emerges from absence of justifications)
 
-### [ACCEPT] node-truth-disjunctive
+### [REJECT] node-truth-disjunctive
 A node is IN if ANY of its justifications is valid (disjunctive semantics); adding a justification to a node can never cause it to go OUT.
 - Source: entries/2026/05/05/reasons_lib-__init__.md
+- Rejected: duplicate: disjunctive semantics already stated in proposed sl-justification-semantics; monotonicity corollary follows logically and is partially covered by add-justification-achieves-consistent-propagation
 
 ### [REJECT] dependents-not-self-enforced
 The `Node.dependents` reverse index is not maintained by the data model itself; `network.py` is responsible for keeping it consistent with justification references (antecedents and outlists).
@@ -782,9 +785,10 @@ All API tests run against a real SQLite database with FTS5; storage is never moc
 `list_negative` splits candidate nodes into batches of approximately 50 for LLM classification, verified by the test suite asserting exactly 3 LLM calls for 120 candidates.
 - Source: entries/2026/05/05/tests-test_api.md
 
-### [ACCEPT] fts-relaxation-bounded
+### [REJECT] fts-relaxation-bounded
 Progressive FTS query relaxation is bounded: a 20-term query produces at most 51 `_fts_query` invocations, preventing unbounded search expansion on long input queries.
 - Source: entries/2026/05/05/tests-test_api.md
+- Rejected: duplicate: same claim as search-relaxation-capped-at-50-queries — both assert FTS relaxation is bounded
 
 ### [REJECT] retract-assert-inverse-tested
 Test coverage claim rather than code invariant; the behavioral property (retract/assert are inverses) is already captured by `defeat-reversal-propagates-automatically` and `supersession-is-reversible-and-view-consistent`.
@@ -976,13 +980,15 @@ Derived beliefs at depth 8-15 accumulate generalization error through successive
 `review-beliefs` catches invalid reasoning within individual derivation steps (over-generalization, missing bridges, strength escalation) while `contradictions` catches incompatible facts across independently valid beliefs (absolute claims vs. documented exceptions) — the two commands are complementary with different cascade profiles (review: high cascade at depth, contradictions: low cascade at leaves).
 - Source: entries/2026/05/06/contradictions-first-run.md
 
-### [ACCEPT] contradictions-shuffles-before-batching
+### [REJECT] contradictions-shuffles-before-batching
 The `contradictions` command randomly shuffles all IN beliefs before partitioning into batches of 50, ensuring that repeated runs probabilistically cover cross-belief comparisons that fixed sequential batching would never surface.
 - Source: entries/2026/05/06/contradictions-first-run.md
+- Rejected: duplicate: already exists as `contradictions-shuffles-before-batching` [IN] and `contradictions-shuffle-prevents-deterministic-batching` [IN]
 
-### [ACCEPT] check-stale-detects-source-staleness-only
+### [REJECT] check-stale-detects-source-staleness-only
 `check-stale` detects source staleness (source file changed on disk) via hash comparison but cannot detect world staleness (the belief is outdated even though the source file hasn't changed) — beliefs can silently decay without any artifact triggering re-examination.
 - Source: entries/2026/05/06/belief-staleness-in-business-planning.md
+- Rejected: duplicate: already exists as `check-stale-detects-source-staleness-only` [IN]
 
 ### [REJECT] derive-review-contradict-is-convergent-cycle
 The full belief maintenance cycle is `derive --exhaust → review-beliefs → retract invalid → contradictions → retract/fix/file → derive --exhaust`, where each tool catches a different error class (derive generates, review validates individual steps, contradictions finds cross-belief inconsistencies) and the cycle converges toward a stable belief set.
@@ -1006,13 +1012,15 @@ The most common invalid derivation pattern is scope over-generalization — clai
 
 ### From `entries/2026/05/06/pageindex-and-tms-integration.md`
 
-### [ACCEPT] belief-source-metadata-is-file-level
+### [REJECT] belief-source-metadata-is-file-level
 Belief source tracking uses flat file-level pointers (source path + source_hash) with no structural awareness of where within a document the claim originated — section, page, or paragraph level provenance is not supported.
 - Source: entries/2026/05/06/pageindex-and-tms-integration.md
+- Rejected: duplicate: already exists as `belief-source-metadata-is-file-level` [IN]
 
-### [ACCEPT] expert-pipeline-extracts-per-document
+### [REJECT] expert-pipeline-extracts-per-document
 The expert-agent-builder pipeline extracts beliefs per-document (summarize entire document → propose beliefs → record file path), not per-section — the connection between a belief and its source material is a file-level pointer, not a section-level one.
 - Source: entries/2026/05/06/pageindex-and-tms-integration.md
+- Rejected: meta: describes the knowledge base construction pipeline, not the target codebase
 
 ### [REJECT] pageindex-hierarchical-rag
 PageIndex is a separate tool, not part of the ftl-reasons codebase — claims about its architecture belong in a PageIndex knowledge base, not here.
@@ -1094,9 +1102,10 @@ Covered by existing belief `belief-replacement-is-topology-safe-and-view-consist
 - Source: entries/2026/05/08/reasons_lib-cli.md
 - Rejected: duplicate: same return protocol already captured by `derive-returns-negative-one-on-error` and `derive-round-returns-negative-on-error`
 
-### [ACCEPT] cluster-and-sample-are-mutually-exclusive
+### [REJECT] cluster-and-sample-are-mutually-exclusive
 The `--cluster` and `--sample` flags in `cmd_derive` are mutually exclusive, enforced with an explicit check and `sys.exit(1)` — they represent competing strategies for belief subset selection.
 - Source: entries/2026/05/08/reasons_lib-cli.md
+- Rejected: duplicate: exact match exists as `cluster-and-sample-are-mutually-exclusive` [IN]
 
 ### [ACCEPT] derive-reports-survive-partial-runs
 `cmd_derive` and `cmd_review_beliefs` write partial JSON reports after each round/batch via `_write_derive_report`, so crash recovery is possible from the last completed step.
@@ -1123,33 +1132,40 @@ Covered by existing belief `access-control-is-transitive-subset-gated`.
 
 ### From `entries/2026/05/08/reasons_lib-cluster.md`
 
-### [ACCEPT] cluster-beliefs-respects-budget
+### [REJECT] cluster-beliefs-respects-budget
 `cluster_beliefs` never returns more IDs than the `budget` parameter; each cluster's allocation is individually capped by `min(alloc, len(members))`.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-beliefs-respects-budget` [IN]
 
-### [ACCEPT] cluster-cache-keys-include-content-hash
+### [REJECT] cluster-cache-keys-include-content-hash
 `ClusterCache` keys embeddings by `(node_id, sha256_prefix)`, so editing a belief's text with the same ID forces re-embedding rather than serving stale vectors.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-cache-keys-include-content-hash` [IN]
 
-### [ACCEPT] cluster-deps-are-optional
+### [REJECT] cluster-deps-are-optional
 `sentence-transformers` and `scikit-learn` are optional dependencies behind a `HAS_CLUSTER_DEPS` gate; the module degrades to a clear `ImportError` with install instructions when they are absent.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-deps-are-optional` [IN]
 
-### [ACCEPT] cluster-embed-order-is-deterministic
+### [REJECT] cluster-embed-order-is-deterministic
 Beliefs are sorted by ID before embedding (`ids = sorted(beliefs.keys())`), making cluster assignments reproducible given the same random seed.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-embed-order-is-deterministic` [IN]
 
-### [ACCEPT] cluster-remainder-favors-largest
+### [REJECT] cluster-remainder-favors-largest
 When the budget doesn't divide evenly across clusters, extra slots are distributed one-per-cluster to the largest clusters first via descending size sort.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-remainder-favors-largest` [IN]
 
-### [ACCEPT] cluster-auto-k-heuristic
+### [REJECT] cluster-auto-k-heuristic
 Auto cluster count is computed as `len(beliefs) // 5`, clamped between 2 and `min(budget // 3, 20)`, targeting approximately 5 beliefs per cluster with at least 3 beliefs per cluster given the budget.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-auto-k-heuristic` [IN]
 
-### [ACCEPT] cluster-skips-ml-when-under-budget
+### [REJECT] cluster-skips-ml-when-under-budget
 When the number of beliefs is less than or equal to the budget, all ML work (embedding, clustering, sampling) is skipped and every belief is returned directly.
 - Source: entries/2026/05/08/reasons_lib-cluster.md
+- Rejected: duplicate: exact match exists as `cluster-skips-ml-when-under-budget` [IN]
 
 ---
 
@@ -1162,25 +1178,30 @@ When the number of beliefs is less than or equal to the budget, all ML work (emb
 
 ### entries/2026/05/08/reasons_lib-contradictions.md
 
-### [ACCEPT] contradictions-only-checks-in-beliefs
+### [REJECT] contradictions-only-checks-in-beliefs
 `detect_contradictions` filters all input to `truth_value == "IN"` before processing; OUT beliefs are never sent to the LLM for contradiction checking.
 - Source: entries/2026/05/08/reasons_lib-contradictions.md
+- Rejected: duplicate: exact match exists as `contradictions-only-checks-in-beliefs` [IN]
 
-### [ACCEPT] contradictions-shuffle-prevents-deterministic-batching
+### [REJECT] contradictions-shuffle-prevents-deterministic-batching
 Belief IDs are randomly shuffled before batching so that repeated runs cover different pairwise combinations across batch boundaries, increasing cross-batch contradiction coverage.
 - Source: entries/2026/05/08/reasons_lib-contradictions.md
+- Rejected: duplicate: exact match exists as `contradictions-shuffle-prevents-deterministic-batching` [IN]
 
-### [ACCEPT] contradictions-min-two-claims-per-nogood
+### [REJECT] contradictions-min-two-claims-per-nogood
 The contradiction parser enforces that every returned nogood has at least 2 valid claim IDs; single-claim or empty results are silently dropped.
 - Source: entries/2026/05/08/reasons_lib-contradictions.md
+- Rejected: duplicate: exact match exists as `contradictions-min-two-claims-per-nogood` [IN]
 
-### [ACCEPT] contradictions-no-storage-dependency
+### [REJECT] contradictions-no-storage-dependency
 `contradictions.py` operates on in-memory node dicts and has no import of `storage.py` or any database layer, making it testable in full isolation.
 - Source: entries/2026/05/08/reasons_lib-contradictions.md
+- Rejected: duplicate: exact match exists as `contradictions-no-storage-dependency` [IN]
 
-### [ACCEPT] contradictions-cross-batch-pairs-undetected
+### [REJECT] contradictions-cross-batch-pairs-undetected
 Batch boundaries are non-overlapping — each belief appears in exactly one batch per run — so contradictions between beliefs in different batches cannot be detected in a single run.
 - Source: entries/2026/05/08/reasons_lib-contradictions.md
+- Rejected: duplicate: exact match exists as `contradictions-cross-batch-pairs-undetected` [IN]
 
 ### [REJECT] contradictions-swallows-batch-errors
 Duplicates the existing system-wide belief `batch-fault-isolation-is-universal-across-llm-operations` which already covers per-batch error containment across all LLM-facing modules.
@@ -1204,9 +1225,10 @@ Duplicates the existing system-wide belief `batch-fault-isolation-is-universal-a
 Duplicates the existing belief `derive-apply-isolates-per-proposal-errors` which already captures that `apply_proposals` catches exceptions per-proposal.
 - Source: entries/2026/05/08/reasons_lib-derive.md
 
-### [ACCEPT] derive-budget-three-strategies
+### [REJECT] derive-budget-three-strategies
 `_build_beliefs_section` supports three budget strategies — alphabetical truncation (default), random sampling (`sample=True`), and semantic clustering (`cluster=True`) — all controlled by a single `max_beliefs` parameter.
 - Source: entries/2026/05/08/reasons_lib-derive.md
+- Rejected: duplicate: exact match exists as `derive-budget-three-strategies` [IN]
 
 ### [ACCEPT] derive-validate-rejects-duplicate-ids
 `validate_proposals` rejects any proposal whose belief ID already exists in the network, preventing overwrites of existing beliefs through the derive pipeline.
@@ -1241,9 +1263,10 @@ Nodes that should be OUT are first created as IN (so they participate in depende
 
 ### entries/2026/05/08/reasons_lib-review.md
 
-### [ACCEPT] review-parse-defaults-safe
+### [REJECT] review-parse-defaults-safe
 When the LLM response is missing fields, `parse_review_response` defaults to `valid=True`, `sufficient=True`, `necessary=True` — a parse error never generates a false-positive validity warning.
 - Source: entries/2026/05/08/reasons_lib-review.md
+- Rejected: duplicate: covered by parse-review-response-never-raises which states "missing boolean fields defaulting to `True`"
 
 ### [REJECT] review-batch-failure-non-fatal
 Duplicates the existing belief `review-batch-failure-is-silent-skip` which already captures that failed batches are skipped with a warning.
@@ -1306,43 +1329,51 @@ Covered by existing `cli-is-deterministic-and-stream-correct`.
 
 ---
 
-### [ACCEPT] cluster-beliefs-returns-exact-budget
+### [REJECT] cluster-beliefs-returns-exact-budget
 `cluster_beliefs` returns exactly `budget` belief IDs when the input set is larger than the budget, and all items when the input set is smaller.
 - Source: entries/2026/05/08/tests-test_cluster.md
+- Rejected: duplicate: already exists as `cluster-beliefs-returns-exact-budget` [IN]
 
-### [ACCEPT] cluster-beliefs-deterministic-with-seed
+### [REJECT] cluster-beliefs-deterministic-with-seed
 Given the same beliefs dict, budget, and seed, `cluster_beliefs` produces identical output across calls.
 - Source: entries/2026/05/08/tests-test_cluster.md
+- Rejected: duplicate: already exists as `cluster-beliefs-deterministic-with-seed` [IN]
 
-### [ACCEPT] cluster-cache-no-recompute
+### [REJECT] cluster-cache-no-recompute
 `ClusterCache.embed()` does not recompute embeddings for previously cached belief texts; cache size stays constant on repeated calls with the same input and grows by exactly the count of new texts on superset calls.
 - Source: entries/2026/05/08/tests-test_cluster.md
+- Rejected: duplicate: already exists as `cluster-cache-no-recompute` [IN]
 
-### [ACCEPT] cluster-stats-sizes-sum-to-input
+### [REJECT] cluster-stats-sizes-sum-to-input
 The `cluster_sizes` list in the stats dict returned by `cluster_beliefs` always sums to the total number of input beliefs, enforcing that every belief is assigned to exactly one cluster.
 - Source: entries/2026/05/08/tests-test_cluster.md
+- Rejected: duplicate: already exists as `cluster-stats-sizes-sum-to-input` [IN]
 
-### [ACCEPT] cluster-deps-optional-with-graceful-skip
+### [REJECT] cluster-deps-optional-with-graceful-skip
 The clustering module (`reasons_lib.cluster`) is behind an optional `[cluster]` install extra; when `sentence-transformers` or `scikit-learn` are missing, `_require_cluster_deps` raises `ImportError` and all dependent tests skip cleanly.
 - Source: entries/2026/05/08/tests-test_cluster.md
+- Rejected: duplicate: already exists as `cluster-deps-optional-with-graceful-skip` [IN]
 
 ---
 
-### [ACCEPT] contradiction-min-two-claims
+### [REJECT] contradiction-min-two-claims
 `parse_contradiction_response` drops any nogood with fewer than 2 valid claim IDs; this is enforced both before and after `valid_ids` filtering.
 - Source: entries/2026/05/08/tests-test_contradictions.md
+- Rejected: duplicate: already exists as `contradiction-min-two-claims` [IN]
 
-### [ACCEPT] contradiction-in-only-filter
+### [REJECT] contradiction-in-only-filter
 `detect_contradictions` excludes OUT nodes from LLM prompts even when explicitly listed in `belief_ids`.
 - Source: entries/2026/05/08/tests-test_contradictions.md
+- Rejected: duplicate: already exists as `contradiction-in-only-filter` [IN]
 
 ### [REJECT] contradiction-batch-fault-tolerance
 Covered by existing `batch-fault-isolation-is-universal-across-llm-operations` and `llm-fault-tolerance-is-multi-granular`.
 - Source: entries/2026/05/08/tests-test_contradictions.md
 
-### [ACCEPT] contradiction-dry-run-overrides-auto-apply
+### [REJECT] contradiction-dry-run-overrides-auto-apply
 When both `--dry-run` and `--auto-apply` are passed to the `contradictions` CLI subcommand, no nogoods are recorded in the database (applied count is 0).
 - Source: entries/2026/05/08/tests-test_contradictions.md
+- Rejected: duplicate: already exists as `contradiction-dry-run-overrides-auto-apply` [IN]
 
 ---
 
@@ -1424,5 +1455,484 @@ Covered by existing `format-resilience-spans-all-external-interfaces` and `impor
 ### [ACCEPT] sync-agent-first-sync-equals-import
 When no prior import exists for an agent, `sync_agent` behaves identically to `import_agent` — creating the `agent:active` premise and returning `created_premise: True` — rather than requiring a separate import step.
 - Source: entries/2026/05/08/tests-test_sync_agent.md
+
+
+
+---
+
+**Generated:** 2026-05-11
+**Source:** 24 entries from entries/
+**Model:** claude
+
+### [ACCEPT] pg-dispatch-is-function-level-early-return
+PostgreSQL routing uses a function-level early-return pattern — each API function checks `pg_conninfo` and short-circuits to `_pg_dispatch`, which instantiates PgApi and calls the matching method via `getattr` — rather than using abstract base classes, subclassing, or factory patterns.
+- Source: entries/2026/05/10/postgresql-backend-support.md
+
+### [ACCEPT] export-markdown-pg-reconstructs-network
+The `export_markdown` PostgreSQL path reconstructs a full `Network` object from `export_network()` output — creating Node/Justification objects and wiring the dependents index — because the markdown exporter requires a wired dependency graph, not a flat dict.
+- Source: entries/2026/05/10/postgresql-backend-support.md
+
+### [ACCEPT] sqlite-only-commands-are-filesystem-llm-or-bulk
+The ~21 SQLite-only CLI commands fall into three categories: filesystem-dependent (hash-sources, check-stale, add-repo), LLM-powered (derive, review-beliefs, detect-contradictions, ask), and bulk import/sync — all requiring either local file access or load-entire-network-modify-save semantics incompatible with PgApi's per-operation transaction model.
+- Source: entries/2026/05/10/postgresql-backend-support.md
+
+### [ACCEPT] pg-unsupported-params-raise-not-implemented
+When PgApi-routed commands receive unsupported parameters (e.g., search with `depth != 1`, list with `challenged`/`min_depth`, add with `namespace`), the dispatch raises `NotImplementedError` with a clear message rather than silently ignoring the parameter.
+- Source: entries/2026/05/10/postgresql-backend-support.md
+
+### [ACCEPT] pg-conninfo-accepts-flag-envvar-or-both
+PostgreSQL connection is configured via `--pg`/`--project-id` CLI flags or `REASONS_PG_CONNINFO`/`REASONS_PROJECT_ID` environment variables, with CLI flags taking precedence over env vars — `_backend_kwargs(args)` handles the dispatch.
+- Source: entries/2026/05/10/postgresql-backend-support.md
+
+---
+
+### [ACCEPT] semantic-contradictions-cluster-before-llm
+The `--semantic` flag on `detect-contradictions` embeds beliefs via sentence-transformers, clusters with KMeans via `list_clusters()`, and sends each cluster to the LLM as a batch — ensuring topically related beliefs are analyzed together instead of being scattered across random batches of 50.
+- Source: entries/2026/05/10/semantic-contradiction-detection.md
+
+### [ACCEPT] semantic-contradiction-reuses-cluster-infrastructure
+Semantic contradiction detection delegates embedding and clustering to the existing `list_clusters()` from `reasons_lib/cluster.py` — the same infrastructure that serves deduplication also serves contradiction detection, with no duplicate embedding/clustering implementation.
+- Source: entries/2026/05/10/semantic-contradiction-detection.md
+
+### [ACCEPT] semantic-contradiction-skips-singleton-clusters
+Single-belief clusters are skipped during semantic contradiction detection (no contradiction possible within one belief), and clusters exceeding `CONTRADICTION_BATCH_SIZE` are sub-batched within the cluster boundary.
+- Source: entries/2026/05/10/semantic-contradiction-detection.md
+
+---
+
+### [ACCEPT] ftl-reasons-zero-runtime-deps
+The core `reasons_lib` package has no mandatory runtime dependencies — all external packages (psycopg, sentence-transformers, scikit-learn, mcp) are gated behind optional install extras (`[pg]`, `[cluster]`, `[mcp]`).
+- Source: entries/2026/05/11/pyproject.md
+
+### [ACCEPT] reasons-cli-entrypoint-is-cli-main
+The `reasons` CLI command is registered as `reasons_lib.cli:main` via `[project.scripts]` in pyproject.toml — changing that function's signature or module location breaks the installed command.
+- Source: entries/2026/05/11/pyproject.md
+
+### [ACCEPT] only-reasons-lib-is-distributed
+Only the `reasons_lib` package is included in built distributions — `tests/`, `entries/`, and `reviews/` are excluded by the explicit `packages = ["reasons_lib"]` declaration in pyproject.toml.
+- Source: entries/2026/05/11/pyproject.md
+
+### [ACCEPT] python-310-minimum
+The project requires Python >= 3.10 (`requires-python = ">=3.10"`), enabling use of structural pattern matching and `X | Y` union type syntax throughout the codebase.
+- Source: entries/2026/05/11/pyproject.md
+
+---
+
+### [ACCEPT] fts-relaxation-budget-caps-at-50
+Progressive FTS5 search relaxation — dropping query terms via combinations when the full-term query returns no results — is capped at `_MAX_RELAXATION_QUERIES` (50) to prevent combinatorial blowup on many-term queries.
+- Source: entries/2026/05/11/reasons_lib-api.md
+
+### [REJECT] namespace-colon-convention-enables-cross-refs
+`_resolve_namespace` only prefixes belief IDs that don't already contain `:` — the colon serves as both the namespace delimiter and the signal that no prefixing is needed, allowing cross-namespace references to pass through unchanged.
+- Source: entries/2026/05/11/reasons_lib-api.md
+- Rejected: duplicate: same claim as `colon-means-already-namespaced` which already captures that colon means already-namespaced and no double-prefixing occurs
+
+### [REJECT] access-tags-require-subset-for-visibility
+A node is visible only when all of its access tags are present in the caller's `visible_to` set (subset semantics); nodes with empty access tags are always visible. `show_node`/`explain_node` raise `PermissionError` on violation while list operations silently filter.
+- Source: entries/2026/05/11/reasons_lib-api.md
+- Rejected: duplicate: same claim as `access-tags-subset-gate` and `access-control-is-transitive-subset-gated`
+
+### [REJECT] with-network-is-sole-db-lifecycle-manager
+Every API function accesses the SQLite database exclusively through `_with_network(db_path, write=False)` — a context manager that loads a Network from Storage, yields it, and saves only on clean exit when `write=True`. No API function manages Storage directly.
+- Source: entries/2026/05/11/reasons_lib-api.md
+
+
+## Proposed Beliefs
+- Rejected: duplicate: same claim as `api-uses-with-network-context-manager` which already captures the context-manager pattern for load-operate-save atomicity
+
+---
+
+### Entry: `reasons_lib/ask.py`
+
+### [REJECT] ask-tool-loop-max-3-rounds
+Duplicates existing `ask-tool-loop-capped-at-three`
+- Source: entries/2026/05/11/reasons_lib-ask.md
+
+### [REJECT] ask-extract-tool-call-is-line-based-json
+Duplicates existing `ask-uses-text-based-tool-protocol` and `extract-tool-call-returns-first-match`
+- Source: entries/2026/05/11/reasons_lib-ask.md
+
+### [REJECT] ask-llm-failure-returns-raw-context
+Duplicates existing `ask-falls-back-to-raw-search` and `ask-never-raises-on-llm-failure`
+- Source: entries/2026/05/11/reasons_lib-ask.md
+
+### [REJECT] ask-natural-strips-metadata-and-citations
+Duplicates existing `ask-natural-mode-strips-metadata-and-cite`
+- Source: entries/2026/05/11/reasons_lib-ask.md
+
+### [ACCEPT] ask-stop-word-fallback-ensures-nonempty-query
+`_search_source_chunks` strips stop words from the question before building the FTS5 query, but falls back to all words longer than 1 character if every word is a stop word — ensuring the query is never empty
+- Source: entries/2026/05/11/reasons_lib-ask.md
+
+---
+
+### Entry: `reasons_lib/cli.py`
+
+### [REJECT] cli-delegates-all-logic-to-api
+Every `cmd_*` function in the CLI delegates to `reasons_lib.api` and contains no business logic, database access, or network manipulation — the CLI is a pure presentation/argument-parsing layer
+- Source: entries/2026/05/11/reasons_lib-cli.md
+- Rejected: duplicate: same claim as `cli-is-pure-formatter` which already states every cmd_* delegates to api.* with no business logic
+
+### [ACCEPT] cli-backend-kwargs-controls-storage
+`_backend_kwargs(args)` is the single chokepoint that determines whether a command runs against SQLite or PostgreSQL; every `cmd_*` function must spread its return value into the corresponding `api.*` call
+- Source: entries/2026/05/11/reasons_lib-cli.md
+
+### [REJECT] cli-heavy-imports-are-deferred
+Duplicates existing `cli-uses-lazy-imports-for-heavy-modules`
+- Source: entries/2026/05/11/reasons_lib-cli.md
+
+### [ACCEPT] cli-sqlite-only-commands-exist
+Commands `derive`, `ask`, `review-beliefs`, `deduplicate`, and `contradictions` are guarded by `_require_sqlite()` and exit with an error if `--pg` is set — they do not support PostgreSQL
+- Source: entries/2026/05/11/reasons_lib-cli.md
+
+### [ACCEPT] cli-plan-review-apply-pattern
+Several commands (`derive`, `deduplicate`, `contradictions`) follow a three-phase workflow: (1) generate proposals to a file, (2) human reviews/edits the file, (3) `--accept FILE` parses and applies the reviewed plan — with `--auto` collapsing all three phases
+- Source: entries/2026/05/11/reasons_lib-cli.md
+
+### [REJECT] cli-check-stale-exits-1-on-stale
+`cmd_check_stale` exits with code 1 when stale nodes are found, making it usable as a CI gate that fails the build on belief staleness
+- Source: entries/2026/05/11/reasons_lib-cli.md
+- Rejected: duplicate: same claim as existing `check-stale-exits-nonzero`
+
+---
+
+### Entry: `reasons_lib/cluster.py`
+
+### [REJECT] cluster-cache-key-includes-text-hash
+`ClusterCache` keys embeddings by `(node_id, sha256(text)[:16])`, so modified belief text invalidates the cached embedding without requiring explicit cache eviction
+- Source: entries/2026/05/11/reasons_lib-cluster.md
+- Rejected: duplicate: same claim as existing `cluster-cache-keys-include-content-hash`
+
+### [REJECT] cluster-auto-k-floors-at-two
+`_auto_k` always returns at least 2 clusters (when auto-computed), ensuring cross-domain sampling is meaningful even for small belief sets
+- Source: entries/2026/05/11/reasons_lib-cluster.md
+- Rejected: duplicate: floor of 2 already captured in existing `cluster-auto-k-heuristic` ("clamped between 2 and...")
+
+### [REJECT] cluster-budget-is-hard-ceiling
+`cluster_beliefs` never returns more than `budget` belief IDs; when the belief set is smaller than budget, it returns all beliefs without clustering
+- Source: entries/2026/05/11/reasons_lib-cluster.md
+- Rejected: duplicate: same claim as existing `cluster-beliefs-respects-budget` and `cluster-beliefs-returns-exact-budget`
+
+### Entry: `reasons_lib/contradictions.py`
+
+### [REJECT] contradictions-require-two-claims-minimum
+Duplicates existing `contradictions-min-two-claims-per-nogood`
+- Source: entries/2026/05/11/reasons_lib-contradictions.md
+
+### [REJECT] contradictions-batch-errors-never-propagate
+Covered by existing `batch-fault-isolation-is-universal-across-llm-operations`
+- Source: entries/2026/05/11/reasons_lib-contradictions.md
+
+### [REJECT] contradictions-shuffle-for-coverage
+Duplicates existing `contradictions-shuffle-prevents-deterministic-batching`
+- Source: entries/2026/05/11/reasons_lib-contradictions.md
+
+### [ACCEPT] contradictions-semantic-skips-singleton-clusters
+`detect_contradictions_semantic` skips any cluster containing fewer than 2 beliefs, since no pairwise contradiction is possible within a singleton
+- Source: entries/2026/05/11/reasons_lib-contradictions.md
+
+### [ACCEPT] contradictions-belief-text-truncated-at-200-chars
+`format_beliefs_for_contradiction_check` truncates each belief's text at 200 characters in the LLM prompt to avoid blowing context windows on large belief descriptions
+- Source: entries/2026/05/11/reasons_lib-contradictions.md
+
+---
+
+### Entry: `reasons_lib/derive.py`
+
+### [ACCEPT] derive-prompt-round-trippable
+`write_proposals_file` output can be parsed back by `parse_proposals` with no data loss, enabling a write-review-accept cycle where humans edit proposals in the same format the parser reads
+- Source: entries/2026/05/11/reasons_lib-derive.md
+
+### [ACCEPT] derive-validate-blocks-retracted-rediscovery
+`validate_proposals` rejects any proposal whose ID has >= 50% Jaccard token overlap (tokenized on hyphens/colons) with an existing OUT belief, preventing re-derivation of previously retracted conclusions
+- Source: entries/2026/05/11/reasons_lib-derive.md
+
+### [REJECT] derive-apply-is-fault-tolerant
+Duplicates existing `derive-apply-isolates-per-proposal-errors`
+- Source: entries/2026/05/11/reasons_lib-derive.md
+
+
+## Proposed Beliefs
+
+---
+
+### entries/2026/05/11/reasons_lib-import_agent.md
+
+### [ACCEPT] import-agent-inactive-always-in-outlist
+Every imported belief unconditionally has `agent:inactive` in its outlist, enforced in `_build_justifications()` with no code path that omits it — this is the mechanism behind the per-agent kill switch.
+- Source: entries/2026/05/11/reasons_lib-import_agent.md
+
+### [ACCEPT] import-topo-sort-cycle-tolerant
+Topological sorting of imported claims is best-effort: cycles cause remaining nodes to be appended in arbitrary order rather than raising an error, a pragmatic choice that avoids crashing on circular references.
+- Source: entries/2026/05/11/reasons_lib-import_agent.md
+
+### [REJECT] import-agent-active-never-in-antecedents
+Duplicate of existing `active-not-in-antecedents`.
+- Source: entries/2026/05/11/reasons_lib-import_agent.md
+
+### [REJECT] sync-agent-remote-wins-semantics
+Covered by existing `import-skips-existing-sync-is-remote-wins` which captures both modes.
+- Source: entries/2026/05/11/reasons_lib-import_agent.md
+
+### [REJECT] retracted-flag-survives-recompute
+Covered by existing `metadata-actively-governs-truth-propagation` and `metadata-governs-lifecycle-across-read-and-write-paths`.
+- Source: entries/2026/05/11/reasons_lib-import_agent.md
+
+---
+
+### entries/2026/05/11/reasons_lib-mcp_client.md
+
+### [ACCEPT] mcp-bridge-runs-dedicated-event-loop-thread
+Each `McpBridge` instance runs its own asyncio event loop on a daemon thread; the MCP session stays alive until `close()` signals the shutdown event, bridging the sync/async boundary via `run_coroutine_threadsafe`.
+- Source: entries/2026/05/11/reasons_lib-mcp_client.md
+
+### [ACCEPT] mcp-bridge-connect-blocks-up-to-30s
+`connect()` blocks the calling thread for up to 30 seconds waiting for MCP session initialization via `_ready.wait(timeout=30)`, then raises `TimeoutError` if the server doesn't respond.
+- Source: entries/2026/05/11/reasons_lib-mcp_client.md
+
+### [ACCEPT] mcp-bridge-call-tool-timeout-60s
+`call_tool()` blocks for up to 60 seconds per invocation via `future.result(timeout=60)`; if the MCP server hangs, the calling thread unblocks with `TimeoutError`.
+- Source: entries/2026/05/11/reasons_lib-mcp_client.md
+
+### [ACCEPT] mcp-bridge-tools-snapshot-at-connect
+The tool catalog and server instructions are populated once during `connect()` and never refreshed — there is no mechanism to pick up tools added after the initial handshake.
+- Source: entries/2026/05/11/reasons_lib-mcp_client.md
+
+### [ACCEPT] mcp-is-optional-dependency
+The `mcp` package is guarded by try/except at import time; `_require_mcp()` defers the `ImportError` to `McpBridge` construction so the module can be imported unconditionally without the SDK installed.
+- Source: entries/2026/05/11/reasons_lib-mcp_client.md
+
+---
+
+### entries/2026/05/11/reasons_lib-network.md
+
+### [ACCEPT] network-disjunctive-justification
+A node is IN if ANY of its justifications is valid (disjunction); each individual justification requires ALL antecedents IN and ALL outlist members OUT (conjunction) — the SL justification semantics from Doyle's 1979 paper.
+- Source: entries/2026/05/11/reasons_lib-network.md
+
+### [ACCEPT] network-retracted-nodes-persist
+Retracted nodes remain in `self.nodes` with `_retracted` metadata set; they are never deleted from the graph, enabling later restoration via `assert_node()` without rederivation.
+- Source: entries/2026/05/11/reasons_lib-network.md
+
+### [ACCEPT] network-single-justification-removal-blocked
+`remove_justification()` raises `ValueError` when a node has exactly one justification, forcing callers to use `convert_to_premise` or `retract` instead — preventing accidental creation of unjustified non-premise nodes.
+- Source: entries/2026/05/11/reasons_lib-network.md
+
+### [REJECT] network-propagate-skips-retracted
+Covered by existing `metadata-actively-governs-truth-propagation` which states retracted nodes are skipped during BFS traversal.
+- Source: entries/2026/05/11/reasons_lib-network.md
+
+### [REJECT] network-entrenchment-prefers-premises
+Covered by existing `add-nogood-retraction-prefers-least-entrenched` which captures the entrenchment scoring and premise preference.
+- Source: entries/2026/05/11/reasons_lib-network.md
+
+---
+
+### entries/2026/05/11/reasons_lib-pg.md
+
+### [ACCEPT] pg-psycopg-is-optional-dependency
+`psycopg` (v3) is soft-imported with fallback to `None`; `_require_psycopg()` raises `ImportError` with install instructions at `PgApi` construction time, mirroring the `mcp_client.py` lazy-guard pattern.
+- Source: entries/2026/05/11/reasons_lib-pg.md
+
+### [ACCEPT] pg-search-includes-one-hop-neighbors
+PostgreSQL full-text search via `plainto_tsquery` includes 1-hop neighbor expansion — direct antecedents and dependents of matching nodes are included in results, providing richer context than exact-match-only search.
+- Source: entries/2026/05/11/reasons_lib-pg.md
+
+### [ACCEPT] pg-uses-jsonb-with-gin-for-dependent-queries
+PgApi stores antecedents and outlist as JSONB arrays with GIN indexes, enabling per-operation dependent lookups via `@>` containment queries — unlike the SQLite backend which loads the full network, PgApi queries relationships incrementally.
+- Source: entries/2026/05/11/reasons_lib-pg.md
+
+---
+
+### entries/2026/05/11/tests-test_api.md
+
+### [ACCEPT] api-fts-search-bounds-query-calls
+`_fts_search` makes at most 51 internal `_fts_query` calls regardless of input query length, preventing combinatorial explosion from progressive relaxation on long queries.
+- Source: entries/2026/05/11/tests-test_api.md
+
+### [REJECT] api-retract-cascade-tested
+Describes test coverage rather than an architectural invariant; the cascade behavior itself is already captured by retraction beliefs.
+- Source: entries/2026/05/11/tests-test_api.md
+
+### [REJECT] api-list-negative-graceful-on-bad-llm
+Covered by existing `list-negative-is-defensively-bounded` and `llm-integration-fails-softly-across-modules`.
+- Source: entries/2026/05/11/tests-test_api.md
+
+### [REJECT] api-init-db-refuses-overwrite
+Covered by existing `api-enforces-typed-preconditions` which captures typed exception enforcement at the API boundary.
+- Source: entries/2026/05/11/tests-test_api.md
+
+### [REJECT] api-list-gated-excludes-superseded
+Covered by existing `supersession-is-reversible-and-view-consistent` which explicitly states superseded nodes are excluded from gated belief lists.
+- Source: entries/2026/05/11/tests-test_api.md
+
+
+## Proposed Beliefs from Test Suite Entries
+
+---
+
+### entries/2026/05/11/tests-test_ask.md
+
+### [ACCEPT] ask-source-chunks-persist-across-tool-iterations
+Source document content included in the initial ask prompt is re-included in all subsequent prompts after tool-call round-trips, ensuring the LLM retains source context across the entire multi-turn loop.
+- Source: entries/2026/05/11/tests-test_ask.md
+
+### [REJECT] ask-tool-loop-bounded-at-three
+Covered by existing `ask-has-tiered-query-modes` which already states "bounded 3-iteration tool loop."
+- Source: entries/2026/05/11/tests-test_ask.md
+
+### [REJECT] ask-absorbs-llm-failures
+Covered by existing `ask-never-raises-on-llm-failure` and `ask-falls-back-to-raw-search`.
+- Source: entries/2026/05/11/tests-test_ask.md
+
+### [REJECT] ask-natural-strips-all-metadata-fields
+Covered by existing `ask-natural-mode-strips-metadata-and-cite`.
+- Source: entries/2026/05/11/tests-test_ask.md
+
+---
+
+### entries/2026/05/11/tests-test_ask_mcp.md
+
+### [ACCEPT] ask-mcp-errors-non-fatal
+When an MCP bridge's `call_tool` raises an exception during the ask loop, `ask()` catches the error, feeds it back to the LLM as context, and continues the tool loop rather than propagating to the caller.
+- Source: entries/2026/05/11/tests-test_ask_mcp.md
+
+### [ACCEPT] ask-mcp-iteration-limit-is-five
+When `mcp_servers` is non-empty, `ask()` allows up to 5 tool-call iterations before forcing a final LLM response (6 total invocations), compared to the lower limit without MCP servers.
+- Source: entries/2026/05/11/tests-test_ask_mcp.md
+
+### [ACCEPT] build-tools-section-always-includes-search-beliefs
+`_build_tools_section` always includes the built-in `search_beliefs` tool in its output regardless of whether MCP bridges are provided — it is the baseline tool present in every ask prompt.
+- Source: entries/2026/05/11/tests-test_ask_mcp.md
+
+### [ACCEPT] ask-prompt-no-template-placeholders
+`build_ask_prompt` never leaves `{{` or `}}` template markers in the generated prompt string — all placeholders are resolved before output.
+- Source: entries/2026/05/11/tests-test_ask_mcp.md
+
+### [REJECT] extract-tool-call-schema-agnostic
+Covered by existing `extract-tool-call-returns-first-match` and `ask-uses-text-based-tool-protocol` which together establish that tool call parsing is generic.
+- Source: entries/2026/05/11/tests-test_ask_mcp.md
+
+---
+
+### entries/2026/05/11/tests-test_cli.md
+
+### [REJECT] cli-exit-code-zero-success-one-error
+All CLI subcommands use exit code 0 for success and exit code 1 for every error condition (missing nodes, access denied, duplicate IDs, file not found); no other exit codes appear in the test suite.
+- Source: entries/2026/05/11/tests-test_cli.md
+- Rejected: duplicate: same claim as existing `cli-exit-code-contract-is-binary`
+
+### [REJECT] cli-tests-use-blackbox-main-patching
+Covered by existing `cli-tests-are-black-box-integration`.
+- Source: entries/2026/05/11/tests-test_cli.md
+
+### [REJECT] cli-tests-are-self-contained
+Covered by existing `each-cli-test-creates-isolated-db`.
+- Source: entries/2026/05/11/tests-test_cli.md
+
+### [REJECT] cli-errors-go-to-stderr
+Covered by existing `cli-is-deterministic-and-stream-correct` which addresses stdout/stderr routing.
+- Source: entries/2026/05/11/tests-test_cli.md
+
+### [REJECT] what-if-is-readonly
+Covered by existing `pg-api-what-if-never-mutates`.
+- Source: entries/2026/05/11/tests-test_cli.md
+
+---
+
+### entries/2026/05/11/tests-test_cluster.md
+
+### [REJECT] auto-k-floor-is-two
+`_auto_k` never returns fewer than 2 clusters regardless of input size (using the `n // 5` heuristic), unless clamped by `n` itself when there are fewer beliefs than clusters.
+- Source: entries/2026/05/11/tests-test_cluster.md
+- Rejected: duplicate: floor of 2 already captured in existing `cluster-auto-k-heuristic` ("clamped between 2 and...")
+
+### [ACCEPT] list-clusters-partitions-all-beliefs
+`list_clusters` assigns every input belief to exactly one cluster with no drops or duplicates — the union of all cluster members equals the input set.
+- Source: entries/2026/05/11/tests-test_cluster.md
+
+### [REJECT] cluster-deps-are-optional-extras
+Covered by existing `cluster-deps-are-optional` and `cluster-deps-optional-with-graceful-skip`.
+- Source: entries/2026/05/11/tests-test_cluster.md
+
+### [REJECT] cluster-cache-is-incremental
+Covered by existing `cluster-cache-no-recompute`.
+- Source: entries/2026/05/11/tests-test_cluster.md
+
+---
+
+### entries/2026/05/11/tests-test_contradictions.md
+
+### [REJECT] contradiction-detection-filters-out-nodes
+`detect_contradictions` and `detect_contradictions_semantic` both exclude OUT-truth-value nodes before sending any prompt to the LLM, even if those node IDs are explicitly requested in the `belief_ids` parameter.
+- Source: entries/2026/05/11/tests-test_contradictions.md
+- Rejected: duplicate: same claim as existing `contradiction-in-only-filter` and `contradictions-only-checks-in-beliefs`
+
+### [ACCEPT] contradiction-plan-round-trips-apply-entries
+Writing a contradiction plan with `write_contradiction_plan` and parsing it back with `parse_contradiction_plan` preserves all `[APPLY]`-tagged NOGOOD entries with their IDs and claims, while discarding `[SKIP]`-tagged entries — enabling a human review workflow.
+- Source: entries/2026/05/11/tests-test_contradictions.md
+
+### [ACCEPT] belief-text-truncated-at-200-chars
+`format_beliefs_for_contradiction_check` truncates any belief text longer than 200 characters, appending `...` as a suffix, to keep LLM prompts bounded.
+- Source: entries/2026/05/11/tests-test_contradictions.md
+
+### [REJECT] parse-contradiction-requires-two-valid-claims
+Covered by existing `contradictions-min-two-claims-per-nogood`.
+- Source: entries/2026/05/11/tests-test_contradictions.md
+
+### [REJECT] batch-llm-failure-returns-empty-not-raises
+Covered by existing `batch-fault-isolation-is-universal-across-llm-operations` and `llm-fault-tolerance-is-multi-granular`.
+- Source: entries/2026/05/11/tests-test_contradictions.md
+
+
+### [ACCEPT] validate-proposals-rejects-jaccard-similar-to-out
+`validate_proposals` skips any proposal whose tokenized ID has >= 0.5 Jaccard similarity to an existing OUT belief, returning "similar to retracted" in the skip reason — preventing re-derivation of retracted beliefs under variant names
+- Source: entries/2026/05/11/tests-test_derive.md
+
+### [ACCEPT] jaccard-tokenizer-splits-on-hyphens-and-colons
+`_tokenize_id` splits belief IDs on hyphens and colons into token sets for Jaccard similarity comparison, so `foo-bar-baz` and `foo-bar-qux` share 2/4 tokens (0.5 similarity)
+- Source: entries/2026/05/11/tests-test_derive.md
+
+### [REJECT] validate-proposals-partitions-not-raises
+`validate_proposals` never raises exceptions — it partitions proposals into `(valid, skipped)` tuples where each skip carries a human-readable reason string
+- Source: entries/2026/05/11/tests-test_derive.md
+- Rejected: duplicate: same claim as existing `derive-fail-soft-validation` which already states validate_proposals filters into skipped list rather than raising
+
+### [ACCEPT] build-prompt-validates-custom-templates
+`build_prompt` raises `ValueError("unknown placeholder")` for unrecognized `{fields}` and `ValueError("malformed braces")` for unclosed braces in custom prompt templates
+- Source: entries/2026/05/11/tests-test_derive.md
+
+### [ACCEPT] apply-dedup-plan-collects-errors-not-raises
+`apply_dedup_plan` collects errors into `result["errors"]` rather than raising, allowing partial application — one missing node does not block processing of the remaining dedup plan
+- Source: entries/2026/05/11/tests-test_derive.md
+
+### [REJECT] pg-tests-skip-without-postgres-connection
+All tests in `test_pg.py` carry the `pytest.mark.pg` marker and `skip_no_pg` conditional skip — they are silently skipped when no PostgreSQL connection is available
+- Source: entries/2026/05/11/tests-test_pg.md
+- Rejected: trivial: standard pytest conditional skip via marker — obvious from the decorator itself
+
+### [ACCEPT] pg-dispatch-requires-project-id
+When `pg_conninfo` is provided (via CLI `--pg` flag or `REASONS_PG_CONNINFO` env var) without a corresponding `project_id`, the system calls `sys.exit()` rather than proceeding with an incomplete configuration
+- Source: entries/2026/05/11/tests-test_pg_dispatch.md
+
+### [ACCEPT] cli-flags-override-env-vars
+`_backend_kwargs` gives precedence to CLI `--pg`/`--project-id` flags over `REASONS_PG_CONNINFO`/`REASONS_PROJECT_ID` environment variables when both are present
+- Source: entries/2026/05/11/tests-test_pg_dispatch.md
+
+### [ACCEPT] import-functions-parse-before-dispatch
+API import functions (`import_json`, `import_beliefs`, `import_agent`) read and parse files into structured data in the API layer before delegating to `PgApi` — PgApi never receives raw file paths
+- Source: entries/2026/05/11/tests-test_pg_dispatch.md
+
+### [ACCEPT] all-api-functions-support-pg-dispatch
+Every public API function (`export_markdown`, `import_json`, `import_beliefs`, `import_agent`, `sync_agent`, `hash_sources`, `check_stale`, `lookup`, `add_repo`, `list_repos`, `list_negative`) accepts `pg_conninfo`/`project_id` kwargs and routes to the corresponding `PgApi` method
+- Source: entries/2026/05/11/tests-test_pg_dispatch.md
+
+### [ACCEPT] require-sqlite-blocks-pg-for-guarded-commands
+`_require_sqlite` enforces that certain subcommands (e.g., `hash-sources`) cannot run against a Postgres backend, checking both CLI flags and environment variables and calling `sys.exit()` if PG is detected
+- Source: entries/2026/05/11/tests-test_pg_dispatch.md
+
+### [ACCEPT] remove-justification-enforces-minimum-count
+`Network.remove_justification` refuses to remove the last justification from a derived node — a derived node must retain at least one justification, enforced with `ValueError("only one justification")`
+- Source: entries/2026/05/11/tests-test_remove_justification.md
 
 
