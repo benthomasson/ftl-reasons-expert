@@ -80,9 +80,9 @@ The project requires Python 3.10+ (python-310-minimum) and only distributes the 
 
 ## Quality Gates and CI Integration
 
-The system enforces belief quality through dual non-mutating gates targeting complementary validity dimensions (dual-quality-gates-are-complementary-and-non-mutating). Review validates logical soundness of derived beliefs, scoped to justified nodes with dry-run gated auto-retraction (review-pipeline-is-scoped-and-mutation-safe). Staleness checking validates source currency of all IN beliefs as a conservative CI gate with nonzero exit on drift (staleness-is-conservative-ci-gate). Neither gate can corrupt network state.
+The system enforces belief quality through dual non-mutating gates targeting complementary validity dimensions (dual-quality-gates-are-complementary-and-non-mutating). Review validates logical soundness of derived beliefs, scoped to justified nodes with dry-run gated auto-retraction ([review-pipeline-is-scoped-and-mutation-safe](safe.md#review-pipeline-is-scoped-and-mutation-safe)). Staleness checking validates source currency of all IN beliefs as a conservative CI gate with nonzero exit on drift (staleness-is-conservative-ci-gate). Neither gate can corrupt network state.
 
-Staleness detection compares full 64-character SHA-256 hex digests (staleness-uses-full-sha256) — earlier truncation to 16 hex characters was removed in PR #40 (hash-file-full-sha256). Results use a uniform 6-key schema regardless of reason type, sorted by node ID for deterministic output (check-stale-output-is-deterministic-and-structured).
+Staleness detection compares full 64-character SHA-256 hex digests (staleness-uses-full-sha256) — earlier truncation to 16 hex characters was removed in PR #40 (hash-file-full-sha256). Results use a uniform 6-key schema regardless of reason type, sorted by node ID for deterministic output ([check-stale-output-is-deterministic-and-structured](deterministic.md#check-stale-output-is-deterministic-and-structured)).
 
 Several commands follow a plan-review-apply pattern: generate proposals to a file, allow human review and editing, then apply the reviewed plan with `--accept` — with `--auto` collapsing all three phases (cli-plan-review-apply-pattern). The derive pipeline's `--exhaust` flag implies `--auto`, iterating until no new beliefs can be derived (exhaust-implies-auto).
 

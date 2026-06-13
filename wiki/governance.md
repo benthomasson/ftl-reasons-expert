@@ -18,7 +18,7 @@ Governance achieves completeness along three independent output dimensions simul
 
 - **Source completeness** — lifecycle governance achieves gap-free source coverage, ensuring every source file is tracked with no silent gaps (`governance-achieves-topology-and-source-completeness`).
 
-- **Traceability completeness** — governance actions produce metadata-enriched state transitions, so every modification is not only propagated and source-verified but also traceable through rich lifecycle metadata (`topology-complete-governance-produces-rich-traceable-state`, referenced by `governance-is-topology-source-and-traceability-complete`).
+- **Traceability completeness** — governance actions produce metadata-enriched state transitions, so every modification is not only propagated and source-verified but also traceable through rich lifecycle metadata (`[topology-complete-governance-produces-rich-traceable-state](topology.md#topology-complete-governance-produces-rich-traceable-state)`, referenced by `governance-is-topology-source-and-traceability-complete`).
 
 This three-dimensional completeness means every governance action produces a verifiable, traceable, source-grounded state transition.
 

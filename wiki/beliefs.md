@@ -8,7 +8,7 @@ The belief system provides structured mechanisms for organizing, reviewing, impo
 
 Beliefs can be grouped into thematic clusters for navigation and budget-constrained selection. The `cluster_beliefs` function partitions the full input set so that every belief lands in exactly one cluster with no drops or duplicates (`list-clusters-partitions-all-beliefs`). When the input set exceeds the requested budget, the function returns exactly `budget` belief IDs; when it is smaller, all items are returned (`cluster-beliefs-returns-exact-budget`). Each cluster's allocation is individually capped to prevent over-selection from any single group (`cluster-beliefs-respects-budget`).
 
-Clustering is fully deterministic: given the same beliefs, budget, and random seed, `cluster_beliefs` produces identical output across calls (`cluster-beliefs-deterministic-with-seed`). Together, the exact-budget and deterministic properties ensure that cluster-based selection is both predictable and precisely sized (`cluster-selection-is-deterministic-and-budget-exact`).
+Clustering is fully deterministic: given the same beliefs, budget, and random seed, `cluster_beliefs` produces identical output across calls (`cluster-beliefs-deterministic-with-seed`). Together, the exact-budget and deterministic properties ensure that cluster-based selection is both predictable and precisely sized (`[cluster-selection-is-deterministic-and-budget-exact](deterministic.md#cluster-selection-is-deterministic-and-budget-exact)`).
 
 ## Contradiction Detection
 
@@ -20,7 +20,7 @@ The review system is similarly scoped. `review_beliefs` filters out premises —
 
 ## Import Handling
 
-When beliefs are imported from an external source, the system preserves their truth state faithfully. Beliefs that are OUT or STALE in the source are imported with an empty justification list, which prevents `recompute_all` from resurrecting them to IN (`out-beliefs-imported-without-justifications`). This invariant ensures that import does not inadvertently revive retracted beliefs and supports correct handling of heterogeneous truth states across sources (`import-handles-heterogeneous-truth-states`).
+When beliefs are imported from an external source, the system preserves their truth state faithfully. Beliefs that are OUT or STALE in the source are imported with an empty justification list, which prevents `recompute_all` from resurrecting them to IN (`out-beliefs-imported-without-justifications`). This invariant ensures that import does not inadvertently revive retracted beliefs and supports correct handling of heterogeneous truth states across sources (`[import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states)`).
 
 ## Tool Integration
 
