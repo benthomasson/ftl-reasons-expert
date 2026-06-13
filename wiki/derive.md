@@ -2,68 +2,75 @@
 
 [Back to index](index.md)
 
-The derive pipeline is the LLM-driven belief generation subsystem of ftl-reasons. It constructs prompts from the existing belief network, sends them to an external model, parses the resulting proposals, validates them against safety invariants, and applies valid proposals to the database. The pipeline is designed around three core properties: reproducibility, fault tolerance, and defensive validation.
-
-## LLM Invocation Model
-
-The derive pipeline invokes language models by shelling out to `claude` or `gemini` CLI binaries via `asyncio.create_subprocess_exec`, rather than through any Python SDK (`derive-uses-subprocess-not-sdk`). To prevent recursive Claude Code invocation, `_derive_one_round` explicitly removes the `CLAUDECODE` environment variable before spawning the model subprocess (`derive-strips-claudecode-env`).
+The derive pipeline is the LLM-driven inference engine of the belief network, responsible for generating new derived beliefs from existing ones. It constructs prompts containing a budget-constrained subset of current beliefs, sends them to an LLM, parses the proposed derivations, validates them against multiple safety invariants, and applies the survivors to the network. The pipeline is designed around three principles: strategic flexibility in belief selection, deterministic reproducibility across runs, and defense-in-depth at every stage.
 
 ## Budget Allocation
 
-When multiple agents contribute beliefs to the network, `_build_beliefs_section` allocates prompt token budget proportionally to each agent's belief count, with a floor of 5 beliefs per agent (`derive-agent-budget-proportional`). The non-agent (local) group receives the same minimum guarantee of 5 belief slots regardless of agent budget pressure (`derive-budget-local-floor-is-five`). This floor prevents proportional allocation from starving minority agents or the local group.
+Before the LLM can reason over beliefs, the pipeline must decide which beliefs to include in the prompt — a constrained optimization problem when the network is large.
 
-Agent belief counting accumulates linearly — O(N) in the number of beliefs shown per agent, not quadratically (`derive-budget-count-is-linear`). This corrected behavior followed the fix for issue #23, where `count += len(belief_ids)` had been placed inside the per-belief loop, inflating the count and shrinking the non-agent budget below its intended size (`derive-agent-count-bug`, OUT — fixed).
+The `_build_beliefs_section` function allocates prompt token budget proportionally to each agent's belief count, with a guaranteed floor of five beliefs per agent group (`derive-agent-budget-proportional`, `derive-budget-floor-five`). The local (non-agent) belief group receives the same five-slot minimum regardless of agent budget pressure (`derive-budget-local-floor-is-five`). This floor ensures proportional allocation never starves minority agents or local beliefs (`derive-budget-is-efficient-and-floor-bounded`).
 
-The proportional allocation produces correct per-agent token counts (`derive-budget-allocation-is-accurate`), a property that depends on both the per-agent budgeting logic and the round-trippable prompt format (`derive-prompt-roundtrips-through-parser`).
+The accumulation logic runs in O(N) time — a correction from an earlier quadratic bug (issue #23) where `count += len(belief_ids)` was incorrectly placed inside the per-belief loop (`derive-budget-count-is-linear`).
 
-### Selection Strategies
+## Selection Strategies
 
-The pipeline supports three budget strategies, all controlled by a single `max_beliefs` parameter (`derive-budget-three-strategies`):
+The pipeline supports three strategies for choosing which beliefs fill the budget, all controlled by a single `max_beliefs` parameter (`derive-budget-three-strategies`):
 
-- **Alphabetical truncation** (default) — deterministic ordering by belief ID
-- **Random sampling** (`sample=True`) — uses a fixed seed for deterministic selection
-- **Semantic clustering** (`cluster=True`) — embedding-based grouping that ensures topical diversity across the prompt
+- **Alphabetical truncation** (default) — beliefs sorted by ID, truncated at the budget limit
+- **Random sampling** (`sample=True`) — random subset with a fixed seed for determinism
+- **Semantic clustering** (`cluster=True`) — embedding-based grouping ensures topical diversity across the prompt
 
-When using cluster-based selection, the pipeline achieves semantically-informed budget allocation with end-to-end determinism: sorted embedding order, fixed-seed clustering, and exact budget counts feed into reproducible prompt construction (`cluster-derive-is-semantically-informed-and-deterministic`). The three strategies resolve the tension between strategic flexibility and deterministic reproducibility — diverse exploration approaches with identical results across runs (`derive-achieves-flexibility-with-reproducibility`).
+When using cluster-based selection, the pipeline achieves semantically-informed budget allocation with end-to-end determinism: sorted embedding order, fixed-seed clustering, and exact budget counts feed into reproducible prompt construction (`cluster-derive-is-semantically-informed-and-deterministic`). This resolves the tension between strategic flexibility and deterministic reproducibility — callers can trade off reproducibility, diversity, and semantic coherence without performance penalty (`derive-achieves-flexibility-with-reproducibility`).
 
-## Prompt Format and Round-Tripping
+## Prompt Construction and Reproducibility
 
-The `### DERIVE` / `### GATE` format serves as a shared contract between three components: the `DERIVE_PROMPT` LLM output, the `parse_proposals()` parser, and the `write_proposals_file()` serializer (`derive-prompt-roundtrips-through-parser`). This forms a closed serialization loop — `write_proposals_file` output can be parsed back by `parse_proposals` with no data loss, enabling a write-review-accept cycle where humans edit proposals in the same format the parser reads (`derive-prompt-round-trippable`).
+Prompt construction is fully reproducible: deterministic sampling with fixed seeds selects consistent belief subsets, and accurate proportional budget allocation ensures each agent receives the same token share across runs (`derive-prompt-is-deterministic-and-reproducible`). The budget allocation's accuracy depends on the prompt format round-tripping cleanly through the parser — the `### DERIVE` / `### GATE` format serves as a shared contract between the LLM output, `parse_proposals()` input, and `write_proposals_file()` output, forming a closed serialization loop (`derive-prompt-roundtrips-through-parser`).
 
-The parser supports two format versions: the current `### DERIVE id` format (v0.10+) is tried first, falling back to the older `### DERIVE: \`id\`` format (v0.9) only when no new-format matches are found (`derive-parse-supports-two-formats`). This backward compatibility ensures the system tolerates format evolution at its boundaries.
+This round-trip property also enables a write-review-accept workflow: `write_proposals_file` output can be parsed back by `parse_proposals` with no data loss, so humans can edit proposals in the same format the parser reads (`derive-prompt-round-trippable`).
 
-## Validation and Safety
+## Parsing
 
-The derive pipeline applies multiple defensive layers before proposals reach the database (`derive-pipeline-is-defensive`).
+`parse_proposals` supports two format versions for backward compatibility (`derive-parse-supports-two-formats`). It tries the newer format first (v0.10+: `### DERIVE id`), falling back to the older format (v0.9: `### DERIVE: \`id\``) only when the new parser returns zero matches. This tolerance for format evolution is part of the system's broader approach to boundary compatibility (`system-tolerates-evolution-at-all-boundaries`).
 
-### Fail-Soft Validation
+## Validation
 
-`validate_proposals` filters invalid proposals into a skipped list with reasons rather than raising exceptions (`derive-fail-soft-validation`). This fail-soft approach means one malformed proposal never blocks the processing of valid siblings.
+Before proposals reach the database, `validate_proposals` enforces several invariants:
 
-### Retraction Guards
+- **Duplicate rejection** — any proposal whose belief ID already exists in the network is rejected, preventing overwrites (`derive-validate-rejects-duplicate-ids`).
+- **Retraction guard** — any proposal whose ID has ≥50% Jaccard token overlap (tokenized on hyphens/colons) with an existing OUT belief is rejected, preventing re-derivation of previously retracted conclusions (`derive-retraction-guard-uses-jaccard`).
+- **Fail-soft filtering** — invalid proposals are collected into a skipped list with reasons rather than raising exceptions (`derive-fail-soft-validation`).
 
-Any proposed belief ID with Jaccard similarity >= 0.5 to an existing OUT node is rejected, preventing re-derivation of previously retracted conclusions (`derive-retraction-guard-uses-jaccard`). The similarity is computed by tokenizing IDs on hyphens and colons (`derive-validate-blocks-retracted-rediscovery`). Duplicate IDs — proposals whose belief ID already exists in the network — are also rejected, preventing overwrites through the derive pipeline (`derive-validate-rejects-duplicate-ids`).
+Notably, the minimum-two-antecedents rule for derived beliefs is enforced only by the LLM prompt instructions, not validated in code (`derive-min-antecedents-is-prompt-only`). This is a deliberate design point tracked as part of the quality enforcement lifecycle.
 
-### Minimum Antecedent Rule
+## Application and Error Isolation
 
-The requirement that derived beliefs have at least two antecedents is enforced only by the LLM prompt instructions, not validated in code by `validate_proposals` (`derive-min-antecedents-is-prompt-only`). This is a notable gap in code-level enforcement — the pipeline trusts the model to comply with this structural constraint.
+The apply stage implements defense-in-depth through two layers (`derive-apply-is-isolated-and-caller-validated`):
 
-## Application Stage
+1. **Trust boundary** — callers must run `validate_proposals` before calling `apply_proposals`, which trusts its input unconditionally (`derive-validate-before-apply`).
+2. **Per-proposal isolation** — `apply_proposals` wraps each `api.add_node()` call in try/except and accumulates `(proposal, error_string)` tuples, so one malformed proposal cannot abort or corrupt the batch (`derive-apply-isolates-per-proposal-errors`).
 
-The apply stage achieves defense-in-depth through a two-layer design (`derive-apply-is-isolated-and-caller-validated`). First, callers must run `validate_proposals` before calling `apply_proposals`, which trusts its input unconditionally (`derive-validate-before-apply`). Second, even if invalid proposals survive validation, `apply_proposals` wraps each `api.add_node()` call in independent error handling, accumulating `(proposal, error_string)` tuples so one malformed proposal cannot corrupt the batch (`derive-apply-isolates-per-proposal-errors`).
+This batch fault isolation pattern is applied universally across all LLM-driven operations in the system (`batch-fault-isolation-is-universal-across-llm-operations`).
 
-## Exhaustive Mode and Termination
+## Process Isolation
 
-The pipeline supports an `--exhaust` flag that enables automatic application of all discovered proposals across multiple rounds. Depth-based cycle detection with pre-recursion memoization prevents infinite loops even when justification chains are cyclic — `_get_depth` sets `memo[node_id] = 0` before recursing, so cycles resolve to depth 0 (`derive-depth-cycle-guard`).
+The derive command invokes LLMs by shelling out to `claude` or `gemini` CLI binaries via `asyncio.create_subprocess_exec`, not through any Python SDK (`derive-uses-subprocess-not-sdk`). Before spawning the model subprocess, `_derive_one_round` explicitly removes the `CLAUDECODE` environment variable to prevent recursive Claude Code invocation (`derive-strips-claudecode-env`).
 
-## Error Handling and Resilience
+## Resilience and Reporting
 
-`_derive_one_round` uses return values rather than exceptions for flow control: -1 signals an error, 0 indicates saturation (no new beliefs discoverable), and a positive integer reports the number of beliefs added (`derive-returns-negative-one-on-error`). The `cmd_derive` exhaust loop uses these codes to decide whether to continue, stop, or abort.
+The pipeline uses return values rather than exceptions for flow control: `_derive_one_round` returns -1 on error, 0 on saturation, and a positive count on success, which the exhaust loop in `cmd_derive` uses to decide whether to continue (`derive-returns-negative-one-on-error`).
 
-The pipeline persists partial results via JSON reports after each round. The `--report-dir` option writes a JSON report containing a `rounds` array with `proposals_found` and `added` counts per round (`derive-report-json-has-rounds-array`). Both `cmd_derive` and `cmd_review_beliefs` write these partial reports via `_write_derive_report`, so crash recovery is possible from the last completed step (`derive-reports-survive-partial-runs`).
+Partial results are persisted via JSON reports after each round through `_write_derive_report`, so crash recovery is possible from the last completed step (`derive-reports-survive-partial-runs`). The `--report-dir` flag writes a JSON report containing a `rounds` array where each entry records `proposals_found` and `added` counts (`derive-report-json-has-rounds-array`).
 
-Together, these mechanisms provide end-to-end fault tolerance through three independent layers: proactive defense (validation and guards), reactive resilience (persisted partial results and return-code signaling), and prompt reproducibility enabling consistent re-runs after failures (`derive-pipeline-achieves-end-to-end-fault-tolerance`).
+## End-to-End Fault Tolerance
 
-## Retracted Assessments
+These layers compose into end-to-end fault tolerance through three independent mechanisms (`derive-pipeline-achieves-end-to-end-fault-tolerance`):
 
-Several higher-level assessments of the derive pipeline have been retracted. The claim that the pipeline achieves "complete coverage" across safety, completeness, and production-readiness axes (`derive-pipeline-has-complete-coverage`, OUT) was retracted, as was the claim that all quality constraints are comprehensively code-enforced (`derive-quality-is-comprehensively-code-enforced`, OUT) — undermined by the prompt-only minimum-antecedent rule. The "fully assured" quadruple-assurance characterization (`derive-pipeline-is-reproducible-and-fully-assured`, OUT) was also retracted, along with its dependency on exhaustive-and-terminating completeness (`derive-pipeline-is-exhaustive-and-terminating`, OUT). These retractions reflect a more precise understanding of the pipeline's actual guarantees versus aspirational characterizations.
+- **Proactive defense** — fail-soft validation, Jaccard retraction guards, and environment isolation prevent bad states from forming.
+- **Reactive resilience** — partial results persisted via JSON reports after each round, with error states signaled through return codes rather than exceptions.
+- **Prompt reproducibility** — deterministic sampling with fixed seeds enables consistent re-runs after failures.
+
+The pipeline also achieves both reproducibility and defense-in-depth at the application stage, ensuring runs are repeatable and any surviving bad proposal cannot corrupt sibling proposals (`derive-pipeline-is-reproducible-and-defense-in-depth`).
+
+## Cycle Safety
+
+The `_get_depth` function, used during derive to assess belief depth, guards against infinite recursion on cyclic justification chains by setting `memo[node_id] = 0` before recursing — cycles resolve to depth 0 (`derive-depth-cycle-guard`).

@@ -2,40 +2,32 @@
 
 [Back to index](index.md)
 
-The ftl-reasons system integrates large language models as subprocess workers for three core operations: interactive querying, batch belief derivation, and belief classification. The integration follows a defense-in-depth strategy where LLM output is treated as untrusted external input — bounded, validated, and isolated at multiple layers before it can affect the belief network.
+LLM integration in the ftl-reasons system spans query synthesis, belief derivation, and contradiction detection. The architecture treats language models as untrusted subprocesses, wrapping every invocation in isolation boundaries and graceful degradation paths so that malformed or adversarial LLM output cannot corrupt the belief network.
 
-## Subprocess Isolation and Input Handling
+## Subprocess Isolation
 
-All LLM invocations run as subprocesses rather than in-process API calls. Prompts are passed via `subprocess.run(input=...)` rather than as command-line arguments, avoiding both shell injection and argument length limits (`llm-prompt-always-via-stdin`). To prevent recursive Claude Code entry, all LLM subprocess invocations strip the `CLAUDECODE` environment variable centrally in `invoke_model()`, a pattern inherited by every LLM-facing module (`llm-subprocess-isolation-prevents-recursion`).
+All LLM invocations run as external subprocesses rather than in-process library calls. Prompts are passed via `subprocess.run(input=...)`, never as command-line arguments — this avoids both shell injection vulnerabilities and argument length limits (llm-prompt-always-via-stdin). To prevent recursive Claude Code entry, `invoke_model()` centrally strips the `CLAUDECODE` environment variable before spawning any LLM subprocess, a safeguard inherited by all LLM-facing modules including `ask`, `derive`, and `review` (llm-subprocess-isolation-prevents-recursion).
 
-## Multi-Model Support
+### Multi-Model Support
 
-The system supports multiple LLM backends including Claude, Gemini, and Ollama. Model resolution handles provider-specific identifier formats — for instance, `resolve_model_cmd("ollama:model:tag")` splits on the first colon only, preserving the `model:tag` portion as a valid Ollama identifier (`llm-resolve-ollama-preserves-inner-colons`). Post-processing is also model-aware: thinking-marker stripping (`Thinking...` / `...done thinking.`) applies only to Ollama output, leaving Claude and Gemini responses unmodified even if they happen to contain the same markers (`llm-thinking-strip-ollama-only`).
+The system supports multiple LLM backends with model-specific handling. When resolving Ollama model identifiers, `resolve_model_cmd("ollama:model:tag")` splits on the first colon only, preserving the `model:tag` portion intact as the Ollama model identifier (llm-resolve-ollama-preserves-inner-colons). Output post-processing is also model-aware: thinking-marker stripping (`Thinking...` / `...done thinking.`) is applied only to Ollama output, while Claude and Gemini output passes through unmodified even if it contains the same markers (llm-thinking-strip-ollama-only).
 
-## Interactive Querying
+## Query Modes
 
-The `ask` command provides tiered query modes. In dual mode, it makes up to three LLM calls — one for TMS synthesis, one for FTS RAG retrieval, and one to merge the results — short-circuiting to two calls if either retrieval path returns empty (`ask-dual-mode-makes-three-llm-calls`). When `no_synth=True`, the LLM is bypassed entirely and raw FTS5 search results are returned without invoking the Claude CLI (`no-synth-mode-skips-llm`, `ask-no-synth-bypasses-llm`).
+The `ask()` function offers tiered query modes that vary in how many LLM calls they make. In dual mode, up to three LLM calls are issued — one for TMS synthesis, one for FTS RAG, and one to merge the results — with short-circuiting to two calls if either retrieval path returns empty (ask-dual-mode-makes-three-llm-calls). When `no_synth=True`, the function returns formatted FTS5 search results directly without contacting the LLM at all (no-synth-mode-skips-llm, ask-no-synth-bypasses-llm), providing a fast, deterministic fallback for raw retrieval.
 
-Fault tolerance is built into the query path: `ask()` catches `TimeoutExpired` and `RuntimeError` from the LLM invocation and falls back to raw search results rather than propagating exceptions, guaranteeing a string return under all conditions (`ask-never-raises-on-llm-failure`).
+Beyond querying, the `detect-contradictions` command uses LLMs for semantic analysis. When invoked with the `--semantic` flag, it first embeds beliefs via sentence-transformers and clusters them with KMeans, then sends each cluster to the LLM as a batch — ensuring topically related beliefs are analyzed together rather than being scattered across arbitrary groups of 50 (semantic-contradictions-cluster-before-llm).
 
-## Belief Derivation Pipeline
+## Fault Tolerance
 
-LLM-driven belief derivation is bounded at every stage of the pipeline (`llm-mutations-are-bounded-end-to-end`). At the input layer, proposals undergo fail-soft filtering, Jaccard retraction guards prevent near-duplicate beliefs, and environment stripping isolates the LLM boundary. At the persistence layer, atomic load/save with write-flag gating ensures consistency. At the output layer, deterministic terminating BFS with lifecycle-aware traversal propagates truth values safely (`llm-driven-mutations-are-safely-bounded`).
+LLM calls are treated as inherently unreliable, and the system degrades gracefully at every level. If the LLM subprocess times out or raises a `RuntimeError`, `ask()` catches the exception and falls back to raw FTS5 search results, guaranteeing a string return rather than propagating the failure (ask-never-raises-on-llm-failure). Similarly, when `list_negative()` receives unparseable LLM output, it returns `count == 0` rather than raising an exception (api-list-negative-graceful-on-malformed-llm). This pattern — graceful degradation over failure — is consistent across the LLM boundary.
 
-An important caveat: while structural validation ensures that justification references exist and point to IN beliefs, the logical soundness of the inference itself — whether the derived conclusion actually follows from its antecedents — is validated only by the proposing LLM. No code-level check verifies logical validity (`derived-belief-soundness-is-llm-only`).
+## Safety Boundaries for LLM-Driven Mutations
 
-## Belief Classification
+Belief derivation, where the LLM proposes new beliefs from existing ones, is the most sensitive LLM integration point. The system employs defense in depth: the derive pipeline validates proposals with fail-soft filtering, Jaccard retraction guards, and environment stripping at the LLM boundary, while the API layer enforces atomic load/save with write-flag gating and dict-only returns at the persistence boundary (llm-driven-mutations-are-safely-bounded). These guarantees compose end-to-end: input validation, atomic persistence, and deterministic terminating BFS propagation ensure that LLM-driven mutations are bounded at every stage (llm-mutations-are-bounded-end-to-end).
 
-The `list_negative()` operation classifies beliefs using LLM analysis. When the LLM returns unparseable output, the function returns `count == 0` rather than raising an exception — graceful degradation over failure (`api-list-negative-graceful-on-malformed-llm`).
+One intentional gap remains: while structural validation confirms that justification references exist and are IN, the *logical soundness* of the inference — whether the derived conclusion actually follows from its antecedents — is validated only by the proposing LLM. No code-level check verifies logical validity (derived-belief-soundness-is-llm-only). This is a deliberate design trade-off, relying on LLM reasoning quality and downstream review rather than formal verification.
 
-## Semantic Contradiction Detection
+## CLI Command Categories
 
-The `detect-contradictions` command with the `--semantic` flag uses a clustering-before-LLM strategy: beliefs are embedded via sentence-transformers, clustered with KMeans, and then each cluster is sent to the LLM as a batch. This ensures topically related beliefs are analyzed together rather than being scattered across arbitrary batches of 50 (`semantic-contradictions-cluster-before-llm`).
-
-## CLI Command Architecture
-
-Roughly 21 CLI commands interact only with SQLite rather than the PostgreSQL API. These fall into three categories: filesystem-dependent commands (like `hash-sources` and `check-stale`), LLM-powered commands (like `derive`, `review-beliefs`, `detect-contradictions`, and `ask`), and bulk import/sync operations. All require either local file access or load-entire-network-modify-save semantics incompatible with per-operation transaction models (`sqlite-only-commands-are-filesystem-llm-or-bulk`).
-
-## Retracted Integration Claims
-
-Several higher-level beliefs about comprehensive LLM safety properties have been retracted (OUT), including claims about production-hardened integration (`llm-integration-is-production-hardened`), defense-in-depth across layers (`llm-integration-is-defense-in-depth-across-layers`), multi-granular fault tolerance (`llm-fault-tolerance-is-multi-granular`), and a complete LLM-driven quality lifecycle (`review-completes-llm-quality-lifecycle`). These retractions typically cascaded from underlying beliefs losing support — for example, changes to the derive pipeline's coverage claims or the ask module's bounded-execution guarantees. The concrete, premise-level observations about subprocess isolation, fault handling, and model-specific behavior remain held (IN), while the broad architectural conclusions drawn from them have been withdrawn.
+Approximately 21 CLI commands operate only against a local SQLite database rather than the PostgreSQL API. These fall into three categories: filesystem-dependent commands (such as `hash-sources` and `check-stale`), LLM-powered commands (including `derive`, `review-beliefs`, `detect-contradictions`, and `ask`), and bulk import/sync operations (sqlite-only-commands-are-filesystem-llm-or-bulk). The LLM-powered commands require load-entire-network-modify-save semantics that are incompatible with the per-operation transaction model used by the PostgreSQL backend.

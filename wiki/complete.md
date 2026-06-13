@@ -2,77 +2,36 @@
 
 [Back to index](index.md)
 
-The concept of completeness pervades the ftl-reasons architecture, appearing at every layer from low-level evaluation primitives through high-level dialectical operations. Rather than a single property, completeness is a family of guarantees: that every negation form is covered, every truth change propagates fully, every contradiction resolves traceably, and every revision reverses cleanly. These guarantees reinforce each other — propagation completeness enables cascade completeness, which enables revision completeness, which enables architectural completeness.
+The concept of completeness in ftl-reasons spans multiple dimensions of the system's design — from the semantics of negation to the architecture of truth propagation, contradiction resolution, and dialectical reasoning. Rather than a single property, completeness is an emergent guarantee that arises when each subsystem covers its full domain without gaps, ensuring no belief escapes evaluation, no truth change goes unpropagated, and no defeat is irreversible.
 
+## Negative Semantics
+
+The system achieves complete coverage of all forms by which beliefs can be negated or defeated. Two complementary mechanisms handle the full negation space: structural absence produces emergent premise behavior with asymmetric fail modes, while explicit outlist entries provide conjunctive defeat with defined absent-node handling and persistence (absence-and-outlist-form-complete-negative-semantics). Together these mechanisms form a complete belief modification lifecycle — every form of defeat reverses automatically through BFS propagation cascades, and surgical restoration hints target only cascade victims with surviving premises, so every retraction can be undone with guided recovery (negative-semantics-are-complete-reversible-and-recoverable).
+
+This completeness is reinforced by the system's uniform handling of semantic edge cases. Vacuous premises, asymmetric absence, and empty antecedents are all governed by the same minimal evaluation rules that ensure reversibility (edge-case-uniformity-reinforces-complete-negative-semantics). The uniformity is not incidental — it follows directly from the minimality of the evaluation primitive set, which handles all cases without case-specific logic.
+
+## Belief Modification and Contradiction Resolution
+
+Belief modification is complete in both directions. When contradictions arise, they are resolved through traceable dependency-directed backtracking with consistent nogood IDs. When defeats suppress truth values, they reverse automatically through BFS propagation with surgical restoration hints. No truth change is either irresolvable or irreversible without full traceability (belief-modification-is-bidirectionally-complete-and-traceable).
+
+The contradiction management pipeline itself provides complete coverage: the revision pipeline reliably resolves contradictions through outlist defeat and backtracking with guaranteed termination, while nogood resolution maintains a consistent referenceable history of all detected contradictions — enabling both automated resolution and post-hoc forensic analysis (contradiction-management-is-complete-and-traceable). Notably, contradiction resolution simultaneously achieves two properties that might seem to be in tension: minimal disruption through least-entrenched culprit selection, and complete effect propagation through transitive retraction cascades with guaranteed termination. The system minimizes blast radius while ensuring no node escapes the cascade (contradiction-resolution-achieves-minimal-impact-complete-cascades).
+
+## Dependency Tracking and Propagation
+
+Complete dependency tracking is foundational to several other completeness guarantees. The dependents index fully tracks all relationship types — both antecedent references and outlist references — enabling complete incremental propagation for every truth value change without requiring periodic full recomputation as a fallback (dependency-tracking-is-complete-for-all-reference-types). This matters because incremental truth propagation must reach every node whose truth value should change, including nodes that depend via outlist entries. Safe terminating BFS traversal over this complete index achieves exactly that (incremental-propagation-is-fully-complete).
+
+Dependency completeness also enables accurate deduplication: survivor selection reflects the complete dependency graph by preserving the node with the most dependents in each cluster, counting both antecedent-based and outlist-based edges (dedup-reflects-complete-dependency-graph).
 
 ## Architectural Completeness
 
-The core architectural claim is that the reasoning-and-revision system is both deterministic in its state trajectories and lifecycle-complete in its monitoring coverage — no belief can escape either guarantee (complete-architecture-is-deterministic-and-lifecycle-complete). This dual property means every belief is predictably computed and fully tracked throughout its existence.
+At the architectural level, completeness manifests as the conjunction of deterministic state trajectories and gapless lifecycle monitoring — no belief can escape either guarantee, creating a system where every belief is both predictably computed and fully tracked (complete-architecture-is-deterministic-and-lifecycle-complete). This deterministic, lifecycle-complete architecture is fully portable across storage backends, operating identically on both SQLite and PostgreSQL (complete-architecture-is-backend-portable). Both backends provide atomic isolated operations with complete API coverage, with SQLite's context-managed mutations and PgApi's per-method transactions covering the same full set of operations (dual-backend-atomicity-is-feature-complete).
 
-This deterministic lifecycle-complete architecture achieves full portability across storage backends, operating identically on both SQLite and PostgreSQL (complete-architecture-is-backend-portable). The portability claim rests on uniform safety enforcement across all layers and backends, combined with the architecture's predictable state trajectories.
-
-An earlier, stronger claim — that this architecture achieves verified production correctness across all operation types — has been retracted (complete-architecture-achieves-verified-production-correctness, OUT), as has the claim that completeness and invariant preservation flow from shared minimal foundations (complete-architecture-preserves-invariants-minimally, OUT). These retractions reflect refinements in understanding rather than fundamental architectural flaws.
-
-
-## Complete Negative Semantics
-
-The system achieves complete semantics for all forms of negation through two complementary mechanisms (absence-and-outlist-form-complete-negative-semantics). Structural absence produces emergent premise behavior and asymmetric fail modes, while explicit outlist entries provide conjunctive defeat with defined absent-node handling and persistence. Together, these cover every mechanism by which beliefs can be negated or defeated.
-
-These negative semantics form a complete belief modification lifecycle: all defeat mechanisms reverse automatically through BFS propagation cascades, and surgical restoration hints target only cascade victims with surviving premises (negative-semantics-are-complete-reversible-and-recoverable). Every belief retraction can be undone with guided recovery.
-
-Uniform handling of semantic edge cases — vacuous premises, asymmetric absence, empty antecedents — reinforces this completeness (edge-case-uniformity-reinforces-complete-negative-semantics). Every edge case within the negation lifecycle is handled by the same minimal evaluation rules that ensure reversibility, rather than requiring special-case logic.
-
-
-## Propagation and Dependency Completeness
-
-Incremental truth propagation reaches every node whose truth value should change — including nodes depending via outlist entries — without requiring periodic full recomputation (incremental-propagation-is-fully-complete). This works because safe terminating BFS traversal operates over a dependents index that tracks both antecedent and outlist relationships.
-
-The dependents index itself is complete for all reference types (dependency-tracking-is-complete-for-all-reference-types), maintained incrementally so that every network mutation keeps it current. This completeness has a concrete downstream effect: deduplication survivor selection accurately reflects the full dependency graph, preserving the structurally most-connected node in each cluster (dedup-reflects-complete-dependency-graph).
-
-The claim that both forward propagation and backward retraction achieve complete graph traversal with guaranteed termination has been retracted (graph-traversal-is-complete-and-terminating-in-both-directions, OUT), suggesting that bidirectional completeness remains an area of ongoing refinement.
-
-
-## Contradiction and Revision Completeness
-
-Contradiction management is complete and traceable along two axes: the revision pipeline reliably resolves contradictions through outlist defeat and dependency-directed backtracking with guaranteed termination, while nogood resolution maintains a consistent referenceable history of all detected contradictions (contradiction-management-is-complete-and-traceable). This enables both automated resolution and post-hoc forensic analysis.
-
-Contradiction resolution simultaneously achieves minimal disruption and complete effect propagation (contradiction-resolution-achieves-minimal-impact-complete-cascades). Least-entrenched culprit selection with surgical recovery hints minimizes blast radius, while transitive retraction cascades ensure no dependent node escapes the cascade.
-
-Belief modification is complete in both directions: contradictions creating truth changes resolve through traceable dependency-directed backtracking, and defeats suppressing truth values reverse automatically through BFS propagation with surgical restoration hints (belief-modification-is-bidirectionally-complete-and-traceable). No truth change is either irresolvable or irreversible without full traceability.
-
-The claim that retraction reporting reflects complete cascades has been retracted (retraction-reporting-reflects-complete-cascades, OUT), conditioned on the dependents index tracking all relationship types including outlists.
-
+A deeper architectural insight is that evaluation purity — uniform, deterministic, side-effect-free justification validity checking — is the concrete computational property that makes completeness and minimality compatible rather than opposing. Purity simultaneously grounds context-agnosticism and ensures that architectural completeness follows from rather than despite the minimal primitive set (evaluation-purity-enables-complete-minimal-architecture).
 
 ## Dialectical Completeness
 
-The recursive challenge/defend dialectical system inherits fully-specified semantics from the outlist primitive: conjunction over multiple outlists, absent-means-OUT permissiveness, and persistence guarantees all apply to dialectical structures without additional rules (dialectics-inherit-complete-outlist-semantics).
+The dialectical subsystem inherits its completeness guarantees from the outlist primitive rather than defining its own. The recursive challenge/defend structure inherits fully-specified semantics: conjunction over multiple outlists, absent-means-OUT permissiveness, and persistence guarantees all apply to dialectical structures without additional rules (dialectics-inherit-complete-outlist-semantics). Dialectical operations achieve both semantic grounding through evaluation purity and operational completeness through forward reliability of challenge/defend with backward recovery of defeat reversal (grounded-dialectics-achieve-complete-bidirectional-assurance).
 
-Dialectical operations achieve both semantic grounding and operational completeness (grounded-dialectics-achieve-complete-bidirectional-assurance). Evaluation purity and uniform semantics provide the grounding; forward reliability of challenge/defend paired with backward recovery of defeat reversal provides the bidirectional completeness.
+## Relationships Between Completeness Properties
 
-The stronger claim that dialectics complete the revision system — handling both automated revision and interactive dialectics through the same outlist primitive — has been retracted (dialectics-complete-the-revision-system, OUT), along with the claim that identity transformation is complete and reliable in both directions (identity-transformation-is-complete-and-reliable, OUT).
-
-
-## Backend Completeness
-
-Both storage backends provide atomic isolated operations with complete API coverage (dual-backend-atomicity-is-feature-complete). SQLite's context-managed mutations and PgApi's per-method transactions cover the same full set of operations.
-
-However, the claim that PgApi is a complete SQL-native reimplementation of the in-memory Network has been retracted (pgapi-is-complete-sql-reimplementation, OUT), as has the claim of referentially complete multi-tenancy (pg-multi-tenancy-is-referentially-complete, OUT). The latter was conditioned on potential phantom node references from JSONB-stored antecedent arrays lacking foreign key constraints.
-
-
-## Evaluation Purity as Completeness Enabler
-
-A key architectural insight is that evaluation purity — uniform, deterministic, side-effect-free justification checking — is the computational property making the completeness-minimality unification possible (evaluation-purity-enables-complete-minimal-architecture). Purity simultaneously grounds context-agnosticism (the minimal primitive set handles all cases uniformly) and ensures that architectural completeness follows from minimality rather than despite it.
-
-
-## Retracted System-Level Claims
-
-Several ambitious system-level completeness claims have been retracted, reflecting the knowledge base's epistemic discipline:
-
-- Complete system self-correction across two independent dimensions (complete-system-is-self-correcting, OUT)
-- Complete deterministic traceable history of all state changes (complete-system-history-is-deterministic-and-traceable, OUT)
-- Complete quality lifecycle spanning creation through egress (complete-quality-lifecycle-spans-creation-through-egress, OUT)
-- Complete operational uniformity across all mutation sources (complete-operational-uniformity-across-all-sources, OUT)
-- Production readiness of the fully unified system (complete-unified-system-is-production-ready, OUT)
-- Convergent equilibria with complete propagation fidelity (convergent-equilibria-have-complete-propagation-fidelity, OUT)
-
-These retractions typically cascade from specific technical issues — propagation gaps, unresolved bugs, or dependency tracking limitations — rather than from fundamental design flaws. The pattern illustrates how the belief network's retraction mechanism prevents overclaiming: high-level completeness claims depend on lower-level guarantees, and when any foundation weakens, the derived claims retract automatically.
+The various completeness properties are not independent — they form a dependency structure where lower-level guarantees compose into higher-level ones. Complete outlist semantics ([outlist-semantics-are-fully-specified](other.md#outlist-semantics-are-fully-specified)) is a particularly load-bearing dependency: it directly supports the completeness of negative semantics, dependency tracking, incremental propagation, and dialectical inheritance. Similarly, the completeness of contradiction management feeds into both bidirectional modification completeness and the broader architecture's determinism and traceability guarantees. The overall picture is one of layered completeness, where each subsystem's coverage guarantee contributes to the system's ability to handle every belief state without gaps or unrecoverable failures.
