@@ -2,224 +2,40 @@
 
 [Back to index](index.md)
 
-### hash-file-import-unused
-**Status:** IN
+The import subsystem is responsible for ingesting external belief networks into a local truth maintenance system. It handles multiple input formats, reconciles truth states across independent sources, and preserves the structural invariants of the TMS through a carefully ordered pipeline. The subsystem supports both one-time bulk loads and ongoing synchronization with remote agents, making it central to ftl-reasons' multi-agent federation capabilities.
 
-Trivial/unstable detail about an unused import; not a meaningful architectural invariant.
+## Pipeline Architecture
 
+All API-level import functions — `import_json`, `import_beliefs`, and `import_agent` — follow a common pattern: they read and parse files into structured data in the API layer before delegating to `PgApi`, which never receives raw file paths (`import-functions-parse-before-dispatch`). For agent imports specifically, both the markdown and JSON normalizers produce identical intermediate dictionaries containing id, text, truth state, source metadata, and raw justifications before hitting shared processing logic (`import-agent-normalizers-share-intermediate-schema`). The beliefs.md parser is forward-compatible: unknown metadata lines are silently skipped, allowing the import format to evolve without breaking older consumers (`import-beliefs-parser-is-forward-compatible`).
 
-### import-achieves-ordered-convergent-reconciliation
-**Status:** OUT
+## Two-Phase Truth Maintenance
 
-Import achieves correct final state through two reinforcing mechanisms: deliberate ordering discipline (add → propagate → retract) ensures deferred retractions don't corrupt intermediate states, while deterministic convergence (dual reconciliation modes reaching stable states, propagation terminating via fixpoint) ensures the result is unique and reproducible regardless of input ordering within each phase.
+Import follows a deliberate three-step ordering discipline: add all nodes first, propagate truth values via `recompute_all()` second, and apply explicit retractions last (`import-two-phase-truth-maintenance`). This sequencing prevents incorrect cascades that would arise from propagating through partially-constructed networks. Deferred retractions correctly override any truth values that propagation would compute, producing a final state that respects both structural dependencies and explicit intent (`import-ordering-ensures-correct-final-state`).
 
-**Depends on:** [import-ordering-ensures-correct-final-state](import.md#import-ordering-ensures-correct-final-state), [import-reconciliation-converges-deterministically](import.md#import-reconciliation-converges-deterministically)
-**Supports:** [system-reaches-equilibrium-from-all-modification-paths](system.md#system-reaches-equilibrium-from-all-modification-paths)
+## Topological Sort and Cycle Tolerance
 
-### import-agent-inactive-always-in-outlist
-**Status:** IN
+When reconstructing networks, `import_json()` uses a multi-pass topological sort loop that repeatedly adds nodes whose dependencies are already loaded (`import-json-uses-topological-sort`). The sort is best-effort: when progress stalls due to dependency cycles or missing references, remaining nodes are appended in arbitrary order rather than raising an error (`import-topo-sort-tolerates-cycles`, `import-topo-sort-cycle-tolerant`). The cycle-breaking threshold is `max_passes = len(remaining) + 1` iterations (`import-agent-topo-sort-breaks-cycles`). This pragmatic approach ensures import always completes, even when circular references exist in the source data.
 
-Every imported belief unconditionally has `agent:inactive` in its outlist, enforced in `_build_justifications()` with no code path that omits it — this is the mechanism behind the per-agent kill switch.
+## Dual Reconciliation Modes
 
+The subsystem offers two distinct reconciliation strategies (`import-sync-has-dual-reconciliation-modes`). **Import mode** is additive — it performs a one-time load that skips any nodes already present in the local database. **Sync mode** uses remote-wins semantics, overwriting text, justifications, and truth values from the remote source and retracting locally any beliefs that have been removed from the remote (`import-skips-existing-sync-is-remote-wins`). Together these modes support different operational needs: import for initial bootstrap, sync for ongoing federation.
 
-### import-agent-infra-nodes-excluded-from-removal
-**Status:** IN
+## Handling Heterogeneous Truth States
 
-`_sync_claims()` filters out infrastructure nodes (active/inactive) via `infra_ids` before computing the removal set, so the kill-switch pair is never retracted by remote-wins sync.
+The import pipeline handles mixed truth states gracefully (`import-handles-heterogeneous-truth-states`). Beliefs that are OUT or STALE in the source are imported with empty justification lists, which prevents `recompute_all` from resurrecting them to IN even when their justification antecedents happen to be IN locally (`import-agent-out-beliefs-get-empty-justifications`, `import-agent-out-beliefs-not-resurrected`). Nodes marked `[STALE]` in beliefs.md are mapped to truth value OUT during both initial import and subsequent syncs (`stale-maps-to-out-on-import`). This invariant — that retractions survive recomputation — was established as a regression guard for issue #16 (`import-agent-retraction-survives-recompute`).
 
+## Agent Namespace Isolation
 
-### import-agent-namespace-prefix
-**Status:** IN
+Every node imported from an agent gets an ID prefix matching the agent's name (e.g., `X:node-id`), including infrastructure nodes like `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs (`import-agent-namespace-prefix`). Every imported belief unconditionally includes `agent:inactive` in its outlist, enforced in `_build_justifications()` with no code path that omits it — this is the mechanism behind the per-agent kill switch (`import-agent-inactive-always-in-outlist`). The `_sync_claims()` function filters out these infrastructure nodes via `infra_ids` before computing the removal set, so the kill-switch pair is never inadvertently retracted by remote-wins sync (`import-agent-infra-nodes-excluded-from-removal`).
 
-Every node imported from agent X gets the ID prefix `X:`, including infrastructure nodes `X:active` and `X:inactive`, ensuring zero collision with local or other-agent beliefs
+## Nogood ID Collision Prevention
 
-**Supports:** [agent-isolation-through-namespace-and-relay](agent.md#agent-isolation-through-namespace-and-relay)
+Both `import_json` and `import_into_network` advance the `_next_nogood_id` counter to at least `max_imported_id + 1` during import (`import-paths-bump-nogood-counter`, `nogood-id-import-sync`). The high-water-mark update uses `max(current, parsed_id + 1)`, ensuring future auto-generated nogood IDs never collide with imported ones (`import-beliefs-nogood-id-uses-high-water-mark`).
 
-### import-agent-normalizers-share-intermediate-schema
-**Status:** IN
+## Reconciliation Completeness
 
-Both `_normalize_markdown()` and `_normalize_json()` produce identical intermediate dicts (id, text, is_out, source, source_hash, date, metadata, raw_justifications) before hitting shared `_import_claims`/`_sync_claims` logic.
+The import subsystem provides complete reconciliation coverage: heterogeneous truth states are handled correctly on initial load, dual modes support both additive import and remote-wins sync, and the colon-based namespace convention with auto-wiring prevents ID collisions across agents (`import-provides-complete-reconciliation`). Two broader convergence claims — that import achieves ordered convergent reconciliation (`import-achieves-ordered-convergent-reconciliation`) and that reconciliation converges deterministically (`import-reconciliation-converges-deterministically`) — are currently OUT, as they depend on upstream beliefs about deterministic convergence that have been retracted.
 
+## Test Infrastructure
 
-### import-agent-out-beliefs-get-empty-justifications
-**Status:** IN
-
-Beliefs that are OUT or STALE in the source are imported with empty justification lists, preventing `recompute_all` from resurrecting them to IN.
-
-
-### import-agent-out-beliefs-not-resurrected
-**Status:** IN
-
-Beliefs marked OUT or STALE in the source are imported as OUT and are never resurrected by `recompute_all`, even when their justification antecedents are all IN in the local database.
-
-
-### import-agent-outlist-not-antecedent
-**Status:** IN
-
-Duplicates existing belief `kill-switch-uses-outlist-not-antecedent`.
-
-
-### import-agent-retraction-survives-recompute
-**Status:** IN
-
-After retracting an imported belief, `recompute_all()` must not resurrect it — the justification structure must not provide alternative paths to IN (issue #16 regression invariant).
-
-
-### import-agent-topo-sort-breaks-cycles
-**Status:** IN
-
-`_topo_sort_claims` breaks dependency cycles by appending all remaining unsorted nodes after `max_passes = len(remaining) + 1` iterations rather than raising an error, ensuring import always completes.
-
-
-### import-beliefs-nogood-id-uses-high-water-mark
-**Status:** IN
-
-`_next_nogood_id` is set to `max(current, parsed_id + 1)` during import, preventing future auto-generated nogood IDs from colliding with imported ones.
-
-
-### import-beliefs-parser-is-forward-compatible
-**Status:** IN
-
-Unknown `- ` metadata lines in belief markdown are silently skipped via a `pass` branch, making the parser forward-compatible with new export format fields.
-
-**Supports:** [system-tolerates-evolution-at-all-boundaries](system.md#system-tolerates-evolution-at-all-boundaries)
-
-### import-beliefs-path-import-unused
-**Status:** IN
-
-Vestigial import detail — too trivial and unstable to track as a belief; it could be cleaned up at any time.
-
-
-### import-functions-parse-before-dispatch
-**Status:** IN
-
-API import functions (`import_json`, `import_beliefs`, `import_agent`) read and parse files into structured data in the API layer before delegating to `PgApi` — PgApi never receives raw file paths
-
-
-### import-handles-heterogeneous-truth-states
-**Status:** IN
-
-The import pipeline handles mixed truth states: OUT/STALE beliefs arrive without justifications, topological sort tolerates cycles, and two-phase truth maintenance reconciles everything post-import
-
-**Depends on:** [import-topo-sort-tolerates-cycles](import.md#import-topo-sort-tolerates-cycles), [import-two-phase-truth-maintenance](import.md#import-two-phase-truth-maintenance), [out-beliefs-imported-without-justifications](beliefs.md#out-beliefs-imported-without-justifications)
-**Supports:** [agent-subsystem-is-self-contained](agent.md#agent-subsystem-is-self-contained), [import-provides-complete-reconciliation](import.md#import-provides-complete-reconciliation)
-
-### import-is-idempotent
-**Status:** IN
-
-Covered by existing `import-skips-existing-sync-is-remote-wins`
-
-
-### import-json-uses-topological-sort
-**Status:** IN
-
-`api.import_json()` reconstructs networks via a multi-pass topological sort loop — repeatedly adding nodes whose dependencies are already loaded — with a force-add fallback for cycles or missing deps.
-
-
-### import-ordering-ensures-correct-final-state
-**Status:** IN
-
-Import follows a deliberate ordering discipline — add nodes first, propagate truth values second, apply explicit retractions last — ensuring deferred retractions correctly override any truth values that propagation would compute, producing a final state that respects both structural dependencies and explicit intent.
-
-**Depends on:** [deferred-retraction-ordering](other.md#deferred-retraction-ordering), [import-two-phase-truth-maintenance](import.md#import-two-phase-truth-maintenance)
-**Supports:** [import-achieves-ordered-convergent-reconciliation](import.md#import-achieves-ordered-convergent-reconciliation)
-
-### import-paths-bump-nogood-counter
-**Status:** IN
-
-Both `import_json` and `import_into_network` update `_next_nogood_id` to at least `max_imported_id + 1`, ensuring imported nogoods with explicit IDs don't create future collisions
-
-
-### import-provides-complete-reconciliation
-**Status:** IN
-
-The import subsystem provides complete reconciliation coverage: heterogeneous truth states are handled correctly on initial load, dual modes support additive import and remote-wins sync for different operational needs, and the colon-based namespace convention with auto-wiring prevents ID collisions across agents.
-
-**Depends on:** [import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states), [import-sync-has-dual-reconciliation-modes](import.md#import-sync-has-dual-reconciliation-modes), [namespace-is-colon-convention-with-auto-wiring](other.md#namespace-is-colon-convention-with-auto-wiring)
-**Supports:** [all-external-inputs-safely-integrated](external.md#all-external-inputs-safely-integrated), [bulk-operations-preserve-topology-and-reconcile](topology.md#bulk-operations-preserve-topology-and-reconcile), [external-belief-lifecycle-is-complete](external.md#external-belief-lifecycle-is-complete), [import-reconciliation-converges-deterministically](import.md#import-reconciliation-converges-deterministically), [initialization-and-reconciliation-converge-equivalently](other.md#initialization-and-reconciliation-converge-equivalently)
-
-### import-reconciliation-converges-deterministically
-**Status:** OUT
-
-Import reconciliation achieves both completeness and convergence: dual import/sync modes handle heterogeneous truth states with namespace isolation and topological cycle tolerance (completeness), while all reconciliation operations — individual propagation, agent sync, and global recompute — converge to deterministic fixed points on repeated application (convergence), ensuring that import never introduces oscillation or nondeterminism.
-
-**Depends on:** [all-reconciliation-converges-deterministically](other.md#all-reconciliation-converges-deterministically), [import-provides-complete-reconciliation](import.md#import-provides-complete-reconciliation)
-**Supports:** [import-achieves-ordered-convergent-reconciliation](import.md#import-achieves-ordered-convergent-reconciliation), [system-converges-from-addition-and-removal](system.md#system-converges-from-addition-and-removal)
-
-### import-skips-existing-nodes
-**Status:** IN
-
-Duplicates existing belief `import-skips-existing-sync-is-remote-wins`.
-
-
-### import-skips-existing-sync-is-remote-wins
-**Status:** IN
-
-Import mode (`import_agent`) is a one-time load that skips existing nodes; sync mode updates text/justifications/truth values with remote-wins semantics and retracts locally any beliefs removed from the remote
-
-**Supports:** [import-sync-has-dual-reconciliation-modes](import.md#import-sync-has-dual-reconciliation-modes)
-
-### import-sync-has-dual-reconciliation-modes
-**Status:** IN
-
-The import/sync subsystem offers two distinct reconciliation strategies: import is additive (skips existing nodes), while sync is remote-wins (overwrites text, justifications, and truth values from the remote source).
-
-**Depends on:** [import-skips-existing-sync-is-remote-wins](import.md#import-skips-existing-sync-is-remote-wins), [sync-is-remote-wins](other.md#sync-is-remote-wins)
-**Supports:** [external-belief-ingestion-is-defensively-layered](external.md#external-belief-ingestion-is-defensively-layered), [import-provides-complete-reconciliation](import.md#import-provides-complete-reconciliation)
-
-### import-topo-sort-cycle-tolerant
-**Status:** IN
-
-Topological sorting of imported claims is best-effort: cycles cause remaining nodes to be appended in arbitrary order rather than raising an error, a pragmatic choice that avoids crashing on circular references.
-
-
-### import-topo-sort-tolerates-cycles
-**Status:** IN
-
-`_topo_sort_claims` attempts topological ordering but appends remaining nodes when progress stalls, gracefully handling dependency cycles instead of erroring
-
-**Supports:** [import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states)
-
-### import-two-phase-truth-maintenance
-**Status:** IN
-
-Import/sync adds all nodes first, then runs `recompute_all()` to propagate truth values, then performs explicit retractions — this ordering prevents incorrect cascades from partially-constructed networks
-
-**Supports:** [bootstrap-bypasses-incremental-propagation](other.md#bootstrap-bypasses-incremental-propagation), [import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states), [import-ordering-ensures-correct-final-state](import.md#import-ordering-ensures-correct-final-state)
-
-### import-wires-reverse-index
-**Status:** IN
-
-Covered by existing `dependents-is-manual-reverse-index` which captures that the reverse index is manually maintained
-
-
-### nogood-id-import-sync
-**Status:** IN
-
-Both `import_json` and `import_into_network` must advance `_next_nogood_id` past the highest imported nogood ID to prevent collisions with pre-existing IDs
-
-
-### pg-import-is-deferred
-**Status:** IN
-
-`PgApi` is imported inside the `pg_api` fixture body, not at module top-level, so the test suite loads without Postgres dependencies when running SQLite-only tests.
-
-
-### stale-maps-to-out-on-import
-**Status:** IN
-
-Nodes marked `[STALE]` in beliefs.md are stored with truth value OUT during both initial import and subsequent syncs
-
-**Supports:** [staleness-information-survives-binary-truth-model](other.md#staleness-information-survives-binary-truth-model)
-
-### unused-node-import-in-dangling-test
-**Status:** IN
-
-Unstable trivia — an unused import is likely to be cleaned up and is not an architectural invariant.
-
-
-### unused-path-import
-**Status:** IN
-
-Dead code observation (`Path` imported but unused) — unstable detail that will change when cleaned up.
-
+The `PgApi` class is imported inside the `pg_api` test fixture body rather than at module top-level, so the test suite loads without Postgres dependencies when running SQLite-only tests (`pg-import-is-deferred`). Several beliefs note unused or vestigial imports in test and production code (`hash-file-import-unused`, `unused-path-import`, `unused-node-import-in-dangling-test`) — these are unstable details likely to be cleaned up and are not architectural invariants.

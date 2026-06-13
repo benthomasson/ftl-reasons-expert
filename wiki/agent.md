@@ -2,127 +2,32 @@
 
 [Back to index](index.md)
 
-### agent-beliefs-undergo-full-revision
-**Status:** OUT
+The agent subsystem enables multi-agent federation by allowing one truth maintenance system to import, isolate, and synchronize beliefs from external agents. Each agent's beliefs are namespaced, controlled by a dedicated relay pair, and participate in the same justification mechanics as locally-created beliefs.
 
-Agent-imported beliefs participate in the full revision system: the self-contained agent subsystem provides isolated lifecycle management and reversible defeat, while the comprehensive revision system ensures agent beliefs are subject to the same outlist defeat and contradiction resolution as locally-created beliefs — no revision exception exists for external provenance.
+## Import and Control Nodes
 
-**Depends on:** [agent-subsystem-is-self-contained](agent.md#agent-subsystem-is-self-contained), [belief-revision-is-comprehensive-and-minimal](revision.md#belief-revision-is-comprehensive-and-minimal)
-**Supports:** [all-belief-origins-share-deterministic-revision](deterministic.md#all-belief-origins-share-deterministic-revision)
+When an agent's beliefs are first brought into the system, the import process creates a two-node control structure: an `active` premise and an `inactive` relay node, linked as a pair (`agent-import-creates-two-control-nodes`). The `active` node serves as a kill-switch — retracting it cascades all of that agent's imported beliefs to OUT, while the `inactive` node provides the complementary signal for outlist-based defeat. This relay pair is the foundation of per-agent lifecycle control.
 
-### agent-cascades-are-isolated-by-namespace
-**Status:** IN
+The `sync_agent` function unifies import and update into a single entry point. When no prior import exists for an agent, `sync_agent` behaves identically to `import_agent` — creating the `agent:active` premise, wiring namespace prefixes, and returning `created_premise: True` — rather than requiring a separate import step (`sync-agent-first-sync-equals-import`, `sync-agent-first-call-equals-import`).
 
-Retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist
+## Namespace Isolation
 
-**Supports:** [agent-isolation-through-namespace-and-relay](agent.md#agent-isolation-through-namespace-and-relay)
+Agent beliefs are doubly isolated. Namespace prefixing prevents ID collisions between agents, using a colon-separated format (`namespace-prefix-is-agent-colon`). The active/inactive relay pair then provides per-agent kill-switch semantics without cross-agent interference (`agent-isolation-through-namespace-and-relay`). Concretely, retracting one agent's active premise does not affect other agents' beliefs, because each agent's imported beliefs reference only their own `inactive` node in their outlist (`agent-cascades-are-isolated-by-namespace`).
 
-### agent-import-creates-two-control-nodes
-**Status:** IN
+Beyond identity-level isolation, the system provides a second, independent containment layer: transitive subset-gated access tags control per-caller visibility with tag inheritance, providing authorization-level isolation (`agent-isolation-spans-identity-and-authorization`). These two mechanisms — namespace/relay for identity, access tags for authorization — operate at different system levels and reinforce each other.
 
-Covered by existing `active-inactive-relay-pair` which captures the same two-node control structure
+## Sync Semantics
 
+The `sync_agent` operation follows remote-wins semantics (`sync-agent-remote-wins`), meaning the remote agent's current state is authoritative. After sync completes, it returns a dictionary with keys `beliefs_added`, `beliefs_removed`, `beliefs_updated`, and `beliefs_unchanged` for precise accounting of what changed (`sync-agent-returns-count-dict`).
 
-### agent-isolation-spans-identity-and-authorization
-**Status:** IN
+Sync is idempotent: two consecutive calls with identical file content produce zero additions, removals, and updates on the second call (`sync-agent-idempotent`, `sync-agent-is-idempotent`). Crucially, sync preserves the agent's outlist-based justification structure — after sync completes, revoking `agent:active` still cascades all agent beliefs to OUT, proving that sync does not corrupt kill-switch wiring (`sync-agent-preserves-cascade-structure`).
 
-Agent beliefs are isolated through two independent containment mechanisms at different system levels: namespace prefixing with relay pairs provides identity-level isolation (preventing ID collisions and enabling per-agent lifecycle control via kill-switch), while transitive subset-gated access tags provide authorization-level isolation (controlling per-caller visibility with tag inheritance).
+The system also records the agent's source file path in the repo registry via `list_repos`, enabling tracking of which file each agent's beliefs originated from (`sync-registers-agent-repo-path`).
 
-**Depends on:** [access-control-is-transitive-subset-gated](other.md#access-control-is-transitive-subset-gated), [agent-isolation-through-namespace-and-relay](agent.md#agent-isolation-through-namespace-and-relay)
+## Lifecycle Management
 
-### agent-isolation-through-namespace-and-relay
-**Status:** IN
+The agent subsystem is self-contained: import handles mixed truth states and topological cycles, namespace/relay pairs provide isolation and kill-switches, and all defeat operations are reversible for agent reactivation (`agent-subsystem-is-self-contained`). This reversibility is key — an agent can be deactivated by retracting its `active` premise, then later restored by reasserting it, with all dependent beliefs cascading back to IN.
 
-Agent beliefs are doubly isolated: namespace prefixing prevents ID collisions, while the active/inactive relay pair provides per-agent kill-switch semantics without cross-agent interference
+## Revision and Multi-Agent Safety
 
-**Depends on:** [active-inactive-relay-pair](other.md#active-inactive-relay-pair), [active-not-in-antecedents](other.md#active-not-in-antecedents), [agent-cascades-are-isolated-by-namespace](agent.md#agent-cascades-are-isolated-by-namespace), [import-agent-namespace-prefix](import.md#import-agent-namespace-prefix)
-**Supports:** [agent-isolation-spans-identity-and-authorization](agent.md#agent-isolation-spans-identity-and-authorization), [agent-subsystem-is-self-contained](agent.md#agent-subsystem-is-self-contained)
-
-### agent-subsystem-is-self-contained
-**Status:** IN
-
-The agent subsystem provides complete lifecycle management: import handles mixed truth states and topological cycles, namespace/relay pairs provide isolation and kill-switches, and all defeat operations are reversible for agent reactivation.
-
-**Depends on:** [agent-isolation-through-namespace-and-relay](agent.md#agent-isolation-through-namespace-and-relay), [all-defeat-mechanisms-are-reversible](other.md#all-defeat-mechanisms-are-reversible), [import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states)
-**Supports:** [agent-beliefs-undergo-full-revision](agent.md#agent-beliefs-undergo-full-revision), [external-beliefs-defensively-contained](external.md#external-beliefs-defensively-contained), [multi-agent-safety-spans-all-layers](agent.md#multi-agent-safety-spans-all-layers)
-
-### multi-agent-reasoning-is-sound-and-scalable
-**Status:** OUT
-
-The system provides both individually sound reasoning (deterministic, reversible, terminating truth maintenance) and safe multi-agent operation (isolated namespaces, reversible lifecycle control, clean architectural boundaries), enabling arbitrarily many agents without sacrificing correctness guarantees.
-
-**Depends on:** [multi-agent-safety-spans-all-layers](agent.md#multi-agent-safety-spans-all-layers), [reasoning-engine-is-deterministic-and-reversible](deterministic.md#reasoning-engine-is-deterministic-and-reversible)
-**Supports:** [extensions-compose-transparently-on-core](other.md#extensions-compose-transparently-on-core), [multi-agent-revision-is-semantically-uniform](agent.md#multi-agent-revision-is-semantically-uniform), [system-is-minimal-sound-and-scalable](system.md#system-is-minimal-sound-and-scalable)
-
-### multi-agent-revision-is-semantically-uniform
-**Status:** OUT
-
-Multi-agent operation does not carve out exceptions to the universal revision semantics — agent beliefs undergo the same uniform revision (outlist defeat, contradiction backtracking, edge-case handling) as local beliefs because agent namespacing and relay pairs operate above the evaluation layer, not within it.
-
-**Depends on:** [belief-revision-covers-all-cases-uniformly](revision.md#belief-revision-covers-all-cases-uniformly), [multi-agent-reasoning-is-sound-and-scalable](agent.md#multi-agent-reasoning-is-sound-and-scalable)
-**Supports:** [all-mutation-sources-are-safe-and-uniform](safe.md#all-mutation-sources-are-safe-and-uniform), [complete-operational-uniformity-across-all-sources](complete.md#complete-operational-uniformity-across-all-sources)
-
-### multi-agent-safety-spans-all-layers
-**Status:** OUT
-
-Multi-agent operation is safe across the full system: agent isolation prevents cross-contamination between namespaces with reversible lifecycle control, while data integrity is enforced across all three architectural layers through clean boundaries and snapshot persistence.
-
-**Depends on:** [agent-subsystem-is-self-contained](agent.md#agent-subsystem-is-self-contained), [data-integrity-spans-architecture](spans.md#data-integrity-spans-architecture)
-**Supports:** [all-external-belief-paths-are-safely-bounded](external.md#all-external-belief-paths-are-safely-bounded), [all-external-inputs-produce-correct-state](external.md#all-external-inputs-produce-correct-state), [multi-agent-reasoning-is-sound-and-scalable](agent.md#multi-agent-reasoning-is-sound-and-scalable)
-
-### namespace-prefix-is-agent-colon
-**Status:** IN
-
-Covered by existing `namespace-prefix-is-colon-separated` and `import-agent-namespace-prefix`
-
-
-### sync-agent-first-call-equals-import
-**Status:** IN
-
-Calling `sync_agent` for an agent with no prior import produces identical results to `import_agent`, including all node creation and namespace wiring
-
-
-### sync-agent-first-sync-equals-import
-**Status:** IN
-
-When no prior import exists for an agent, `sync_agent` behaves identically to `import_agent` — creating the `agent:active` premise and returning `created_premise: True` — rather than requiring a separate import step.
-
-
-### sync-agent-idempotent
-**Status:** IN
-
-Two consecutive `sync_agent` calls with identical file content produce zero additions, removals, and updates on the second call
-
-**Supports:** [critical-operations-converge-to-fixed-points](other.md#critical-operations-converge-to-fixed-points)
-
-### sync-agent-is-idempotent
-**Status:** IN
-
-Calling `sync_agent` twice with identical data produces the same database state; the second call returns zero adds, removes, and updates — a no-op by design.
-
-**Supports:** [sync-is-safe-for-automated-reconciliation](safe.md#sync-is-safe-for-automated-reconciliation)
-
-### sync-agent-preserves-cascade-structure
-**Status:** IN
-
-After `sync_agent` completes, the agent's outlist-based justification structure remains intact — revoking `agent:active` still cascades all agent beliefs to OUT, proving sync does not corrupt kill-switch wiring.
-
-**Supports:** [sync-is-safe-for-automated-reconciliation](safe.md#sync-is-safe-for-automated-reconciliation)
-
-### sync-agent-remote-wins
-**Status:** IN
-
-Duplicates existing belief `sync-is-remote-wins`
-
-
-### sync-agent-returns-count-dict
-**Status:** IN
-
-`sync_agent` returns a dict with keys `beliefs_added`, `beliefs_removed`, `beliefs_updated`, and `beliefs_unchanged` for accurate accounting of what changed
-
-
-### sync-registers-agent-repo-path
-**Status:** IN
-
-`sync_agent` records the agent's source file path in the repo registry (`list_repos`), enabling the system to track which file each agent's beliefs originated from.
-
+Several higher-level beliefs about multi-agent safety have been retracted (OUT), reflecting refinements in the network's understanding. The claim that agent-imported beliefs participate in the full revision system — undergoing the same outlist defeat and contradiction resolution as local beliefs — is currently OUT (`agent-beliefs-undergo-full-revision`), as is the broader claim that multi-agent reasoning is sound and scalable (`multi-agent-reasoning-is-sound-and-scalable`). The assertion that multi-agent operation is semantically uniform with local revision (`multi-agent-revision-is-semantically-uniform`) and that safety spans all architectural layers (`multi-agent-safety-spans-all-layers`) are likewise OUT. These retractions propagated from upstream dependencies rather than from direct refutation of agent mechanics — the foundational isolation and lifecycle beliefs remain IN.

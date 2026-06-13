@@ -2,80 +2,30 @@
 
 [Back to index](index.md)
 
-### build-tools-section-always-includes-search-beliefs
-**Status:** IN
+The belief system provides structured mechanisms for organizing, reviewing, importing, and validating beliefs within the knowledge base. Its design enforces determinism, budget constraints, and clear scoping rules that govern which beliefs participate in each operation.
 
-`_build_tools_section` always includes the built-in `search_beliefs` tool in its output regardless of whether MCP bridges are provided — it is the baseline tool present in every ask prompt.
+## Clustering
 
+Beliefs can be grouped into thematic clusters for navigation and budget-constrained selection. The `cluster_beliefs` function partitions the full input set so that every belief lands in exactly one cluster with no drops or duplicates (`list-clusters-partitions-all-beliefs`). When the input set exceeds the requested budget, the function returns exactly `budget` belief IDs; when it is smaller, all items are returned (`cluster-beliefs-returns-exact-budget`). Each cluster's allocation is individually capped to prevent over-selection from any single group (`cluster-beliefs-respects-budget`).
 
-### cluster-beliefs-deterministic-with-seed
-**Status:** IN
+Clustering is fully deterministic: given the same beliefs, budget, and random seed, `cluster_beliefs` produces identical output across calls (`cluster-beliefs-deterministic-with-seed`). Together, the exact-budget and deterministic properties ensure that cluster-based selection is both predictable and precisely sized (`cluster-selection-is-deterministic-and-budget-exact`).
 
-Given the same beliefs dict, budget, and seed, `cluster_beliefs` produces identical output across calls.
+## Contradiction Detection
 
-**Supports:** [cluster-selection-is-deterministic-and-budget-exact](deterministic.md#cluster-selection-is-deterministic-and-budget-exact)
+The contradiction detection pipeline operates exclusively on beliefs that are currently held. `detect_contradictions` filters all input to `truth_value == "IN"` before processing, so OUT beliefs are never sent to the LLM for analysis (`contradictions-only-checks-in-beliefs`). This scoping avoids false positives from retracted beliefs that may contain stale or already-resolved contradictions.
 
-### cluster-beliefs-respects-budget
-**Status:** IN
+## Review Pipeline
 
-`cluster_beliefs` never returns more IDs than the `budget` parameter; each cluster's allocation is individually capped by `min(alloc, len(members))`.
+The review system is similarly scoped. `review_beliefs` filters out premises — nodes without justifications — before sending anything to the LLM (`review-only-evaluates-derived-beliefs`, `review-only-validates-derived-beliefs`). Only derived beliefs with at least one justification are submitted for review validation. This design reflects the principle that premises represent direct observations and are not candidates for automated re-evaluation; review focuses on whether derived conclusions still follow from their antecedents.
 
+## Import Handling
 
-### cluster-beliefs-returns-exact-budget
-**Status:** IN
+When beliefs are imported from an external source, the system preserves their truth state faithfully. Beliefs that are OUT or STALE in the source are imported with an empty justification list, which prevents `recompute_all` from resurrecting them to IN (`out-beliefs-imported-without-justifications`). This invariant ensures that import does not inadvertently revive retracted beliefs and supports correct handling of heterogeneous truth states across sources (`import-handles-heterogeneous-truth-states`).
 
-`cluster_beliefs` returns exactly `budget` belief IDs when the input set is larger than the budget, and all items when the input set is smaller.
+## Tool Integration
 
-**Supports:** [cluster-selection-is-deterministic-and-budget-exact](deterministic.md#cluster-selection-is-deterministic-and-budget-exact)
+The `_build_tools_section` function always includes the built-in `search_beliefs` tool in its output, regardless of whether MCP bridges are provided (`build-tools-section-always-includes-search-beliefs`). This makes `search_beliefs` the baseline capability available in every ask prompt, ensuring that belief querying is never gated on external tool availability.
 
-### contradictions-only-checks-in-beliefs
-**Status:** IN
+## Invariant Scope
 
-`detect_contradictions` filters all input to `truth_value == "IN"` before processing; OUT beliefs are never sent to the LLM for contradiction checking.
-
-
-### list-clusters-partitions-all-beliefs
-**Status:** IN
-
-`list_clusters` assigns every input belief to exactly one cluster with no drops or duplicates — the union of all cluster members equals the input set.
-
-
-### out-beliefs-imported-as-bare-premises
-**Status:** IN
-
-Covered by existing `out-beliefs-imported-without-justifications` which captures the same invariant
-
-
-### out-beliefs-imported-without-justifications
-**Status:** IN
-
-Beliefs that are OUT or STALE in the source are imported with an empty justification list, preventing `recompute_all` from resurrecting them to IN
-
-**Supports:** [import-handles-heterogeneous-truth-states](import.md#import-handles-heterogeneous-truth-states)
-
-### parse-beliefs-returns-dicts
-**Status:** IN
-
-Too granular — the dict-return pattern is partially covered by `api-functions-return-dicts`, and the specific field list is an implementation detail likely to evolve
-
-
-### review-only-evaluates-derived-beliefs
-**Status:** IN
-
-`review_beliefs` filters out premises (nodes without justifications); only derived beliefs with at least one justification are sent for LLM review.
-
-**Supports:** [review-pipeline-is-scoped-and-mutation-safe](safe.md#review-pipeline-is-scoped-and-mutation-safe)
-
-### review-only-validates-derived-beliefs
-**Status:** IN
-
-The review pipeline filters out premises (nodes with empty justifications) before sending anything to the LLM; premises are never submitted for review validation.
-
-
-### total-invariant-preservation-encompasses-all-beliefs
-**Status:** OUT
-
-Total invariant preservation — comprehensive in scope and architecturally grounded — fully encompasses externally-integrated beliefs that achieve integration parity along all quality axes, establishing that the system's invariant regime makes no distinction between internal and external beliefs at any level.
-
-**Depends on:** [external-beliefs-achieve-total-integration](external.md#external-beliefs-achieve-total-integration), [invariant-preservation-is-total](other.md#invariant-preservation-is-total)
-**Supports:** [invariant-preservation-is-total-and-self-sustaining](self.md#invariant-preservation-is-total-and-self-sustaining)
+An earlier belief held that invariant preservation was total and made no distinction between internal and external beliefs at any level (`total-invariant-preservation-encompasses-all-beliefs`, OUT). This claim depended on external beliefs achieving full integration parity and on invariant preservation being comprehensive in scope. It has since been retracted, suggesting that the boundary between internal and external beliefs is more nuanced than a blanket equivalence would imply.
