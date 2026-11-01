@@ -1,0 +1,178 @@
+=== analyze / r1-review (round 1) — 2026-11-01T21:15:05 ===
+
+=== Step 5: Review proposals ===
+
+Reviewing 569 proposals (269 already rejected)...
+  Batch 1/29...
+  Batch 2/29...
+  Batch 3/29...
+  Batch 4/29...
+  Batch 5/29...
+  Batch 6/29...
+  Batch 7/29...
+  Batch 8/29...
+  Batch 9/29...
+  Batch 10/29...
+  Batch 11/29...
+  Batch 12/29...
+  Batch 13/29...
+  Batch 14/29...
+  Batch 15/29...
+  Batch 16/29...
+  Batch 17/29...
+  Batch 18/29...
+  Batch 19/29...
+  Batch 20/29...
+  Batch 21/29...
+  Batch 22/29...
+  Batch 23/29...
+  Batch 24/29...
+  Batch 25/29...
+  Batch 26/29...
+  Batch 27/29...
+  Batch 28/29...
+  Batch 29/29...
+  REJECT write-false-prevents-persistence: duplicate: Core invariant (what-if mutations are in-memory only, never persisted) is already captured by `both-backends-support-safe-hypothetical-reasoning`
+  REJECT list-negative-json-parser-tolerates-prose-preamble: trivial: The behavioral contract (graceful handling of unparseable LLM output) is already in `api-list-negative-graceful-on-malformed-llm`; the regex mechanism is an implementation detail visible in the source
+  REJECT search-relaxation-capped-at-50-queries: duplicate: `api-fts-search-bounds-query-calls` already states the 51-call cap (1 original + 50 relaxation), which is the same invariant
+  REJECT search-source-chunks-filters-stop-words: duplicate: existing belief `ask-stop-word-fallback-ensures-nonempty-query` already captures stop-word stripping and the empty-query fallback behavior in `_search_source_chunks`
+  REJECT sl-param-is-comma-separated-node-ids: trivial: the comma-separated format of the `sl` parameter is immediately visible from any function call site in the code; no non-obvious architectural constraint is conveyed
+  REJECT pg-fixture-provides-per-test-isolation: trivial: test-fixture setup (fresh UUID per test) is immediately visible from the test file and is test infrastructure, not a behavioral invariant of the codebase
+  REJECT fts-relaxation-capped-at-fifty-queries: duplicate: core claim (capped FTS queries to prevent combinatorial explosion) already captured by `api-fts-search-bounds-query-calls` which states the 51-call cap and purpose
+  REJECT sqlite-only-commands-are-filesystem-llm-or-bulk: ephemeral: specific command count (~21) and enumeration is a point-in-time snapshot that changes with any new command
+  REJECT pg-conninfo-accepts-flag-envvar-or-both: duplicate: existing belief `cli-flags-override-env-vars` already states that `_backend_kwargs` gives precedence to CLI `--pg`/`--project-id` flags over `REASONS_PG_CONNINFO`/env vars
+  REJECT semantic-contradiction-skips-singleton-clusters: duplicate: existing belief `contradictions-semantic-skips-singleton-clusters` already states that `detect_contradictions_semantic` skips clusters containing fewer than 2 beliefs
+  REJECT ftl-reasons-zero-runtime-deps: duplicate: existing belief `architecture-is-self-contained-and-safely-layered` already states zero runtime dependencies at packaging and implementation level
+  REJECT reasons-cli-entrypoint-is-cli-main: trivial: visible directly in pyproject.toml `[project.scripts]` section; any developer can read this from the file
+  REJECT only-reasons-lib-is-distributed: trivial: visible directly in pyproject.toml `packages` field; any developer can read this from the file
+  REJECT python-310-minimum: trivial: `requires-python` in pyproject.toml is immediately visible to any developer; no non-obvious invariant is conveyed
+  REJECT fts-relaxation-budget-caps-at-50: duplicate: already covered by existing `api-fts-search-bounds-query-calls` (max 51 internal _fts_query calls)
+  REJECT ask-stop-word-fallback-ensures-nonempty-query: duplicate: exact same belief ID already exists in the list
+  REJECT cli-backend-kwargs-controls-storage: duplicate: exact same belief ID already exists in the list
+  REJECT cli-sqlite-only-commands-exist: duplicate: exact same belief ID already exists in the list
+  REJECT cli-plan-review-apply-pattern: duplicate: exact same belief ID already exists in the list
+  REJECT contradictions-semantic-skips-singleton-clusters: duplicate: exact same belief ID already exists in the list
+  REJECT contradictions-belief-text-truncated-at-200-chars: duplicate: exact same belief ID already exists in the list
+  REJECT api-fts-search-bounds-query-calls: duplicate: identical claim already exists as `api-fts-search-bounds-query-calls`
+  REJECT ask-source-chunks-persist-across-tool-iterations: duplicate: identical claim already exists as `ask-source-chunks-persist-across-tool-iterations`
+  REJECT ask-mcp-errors-non-fatal: duplicate: identical claim already exists as `ask-mcp-errors-non-fatal`
+  REJECT ask-mcp-iteration-limit-is-five: duplicate: identical claim already exists as `ask-mcp-iteration-limit-is-five`
+  REJECT build-tools-section-always-includes-search-beliefs: duplicate: identical claim already exists as `build-tools-section-always-includes-search-beliefs`
+  REJECT ask-prompt-no-template-placeholders: duplicate: identical claim already exists as `ask-prompt-no-template-placeholders`
+  REJECT contradiction-plan-round-trips-apply-entries: duplicate: identical claim already exists as `contradiction-plan-round-trips-apply-entries`
+  REJECT belief-text-truncated-at-200-chars: duplicate: identical claim already exists as `belief-text-truncated-at-200-chars` and `contradictions-belief-text-truncated-at-200-chars`
+  REJECT build-prompt-validates-custom-templates: duplicate: identical claim already exists as `build-prompt-validates-custom-templates`
+  REJECT apply-dedup-plan-collects-errors-not-raises: duplicate: identical claim already exists as `apply-dedup-plan-collects-errors-not-raises`
+  REJECT cli-flags-override-env-vars: duplicate: identical claim already exists as `cli-flags-override-env-vars`
+  REJECT all-api-functions-support-pg-dispatch: duplicate: identical claim already exists as `all-api-functions-support-pg-dispatch`
+  REJECT require-sqlite-blocks-pg-for-guarded-commands: duplicate: core invariant (certain commands guarded from PG by `_require_sqlite`) already captured in `cli-sqlite-only-commands-exist`
+  REJECT ci-matrix-jobs-are-independent: trivial: independent matrix job execution is a GitHub Actions platform default, not a codebase-specific invariant
+  REJECT llm-extra-excludes-openai: trivial: immediately visible in pyproject.toml `[project.optional-dependencies]` section
+  REJECT two-console-entry-points-contract: trivial: entry_points table in pyproject.toml is directly readable; the failure mode (ImportError) is standard Python behavior
+  REJECT python-3-10-syntax-floor: trivial: `requires-python` is visible in pyproject.toml; syntax capability follows directly from the declared version
+  REJECT data-model-imports-only-stdlib: trivial: imports at the top of `reasons/__init__.py` are immediately visible to any reader
+  REJECT what-if-simulations-use-deepcopy: duplicate: core invariant (what-if reasoning without permanent mutation) already captured in `both-backends-support-safe-hypothetical-reasoning`
+  REJECT dual-mode-requires-sources-db: duplicate: identical claim already exists as `ask-dual-requires-sources-db`
+  REJECT build-wiki-is-dependency-leaf: trivial: import/dependency graph structure is directly observable from the file's import statements and the importers' source
+  REJECT research-alias-maps-to-cmd-repair: trivial: the alias mapping is directly visible in the CLI commands dispatch dict and argparse subparser definitions
+  REJECT backend-kwargs-reads-env-var-fallbacks: duplicate: existing belief `cli-flags-override-env-vars` already documents that `_backend_kwargs` falls back to `REASONS_PG_CONNINFO`/`REASONS_DOMAIN_ID` env vars when flags are absent
+  REJECT cluster-early-return-skips-ml-when-under-budget: duplicate: existing belief `cluster-skips-ml-when-under-budget` already captures the same early-return-when-beliefs-≤-budget behavior
+  REJECT compact-in-nodes-ordered-by-dependent-count: duplicate: same claim as existing `compact-in-nodes-ordered-by-dependents`
+  REJECT contradiction-detector-checks-in-beliefs-only: duplicate: same claim as existing `contradictions-only-checks-in-beliefs`
+  REJECT contradiction-parser-rejects-hallucinated-ids: duplicate: core behavior already captured by `contradiction-min-two-claims` and `contradictions-min-two-claims-per-nogood`
+  REJECT mcp-server-is-zero-logic-facade: trivial: "every tool body is a one-or-two-line delegation into api" is directly observable from the file's function bodies and imports; no non-obvious behavioral contract beyond "it calls api functions"
+  REJECT merkle-module-is-stdlib-only: trivial: "imports only hashlib" is directly visible from the file's import statements; no behavioral or architectural invariant beyond what the import list already shows
+  REJECT mind-service-uses-stdlib-http-only: trivial: "uses urllib.request" and "no requests/httpx" are immediately visible from the module's import block; no non-obvious behavioral invariant is stated
+  REJECT node-without-justifications-is-premise-in-by-default: duplicate: existing `all-semantic-edge-cases-are-uniform` already states "absence of justifications yielding premise behavior," and "IN by default" is the definition of a premise in this system
+  REJECT repair-lazy-imports-api-to-avoid-cycle: trivial: any developer can see the in-function import in repair.py and the api→repair import direction by reading both files' import sections
+  REJECT repair-beliefs-aliased-as-research-beliefs: trivial: a one-line alias assignment visible immediately in the source; no non-obvious behavioral constraint
+  REJECT review-modules-vary-batch-size-by-content-weight: trivial: Specific constant values (20, 15, 5) are directly visible in source code; the "scaled to content weight" observation is a naming convention any developer can infer from the constants and their contexts.
+  REJECT reasons-and-reasons-lib-are-mirror-packages: speculative: The claim that changes "requir[e]… to be mirrored across both" is an editorial maintenance guideline, not an observable code fact; if the shim is a star-re-export, mirroring is unnecessary, making this assertion ungrounded.
+  REJECT review-justifications-imports-format-from-review: trivial: "Module X imports Y" is explicitly listed as a trivial example; the cross-module import is visible from the import statement.
+  REJECT reasons-lib-contains-mirror-submodules: trivial: Directory contents are visible via `ls`; the Python packaging fact that `from pkg.sub import X` requires `pkg/sub.py` to exist is basic Python knowledge.
+  REJECT reasons-lib-is-stale-and-incomplete: ephemeral: "Missing at least two modules" is a point-in-time count that changes with any sync commit; "slated for eventual removal" is a prediction.
+  REJECT importers-still-use-legacy-path: ephemeral: Specific import counts (7 modules, 50+ tests) are a transitional snapshot that changes with every migration commit; not a durable invariant.
+  REJECT reasons-lib-dependency-is-one-directional: speculative: editorial claim about what is "permitted" and an "unenforced convention," not an observable code invariant; also contradicted by the internal-import evidence in the same batch
+  REJECT reasons-lib-safe-to-delete-atomically: speculative: "Can be deleted in a single atomic commit once all importers are migrated" is a recommendation and prediction about future state, not a grounded code fact.
+  REJECT reasons-lib-noqa-f403-is-ci-load-bearing: speculative: claims about CI pipeline behavior and merge-blocking that aren't verifiable from the code itself
+  REJECT reasons-lib-is-uniform-star-import-shim: duplicate: identical claim to the first reasons-lib-is-uniform-star-import-shim proposal
+  REJECT star-import-guarantees-object-identity: trivial: standard Python language behavior for star imports, known to any developer
+  REJECT reasons-internal-modules-still-import-via-reasons-lib: trivial: immediately visible by reading the import statements in api.py, pg.py, verify.py
+  REJECT reasons-lib-is-strict-subset-of-reasons: ephemeral: specific enumeration of missing modules (mcp_client, mcp_server, hf, pubsub) is a point-in-time snapshot that changes as modules are added
+  REJECT no-deprecation-warning-emitted-on-shim-import: trivial: the shim file contains only a star import; absence of a warning mechanism is immediately visible from the single-line code
+  REJECT shim-deletion-blocked-by-test-and-internal-imports: duplicate: core claim (internal reasons/ modules import via reasons_lib) already captured by reasons-internal-modules-still-import-via-reasons-lib
+  REJECT star-import-excludes-underscore-prefixed-names: trivial: standard Python `import *` semantics, known to any developer
+  REJECT reasons-lib-mirrors-reasons-with-exceptions: ephemeral: specific module exceptions (merkle.py, pg.py) are a point-in-time directory listing snapshot
+  REJECT reasons-api-imports-via-reasons-lib: duplicate: same claim as reasons-internal-modules-still-import-via-reasons-lib
+  REJECT star-import-shim-provides-automatic-forward-compat: trivial: standard Python `import *` behavior, known to any developer
+  REJECT shim-identity-guarantee-is-object-identity: duplicate: same claim as star-import-guarantees-object-identity
+  REJECT reasons-lib-shim-emits-no-deprecation-warning: duplicate: same claim as no-deprecation-warning-emitted-on-shim-import
+  REJECT shim-import-failure-is-immediate-and-unwrapped: trivial: the shim file is a single star-import line; absence of try/except is immediately visible
+  REJECT shim-star-import-respects-target-all: trivial: standard Python `import *` and `__all__` interaction, known to any developer
+  REJECT reasons-lib-is-uniform-star-import-shim: duplicate: identical claim to the first reasons-lib-is-uniform-star-import-shim proposal
+  REJECT reasons-internal-modules-still-route-through-reasons-lib: duplicate: same claim as reasons-internal-modules-still-import-via-reasons-lib
+  REJECT reasons-lib-star-import-auto-propagates-new-exports: trivial: standard Python `import *` behavior, known to any developer
+  REJECT reasons-lib-dependency-is-one-directional: speculative: editorial claim about what is "permitted" and an "unenforced convention," not an observable code invariant; also contradicted by the internal-import evidence in the same batch
+  REJECT reasons-lib-shim-preserves-object-identity: trivial: Python `import *` semantics (reference copy, not proxy) are immediately visible from the one-line shim files; any developer reading `from reasons.pubsub import *` understands identity is preserved.
+  REJECT reasons-lib-owns-no-unique-code: trivial: "defines zero functions, classes, constants" is immediately visible from the single-line `import *` files; the "deletion candidate" framing is speculative editorial.
+  REJECT reasons-lib-is-universal-shim-package: trivial: "every file is a single-line star import" is self-evident from reading the directory; no architectural insight beyond what the files show.
+  REJECT shim-star-import-auto-tracks-canonical-exports: trivial: `import *` auto-tracking public names and skipping underscore-prefixed names is standard Python import semantics, not a codebase-specific invariant.
+  REJECT shim-emits-no-deprecation-warning: trivial: absence of `warnings.warn()` in a one-line `import *` file is immediately visible and requires no deep analysis.
+  REJECT shim-fails-fast-without-fallback: trivial: absence of try/except in a one-line import statement is self-evident from reading the shim files.
+  REJECT test-suite-validates-shim-import-chain: trivial: test files importing from `reasons_lib.*` is immediately visible from their import lines; the count is ephemeral.
+  REJECT reasons-lib-deletion-blocked-by-internal-importers: speculative: "cannot be safely deleted" is an editorial judgment about future migration, not an observable code fact.
+  REJECT reasons-lib-is-uniform-star-reexport-shim: duplicate: same claim as `reasons-lib-is-universal-shim-package` — every file is a one-line star import with no local logic.
+  REJECT reasons-lib-names-are-identical-objects-not-copies: duplicate: identical claim to `reasons-lib-shim-preserves-object-identity` — star import preserves object identity.
+  REJECT reasons-lib-has-no-unique-modules: trivial: 1:1 directory correspondence is visible from a directory listing; the merkle.py note is an ephemeral point-in-time observation.
+  REJECT reasons-lib-is-frozen-transitional-layer: trivial: "docstrings direct to use reasons.*" is visible in the files; "must never gain new definitions" is a normative/speculative constraint not grounded in enforced code.
+  REJECT star-import-is-time-bound-copy-not-live-proxy: trivial: time-bound name-binding copy (vs. live proxy) is a Python language semantic, not a codebase-specific architectural invariant.
+  REJECT star-import-shim-skips-underscore-names: trivial: `import *` skipping `_`-prefixed names is standard Python behavior, not a codebase-specific rule.
+  REJECT reasons-lib-is-universal-star-import-shim: duplicate: identical claim to `reasons-lib-is-universal-shim-package` and `reasons-lib-is-uniform-star-reexport-shim`.
+  REJECT shim-preserves-object-identity: duplicate: identical claim to `reasons-lib-shim-preserves-object-identity` and `reasons-lib-names-are-identical-objects-not-copies`.
+  REJECT shim-propagates-exceptions-unchanged: trivial: "no try/except, no logging, no wrapping" in a one-line `import *` statement is immediately visible from the file content.
+  REJECT tests-package-importability-required-by-test-pg: trivial: any developer can see `from tests import ...` in test_pg.py and the empty `__init__.py` in the file tree; this is a basic Python packaging fact visible from imports and file structure
+  REJECT api-add-justification-requires-justification-kwarg: duplicate: identical claim already exists as `api-add-justification-requires-justification-arg`
+  REJECT api-llm-mocking-patches-consumer-namespace: trivial: Python mocking implementation detail visible directly in test source; not a system behavioral invariant
+  REJECT dual-mode-requires-sources-db: duplicate: identical claim already exists as `ask-dual-requires-sources-db`
+  REJECT dual-mode-makes-exactly-three-llm-calls: duplicate: existing `ask-dual-mode-makes-three-llm-calls` already captures the 3-call structure (and is more precise with short-circuit note)
+  REJECT mcp-tool-json-renders-no-trailing-comma: trivial: a single string-formatting detail in `_build_tools_section` visible on inspection; no architectural or behavioral significance
+  REJECT check-stale-operates-per-node-not-per-file: duplicate: `check-stale-no-dedup-by-source-path` already states multiple nodes referencing the same source each get independent entries
+  REJECT defeat-reason-types-is-closed-seven-element-set: ephemeral: "exactly 7" is a specific count that changes with any edit; the closed-set membership behavior is the invariant but the count is a snapshot
+  REJECT llm-mock-targets-subprocess-boundary: trivial: test implementation detail (what patches are applied) visible by reading the test file; not a codebase behavioral invariant
+  REJECT access-tags-gate-all-query-commands: duplicate: already covered by `access-control-enforced-at-read-not-write` which states access control is enforced at all read/query boundaries
+  REJECT auto-k-formula-is-n-div-5-capped-at-20: duplicate: already captured by `cluster-auto-k-heuristic` which documents the same `len(beliefs) // 5` clamped between 2 and 20 formula
+  REJECT cluster-stats-cluster-sizes-sum-to-input-length: duplicate: already covered by `cluster-stats-sizes-sum-to-input` which states cluster_sizes always sums to total input
+  REJECT compact-in-section-orders-by-dependent-count-desc: duplicate: already covered by `compact-in-nodes-ordered-by-dependents`
+  REJECT contradiction-prompt-truncates-belief-text-at-200-chars: duplicate: already covered by `belief-text-truncated-at-200-chars` and `contradictions-belief-text-truncated-at-200-chars`
+  REJECT dedup-supersession-cascade-flips-all-support-linked: duplicate: already covered by `api-retract-cascade-is-transitive` (propagates OUT to all SL-dependent nodes) and `dedup-rewrites-both-antecedents-and-outlist`
+  REJECT prompt-template-validation-raises-valueerror: duplicate: already captured by existing belief `build-prompt-validates-custom-templates` which states `build_prompt` raises `ValueError("unknown placeholder")` for unrecognized `{fields}` and a second ValueError for malformed braces
+  REJECT dialectical-naming-convention-is-deterministic: duplicate: challenge ID pattern with sequential suffixes is already captured by existing belief `challenge-id-auto-generation`
+  REJECT dialectical-api-wraps-load-operate-save: duplicate: already captured by existing belief `api-uses-with-network-context-manager` which states the `_with_network` context manager ensures load-operate-save atomicity for all network operations in api.py
+  REJECT cli-tests-patch-sys-argv-not-subprocess: duplicate: Already captured by `cli-tests-are-black-box-integration` which states tests invoke `main()` through the full argv-parsing pipeline in-process via the `run_cli` harness.
+  REJECT example-stored-verbatim-in-metadata: trivial: Storing a string in a dict and reading it back as the same string is immediately observable from the code; no invariant or contract beyond "it's a dict value."
+  REJECT hf-publish-uploads-exactly-three-files: ephemeral: "Precisely three files" and "exactly four HTTP calls" are point-in-time counts that invalidate with any single added file or retry logic change.
+  REJECT api-retrieval-functions-return-formatted-text: trivial: Return types (str vs dict) are immediately visible from function signatures and return statements; `api-functions-return-dicts` already notes str returns for markdown/compact functions.
+  REJECT what-if-is-read-only-never-persists: duplicate: existing belief `both-backends-support-safe-hypothetical-reasoning` already states that both storage backends enable what-if reasoning without permanent mutation
+  REJECT assert-retract-is-idempotent: duplicate: Already covered by existing belief `api-idempotent-retract-assert` which states the same idempotency contract.
+  REJECT access-tags-inherit-by-union: duplicate: Already covered by existing belief `access-tags-union-inheritance` which states the derived node's tags are the union of antecedent tags.
+  REJECT cli-flags-take-precedence-over-env-vars: duplicate: Already covered by existing belief `cli-flags-override-env-vars` which states CLI flags override environment variables.
+  REJECT pubsub-publish-noop-on-empty-list: trivial: "empty list produces no iteration" is the natural consequence of a for-loop over an empty collection, visible immediately from the code structure
+  REJECT repair-aliases-are-identity-not-copies: trivial: Identity of module-level aliases (research_beliefs is repair_beliefs) is immediately visible from the assignment statement in the code; no behavioral insight beyond naming.
+  REJECT dual-package-layout-reasons-and-reasons-lib: speculative: "may alias" and "must verify which tree is canonical" are unverified guesses and editorial judgments, not observable code facts
+  REJECT premise-review-filters-to-source-backed-premises-only: duplicate: the source requirement is already captured by premise-review-skips-sourceless-nodes; the "no sl field" criterion is merely the definition of a premise (trivial)
+  REJECT nogood-export-format-mismatch: ephemeral: "currently broken" is a point-in-time bug state that will be resolved by a fix; the underlying format facts are stable but the mismatch claim expires
+  REJECT loaded-network-supports-further-inference: duplicate: `bootstrap-bypasses-incremental-propagation` already establishes that persistence loading constructs the full node graph before truth maintenance, making the network fully operational
+  REJECT compact-hides-covered-nodes-only-when-summary-in: duplicate: `compact-summary-hiding-requires-in` already states that a summary node only hides its covered nodes when the summary itself is IN
+  REJECT topics-tokenizer-recognizes-four-delimiters: speculative: "any new delimiter must be added to both the implementation and the corresponding test" is editorial judgment about future maintenance, not a grounded code fact
+  REJECT contradiction-detection-batches-fifty-in-beliefs: duplicate: `contradictions-shuffles-before-batching` already states beliefs are partitioned into batches of 50
+  REJECT uv-lock-is-untracked-by-policy: speculative: The core fact (uv.lock listed in .gitignore) is trivially observable, and "introducing potential non-reproducibility" is an editorial judgment about consequences rather than a grounded behavioral invariant
+  REJECT gitignore-permits-no-exception-commits: trivial: The claim (no `!` negation patterns in .gitignore) is directly readable from the file, and the stated consequences are simple logical inferences from that single observable fact
+
+Reviewed 569 proposals: 434 kept, 135 rejected
+Rejections by category:
+  duplicate: 68
+  trivial: 50
+  speculative: 9
+  ephemeral: 8
+Updated proposed-beliefs.md
+  Step 5: Review proposals took 18m 8s

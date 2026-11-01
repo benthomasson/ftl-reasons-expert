@@ -1,0 +1,2009 @@
+=== analyze / r1-explore (round 1) — 2026-11-01T19:11:08 ===
+
+=== Step 3: Explore (up to 146 topics) ===
+
+
+========================================
+[1-1/146] (145 remaining in queue)
+========================================
+  [file] .gitignore
+Explaining .gitignore with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/unknown.md
+Queued 2 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  gitignore-excludes-domain-data: The belief graph (`network.json`), exported beliefs (`beliefs.md`), and individu
+  gitignore-excludes-uv-lock: `uv.lock` is deliberately untracked, meaning dependency resolution is not locked
+  gitignore-uses-unanchored-patterns: All directory patterns (`entries/`, `logs/`, `reviews`) are relative-to-any-dept
+  gitignore-covers-internal-tooling: The presence of `.sdlc-loop/` and `.code-expert/` entries indicates the team use
+  gitignore-has-no-negation-rules: There are no `!` (re-include) patterns in this file, meaning any file matching a
+
+========================================
+[2-2/146] (146 remaining in queue)
+========================================
+  [file] CHANGELOG.md
+Explaining CHANGELOG.md with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/CHANGELOG.md
+Queued 1 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  access-tags-extend-belief-graph: The 0.18.0 access-tag feature adds a second filtering dimension (RBAC) orthogona
+  recompute-all-has-iteration-cap: The propagation engine's `recompute_all` (0.14.0) terminates via a bounded fixpo
+  retracted-flag-is-audit-not-state: The `_retracted` flag (0.16.0) is set idempotently even when a node is already O
+  reasons-lib-mirrors-reasons: The `reasons_lib/` directory contains a parallel copy of every module in `reason
+  derive-saturation-requires-exhaust-flag: The `derive` command (0.7.0–0.10.0) performs a single LLM pass by default; only 
+
+========================================
+[3-3/146] (146 remaining in queue)
+========================================
+  [file] CLAUDE.md
+Explaining CLAUDE.md with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/CLAUDE.md
+Queued 1 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  claudemd-documents-binary-truth-model: The system supports exactly two truth values (IN, OUT); there is no STALE, UNKNO
+  reasons-lib-is-shim-for-reasons: `reasons_lib/` is a backwards-compatibility alias that re-exports from `reasons/
+  justification-validity-requires-both-sl-and-outlist: A single justification is valid only when ALL antecedents (SL) are IN **and** AL
+  retracted-nodes-persist-in-storage: Nodes marked OUT are never deleted from the database; they remain queryable and 
+  claudemd-must-update-with-code: The file contains hardcoded counts (211 tests), module lists, and command tables
+
+========================================
+[4-4/146] (146 remaining in queue)
+========================================
+  [file] README.md
+Explaining README.md with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/README.md
+Queued 1 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  node-in-requires-any-justification-valid: A derived node is IN if and only if at least one of its justifications is valid;
+  retract-cascade-is-transitive: Retracting a node propagates OUT status through the entire dependent subgraph, n
+  beliefs-md-is-roundtrip-stable: `import-beliefs` and `export-markdown` are inverse operations on the `beliefs.md
+  nogood-backtracking-targets-premises-only: Dependency-directed backtracking after a nogood is detected retracts a *premise*
+  outlist-enables-default-reasoning: The `--unless` flag (outlist) makes a justification conditionally valid: the nod
+
+========================================
+[5-5/146] (146 remaining in queue)
+========================================
+  [file] pyproject.toml
+Explaining pyproject.toml with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/pyproject.md
+Queued 1 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  core-engine-has-zero-third-party-deps: The `reasons` package imports only Python stdlib at the module level; all extern
+  llm-extra-excludes-openai: The `llm` optional-dependency group bundles `langchain-anthropic`, `langchain-go
+  reasons-contains-merkle-but-reasons-lib-does-not: The `reasons/` package tree includes `merkle.py` (Merkle-tree integrity proofs) 
+  test-pg-composite-extra-prevents-redundant-listing: The `test-pg` extra exists as a convenience composition of `pg` + `test` depende
+  version-is-manually-pinned: The package version (`0.58.0`) is a literal string in `pyproject.toml` with no `
+
+========================================
+[6-6/146] (146 remaining in queue)
+========================================
+  [file] reasons/__init__.py
+Explaining reasons/__init__.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-__init__.md
+Queued 1 new topic(s) (147 pending)
+Surfaced 5 belief(s):
+  reasons-__init__-is-single-source-of-truth-for-data-model: All 35+ runtime modules and 50+ test files import `Node`, `Justification`, and `
+  node-truth-value-is-binary: `Node.truth_value` is constrained to `"IN"` or `"OUT"` with no third state; the 
+  dependents-set-enables-O(1)-invalidation: `Node.dependents` is a reverse adjacency index maintained by the mutator; the pr
+  outlist-implements-non-monotonic-defeat: A `Justification` with a non-empty `outlist` becomes invalid (and its node may f
+  reasons-lib-is-frozen-subset-of-reasons: `reasons_lib/` contains a strict subset of `reasons/` (missing `merkle.py`, `pub
+
+========================================
+[7-7/146] (146 remaining in queue)
+========================================
+  [file] reasons/api.py
+Explaining reasons/api.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-api.md
+Queued 2 new topic(s) (148 pending)
+Surfaced 5 belief(s):
+  what-if-simulation-is-read-only: `what_if_retract`, `what_if_assert`, and `what_if_supersede` use `copy.deepcopy`
+  namespace-isolation-is-structural: Belief isolation across agents is enforced by a prerequisite dependency on `{nam
+  proposal-accept-revalidates-against-live-state: `accept_proposal` compares the stored `snapshot_json` (truth_value, text_hash) a
+  defeaters-are-graph-native-nodes: `defeat_justification` creates a real premise node in the justification outlist 
+  api-functions-return-json-serializable-dicts: Every public function in `api.py` returns a `dict` or `str` suitable for `json.d
+
+========================================
+[8-8/146] (147 remaining in queue)
+========================================
+  [file] reasons/ask.py
+Explaining reasons/ask.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-ask.md
+Queued 3 new topic(s) (150 pending)
+Surfaced 5 belief(s):
+  ask-requires-sources-db-for-dual-mode: Calling `ask(..., dual=True)` without a `sources_db` path raises `ValueError` be
+  tool-loop-is-bounded-by-max-iterations: The agentic search loop in `ask()` executes at most 3 LLM calls (or 5 with MCP s
+  llm-failure-degrades-to-raw-context: Every `invoke_model` call site in `ask.py` catches timeout and generic exception
+  natural-mode-strips-tms-metadata-before-llm: When `natural=True`, `_strip_belief_metadata` removes all belief IDs, status mar
+  extract-tool-call-maps-json-line-to-tool-dispatch: `extract_tool_call` parses the first JSON line containing a `"tool"` key; the re
+
+========================================
+[9-9/146] (149 remaining in queue)
+========================================
+  [file] reasons/build_wiki.py
+Explaining reasons/build_wiki.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-build_wiki.md
+Queued 1 new topic(s) (150 pending)
+Surfaced 5 belief(s):
+  build-wiki-produces-static-markdown: `build_wiki` writes exclusively to the local filesystem (`output_dir`); it has n
+  llm-failure-falls-back-to-deterministic-rendering: If `generate_wiki_page` raises for a given group, that group is rendered via `_f
+  node-to-page-is-built-before-rendering: The `node_to_page` mapping is fully constructed before any page is written, so e
+  linkify-skips-already-linked-ids: `_linkify` checks for the `[id](` prefix before substituting, making it safe to 
+  supporting-justification-is-bounds-checked: Both `_format_node` and `_format_beliefs_for_prompt` guard `supporting_justifica
+
+========================================
+[10-10/146] (149 remaining in queue)
+========================================
+  [file] reasons/check_stale.py
+Explaining reasons/check_stale.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-check_stale.md
+Queued 2 new topic(s) (151 pending)
+Surfaced 5 belief(s):
+  check-stale-mutates-network-in-place: All mutating functions in this module (`check_stale`, `hash_sources`, `pin_sourc
+  git-errors-fail-open-to-content-hash: Every git-based staleness check (`file_changed_since`, `file_lines_changed_since
+  pinned-lines-requires-pinned-sha: The line-range fast path in `check_stale` is only entered when `node.metadata["p
+  truncated-hash-detection-is-16-char-exact: The legacy-hash migration path triggers only when `len(source_hash) == 16` AND i
+  get-file-commit-sha-lacks-timeout-guard: Unlike `file_changed_since` and `file_lines_changed_since`, `get_file_commit_sha
+
+========================================
+[11-11/146] (150 remaining in queue)
+========================================
+  [file] reasons/cli.py
+Explaining reasons/cli.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-cli.md
+Queued 2 new topic(s) (152 pending)
+Surfaced 5 belief(s):
+  cli-is-a-thin-facade-over-api: Every `cmd_*` handler calls exactly one (or a small fixed set) of `reasons.api` 
+  pg-mode-requires-domain-id: `_backend_kwargs()` will call `sys.exit(1)` if a PostgreSQL connection string is
+  visible-to-enables-access-isolation: The `--visible-to` flag is parsed into a list and passed as `visible_to` to API 
+  destructive-commands-use-two-phase-workflow: `deduplicate`, `contradictions`, `derive` (without `--auto`), and `propose-updat
+  llm-cost-tracking-is-mandatory-for-model-commands: Every command that invokes an LLM calls `reset_cost_tracker()` before the API ca
+
+========================================
+[12-12/146] (151 remaining in queue)
+========================================
+  [file] reasons/cluster.py
+Explaining reasons/cluster.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-cluster.md
+Queued 2 new topic(s) (153 pending)
+Surfaced 5 belief(s):
+  cluster-intra-focus-rotates-by-round: `cluster_beliefs_intra` selects the focus cluster as `sorted_by_size[round_num %
+  cluster-cache-keyed-by-text-hash: The embedding cache uses `(node_id, sha256(text)[:16])` as its key, meaning a be
+  cluster-early-return-skips-ml: All three public functions return immediately when `len(beliefs)` is at or below
+  cluster-requires-optional-extra: `sentence-transformers` and `scikit-learn` are not hard dependencies; the module
+  cross-cluster-allocates-proportionally: `cluster_beliefs` distributes the budget as `budget // k` per cluster with the r
+
+========================================
+[13-13/146] (152 remaining in queue)
+========================================
+  [file] reasons/compact.py
+Explaining reasons/compact.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-compact.md
+Queued 1 new topic(s) (153 pending)
+Surfaced 5 belief(s):
+  compact-respects-budget-as-hard-ceiling: The returned string's token count (measured by `len(text) // 4`) will never exce
+  compact-prioritizes-nogoods-over-in-nodes: If the budget can fit a nogood line but not an IN node line, the nogood is inclu
+  compact-hides-nodes-covered-by-summaries: Any IN node whose ID appears in another node's `metadata["summarizes"]` list is 
+  compact-uses-chars-4-tokenization: All budget arithmetic uses the `len(text) // 4` heuristic; no real tokenizer (ti
+  compact-reads-network-immutably: `compact()` never calls any setter, mutation method, or `__setitem__` on `networ
+
+========================================
+[14-14/146] (152 remaining in queue)
+========================================
+  [file] reasons/contradictions.py
+Explaining reasons/contradictions.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-contradictions.md
+Queued 2 new topic(s) (154 pending)
+Surfaced 5 belief(s):
+  contradictions-checks-only-IN-beliefs: Both `detect_contradictions` and `detect_contradictions_semantic` filter to `tru
+  parse-rejects-nogoods-with-fewer-than-2-claims: `parse_contradiction_response` drops any NOGOOD block whose `claims` list has le
+  detect-contradictions-shuffles-before-batching: `random.shuffle(belief_ids)` is called before the batch loop in `detect_contradi
+  semantic-variant-uses-embedding-model-not-llm-model: `detect_contradictions_semantic` takes a separate `embedding_model` parameter (d
+  incremental-write-header-once: The `header_written` boolean ensures `write_contradiction_plan`'s header is emit
+
+========================================
+[15-15/146] (153 remaining in queue)
+========================================
+  [file] reasons/derive.py
+Explaining reasons/derive.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-derive.md
+Queued 2 new topic(s) (155 pending)
+Surfaced 5 belief(s):
+  derive-validate-requires-existence: `validate_proposals` rejects any proposal whose `antecedents` or `unless` list r
+  derive-retractions-block-reproposal: A proposed belief ID that has ≥ 50 % token overlap (Jaccard) with any OUT belief
+  derive-mode-defaults-to-all: When the LLM omits the `Mode:` field or it fails to parse, `parse_proposals` def
+  derive-cluster-lazy-import: The `cluster` module is imported inside `_build_beliefs_section` only when `clus
+  derive-write-roundtrips-parse: `write_proposals_file` emits the exact `### DERIVE` / `### GATE` markdown format
+
+========================================
+[16-16/146] (154 remaining in queue)
+========================================
+  [file] reasons/export_card.py
+Explaining reasons/export_card.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-export_card.md
+Queued 2 new topic(s) (156 pending)
+Surfaced 5 belief(s):
+  export-card-produces-self-contained-readme: `export_card` returns a complete `README.md` string that requires no external fi
+  node-depth-uses-supporting-justification-only: When `supporting_justification` is a valid index, `_node_depth` traverses only t
+  export-card-is-pure: The function has no I/O, no network calls, and no mutable shared state; it can b
+  frontmatter-type-is-fixed-eem: The YAML field `type: eem` is hardcoded and unconditional; removing or changing 
+  retraction-pct-zero-guards-empty-network: When `network.nodes` is empty, the retraction rate is the literal string `"0%"`,
+
+========================================
+[17-17/146] (155 remaining in queue)
+========================================
+  [file] reasons/export_markdown.py
+Explaining reasons/export_markdown.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-export_markdown.md
+Queued 2 new topic(s) (157 pending)
+Surfaced 5 belief(s):
+  export-markdown-preserves-graph-as-lists: The export encodes directed justification edges as per-node "Depends on" flat li
+  out-node-maps-to-stale-iff-reason-present: An `OUT` node is rendered with status `STALE` (not `OUT`) if and only if its met
+  defeater-classification-requires-bidirectional-pointer: An outlist entry is emitted as "Defeated by" only when the *referenced* node's m
+  export-markdown-is-pure: `export_markdown()` performs no I/O, raises no domain-specific exceptions, and l
+  reasons-lib-mirrors-reasons: `reasons_lib/export_markdown.py` is a byte-identical copy of `reasons/export_mar
+
+========================================
+[18-18/146] (156 remaining in queue)
+========================================
+  [file] reasons/hf.py
+Explaining reasons/hf.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-hf.md
+Queued 1 new topic(s) (157 pending)
+Surfaced 5 belief(s):
+  download-network-returns-raw-json-string: `download_network` returns the HTTP response body as a decoded `str`, not a `dic
+  create-repo-treats-409-as-success: A 409 Conflict from the HF create-repo endpoint is swallowed via `pass`, making 
+  hf-module-stdlib-only: `reasons/hf.py` has zero third-party imports; all HTTP is done via `urllib.reque
+  upload-and-create-require-caller-supplied-token: Unlike `download_network` (which resolves the token internally via `_resolve_tok
+  reasons-extends-reasons-lib-mirror: `reasons_lib/hf.py` is a flat mirror of `reasons/hf.py` for library distribution
+
+========================================
+[19-19/146] (156 remaining in queue)
+========================================
+  [file] reasons/import_agent.py
+Explaining reasons/import_agent.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-import_agent.md
+Queued 2 new topic(s) (158 pending)
+Surfaced 5 belief(s):
+  agent-inactive-outlist-wiring-enables-cascade-retraction: Retractions of `agent:active` propagate OUT to all imported beliefs exclusively 
+  retracted-metadata-flag-prevents-recompute-resurrection: A node with `_retracted=True` in its metadata is skipped by both `recompute_all(
+  import-agent-uses-outlist-not-antecedents-for-trust: The `agent:active` premise is deliberately excluded from antecedent lists becaus
+  sync-agent-remote-wins-semantics: `sync_agent` removes any locally-present agent-prefixed node whose ID is absent 
+  normalize-layers-produce-identical-claim-structure: Both `_normalize_markdown` and `_normalize_json` emit the same dict schema (id, 
+
+========================================
+[20-20/146] (157 remaining in queue)
+========================================
+  [file] reasons/import_beliefs.py
+Explaining reasons/import_beliefs.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-import_beliefs.md
+Queued 1 new topic(s) (158 pending)
+Surfaced 5 belief(s):
+  import-beliefs-is-idempotent-by-id: Re-running `import_into_network` with the same markdown on an existing network s
+  stale-out-claims-are-added-then-retracted: Every STALE or OUT claim is first inserted via `add_node` (so dependents can ref
+  topo-sort-breaks-cycles-by-force-adding: The topological sort in `import_into_network` is bounded and non-throwing; if a 
+  nogoods-require-two-or-more-valid-nodes: A parsed nogood whose `affects` list resolves to fewer than 2 existing node IDs 
+  depends-on-is-filtered-to-current-batch: Only `depends_on` and `unless` IDs that appear in the same parsed claims list ar
+
+========================================
+[21-21/146] (157 remaining in queue)
+========================================
+  [file] reasons/llm.py
+Explaining reasons/llm.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-llm.md
+Queued 2 new topic(s) (159 pending)
+Surfaced 5 belief(s):
+  invoke-model-returns-plain-str: `invoke_model()` always returns a `str` (the model's response text) and never re
+  cli-models-strip-claudecode-env: The subprocess environment for CLI models is always filtered to exclude `CLAUDEC
+  cost-tracking-is-process-scoped-and-thread-safe: `_cost_tracker` accumulates stats for the lifetime of the Python process and is 
+  json-parse-failure-degrades-to-raw-output: If a CLI model's stdout is not valid JSON, `_parse_cli_json` silently returns th
+  openai-uses-responses-api-not-chat-completions: The `openai:` provider calls `client.responses.create()` (the newer Responses AP
+
+========================================
+[22-22/146] (158 remaining in queue)
+========================================
+  [file] reasons/mcp_client.py
+Explaining reasons/mcp_client.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-mcp_client.md
+Queued 2 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  mcp-bridge-requires-mcp-sdk: `McpBridge.__init__` raises `ImportError` if the `mcp` package is not installed;
+  mcp-bridge-maps-to-sync-api: `McpBridge.call_tool(name, arguments)` is the sole synchronous entry point for t
+  mcp-bridge-contains-single-session: Exactly one `ClientSession` and one stdio child process exist per `McpBridge` in
+  mcp-bridge-prevents-multithreaded-session-access: All session mutations are serialised through a single `asyncio` event loop on on
+  mcp-bridge-lifecycle-is-ctx-manager-bound: The intended usage is `with McpBridge(cmd) as bridge:`; calling `connect()` and 
+
+========================================
+[23-23/146] (159 remaining in queue)
+========================================
+  [file] reasons/mcp_server.py
+Explaining reasons/mcp_server.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-mcp_server.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  mcp-server-returns-only-strings: Every `@mcp.tool()` handler in `mcp_server.py` returns a `str` (JSON-dumped or m
+  mcp-server-is-thin-proxy-over-api: `mcp_server.py` contains no belief-network logic; every tool body is a direct ca
+  db-path-resolved-once-per-process: `_db` is a module-level global set either eagerly in `main()` or lazily on first
+  limit-zero-means-unlimited: The MCP layer uses `0` as the "no limit" sentinel for `limit` parameters (matchi
+  error-json-has-single-error-key: All caught exceptions are serialized as `{"error": "<message>"}` — a single-key 
+
+========================================
+[24-24/146] (159 remaining in queue)
+========================================
+  [file] reasons/merkle.py
+Explaining reasons/merkle.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-merkle.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  merkle-hash-is-path-scoped: The Merkle hash for a node incorporates only its `supporting_justification` and 
+  verify-all-never-raises: `verify_all` returns a structured dict (`findings` + `missing_hashes`) and does 
+  fresh-computation-ignores-stored-hashes: The `_fresh_*` family of functions computes hashes exclusively from `node.text` 
+  cycle-produces-empty-hash: A cyclic justification chain does not raise or loop; it silently produces `sha25
+  backfill-before-verify-required: Calling `verify_all` on a network with unhashed nodes produces `missing_hashes >
+
+========================================
+[25-25/146] (159 remaining in queue)
+========================================
+  [file] reasons/metadata.py
+Explaining reasons/metadata.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-metadata.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  build-meta-returns-exactly-six-keys: `build_meta()` always returns a dict with exactly the keys `schema_version`, `pr
+  created-at-preservation-enables-stable-identity: Passing a non-empty `created_at` to `build_meta()` preserves the original creati
+  generator-fallback-prevents-export-crash: If `importlib.metadata.version("ftl-reasons")` raises for any reason (missing di
+  schema-version-maps-to-consumer-migration: The `SCHEMA_VERSION` constant (currently `"1.0"`) is the single field that downs
+  metadata-module-has-no-domain-logic: `metadata.py` imports nothing from the `reasons` or `reasons_lib` packages; it d
+
+========================================
+[26-26/146] (159 remaining in queue)
+========================================
+  [file] reasons/mind_service.py
+Explaining reasons/mind_service.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-mind_service.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  mind-service-uses-stdlib-only: `mind_service.py` depends exclusively on Python stdlib (`urllib`, `json`, `os`) 
+  fetch-export-returns-raw-string: `fetch_export` returns the response body as an unparsed UTF-8 string, delegating
+  push-belief-omits-empty-optionals: `push_belief` conditionally excludes `sl` and `source` from the JSON body when t
+  config-resolution-collects-all-missing: `_resolve_config` accumulates *all* missing config values into a single `Runtime
+  reasons-mind-service-duplicated-in-reasons-lib: `reasons/mind_service.py` and `reasons_lib/mind_service.py` are parallel copies 
+
+========================================
+[27-27/146] (159 remaining in queue)
+========================================
+  [file] reasons/network.py
+Explaining reasons/network.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-network.md
+Queued 2 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  network-implements-doyle-tms: The `Network` class is a direct implementation of Doyle's 1979 TMS algorithm wit
+  outlist-enables-defeasibility: A justification is valid only when all outlist nodes are OUT; this makes the rea
+  entrenchment-scores-premises-over-derivations: `_entrenchment` assigns +100 to premises (no justifications) and +40 to DERIVED 
+  dependents-index-must-match-justifications: The reverse `dependents` index on every node is a derived structure that must be
+  retract-sets-retracted-flag-blocks-propagation: Once `metadata["_retracted"]` is set to True, `_propagate` skips that node entir
+
+========================================
+[28-28/146] (160 remaining in queue)
+========================================
+  [file] reasons/pg.py
+Explaining reasons/pg.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-pg.md
+Queued 2 new topic(s) (162 pending)
+Surfaced 5 belief(s):
+  pg-api-requires-psycopg-v3: `PgApi.__init__` raises `ImportError` if `psycopg` (v3, with `[binary]` extra) i
+  domain-id-partitions-all-tables: Every table uses a composite primary key or filter on `domain_id`; no SQL query 
+  retracted-nodes-skip-propagation: Nodes with `metadata._retracted == True` are excluded from `_propagate` and `pro
+  what-if-operations-always-rollback: `what_if_retract` and `what_if_assert` guarantee zero persistent side effects by
+  import-uses-topological-sort-with-cycle-fallback: Both `import_json` and `import_beliefs` perform a multi-pass ready-set insertion
+
+========================================
+[29-29/146] (161 remaining in queue)
+========================================
+  [file] reasons/propose_update.py
+Explaining reasons/propose_update.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-propose_update.md
+Queued 2 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  propose-update-only-audits-in-beliefs: `propose_updates` defaults to filtering `belief_ids` to nodes where `truth_value
+  parse-coerces-invalid-taxonomy-values: `parse_update_proposals` never raises on unknown `failure_mode`, `basis`, or `ac
+  batch-failure-is-non-fatal: An exception in `invoke_model` for one batch is caught, logged to `stderr`, and 
+  propose-update-produces-human-reviewable-artifact: The module's output contract is a markdown document containing ready-to-paste `r
+  propose-update-depends-on-invoke-model-only: The module's sole external runtime dependency (beyond stdlib) is `reasons.llm.in
+
+========================================
+[30-30/146] (162 remaining in queue)
+========================================
+  [file] reasons/pubsub.py
+Explaining reasons/pubsub.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-pubsub.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  pubsub-delivers-batched-final-state: `publish()` is only ever called with the post-save stable snapshot; intermediate
+  subscriber-exception-is-isolated: A raising subscriber does not prevent other subscribers from receiving the same 
+  subscribe-allows-duplicates: Calling `subscribe(callback, db_path)` twice with the same callback registers it
+  compute-changes-detects-insertions-as-changes: A node present in `after` but absent from `before` produces a `ChangeEvent` with
+  pubsub-is-synchronous-in-process: There is no queue, no thread, no IPC; `publish()` blocks until all subscribers r
+
+========================================
+[31-31/146] (162 remaining in queue)
+========================================
+  [file] reasons/repair.py
+Explaining reasons/repair.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-repair.md
+Surfaced 5 belief(s):
+  repair-beliefs-triages-via-llm: `repair_beliefs` does not apply a fixed repair strategy; it calls `triage_belief
+  search-and-link-requires-premises: The search-and-link path exclusively links *premise* nodes (nodes with no justif
+  matched-ids-filtered-against-candidates: `parse_match_response` silently drops any LLM-returned ID not present in the `va
+  dry-run-mutates-nothing: When `dry_run=True`, no calls to `api.add_justification`, `api.supersede_with_te
+  research-beliefs-is-alias-for-repair-beliefs: `research_beliefs` is a direct alias (`research_beliefs = repair_beliefs`), not 
+
+========================================
+[32-32/146] (161 remaining in queue)
+========================================
+  [file] reasons/repair_premises.py
+Explaining reasons/repair_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-repair_premises.md
+Surfaced 5 belief(s):
+  repair-premises-degrades-to-retract-on-parse-failure: If the LLM response cannot be parsed as a valid JSON array, `_repair_one` return
+  repair-premises-consumes-review-premises-output: The `review_results` parameter must be a `Dict[str, dict]` with keys `error_type
+  repair-premises-parallel-ordering-uses-id-not-index: When `parallel > 0`, the returned list is in completion order, not input order; 
+  repair-premises-swalls-llm-exceptions: `_repair_one` catches all exceptions from `invoke_model` and converts them to `{
+  repair-premises-is-source-only: The prompt explicitly forbids the LLM from using external knowledge; a premise c
+
+========================================
+[33-33/146] (160 remaining in queue)
+========================================
+  [file] reasons/report_belief.py
+Explaining reasons/report_belief.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-report_belief.md
+Queued 1 new topic(s) (161 pending)
+
+========================================
+[34-34/146] (160 remaining in queue)
+========================================
+  [file] reasons/report_gated.py
+Explaining reasons/report_gated.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-report_gated.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  report-gated-uses-lazy-import-for-llm: `invoke_model` is imported inside `generate_report()` rather than at module leve
+  report-gated-llm-path-prepends-title: When a model is specified, `report_gated` always prepends `# Gated Beliefs Repor
+  report-gated-structured-path-sorts-by-impact: In the deterministic path, retracted premises are ordered by `dependent_count` d
+  report-gated-has-no-input-validation: `report_gated` does not validate the structure of `gated_data`, `retracted_premi
+  report-gated-pipes-escaped-in-tables: The structured report escapes literal `|` characters in premise text and retract
+
+========================================
+[35-35/146] (160 remaining in queue)
+========================================
+  [file] reasons/review.py
+Explaining reasons/review.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-review.md
+Surfaced 5 belief(s):
+  review-beliefs-skips-axioms: Beliefs with `justifications: []` (empty list) are excluded from review in the d
+  parse-review-response-fails-open: When the LLM omits `valid`, `sufficient`, or `necessary` from a result object, `
+  defeat-reason-types-is-closed-7-value-set: `DEFEAT_REASON_TYPES` contains exactly 7 strings and is the sole valid vocabular
+  review-beliefs-batch-isolation: An exception in one batch's `invoke_model` call is caught and logged to stderr, 
+  belief-ids-override-bypasses-in-filter: When `belief_ids` is explicitly provided to `review_beliefs`, the filter checks 
+
+========================================
+[36-36/146] (159 remaining in queue)
+========================================
+  [file] reasons/review_justifications.py
+Explaining reasons/review_justifications.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-review_justifications.md
+Queued 2 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  review-justifications-is-read-only: `review_justifications()` never writes to the database or mutates `nodes`; it re
+  review-justifications-requires-IN-truth-value: Only nodes with `truth_value == "IN"` are eligible for review; OUT and UNJUSTIFI
+  parse-justification-review-tolerates-prose-wrapper: The parser scans for the first `[` character and uses `raw_decode`, meaning it c
+  review-justifications-batch-failure-is-non-fatal: A single batch that raises or returns unparseable output produces a stderr warni
+  min-antecedents-gates-review-eligibility: A node with fewer than `min_antecedents` (default 2) SL antecedents is never inc
+
+========================================
+[37-37/146] (160 remaining in queue)
+========================================
+  [file] reasons/review_premises.py
+Explaining reasons/review_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-review_premises.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  review-premises-is-read-only: `review_premises` never mutates `nodes` or `source_contents`; it is a pure audit
+  review-premises-batches-by-source: Premises sharing the same `source` path are always placed in contiguous position
+  review-premises-swallow-batch-failures: A failed LLM call in any batch is logged to stderr and skipped; the function sti
+  review-premises-produces-repair-input: The output schema (`id`, `accurate`, `well_scoped`, `error_type`, `comment`) is 
+  reasons-and-reasons-lib-are-mirrors: `reasons/review_premises.py` and `reasons_lib/review_premises.py` must be kept i
+
+========================================
+[38-38/146] (160 remaining in queue)
+========================================
+  [file] reasons/storage.py
+Explaining reasons/storage.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-storage.md
+Queued 2 new topic(s) (162 pending)
+Surfaced 5 belief(s):
+  save-is-atomic: A call to `Storage.save()` either fully persists the network or leaves the datab
+  load-rebuilds-dependents: `Storage.load()` never stores or restores the dependent index; it calls `network
+  external-writes-bypass-network: Tags and sources can be written directly to `node_tags` / `node_sources` (e.g., 
+  fts-rebuilt-on-every-save: The `nodes_fts` FTS5 table is dropped and recreated on every `save()` call, guar
+  schema-migration-is-column-level: `_init_schema()` migrates by checking `PRAGMA table_info` and issuing `ALTER TAB
+
+========================================
+[39-39/146] (161 remaining in queue)
+========================================
+  [file] reasons/verify.py
+Explaining reasons/verify.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-verify.md
+Surfaced 5 belief(s):
+  verify-beliefs-sends-one-llm-call: `verify_beliefs` makes exactly one `invoke_model` call regardless of how many be
+  read-source-returns-none-never-raises: `read_source` catches `OSError` and `UnicodeDecodeError` and returns `None` on f
+  parse-verify-response-drops-malformed-entries: Individual entries in the LLM JSON response that lack a string `"verdict"` key a
+  verify-beliefs-requires-preloaded-sources: The caller must resolve and read source files before invoking `verify_beliefs`; 
+  reasons-verify-and-reasons-lib-verify-must-stay-in-sync: Two copies of this module exist in the repo (`reasons/verify.py` and `reasons_li
+
+========================================
+[40-40/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/__init__.py
+Explaining reasons_lib/__init__.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-__init__.md
+Queued 2 new topic(s) (162 pending)
+Surfaced 5 belief(s):
+  reasons-lib-re-exports-reasons: `reasons_lib/__init__.py` contains no logic of its own; every public name it exp
+  reasons-lib-requires-reasons-installable: Importing `reasons_lib` will raise `ModuleNotFoundError` if the `reasons` packag
+  reasons-lib-is-a-reasons-substitute: The shim exists solely to preserve the pre-rename import surface; any new featur
+  reasons-lib-star-import-skips-underscored-names: The `from reasons import *` construct excludes any name beginning with `_` (and 
+  reasons-lib-contains-mirror-submodules: The `reasons_lib/` directory holds per-module shim files (`api.py`, `cli.py`, `s
+
+========================================
+[41-41/146] (161 remaining in queue)
+========================================
+  [file] reasons_lib/api.py
+Explaining reasons_lib/api.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-api.md
+Queued 2 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  reasons_lib-api-replaces-reasons-api: `reasons_lib/api.py` is a pure re-export of `reasons.api`; deleting it and updat
+  reasons-lib-is-stale: The `reasons_lib/` package is missing modules that exist in `reasons/` (`merkle.
+  star-import-scope-depends-on-all: The set of names exposed by `reasons_lib.api` is determined entirely by `reasons
+  shim-introduces-no-encapsulation: Because the star-import binds the same function objects, any monkey-patch applie
+  importers-still-use-legacy-path: 7 internal modules under `reasons/` and 50+ test files still import via `reasons
+
+========================================
+[42-42/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/ask.py
+Explaining reasons_lib/ask.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-ask.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  reasons_lib-ask-is-a-reexport: Every name accessible via `reasons_lib.ask` is the identical Python object expor
+  reasons-lib-ask-requires-reasons-ask: Importing `reasons_lib.ask` transitively requires the `reasons` package to be in
+  star-import-produces-identity: `from reasons_lib.ask import X` and `from reasons.ask import X` yield the same o
+  reasons-lib-has-zero-logic: The `reasons_lib` package contains no executable business logic of its own; ever
+  noqa-f403-suppresses-star-import-warning: The `# noqa: F403` directive is load-bearing: without it, any linter configured 
+
+========================================
+[43-43/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/build_wiki.py
+Explaining reasons_lib/build_wiki.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-build_wiki.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  reasons-lib-build-wiki-is-a-shim-for-reasons-build-wiki: `reasons_lib/build_wiki.py` contains zero original logic; every public name it e
+  reasons-api-py-imports-via-reasons-lib: `reasons/api.py` still imports wiki-building symbols through the `reasons_lib` n
+  star-import-guarantees-identity-not-copy: Because the shim uses `import *` (not explicit rebinding), `reasons_lib.build_wi
+  no-deprecation-warning-emitted: Importing from `reasons_lib.build_wiki` does not raise a `DeprecationWarning` or
+  reasons-lib-mirrors-reasons-one-to-one: Every module in `reasons/` has a corresponding one-line shim in `reasons_lib/`, 
+
+========================================
+[44-44/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/check_stale.py
+Explaining reasons_lib/check_stale.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-check_stale.md
+Queued 2 new topic(s) (164 pending)
+Surfaced 5 belief(s):
+  reasons_lib-is-a-reasons: Every file in `reasons_lib/` is a star-import shim that re-exports from the same
+  shim-maps-to-canonical-namespace: `reasons_lib.check_stale` and `reasons.check_stale` expose identical public symb
+  reasons-internal-imports-stale: At least three modules inside `reasons/` (`api.py`, `pg.py`, `verify.py`) still 
+  shim-produces-no-side-effects: Importing `reasons_lib.check_stale` executes no code beyond the import of `reaso
+  reasons-contains-reasons_lib: The `reasons_lib/` directory is a strict subset of `reasons/` (missing `mcp_clie
+
+========================================
+[45-45/146] (163 remaining in queue)
+========================================
+  [file] reasons_lib/cli.py
+Explaining reasons_lib/cli.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-cli.md
+Queued 2 new topic(s) (165 pending)
+Surfaced 4 belief(s):
+  reasons_lib-cli-is-a-reason-cli-reexport: `reasons_lib/cli.py` defines zero symbols of its own; its entire namespace is a 
+  shim-deletion-blocked-by-test-imports: ~20 test files and at least `reasons_lib/mcp_client.py` still import via the `re
+  star-import-respects-underscore-convention: Because the shim uses `import *` (not an explicit name list), any name in `reaso
+  reasons-lib-has-no-runtime-logic: The module executes exactly one statement at import time; there is no conditiona
+
+========================================
+[46-46/146] (164 remaining in queue)
+========================================
+  [file] reasons_lib/cluster.py
+Explaining reasons_lib/cluster.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-cluster.md
+Queued 1 new topic(s) (165 pending)
+Surfaced 4 belief(s):
+  reasons_lib-cluster-is-a-reason-cluster-delegate: `reasons_lib/cluster.py` defines zero local names; its entire public API is a 1:
+  reasons-lib-requires-reason-cluster-import: If `reasons` is uninstalled or `reasons/cluster.py` raises at import time, `impo
+  shim-star-import-tracks-underscores: The shim's visible name set is governed entirely by `reasons/cluster.py`'s `__al
+  reasons-contains-reasons-lib-mirror: The repository maintains a full directory-level mirror (`reasons_lib/` for every
+
+========================================
+[47-47/146] (164 remaining in queue)
+========================================
+  [file] reasons_lib/compact.py
+Explaining reasons_lib/compact.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-compact.md
+Surfaced 4 belief(s):
+  shim-delegates-to-real-module: `reasons_lib/compact.py` defines zero logic; every public symbol it exposes is a
+  wildcard-import-inherits-all: The set of names available via `from reasons_lib.compact import X` is determined
+  noa-suppresses-both-f401-and-f403: The `# noqa` comment on line 2 suppresses both F401 (unused import) and F403 (wi
+  reasons-api-still-routes-through-shim: `reasons/api.py` imports from `reasons_lib.compact` rather than `reasons.compact
+
+========================================
+[48-48/146] (163 remaining in queue)
+========================================
+  [file] reasons_lib/contradictions.py
+Explaining reasons_lib/contradictions.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-contradictions.md
+Surfaced 5 belief(s):
+  reasons-lib-contradictions-is-a-pure-reexport: `reasons_lib/contradictions.py` defines zero original symbols; every public name
+  reasons-lib-mirrors-reasons-one-to-one: For every `.py` file in `reasons/` (excluding `__init__.py` and `merkle.py`, `pg
+  reasons-api-still-depends-on-reasons-lib: `reasons/api.py` imports contradiction utilities through the `reasons_lib` names
+  star-import-guarantees-automatic-forward-compat: Adding a new public function to `reasons/contradictions.py` automatically makes 
+  no-merkle-or-pg-in-reasons-lib: The files `merkle.py` and `pg.py` exist only under `reasons/` and have no `reaso
+
+========================================
+[49-49/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/derive.py
+Explaining reasons_lib/derive.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-derive.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  reasons-lib-replaces-reasons-import-path: `reasons_lib/<module>.py` is a drop-in alias for `reasons/<module>.py`; the two 
+  star-import-shim-preserves-surface-dynamically: Because the shim uses `import *` with no local `__all__`, adding a new public sy
+  reasons-lib-shim-emits-no-deprecation-warning: Importing from `reasons_lib.derive` produces no `DeprecationWarning` or stderr m
+  reasons-api-and-cli-depend-on-shim: `reasons/api.py` and `reasons/cli.py` (canonical package) currently import deriv
+  noqa-F403-suppresses-star-import-lint: The `# noqa: F403` comment disables flake8's "star-notation import" rule for thi
+
+========================================
+[50-50/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/export_card.py
+Explaining reasons_lib/export_card.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-export_card.md
+Queued 2 new topic(s) (164 pending)
+Surfaced 5 belief(s):
+  reasons_lib-export-card-is-a-reasons-export-card: `reasons_lib/export_card.py` is a pure re-export shim; it defines no functions, 
+  reasons-lib-shim-guarantees-namespace-parity: Any public name added to `reasons/export_card.py` automatically becomes availabl
+  reasons-lib-removal-blocked-by-api-and-tests: The `reasons_lib/` package cannot be deleted until both `reasons/api.py` and `te
+  shim-star-import-ignores-__all__: If `reasons/export_card.py` later defines an `__all__` list, the shim's star imp
+  reasons-lib-mirrors-reasons-one-to-one: The directory structure of `reasons_lib/` is a 1:1 copy of `reasons/`, indicatin
+
+========================================
+[51-51/146] (163 remaining in queue)
+========================================
+  [file] reasons_lib/export_markdown.py
+Explaining reasons_lib/export_markdown.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-export_markdown.md
+Queued 1 new topic(s) (164 pending)
+Surfaced 5 belief(s):
+  reasons_lib-export_markdown-is-a-reason-export_markdown-alias: Every public name accessible via `reasons_lib.export_markdown` is the identical 
+  reasons-api-imports-via-reasons_lib-shim: `reasons/api.py` currently imports markdown-export symbols through `reasons_lib.
+  shim-star-import-guarantees-forward-compat: Because the shim uses `import *` (not an explicit name list), any new public sym
+  shim-has-no-lazy-fallback: If `reasons.export_markdown` is missing or broken, importing `reasons_lib.export
+  reasons_lib-tree-mirrors-reasons-tree: The `reasons_lib/` package contains a file-for-file mirror of the `reasons/` pac
+
+========================================
+[52-52/146] (163 remaining in queue)
+========================================
+  [file] reasons_lib/hf.py
+Explaining reasons_lib/hf.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-hf.md
+Surfaced 4 belief(s):
+  reasons_lib-hf-extends-reasons-hf: `reasons_lib.hf` is a pure re-export of `reasons.hf`; it defines zero local symb
+  shim-requires-target-importable: `reasons_lib/hf.py` will raise an `ImportError` at module-load time if `reasons.
+  star-import-respects-all: The set of names re-exported by this shim is governed by `reasons.hf.__all__` if
+  reasons-lib-mirrors-reasons: The `reasons_lib/` directory contains a 1:1 file-for-file mirror of `reasons/`, 
+
+========================================
+[53-53/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/import_agent.py
+Explaining reasons_lib/import_agent.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-import_agent.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 4 belief(s):
+  reasons-lib-import-agent-is-a-re-export-shim: `reasons_lib/import_agent.py` defines no logic of its own; it exists solely to r
+  star-import-tracks-canonical-exports: Because the shim uses `from reasons.import_agent import *`, any new public symbo
+  reasons-lib-import-agent-depends-on-reasons-import-agent: The shim has exactly one real dependency: the canonical `reasons.import_agent` m
+  noqa-suppresses-f401-and-f403: The `# noqa: F401,F403` comment suppresses both "imported but unused" (F401) and
+
+========================================
+[54-54/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/import_beliefs.py
+Explaining reasons_lib/import_beliefs.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-import_beliefs.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 4 belief(s):
+  reasons-lib-import-beliefs-is-a-reasons-import-beliefs: `reasons_lib.import_beliefs` is a pure star-import re-export of `reasons.import_
+  reasons-lib-shim-requires-reasons-module: The shim has a hard import-time dependency: if `reasons.import_beliefs` raises (
+  reasons-internal-modules-still-import-reasons-lib: At least three modules inside the `reasons/` package (`api.py`, `import_agent.py
+  reasons-lib-star-import-produces-auto-propagation: Because the shim uses `import *` rather than an explicit symbol list, any new pu
+
+========================================
+[55-55/146] (162 remaining in queue)
+========================================
+  [file] reasons_lib/llm.py
+Explaining reasons_lib/llm.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-llm.md
+Surfaced 4 belief(s):
+  reasons_lib-llm-is-a-reasons-llm-alias: `reasons_lib/llm.py` defines zero symbols of its own; every public name in its n
+  reasons_lib-llm-star-import-respects-underscores: Because the shim uses `import *` without an explicit `__all__` override, private
+  shim-breaks-if-reasons-llm-missing: Importing `reasons_lib.llm` will raise `ModuleNotFoundError` if the `reasons` pa
+  no-runtime-indirection: After import time, calling a function "from `reasons_lib.llm`" executes the exac
+
+========================================
+[56-56/146] (161 remaining in queue)
+========================================
+  [file] reasons_lib/mcp_client.py
+Explaining reasons_lib/mcp_client.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-mcp_client.md
+Surfaced 5 belief(s):
+  reasons-lib-mcp-client-is-a-shim-for-reasons-mcp-client: `reasons_lib/mcp_client.py` defines zero logic of its own; its entire contract i
+  star-import-tracks-canonical-additions: Because the shim uses `import *`, any new public symbol added to `reasons.mcp_cl
+  reasons-cli-py-still-consumes-reasons-lib-path: `reasons/cli.py` is the only known importer of this shim, indicating the CLI has
+  reasons-lib-directory-is-transitional: The `reasons_lib/` package is a deletion candidate; it owns no unique code and e
+  no-error-swallowing-in-shim: The shim contains no try/except blocks; any import failure in `reasons.mcp_clien
+
+========================================
+[57-57/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/mcp_server.py
+Explaining reasons_lib/mcp_server.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-mcp_server.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  reasons-lib-mcp-server-is-a-thin-facade: `reasons_lib/mcp_server.py` defines zero logic; every public name it exposes is 
+  reasons-lib-mcp-server-requires-reasons-mcp-server: This file cannot be imported successfully unless `reasons.mcp_server` is importa
+  tests-test-mcp-server-imports-reasons-lib: `tests/test_mcp_server.py` is the only known consumer that imports via the `reas
+  reasons-lib-replaces-reasons: The `reasons_lib` package is a legacy namespace that predates `reasons`; the pro
+  star-import-noqa-f403-accepted: The `# noqa: F403` on the star import is an intentional, project-level acceptanc
+
+========================================
+[58-58/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/metadata.py
+Explaining reasons_lib/metadata.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-metadata.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 4 belief(s):
+  reasons-lib-metadata-is-a-reason-metadata: `reasons_lib/metadata.py` re-exports every public name from `reasons.metadata` a
+  star-import-prevents-name-filtering: Because the shim uses `import *`, any name added to `reasons.metadata` automatic
+  nine-consumers-still-use-shim: As of this code state, 9 files (7 in `reasons/`, 2 in `tests/`) still import via
+  shim-has-no-runtime-logic: The module body contains no function calls, conditionals, or side effects beyond
+
+========================================
+[59-59/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/mind_service.py
+Explaining reasons_lib/mind_service.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-mind_service.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  reasons_lib-mind-service-is-a-reexport-of-reasons-mind-service: The module contains zero definitions of its own; every public name is a referenc
+  reasons-lib-mind-service-enables-legacy-import-compatibility: Code written before the `reasons_lib` → `reasons` rename continues to function u
+  reasons-api-imports-via-shim-not-directly: `reasons/api.py` resolves `mind_service` symbols through `reasons_lib.mind_servi
+  star-import-guarantees-symbol-parity: Because `import *` is used (not a curated `__all__`), any public symbol added to
+  shim-fails-fast-on-upstream-error: There is no exception handling in this file; if `reasons.mind_service` raises du
+
+========================================
+[60-60/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/network.py
+Explaining reasons_lib/network.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-network.md
+Queued 1 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  reasons-lib-network-is-a-reasons-network-alias: `reasons_lib.network` exposes exactly the same public names and objects as `reas
+  reasons-internal-modules-still-import-via-reasons-lib: At least 8 modules inside the canonical `reasons/` package (e.g., `reasons/api.p
+  shim-star-import-tracks-reasons-network-__all__: The `import *` in the shim means any new public symbol added to `reasons.network
+  shim-emits-no-deprecation-warning: Importing from `reasons_lib.network` produces no `DeprecationWarning` or `Pendin
+  test-suite-exercises-shim-path-not-canonical: 25+ test files import from `reasons_lib.network`, meaning the test suite validat
+
+========================================
+[61-61/146] (160 remaining in queue)
+========================================
+  [file] reasons_lib/pg.py
+Explaining reasons_lib/pg.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-pg.md
+Surfaced 5 belief(s):
+  reasons_lib/pg.py-replaces-reasons/pg.py-import-path: The shim exists solely so that `from reasons_lib.pg import X` is semantically eq
+  reasons_lib/pg.py-requires-reasons/pg.py: If `reasons.pg` fails to import, this module raises at import time; the shim can
+  reasons_lib/pg.py-picks-up-public-names-automatically: Because it uses `import *`, any new public symbol added to `reasons.pg` is immed
+  reasons/api.py-still-imports-via-shim: At least one module inside the *new* `reasons/` package (`api.py`) still routes 
+  shim-namespace-has-no-own-attributes: The module `__dict__` of `reasons_lib.pg` contains only the re-exported names (p
+
+========================================
+[62-62/146] (159 remaining in queue)
+========================================
+  [file] reasons_lib/propose_update.py
+Explaining reasons_lib/propose_update.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-propose_update.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 4 belief(s):
+  reasons-lib-shim-replaces-reasons-propose-update: `reasons_lib/propose_update.py` is a pure re-export of `reasons.propose_update` 
+  shim-fails-loudly-on-upstream-removal: If `reasons.propose_update` is deleted or renamed, importing `reasons_lib.propos
+  reasons-internal-modules-import-legacy-path: Two modules inside the canonical `reasons` package (`reasons/api.py`, `reasons/c
+  noqa-suppression-is-intentional: The `F401` and `F403` suppressions are deliberate: the star-import-then-never-re
+
+========================================
+[63-63/146] (159 remaining in queue)
+========================================
+  [file] reasons_lib/pubsub.py
+Explaining reasons_lib/pubsub.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-pubsub.md
+Queued 1 new topic(s) (160 pending)
+Surfaced 4 belief(s):
+  reasons_lib-pubsub-is-a-re-export-of-reasons-pubsub: Every public name available in `reasons_lib.pubsub` is an identical object (same
+  reasons-internal-api-imports-from-reasons-lib: `reasons/api.py` imports pubsub symbols via `reasons_lib.pubsub`, creating a dep
+  star-import-maps-to-dict-copy: The `from reasons.pubsub import *` copies names into the module's `__dict__` at 
+  reasons-lib-shim-prevents-new-imports: The docstring and `noqa` pattern signal that `reasons_lib.pubsub` must never gai
+
+========================================
+[64-64/146] (159 remaining in queue)
+========================================
+  [file] reasons_lib/repair.py
+Explaining reasons_lib/repair.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-repair.md
+Surfaced 4 belief(s):
+  reasons-lib-repair-is-a-reason-repair: `reasons_lib/repair.py` is a namespace alias for `reasons/repair.py`; they expos
+  reasons-lib-repair-replaces-direct-import: Any code path that currently does `from reasons_lib.repair import X` will resolv
+  reasons-lib-has-no-unique-modules: Every module present in `reasons_lib/` has a corresponding file in `reasons/`; t
+  shim-removal-is-safe-when-no-importers-remain: Deleting `reasons_lib/repair.py` is safe if and only if none of the five known i
+
+========================================
+[65-65/146] (158 remaining in queue)
+========================================
+  [file] reasons_lib/repair_premises.py
+Explaining reasons_lib/repair_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-repair_premises.md
+Queued 1 new topic(s) (159 pending)
+Surfaced 4 belief(s):
+  reasons-lib-shim-replaces-direct-import: `reasons_lib/repair_premises.py` is a pure re-export; it contains zero executabl
+  star-import-mirrors-public-api: The `import *` in the shim means every public symbol added to `reasons/repair_pr
+  noqa-F403-suppresses-star-detection: The `# noqa: F403` directive is required because the star import inherently prev
+  reasons-api-imports-through-shim: `reasons/api.py` imports repair-premises symbols via the `reasons_lib` namespace
+
+========================================
+[66-66/146] (158 remaining in queue)
+========================================
+  [file] reasons_lib/report_belief.py
+Explaining reasons_lib/report_belief.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-report_belief.md
+Surfaced 4 belief(s):
+  reasons-lib-report-belief-is-a-re-export-of-reasons-report-belief: Every public name accessible via `reasons_lib.report_belief` is the identical Py
+  shim-star-import-prevents-drift: Because the shim uses `import *` rather than an explicit name list, adding a new
+  reasons-lib-namespace-must-not-introduce-symbols: The shim defines no local names of its own; any new top-level symbol in `reasons
+  import-of-reasons-lib-report-belief-triggers-import-of-reasons-report-belief: Loading the shim is sufficient to fully execute `reasons.report_belief`'s module
+
+========================================
+[67-67/146] (157 remaining in queue)
+========================================
+  [file] reasons_lib/report_gated.py
+Explaining reasons_lib/report_gated.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-report_gated.md
+Queued 1 new topic(s) (158 pending)
+Surfaced 5 belief(s):
+  reasons-lib-report-gated-is-a-reason-report-gated-alias: `reasons_lib.report_gated` exposes exactly the same set of public names as `reas
+  reasons-api-py-depends-on-reasons-lib-shim: `reasons/api.py` currently imports through `reasons_lib.report_gated` rather tha
+  star-import-shim-skips-underscore-names: If `reasons.report_gated` does not define `__all__`, any name prefixed with `_` 
+  reasons-lib-directory-is-deprecated: The `reasons_lib/` package is a transitional compatibility layer intended for de
+  shim-creates-two-module-objects: `sys.modules["reasons.report_gated"]` and `sys.modules["reasons_lib.report_gated
+
+========================================
+[68-68/146] (157 remaining in queue)
+========================================
+  [file] reasons_lib/review.py
+Explaining reasons_lib/review.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-review.md
+Surfaced 4 belief(s):
+  reasons-lib-review-is-a-reasons-review: `reasons_lib/review.py` defines no logic of its own; every public name it expose
+  star-import-tracks-source-namespace: The set of importable names in `reasons_lib.review` is dynamically determined by
+  first-party-code-still-routes-through-shim: At least three modules inside the `reasons/` package (`api.py`, `repair.py`, `re
+  shim-carries-no-error-isolation: Any exception raised by `reasons.review` functions propagates through the shim w
+
+========================================
+[69-69/146] (156 remaining in queue)
+========================================
+  [file] reasons_lib/review_justifications.py
+Explaining reasons_lib/review_justifications.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-review_justifications.md
+Surfaced 5 belief(s):
+  reasons_lib-replaces-reasons-as-canonical-package: `reasons_lib/` is a backwards-compatibility layer; `reasons/` is the authoritati
+  api-requires-reasons_lib-shim: `reasons/api.py` imports review-justification symbols via `reasons_lib.review_ju
+  shim-has-zero-runtime-logic: The module body consists of a single star-import and two `# noqa` comments; it d
+  shim-inherits-__all__-from-canonical: If `reasons/review_justifications.py` defines `__all__`, the re-exported name se
+  reasons_lib-deletion-is-safe-when-api-updated: The shim can be removed (along with the rest of `reasons_lib/`) in one atomic ch
+
+========================================
+[70-70/146] (155 remaining in queue)
+========================================
+  [file] reasons_lib/review_premises.py
+Explaining reasons_lib/review_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-review_premises.md
+Surfaced 4 belief(s):
+  reasons-lib-review-premises-is-a-reason-review-premises: `reasons_lib.review_premises` is a pure re-export of `reasons.review_premises`; 
+  shim-star-import-tracks-upstream-public-names: The shim's namespace is derived via `import *`, so any public name added to `rea
+  reasons-api-depends-on-reasons-lib-shim: `reasons/api.py` imports review-premises functionality through the `reasons_lib`
+  removing-reasons-lib-breaks-legacy-callers: Deleting the `reasons_lib/` tree would break `reasons/api.py` and the two test f
+
+========================================
+[71-71/146] (154 remaining in queue)
+========================================
+  [file] reasons_lib/storage.py
+Explaining reasons_lib/storage.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-storage.md
+Queued 1 new topic(s) (155 pending)
+Surfaced 5 belief(s):
+  reasons-lib-storage-is-a-reasons-storage-shim: `reasons_lib/storage.py` contains no original code; it solely re-exports `reason
+  shim-deletion-blocked-by-importers: Removing `reasons_lib/storage.py` would break at least 14 import sites (1 produc
+  star-import-guarantees-name-parity: Because the shim uses `import *`, any new public name added to `reasons/storage.
+  noqa-suppresses-f401-and-f403: The `# noqa: F401,F403` comment is required to keep linters (ruff, pylint) from 
+  reasons-lib-directory-mirrors-reasons-directory: Every file present in `reasons_lib/` has a corresponding file in `reasons/`, ind
+
+========================================
+[72-72/146] (154 remaining in queue)
+========================================
+  [file] reasons_lib/verify.py
+Explaining reasons_lib/verify.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons_lib-verify.md
+Surfaced 4 belief(s):
+  reasons_lib-verify-replaces-reasons-verify: `reasons_lib/verify.py` is a pure re-export of `reasons/verify.py` with zero add
+  reasons-verify-imports-are-atomic: Because the shim uses `from … import *` (not `__getattr__`-based lazy resolution
+  shim-mirrors-reason-tree: Every file in `reasons_lib/` has a 1:1 counterpart in `reasons/`; the two direct
+  reasons-api-still-routes-through-shim: `reasons/api.py` currently imports via `reasons_lib.verify` rather than `reasons
+
+========================================
+[73-73/146] (153 remaining in queue)
+========================================
+  [file] tests/__init__.py
+Explaining tests/__init__.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-__init__.md
+Queued 1 new topic(s) (154 pending)
+Surfaced 4 belief(s):
+  tests-init-marks-package: The empty `tests/__init__.py` exists solely to make `tests` an importable Python
+  test-pg-depends-on-tests-package: `tests/test_pg.py` resolves the `tests` package by name, so deleting `tests/__in
+  no-symbol-reexport: The `tests` package does not re-export any test classes or fixtures at the packa
+  dual-package-repo: The repository ships both `reasons/` and `reasons_lib/` with nearly identical mo
+
+========================================
+[74-74/146] (153 remaining in queue)
+========================================
+  [file] tests/conftest.py
+Explaining tests/conftest.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-conftest.md
+Queued 2 new topic(s) (155 pending)
+Surfaced 5 belief(s):
+  pg-fixture-scopes-by-uuid: Each `pg_api` fixture invocation generates a unique `uuid.uuid4()` as `domain_id
+  pg-teardown-deletes-in-fk-order: The teardown deletes rows in the order `rms_propagation_log → rms_justifications
+  pg-fixture-lazy-imports-pgapi: `reasons.pg.PgApi` is imported inside the fixture body (not at module level), so
+  pg-available-frozen-at-import: `pg_available` is evaluated once at conftest import time; setting `DATABASE_URL`
+  pg-teardown-lacks-finally-guard: The cleanup `DELETE` loop and `close()` are not wrapped in `try/finally`, so a m
+
+========================================
+[75-75/146] (154 remaining in queue)
+========================================
+  [file] tests/test_access_tags.py
+Explaining tests/test_access_tags.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_access_tags.md
+Queued 2 new topic(s) (156 pending)
+Surfaced 5 belief(s):
+  derived-node-tags-are-superset-of-antecedent-tags: A node's effective `access_tags` always contain the union of every ancestor's ta
+  visible-to-uses-and-semantics: A caller must hold *every* tag on a node to view it; holding a subset is insuffi
+  single-node-apis-raise-permissionerror: `show_node`, `explain_node`, `trace_assumptions`, and `trace_access_tags` raise 
+  untagged-nodes-are-always-visible: A node whose metadata lacks the `access_tags` key passes every `visible_to` filt
+  add-justification-triggers-retroactive-propagation: Mutating a node's antecedents via `add_justification` re-computes tags on that n
+
+========================================
+[76-76/146] (155 remaining in queue)
+========================================
+  [file] tests/test_add_justification.py
+Explaining tests/test_add_justification.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_add_justification.md
+Queued 2 new topic(s) (157 pending)
+Surfaced 5 belief(s):
+  add-justification-returns-changed-set: `Network.add_justification` always returns a dict containing a `changed` key who
+  node-in-iff-active-justification: A node's truth value is `"IN"` if and only if at least one of its justifications
+  dependents-registered-on-add: When a justification is added to node `b` with antecedents `[a]` and outlist `[e
+  api-layer-wraps-network-with-sqlite: `reasons.api` is a persistence-backed facade over `reasons.network.Network`; eve
+  premise-can-receive-justification: There is no type distinction between "premise" and "derived" nodes at the `Netwo
+
+========================================
+[77-77/146] (156 remaining in queue)
+========================================
+  [file] tests/test_any_mode.py
+Explaining tests/test_any_mode.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_any_mode.md
+Queued 1 new topic(s) (157 pending)
+Surfaced 5 belief(s):
+  any-mode-expands-sl-to-per-premise-justifications: `add_node(sl="a,b,c", any_mode=True)` produces 3 justification records each with
+  any-mode-node-survives-single-premise-retraction: An `--any` node with 3 premises remains IN after any one premise is retracted, b
+  premise-count-reflects-justification-width-not-sl-length: For `any_mode` nodes, `premise_count` is 1 (the width of each individual justifi
+  restoration-hints-require-surviving-premises: A `restoration_hint` is emitted for a cascaded-OUT node only when at least one p
+  outlist-propagates-to-all-expanded-justifications: When `any_mode` splits an SL into N justifications, the `unless` (outlist) is co
+
+========================================
+[78-78/146] (156 remaining in queue)
+========================================
+  [file] tests/test_api.py
+Explaining tests/test_api.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_api.md
+Queued 2 new topic(s) (158 pending)
+Surfaced 5 belief(s):
+  retract-cascades-to-transitive-dependents: Retraacting a node must set `truth_value="OUT"` on all transitive SL dependents,
+  accept-drift-returns-stale-not-exception: If a proposal's target state changed between `propose_*` and `accept_proposal` (
+  fts-search-bounded-at-51-calls: The internal `_fts_query` function is invoked at most 51 times per `api.search()
+  proposal-actions-are-stale-independent: Proposing a retraction on node X does not stale a pending supersession on X, and
+  cascade-does-not-stamp-retracted-at: When a node goes OUT via cascade (its SL antecedent was retracted), its `retract
+
+========================================
+[79-79/146] (157 remaining in queue)
+========================================
+  [file] tests/test_ask.py
+Explaining tests/test_ask.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_ask.md
+Queued 2 new topic(s) (159 pending)
+Surfaced 5 belief(s):
+  ask-fallback-returns-search-results-on-timeout: If `invoke_model` raises `TimeoutExpired` or `RuntimeError` after at least one s
+  natural-mode-strips-all-structural-metadata: When `natural=True`, `_strip_belief_metadata` removes `###` headings, all `**Key
+  dual-mode-requires-sources-db: Calling `ask(…, dual=True)` without a `sources_db` raises `ValueError("--dual re
+  extract-tool-call-returns-first-match: `extract_tool_call` scans lines in order and returns the first JSON object conta
+  test-suites-patch-reasons-ask-invoke-model: All LLM-dependent tests patch the name `reasons.ask.invoke_model` (the imported 
+
+========================================
+[80-80/146] (158 remaining in queue)
+========================================
+  [file] tests/test_ask_mcp.py
+Explaining tests/test_ask_mcp.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_ask_mcp.md
+Queued 2 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  ask-mcp-dispatch-contains-builtin-search: `_build_tools_section` always includes the `search_beliefs` tool definition even
+  mcp-tool-error-prevents-ask-raise: A `RuntimeError` raised by `bridge.call_tool()` is caught inside `ask()`'s dispa
+  mcp-presence-bumps-iteration-cap-to-5: When `mcp_servers` is a non-empty list, `ask()` allows up to 5 tool-call iterati
+  zero-param-tool-renders-no-trailing-comma: A tool whose `input_schema.properties` is an empty dict must render as `'{"tool"
+  fakebridge-implements-mcpbridge-duck-type: `FakeBridge` is a structural substitute for the real MCP bridge; any code in `re
+
+========================================
+[81-81/146] (159 remaining in queue)
+========================================
+  [file] tests/test_backtracking.py
+Explaining tests/test_backtracking.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_backtracking.md
+Queued 3 new topic(s) (162 pending)
+Surfaced 5 belief(s):
+  add-nogood-retracts-premise-not-derived: `Network.add_nogood` always retracts a root premise (a node with no justificatio
+  entrenchment-ranks-source-above-derivation: A node with a non-empty `source` field always scores higher in `_entrenchment` t
+  trace-assumptions-returns-roots-only: The result of `trace_assumptions(node)` contains only premise IDs (nodes without
+  inactive-nogood-is-noop: If either member of a nogood already has `truth_value == "OUT"`, `add_nogood` re
+  api-add-nogood-exposes-backtrack-target: The public API `api.add_nogood` returns a dict whose `"backtracked_to"` field is
+
+========================================
+[82-82/146] (161 remaining in queue)
+========================================
+  [file] tests/test_build_wiki.py
+Explaining tests/test_build_wiki.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_build_wiki.md
+Queued 2 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  build-wiki-falls-back-to-template-on-llm-error: If `generate_wiki_page` raises any exception, `build_wiki` silently falls back t
+  _linkify-skips-same-page-references: The `_linkify` post-processing pass never inserts a Markdown link for a node tha
+  _assign_topics-uses-prefix-matching: Topic assignment is determined by checking whether the topic string is a prefix 
+  build-wiki-produces-index-even-for-empty-db: `api.build_wiki` always writes an `index.md` file, even when the database contai
+  _page-name-falls-back-to-other-on-empty-slug: When `_page_name` slugifies a topic string and the result is empty (e.g., all sp
+
+========================================
+[83-83/146] (162 remaining in queue)
+========================================
+  [file] tests/test_check_stale.py
+Explaining tests/test_check_stale.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_check_stale.md
+Queued 2 new topic(s) (164 pending)
+Surfaced 5 belief(s):
+  check-stale-skips-retracted-nodes: `check_stale` only evaluates nodes that have not been retracted; retracted nodes
+  resolve-source-path-priority: Path resolution follows a strict precedence: `db_dir` > agent-specific repo > ge
+  prefix-hash-is-not-stale-with-upgrade: When `upgrade_hashes=True`, a stored hash that is a strict prefix of the current
+  hash-sources-is-idempotent: Calling `hash_sources` without `force=True` on a node that already has a non-emp
+  check-stale-returns-structured-not-raising: `check_stale` never raises for expected failure modes (missing files, truncated 
+
+========================================
+[84-84/146] (163 remaining in queue)
+========================================
+  [file] tests/test_check_stale_issue25.py
+Explaining tests/test_check_stale_issue25.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_check_stale_issue25.md
+Queued 2 new topic(s) (165 pending)
+Surfaced 5 belief(s):
+  source-deleted-result-has-exactly-six-keys: Every result dict from `check_stale()` contains the set `{node_id, old_hash, new
+  source-deleted-nulls-both-new-hash-and-source-path: A `source_deleted` entry always has `new_hash is None` and `source_path is None`
+  retraction-suppresses-stale-reporting: A node that has been retracted (`net.retract(id)`) is excluded from `check_stale
+  check-stale-results-sorted-by-node-id: The result list returned by `check_stale()` is deterministically sorted in ascen
+  issue25-test-is-regression-guard-for-silent-skip: `test_check_stale_issue25.py` exists specifically to prevent the re-introduction
+
+========================================
+[85-85/146] (164 remaining in queue)
+========================================
+  [file] tests/test_classify_defeaters.py
+Explaining tests/test_classify_defeaters.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_classify_defeaters.md
+Queued 2 new topic(s) (166 pending)
+Surfaced 5 belief(s):
+  classify-defeat-reason-returns-empty-string-on-failure: `classify_defeat_reason` never raises; every failure path (missing binary, subpr
+  defeat-reason-types-is-closed-seven-element-set: `DEFEAT_REASON_TYPES` contains exactly 7 kebab-case strings; the parser is a mem
+  dry-run-classify-mutates-nothing: When `dry_run=True`, `api.classify_defeat_reason_types` reads the DB but perform
+  already-classified-nodes-are-skipped-not-overwritten: A defeater that already has `defeat_reason_type` in its metadata is placed in th
+  llm-mock-targets-subprocess-boundary: All LLM-dependent tests patch `reasons.llm.shutil.which` and `reasons.llm.subpro
+
+========================================
+[86-86/146] (165 remaining in queue)
+========================================
+  [file] tests/test_cli.py
+Explaining tests/test_cli.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_cli.md
+Queued 2 new topic(s) (167 pending)
+Surfaced 5 belief(s):
+  cli-exit-code-1-signals-user-error: Every user-facing failure (missing node, access denied, duplicate ID, bad argume
+  run-cli-mocks-all-sys-io: The `run_cli` helper patches `sys.argv`, `sys.stdout`, and `sys.stderr` simultan
+  what-if-does-not-mutate-state: The `what-if` subcommand is contractually read-only; `test_what_if_retract` asse
+  names-only-format-is-machine-parseable: When `--format names-only` is passed, the output is a newline-delimited list of 
+  access-tags-enforce-isolation-at-cli-layer: A node tagged `finance` is invisible to any command invoked with `--visible-to h
+
+========================================
+[87-87/146] (166 remaining in queue)
+========================================
+  [file] tests/test_cluster.py
+Explaining tests/test_cluster.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_cluster.md
+Queued 1 new topic(s) (167 pending)
+Surfaced 5 belief(s):
+  test-cluster-skips-without-extras: The entire clustering test suite (except `_auto_k` tests and the missing-dep mes
+  cluster-beliefs-respects-budget-exactly: When `budget < len(beliefs)`, `cluster_beliefs` returns exactly `budget` beliefs
+  auto-k-is-pure-arithmetic: `_auto_k` performs no I/O, model loading, or embedding; it is a deterministic fu
+  cluster-cache-is-keyed-by-belief-id: `ClusterCache._cache` grows by the count of *new* belief IDs, not by the total n
+  stats-cluster-sizes-sum-to-input-size: In both `cluster_beliefs` and `list_clusters`, the sum of `cluster_sizes` (or th
+
+========================================
+[88-88/146] (166 remaining in queue)
+========================================
+  [file] tests/test_compact.py
+Explaining tests/test_compact.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_compact.md
+Queued 2 new topic(s) (168 pending)
+Surfaced 5 belief(s):
+  estimate-tokens-floors-at-1: `estimate_tokens` returns a minimum of 1 for any input, including the empty stri
+  compact-budget-is-global-not-per-section: The `budget` parameter in `compact()` constrains the total token count across al
+  compact-orders-in-nodes-by-dependent-count-desc: Active (IN) nodes in the compact summary are ordered by descending dependent cou
+  compact-never-raises-on-budget-exhaustion: When the token budget is exhausted, `compact()` appends a "… omitted" notice and
+  compact-includes-stale-reason-from-metadata: Retracted nodes carrying `metadata["stale_reason"]` have that reason surfaced in
+
+========================================
+[89-89/146] (167 remaining in queue)
+========================================
+  [file] tests/test_contradictions.py
+Explaining tests/test_contradictions.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_contradictions.md
+Queued 2 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  parse-contradiction-response-requires-min-2-claims: A NOGOOD section with fewer than 2 valid claim IDs is silently dropped; it is ne
+  detect-contradictions-excludes-out-nodes: Beliefs with `truth_value == "OUT"` are never included in the LLM prompt nor in 
+  plan-file-append-preserves-single-header: Calling `write_contradiction_plan` with `append=True` must not emit a second `# 
+  batch-failure-is-non-fatal: A `RuntimeError` from one LLM batch in `detect_contradictions` is caught and swa
+  semantic-path-skips-llm-for-single-belief: `detect_contradictions_semantic` returns `[]` without invoking the subprocess wh
+
+========================================
+[90-90/146] (168 remaining in queue)
+========================================
+  [file] tests/test_dangling_dependents.py
+Explaining tests/test_dangling_dependents.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_dangling_dependents.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  dangling-dependent-guard-prevents-keyerror: `Network._propagate` checks `if dep_id not in self.nodes` before indexing, so a 
+  dangling-ref-excluded-from-visited-set: The guard's `continue` fires before `visited.add(dep_id)`, guaranteeing that a n
+  warning-log-contains-parent-id: Every dangling-dependent warning entry's `value` field includes the ID of the pa
+  propagation-path-uniformity-requires-guard-on-all-callers: Because `retract`, `assert_node`, `challenge`, and `add_justification` all deleg
+  changed-list-contains-only-existing-nodes: The `changed` collection returned by `retract`/`assert_node` is a pure subset of
+
+========================================
+[91-91/146] (168 remaining in queue)
+========================================
+  [file] tests/test_deduplication.py
+Explaining tests/test_deduplication.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_deduplication.md
+Queued 3 new topic(s) (171 pending)
+Surfaced 5 belief(s):
+  mark-duplicate-overwrites-retract-reason: Calling `mark_duplicate` on a node that was already retracted via `retract_node`
+  mark-duplicate-cascades-via-support-links: The `changed` list in `mark_duplicate`'s return value includes not only the sour
+  mark-duplicate-and-mark-superseded-share-error-contract: Both operations raise `KeyError` (substring `"not found"`) for missing node IDs 
+  export-network-serializes-dedup-metadata: `api.export_network()` includes `duplicate_of` / `superseded_by` in each node's 
+  self-reference-guard-preserves-state: When `mark_duplicate` or `mark_superseded` rejects a self-reference, the target 
+
+========================================
+[92-92/146] (170 remaining in queue)
+========================================
+  [file] tests/test_defeat_justification.py
+Explaining tests/test_defeat_justification.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_defeat_justification.md
+Queued 2 new topic(s) (172 pending)
+Surfaced 5 belief(s):
+  defeater-is-a-graph-node: A defeater created by `defeat_justification` is a first-class node in the belief
+  defeat-justification-causes-cascade: Defeating the last valid justification of a belief must transitively flip all do
+  outlist-blocks-justification: A justification is considered "blocked" if and only if its `outlist` array conta
+  retract-defeater-restores-belief: Calling `api.retract_node` on a defeater must restore the `IN` state of the prev
+  premise-has-no-justifications: A node added without an `sl` (source list) parameter has zero justifications and
+
+========================================
+[93-93/146] (171 remaining in queue)
+========================================
+  [file] tests/test_defeat_with_scope.py
+Explaining tests/test_defeat_with_scope.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_defeat_with_scope.md
+Queued 1 new topic(s) (172 pending)
+Surfaced 5 belief(s):
+  scope-beliefs-are-atomic-premises: Scope beliefs created by `defeat_with_scope` are always IN with zero justificati
+  defeater-requires-scope-beliefs-as-antecedents: The defeater node's single SL justification must list the scope-belief IDs as an
+  retracting-scope-belief-restores-target: Retraction of any scope belief cascades through the defeater to restore the targ
+  defeat-with-scope-preserves-export-roundtrip: The full structure (scope beliefs, defeater, SL links, target OUT state) must su
+  defeat-reason-type-omitted-means-absent-from-metadata: When `defeat_reason_type` is empty/unset, the key is deliberately *absent* from 
+
+========================================
+[94-94/146] (171 remaining in queue)
+========================================
+  [file] tests/test_dependents_integrity.py
+Explaining tests/test_dependents_integrity.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_dependents_integrity.md
+Queued 3 new topic(s) (174 pending)
+Surfaced 5 belief(s):
+  verify-dependents-is-pure: `verify_dependents()` returns a list of error strings and never mutates any node
+  rebuild-dependents-clears-before-populating: `_rebuild_dependents()` first clears all `dependents` sets to `set()` before re-
+  outlist-entries-participate-in-dependents: Nodes listed in a justification's `outlist` field are treated identically to `an
+  dangling-antecedent-is-tolerated: A justification referencing a node ID absent from `net.nodes` does not cause `_r
+  storage-roundtrip-preserves-dependents-as-sets: After `Storage.save()` → `Storage.load()`, every node's `dependents` is set-equa
+
+========================================
+[95-95/146] (173 remaining in queue)
+========================================
+  [file] tests/test_derive.py
+Explaining tests/test_derive.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_derive.md
+Queued 2 new topic(s) (175 pending)
+Surfaced 5 belief(s):
+  validate-proposals-rejects-similar-retracted: A proposal whose ID has Jaccard similarity ≥ 0.5 with any OUT-status node is rej
+  mode-any-produces-n-justifications: When `mode="any"`, `apply_proposals` creates N separate single-antecedent justif
+  dedup-keep-is-most-dependent: In `apply_dedup_plan`, the kept node is the one with the highest dependent count
+  build-prompt-raises-on-unknown-placeholder: `build_prompt` validates `prompt_template` at call time and raises `ValueError` 
+  parse-proposals-defaults-mode-to-all: When a proposal block omits the `Mode:` field, `parse_proposals` sets `mode` to 
+
+========================================
+[96-96/146] (174 remaining in queue)
+========================================
+  [file] tests/test_derive_budget.py
+Explaining tests/test_derive_budget.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_derive_budget.md
+Queued 3 new topic(s) (177 pending)
+Surfaced 5 belief(s):
+  count-accumulation-is-linear-not-quadratic: In `_build_beliefs_section`, the `count` variable must accumulate to exactly N (
+  local-beliefs-floor-is-five: Regardless of how many agent beliefs consume the budget, `_build_beliefs_section
+  _make-nodes-omits-active-premises: The `_make_nodes` helper deliberately does **not** create `:active` premise node
+  test-output-coupled-to-format-string: The tests are black-box but fragile: they regex-match `"Local beliefs (\d+ belie
+  sample-mode-determinism-via-seed: When `sample=True`, passing the same `seed` value must produce byte-identical ou
+
+========================================
+[97-97/146] (176 remaining in queue)
+========================================
+  [file] tests/test_dialectical.py
+Explaining tests/test_dialectical.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_dialectical.md
+Queued 3 new topic(s) (179 pending)
+Surfaced 5 belief(s):
+  challenge-creates-persistent-node: Every call to `Network.challenge()` creates a new first-class node (ID `challeng
+  defense-neuters-challenge-via-truth-value: Defending against a challenge works by flipping the challenge node's truth value
+  cascade-flips-downstream-dependents: Challenging a node with `SL`-type justifications causes all transitive dependent
+  dialectical-state-survives-sqlite-roundtrip: After `Storage.save()` → `Storage.load()`, the loaded network retains all challe
+  api-layer-is-load-operate-save: Every `reasons.api` dialectical function (`challenge`, `defend`) loads the netwo
+
+========================================
+[98-98/146] (178 remaining in queue)
+========================================
+  [file] tests/test_example.py
+Explaining tests/test_example.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_example.md
+Queued 1 new topic(s) (179 pending)
+Surfaced 5 belief(s):
+  example-is-optional-metadata: Omitting the `example` parameter in `api.add_node` results in the key being enti
+  show-renders-example-with-2-space-indent: The `show` CLI command indents every line of a multiline example by exactly two 
+  run-cli-simulates-in-process: `run_cli` in this file patches `sys.argv`/`stdout`/`stderr` in the current proce
+  test-coverage-gap-update-example: Despite the module docstring referencing "add, update, and show," no test in thi
+  example-and-access-tags-are-orthogonal: The `example` and `access_tags` fields are stored and retrieved independently in
+
+========================================
+[99-99/146] (178 remaining in queue)
+========================================
+  [file] tests/test_export_card.py
+Explaining tests/test_export_card.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_export_card.md
+Queued 1 new topic(s) (179 pending)
+Surfaced 5 belief(s):
+  export-card-produces-yaml-frontmatter-with-type-eem: The `type` key in the card frontmatter is always the literal string `"eem"`, ide
+  export-card-defaults-license-to-mit: When the caller does not pass a `license` argument, `export_card` emits `license
+  export-card-computes-max-depth-as-longest-justification-chain: The "Max derivation depth" value equals the number of edges in the longest path 
+  export-card-title-uses-project-name-title-case: The Markdown `# H1` heading is derived from `net.meta["project_name"]` via Pytho
+  test-file-depends-on-schema-version-constant-not-literal: The expected `schema_version` value is imported from `reasons.metadata.SCHEMA_VE
+
+========================================
+[100-100/146] (178 remaining in queue)
+========================================
+  [file] tests/test_export_markdown.py
+Explaining tests/test_export_markdown.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_export_markdown.md
+Queued 2 new topic(s) (180 pending)
+Surfaced 5 belief(s):
+  stale-metadata-overrides-out-status: A retracted node whose metadata contains `stale_reason` is labeled `[STALE]` in 
+  defeater-vs-outlist-disambiguation: An outlist entry is rendered as `- Defeated by: <id> (<type>)` if and only if th
+  in-nodes-precede-out-nodes-in-export: Within the `## Claims` section, all `[IN]` node entries must appear at a lower c
+  beliefs-type-metadata-overrides-default-label: If a node's metadata contains `beliefs_type`, that string replaces the default t
+  export-markdown-is-pure: `export_markdown(net)` performs no I/O, no mutation of `net`, and is fully deter
+
+========================================
+[101-101/146] (179 remaining in queue)
+========================================
+  [file] tests/test_hf_default_org.py
+Explaining tests/test_hf_default_org.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_hf_default_org.md
+Queued 2 new topic(s) (181 pending)
+Surfaced 5 belief(s):
+  resolve-repo-id-prepends-default-org: A bare repository name (no `/`) is always prefixed with the `REASONS_HF_ORG` env
+  create-repo-409-is-idempotent: A 409 HTTP response from the HF "create repo" endpoint is treated as success, ma
+  publish-hf-produces-exactly-three-files: `api.publish_hf` uploads precisely `network.json`, `beliefs.md`, and `README.md`
+  hf-errors-are-runtime-errors: All HuggingFace API failures (401, 500, network errors) are wrapped into `Runtim
+  publish-hf-requires-token: `api.publish_hf` raises `RuntimeError` before making any network request if no t
+
+========================================
+[102-102/146] (180 remaining in queue)
+========================================
+  [file] tests/test_hide_out.py
+Explaining tests/test_hide_out.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_hide_out.md
+Queued 1 new topic(s) (181 pending)
+Surfaced 5 belief(s):
+  search-lookup-compact-hide-out-by-default: All three model-facing retrieval functions (`api.search`, `api.lookup`, `api.com
+  out-neighbor-exclusion-in-search: When `api.search` expands the neighborhood of a matched IN node, OUT-status chil
+  zero-result-sentinel-survives-filtering: When the only belief matching a query is OUT-status, `api.search` returns `"No r
+  compact-out-section-header-is-literal: The `api.compact` function renders retracted beliefs under the exact section hea
+  tmp-path-db-isolation-per-test: Every test in this file creates its own SQLite database under pytest's `tmp_path
+
+========================================
+[103-103/146] (180 remaining in queue)
+========================================
+  [file] tests/test_import_agent.py
+Explaining tests/test_import_agent.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_import_agent.md
+Queued 2 new topic(s) (182 pending)
+Surfaced 5 belief(s):
+  import-agent-creates-kill-switch: Every justification imported by `import_agent` includes `<agent>:inactive` in it
+  out-status-survives-recompute: A belief marked OUT in the source snapshot remains OUT after `recompute_all()`, 
+  import-agent-is-idempotent: Calling `import_agent` twice with the same agent name and file produces zero new
+  agent-namespace-isolates-retraction: Retracting `<agent-a>:active` changes no nodes belonging to `<agent-b>`, even wh
+  import-agent-registers-repo-path: `import_agent` writes the agent name and resolved parent directory of the source
+
+========================================
+[104-104/146] (181 remaining in queue)
+========================================
+  [file] tests/test_import_beliefs.py
+Explaining tests/test_import_beliefs.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_import_beliefs.md
+Queued 1 new topic(s) (182 pending)
+Surfaced 5 belief(s):
+  stale-claim-maps-to-out: A claim with `[STALE]` status is always imported as a node with `truth_value == 
+  observation-produces-empty-justifications: Any claim of type `OBSERVATION` is imported with an empty `justifications` list 
+  import-into-network-is-idempotent: Calling `import_into_network` a second time with the same markdown produces `cla
+  nogood-requires-valid-nodes: A nogood whose `Affects` list references any node ID not present in `net.nodes` 
+  import-populates-reverse-dependents: For every edge A→B created by a `Depends on` relationship, `net.nodes[A].depende
+
+========================================
+[105-105/146] (181 remaining in queue)
+========================================
+  [file] tests/test_import_hf.py
+Explaining tests/test_import_hf.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_import_hf.md
+Queued 2 new topic(s) (183 pending)
+Surfaced 5 belief(s):
+  import-hf-requires-hf-host: `_parse_repo_id` raises `ValueError` for any URL whose host is not `huggingface.
+  token-resolution-has-strict-priority: `_resolve_token` follows the exact order: explicit arg → `HF_TOKEN` env → `~/.ca
+  download-network-translates-http-errors: `download_network` converts `HTTPError(401)` to `RuntimeError("Authentication re
+  import-hf-produces-deterministic-count: `api.import_hf` returns `nodes_imported` equal to `len(network["nodes"])` and `n
+  auto-init-propagates-project-name: When `init=False` (auto-init), the `project_name` field from the downloaded netw
+
+========================================
+[106-106/146] (182 remaining in queue)
+========================================
+  [file] tests/test_import_json.py
+Explaining tests/test_import_json.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_import_json.md
+Queued 3 new topic(s) (185 pending)
+Surfaced 5 belief(s):
+  import-json-preserves-outlist-functionality: After `import_json`, outlist (`unless`) constraints remain active: asserting a c
+  import-json-skips-existing-nodes: Calling `import_json` on a database that already contains a node with the same I
+  import-json-raises-on-missing-file: `api.import_json` raises `FileNotFoundError` (not a `ValueError` or silent empty
+  test-file-uses-stateless-db-path-api: Every `api.*` call in this file passes an explicit `db_path` string; there is no
+  justification-and-network-imports-are-unused: The top-level imports of `reasons.Justification` and `reasons.network.Network` a
+
+========================================
+[107-107/146] (184 remaining in queue)
+========================================
+  [file] tests/test_llm.py
+Explaining tests/test_llm.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_llm.md
+Queued 1 new topic(s) (185 pending)
+Surfaced 5 belief(s):
+  invoke-model-normalizes-to-str: `invoke_model()` always returns a plain `str` on success and raises on failure; 
+  timeout-semantics-unified: Both the subprocess path and the langchain API path surface timeouts as `subproc
+  ollama-thinking-strip-is-bounded: Ollama output stripping only removes text between `Thinking...` and `...done thi
+  resolve-model-cmd-rejects-api-prefixes: `resolve_model_cmd()` raises `ValueError` for any string starting with `api:` or
+  langfuse-handler-is-process-singleton: `_get_langfuse_handler()` instantiates the `LangfuseCallbackHandler` at most onc
+
+========================================
+[108-108/146] (184 remaining in queue)
+========================================
+  [file] tests/test_mcp_server.py
+Explaining tests/test_mcp_server.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_mcp_server.md
+Queued 3 new topic(s) (187 pending)
+Surfaced 5 belief(s):
+  mcp-tools-return-json-never-raise: Every public tool function in `mcp_server` returns a `str` (JSON or plain text) 
+  proposal-lifecycle-is-terminal: A proposal transitions from `pending` to exactly one of `accepted`, `rejected`, 
+  what-if-is-pure: `what_if()` computes cascade effects but does not persist any mutation; the unde
+  accept-proposal-detects-drift: `accept_proposal` compares the target node's current truth_value against the pro
+  output-format-names-only-is-bracket-free: When `output_format="names-only"` is passed, the return string contains newline-
+
+========================================
+[109-109/146] (186 remaining in queue)
+========================================
+  [file] tests/test_merkle.py
+Explaining tests/test_merkle.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_merkle.md
+Queued 2 new topic(s) (188 pending)
+Surfaced 5 belief(s):
+  text-hash-is-sha256-of-raw-bytes: A node's `text_hash` is always the hex digest of `hashlib.sha256(text.encode())`
+  content-hash-depends-on-antecedent-text-hashes: A justification's `content_hash` changes when any antecedent node's `text_hash` 
+  check-integrity-distinguishes-text-vs-chain: `check_integrity` returns `text_mutations` (text ≠ stored text_hash) and `chain_
+  backfill-hashes-is-idempotent-and-complete: After `backfill_hashes` runs, `check_integrity` reports zero `missing_hashes`, z
+  verify-all-terminates-on-cycles: `verify_all` (and by extension `api.check_integrity`) must terminate in finite t
+
+========================================
+[110-110/146] (187 remaining in queue)
+========================================
+  [file] tests/test_metadata.py
+Explaining tests/test_metadata.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_metadata.md
+Surfaced 5 belief(s):
+  created-at-is-immutable-after-init: Once `init_db` stamps `created_at` in the `network_meta` table, no subsequent AP
+  meta-absence-enables-backward-compat: JSON files without a `"meta"` key and Markdown files without a YAML frontmatter 
+  project-name-defaults-to-db-stem: When `init_db` is called without an explicit `project_name`, the value is derive
+  schema-version-gates-format-contract: `SCHEMA_VERSION` (currently `"1.0"`) appears in every serialisation target (JSON
+  round-trip-preserves-claim-count: Exporting a network to Markdown and re-importing it into a fresh database yields
+
+========================================
+[111-111/146] (186 remaining in queue)
+========================================
+  [file] tests/test_metadata_extended.py
+Explaining tests/test_metadata_extended.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_metadata_extended.md
+Queued 2 new topic(s) (188 pending)
+Surfaced 5 belief(s):
+  created-at-is-immutable-after-init: `build_meta` sets `created_at` to the current time only when no explicit value i
+  strip-frontmatter-never-raises: `strip_frontmatter` is a total function: for any input string (including missing
+  node-count-includes-retracted: `meta["node_count"]` reflects all nodes present in the exported JSON (including 
+  project-name-derives-from-filename: When `init_db` is called without an explicit `project_name`, the default is the 
+  schema-version-pinned-to-1-0: `SCHEMA_VERSION` is the string `"1.0"` in every serialization surface (SQLite `n
+
+========================================
+[112-112/146] (187 remaining in queue)
+========================================
+  [file] tests/test_migrate_defeaters.py
+Explaining tests/test_migrate_defeaters.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_migrate_defeaters.md
+Queued 2 new topic(s) (189 pending)
+Surfaced 5 belief(s):
+  migrate-retract-clears-both-metadata-keys: After a successful migration, both `retract_reason` and `_retracted` are removed
+  dry-run-produces-no-writes: `migrate_retract_to_defeaters(dry_run=True)` must not create any defeater node n
+  defeater-id-is-deterministic: The defeater node ID for a migrated retraction is always `f"migrated-retraction-
+  satisfied-justification-required-for-migration: A node whose antecedents are themselves OUT is skipped (not migrated), because i
+  migration-preserves-reversibility: Retracting the newly created defeater node must restore the target node to IN, m
+
+========================================
+[113-113/146] (188 remaining in queue)
+========================================
+  [file] tests/test_mind_service.py
+Explaining tests/test_mind_service.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_mind_service.md
+Queued 2 new topic(s) (190 pending)
+Surfaced 5 belief(s):
+  push-belief-omits-empty-sl: When `sl` is `None`, the JSON POST body to the mind-service API omits the `sl` k
+  export-api-is-fault-tolerant-per-node: `api.export_api` catches `HTTPError` on individual `push_belief` calls and incre
+  resolve-config-preference-explicit-over-env: In `_resolve_config`, explicitly passed keyword arguments always take precedence
+  fetch-export-maps-401-to-runtimeerror: A 401 HTTP response from the export endpoint is translated to `RuntimeError("...
+  test-file-covers-both-api-layers: This single test file validates both the low-level `reasons.mind_service` HTTP f
+
+========================================
+[114-114/146] (189 remaining in queue)
+========================================
+  [file] tests/test_network.py
+Explaining tests/test_network.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_network.md
+Surfaced 5 belief(s):
+  retract-pins-node-permanently: Once `net.retract(id)` is called on a node, `node.metadata["_retracted"]` is set
+  network-propagation-respects-alternate-justifications: A derived node with multiple `Justification` entries remains IN if at least one 
+  nogood-id-is-deterministic: `Nogood.id` is always the concatenation `"nogood-" + "-".join(sorted(nodes))`, m
+  network-log-is-append-only-audit-trail: `net.log` is a list that only grows (add/retract/propagate/warn entries); no tes
+  dangling-dependents-are-warned-not-raised: Propagation encounters a dependent ID absent from `net.nodes` by logging a `"war
+
+========================================
+[115-115/146] (188 remaining in queue)
+========================================
+  [file] tests/test_network_cache.py
+Explaining tests/test_network_cache.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_network_cache.md
+Queued 2 new topic(s) (190 pending)
+Surfaced 5 belief(s):
+  _with_network-write-mode-must-be-atomic-with-respect-to-cache: If the `with` block raises any exception, the previously cached `Network` object
+  _with_network-read-mode-returns-same-object-identity: Repeated read-mode calls for the same `db_path` (with unchanged mtime) return th
+  _network_cache-keyed-by-db-path-string: The cache is a plain `dict` keyed by the string form of the database path; it is
+  what-if-operations-copy-before-mutate: `what_if_retract` and `what_if_assert` operate on a copy of the cached network, 
+  mtime-is-sole-invalidation-signal: The cache has no fallback invalidation mechanism (no version counter, no content
+
+========================================
+[116-116/146] (189 remaining in queue)
+========================================
+  [file] tests/test_nogood_id.py
+Explaining tests/test_nogood_id.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_nogood_id.md
+Queued 3 new topic(s) (192 pending)
+Surfaced 5 belief(s):
+  nogood-id-is-deterministic-from-node-set: `Network.add_nogood(["b","a"])` and `Network.add_nogood(["a","b"])` always produ
+  duplicate-nogood-receives-incremental-suffix: A second `add_nogood` call with the same node set appends `-2` (then `-3`, etc.)
+  import-preserved-ids-coexist-with-content-based-ids: Legacy nogood IDs (e.g., `"nogood-005"`) imported via JSON or beliefs text do no
+  nogood-id-survives-storage-roundtrip: The `Nogood.id` field is stored as an opaque string in SQLite and is byte-identi
+  test-file-covers-three-layers: This single test file exercises the ID logic at the `Network` (in-memory), `Stor
+
+========================================
+[117-117/146] (191 remaining in queue)
+========================================
+  [file] tests/test_outlist.py
+Explaining tests/test_outlist.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_outlist.md
+Queued 1 new topic(s) (192 pending)
+Surfaced 5 belief(s):
+  outlist-absent-node-satisfies-condition: A node ID in `Justification.outlist` that does not exist in the network is treat
+  outlist-uses-conjunctive-semantics: All members of `Justification.outlist` must be OUT for the justification to hold
+  multiple-justifications-are-disjunctive: A node with multiple `Justification` entries remains IN as long as at least one 
+  explain-exposes-violated-outlist: `Network.explain()` includes a `violated_outlist` key (list of IN node IDs) in t
+  api-unless-maps-to-outlist: The `api.add_node(..., unless="y")` keyword parameter is syntactic sugar that cr
+
+========================================
+[118-118/146] (191 remaining in queue)
+========================================
+  [file] tests/test_pg.py
+Explaining tests/test_pg.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_pg.md
+Queued 1 new topic(s) (192 pending)
+Surfaced 5 belief(s):
+  pg-backend-enforces-referential-integrity: `PgApi.add_node` and `PgApi.add_justification` raise `KeyError` (not silently cr
+  what-if-operations-produce-no-mutation: `what_if_retract` and `what_if_assert` are pure simulations; calling them leaves
+  access-tags-accumulate-upward: A derived node's effective access tag set is the union of all tags in its transi
+  namespace-add-extends-justification-with-active-premise: When a node is added via `namespace="X"`, its justification implicitly includes 
+  pg-multi-tenancy-partitions-by-domain-id: All tables (`rms_nodes`, `rms_justifications`, `rms_nogoods`, etc.) are partitio
+
+========================================
+[119-119/146] (191 remaining in queue)
+========================================
+  [file] tests/test_pg_dispatch.py
+Explaining tests/test_pg_dispatch.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_pg_dispatch.md
+Queued 1 new topic(s) (192 pending)
+Surfaced 5 belief(s):
+  pg-dispatch-requires-domain-id: `_backend_kwargs` raises `SystemExit` when `pg_conninfo` is resolvable but `doma
+  cli-flags-override-env-vars: In `_backend_kwargs`, `args.pg` and `args.domain_id` take precedence over `REASO
+  pgapi-is-a-context-manager: `_pg_dispatch` uses `with PgApi(conninfo, domain_id) as pg:`, meaning `PgApi` mu
+  require-sqlite-guards-against-pg-env: `_require_sqlite` checks *both* `args.pg` and the `REASONS_PG_CONNINFO` environm
+  export-markdown-pg-path-produces-identical-output: `export_markdown` called with `pg_conninfo` delegates to `export_network` (mocke
+
+========================================
+[120-120/146] (191 remaining in queue)
+========================================
+  [file] tests/test_pin_sources.py
+Explaining tests/test_pin_sources.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_pin_sources.md
+Queued 2 new topic(s) (193 pending)
+Surfaced 5 belief(s):
+  pin-sources-skips-out-nodes: `pin_sources` unconditionally excludes nodes with `truth_value == "OUT"`; no par
+  file-lines-changed-since-fails-open: `file_lines_changed_since` returns `True` (stale) when given an invalid SHA, nev
+  pinned-lines-survive-auto-bump: When `check_stale` auto-bumps `pinned_sha` (content reverted to match hash), the
+  pin-source-url-rewrites-github-only: `pin_source_url` only rewrites URLs matching the GitHub `/blob/<ref>/` pattern; 
+  parse-diff-hunks-excludes-zero-count: A hunk header like `@@ -89,0 +90,3 @@` (zero old-side count) is excluded from th
+
+========================================
+[121-121/146] (192 remaining in queue)
+========================================
+  [file] tests/test_propose_update.py
+Explaining tests/test_propose_update.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_propose_update.md
+Queued 2 new topic(s) (194 pending)
+Surfaced 5 belief(s):
+  parse-update-proposals-is-total-over-str: `parse_update_proposals` accepts any string and always returns a list of dicts; 
+  invalid-enum-fields-default-to-safe-values: An invalid `action` becomes `"update"`, an invalid `basis` becomes `"prior-knowl
+  retract-cascade-uses-destructive-language-update-uses-revalidation-language: In rendered Markdown, RETRACT cascades say dependents "will go OUT" while UPDATE
+  propose-updates-short-circuits-on-empty-or-missing-ids: `propose_updates` returns `[]` immediately (without calling `invoke_model`) when
+  test-mocks-invoke-model-at-module-import-site: The LLM call is stubbed via `@patch("reasons.propose_update.invoke_model")`, mea
+
+========================================
+[122-122/146] (193 remaining in queue)
+========================================
+  [file] tests/test_pubsub.py
+Explaining tests/test_pubsub.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_pubsub.md
+Queued 2 new topic(s) (195 pending)
+Surfaced 5 belief(s):
+  api-mutations-emit-pubsub-events: Every truth-value-altering API call (`add_node`, `retract_node`, `assert_node`, 
+  subscriber-scope-is-database-path: A subscriber registered with `db_path="X.db"` receives events only when the publ
+  subscriber-exception-isolation: An exception raised inside one subscriber's callback is caught and logged; it do
+  compute-changes-uses-none-for-existence: `compute_changes` encodes node creation as `old_truth_value=None` and node delet
+  events-fire-post-persistence: Subscriber callbacks can call `api.show_node()` and observe the *new* truth valu
+
+========================================
+[123-123/146] (194 remaining in queue)
+========================================
+  [file] tests/test_remove_justification.py
+Explaining tests/test_remove_justification.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_remove_justification.md
+Queued 1 new topic(s) (195 pending)
+Surfaced 5 belief(s):
+  remove-justification-preserves-shared-dependents: An antecedent node is only removed from `dependents` if it does not appear in an
+  remove-justification-requires-multiple-justifications: `Network.remove_justification` raises `ValueError` when the target node has exac
+  remove-justification-propagates-truth-cascade: Removing a justification that causes a node's truth value to flip from IN to OUT
+  outlist-entries-register-in-dependents: Nodes listed in a justification's `outlist` (defeaters) are tracked in the same 
+  cli-remove-justification-uses-uv-run: The CLI end-to-end test invokes the tool via `uv run reasons` rather than a dire
+
+========================================
+[124-124/146] (194 remaining in queue)
+========================================
+  [file] tests/test_repair.py
+Explaining tests/test_repair.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_repair.md
+Queued 1 new topic(s) (195 pending)
+Surfaced 5 belief(s):
+  repair-status-is-never-exception: `repair_smuggled_beliefs` communicates every domain-level failure (extraction fa
+  outlist-preserved-on-repair: When a new antecedent is linked via `add_justification`, the existing `outlist` 
+  derived-beliefs-excluded-from-candidates: A node that has a non-empty `justifications` list is treated as a conclusion and
+  llm-mocked-at-subprocess-boundary: All LLM-dependent tests patch `reasons.llm.subprocess.run` (and `shutil.which`),
+  cli-requires-review-file-or-belief-ids: The `repair-smuggled` CLI subcommand exits with code 1 and a "provide" message i
+
+========================================
+[125-125/146] (194 remaining in queue)
+========================================
+  [file] tests/test_repair_premises.py
+Explaining tests/test_repair_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_repair_premises.md
+Queued 2 new topic(s) (196 pending)
+Surfaced 5 belief(s):
+  repair-rewrite-creates-successor: A `rewrite` action never mutates the original node's text; it supersedes the old
+  parse-repair-defaults-to-retract: When the LLM omits the `action` field in its JSON response, `parse_repair_respon
+  dry-run-prevents-mutation: Passing `dry_run=True` to `api.repair_premises` guarantees zero writes to the da
+  repair-llm-failure-produces-error-dict: If the LLM subprocess raises an exception, `repair_premises` returns a result en
+  test-mocks-subprocess-not-http: All LLM interactions in this codebase go through `subprocess.run` (shelling out 
+
+========================================
+[126-126/146] (195 remaining in queue)
+========================================
+  [file] tests/test_report_belief.py
+Explaining tests/test_report_belief.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_report_belief.md
+Queued 1 new topic(s) (196 pending)
+Surfaced 5 belief(s):
+  report-belief-raises-keyerror-for-missing-node: `api.report_belief` raises `KeyError` (not a custom exception, not a sentinel re
+  test-build-structured-report-tests-private-function: The test suite imports and tests `_build_structured_report` (underscore-prefixed
+  run-cli-simulates-in-process: CLI tests patch `sys.argv`/`sys.stdout`/`sys.stderr` in the same process rather 
+  source-chunks-require-fts5-index: The `test_with_sources_db` test creates a `chunks` table **and** a `chunks_fts` 
+  premise-count-reflects-leaf-nodes-only: `result["premise_count"]` counts only root/leaf premises (nodes with `reason: "p
+
+========================================
+[127-127/146] (195 remaining in queue)
+========================================
+  [file] tests/test_report_gated.py
+Explaining tests/test_report_gated.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_report_gated.md
+Queued 2 new topic(s) (197 pending)
+Surfaced 5 belief(s):
+  report-gated-blockers-sorted-descending-by-gated-count: In both the structured Markdown report and the LLM prompt, blockers are always o
+  report-gated-llm-call-is-opt-in: `invoke_model` in `reasons.llm` is called if and only if the `model` parameter i
+  api-report-gated-returns-fixed-dict-shape: `api.report_gated` always returns a dict with exactly the keys `report` (str), `
+  retracted-section-conditional-on-nonempty-list: The "Fixed Defects" section in the structured report is present only when the re
+  cli-report-gated-stdout-vs-file-mutual-exclusion: Without `-o`, the report body goes to stdout and a summary to stderr; with `-o <
+
+========================================
+[128-128/146] (196 remaining in queue)
+========================================
+  [file] tests/test_research.py
+Explaining tests/test_research.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_research.md
+Queued 2 new topic(s) (198 pending)
+Surfaced 5 belief(s):
+  repair-beliefs-skips-valid: `repair_beliefs` filters out any review result with `valid == True` before issui
+  dry-run-prevents-mutations: When `dry_run=True`, `repair_beliefs` computes and returns the intended action b
+  api-count-invariant: The `api.research` result dict always satisfies `total_invalid == linked + softe
+  research-beliefs-is-repair-beliefs: `reasons.repair.research_beliefs` is an identity alias for `repair_beliefs` (sam
+  triage-parse-never-raises: `parse_triage_response` and `parse_soften_response` return a dict with empty-str
+
+========================================
+[129-129/146] (197 remaining in queue)
+========================================
+  [file] tests/test_review.py
+Explaining tests/test_review.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_review.md
+Queued 2 new topic(s) (199 pending)
+Surfaced 5 belief(s):
+  review-beliefs-reviews-only-derived-in: `api.review_beliefs` filters to beliefs that have at least one justification and
+  parse-review-response-is-total: `parse_review_response` never raises; malformed JSON, non-list JSON, and items m
+  dry-run-prevents-db-mutation: When `dry_run=True`, neither `truth_value` changes (retraction) nor `reviewed_at
+  review-result-classification-has-priority: The `metadata["review_result"]` value is determined by a strict priority: `valid
+  batch-size-bounds-llm-calls: The number of `subprocess.run` invocations in `review_beliefs` equals `ceil(qual
+
+========================================
+[130-130/146] (198 remaining in queue)
+========================================
+  [file] tests/test_review_justifications.py
+Explaining tests/test_review_justifications.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_review_justifications.md
+Queued 1 new topic(s) (199 pending)
+Surfaced 5 belief(s):
+  review-justifications-is-read-only: `api.review_justifications` never mutates the stored SL justifications; it retur
+  parse-justification-review-defaults-to-all: When the LLM omits or nulls the `classification` field, the parser assigns `"ALL
+  min-antecedents-gates-eligibility: A node is only sent to the LLM for review if it has at least one SL justificatio
+  invoke-model-is-the-mock-boundary: All LLM interaction in `review_justifications` flows through a single `invoke_mo
+  classification-is-always-uppercase: After `parse_justification_review`, the `classification` field is guaranteed to 
+
+========================================
+[131-131/146] (198 remaining in queue)
+========================================
+  [file] tests/test_review_premises.py
+Explaining tests/test_review_premises.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_review_premises.md
+Queued 1 new topic(s) (199 pending)
+Surfaced 5 belief(s):
+  review-pipeline-is-subprocess-based: All LLM calls in the review pipeline go through a `subprocess.run` invocation of
+  parse-fills-safe-defaults: `parse_premise_review_response` defaults missing fields to `accurate=True`, `wel
+  dry-run-is-read-only: When `api.review_premises` is called with `dry_run=True`, no `premise_review_res
+  batch-failure-is-isolated: A subprocess exception in one batch of `review_premises` does not propagate; the
+  premises-exclude-derived-nodes: The API layer filters out any node that has a non-null `sl` (supported-by) field
+
+========================================
+[132-132/146] (198 remaining in queue)
+========================================
+  [file] tests/test_roundtrip.py
+Explaining tests/test_roundtrip.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_roundtrip.md
+Queued 2 new topic(s) (200 pending)
+Surfaced 5 belief(s):
+  round-trip-is-lossless: Every non-empty field on a node (source, source_url, source_hash, date, source_t
+  empty-fields-produce-no-markdown-lines: If an optional field is `None` or absent, the corresponding `- Field: value` lin
+  double-round-trip-is-idempotent: `export_markdown(import_into_network(export_markdown(net)))` produces byte-ident
+  accepted-pr-lives-in-metadata-dict: The `accepted_pr` value is stored in `node.metadata["accepted_pr"]`, not as a to
+  nogood-round-trip-is-known-broken: The markdown exporter writes nogood entries in a format (`nogood-NNN` without co
+
+========================================
+[133-133/146] (199 remaining in queue)
+========================================
+  [file] tests/test_search_sources.py
+Explaining tests/test_search_sources.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_search_sources.md
+Queued 3 new topic(s) (202 pending)
+Surfaced 5 belief(s):
+  search-source-chunks-returns-list-of-dicts: `search_source_chunks` always returns a `list[dict]` (possibly empty) and never 
+  fts5-index-is-content-backed: The `chunks_fts` virtual table uses `content=chunks, content_rowid=id`, meaning 
+  test-helper-mirrors-production-schema: `_create_fts_db` in the test file creates the same table/FTS5-virtual-table stru
+  cli-zero-results-produces-message-not-empty: `cmd_search_sources` prints the string `"No matching chunks"` to stdout when the
+  test-file-is-hermetic: This test file creates its own SQLite database per test via `tmp_path` and impor
+
+========================================
+[134-134/146] (201 remaining in queue)
+========================================
+  [file] tests/test_source_type.py
+Explaining tests/test_source_type.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_source_type.md
+Queued 2 new topic(s) (203 pending)
+Surfaced 5 belief(s):
+  add-node-rejects-invalid-source-type: `api.add_node` raises `ValueError` for any `source_type` not in the four-value e
+  derive-automatically-sets-source-type-derived: `apply_proposals` unconditionally stamps `metadata["source_type"] = "derived"` o
+  list-nodes-flattens-source-type-to-empty-string: When a node has no `source_type`, `api.list_nodes` returns `""` (not `None`, not
+  export-import-roundtrip-preserves-source-type: `export_markdown` → `import_into_network` is lossless for the `source_type` fiel
+  source-type-is-optional-in-node-metadata: The `source_type` key is absent (not `null`, not `""`) in `node["metadata"]` whe
+
+========================================
+[135-135/146] (202 remaining in queue)
+========================================
+  [file] tests/test_storage.py
+Explaining tests/test_storage.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_storage.md
+Queued 2 new topic(s) (204 pending)
+Surfaced 5 belief(s):
+  storage-roundtrip-preserves-truth-values: Both `"IN"` and `"OUT"` truth values are serialized to and restored from SQLite;
+  storage-rebuilds-dependents-index: The `dependents` reverse-index on nodes is not stored as a separate table; it is
+  storage-save-is-overwrite: Calling `Storage.save()` a second time on the same path fully replaces the prior
+  test-propagation-validates-liveness: `test_propagation_works_after_load` asserts that a loaded `Network` supports fur
+  storage-tests-are-backend-agnostic: The test file asserts on `Network` object attributes, never on SQLite-specific a
+
+========================================
+[136-136/146] (203 remaining in queue)
+========================================
+  [file] tests/test_summarize.py
+Explaining tests/test_summarize.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_summarize.md
+Queued 2 new topic(s) (205 pending)
+Surfaced 5 belief(s):
+  summary-truth-requires-all-covered-in: A summary node's truth value is IN if and only if every node in its `over` list 
+  sl-justification-drives-cascading: The summary's truth-value propagation is entirely mediated by its SL justificati
+  compact-hiding-requires-summary-in: `compact()` suppresses covered nodes from output only when the covering summary 
+  bidirectional-metadata-links: `summarizes` on the summary node and `summarized_by` on each covered node are ma
+  summarize-enables-compact-abstraction: Without a summary node, `compact()` has no hiding behavior; the summary is the s
+
+========================================
+[137-137/146] (204 remaining in queue)
+========================================
+  [file] tests/test_sync_agent.py
+Explaining tests/test_sync_agent.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_sync_agent.md
+Queued 3 new topic(s) (207 pending)
+Surfaced 5 belief(s):
+  sync-agent-implements-remote-wins: `sync_agent` unconditionally overwrites local truth values with the remote file'
+  sync-agent-preserves-agent-revocation-cascade: Every justification's outlist must retain the `test-agent:inactive` entry after 
+  sync-agent-is-idempotent: Calling `sync_agent` twice with identical remote content produces zero mutations
+  sync-agent-equivalent-to-import-on-first-call: When no prior import exists, `sync_agent` sets `created_premise=True` and behave
+  sync-agent-returns-counters-not-exceptions: `sync_agent` communicates outcomes exclusively through a result dict (`beliefs_a
+
+========================================
+[138-138/146] (206 remaining in queue)
+========================================
+  [file] tests/test_topics.py
+Explaining tests/test_topics.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_topics.md
+Queued 2 new topic(s) (208 pending)
+Surfaced 5 belief(s):
+  test-topics-exercises-api-and-cli: This file tests two distinct layers (`api.topics()` and `reasons topics` CLI); a
+  topics-tokenizer-splits-on-four-delimiters: The tokenizer recognizes `-`, `.`, `:`, and `_` as word boundaries; any new deli
+  topics-result-shape-is-total-and-topics: `api.topics()` always returns exactly two top-level keys (`"topics"`, `"total_no
+  run-cli-normalizes-none-exit-to-zero: `run_cli()` maps `SystemExit(code=None)` to exit code 0, so a test asserting `co
+  tmp-path-isolates-each-test: Every test in this file uses the pytest `tmp_path` fixture, guaranteeing no shar
+
+========================================
+[139-139/146] (207 remaining in queue)
+========================================
+  [file] tests/test_verify.py
+Explaining tests/test_verify.py with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/tests-test_verify.md
+Queued 2 new topic(s) (209 pending)
+Surfaced 5 belief(s):
+  parse-verify-response-tolerates-prose-wrapping: `parse_verify_response` extracts the first JSON object from a string that may co
+  verify-stamps-verified-at-on-confirm: A CONFIRMED verdict causes the node's `verified_at` timestamp to be set to a non
+  retract-sets-truth-value-to-out: When `retract=True` and the verdict is STALE, the node's `truth_value` field is 
+  trace-mode-shifts-target-to-premises: `verify_belief(id, trace=True)` on a derived node (one with a non-empty `sl` fie
+  cli-tests-mock-subprocess-not-http: All LLM-dependent tests in this file intercept at the `subprocess.run` level (th
+
+========================================
+[140-140/146] (208 remaining in queue)
+========================================
+  [file] .github/workflows/tests.yml
+Explaining .github/workflows/tests.yml with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/.github-workflows-tests.md
+Queued 1 new topic(s) (209 pending)
+Surfaced 5 belief(s):
+  ci-gates-on-main-only: The workflow's `on.push.branches` and `on.pull_request.branches` are both `[main
+  test-extra-isolation-requires-pyproject: `uv run --extra test` resolves the `test` dependency group from `pyproject.toml`
+  matrix-fanout-is-parallel: The four Python-version jobs (3.10–3.13) run concurrently on separate GitHub Act
+  workflow-has-no-timeout: No `timeout-minutes` is set on the `test` job, so a hung test is subject only to
+  pytest-discovery-is-directory-scoped: `uv run --extra test pytest tests/ -v` restricts collection to the `tests/` dire
+
+========================================
+[141-141/146] (208 remaining in queue)
+========================================
+  [file] .claude/skills/reasons/SKILL.md
+Explaining .claude/skills/reasons/SKILL.md with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/.claude-skills-reasons-SKILL.md
+Queued 1 new topic(s) (209 pending)
+Surfaced 5 belief(s):
+  skill-restricts-agent-to-reasons-cli: The `allowed-tools` field in the YAML frontmatter is the sole security boundary;
+  assert-does-not-remove-justifications: `reasons assert node-id` flips a node to IN but preserves its SL justifications;
+  export-markdown-is-projection-not-source: The `reasons export-markdown` output is a read-only snapshot; the skill mandates
+  nogood-backtracks-to-premise-not-arbitrary-node: The `nogood` command's dependency-directed backtracking always selects the *prem
+  skill-file-is-not-importable: `.claude/skills/reasons/SKILL.md` is consumed exclusively by the Claude Code age
+
+========================================
+[142-142/146] (208 remaining in queue)
+========================================
+  [function] reasons/cli.py:main
+Explaining reasons/cli.py:main with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-cli-main.md
+Queued 2 new topic(s) (210 pending)
+Surfaced 5 belief(s):
+  main-dispatches-via-flat-dict: `main()` routes subcommands through a single hand-maintained dictionary; adding 
+  research-alias-maps-to-cmd-repair: The `research` subcommand is a deprecated alias that dispatches to `cmd_repair`,
+  main-performs-no-business-logic: `main()` contains zero I/O, zero DB access, and zero mutation; all side effects 
+  dual-backend-selected-per-invocation: The `--pg` flag (or `REASONS_PG_CONNINFO` env var) switches the backend from SQL
+  exit-code-1-signals-usage-error: When no subcommand is provided, `main()` exits with code 1 (not 0), signaling a 
+
+========================================
+[143-143/146] (209 remaining in queue)
+========================================
+  [general] tms-node-model
+Exploring 'The core data model: nodes (IN/OUT), justifications (SL, CP, outlist), nogoods, and their relationships. Understood via `network.py`' with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/topic-tms-node-model.md
+Queued 2 new topic(s) (211 pending)
+Surfaced 5 belief(s):
+  node-truth-derives-from-justifications: A node's `truth_value` is never stored independently of its justifications; it i
+  dependents-index-covers-outlist: The `.dependents` reverse index is populated from *both* `antecedents` and `outl
+  retract-preserves-node: Retraction sets `truth_value = "OUT"` but never removes the node from `self.node
+  nogood-is-a-set-of-incompatible-inodes: A Nogood represents a constraint that a set of node IDs cannot all simultaneousl
+  entrenchment-ranks-premises-above-derived: The `_entrenchment` scoring guarantees that premises (evidence, +100) are always
+
+========================================
+[144-144/146] (210 remaining in queue)
+========================================
+  [function] reasons/mcp_server.py:main
+Explaining reasons/mcp_server.py:main with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/reasons-mcp_server-main.md
+Queued 3 new topic(s) (213 pending)
+Surfaced 5 belief(s):
+  main-pre-resolves-db-path: `main()` calls `_find_db()` eagerly and assigns the result to the module-level `
+  mcp-server-uses-stdio-not-tcp: The MCP server in this module communicates exclusively over stdio (spawned as a 
+  main-delegates-db-discovery-to-environment: The database path is determined entirely by the `REASONS_DB` environment variabl
+  tool-handlers-catch-exceptions-into-json: Every `@mcp.tool()` function wraps its `api.*` call in a try/except and returns 
+  import-error-guards-mcp-optional: The `mcp` package is an optional dependency; the module raises a descriptive `Im
+
+========================================
+[145-145/146] (212 remaining in queue)
+========================================
+  [general] reasons-vs-reasons_lib
+Exploring 'The distribution split: comparing `reasons/merkle.py` and `reasons/metadata.py` (present) vs. `reasons_lib/` (absent or different) reveals what's "full" vs. "library"' with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/topic-reasons-vs-reasons_lib.md
+Queued 2 new topic(s) (214 pending)
+Surfaced 5 belief(s):
+  reasons_lib-replaces-nothing: `reasons_lib/` contains zero implementation code; both of its files (6 lines tot
+  reasons_lib-lacks-merkle: The `reasons_lib` package does not include a `merkle` sub-module; any `from reas
+  reasons-contains-all-submodules: Every functional sub-module (`merkle`, `network`, `api`, `cli`, `mcp_server`) li
+  pyproject-ships-both-packages: The `[tool.setuptools] packages` list in `pyproject.toml` explicitly includes bo
+  merkle-hashing-is-internal: All 17 codebase references to "merkle" are within `reasons/` internals (`network
+
+========================================
+[146-146/146] (213 remaining in queue)
+========================================
+  [general] dialectical-argumentation
+Exploring 'The challenge/defend mechanism: how non-monotonic outlists enable formal belief challenging and defense. Spans `network.py`, `repair.py`, `contradictions.py`' with ollama:qwen-64k:latest...
+Entry: summaries/2026/11/01/topic-dialectical-argumentation.md
+Queued 1 new topic(s) (214 pending)
+Surfaced 5 belief(s):
+  outlist-presence-defeats-belief: In an SL justification, any outlist node being IN causes the justified node to b
+  outlist-retraction-restores-belief: Retracting an outlist node that was causing a defeat restores the dependent node
+  nogood-minimum-two-claims: A NOGOOD from `contradictions.py` must contain at least 2 belief IDs to be valid
+  repair-patterns-exhaustive: The `repair.py` triage classifies every invalid belief into exactly one of four 
+  absent-outlist-node-treated-as-out: An outlist node that doesn't exist in the network is treated as OUT (not believe
+
+Explored 146 topic(s). 214 remaining in queue.

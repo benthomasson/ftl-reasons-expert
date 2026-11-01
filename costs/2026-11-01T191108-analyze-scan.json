@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-01T19:11:08",
+  "operation": "analyze-scan",
+  "domain": "ftl-reasons-code",
+  "model": "ollama:qwen-64k:latest",
+  "calls": 1,
+  "input_tokens": 3960,
+  "output_tokens": 3058,
+  "cost_dollars": 0.0,
+  "by_model": {
+    "ollama:qwen-64k:latest": {
+      "calls": 1,
+      "input_tokens": 3960,
+      "output_tokens": 3058,
+      "total_cost_usd": 0.0
+    }
+  },
+  "beliefs_added": 0,
+  "beliefs_retracted": 0,
+  "beliefs_unchanged": 0,
+  "round_number": 1,
+  "wall_clock_seconds": 44.62
+}
