@@ -4098,3 +4098,100 @@ The presence of `.sdlc-loop/` and `.code-expert/` entries is a trivial listing o
 **Source:** 149 entries from /home/forge/workspace/entries/
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
+
+---
+
+**Generated:** 2026-11-18 (parsed from ## Beliefs sections)
+**Source:** 2 summary files
+
+### [ACCEPTED] report-is-diart-update-run-ledger
+`.forge/report.json` records a single run of the `diary-update` pipeline with exactly two ordered steps: `propose-beliefs` then `accept-beliefs`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] accept-bellefs-gate-accepted-zero
+In this run, the `accept-beliefs` step accepted 0 of the 182 proposed beliefs while the belief store remained at `total_beliefs: 123`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] summary-mirrors-step-counts
+`summary.entries`/`summary.proposed` equal the propose step's `counts.entries`/`counts.proposed`, and `summary.accepted`/`summary.total_beliefs` equal the accept step's `counts.accepted`/`counts.total_beliefs`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] step-counts-schema-is-step-specific
+`counts` keys differ by step (`entries`/`proposed` vs `accepted`/`total_beliefs`), so consumers must select steps by `name` rather than assume a uniform schema.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] timestamps-are-utc-iso8601
+All timestamps use ISO-8601 with a `+00:00` UTC offset, and all four recorded timestamps equal `2026-11-18T18:00:09+00:00`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] zero-accepted-is-completed-status
+A run where `accepted == 0` is reported as `status: "completed"`, not as an error.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] diary-update-report-is-generated-run-artifact
+`.forge/report.json` is a generated run-report artifact for the `diary-update` pipeline; this commit only refreshes run metadata and counts rather than editing domain logic.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+### [ACCEPTED] diary-update-pipeline-has-propose-and-accept-steps
+The `diary-update` pipeline records two ordered steps: `propose-beliefs` followed by `accept-beliefs`.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+### [ACCEPTED] propose-beliefs-consumes-entries-and-produces-proposals
+The `propose-beliefs` step reports its input as `entries` and its output as `proposed` beliefs.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+### [ACCEPTED] accept-beliefs-tracks-accepted-and-total-beliefs
+The `accept-beliefs` step records both the number of beliefs accepted in the run and the total belief count after processing.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+### [ACCEPTED] report-summary-aggregates-pipeline-counts
+The `.forge/report.json` summary aggregates `entries`, `proposed`, `accepted`, and `total_beliefs` from the pipeline steps.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+
+---
+
+**Generated:** 2026-11-18 (batch 1/1)
+**Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
+
+### [ACCEPTED] forge-report-json-is-generated-run-ledger
+`.forge/report.json` is a machine-readable run ledger for the `diary-update` pipeline, overwritten per run rather than append-only.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-counts-schema-varies-by-step-name
+Each `steps[].counts` object has step-specific keys (`entries`/`proposed` for propose, `accepted`/`total_beliefs` for accept), so consumers must locate steps by `name` rather than assume a global counts schema.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-summary-mirrors-step-counts
+The top-level `summary` is a denormalized projection of the per-step counts: `entries`/`proposed` from propose-beliefs and `accepted`/`total_beliefs` from accept-beliefs.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] zero-accepted-beliefs-is-valid-success-outcome
+In the `diary-update` pipeline, `accepted == 0` is a valid successful outcome, not an error; the run still reports `status: "completed"`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-completed-status-implies-all-steps-completed
+When `.forge/report.json` has top-level `status == "completed"`, `completed_at` is present and every `steps[*].status` is `"completed"`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-timestamps-are-utc-iso8601
+All timestamps in `.forge/report.json` are ISO-8601 strings with explicit UTC offset `+00:00`, and `duration_seconds` is the precise timing signal because timestamps are second-resolution.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-shared-across-reasons-and-reasons-lib
+Both `reasons/` and `reasons_lib/` contain modules that read `.forge/report.json`, so schema changes must be synchronized across the two trees.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-detail-is-non-authoritative
+The `detail` string in step records is human-readable and non-authoritative; machine consumers must use `counts` and `status`.
+- Source: summaries/2026/11/18/.forge-report.md
+
+### [ACCEPTED] forge-report-is-generated-run-artifact
+`.forge/report.json` is a generated run-report artifact for the `diary-update` pipeline; commits to it refresh run metadata and counts rather than editing domain logic.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+### [ACCEPTED] diary-update-pipeline-records-two-ordered-steps
+The `diary-update` pipeline records exactly two ordered steps: `propose-beliefs` followed by `accept-beliefs`.
+- Source: summaries/2026/11/18/diff-0cc147af-.forge-report.md
+
+

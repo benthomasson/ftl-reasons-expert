@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Implements the gate that accepted 0 of 182 proposals; explains the `accepted`/`total_beliefs` counters.",
+    "kind": "file",
+    "target": "reasons_lib/report_gated.py",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-18T20:17:03"
+  },
+  {
+    "title": "Consumer/renderer of this report; shows which fields are treated as contract.",
+    "kind": "file",
+    "target": "reasons_lib/report_belief.py",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-18T20:17:03"
+  },
+  {
+    "title": "Likely orchestrates the `diary-update` stages and writes/reads `.forge/report.json`.",
+    "kind": "file",
+    "target": "reasons/api.py",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-18T20:17:03"
+  },
+  {
+    "title": "Upstream artifact holding the 182 proposed beliefs from the 17 entries.",
+    "kind": "file",
+    "target": ".forge/proposed-entries.json",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-18T20:17:03"
+  },
+  {
+    "title": "End-to-end stage wiring (propose \u2192 gate/accept) and failure semantics not visible in this artifact.",
+    "kind": "general",
+    "target": "diary-update-pipeline",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-18T20:17:03"
+  }
+]
