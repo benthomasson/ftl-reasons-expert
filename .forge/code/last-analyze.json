@@ -1,0 +1,13 @@
+{
+  "started": "2026-11-18T20:09:46",
+  "finished": "2026-11-18T20:10:24",
+  "explore_limit": 500,
+  "rounds": 1,
+  "beliefs_before": 1764,
+  "beliefs_after": 1765,
+  "beliefs_added": 1,
+  "errors": [
+    "Step 2: Scan exited with code 1",
+    "Step 7: Derive (exhaust) exited with code 1"
+  ]
+}
