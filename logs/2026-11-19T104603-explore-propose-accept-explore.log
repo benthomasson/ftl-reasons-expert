@@ -1,0 +1,1393 @@
+=== explore-propose-accept / explore (round 1) — 2026-11-19T10:46:03 ===
+
+=== Round 1: Explore (up to 100 topics) ===
+
+
+========================================
+[1-1/100] (140 remaining in queue)
+========================================
+  [file] reasons_lib/report_gated.py
+Explaining reasons_lib/report_gated.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-report_gated.md
+Queued 2 new topic(s) (142 pending)
+Surfaced 5 belief(s):
+  reasons-lib-report-gated-is-a-shim: `reasons_lib/report_gated.py` defines no logic and only re-exports symbols from 
+  reasons-lib-report-gated-requires-reasons-report-gated: This file's import succeeds only if `reasons.report_gated` imports successfully;
+  reasons-lib-report-gated-preserves-object-identity: Symbols re-exported via star import are the same objects as those in `reasons.re
+  reasons-api-depends-on-reasons-lib-shim: `reasons/api.py` still imports from `reasons_lib.report_gated`, so deleting this
+  reasons-lib-report-gated-exports-canonical-public-names: The names available here equal the public namespace (or `__all__`) of `reasons.r
+
+========================================
+[2-2/100] (141 remaining in queue)
+========================================
+  [file] reasons_lib/report_belief.py
+Explaining reasons_lib/report_belief.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-report_belief.md
+Queued 2 new topic(s) (143 pending)
+Surfaced 5 belief(s):
+  reasons-lib-report-belief-is-a-compat-shim: The module contains no logic of its own; it is a docstring plus a single star-im
+  reasons-lib-report-belief-requires-reasons-report-belief: The shim cannot import without `reasons.report_belief` being importable; failure
+  reasons-lib-report-belief-reexports-public-names: It forwards only public names (per `__all__` or non-underscore convention) of `r
+  reasons-lib-report-belief-enables-legacy-imports: It preserves `from reasons_lib.report_belief import X` callers during the `reaso
+  reasons-api-imports-legacy-shim-path: `reasons/api.py` imports from `reasons_lib.report_belief` (the legacy path) rath
+
+========================================
+[3-3/100] (142 remaining in queue)
+========================================
+  [file] reasons/api.py
+Explaining reasons/api.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-api.md
+Queued 2 new topic(s) (144 pending)
+Surfaced 6 belief(s):
+  network-cache-keyed-by-mtime: `_network_cache` stores `(mtime, Network)` per `db_path`, and read-only calls (`
+  write-context-suppressed-on-exception: `_with_network.__exit__` saves and publishes only when `write=True` and `exc_typ
+  namespaced-writes-prepend-active-premise: `add_node(namespace=...)` prefixes the id via `_resolve_namespace` and inserts `
+  accept-proposal-requires-snapshot-match: `accept_proposal` marks a proposal `stale` and returns `{"applied": False}` when
+  search-falls-back-to-substring: `search()` (default mode) first tries `_fts_search` against the `nodes_fts` FTS5
+
+========================================
+[4-4/100] (143 remaining in queue)
+========================================
+  [file] .forge/proposed-entries.json
+File not found: .forge/proposed-entries.json (skipping)
+
+========================================
+[5-5/100] (142 remaining in queue)
+========================================
+  [general] diary-update-pipeline
+Exploring 'End-to-end stage wiring (propose → gate/accept) and failure semantics not visible in this artifact.' with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/topic-diary-update-pipeline.md
+Queued 3 new topic(s) (145 pending)
+Surfaced 5 belief(s):
+  propose-updates-is-read-only: `propose_updates()` returns proposal dicts and never mutates the belief graph.
+  propose-stage-requires-external-accept: `format_proposal_markdown()` emits suggested `reasons update`/`reasons retract` 
+  proposal-parse-failures-return-empty-list: `parse_update_proposals()` returns `[]` for malformed LLM output, indistinguisha
+  proposal-parser-does-not-validate-node-ids: `parse_update_proposals()` accepts any item with an `id` key and does not check 
+  propose-batch-errors-are-swallowed: `propose_updates()` catches per-batch exceptions, logs a warning, and returns pa
+
+========================================
+[6-6/100] (144 remaining in queue)
+========================================
+  [file] reasons/__init__.py
+Explaining reasons/__init__.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-__init__.md
+Queued 1 new topic(s) (145 pending)
+Surfaced 6 belief(s):
+  justification-type-is-a-string-discriminator: `Justification.type` is a plain `str` restricted by convention to `"SL"` or `"CP
+  supporting-justification-contains-list-index: `Node.supporting_justification` is an integer index into `Node.justifications`, 
+  dependents-is-a-denormalized-reverse-index: `Node.dependents` is a `set[str]` that must mirror the inverse of all `anteceden
+  module-is-a-validation-free-schema-layer: The file defines no `__post_init__`, no methods, and no validation, so invalid s
+  outlist-enables-non-monotonic-retraction: `Justification.outlist` encodes defeaters: a justification is invalidated whenev
+
+========================================
+[7-7/100] (144 remaining in queue)
+========================================
+  [file] reasons/ask.py
+Explaining reasons/ask.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-ask.md
+Queued 2 new topic(s) (146 pending)
+Surfaced 6 belief(s):
+  ask-requires-sources-db-for-dual-mode: `ask` raises `ValueError` at the top if `dual=True` and `sources_db is None`.
+  extract-tool-call-implements-json-line-protocol: `extract_tool_call` parses the first line beginning with `{` that loads as JSON 
+  ask-prevents-tool-calls-in-final-round: On the last iteration, `build_final_prompt` (no tool schema) is used, and any re
+  tool-search-results-replace-beliefs-context-when-non-empty: A `search_beliefs` result only overwrites `beliefs_context` when it is non-empty
+  dual-mode-detects-emptiness-via-prompt-substrings: Dual mode classifies an empty TMS answer via the exact `NO_BELIEFS_MSG` string o
+
+========================================
+[8-8/100] (145 remaining in queue)
+========================================
+  [file] reasons/build_wiki.py
+Explaining reasons/build_wiki.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-build_wiki.md
+Queued 2 new topic(s) (147 pending)
+Surfaced 7 belief(s):
+  build-wiki-does-not-perform-grouping: `build_wiki` receives the `groups` dict fully formed; it never calls `_assign_to
+  build-wiki-swallows-llm-errors: LLM generation failures in `build_wiki` are caught, logged to stderr as `WARN`, 
+  build-wiki-parallel-requires-model: The parallel branch is only entered when **both** `model` is truthy and `paralle
+  node-to-page-maps-node-ids-to-filenames: `node_to_page` is a `{node_id: "<slug>.md"}` dict built before rendering and reu
+  linkify-sorts-ids-by-length-descending: `_linkify` processes IDs longest-first so that IDs which are substrings of other
+
+========================================
+[9-9/100] (146 remaining in queue)
+========================================
+  [file] reasons/check_stale.py
+Explaining reasons/check_stale.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-check_stale.md
+Queued 2 new topic(s) (148 pending)
+Surfaced 6 belief(s):
+  check-stale-processes-only-in-nodes: `check_stale` and `pin_sources` skip any node whose `truth_value` is not `"IN"`.
+  git-errors-yield-changed-true: `file_changed_since` and `file_lines_changed_since` return `True` on subprocess 
+  truncated-hashes-are-16-hex-chars: Legacy truncated `source_hash` values are exactly 16 characters and are recogniz
+  check-stale-mutates-network-in-place: `check_stale`, `hash_sources`, and all `pin_*` functions write to `node.source_h
+  resolve-source-path-prefers-agent-repo: `resolve_source_path` resolution order is agent repo, then `db_dir`, then `repos
+
+========================================
+[10-10/100] (147 remaining in queue)
+========================================
+  [file] reasons/cli.py
+Explaining reasons/cli.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-cli.md
+Queued 1 new topic(s) (148 pending)
+Surfaced 6 belief(s):
+  cli-handlers-are-thin-api-wrappers: Every `cmd_*` function other than `_derive_one_round` (and its helpers) performs
+  pg-backend-requires-domain-id: `_backend_kwargs` refuses to return PostgreSQL kwargs unless a domain id is supp
+  sqlite-only-commands-guarded-by-require-sqlite: Commands that touch the local filesystem, Merkle hashes, embeddings, or LLM-spec
+  main-dispatches-by-command-string-dict: `main()` routes subcommand execution through a `commands: dict[str, Callable]` t
+  derive-cluster-and-sample-are-mutually-exclusive: `cmd_derive` exits with code 1 if both `--cluster`/`--intra-cluster` and `--samp
+
+========================================
+[11-11/100] (147 remaining in queue)
+========================================
+  [file] reasons/cluster.py
+Explaining reasons/cluster.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-cluster.md
+Queued 2 new topic(s) (149 pending)
+Surfaced 5 belief(s):
+  cluster-public-functions-require-cluster-extras: Every public clustering function calls `_require_cluster_deps()` before its fast
+  cluster-cache-keys-on-node-id-and-text-hash: `ClusterCache.embed` invalidates cached embeddings when belief text changes by k
+  cluster-inter-sampling-is-not-budget-guaranteed: `cluster_beliefs` can return fewer than `budget` IDs because per-cluster allocat
+  cluster-intra-rotates-size-sorted-clusters: `cluster_beliefs_intra` selects the focus cluster by `round_num % k` after sorti
+  cluster-auto-k-caps-by-budget-thirds: `cluster_beliefs` and `cluster_beliefs_intra` use `max_k=min(budget // 3, 20)` f
+
+========================================
+[12-12/100] (148 remaining in queue)
+========================================
+  [file] reasons/compact.py
+Explaining reasons/compact.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-compact.md
+Surfaced 6 belief(s):
+  token-estimate-uses-chars-div-4: `estimate_tokens` returns `max(1, len(text) // 4)`, the standard BPE approximati
+  compact-prioritizes-nogoods-then-out-then-in: Sections are emitted in that order and share a single `budget`, so nogoods can e
+  budget-check-reserves-footer-space: `_over_budget` adds `footer_tokens` to every line check so the closing token-cou
+  summaries-hide-covering-in-nodes: An IN node whose id appears in another IN node's `metadata["summarizes"]` is omi
+  truncate-defaults-to-80-char-node-text: With `truncate=True` (default), `_text` clips node text to 77 chars plus `"..."`
+
+========================================
+[13-13/100] (147 remaining in queue)
+========================================
+  [file] reasons/contradictions.py
+Explaining reasons/contradictions.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-contradictions.md
+Queued 2 new topic(s) (149 pending)
+Surfaced 5 belief(s):
+  contradictions-detects-only-in-beliefs: Both `detect_contradictions` and `detect_contradictions_semantic` filter candida
+  parse-contradiction-filters-hallucinated-ids: `parse_contradiction_response` drops any claim not present in `valid_ids` and di
+  contradictions-requires-2-claims-per-nogood: A nogood is only retained when its parsed `claims` list has length ≥ 2, mirrorin
+  contradictions-swallows-batch-llm-failures: `invoke_model` errors are caught per batch, logged as `WARN: …` to stderr, and d
+  write-contradiction-plan-lazy-imported: `write_contradiction_plan` is imported inside `_flush_results` rather than at mo
+
+========================================
+[14-14/100] (148 remaining in queue)
+========================================
+  [file] reasons/derive.py
+Explaining reasons/derive.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-derive.md
+Queued 2 new topic(s) (150 pending)
+Surfaced 5 belief(s):
+  beliefs-section-excludes-derived-nodes: `_build_beliefs_section` only lists nodes that are `IN` and not in the derived s
+  validate-proposals-requires-at-least-two-antecedents: `validate_proposals` skips proposals with fewer than two antecedent IDs.
+  validate-proposals-rejects-similar-retracted-beliefs: `validate_proposals` rejects a proposal whose ID has Jaccard token similarity `>
+  apply-proposals-converts-api-errors-to-result-strings: `apply_proposals` catches exceptions from `api.add_node` per proposal and return
+  gate-proposals-still-use-derived-source-type: `apply_proposals` always passes `source_type="derived"`; GATE behavior is repres
+
+========================================
+[15-15/100] (149 remaining in queue)
+========================================
+  [file] reasons/export_card.py
+Explaining reasons/export_card.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-export_card.md
+Queued 1 new topic(s) (150 pending)
+Surfaced 5 belief(s):
+  export-card-returns-string-with-no-io: `export_card` returns a single string and performs no file writes; callers persi
+  out-count-is-not-in: A node is counted as OUT whenever its `truth_value` is anything other than the e
+  premises-have-depth-zero: `_node_depth` returns `0` for missing nodes, nodes without justifications, and p
+  valid-supporting-justification-restricts-depth: When `supporting_justification` is a valid index, only that justification’s ante
+  empty-network-is-safe: `export_card` handles an empty network because retraction percentage guards `tot
+
+========================================
+[16-16/100] (149 remaining in queue)
+========================================
+  [file] reasons/export_markdown.py
+Explaining reasons/export_markdown.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-export_markdown.md
+Queued 2 new topic(s) (151 pending)
+Surfaced 5 belief(s):
+  export-markdown-is-pure-string-export: `export_markdown` returns a markdown string and performs no file I/O or network 
+  export-markdown-sorts-in-nodes-before-non-in-nodes: Claims are sorted with `truth_value == "IN"` first, then all non-IN nodes, alpha
+  export-markdown-maps-out-with-stale-or-retract-reason-to-stale: A node with truth value `OUT` and metadata `stale_reason` or `retract_reason` is
+  export-markdown-classifies-defeaters-via-defeats-node-metadata: An outlist ID is rendered as `Defeated by` only when the referenced node’s metad
+  export-markdown-aggregates-justification-antecedents: `Depends on` is the de-duplicated union of antecedents across all of a node’s ju
+
+========================================
+[17-17/100] (150 remaining in queue)
+========================================
+  [file] reasons/hf.py
+Explaining reasons/hf.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-hf.md
+Queued 2 new topic(s) (152 pending)
+Surfaced 7 belief(s):
+  hf-uses-stdlib-urllib-not-sdk: The module deliberately uses `urllib.request` and stdlib only; there is no `hugg
+  hf-token-resolution-order: `_resolve_token` resolves in the order: explicit arg → `HF_TOKEN` env → `~/.cach
+  default-org-is-eem-hub: Bare repo names are namespaced under `EEM-Hub` unless `REASONS_HF_ORG` overrides
+  resolve-repo-id-always-returns-org-name: `resolve_repo_id` always returns a single-slash `org/name` string and raises `Va
+  create-repo-swallows-409: `create_repo` treats HTTP 409 as success so it can be called unconditionally bef
+
+========================================
+[18-18/100] (151 remaining in queue)
+========================================
+  [file] reasons/import_agent.py
+Explaining reasons/import_agent.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-import_agent.md
+Queued 1 new topic(s) (152 pending)
+Surfaced 6 belief(s):
+  inactive-relay-implements-kill-switch: Every imported belief's every outlist includes `<agent>:inactive`, so retracting
+  active-premise-is-excluded-from-antecedents: `<agent>:active` is never placed in antecedents of imported justifications; only
+  _retracted-metadata-prevents-resurrection: Nodes marked `metadata["_retracted"]=True` are skipped by propagation so remote-
+  sync-agent-uses-remote-wins-semantics: `_sync_claims` updates existing node fields, adds remote-only beliefs, and retra
+  json-import-preserves-out-node-justifications: `_normalize_json` retains justifications on `truth_value=="OUT"` nodes, enabling
+
+========================================
+[19-19/100] (151 remaining in queue)
+========================================
+  [file] reasons/import_beliefs.py
+Explaining reasons/import_beliefs.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-import_beliefs.md
+Queued 2 new topic(s) (153 pending)
+Surfaced 6 belief(s):
+  import-is-idempotent: `import_into_network` skips any claim whose `id` already exists in `network.node
+  topological-order-prevents-forward-references: Claims are topologically sorted by `depends_on` before insertion, guaranteeing i
+  sl-justification-references-only-in-file-deps: The SL justification's `antecedents` are filtered by `claim_by_id` membership, s
+  stale-and-out-claims-are-retracted-after-add: Both `STALE` and `OUT` statuses route through `network.retract(id)` immediately 
+  nogoods-require-at-least-two-live-nodes: A nogood is only appended if `len([a for a in affects if a in network.nodes]) >=
+
+========================================
+[20-20/100] (152 remaining in queue)
+========================================
+  [file] reasons/llm.py
+Explaining reasons/llm.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-llm.md
+Queued 1 new topic(s) (153 pending)
+Surfaced 5 belief(s):
+  llm-invoke-model-is-single-facade: All LLM calls in the `reasons` package route through `invoke_model()`; no other 
+  llm-requires-lock-for-cost-tracking: Every write to `_cost_tracker` occurs under `_cost_lock`, thread-safety is enfor
+  openai-prefix-bypasses-resolve-model-cmd: `resolve_model_cmd` deliberately raises for `openai:` models, which are dispatch
+  api-prefix-does-not-record-cost: `_invoke_api` returns content without calling `_record_cost`, so `api:` and `ver
+  cli-json-parse-fails-open: `_parse_cli_json` returns raw output on any JSON parse failure, ensuring callers
+
+========================================
+[21-21/100] (152 remaining in queue)
+========================================
+  [file] reasons/mcp_client.py
+Explaining reasons/mcp_client.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-mcp_client.md
+Queued 2 new topic(s) (154 pending)
+Surfaced 5 belief(s):
+  mcpbridge-requires-mcp-package: Constructing `McpBridge` raises `ImportError` when the optional `mcp` package is
+  mcpbridge-keeps-session-open-until-shutdown-event: `_session_lifecycle` awaits `_shutdown.wait()` inside the `stdio_client` and `Cl
+  mcpbridge-caches-tools-at-connect: Tool metadata is fetched once during `connect()` and returned from `list_tools()
+  mcpbridge-call-tool-flattens-content: `call_tool()` returns newline-joined text or stringified content from the MCP `C
+  mcpbridge-close-uses-thread-safe-signaling: `close()` sets the asyncio shutdown event through `loop.call_soon_threadsafe`.
+
+========================================
+[22-22/100] (153 remaining in queue)
+========================================
+  [file] reasons/mcp_server.py
+Explaining reasons/mcp_server.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-mcp_server.md
+Queued 2 new topic(s) (155 pending)
+Surfaced 5 belief(s):
+  mcp-server-import-requires-mcp-extra: Importing `reasons.mcp_server` raises `ImportError` if the `mcp` package is miss
+  mcp-server-delegates-all-mutations-to-api: Every tool body calls a `reasons.api.*` function; no tool accesses the database 
+  reasons-db-env-overrides-walk-up-discovery: `_find_db` returns `REASONS_DB` if set, otherwise walks up from cwd for `reasons
+  mcp-read-tools-propagate-exceptions: `search`, `list_beliefs`, `compact`, `list_proposals`, `status`, `list_gated`, `
+  mcp-names-only-handled-locally-for-lists: `list_beliefs`, `status`, and `list_gated` implement `output_format="names-only"
+
+========================================
+[23-23/100] (154 remaining in queue)
+========================================
+  [file] reasons/merkle.py
+Explaining reasons/merkle.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-merkle.md
+Queued 2 new topic(s) (156 pending)
+Surfaced 5 belief(s):
+  fresh-hash-computation-ignores-stored-hashes: `_fresh_merkle_hash` and `_fresh_content_hash` recompute hashes from current tex
+  merkle-hash-follows-supporting-justification-only: A node’s Merkle hash only incorporates its `supporting_justification`; alternate
+  verify-all-counts-missing-hashes-separately-from-findings: `verify_all` reports missing text/content hashes in `missing_hashes` and does no
+  backfill-hashes-only-fills-missing-hashes: `backfill_hashes` computes only missing `text_hash`/`content_hash` values and le
+  cycle-guard-returns-empty-string-hash: A back-edge encountered during recursive Merkle computation returns `compute_tex
+
+========================================
+[24-24/100] (155 remaining in queue)
+========================================
+  [file] reasons/metadata.py
+Explaining reasons/metadata.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-metadata.md
+Queued 2 new topic(s) (157 pending)
+Surfaced 5 belief(s):
+  schema-version-is-hardcoded: `SCHEMA_VERSION` is a module constant `"1.0"` and is not derived from the instal
+  build-meta-returns-six-keys: `build_meta` returns a dict with `schema_version`, `project_name`, `created_at`,
+  build-meta-preserves-created-at: A truthy `created_at` argument is copied verbatim; falsey values are replaced wi
+  build-meta-refreshes-updated-at: `updated_at` is always regenerated using `datetime.now(timezone.utc)` with secon
+  generator-version-lookup-swallows-errors: `_get_generator` catches any `Exception` from `importlib.metadata.version("ftl-r
+
+========================================
+[25-25/100] (156 remaining in queue)
+========================================
+  [file] reasons/mind_service.py
+Explaining reasons/mind_service.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-mind_service.md
+Queued 1 new topic(s) (157 pending)
+Surfaced 6 belief(s):
+  mind-service-client-is-pure-stdlib: The module imports only from `json`, `os`, and `urllib.*`; no third-party HTTP l
+  config-resolution-prefers-explicit-params: `_resolve_config` gives explicit function arguments precedence over `MIND_*` env
+  mind-service-missing-config-is-aggregated: `_resolve_config` collects all missing fields and raises a single `RuntimeError`
+  resolved-base-url-has-no-trailing-slash: `_resolve_config` always strips trailing `/` from the URL before returning it.
+  push-belief-omits-empty-optional-fields: `push_belief` excludes `sl` and `source` from the request body when they are emp
+
+========================================
+[26-26/100] (156 remaining in queue)
+========================================
+  [file] reasons/network.py
+Explaining reasons/network.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-network.md
+Queued 2 new topic(s) (158 pending)
+Surfaced 8 belief(s):
+  dependents-index-is-derived-from-justifications: The `dependents` reverse index is reconstructible via `_rebuild_dependents()` an
+  outlist-nodes-are-dependents: Unlike pure antecedent-only TMSes, this implementation registers outlist nodes i
+  premises-default-in-and-skip-compute: `add_node` sets `truth_value = "IN"` for zero-justification nodes, and `_compute
+  node-is-in-if-any-justification-valid: `_compute_truth` returns IN at the first valid justification scanned in reverse 
+  retracted-nodes-are-skipped-during-propagation: `_propagate` short-circuits any dependent with `metadata["_retracted"] == True` 
+
+========================================
+[27-27/100] (157 remaining in queue)
+========================================
+  [file] reasons/pg.py
+Explaining reasons/pg.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-pg.md
+Queued 2 new topic(s) (159 pending)
+Surfaced 8 belief(s):
+  pg-requires-optional-psycopg: `psycopg` is imported in a `try/except`; `_require_psycopg` raises `ImportError`
+  domain-id-enables-multi-tenancy: every SQL statement filters by `self.domain_id`, and `(id, domain_id)` is the no
+  _propagate-implements-bfs-worklist: `_propagate` uses a `deque`-based worklist over dependents and enqueues only nod
+  _retracted-metadata-prevents-in-propagation: `_propagate` and `propagate` skip any node whose `metadata._retracted` is true; 
+  access-tags-inherit-by-union: `_inherit_access_tags` unions antecedent `access_tags` into the dependent node, 
+
+========================================
+[28-28/100] (158 remaining in queue)
+========================================
+  [file] reasons/propose_update.py
+Explaining reasons/propose_update.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-propose_update.md
+Queued 2 new topic(s) (160 pending)
+Surfaced 5 belief(s):
+  propose-updates-defaults-to-in-beliefs: When `belief_ids` is `None`, `propose_updates` selects only nodes with `truth_va
+  propose-updates-filters-unknown-ids: When an explicit `belief_ids` list is passed, IDs not present in `nodes` are dro
+  batch-failures-do-not-abort-propose-updates: Exceptions from `invoke_model`, parsing, or the `on_batch` callback are caught p
+  parse-update-proposals-returns-first-non-empty-array: `parse_update_proposals` returns immediately on the first `[` position that `raw
+  parse-update-proposals-coerces-enum-fields: Out-of-taxonomy `action`/`failure_mode`/`basis` values are downgraded to `"updat
+
+========================================
+[29-29/100] (159 remaining in queue)
+========================================
+  [file] reasons/pubsub.py
+Explaining reasons/pubsub.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-pubsub.md
+Queued 2 new topic(s) (161 pending)
+Surfaced 5 belief(s):
+  change-event-is-frozen-dataclass: `ChangeEvent` is an immutable frozen dataclass with fields `type`, `node_id`, `o
+  publish-isolates-subscriber-exceptions: A subscriber exception is caught and logged by `publish()`, and other subscriber
+  global-subscribers-receive-db-scoped-events: A callback registered with `db_path=None` is included for every database path pa
+  compute-changes-emits-deletions-for-missing-after-keys: `compute_changes()` emits a `node_changed` event with `new_truth_value=None` whe
+  publish-noops-on-empty-event-list: `publish()` returns immediately when `events` is empty and does not notify subsc
+
+========================================
+[30-30/100] (160 remaining in queue)
+========================================
+  [file] reasons/repair.py
+Explaining reasons/repair.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-repair.md
+Queued 2 new topic(s) (162 pending)
+Surfaced 5 belief(s):
+  repair-beliefs-only-processes-valid-false: `repair_beliefs` and `repair_smuggled_beliefs` process only review results where
+  search-and-link-restricts-candidates-to-in-premises: Search-and-link candidate selection excludes the belief itself, existing anteced
+  repair-beliefs-triages-with-llm-before-mutation: `repair_beliefs` calls `triage_belief` first and only executes a repair branch w
+  dry-run-suppresses-api-mutations: `dry_run=True` still performs LLM and search calls but skips `add_justification`
+  json-parsers-scan-with-raw-decode: The LLM response parsers use `json.JSONDecoder.raw_decode` while scanning each `
+
+========================================
+[31-31/100] (161 remaining in queue)
+========================================
+  [file] reasons/repair_premises.py
+Explaining reasons/repair_premises.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-repair_premises.md
+Queued 2 new topic(s) (163 pending)
+Surfaced 7 belief(s):
+  empty-premise-ids-returns-empty-list: `repair_premises` returns `[]` immediately when `premise_ids` is empty, with no 
+  llm-failures-are-swallowed-as-error-actions: Exceptions inside `_repair_one`'s `try` block are converted to `{"action": "erro
+  parse-failures-downgrade-to-retract: An unparseable LLM response yields `{"action": "retract", "rationale": "Could no
+  parallel-mode-preserves-completion-order-not-input-order: Parallel results are appended in `as_completed` order, so `all_results` may not 
+  repair-one-has-unguarded-node-lookup: `nodes[node_id]` is accessed outside the `try`, so a missing node id raises `Key
+
+========================================
+[32-32/100] (162 remaining in queue)
+========================================
+  [file] reasons/report_belief.py
+Explaining reasons/report_belief.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-report_belief.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  report-belief-returns-markdown: `report_belief` always returns a Markdown string, using deterministic structured
+  structured-renderer-requires-premise-id: `_build_structured_report` requires every `premises_data` element to contain an 
+  only-in-truth-value-gets-plus-marker: The structured renderer maps only `truth_value == "IN"` to `[+]`; every other va
+  source-chunks-must-be-a-mapping: Both formatting helpers call `source_chunks.get(...)`, so callers must pass a ma
+  llm-failure-propagates-without-structured-fallback: If `model` is set and `invoke_model` raises, `report_belief` propagates the exce
+
+========================================
+[33-33/100] (162 remaining in queue)
+========================================
+  [file] reasons/report_gated.py
+Explaining reasons/report_gated.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-report_gated.md
+Queued 1 new topic(s) (163 pending)
+Surfaced 5 belief(s):
+  report-gated-selects-llm-path-when-model-is-truthy: If `model` is non-empty, `report_gated()` uses `_format_data_for_prompt()` and `
+  llm-path-prepends-title-and-summary: In the LLM path, `report_gated()` prepends `# Gated Beliefs Report` and the gene
+  structured-report-truncates-retracted-and-gated-text: The structured path truncates retracted premise text to 80 characters and gated 
+  structured-report-escapes-pipes-only-in-retracted-table: Only retracted premise text and `retract_reason` replace `|` with `\|`; blocker 
+  report-gated-has-no-llm-fallback: If `invoke_model()` raises, the exception propagates and the code does not fall 
+
+========================================
+[34-34/100] (162 remaining in queue)
+========================================
+  [file] reasons/review.py
+Explaining reasons/review.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-review.md
+Queued 2 new topic(s) (164 pending)
+Surfaced 6 belief(s):
+  review-beliefs-requires-justifications: `review_beliefs` only selects nodes whose `justifications` list is non-empty, wh
+  review-beliefs-batches-llm-calls: The function splits work into chunks of `batch_size` (default 20) LLM invocation
+  parse-review-response-defaults-to-permissive: Missing `valid`/`sufficient`/`necessary` fields in LLM JSON default to `True`.
+  review-batch-errors-are-swallowed: Per-batch exceptions in `review_beliefs` are logged to `stderr` and the batch is
+  review-produces-structured-defeaters: When `valid` is `false`, results carry `scope_findings`, `missing_property`, and
+
+========================================
+[35-35/100] (163 remaining in queue)
+========================================
+  [file] reasons/review_justifications.py
+Explaining reasons/review_justifications.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-review_justifications.md
+Queued 2 new topic(s) (165 pending)
+Surfaced 6 belief(s):
+  review-justifications-filters-to-in-truth-value: Both the default and explicit `belief_ids` branches require `node.get("truth_val
+  review-justifications-requires-multi-antecedent-sl: A node is eligible only if it has at least one justification with `type == "SL"`
+  parse-justification-review-returns-first-valid-array: `parse_justification_review` scans for the first bracket with a successfully dec
+  batch-failures-do-not-abort-review: A `_process_batch` exception inside either the serial loop or a parallel `future
+  on-batch-callback-receives-cumulative-results: `on_batch` is invoked after each batch with the full accumulated `all_results`, 
+
+========================================
+[36-36/100] (164 remaining in queue)
+========================================
+  [file] reasons/review_premises.py
+Explaining reasons/review_premises.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-review_premises.md
+Queued 1 new topic(s) (165 pending)
+Surfaced 6 belief(s):
+  review-premises-groups-by-source: Premises are bucketed by `node["source"]` and flattened before batching, so fina
+  parse-premise-review-response-scans-every-bracket: `parse_premise_review_response` iterates every `[` in the response and uses `JSO
+  review-premises-swallows-batch-failures: Exceptions from `_process_batch` (and from `future.result()` in parallel mode) a
+  on-batch-receives-mutable-cumulative-list: `on_batch` is invoked with the same `all_results` list object, mutated in place,
+  process-batch-returns-list-not-tuple: Despite its docstring saying `(batch_results, error_or_None)`, `_process_batch` 
+
+========================================
+[37-37/100] (164 remaining in queue)
+========================================
+  [file] reasons/storage.py
+Explaining reasons/storage.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-storage.md
+Queued 1 new topic(s) (165 pending)
+Surfaced 7 belief(s):
+  save-replaces-whole-network: `save()` deletes every row in every core table and re-inserts from the in-memory
+  save-preserves-external-tags-and-sources: `save()` snapshots `node_tags`/`node_sources` before clearing and restores them 
+  access-tags-are-prefixed: Access tags are inserted into `node_tags` as `access:<tag>`, while plain `metada
+  load-bypasses-add-node: `load()` constructs `Node` objects directly and calls `network._rebuild_dependen
+  next-nogood-id-skipped-on-load: `load()` explicitly skips the `next_nogood_id` key in `network_meta`, leaving th
+
+========================================
+[38-38/100] (164 remaining in queue)
+========================================
+  [file] reasons/verify.py
+Explaining reasons/verify.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons-verify.md
+Queued 2 new topic(s) (166 pending)
+Surfaced 6 belief(s):
+  verify-beliefs-returns-empty-dict-on-parse-failure: `verify_beliefs` (via `parse_verify_response`) returns `{}` rather than raising 
+  read-source-requires-resolve-source-path: `read_source` depends on `check_stale.resolve_source_path` for path resolution a
+  source-truncation-caps-at-30k-chars: `read_source` truncates content at `MAX_SOURCE_CHARS` (30,000) and appends a `[.
+  verify-prompt-forces-verbatim-quote: `VERIFY_PROMPT` explicitly instructs the model to copy the quote verbatim and to
+  parse-verify-response-normalizes-verdict-case: `parse_verify_response` uppercases the `verdict` string but does not validate it
+
+========================================
+[39-39/100] (165 remaining in queue)
+========================================
+  [file] reasons_lib/__init__.py
+Explaining reasons_lib/__init__.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-__init__.md
+Queued 2 new topic(s) (167 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-backwards-compatibility-shim: `reasons_lib/__init__.py` exists solely to re-export the canonical `reasons` pac
+  reasons-lib-depends-on-reasons: Importing `reasons_lib` executes `from reasons import *` and therefore imports t
+  reasons-lib-reexports-reasons-public-api: Names available through `reasons_lib` are determined by `reasons`’s public names
+  reasons-lib-has-no-local-runtime-logic: This file defines no classes, functions, constants, or exception handling.
+  reasons-lib-does-not-alias-the-reasons-module: `reasons_lib` is a separate module object whose namespace is populated by a star
+
+========================================
+[40-40/100] (166 remaining in queue)
+========================================
+  [file] reasons_lib/api.py
+Explaining reasons_lib/api.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-api.md
+Queued 1 new topic(s) (167 pending)
+Surfaced 5 belief(s):
+  reasons-lib-api-is-compat-shim: `reasons_lib/api.py` contains no API implementation and only re-exports `reasons
+  reasons-lib-api-requires-reasons-api-importability: Importing `reasons_lib.api` fails if `reasons.api` cannot be imported; there is 
+  reasons-lib-api-exports-reasons-api-public-names: The names available on `reasons_lib.api` are determined by `reasons.api`’s star-
+  reasons-lib-api-has-no-local-all-or-getattr: The shim does not define `__all__`, `__getattr__`, or deprecation warnings.
+  reasons-lib-api-is-imported-by-canonical-modules: Canonical modules such as `reasons/ask.py` and `reasons/cli.py` import this lega
+
+========================================
+[41-41/100] (166 remaining in queue)
+========================================
+  [file] reasons_lib/ask.py
+Explaining reasons_lib/ask.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-ask.md
+Queued 2 new topic(s) (168 pending)
+Surfaced 5 belief(s):
+  reasons-lib-ask-is-alias-of-reasons-ask: `reasons_lib.ask` contains no implementation; every public name it exposes is a 
+  reasons-lib-ask-depends-on-reasons-ask: `reasons/ask.py` must be importable for `reasons_lib/ask.py` to load; the depend
+  reasons-lib-ask-uses-star-import: The shim relies on `from reasons.ask import *` with `# noqa: F401,F403`, so its 
+  reasons-lib-ask-preserves-object-identity: Calling `reasons_lib.ask.<fn>` executes the exact same function object as `reaso
+  reasons-lib-ask-adds-no-error-handling: All exceptions raised inside `reasons.ask` (including at import time) propagate 
+
+========================================
+[42-42/100] (167 remaining in queue)
+========================================
+  [file] reasons_lib/build_wiki.py
+Explaining reasons_lib/build_wiki.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-build_wiki.md
+Queued 1 new topic(s) (168 pending)
+Surfaced 5 belief(s):
+  reasons-lib-build-wiki-is-a-compatibility-shim: The file contains only a module docstring and a wildcard import from `reasons.bu
+  reasons-lib-build-wiki-requires-reasons-build-wiki: Importing `reasons_lib.build_wiki` requires `reasons.build_wiki` to exist and im
+  reasons-lib-build-wiki-export-surface-follows-star-import: Its re-exported names are determined by star-import semantics from `reasons.buil
+  reasons-lib-build-wiki-propagates-import-errors: It has no try/except, so canonical-module import failures propagate to callers u
+  reasons-api-imports-compat-path: Repository context lists `reasons/api.py` as an importer of `reasons_lib.build_w
+
+========================================
+[43-43/100] (167 remaining in queue)
+========================================
+  [file] reasons_lib/check_stale.py
+Explaining reasons_lib/check_stale.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-check_stale.md
+Queued 2 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  reasons-lib-check-stale-re-exports-reasons-check-stale: This module forwards the entire public namespace of `reasons.check_stale` via a 
+  shim-adds-no-new-api: The file defines no functions, classes, or constants of its own; its only runtim
+  shim-requires-reasons-check-stale: The shim has a one-way dependency on `reasons.check_stale`; any import-time fail
+  reasons-is-canonical-and-reasons-lib-is-legacy: The docstring names `reasons.check_stale` as the intended import path, making `r
+  shim-uses-noqa-f401-f403: The star-import line carries `# noqa: F401,F403` to suppress unused-import and s
+
+========================================
+[44-44/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/cli.py
+Explaining reasons_lib/cli.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-cli.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 6 belief(s):
+  reasons-lib-cli-is-a-shim: `reasons_lib/cli.py` contains exactly one executable statement and defines no fu
+  shim-reexport-surface-maps-to-reasons-cli-all: The names available from `reasons_lib.cli` are exactly `reasons.cli.__all__` whe
+  shim-creates-independent-name-bindings: `reasons_lib.cli` and `reasons.cli` are distinct module objects sharing the same
+  shim-import-is-eager-and-unprotected: Importing `reasons_lib.cli` fully imports `reasons.cli` and propagates any of it
+  shim-does-not-forward-private-names-or-submodules: Star-import semantics prevent `reasons_lib.cli` from exposing underscore-prefixe
+
+========================================
+[45-45/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/cluster.py
+Explaining reasons_lib/cluster.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-cluster.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  reasons-lib-cluster-is-a-shim: `reasons_lib/cluster.py` contains no implementation of its own; it re-exports `r
+  cluster-shim-requires-reasons-package: Importing `reasons_lib.cluster` hard-fails with `ImportError` if `reasons.cluste
+  cluster-shim-preserves-name-identity: Symbols accessed via `reasons_lib.cluster.X` are the same objects as `reasons.cl
+  cluster-shim-inherits-api-from-reasons-cluster: The set of names importable from `reasons_lib.cluster` is exactly `reasons.clust
+  cluster-shim-suppresses-only-f401-and-f403: The `# noqa: F401,F403` annotation silences only the "unused import" and "wildca
+
+========================================
+[46-46/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/compact.py
+Explaining reasons_lib/compact.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-compact.md
+Queued 2 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons_lib-compact-is-a-shim: `reasons_lib/compact.py` contains no implementation and re-exports everything fr
+  reasons_lib-compact-requires-reasons-compact: Importing the shim necessarily triggers a full import of `reasons.compact`, so f
+  reasons_lib-compact-preserves-object-identity: Symbols imported from the shim are the same objects as those in `reasons.compact
+  reasons-api-imports-reasons_lib-compact: `reasons/api.py` still depends on the legacy `reasons_lib` path for compact func
+  reasons_lib-compact-produces-no-own-exports: The shim exposes no names that are not also public in `reasons.compact`; its pub
+
+========================================
+[47-47/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/contradictions.py
+Explaining reasons_lib/contradictions.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-contradictions.md
+Surfaced 5 belief(s):
+  reasons-lib-contradictions-is-a-compat-shim: The module defines no logic and only re-exports `reasons.contradictions` via a s
+  reasons-lib-contradictions-requires-reasons-contradictions: Importing the shim fails with the target module's `ImportError` if `reasons.cont
+  reasons-lib-contradictions-lacks-all: The shim does not define `__all__`, so `reasons_lib.contradictions.__all__` rais
+  reasons-lib-contradictions-exports-identical-objects: Every exported symbol is the same object as its `reasons.contradictions` counter
+  reasons-api-imports-legacy-contradictions: `reasons/api.py` depends on `reasons_lib.contradictions` rather than importing `
+
+========================================
+[48-48/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/derive.py
+Explaining reasons_lib/derive.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-derive.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 6 belief(s):
+  reasons-lib-derive-is-a-shim: `reasons_lib/derive.py` contains no logic beyond a docstring and a star import o
+  reasons-lib-derive-reexports-reasons-derive: All public symbols of `reasons.derive` are bound into `reasons_lib.derive` with 
+  reasons-lib-derive-requires-reasons-derive-importable: Import failures in `reasons.derive` propagate unchanged through the shim; there 
+  reasons-api-depends-on-legacy-shim: `reasons/api.py`, `reasons/cli.py`, and three test modules import `reasons_lib.d
+  reasons-lib-derive-excludes-private-names: Because the shim uses `import *` with no `__all__` override, underscore-prefixed
+
+========================================
+[49-49/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/export_card.py
+Explaining reasons_lib/export_card.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-export_card.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  reasons-lib-export-card-is-a-shim: `reasons_lib/export_card.py` contains no implementation logic; its only statemen
+  reasons-lib-export-card-requires-reasons-export-card: Importing this module raises `ModuleNotFoundError` if `reasons.export_card` cann
+  reasons-lib-export-card-reexports-only-public-names: Only names in `reasons.export_card.__all__` (or, if unset, non-underscore names)
+  reasons-lib-export-card-preserves-identity: Re-exported objects are the same Python objects as their `reasons.export_card` c
+  reasons-lib-export-card-has-two-consumers: `reasons/api.py` and `tests/test_export_card.py` both import through this path, 
+
+========================================
+[50-50/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/export_markdown.py
+Explaining reasons_lib/export_markdown.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-export_markdown.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 6 belief(s):
+  reasons-lib-export-markdown-is-a-shim: The file contains no implementation; it re-exports every public name from `reaso
+  export-markdown-shim-requires-reasons-export-markdown: Importing `reasons_lib.export_markdown` raises immediately if `reasons.export_ma
+  export-markdown-shim-has-no-__all__: The shim defines no `__all__`, so its exported surface is inherited verbatim fro
+  reasons-api-depends-on-reasons-lib-export-markdown: The canonical `reasons` package still imports the exporter via the legacy `reaso
+  rebinding-shim-attributes-does-not-affect-canonical-module: `reasons_lib.export_markdown` and `reasons.export_markdown` are distinct module 
+
+========================================
+[51-51/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/hf.py
+Explaining reasons_lib/hf.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-hf.md
+Surfaced 5 belief(s):
+  reasons-lib-hf-is-a-shim: `reasons_lib/hf.py` contains no logic of its own and exists solely to re-export 
+  reasons-lib-hf-reexports-via-star-import: The entire file body is a single `from reasons.hf import *` statement.
+  reasons-lib-hf-suppresses-flake8-warnings: The import carries `# noqa: F401,F403` to keep flake8 clean for the intentionall
+  reasons-lib-hf-propagates-all-errors: Any exception during `import reasons.hf` propagates unchanged through `reasons_l
+  reasons-api-imports-from-reasons-lib-hf: `reasons/api.py` depends on `reasons_lib.hf`, not directly on `reasons.hf`, crea
+
+========================================
+[52-52/100] (167 remaining in queue)
+========================================
+  [file] reasons_lib/import_agent.py
+Explaining reasons_lib/import_agent.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-import_agent.md
+Queued 2 new topic(s) (169 pending)
+Surfaced 6 belief(s):
+  reasons-lib-import-agent-is-a-compat-shim: `reasons_lib/import_agent.py` defines no functions or classes; its entire body i
+  reasons-lib-import-agent-requires-reasons-import-agent: Importing `reasons_lib.import_agent` necessarily executes `reasons/import_agent.
+  reasons-api-requires-reasons-lib-import-agent: `reasons/api.py` and `reasons/pg.py` import the legacy shim, creating a `reasons
+  star-import-drops-private-names: Any `_`-prefixed symbol in `reasons/import_agent.py` is unreachable through `rea
+  shim-emits-no-deprecation-warning: The module contains no `warnings.warn`, so use of the legacy path is invisible a
+
+========================================
+[53-53/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/import_beliefs.py
+Explaining reasons_lib/import_beliefs.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-import_beliefs.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 5 belief(s):
+  reasons-lib-import-beliefs-is-a-compatibility-shim: This file exists only to keep old `reasons_lib.import_beliefs` imports working.
+  reasons-lib-import-beliefs-requires-reasons-import-beliefs: Importing this module requires the canonical `reasons.import_beliefs` module to 
+  reasons-lib-import-beliefs-propagates-canonical-import-errors: It has no exception handling, so canonical import failures propagate unchanged.
+  reasons-lib-import-beliefs-has-no-explicit-all: The shim does not define `__all__`; its exported names come from the wildcard im
+  reasons-lib-import-beliefs-star-imports-canonical-public-api: The only runtime operation is `from reasons.import_beliefs import *`.
+
+========================================
+[54-54/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/llm.py
+Explaining reasons_lib/llm.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-llm.md
+Queued 2 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-llm-is-a-shim: `reasons_lib/llm.py` contains no implementation logic and only re-exports names 
+  reasons-lib-llm-requires-reasons-llm: Importing `reasons_lib.llm` requires `reasons.llm` to be importable.
+  reasons-llm-owns-public-api: The public API exposed through this shim is determined by `reasons.llm` and its 
+  star-import-excludes-underscore-names: Names beginning with `_` in `reasons.llm` are not re-exported by this shim unles
+  shim-propagates-import-errors: This module has no error handling, so failures in `reasons.llm` propagate as imp
+
+========================================
+[55-55/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/mcp_client.py
+Explaining reasons_lib/mcp_client.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-mcp_client.md
+Surfaced 5 belief(s):
+  reasons-lib-mcp-client-delegates-to-reasons-mcp-client: This file re-exports every public symbol from `reasons.mcp_client` via a single 
+  reasons-is-canonical-reasons-lib-is-legacy: The module docstring directs callers to `reasons.mcp_client`, establishing `reas
+  shim-preserves-object-identity: After import, `reasons_lib.mcp_client.X is reasons.mcp_client.X` for every re-ex
+  reasons-cli-requires-shim: `reasons/cli.py` imports this shim rather than `reasons.mcp_client` directly, so
+  shim-has-no-error-handling: The file has no `try/except`; `ImportError` from `reasons.mcp_client` propagates
+
+========================================
+[56-56/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/mcp_server.py
+Explaining reasons_lib/mcp_server.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-mcp_server.md
+Queued 1 new topic(s) (169 pending)
+Surfaced 7 belief(s):
+  reasons-lib-mcp-server-is-a-pure-shim: The file defines no functions, classes, or constants; its entire contents are on
+  reasons-lib-mcp-server-requires-reasons-mcp-server: Importing this module fails with the same exception (e.g. `ModuleNotFoundError` 
+  wildcard-reexport-omits-underscore-names: Names beginning with `_` in `reasons/mcp_server.py` are not accessible via `reas
+  wildcard-reexport-drops-all-attribute: `reasons_lib.mcp_server` has no `__all__` attribute even if `reasons.mcp_server`
+  shim-preserves-object-identity-but-not-binding-identity: `reasons_lib.mcp_server.X is reasons.mcp_server.X` holds for public `X`, but `mo
+
+========================================
+[57-57/100] (168 remaining in queue)
+========================================
+  [file] reasons_lib/metadata.py
+Explaining reasons_lib/metadata.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-metadata.md
+Queued 2 new topic(s) (170 pending)
+Surfaced 6 belief(s):
+  reasons-lib-metadata-is-a-bc-shim: `reasons_lib/metadata.py` contains no implementation and exists solely to re-exp
+  reasons-metadata-is-canonical: The module docstring designates `reasons.metadata` as the canonical import path;
+  reasons-lib-metadata-imports-from-reasons-metadata: The single statement `from reasons.metadata import *` creates a one-way compile-
+  wildcard-reexport-honors-__all__: Only names in `reasons.metadata.__all__` (or all non-underscore names if `__all_
+  shim-emits-no-deprecation-warning: The shim contains no `DeprecationWarning`; using `reasons_lib.metadata` produces
+
+========================================
+[58-58/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/mind_service.py
+Explaining reasons_lib/mind_service.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-mind_service.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-mind-service-is-a-shim: `reasons_lib/mind_service.py` contains no logic and only forwards names from `re
+  mind-service-symbols-are-identity-equal-across-paths: Names imported from `reasons_lib.mind_service` and `reasons.mind_service` resolv
+  reasons-api-requires-legacy-shim: `reasons/api.py` imports `reasons_lib.mind_service`, so removing the shim would 
+  shim-has-no-__all__: The shim defines no `__all__`, so its exported surface is whatever `reasons.mind
+  shim-emits-no-deprecation-warning: Importing the legacy path produces no `DeprecationWarning` or other runtime sign
+
+========================================
+[59-59/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/network.py
+Explaining reasons_lib/network.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-network.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-network-is-shim: `reasons_lib/network.py` defines no code of its own; its only statement is `from
+  shim-preserves-object-identity: Objects imported via `reasons_lib.network` are the same objects as via `reasons.
+  shim-requires-noqa-F401-F403: The star import is deliberately wrapped in `# noqa: F401,F403`, indicating flake
+  reasons-internal-requires-reasons-lib-shim: Several `reasons/*` modules (`api.py`, `storage.py`, `compact.py`, `check_stale.
+  shim-exports-only-public-names: Because `import *` skips underscore-prefixed names and honors `reasons.network._
+
+========================================
+[60-60/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/pg.py
+Explaining reasons_lib/pg.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-pg.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-pg-is-a-re-export-shim: `reasons_lib/pg.py` contains no logic beyond a docstring and `from reasons.pg im
+  reasons-lib-pg-requires-reasons-pg: Importing `reasons_lib.pg` fails at import time if `reasons.pg` is unimportable.
+  reasons-lib-pg-honors-reasons-pg-all: Because it uses `import *`, the set of names exposed depends on `reasons.pg.__al
+  reasons-lib-pg-suppresses-lint-warnings: The `# noqa: F401,F403` comment intentionally disables flake8 unused-import and 
+  reasons-lib-pg-is-a-backwards-compatibility-alias: The docstring directs new code to `reasons.pg`, meaning `reasons_lib.pg` exists 
+
+========================================
+[61-61/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/propose_update.py
+Explaining reasons_lib/propose_update.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-propose_update.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-propose-update-is-a-shim: `reasons_lib/propose_update.py` contains no logic; it is a pure wildcard re-expo
+  propose-update-shim-requires-canonical-module: Importing the shim requires `reasons.propose_update` to be importable, and any f
+  propose-update-public-surface-maps-to-upstream-all: The shim's public API is exactly the public surface of `reasons.propose_update` 
+  reasons-api-depends-on-legacy-shim: `reasons/api.py` and `reasons/cli.py` import through `reasons_lib.propose_update
+  shim-defines-no-all: The shim does not declare `__all__`, so further wildcard re-exports scan its pos
+
+========================================
+[62-62/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/pubsub.py
+Explaining reasons_lib/pubsub.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-pubsub.md
+Queued 2 new topic(s) (171 pending)
+Surfaced 6 belief(s):
+  reasons-lib-pubsub-is-a-compatibility-shim: The module contains no implementation; it exists solely to re-export symbols fro
+  reasons-lib-pubsub-reexports-via-star-import: The entire public API surface is inherited through the single statement `from re
+  reasons-lib-pubsub-requires-reasons-pubsub: Importing `reasons_lib.pubsub` fails if `reasons.pubsub` cannot be imported; the
+  reasons-lib-pubsub-does-not-forward-__all__: The shim does not define or propagate `__all__`, so downstream introspection of 
+  reasons-api-imports-reasons-lib-pubsub: `reasons/api.py` reaches pubsub functionality through this legacy shim rather th
+
+========================================
+[63-63/100] (170 remaining in queue)
+========================================
+  [file] reasons_lib/repair.py
+Explaining reasons_lib/repair.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-repair.md
+Surfaced 5 belief(s):
+  reasons-lib-repair-re-exports-reasons-repair: This module defines no symbols locally; its entire namespace is produced by `fro
+  reasons-lib-repair-requires-reasons-repair: Importing `reasons_lib.repair` transitively imports `reasons.repair`; an import 
+  reasons-api-imports-reasons-lib-repair: The canonical `reasons/api.py` consumes the legacy shim rather than importing `r
+  reasons-lib-repair-is-a-compat-shim: The docstring identifies the module as a backwards-compatibility shim and direct
+  reasons-lib-repair-preserves-underscore-names-only-via-all: Names in `reasons.repair` beginning with `_` are re-exported here only if `reaso
+
+========================================
+[64-64/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/repair_premises.py
+Explaining reasons_lib/repair_premises.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-repair_premises.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 6 belief(s):
+  reasons-lib-repair-premises-is-a-shim: The module defines no functions or classes; its entire body is a docstring plus 
+  reasons-lib-repair-premises-requires-reasons-package: Importing this module fails with `ModuleNotFoundError` unless the sibling `reaso
+  star-import-does-not-forward-private-names: Names beginning with `_` in `reasons/repair_premises.py` are not accessible via 
+  shim-and-origin-are-distinct-module-objects: Monkeypatching `reasons_lib.repair_premises.<name>` does not affect `reasons.rep
+  reasons-api-imports-legacy-shim: `reasons/api.py` depends on the legacy namespace, creating a back-edge from the 
+
+========================================
+[65-65/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/review.py
+Explaining reasons_lib/review.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-review.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 6 belief(s):
+  review-shim-is-pure-reexport: `reasons_lib/review.py` defines no functions, classes, or constants of its own; 
+  review-shim-requires-reasons-review: Importing `reasons_lib.review` necessarily imports the `reasons` package and the
+  star-import-excludes-underscore-names: `reasons_lib.review` lacks every name in `reasons.review` that begins with an un
+  star-import-binds-snapshot-not-proxy: Names are copied at import time, so rebinding a name in `reasons.review` afterwa
+  canonical-package-imports-legacy-shim: `reasons/api.py`, `reasons/repair.py`, and `reasons/review_justifications.py` im
+
+========================================
+[66-66/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/review_justifications.py
+Explaining reasons_lib/review_justifications.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-review_justifications.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-legacy-name: `reasons_lib/review_justifications.py` is a compatibility shim; the canonical mo
+  review-justifications-shim-re-exports-all-public-names: The shim exposes the full public API of the canonical module via `from reasons.r
+  review-justifications-shim-has-no-own-logic: The shim contains no classes, functions, or constants defined in-file; any behav
+  reasons-api-imports-through-shim: `reasons/api.py` depends on the legacy `reasons_lib.review_justifications` path 
+  shim-import-failure-propagates-as-canonical-failure: Importing the shim raises exactly the exception from `reasons.review_justificati
+
+========================================
+[67-67/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/review_premises.py
+Explaining reasons_lib/review_premises.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-review_premises.md
+Queued 1 new topic(s) (170 pending)
+Surfaced 4 belief(s):
+  shim-forwards-to-canonical-module: `reasons_lib/review_premises.py` contains exactly one statement, `from reasons.r
+  no-logic-in-shim: The shim defines no functions, classes, or constants of its own; all behavior li
+  identity-preserved-across-paths: Objects imported via `reasons_lib.review_premises` are the same objects as those
+  api-depends-on-legacy-path: `reasons/api.py` imports through this leg
+
+========================================
+[68-68/100] (169 remaining in queue)
+========================================
+  [file] reasons_lib/storage.py
+Explaining reasons_lib/storage.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-storage.md
+Queued 2 new topic(s) (171 pending)
+Surfaced 5 belief(s):
+  reasons-lib-storage-is-compat-shim: `reasons_lib/storage.py` contains only a docstring and a wildcard import from `r
+  reasons-lib-storage-requires-reasons-storage: Importing `reasons_lib.storage` fails if `reasons.storage` cannot be imported.
+  reasons-lib-storage-re-exports-public-names: Public names exported by `reasons.storage` are bound into the `reasons_lib.stora
+  reasons-lib-storage-has-no-all: This shim does not define `__all__`, so downstream star imports are governed by 
+  reasons-lib-storage-does-not-catch-import-errors: Errors raised while importing `reasons.storage` propagate unchanged through this
+
+========================================
+[69-69/100] (170 remaining in queue)
+========================================
+  [file] reasons_lib/verify.py
+Explaining reasons_lib/verify.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/reasons_lib-verify.md
+Queued 1 new topic(s) (171 pending)
+Surfaced 5 belief(s):
+  reasons-lib-verify-is-a-shim: `reasons_lib/verify.py` defines no functions or classes of its own and consists 
+  reasons-lib-verify-forwards-to-reasons-verify: `reasons_lib.verify` re-exports every public name of `reasons.verify` at import 
+  reasons-verify-is-the-canonical-verifier: The implementation of the verification logic lives in `reasons/verify.py`; `reas
+  reasons-lib-depends-on-reasons: The dependency direction is one-way: the legacy `reasons_lib` package imports fr
+  reasons-lib-verify-has-no-__all__: Because the shim defines no `__all__`, its own star-export falls back to Python'
+
+========================================
+[70-70/100] (170 remaining in queue)
+========================================
+  [file] tests/__init__.py
+Explaining tests/__init__.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-__init__.md
+Queued 2 new topic(s) (172 pending)
+Surfaced 5 belief(s):
+  tests-is-a-python-package: The presence of this empty file makes `tests` an importable regular package.
+  tests-package-marker-contains-no-code: The file defines no functions, classes, or constants, and has no import-time sid
+  tests-init-enables-dotted-imports: It allows test modules to be imported as `tests.<module>`, avoiding name collisi
+  tests-init-requires-conftest-for-fixtures: Shared fixtures are provided by `tests/conftest.py`, not by this file, so `__ini
+  tests-init-is-not-imported-by-production-code: Neither `reasons/` nor `reasons_lib/` depends on the `tests` package.
+
+========================================
+[71-71/100] (171 remaining in queue)
+========================================
+  [file] tests/conftest.py
+Explaining tests/conftest.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-conftest.md
+Queued 1 new topic(s) (172 pending)
+Surfaced 7 belief(s):
+  conftest-fixtures-are-auto-injected: The `pg_api` fixture is exposed to all test modules under `tests/` without any e
+  pg-marker-requires-pytest-configure: The `pg` marker is registered by `pytest_configure`; without that hook, `@pytest
+  pg-api-fixture-requires-database-url: `pg_api` skips (does not fail) when `DATABASE_URL` is unset, via `pytest.skip` i
+  ldomain-isolation-uses-uuid4: Each `pg_api` invocation mints a UUID4 `domain_id`, and all rows created during 
+  cleanup-order-respects-foreign-keys: The teardown `DELETE` loop orders tables leaves-first (`rms_propagation_log`, `r
+
+========================================
+[72-72/100] (171 remaining in queue)
+========================================
+  [file] tests/test_access_tags.py
+Explaining tests/test_access_tags.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_access_tags.md
+Queued 4 new topic(s) (175 pending)
+Surfaced 5 belief(s):
+  derived-nodes-union-access-tags: A derived node’s `access_tags` is the union of its explicit tags and all anteced
+  visible-to-subset-semantics: A tagged node is visible only when all of its tags are contained in `visible_to`
+  restricted-show-explain-trace-raise-permissionerror: `show_node`, `explain_node`, `trace_assumptions`, and `api.trace_access_tags` ra
+  listing-search-export-compact-filter-silently: `list_nodes`, `lookup`, `search`, `get_status`, `export_network`, `export_markdo
+  export-network-drops-restricted-nogoods: `export_network` removes a nogood when any referenced node is invisible to the c
+
+========================================
+[73-73/100] (174 remaining in queue)
+========================================
+  [file] tests/test_add_justification.py
+Explaining tests/test_add_justification.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_add_justification.md
+Queued 3 new topic(s) (177 pending)
+Surfaced 5 belief(s):
+  network-add-justification-returns-truth-transition-metadata: `Network.add_justification` returns a dict containing `node_id`, `old_truth_valu
+  api-add-justification-requires-a-justification-argument: `api.add_justification` raises `ValueError` matching `"Must provide"` when none 
+  add-justification-registers-antecedent-and-outlist-dependents: Adding a justification registers the target node in the dependents of each antec
+  multiple-justifications-are-alternative-support-paths: A node with two valid justifications remains `IN` after one supporting anteceden
+  namespaced-add-justification-returns-qualified-node-id: With `namespace="ns"`, `api.add_justification` returns `node_id == "ns:b"`.
+
+========================================
+[74-74/100] (176 remaining in queue)
+========================================
+  [file] tests/test_any_mode.py
+Explaining tests/test_any_mode.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_any_mode.md
+Queued 2 new topic(s) (178 pending)
+Surfaced 7 belief(s):
+  any-mode-expands-conjunction-into-separate-justifications: `add_node(..., any_mode=True)` with an N-premise comma-separated `sl` produces N
+  any-mode-copies-outlist-to-each-expanded-justification: When `unless="enemy"` is supplied alongside `any_mode=True`, every expanded just
+  add-node-returns-premise-count: `api.add_node` returns a dict whose `"premise_count"` key holds the antecedent c
+  any-mode-premise-count-is-one: With `any_mode=True`, `add_node`'s returned `"premise_count"` is `1` (per unary 
+  retract-node-returns-restoration-hints: `api.retract_node` returns a dict with a `"restoration_hints"` list whose entrie
+
+========================================
+[75-75/100] (177 remaining in queue)
+========================================
+  [file] tests/test_api.py
+Explaining tests/test_api.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_api.md
+Queued 2 new topic(s) (179 pending)
+Surfaced 6 belief(s):
+  retract-cascades-to-dependents: Retracting a node sets every transitive `sl=` dependent to `OUT`, and asserting 
+  init-db-refuses-existing-without-force: `api.init_db` raises `FileExistsError` on an existing database path unless `forc
+  accept-proposal-drift-yields-stale-not-error: When the target state changed between proposal and acceptance, `accept_proposal`
+  fts-query-calls-are-bounded: A single `_fts_search` call for a 20-term query invokes `_fts_query` at most 51 
+  cascade-does-not-set-retracted-at: `retracted_at` is populated only on nodes the user directly retracted; cascade-a
+
+========================================
+[76-76/100] (178 remaining in queue)
+========================================
+  [file] tests/test_ask.py
+Explaining tests/test_ask.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_ask.md
+Queued 2 new topic(s) (180 pending)
+Surfaced 5 belief(s):
+  ask-no-synth-bypasses-llm: When `ask(..., no_synth=True)` is called, the tests expect formatted FTS5 search
+  dual-requires-sources-db: `ask(..., dual=True)` without `sources_db` raises `ValueError` with `--dual requ
+  tool-call-loop-is-bounded: Full mode permits at most three `search_beliefs` tool rounds before a final synt
+  final-synthesis-falls-back-to-beliefs: If final synthesis times out or returns another tool call, `ask()` returns accum
+  natural-mode-strips-belief-metadata: When `natural=True`, prompts omit `**Status:**`, `###` headers, and citation ins
+
+========================================
+[77-77/100] (179 remaining in queue)
+========================================
+  [file] tests/test_ask_mcp.py
+Explaining tests/test_ask_mcp.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_ask_mcp.md
+Queued 1 new topic(s) (180 pending)
+Surfaced 5 belief(s):
+  mcp-servers-bump-max-iterations-to-five: When `mcp_servers` is non-empty, `ask()` allows up to 5 tool rounds, so `invoke_
+  mcp-tool-errors-are-swallowed: Exceptions raised by `bridge.call_tool` are caught inside `ask()` (recorded in t
+  tool-dispatch-arguments-omit-tool-key: The dict passed as `arguments` to `bridge.call_tool(name, arguments)` is the par
+  tools-section-always-includes-search-beliefs: `_build_tools_section` includes the builtin `search_beliefs` tool even when the 
+  empty-mcp-instructions-produce-no-prompt-section: `_build_mcp_instructions` returns `""` for empty instructions, and `build_ask_pr
+
+========================================
+[78-78/100] (179 remaining in queue)
+========================================
+  [file] tests/test_backtracking.py
+Explaining tests/test_backtracking.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_backtracking.md
+Queued 3 new topic(s) (182 pending)
+Surfaced 5 belief(s):
+  trace-assumptions-returns-deduplicated-premise-ids: `Network.trace_assumptions` returns premise IDs reached by recursively following
+  find-culprits-orders-by-dependent-count: `Network.find_culprits` returns culprits sorted so a premise with fewer dependen
+  add-nogood-retracts-premises-not-derived-nodes: `Network.add_nogood` retracts a selected premise and cascades dependent derived 
+  inactive-nogood-is-no-op: If any node in a nogood is already `OUT`, `Network.add_nogood` returns an empty 
+  entrenchment-increases-with-source-observation-and-dependents: `_entrenchment` scores sourced premises, `OBSERVATION` metadata, and nodes with 
+
+========================================
+[79-79/100] (181 remaining in queue)
+========================================
+  [file] tests/test_build_wiki.py
+Explaining tests/test_build_wiki.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_build_wiki.md
+Queued 2 new topic(s) (183 pending)
+Surfaced 5 belief(s):
+  db-fixture-seeds-five-beliefs-through-api: The `db` fixture creates five nodes in a temporary SQLite database via `reasons.
+  format-node-linkifies-known-references-only: `_format_node` renders cross-references as `[id](page.md#id)` only when the targ
+  build-wiki-falls-back-on-llm-errors: When `model` is supplied, `build_wiki` uses `generate_wiki_page`, but a `Runtime
+  build-wiki-always-writes-index-md: `build_wiki` creates `index.md` even when there are no beliefs, and that page co
+  linkify-replaces-longest-node-ids-first: `_linkify` processes node IDs longest-first so `node-alpha-extended` is linked a
+
+========================================
+[80-80/100] (182 remaining in queue)
+========================================
+  [file] tests/test_check_stale.py
+Explaining tests/test_check_stale.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_check_stale.md
+Queued 1 new topic(s) (183 pending)
+Surfaced 6 belief(s):
+  check-stale-returns-results-and-upgrade-count: `check_stale` returns a tuple whose first element is a stale-result list and who
+  source-hash-is-sha256-hexdigest: `hash_file` and stored `source_hash` values are SHA-256 hex digests of file cont
+  empty-source-hash-skips-stale-check: `check_stale` skips nodes with an empty `source_hash`, even if their source file
+  missing-source-produces-source-deleted-result: `check_stale` reports a node whose resolved source file is missing with `reason 
+  prefix-hash-upgrade-requires-flag: A stored hash that is a prefix of the actual SHA-256 digest is only upgraded whe
+
+========================================
+[81-81/100] (182 remaining in queue)
+========================================
+  [file] tests/test_check_stale_issue25.py
+Explaining tests/test_check_stale_issue25.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_check_stale_issue25.md
+Queued 1 new topic(s) (183 pending)
+Surfaced 5 belief(s):
+  missing-source-produces-source-deleted: A tracked node whose source file is absent produces a `check_stale` result with 
+  source-deleted-result-nulls-new-hash-and-source-path: `source_deleted` results set `new_hash` and `source_path` to `None` while preser
+  check-stale-result-schema-is-exact: Every result dict must contain exactly `node_id`, `old_hash`, `new_hash`, `sourc
+  check-stale-skips-ineligible-nodes: Nodes that are retracted, lack `source`, lack `source_hash`, or have `source == 
+  check-stale-results-sorted-by-node-id: Results are returned in ascending `node_id` order in the edge-case test.
+
+========================================
+[82-82/100] (182 remaining in queue)
+========================================
+  [file] tests/test_classify_defeaters.py
+Explaining tests/test_classify_defeaters.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_classify_defeaters.md
+Queued 3 new topic(s) (185 pending)
+Surfaced 8 belief(s):
+  defeat-reason-types-has-seven-entries: `DEFEAT_REASON_TYPES` contains exactly 7 members.
+  defeat-reason-types-are-kebab-case: Every entry in `DEFEAT_REASON_TYPES` contains a hyphen.
+  classify-defeat-reason-returns-empty-on-failure: The pure classifier returns `""` on subprocess exception and on unrecognized LLM
+  dry-run-does-not-write-metadata: `classify_defeat_reason_types(..., dry_run=True)` never adds `defeat_reason_type
+  apply-mode-writes-defeat-reason-type-metadata: With `dry_run=False`, the classifier result is persisted at `node["metadata"]["d
+
+========================================
+[83-83/100] (184 remaining in queue)
+========================================
+  [file] tests/test_cli.py
+Explaining tests/test_cli.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_cli.md
+Queued 1 new topic(s) (185 pending)
+Surfaced 6 belief(s):
+  run-cli-catches-systemexit: `run_cli()` catches `SystemExit` and returns its `.code`, so tests assert numeri
+  cli-tests-use-real-temporary-sqlite-db: Every DB-backed test uses a real SQLite file under pytest’s `tmp_path`, created 
+  global-db-option-precedes-subcommand: `run_cli()` always inserts `--db <path>` immediately after `reasons` and before 
+  export-dash-emits-json-on-stdout: `export --output=-` is expected to print pure JSON to stdout, as verified by `js
+  proposal-lifecycle-fixture-preloads-three-nodes: `TestProposalLifecycle.db_path` initializes a DB with `a`, `b`, and `derived-ab`
+
+========================================
+[84-84/100] (184 remaining in queue)
+========================================
+  [file] tests/test_cluster.py
+Explaining tests/test_cluster.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_cluster.md
+Queued 2 new topic(s) (186 pending)
+Surfaced 7 belief(s):
+  cluster-numeric-tests-run-without-extras: The three `_auto_k` tests and `test_require_cluster_deps_message` are the only t
+  cluster-beliefs-returns-exactly-budget: When `0 < budget < len(beliefs)`, `cluster_beliefs` returns exactly `budget` ids
+  cluster-selection-preserves-cross-domain-diversity: With a mixed auth/database corpus and `budget=20`, `cluster_beliefs` selects at 
+  cluster-stats-account-for-all-beliefs: `sum(cluster_beliefs(...)[1]["cluster_sizes"])` equals the number of input belie
+  cluster-cache-is-incremental: `ClusterCache.embed` grows `_cache` only by the number of previously unseen beli
+
+========================================
+[85-85/100] (185 remaining in queue)
+========================================
+  [file] tests/test_compact.py
+Explaining tests/test_compact.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_compact.md
+Queued 2 new topic(s) (187 pending)
+Surfaced 5 belief(s):
+  estimate-tokens-uses-char-count: The tests require `estimate_tokens(text)` to equal `len(text) // 4` with a minim
+  compact-truncates-only-when-enabled: `truncate=True` must insert `...` and suppress a 200-character node text; `trunc
+  compact-budget-is-approximate: A 200-token budget test allows output below 250 estimated tokens and expects omi
+  compact-orders-by-dependent-count: In the tested scenario, a node with one dependent must appear before a node with
+  test-targets-reasons-not-reasons-lib: This test imports from `reasons`, so the parallel `reasons_lib/compact.py` imple
+
+========================================
+[86-86/100] (186 remaining in queue)
+========================================
+  [file] tests/test_contradictions.py
+Explaining tests/test_contradictions.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_contradictions.md
+Queued 2 new topic(s) (188 pending)
+Surfaced 6 belief(s):
+  detect-contradictions-only-considers-in-truth-values: Both `detect_contradictions` and its semantic variant skip any node whose `truth
+  nogood-requires-at-least-two-valid-claim-ids: `parse_contradiction_response` discards any `### NOGOOD` block with fewer than 2
+  detect-contradictions-swallows-batch-errors: A `subprocess.run` exception during batching is caught and yields `[]` rather th
+  format-truncation-caps-text-at-200-chars: Truncated belief text including the trailing `...` totals exactly 200 characters
+  accept-flow-requires-existing-plan-file: `reasons contradictions --accept <missing>` exits with code 1; an existing but e
+
+========================================
+[87-87/100] (187 remaining in queue)
+========================================
+  [file] tests/test_dangling_dependents.py
+Explaining tests/test_dangling_dependents.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_dangling_dependents.md
+Queued 2 new topic(s) (189 pending)
+Surfaced 5 belief(s):
+  dangling-dependents-do-not-crash-propagation: `Network._propagate()` must skip missing dependent node IDs instead of raising `
+  dangling-dependent-produces-warning-log: Encountering a dangling dependent emits a `net.log` entry with `action == "warn"
+  warning-value-identifies-parent-and-dangling: Warning text contains both `"dangling"` and the parent node ID whose `dependents
+  propagation-continues-past-dangling-references: Valid dependents still update truth values and are included in `changed` even wh
+  dangling-ids-not-in-changed-or-visited: Dangling IDs are excluded from `changed` and must not prevent a later real node 
+
+========================================
+[88-88/100] (188 remaining in queue)
+========================================
+  [file] tests/test_deduplication.py
+Explaining tests/test_deduplication.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_deduplication.md
+Queued 3 new topic(s) (191 pending)
+Surfaced 5 belief(s):
+  mark-duplicate-requires-existing-source-and-canonical: `api.mark_duplicate` raises `KeyError("not found")` when either ID is missing.
+  mark-superseded-requires-existing-old-and-new: `api.mark_superseded` raises `KeyError("not found")` when either ID is missing.
+  self-deduplication-validation-prevents-mutation: Self-reference calls raise `ValueError` and leave the node’s truth value unchang
+  deduplication-and-supersession-cascade-to-dependents: Dependents created with `sl=<source-id>` are listed in `result["changed"]` and b
+  mark-operations-overwrite-existing-retract-reason: Marking an already-retracted node replaces its prior `retract_reason` with the d
+
+========================================
+[89-89/100] (190 remaining in queue)
+========================================
+  [file] tests/test_defeat_justification.py
+Explaining tests/test_defeat_justification.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_defeat_justification.md
+Queued 1 new topic(s) (191 pending)
+Surfaced 6 belief(s):
+  defeat-is-implemented-via-outlist: Defeating a justification works by appending the defeater node ID to that justif
+  default-defeater-id-follows-pattern: When `defeater_id` is omitted, the generated ID is `"{defeater_type}-{node_id}-j
+  defeater-types-are-four: The known `defeater_type` values exercised are `invalid-inference`, `over-genera
+  premises-cannot-be-defeated: Calling `defeat_justification` on a node with no justifications raises `ValueErr
+  defeat-cascades-to-dependents: Defeating a justification re-propagates and marks every transitive dependent tha
+
+========================================
+[90-90/100] (190 remaining in queue)
+========================================
+  [file] tests/test_defeat_with_scope.py
+Explaining tests/test_defeat_with_scope.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_defeat_with_scope.md
+Queued 1 new topic(s) (191 pending)
+Surfaced 5 belief(s):
+  defeat-with-scope-creates-scope-beliefs-as-in-premises: Each scope finding produces one `IN` premise node with no justifications and met
+  defeater-requires-scope-beliefs-as-SL-antecedents: The generated defeater is an `IN` derived node whose single `SL` justification u
+  retracting-scope-belief-restores-target: In the tested single-justification scenario, retracting a scope belief makes bot
+  defeat-with-scope-cascades-to-dependents: Defeating a node through scope beliefs propagates `OUT` to nodes whose justifica
+  defeat-with-scope-validates-inputs-with-specific-exceptions: Missing targets raise `KeyError`, no-justification targets and empty findings ra
+
+========================================
+[91-91/100] (190 remaining in queue)
+========================================
+  [file] tests/test_dependents_integrity.py
+Explaining tests/test_dependents_integrity.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_dependents_integrity.md
+Queued 3 new topic(s) (193 pending)
+Surfaced 5 belief(s):
+  dependents-index-is-derived-from-justifications: A node’s `dependents` set must match the nodes whose justifications reference it
+  rebuild-dependents-is-canonical-repair: `_rebuild_dependents()` clears and reconstructs all dependents from justificatio
+  verify-dependents-is-read-only: `verify_dependents()` returns a list of `"extra"`/`"missing"` errors without mod
+  mutation-methods-preserve-dependents-integrity: `add_node`, `retract`/`assert_node`, `add_justification`, `supersede`, `challeng
+  rewrite-dependents-updates-both-edges: `_rewrite_dependents()` rewrites justification antecedents/outlist references an
+
+========================================
+[92-92/100] (192 remaining in queue)
+========================================
+  [file] tests/test_derive.py
+Explaining tests/test_derive.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_derive.md
+Queued 2 new topic(s) (194 pending)
+Surfaced 6 belief(s):
+  validate-proposals-requires-two-antecedents: `validate_proposals` moves any proposal with fewer than 2 antecedents into `skip
+  gate-proposals-return-out-when-unless-in: Applying a `kind == "gate"` proposal whose `unless` antecedent is IN yields `tru
+  any-mode-creates-one-justification-per-antecedent: Applying a proposal with `mode == "any"` produces N justifications of length 1 (
+  find-similar-out-threshold-is-jaccard-half: `find_similar_out` matches only nodes with `truth_value == "OUT"` whose `_tokeni
+  dedup-rewrites-before-retracting: Both `api.deduplicate(auto=True)` and `api.apply_dedup_plan` rewrite justificati
+
+========================================
+[93-93/100] (193 remaining in queue)
+========================================
+  [file] tests/test_derive_budget.py
+Explaining tests/test_derive_budget.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_derive_budget.md
+Queued 3 new topic(s) (196 pending)
+Surfaced 5 belief(s):
+  test-derive-budget-targets-issue-23: The module docstring explicitly states these tests cover `_build_beliefs_section
+  _build_beliefs_section-count-is-linear-not-quadratic: `TestCountLinearNotQuadratic` guards the regression where agent belief count mus
+  local-budget-floor-is-five: `TestBudgetFloor` asserts the local belief budget never drops below 5 when agent
+  sample-mode-is-deterministic-with-same-seed: `test_sample_mode_deterministic` asserts identical output for the same input and
+  output-header-format-is-contract-for-regex-helpers: `_count_local_shown` and `_count_agent_shown` parse exact header patterns such a
+
+========================================
+[94-94/100] (195 remaining in queue)
+========================================
+  [file] tests/test_dialectical.py
+Explaining tests/test_dialectical.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_dialectical.md
+Queued 1 new topic(s) (196 pending)
+Surfaced 6 belief(s):
+  challenge-returns-dict-with-challenge-id-and-changed: `Network.challenge` is contractually required to return `{"challenge_id": ..., "
+  defense-id-is-derived-from-challenge-id: The default defense node ID is `defense-<challenge_id>`, making the defense's id
+  challenge-id-collisions-get-numeric-suffix: A second call to `challenge(target)` with the same target produces `challenge-<t
+  retract-is-the-symmetric-undo-for-challenge-and-defense: Retracting a challenge restores the target to `IN`; retracting a defense reinsta
+  dialectical-nodes-are-metadata-linked-not-edge-tabled: Challenges and defenses attach to the graph via `metadata["challenge_target"]` /
+
+========================================
+[95-95/100] (195 remaining in queue)
+========================================
+  [file] tests/test_example.py
+Explaining tests/test_example.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_example.md
+Queued 2 new topic(s) (197 pending)
+Surfaced 5 belief(s):
+  example-flag-persists-to-metadata: CLI `add --example` stores the value under `metadata["example"]` and returns exi
+  omitted-example-omits-metadata-key: Adding a node without `example` leaves the metadata without an `"example"` key.
+  show-renders-example-section: The `show` command emits an `Example:` section when an example exists and omits 
+  multiline-example-lines-are-indented: Multiline examples are displayed with each example line prefixed by two spaces.
+  run-cli-converts-system-exit-to-code: The `run_cli` helper catches `SystemExit` and returns its code, defaulting `None
+
+========================================
+[96-96/100] (196 remaining in queue)
+========================================
+  [file] tests/test_export_card.py
+Explaining tests/test_export_card.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_export_card.md
+Queued 3 new topic(s) (199 pending)
+Surfaced 6 belief(s):
+  export-card-has-yaml-frontmatter: `export_card()` output is a single string with a YAML frontmatter block delimite
+  default-license-is-mit: Calling `export_card()` without `license=` emits `license: mit` in the frontmatt
+  card-type-is-eem: The frontmatter `type` field is always the literal string `"eem"`.
+  premises-defined-by-empty-justifications: A node is counted as a premise when its `justifications` list is empty; any node
+  max-derivation-depth-counts-justification-chain-length: `Max derivation depth` equals the longest chain of antecedent edges in the netwo
+
+========================================
+[97-97/100] (198 remaining in queue)
+========================================
+  [file] tests/test_export_markdown.py
+Explaining tests/test_export_markdown.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_export_markdown.md
+Queued 4 new topic(s) (202 pending)
+Surfaced 5 belief(s):
+  export-markdown-tests-target-reasons-package: The test module imports `Justification`, `Network`, and `export_markdown` from t
+  export-markdown-heading-encodes-status-and-type: Claim headings are asserted as `### <id> [<STATUS>] <TYPE>` with statuses `IN`, 
+  export-markdown-splits-outlist-defeaters-and-blockers: Outlist nodes with defeater metadata render via `- Defeated by:`, while outlist 
+  export-markdown-includes-optional-node-metadata-lines: The exporter is expected to emit metadata lines such as `- Source:`, `- Source h
+  defeater-export-tests-call-recompute-all: All three defeater/outlist tests call `Network.recompute_all()` before invoking 
+
+========================================
+[98-98/100] (201 remaining in queue)
+========================================
+  [file] tests/test_hf_default_org.py
+Explaining tests/test_hf_default_org.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_hf_default_org.md
+Queued 3 new topic(s) (204 pending)
+Surfaced 7 belief(s):
+  default-org-is-eem-hub: `DEFAULT_HF_ORG` is the string `"EEM-Hub"` and bare repo names are prefixed with
+  env-org-override-does-not-apply-to-explicit-orgs: Setting `REASONS_HF_ORG` changes the default org for bare names only; explicit `
+  resolve-repo-id-rejects-non-hf-urls: `resolve_repo_id` validates that URL inputs start with `https://huggingface.co/`
+  create-repo-is-idempotent-on-409: A `HTTPError(..., 409, ...)` from the create endpoint is swallowed and the repo 
+  publish-hf-produces-three-files: `publish_hf` uploads exactly `{"network.json", "beliefs.md", "README.md"}` and i
+
+========================================
+[99-99/100] (203 remaining in queue)
+========================================
+  [file] tests/test_hide_out.py
+Explaining tests/test_hide_out.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_hide_out.md
+Queued 2 new topic(s) (205 pending)
+Surfaced 6 belief(s):
+  search-default-excludes-out: `api.search` omits retracted nodes from its results when `include_out` is not sp
+  include-out-enables-out-visibility: Passing `include_out=True` causes all three retrieval APIs (`search`, `lookup`, 
+  empty-result-message-is-api-specific: `api.search` returns text containing `"No results found"` while `api.lookup` ret
+  compact-renders-out-section-header-only-when-requested: `api.compact` emits the literal header `"OUT (retracted)"` if and only if `inclu
+  out-filter-precedes-neighbor-expansion: Retracted beliefs are excluded even when they are dependents of a live node retu
+
+========================================
+[100-100/100] (204 remaining in queue)
+========================================
+  [file] tests/test_import_agent.py
+Explaining tests/test_import_agent.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/19/tests-test_import_agent.md
+Queued 3 new topic(s) (207 pending)
+Surfaced 6 belief(s):
+  active-precondition-is-not-an-antecedent: For every imported belief, `{agent}:active` is excluded from `justifications[0].
+  every-imported-belief-has-inactive-in-outlist: Namespaced beliefs all carry `{agent}:inactive` in their outlist, which is what 
+  import-agent-registers-repo: `import_agent` records the source file's resolved parent directory under `repos[
+  out-source-status-survives-recompute: A belief imported with source status `[OUT]` remains `OUT` even after `Storage(d
+  duplicate-import-is-a-noop: Re-importing an identical file returns `claims_imported == 0`, `claims_skipped =
+
+Explored 100 topic(s). 207 remaining in queue.
+  Round 1: Explore (up to 100 topics) took 1h 17m 50s
