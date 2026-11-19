@@ -1,0 +1,39 @@
+{
+  "pipeline": "diary-update",
+  "started_at": "2026-11-19T01:00:08+00:00",
+  "updated_at": "2026-11-19T01:32:48+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "name": "propose-beliefs",
+      "status": "completed",
+      "started_at": "2026-11-19T01:00:08+00:00",
+      "completed_at": "2026-11-19T01:32:48+00:00",
+      "detail": "proposed 1529 from 149 entries",
+      "counts": {
+        "entries": 149,
+        "proposed": 1529
+      },
+      "duration_seconds": 1959.48
+    },
+    {
+      "name": "accept-beliefs",
+      "status": "completed",
+      "started_at": "2026-11-19T01:32:48+00:00",
+      "completed_at": "2026-11-19T01:32:48+00:00",
+      "detail": "accepted 659 beliefs",
+      "counts": {
+        "accepted": 659,
+        "total_beliefs": 1881
+      },
+      "duration_seconds": 0.24
+    }
+  ],
+  "completed_at": "2026-11-19T01:32:48+00:00",
+  "summary": {
+    "entries": 149,
+    "proposed": 1533,
+    "accepted": 659,
+    "total_beliefs": 1881
+  }
+}
