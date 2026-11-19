@@ -4202,4045 +4202,4045 @@ The `diary-update` pipeline records exactly two ordered steps: `propose-beliefs`
 **Source:** 149 entries from /home/forge/workspace/entries/
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] justification-type-convention-is-sl-or-cp
+### [ACCEPTED] justification-type-convention-is-sl-or-cp
 Justification.type is conventionally either "SL" or "CP", but the dataclass does not enforce this constraint.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-__init__.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-records-mutually-exclusive-node-set
+### [ACCEPTED] nogood-records-mutually-exclusive-node-set
 A Nogood records a set of node IDs that cannot all be IN simultaneously.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-__init__.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-default-db-is-reasons-db
+### [ACCEPTED] api-default-db-is-reasons-db
 DEFAULT_DB in reasons_lib/api.py is "reasons.db" and is used as the default db_path by API functions.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] init-db-raises-fileexists-without-force
+### [ACCEPTED] init-db-raises-fileexists-without-force
 init_db raises FileExistsError when the target SQLite database already exists and force is not True.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] with-network-skips-save-on-exception
+### [ACCEPTED] with-network-skips-save-on-exception
 _with_network saves the network only when write=True and no exception occurred in the context body.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-justification-requires-type
+### [ACCEPTED] add-justification-requires-type
 add_justification raises ValueError when no justification type is specified.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] source-path-fallback-uses-tilde-git-repo
+### [ACCEPTED] source-path-fallback-uses-tilde-git-repo
 resolve_source_path falls back to ~/git/<repo-name>/... when a node's repo is not present in the repos mapping.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-propagates-file-read-errors
+### [ACCEPTED] check-stale-propagates-file-read-errors
 File read errors from hash_file, such as OSError or PermissionError, are not caught by check_stale and propagate to the caller.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] empty-stale-list-cannot-distinguish-fresh-from-untracked
+### [ACCEPTED] empty-stale-list-cannot-distinguish-fresh-from-untracked
 An empty result from check_stale cannot distinguish all source files being fresh from no nodes having source tracking.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] source-path-splits-on-first-slash
+### [ACCEPTED] source-path-splits-on-first-slash
 resolve_source_path extracts the repo name by splitting a node's source string on the first slash.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-check_stale-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-db-flag-defaults-to-api-default-db
+### [ACCEPTED] cli-db-flag-defaults-to-api-default-db
 Every CLI subcommand accepts a --db flag defaulting to api.DEFAULT_DB.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-round-return-codes-are-zero-saturated-negative-one-error
+### [ACCEPTED] derive-round-return-codes-are-zero-saturated-negative-one-error
 _derive_one_round returns 0 when derivation is saturated and -1 on error.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-warns-on-three-premise-sl-without-any
+### [ACCEPTED] cli-warns-on-three-premise-sl-without-any
 The CLI warns at add time when an SL justification has 3 or more premises and --any was not used.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-default-budget-is-500-words
+### [ACCEPTED] compact-default-budget-is-500-words
 compact() defaults to budget=500 and truncate=True.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-out-reason-priority-is-retract-stale-supersede
+### [ACCEPTED] compact-out-reason-priority-is-retract-stale-supersede
 compact annotates OUT nodes by checking metadata retract_reason and stale_reason first, then falling back to superseded_by.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] summary-coverage-uses-metadata-summarizes-key
+### [ACCEPTED] summary-coverage-uses-metadata-summarizes-key
 compact identifies nodes covered by a summary through the metadata key "summarizes".
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-in-line-includes-first-non-summary-antecedents
+### [ACCEPTED] compact-in-line-includes-first-non-summary-antecedents
 Each emitted IN node line includes the antecedents of its first non-summary justification.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-detect-agents-skips-active
+### [ACCEPTED] derive-detect-agents-skips-active
 `_detect_agents` identifies multi-agent networks by colon-namespaced IDs and skips `:active` premise nodes when scanning.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-topic-filter-uses-or-semantics
+### [ACCEPTED] derive-topic-filter-uses-or-semantics
 `_filter_by_topic` matches space-separated terms case-insensitively against node ID and text, including a node if any keyword matches.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-sampling-uses-reservoir
+### [ACCEPTED] derive-sampling-uses-reservoir
 `_sample_beliefs` uses reservoir-style random sampling to stay within token budgets and returns identity when the list is already under budget.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-beliefs-groups-by-id-prefix
+### [ACCEPTED] derive-build-beliefs-groups-by-id-prefix
 Without agents, `_build_beliefs_section` groups beliefs by the first ID segment before `-`.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-derived-section-sorts-deepest-first
+### [ACCEPTED] derive-derived-section-sorts-deepest-first
 `_build_derived_section` renders existing derived conclusions sorted by depth deepest first, showing status, antecedents, and outlist.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-parser-supports-two-formats
+### [ACCEPTED] derive-parser-supports-two-formats
 `parse_proposals` supports a new v0.10+ format and an old v0.9 format, falling back to the old format only when the new format yields no matches.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-imports-unused-subprocess-sys-path
+### [ACCEPTED] derive-imports-unused-subprocess-sys-path
 `derive.py` imports `subprocess`, `sys`, and `Path` but does not use them.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-prompt-returns-prompt-and-stats
+### [ACCEPTED] derive-build-prompt-returns-prompt-and-stats
 `build_prompt` returns a tuple of prompt text and a stats dict.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-public-api-four-wrappers
+### [ACCEPTED] import-agent-public-api-four-wrappers
 `import_agent`, `import_agent_json`, `sync_agent`, and `sync_agent_json` are thin wrappers that normalize input and delegate to `_import_claims` or `_sync_claims`.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-active-is-bare-premise
+### [ACCEPTED] import-agent-active-is-bare-premise
 `_ensure_agent_nodes` creates `agent:active` as a bare premise with no justifications, IN by default.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-inactive-justified-by-outlist-active
+### [ACCEPTED] import-agent-inactive-justified-by-outlist-active
 `agent:inactive` is justified by an SL justification with empty antecedents and `active` in its outlist, making it IN only when `active` is OUT.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-nogood-requires-two-existing-refs
+### [ACCEPTED] import-agent-nogood-requires-two-existing-refs
 Nogoods are imported only if at least two of their referenced nodes exist in the network after prefixing.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-has-no-try-except
+### [ACCEPTED] import-agent-has-no-try-except
 `import_agent.py` contains no try/except blocks and relies on parsers, `Network.add_node`, dict defaults, and set operations for fault tolerance.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-build-justifications-synthetic-sl
+### [ACCEPTED] import-agent-build-justifications-synthetic-sl
 `_build_justifications` gives even beliefs with no other justification a synthetic SL justification containing `agent:inactive` in the outlist.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-returns-stats-dict
+### [ACCEPTED] import-agent-returns-stats-dict
 All four public import/sync functions return a stats dict with counts such as added, skipped, and retracted.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] empty-outlist-vacuously-valid
+### [ACCEPTED] empty-outlist-vacuously-valid
 An SL or CP justification with an empty outlist is valid whenever all its antecedents are IN, providing pure monotonic support.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_justification_valid.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] justification-validation-never-raises
+### [ACCEPTED] justification-validation-never-raises
 `_justification_valid` raises no exceptions; missing antecedents and missing outlist nodes are handled inline.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_justification_valid.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] justification-validation-called-by-compute-truth-and-explain
+### [ACCEPTED] justification-validation-called-by-compute-truth-and-explain
 `_justification_valid` is called from `_compute_truth` and `explain`.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_justification_valid.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] tms-node-in-if-any-justification-valid
+### [ACCEPTED] tms-node-in-if-any-justification-valid
 `_compute_truth` marks a node IN when any one of its justifications is valid.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_justification_valid.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] justification-validation-assumes-in-out-string
+### [ACCEPTED] justification-validation-assumes-in-out-string
 `_justification_valid` assumes `truth_value` is either 'IN' or 'OUT'; any other string silently fails the comparison.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_justification_valid.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-uses-visited-set
+### [ACCEPTED] propagate-uses-visited-set
 `_propagate` uses a `visited` set seeded with `changed_id` to prevent cycles and redundant recomputation.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-traverses-dependents-forward
+### [ACCEPTED] propagate-traverses-dependents-forward
 `_propagate` walks forward along `dependents` edges from the changed node and does not traverse antecedents.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-assumes-changed-id-exists
+### [ACCEPTED] propagate-assumes-changed-id-exists
 `_propagate` accesses `self.nodes[changed_id]` without a membership check, so a missing changed ID raises `KeyError`.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-logs-each-changed-node
+### [ACCEPTED] propagate-logs-each-changed-node
 `_propagate` appends a `propagate` log entry via `_log` for each node whose truth value changes.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-returns-empty-when-no-dependents
+### [ACCEPTED] propagate-returns-empty-when-no-dependents
 If the seed node has no dependents, `_propagate` returns an empty list.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-invoked-by-all-truth-mutators
+### [ACCEPTED] propagate-invoked-by-all-truth-mutators
 `_propagate` is called after `retract`, `assert_node`, `supersede`, `add_justification`, `challenge`, and `convert_to_premise`.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagate-returns-changed-excluding-trigger
+### [ACCEPTED] propagate-returns-changed-excluding-trigger
 `_propagate` never includes the seed `changed_id` in its returned changed list; callers prepend it separately.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-_propagate.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-validates-node-ids-before-record
+### [ACCEPTED] add-nogood-validates-node-ids-before-record
 `add_nogood` iterates `node_ids` and raises `KeyError` before appending a `Nogood` record if any ID is missing.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-inactive-contradiction-returns-empty
+### [ACCEPTED] add-nogood-inactive-contradiction-returns-empty
 If any node in the nogood set is already OUT, `add_nogood` returns an empty list immediately after recording the nogood.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-duplicates-silently-accepted
+### [ACCEPTED] add-nogood-duplicates-silently-accepted
 `add_nogood` silently accepts duplicate nogood records without raising an error.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-has-no-remove-api
+### [ACCEPTED] add-nogood-has-no-remove-api
 There is no `remove_nogood`; once a nogood is recorded, it remains in `self.nogoods` permanently.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-does-not-persist
+### [ACCEPTED] add-nogood-does-not-persist
 `add_nogood` mutates only in-memory state; persistence to `reasons.db` or `network.json` is the caller's responsibility.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-nogood-single-node-list-accepted
+### [ACCEPTED] add-nogood-single-node-list-accepted
 `add_nogood` accepts a single-element `node_ids` list without a validation error.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-add_nogood.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-node-is-premise
+### [ACCEPTED] challenge-node-is-premise
 The challenge node itself is always created as a premise (no justifications, IN by default) and can only be driven OUT by explicit retraction or by being challenged/defended.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-challenge.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-propagation-is-automatic
+### [ACCEPTED] challenge-propagation-is-automatic
 After creating the challenge, truth value recomputation and BFS propagation through dependents happen within the same call; callers never need to trigger propagation manually.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-challenge.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-registers-dependency
+### [ACCEPTED] challenge-registers-dependency
 After a challenge, the challenge node's dependents set includes the target_id so the target gets recomputed when the challenge changes.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-challenge.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-adds-to-target-metadata
+### [ACCEPTED] challenge-adds-to-target-metadata
 The challenge method appends the new challenge ID to the target's metadata['challenges'] list.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network-challenge.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-class-has-nodes-nogoods-repos-log
+### [ACCEPTED] network-class-has-nodes-nogoods-repos-log
 The Network class holds four attributes: nodes (dict[str, Node]), nogoods (list[Nogood]), repos (dict[str, str]), and log (list[dict]).
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] retract-sets-retracted-metadata
+### [ACCEPTED] retract-sets-retracted-metadata
 The retract method forces a node OUT, marks _retracted in its metadata, and then cascades to dependents.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] summarize-node-is-in-when-all-summarized-nodes-are-in
+### [ACCEPTED] summarize-node-is-in-when-all-summarized-nodes-are-in
 The summarize method creates a derived node that is IN when all summarized nodes are IN.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] convert-to-premise-strips-justifications
+### [ACCEPTED] convert-to-premise-strips-justifications
 The convert_to_premise method strips all justifications from a derived node, turning it into an unconditional premise.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] entrenchment-favors-premises-sources-and-many-dependents
+### [ACCEPTED] entrenchment-favors-premises-sources-and-many-dependents
 The _entrenchment scoring heuristic ranks premises above derived nodes, sourced nodes above unsourced, and nodes with many dependents above those with few.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-schema-defines-six-tables
+### [ACCEPTED] storage-schema-defines-six-tables
 The SCHEMA constant defines six tables: nodes, justifications, nogoods, repos, propagation_log, and nodes_fts (an FTS5 virtual table).
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-rebuilds-fts-index-on-every-save
+### [ACCEPTED] storage-rebuilds-fts-index-on-every-save
 The nodes_fts full-text index is wiped and rebuilt alongside the nodes table in every save() call, so they cannot drift.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-load-assumes-valid-json
+### [ACCEPTED] storage-load-assumes-valid-json
 load() does not defend against invalid JSON in text columns; it assumes save() is the only writer and always writes valid JSON.
 - Source: /home/forge/workspace/entries/2026/04/23/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] test-suite-has-18-files-and-211-tests
+### [ACCEPTED] test-suite-has-18-files-and-211-tests
 The test suite consists of 18 test files and 211+ tests.
 - Source: /home/forge/workspace/entries/2026/04/23/scan-ftl-reasons.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-py-is-1500-lines
+### [ACCEPTED] api-py-is-1500-lines
 The api.py module is approximately 1500 lines long.
 - Source: /home/forge/workspace/entries/2026/04/23/scan-ftl-reasons.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-has-35-subcommands
+### [ACCEPTED] cli-has-35-subcommands
 The CLI entry point (reasons command) exposes 35+ subcommands.
 - Source: /home/forge/workspace/entries/2026/04/23/scan-ftl-reasons.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-uses-namespacing-and-active-relay-nodes
+### [ACCEPTED] import-agent-uses-namespacing-and-active-relay-nodes
 import_agent.py implements multi-agent belief federation using namespacing and active/inactive relay nodes.
 - Source: /home/forge/workspace/entries/2026/04/23/scan-ftl-reasons.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-prioritizes-nogoods-then-out-then-in-by-dependents
+### [ACCEPTED] compact-prioritizes-nogoods-then-out-then-in-by-dependents
 compact.py orders summaries by priority: nogoods first, then OUT nodes, then IN nodes sorted by number of dependents.
 - Source: /home/forge/workspace/entries/2026/04/23/scan-ftl-reasons.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sl-and-cp-stand-for-support-list-and-conditional-proof
+### [ACCEPTED] sl-and-cp-stand-for-support-list-and-conditional-proof
 In Doyle's TMS terminology, SL stands for Support List and CP stands for Conditional Proof.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-doyle-1979-tms.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] tms-separates-reasoning-from-bookkeeping
+### [ACCEPTED] tms-separates-reasoning-from-bookkeeping
 The TMS separates reasoning (which conclusions follow from which premises) from bookkeeping (which conclusions are currently believed given which premises are currently held).
 - Source: /home/forge/workspace/entries/2026/04/23/topic-doyle-1979-tms.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cp-justifications-represent-consistency-based-derivation
+### [ACCEPTED] cp-justifications-represent-consistency-based-derivation
 CP justifications allow deriving conclusions from hypothetical assumptions that have not been contradicted, based on consistency rather than truth.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-doyle-1979-tms.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-defines-set-of-incompatible-nodes
+### [ACCEPTED] nogood-defines-set-of-incompatible-nodes
 A Nogood represents a recorded contradiction: a set of node IDs that cannot all be IN simultaneously.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-doyle-1979-tms.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] namespaces-discovered-by-active-premise-scan
+### [ACCEPTED] namespaces-discovered-by-active-premise-scan
 Namespaces are discovered at runtime by scanning for nodes matching `*:active` with `role: agent_premise` metadata.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-multi-agent-federation.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-prefixes-antecedents-and-outlist
+### [ACCEPTED] import-agent-prefixes-antecedents-and-outlist
 During agent import, antecedent IDs and remote outlist entries are prefixed with `agent_name:`; the imported belief's outlist also includes the agent's `inactive_id`.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-multi-agent-federation.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] inactive-relay-justification-uses-empty-antecedents
+### [ACCEPTED] inactive-relay-justification-uses-empty-antecedents
 The `agent:inactive` node uses an SL justification with empty antecedents and `outlist=[active_id]`.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-multi-agent-federation.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-converts-bare-premise-to-justified
+### [ACCEPTED] challenge-converts-bare-premise-to-justified
 Challenging a bare premise with no justifications converts it into a justified node with `SL(antecedents=[], outlist=[challenge_id])`.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-outlist-semantics.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] challenge-premise-starts-in-and-defeats-target
+### [ACCEPTED] challenge-premise-starts-in-and-defeats-target
 A challenge creates a new premise node that starts IN, and adding it to the target's outlist makes the target go OUT until defended.
 - Source: /home/forge/workspace/entries/2026/04/23/topic-outlist-semantics.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ten-defects-resolved-between-2026-04-23-and-2026-04-24
+### [ACCEPTED] ten-defects-resolved-between-2026-04-23-and-2026-04-24
 All 10 defect premises identified in the ftl-reasons knowledge base were resolved between 2026-04-23 and 2026-04-24.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagation-guards-dangling-dependent-references
+### [ACCEPTED] propagation-guards-dangling-dependent-references
 `_propagate` was fixed to skip dangling dependent references with `if dep_id not in self.nodes: continue`, preventing a `KeyError`.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-agent-count-increment-moved-outside-loop
+### [ACCEPTED] derive-agent-count-increment-moved-outside-loop
 `_build_beliefs_section` was fixed by moving the belief-count increment outside the per-belief loop, preventing count inflation and non-agent budget shrinkage.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-returns-source-deleted-result
+### [ACCEPTED] check-stale-returns-source-deleted-result
 `check_stale` returns an explicit `source_deleted` result with `reason: "source_deleted"`, `new_hash: None`, and `source_path: None` when a tracked source file is missing.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-token-estimate-uses-chars-div-4
+### [ACCEPTED] compact-token-estimate-uses-chars-div-4
 `estimate_tokens` uses the `len(text) // 4` BPE approximation instead of whitespace-separated word count.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-budget-applies-to-all-output-sections
+### [ACCEPTED] compact-budget-applies-to-all-output-sections
 The compact output budget applies to nogoods, OUT, and IN sections using a running character counter.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-file-stores-full-sha256
+### [ACCEPTED] hash-file-stores-full-sha256
 `hash_file()` stores and compares full 64-hex-character SHA-256 hashes after removing the `[:16]` truncation.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-merge-skips-gate-beliefs-during-auto-retraction
+### [ACCEPTED] ftl-merge-skips-gate-beliefs-during-auto-retraction
 ftl-merge 0.2.0 added `load_network()` and `has_outlist()` to skip GATE beliefs during `--auto-retract`, preventing `_retracted` metadata from blocking TMS restoration.
 - Source: /home/forge/workspace/entries/2026/04/24/defect-resolution-clean-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] setuptools-68-is-build-backend
+### [ACCEPTED] setuptools-68-is-build-backend
 `pyproject.toml` declares `setuptools >= 68.0` as the PEP 517 build backend.
 - Source: /home/forge/workspace/entries/2026/04/24/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pytest-is-only-optional-dependency
+### [ACCEPTED] pytest-is-only-optional-dependency
 The only optional dependency is `pytest` under a test extra; no linters, formatters, or type checkers are declared.
 - Source: /home/forge/workspace/entries/2026/04/24/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] package-list-explicit-reasons-lib
+### [ACCEPTED] package-list-explicit-reasons-lib
 `[tool.setuptools]` explicitly lists `reasons_lib` as the only package to include, preventing auto-discovery of tests or scripts.
 - Source: /home/forge/workspace/entries/2026/04/24/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pytest-testpaths-tests
+### [ACCEPTED] pytest-testpaths-tests
 `[tool.pytest.ini_options]` points pytest at `tests/` for test discovery.
 - Source: /home/forge/workspace/entries/2026/04/24/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-with-network-write-false-discards-changes
+### [ACCEPTED] api-with-network-write-false-discards-changes
 `_with_network(db_path, write=False)` loads the network but does not save on exit, so in-memory mutations are discarded.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-add-node-auto-wires-namespace-active-premise
+### [ACCEPTED] api-add-node-auto-wires-namespace-active-premise
 When `namespace` is provided to `add_node`, it creates an `ns:active` premise and injects it as an antecedent of the node's justification.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-search-expands-by-one-hop
+### [ACCEPTED] api-search-expands-by-one-hop
 `search` expands results by one hop in the dependency graph (neighbors).
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-search-supports-three-output-formats
+### [ACCEPTED] api-search-supports-three-output-formats
 `search` supports three output formats: markdown, JSON, and minimal.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-missing-node-raises-keyerror
+### [ACCEPTED] api-missing-node-raises-keyerror
 `show_node`, `explain_node`, `trace_assumptions`, and `what_if_*` raise `KeyError` when a node ID is not found.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-hidden-node-raises-permissionerror
+### [ACCEPTED] api-hidden-node-raises-permissionerror
 When `visible_to` is set and a target node's access tags are not a subset, `show_node`, `explain_node`, `trace_assumptions`, and `trace_access_tags` raise `PermissionError`.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-requires-source-and-source-hash
+### [ACCEPTED] check-stale-requires-source-and-source-hash
 A node must have both source and source_hash metadata to be eligible for stale-checking.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-source-path-bare-filename-current-directory
+### [ACCEPTED] resolve-source-path-bare-filename-current-directory
 When a source string has no slash, resolve_source_path treats it as a bare filename in the current directory.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-manifest-includes-was-empty-flag
+### [ACCEPTED] hash-sources-manifest-includes-was-empty-flag
 hash_sources returns a manifest record with a was_empty flag to distinguish backfills from overwrites.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-classifies-content-changed-and-source-deleted
+### [ACCEPTED] check-stale-classifies-content-changed-and-source-deleted
 check_stale categorizes results as content_changed when the hash differs and source_deleted when the resolved path is missing.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-check-stale-exits-nonzero-on-stale
+### [ACCEPTED] cmd-check-stale-exits-nonzero-on-stale
 cmd_check_stale calls sys.exit(1) when any stale node is found.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] every-cli-subcommand-has-db-argument
+### [ACCEPTED] every-cli-subcommand-has-db-argument
 Every CLI subcommand inherits a --db argument defaulting to api.DEFAULT_DB.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-add-justification-warns-multi-premise-and-mode
+### [ACCEPTED] cli-add-justification-warns-multi-premise-and-mode
 cmd_add and cmd_add_justification call _warn_multi_premise when an AND justification uses 3 or more antecedents.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-what-if-output-notes-database-not-modified
+### [ACCEPTED] cmd-what-if-output-notes-database-not-modified
 cmd_what_if explicitly notes 'database NOT modified' in its output.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-summary-hiding
+### [ACCEPTED] compact-summary-hiding
 Nodes whose IDs appear in a summary node's metadata['summarizes'] list are excluded from the visible IN node output.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-estimate-tokens-char-div-4-floor-one
+### [ACCEPTED] compact-estimate-tokens-char-div-4-floor-one
 estimate_tokens approximates token count as len(text) // 4 and returns at least 1.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-omitted-markers-include-count
+### [ACCEPTED] compact-omitted-markers-include-count
 When the budget is exhausted, compact emits '... (N more omitted)' markers for omitted nodes.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-header-includes-date-and-counts
+### [ACCEPTED] compact-header-includes-date-and-counts
 compact emits a header containing the date, total node counts, and nogood count.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-summary-nodes-prefixed-and-marked-coverage-count
+### [ACCEPTED] compact-summary-nodes-prefixed-and-marked-coverage-count
 Summary nodes are emitted with a [summary] prefix and a '(covers N nodes)' suffix.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-retraction-guard
+### [ACCEPTED] derive-retraction-guard
 Proposals whose ID has at least 50% Jaccard token overlap with any OUT node ID are rejected.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-parser-falls-back-to-legacy-format
+### [ACCEPTED] derive-parser-falls-back-to-legacy-format
 parse_proposals tries the current ### DERIVE format first and only falls back to the legacy bold-field format if zero matches are found.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-depth-is-max-antecedent-depth-plus-one
+### [ACCEPTED] derive-depth-is-max-antecedent-depth-plus-one
 Premises have depth 0 and derived nodes have depth equal to the maximum antecedent depth plus 1.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-depth-memoizes-and-guards-cycles
+### [ACCEPTED] derive-depth-memoizes-and-guards-cycles
 _get_depth memoizes computed depths and sets memo[node_id] to 0 before recursion as a cycle guard.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-prompt-detects-multi-agent-networks
+### [ACCEPTED] derive-prompt-detects-multi-agent-networks
 build_prompt detects multi-agent networks and adjusts the prompt accordingly.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-creates-active-and-inactive-nodes
+### [ACCEPTED] import-agent-creates-active-and-inactive-nodes
 _ensure_agent_nodes creates agent:active as a premise node and agent:inactive with SL(antecedents=[], outlist=[agent:active]) for each agent.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-prefixes-ids-with-agent-name-colon
+### [ACCEPTED] import-agent-prefixes-ids-with-agent-name-colon
 Every node imported from agent foo has an ID starting with foo:.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-nogoods-require-two-valid-nodes
+### [ACCEPTED] import-nogoods-require-two-valid-nodes
 _import_nogoods only creates a nogood if at least two of its referenced nodes exist in the network.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] normalize-markdown-maps-stale-or-out-to-is-out
+### [ACCEPTED] normalize-markdown-maps-stale-or-out-to-is-out
 _normalize_markdown maps STALE and OUT statuses to is_out=True.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-beliefs-truncates-text-to-first-non-metadata-line
+### [ACCEPTED] parse-beliefs-truncates-text-to-first-non-metadata-line
 `parse_beliefs` sets each claim's `text` to the first non-metadata, non-empty line after the header, truncating multi-line descriptions.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-beliefs-does-not-validate-dependencies
+### [ACCEPTED] parse-beliefs-does-not-validate-dependencies
 `parse_beliefs` returns a flat list of claim dicts and does not validate that referenced `depends_on` or `unless` IDs exist.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-nogoods-require-two-existing-affected-nodes
+### [ACCEPTED] import-nogoods-require-two-existing-affected-nodes
 `import_into_network` imports a nogood only if at least two of its affected nodes already exist in the network; otherwise it silently drops the nogood.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-into-network-returns-summary-counts
+### [ACCEPTED] import-into-network-returns-summary-counts
 `import_into_network` returns a summary dict containing `claims_imported`, `claims_skipped`, `claims_retracted`, and `nogoods_imported`.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-implements-doyles-1979-tms
+### [ACCEPTED] network-implements-doyles-1979-tms
 `Network` implements Doyle's 1979 Truth Maintenance System algorithm with nodes, justifications, and automatic truth-value propagation.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] defense-is-challenge-to-challenge
+### [ACCEPTED] defense-is-challenge-to-challenge
 `Network.defend()` is implemented as `challenge(challenge_id, ...)`, making a defense a challenge to the original challenge node.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] trace-assumptions-uses-dfs-to-find-premises
+### [ACCEPTED] trace-assumptions-uses-dfs-to-find-premises
 `Network.trace_assumptions()` performs a DFS backward through justification chains to collect all premise nodes a conclusion depends on.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-belief-set-returns-in-node-ids
+### [ACCEPTED] get-belief-set-returns-in-node-ids
 `Network.get_belief_set()` returns the IDs of all nodes whose `truth_value` equals `IN`.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] recompute-all-bounded-by-node-count-plus-one
+### [ACCEPTED] recompute-all-bounded-by-node-count-plus-one
 `Network.recompute_all()` bounds its fixpoint iterations to `len(nodes) + 1` to guarantee termination.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-save-is-delete-rewrite
+### [ACCEPTED] storage-save-is-delete-rewrite
 `Storage.save()` deletes all rows from every table and reinserts the entire network inside a single SQLite transaction; it never diffs or upserts.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-dependent-index-not-persisted
+### [ACCEPTED] storage-dependent-index-not-persisted
 The `dependents` reverse index is not stored in SQLite; `Storage.load()` rebuilds it from justifications by calling `network._rebuild_dependents()`.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-enables-sqlite-foreign-keys
+### [ACCEPTED] storage-enables-sqlite-foreign-keys
 `Storage.__init__` enables SQLite foreign key enforcement when opening the database connection.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-load-reads-tables-in-dependency-order
+### [ACCEPTED] storage-load-reads-tables-in-dependency-order
 `Storage.load()` reads nodes first, then justifications, then nogoods, repos, metadata, and propagation log to reconstruct the network.
 - Source: /home/forge/workspace/entries/2026/04/24/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] access-tags-not-fabricated-for-untagged-parents
+### [ACCEPTED] access-tags-not-fabricated-for-untagged-parents
 When all parent nodes are untagged, a derived node receives no inherited access tags; the system does not fabricate tags.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] trace-access-tags-raises-keyerror-for-missing-node
+### [ACCEPTED] trace-access-tags-raises-keyerror-for-missing-node
 `Network.trace_access_tags()` raises `KeyError` when given a nonexistent node ID.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] search-neighbor-expansion-respects-visible-to
+### [ACCEPTED] search-neighbor-expansion-respects-visible-to
 `lookup` and `search` exclude forbidden nodes from results, including during neighbor expansion.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-status-counts-only-visible-nodes
+### [ACCEPTED] get-status-counts-only-visible-nodes
 `get_status` produces a status summary that counts only nodes visible to the caller's `visible_to` clearance.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-justification-nonexistent-node-raises-keyerror
+### [ACCEPTED] add-justification-nonexistent-node-raises-keyerror
 `Network.add_justification()` raises `KeyError` when the target node ID does not exist.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_add_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-justification-appends-not-replaces
+### [ACCEPTED] add-justification-appends-not-replaces
 `Network.add_justification()` appends a new justification to the node's existing justification list rather than replacing existing justifications.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_add_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-add-justification-supports-cp-and-unless
+### [ACCEPTED] api-add-justification-supports-cp-and-unless
 `api.add_justification()` supports CP justifications and outlist-only `unless` justifications in addition to SL justifications.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_add_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-add-justification-namespace-prefixes-result-id
+### [ACCEPTED] api-add-justification-namespace-prefixes-result-id
 `api.add_justification()` applies the configured namespace prefix to the node ID in its result, for example returning `ns:b` rather than `b`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_add_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] any-mode-single-premise-no-expansion
+### [ACCEPTED] any-mode-single-premise-no-expansion
 When `any_mode=True` is used with a single premise, no expansion occurs.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_any_mode.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] default-sl-conjunctive-single-justification
+### [ACCEPTED] default-sl-conjunctive-single-justification
 Without `any_mode`, `api.add_node` with `sl='a,b,c'` creates a single conjunctive justification with three antecedents.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_any_mode.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] any-mode-add-justification-can-restore-out-node
+### [ACCEPTED] any-mode-add-justification-can-restore-out-node
 `api.add_justification` with `any_mode=True` expands premises post-creation and can restore an OUT node to IN.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_any_mode.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] any-mode-expansion-implemented-in-api-layer
+### [ACCEPTED] any-mode-expansion-implemented-in-api-layer
 `any_mode` expansion is implemented in `reasons_lib.api.add_node` and `reasons_lib.api.add_justification`, not in the `Network` propagation engine.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_any_mode.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-nodes-depth-filter-min-max
+### [ACCEPTED] list-nodes-depth-filter-min-max
 `api.list_nodes` depth filtering uses `min_depth` and `max_depth`; `min_depth=1` excludes depth-0 premise nodes and `max_depth=0` excludes derived nodes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-log-last-n-truncates
+### [ACCEPTED] get-log-last-n-truncates
 `api.get_log(last=N)` returns only the most recent N log entries.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] explain-node-supports-premise-and-chain
+### [ACCEPTED] explain-node-supports-premise-and-chain
 `api.explain_node` provides explanations for both premise nodes and derived chain nodes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-source-path-empty-source-returns-none
+### [ACCEPTED] resolve-source-path-empty-source-returns-none
 `resolve_source_path` returns `None` for an empty source string.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-skips-missing-source-or-file
+### [ACCEPTED] hash-sources-skips-missing-source-or-file
 `hash_sources` reports only successful backfills, silently skipping nodes that lack a `source` field or whose source file is missing.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-requires-in-source-and-hash
+### [ACCEPTED] check-stale-requires-in-source-and-hash
 `check_stale` only examines nodes that are IN, have a non-empty `source`, and have a non-empty `source_hash`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-source-path-defaults-to-home-git
+### [ACCEPTED] resolve-source-path-defaults-to-home-git
 When `repos` is `None`, `resolve_source_path` falls back to resolving source paths under `~/git/`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] empty-file-not-source-deleted
+### [ACCEPTED] empty-file-not-source-deleted
 An empty file on disk is not treated as a deleted source; if its hash does not match, `check_stale` reports `content_changed`, not `source_deleted`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] source-deleted-results-per-node
+### [ACCEPTED] source-deleted-results-per-node
 If multiple IN nodes reference the same deleted source file, `check_stale` returns a separate `source_deleted` result for each node.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-empty-network-reports-zero-nodes
+### [ACCEPTED] compact-empty-network-reports-zero-nodes
 For an empty network, `compact` outputs the text `0 nodes tracked`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-truncate-clips-text-with-ellipsis
+### [ACCEPTED] compact-truncate-clips-text-with-ellipsis
 When `truncate=True`, `compact` clips long node text and appends `...`; when `truncate=False`, it preserves full node text.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-shows-dependencies-and-dependent-counts
+### [ACCEPTED] compact-shows-dependencies-and-dependent-counts
 The `compact` output displays each derived node's antecedents, such as `<- a`, and the number of nodes that depend on it.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] rebuild-dependents-repairs-corruption
+### [ACCEPTED] rebuild-dependents-repairs-corruption
 `_rebuild_dependents()` removes injected phantom entries and reconstructs each node's `dependents` set from justification references.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_dependents_integrity.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-validation-requires-antecedent-existence
+### [ACCEPTED] derive-validation-requires-antecedent-existence
 `validate_proposals` rejects any proposal whose antecedents or unless-list reference nodes that are not present in the network.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-parse-strips-backticks
+### [ACCEPTED] derive-parse-strips-backticks
 `parse_proposals` strips backticks from proposal IDs and antecedent IDs.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-parse-distinguishes-derive-and-gate
+### [ACCEPTED] derive-parse-distinguishes-derive-and-gate
 `parse_proposals` distinguishes DERIVE proposals from GATE proposals, where GATE proposals supply outlist entries.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dedup-clusters-by-jaccard-on-ids
+### [ACCEPTED] dedup-clusters-by-jaccard-on-ids
 `deduplicate` clusters beliefs by Jaccard similarity on their IDs.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-prompt-computes-stats
+### [ACCEPTED] derive-build-prompt-computes-stats
 `build_prompt` computes summary statistics including `total_in`, `total_derived`, and `max_depth`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-agent-budget-proportional-formula
+### [ACCEPTED] derive-agent-budget-proportional-formula
 The agent belief budget in `_build_beliefs_section` is computed as `max(5, int(max_beliefs * len(agent_beliefs) / total_all))`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-ceiling-enforced
+### [ACCEPTED] derive-budget-ceiling-enforced
 In `_build_beliefs_section`, the sum of agent-shown and local-shown beliefs never exceeds `max_beliefs`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-section-handles-empty-inputs
+### [ACCEPTED] derive-budget-section-handles-empty-inputs
 `_build_beliefs_section` returns a valid formatted string for empty nodes, empty agents, or agents pointing to missing nodes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-remaps-dependencies
+### [ACCEPTED] import-agent-remaps-dependencies
 Importing an agent rewrites justification dependency references to use the agent's namespace prefix.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-only-in-excludes-out-beliefs
+### [ACCEPTED] import-agent-only-in-excludes-out-beliefs
 With `only_in=True`, `import_agent` skips STALE/OUT beliefs entirely so they are absent from the database.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-imports-nogoods
+### [ACCEPTED] import-agent-imports-nogoods
 `import_agent` imports and counts nogood contradiction records from a co-located nogoods file.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-returns-counts-and-control-id
+### [ACCEPTED] import-agent-returns-counts-and-control-id
 `import_agent` returns a dict containing the agent name, namespace prefix, active node ID, premise-creation flag, and counts of imported and retracted claims.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-returns-count-summary
+### [ACCEPTED] import-returns-count-summary
 `import_into_network` returns a summary dict with counts `claims_imported`, `claims_retracted`, `claims_skipped`, and `nogoods_imported`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-pipeline-is-lenient-not-fail-fast
+### [ACCEPTED] import-pipeline-is-lenient-not-fail-fast
 The beliefs.md import pipeline is designed to skip bad data and return counts rather than raise exceptions for malformed or missing references.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] imported-network-supports-retraction-cascade
+### [ACCEPTED] imported-network-supports-retraction-cascade
 After importing SAMPLE_BELIEFS, retracting `premise-a` causes `derived-c` and `chain-e` to become OUT.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-real-registry-smoke-test-skips-missing-file
+### [ACCEPTED] import-real-registry-smoke-test-skips-missing-file
 `TestImportRealRegistry` uses `pytest.skip` when `~/git/beliefs-pi/beliefs.md` does not exist.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-tests-separate-parse-and-import-failures
+### [ACCEPTED] import-tests-separate-parse-and-import-failures
 The import test suite has separate `TestParseBeliefs` and `TestImportIntoNetwork` classes so parse bugs are distinguishable from import bugs.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derived-node-evaluates-on-creation
+### [ACCEPTED] derived-node-evaluates-on-creation
 Adding a derived node evaluates its justification immediately, and the new node starts OUT if its antecedents are OUT.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-missing-node-operations-raise-keyerror
+### [ACCEPTED] network-missing-node-operations-raise-keyerror
 `Network.retract`, `assert_node`, `explain`, and `add_nogood` raise `KeyError("not found")` when referencing a nonexistent node.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-belief-set-returns-in-node-ids
+### [ACCEPTED] get-belief-set-returns-in-node-ids
 `Network.get_belief_set()` returns the IDs of all nodes whose truth value is IN.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] propagation-log-records-add-retract-propagate
+### [ACCEPTED] propagation-log-records-add-retract-propagate
 The propagation audit trail records `add`, `retract`, and `propagate` events with their targets.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] explain-out-node-includes-failed-antecedents
+### [ACCEPTED] explain-out-node-includes-failed-antecedents
 `Network.explain()` on an OUT node includes `failed_antecedents` identifying what broke the justification.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-ids-format-sequential-nnn
+### [ACCEPTED] nogood-ids-format-sequential-nnn
 Nogood IDs are formatted as `nogood-NNN` with a zero-padded sequential number starting at `nogood-001`.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-tests-use-tmp-sqlite-db-fixture
+### [ACCEPTED] nogood-tests-use-tmp-sqlite-db-fixture
 The nogood ID tests use a `db` fixture that creates a fresh SQLite database in `tmp_path` for each test.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-tests-simulate-schema-migration-by-dropping-meta-table
+### [ACCEPTED] nogood-tests-simulate-schema-migration-by-dropping-meta-table
 The backwards-compatibility tests drop the `network_meta` table with raw SQL to simulate databases created before the monotonic counter fix.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-tests-use-two-phase-storage-reopen
+### [ACCEPTED] nogood-tests-use-two-phase-storage-reopen
 Persistence tests save a `Storage` instance, close it, and open a new `Storage` on the same path to prove the counter is written to disk.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-removes-absent-beliefs
+### [ACCEPTED] sync-removes-absent-beliefs
 `sync_agent` retracts to OUT any existing agent belief whose node ID is absent from the synced file.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-updates-belief-text
+### [ACCEPTED] sync-updates-belief-text
 `sync_agent` updates the stored belief text when the corresponding file text changes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-rewires-justification-antecedents
+### [ACCEPTED] sync-rewires-justification-antecedents
 `sync_agent` updates a node's justification antecedents when its `Depends on:` list changes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-truth-change-cascades-to-dependents
+### [ACCEPTED] sync-truth-change-cascades-to-dependents
 When `sync_agent` changes a node's truth value, BFS propagation cascades the change to dependent nodes.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-supports-markdown-and-json-input
+### [ACCEPTED] sync-supports-markdown-and-json-input
 `sync_agent` supports both beliefs.md markdown and JSON input formats.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-tests-lack-error-path-coverage
+### [ACCEPTED] sync-tests-lack-error-path-coverage
 The sync agent test suite contains no tests for malformed markdown, missing files, or conflicting agent names.
 - Source: /home/forge/workspace/entries/2026/04/24/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-constructor-takes-conninfo-project-id
+### [ACCEPTED] pgapi-constructor-takes-conninfo-project-id
 `PgApi` is instantiated with `(conninfo, project_id)`.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-uses-psycopg-v3
+### [ACCEPTED] pgapi-uses-psycopg-v3
 `PgApi` uses psycopg v3 as its PostgreSQL driver, and psycopg is an optional dependency not required by CLI users.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-schema-reuses-expert-service-tables
+### [ACCEPTED] pgapi-schema-reuses-expert-service-tables
 PgApi uses the tables `rms_nodes`, `rms_justifications`, `rms_nogoods`, `rms_propagation_log`, and `rms_network_meta`.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-tests-require-database-url
+### [ACCEPTED] pg-tests-require-database-url
 The PgApi tests in `tests/test_pg.py` are marked `@pytest.mark.pg` and skipped when `DATABASE_URL` is not set.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-list-nodes-missing-challenged-depth-filters
+### [ACCEPTED] pgapi-list-nodes-missing-challenged-depth-filters
 PgApi `list_nodes()` does not support the `challenged`, `min_depth`, or `max_depth` filter parameters.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-has-no-async-wrapper
+### [ACCEPTED] pgapi-has-no-async-wrapper
 `PgApiAsync` using `psycopg.AsyncConnection` is not implemented.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-search-uses-plainto-tsquery
+### [ACCEPTED] pgapi-search-uses-plainto-tsquery
 PgApi search uses `plainto_tsquery` instead of manually quoted `to_tsquery` to handle user input containing single quotes.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-no-cli-backend-flag
+### [ACCEPTED] pgapi-no-cli-backend-flag
 The CLI has no `--backend pg` flag or `DATABASE_URL` handling for selecting PgApi.
 - Source: /home/forge/workspace/entries/2026/04/28/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] changelog-follows-keep-a-changelog-1-1-0
+### [ACCEPTED] changelog-follows-keep-a-changelog-1-1-0
 CHANGELOG.md follows the Keep a Changelog 1.1.0 convention with version headers and Added/Fixed/Changed sections.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] all-releases-are-minor-version-bumps
+### [ACCEPTED] all-releases-are-minor-version-bumps
 All 15 releases in CHANGELOG.md are minor-version bumps (0.x.0); no patch-level releases are present.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] version-0-11-0-is-missing-from-changelog
+### [ACCEPTED] version-0-11-0-is-missing-from-changelog
 The CHANGELOG.md sequence jumps from 0.10.0 to 0.12.0 with no 0.11.0 entry.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] version-0-18-0-introduces-access-tags
+### [ACCEPTED] version-0-18-0-introduces-access-tags
 Version 0.18.0, dated 2026-04-25, introduced RBAC-style access tags for provenance-based filtering.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] version-0-1-0-shipped-complete-tms
+### [ACCEPTED] version-0-1-0-shipped-complete-tms
 Version 0.1.0 shipped with SL justifications, retraction cascades, nogood detection, dialectical argumentation, SQLite persistence, and a multi-command CLI.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] versions-0-15-0-through-0-17-0-share-date
+### [ACCEPTED] versions-0-15-0-through-0-17-0-share-date
 Versions 0.15.0, 0.16.0, and 0.17.0 all have the release date 2026-04-18.
 - Source: /home/forge/workspace/entries/2026/04/29/CHANGELOG.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-exhaust-run-added-119-derived-beliefs
+### [ACCEPTED] derive-exhaust-run-added-119-derived-beliefs
 A derive --exhaust run of 10 rounds added 119 new derived beliefs to the network.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] four-active-blockers-gate-14-derived-beliefs
+### [ACCEPTED] four-active-blockers-gate-14-derived-beliefs
 After the derive --exhaust run, 4 active blockers prevented 14 derived beliefs from going IN.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-missing-namespace-and-import-export
+### [ACCEPTED] pgapi-missing-namespace-and-import-export
 PgApi is missing namespace support, import/export, and some maintenance operations; PRs #52-56 added challenge, defend, compact, list-gated, and what-if but did not close those gaps.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-propagate-bypasses-api-layer
+### [ACCEPTED] cmd-propagate-bypasses-api-layer
 The cmd_propagate CLI handler goes directly from Storage to Network instead of through the API layer.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] negative-belief-classifier-reduced-196-candidates-to-9
+### [ACCEPTED] negative-belief-classifier-reduced-196-candidates-to-9
 The negative belief classifier reduced 196 keyword candidates to 9 genuinely negative beliefs, a 95.4% false-positive rate among candidates.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cp-justifications-use-sl-evaluation-logic
+### [ACCEPTED] cp-justifications-use-sl-evaluation-logic
 CP justifications use SL evaluation logic.
 - Source: /home/forge/workspace/entries/2026/04/29/gated-and-negative-analysis.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] setuptools-build-backend-floor-68
+### [ACCEPTED] setuptools-build-backend-floor-68
 The build system requires setuptools >=68.0 as the PEP 517 backend.
 - Source: /home/forge/workspace/entries/2026/04/29/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] static-version-0-22-0
+### [ACCEPTED] static-version-0-22-0
 pyproject.toml declares version 0.22.0 as a static, manually bumped project version.
 - Source: /home/forge/workspace/entries/2026/04/29/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pytest-collects-only-tests-directory
+### [ACCEPTED] pytest-collects-only-tests-directory
 pytest is configured with testpaths = ["tests"], restricting collection to the tests directory.
 - Source: /home/forge/workspace/entries/2026/04/29/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] test-pg-extra-duplicates-test-and-pg-dependencies
+### [ACCEPTED] test-pg-extra-duplicates-test-and-pg-dependencies
 The test-pg optional dependency duplicates the dependencies of the test and pg extras instead of referencing them via cross-extra references.
 - Source: /home/forge/workspace/entries/2026/04/29/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] namespace-resolution-preserves-existing-colon
+### [ACCEPTED] namespace-resolution-preserves-existing-colon
 The `_resolve_namespace` function prefixes bare IDs with `namespace:` but leaves IDs already containing `:` untouched.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] add-node-namespace-auto-wiring-creates-active-premise
+### [ACCEPTED] add-node-namespace-auto-wiring-creates-active-premise
 When a namespace is supplied, `add_node` creates the `ns:active` premise and prepends it to the new node's antecedents.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cascade-depth-uses-bfs-shortest-path
+### [ACCEPTED] cascade-depth-uses-bfs-shortest-path
 The `_cascade_depth` function performs BFS through dependents edges to find the shortest path from a retracted node to a target.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-gated-finds-out-nodes-with-in-outlist-blockers
+### [ACCEPTED] list-gated-finds-out-nodes-with-in-outlist-blockers
 `list_gated()` returns OUT nodes whose outlist contains IN nodes, identifying beliefs gated by an IN blocker.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] export-access-filtering-constructs-in-memory-network
+### [ACCEPTED] export-access-filtering-constructs-in-memory-network
 `export_network` and `export_markdown` support access-tag filtering by constructing a filtered `Network` in memory.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] deduplicate-clusters-by-jaccard-id-token-similarity
+### [ACCEPTED] deduplicate-clusters-by-jaccard-id-token-similarity
 `deduplicate()` clusters IN beliefs by Jaccard similarity on ID tokens and uses union-find to group similar IDs.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dedup-plan-workflow-is-human-in-the-loop
+### [ACCEPTED] dedup-plan-workflow-is-human-in-the-loop
 `write_dedup_plan`, `parse_dedup_plan`, and `apply_dedup_plan` implement a human-in-the-loop deduplication workflow via an editable plan file.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] explain-node-delegates-to-network-explain
+### [ACCEPTED] explain-node-delegates-to-network-explain
 `explain_node()` delegates to `Network.explain()` for a step-by-step proof trace.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-reports-content-changed-and-source-deleted
+### [ACCEPTED] check-stale-reports-content-changed-and-source-deleted
 check_stale returns problem records with one of two reason values: content_changed when the file hash differs, or source_deleted when the resolved file path no longer exists.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-skips-nodes-without-source-and-hash
+### [ACCEPTED] check-stale-skips-nodes-without-source-and-hash
 check_stale silently skips nodes that do not have both source and source_hash set, emitting no error or report entry.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-force-rehashes-existing-hashes
+### [ACCEPTED] hash-sources-force-rehashes-existing-hashes
 hash_sources with force=True re-hashes nodes that already have a source_hash and returns a was_empty flag distinguishing forced re-hashes from initial backfill.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-source-path-bare-filename-current-directory
+### [ACCEPTED] resolve-source-path-bare-filename-current-directory
 resolve_source_path treats a source string with no slash as a bare filename in the current directory.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-walks-all-truth-values
+### [ACCEPTED] hash-sources-walks-all-truth-values
 hash_sources walks all nodes regardless of truth value, unlike check_stale which only examines IN nodes.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-delegates-to-api-except-propagate
+### [ACCEPTED] cli-delegates-to-api-except-propagate
 Every cmd_* handler delegates to reasons_lib.api except cmd_propagate, which directly instantiates Storage, loads the network, calls recompute_all(), and saves.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-threads-db-path-through-api
+### [ACCEPTED] cli-threads-db-path-through-api
 Every CLI command handler threads args.db through to the API, with args.db defaulting to api.DEFAULT_DB.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-what-if-never-modifies-database
+### [ACCEPTED] cli-what-if-never-modifies-database
 cmd_what_if is read-only and never modifies the database; its output explicitly states (database NOT modified).
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-derive-shells-out-to-claude-or-gemini
+### [ACCEPTED] cmd-derive-shells-out-to-claude-or-gemini
 cmd_derive shells out to an external CLI (claude or gemini) via asyncio.create_subprocess_exec to generate belief proposals.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-add-warns-for-three-premises-without-any
+### [ACCEPTED] cmd-add-warns-for-three-premises-without-any
 cmd_add and cmd_add_justification call _warn_multi_premise to hint about --any mode when 3+ premises form an AND conjunction without --any.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-deduplicate-has-plan-and-apply-phases
+### [ACCEPTED] cli-deduplicate-has-plan-and-apply-phases
 cmd_deduplicate supports a two-phase workflow: generating a dedup plan file, or applying one via --accept.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-in-nodes-sorted-by-dependent-count
+### [ACCEPTED] compact-in-nodes-sorted-by-dependent-count
 compact() sorts IN nodes by len(node.dependents) descending, so more-depended-on beliefs appear first and survive budget truncation.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-estimate-tokens-is-length-div-four-min-one
+### [ACCEPTED] compact-estimate-tokens-is-length-div-four-min-one
 compact.estimate_tokens approximates token count as max(1, len(text) // 4).
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-appends-omitted-sentinel-when-budget-exhausted
+### [ACCEPTED] compact-appends-omitted-sentinel-when-budget-exhausted
 When compact() stops adding items because the budget would overflow, it appends a ... (N more omitted) sentinel and ends that section.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-validate-rejects-jaccard-similar-to-out
+### [ACCEPTED] derive-validate-rejects-jaccard-similar-to-out
 validate_proposals skips any proposal whose ID has at least 50% Jaccard token similarity to an existing OUT belief, preventing re-derivation of retracted conclusions.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-depth-cycle-guard-returns-zero
+### [ACCEPTED] derive-depth-cycle-guard-returns-zero
 _get_depth sets memo[node_id] = 0 before recursing into antecedents, so circular justification chains terminate with depth 0 rather than infinite recursion.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-validate-rejects-missing-antecedents
+### [ACCEPTED] derive-validate-rejects-missing-antecedents
 validate_proposals rejects proposals whose antecedent or outlist references do not exist in the current network.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-parse-returns-empty-list-on-no-match
+### [ACCEPTED] derive-parse-returns-empty-list-on-no-match
 parse_proposals silently returns an empty list when the LLM response matches neither the new nor old proposal format.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-allocation-is-proportional-by-agent
+### [ACCEPTED] derive-budget-allocation-is-proportional-by-agent
 When agent namespaces are detected, _build_beliefs_section allocates the belief budget proportionally by agent size.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-prompt-default-budget-is-300
+### [ACCEPTED] derive-build-prompt-default-budget-is-300
 build_prompt has a default budget of 300 beliefs.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-write-proposals-file-roundtrips-through-parse
+### [ACCEPTED] derive-write-proposals-file-roundtrips-through-parse
 write_proposals_file serializes proposals to a markdown file in the same format parse_proposals() can read back, enabling human review before reasons accept.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-creates-active-inactive-kill-switch-pair
+### [ACCEPTED] import-agent-creates-active-inactive-kill-switch-pair
 _ensure_agent_nodes() creates a premise node agent:active and an SL-justified node agent:inactive with outlist=[agent:active], so retracting agent:active flips agent:inactive IN and cascades all imported beliefs OUT.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-inactive-in-every-outlist
+### [ACCEPTED] import-agent-inactive-in-every-outlist
 _build_justifications() unconditionally injects agent:inactive into every imported belief's outlist, making bulk distrust work through TMS propagation.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-nogoods-require-at-least-two-valid-nodes
+### [ACCEPTED] import-agent-nogoods-require-at-least-two-valid-nodes
 _import_nogoods() filters out nogoods that reference fewer than 2 nodes existing in the network.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-retracts-out-beliefs-after-recompute
+### [ACCEPTED] import-agent-retracts-out-beliefs-after-recompute
 _import_claims() calls recompute_all() to propagate truth values and then explicitly retracts nodes that were OUT in the source.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-prefixes-ids-with-agent-name
+### [ACCEPTED] import-agent-prefixes-ids-with-agent-name
 All imported node IDs are prefixed with agent_name: (e.g., rhel-expert:kernel-modules-loaded) to prevent collisions between agents and with local beliefs.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-topo-sort-is-cycle-tolerant
+### [ACCEPTED] import-beliefs-topo-sort-is-cycle-tolerant
 The import_beliefs topological sort uses a multi-pass Kahn-like algorithm that detects zero progress and appends remaining claims without raising an error when circular dependencies exist.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-adds-out-nodes-before-retracting
+### [ACCEPTED] import-beliefs-adds-out-nodes-before-retracting
 STALE and OUT claims are first added to the network with their full justification structure and then retracted, preserving the dependency graph for possible future restoration.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-skips-existing-node-ids
+### [ACCEPTED] import-beliefs-skips-existing-node-ids
 If a claim ID already exists in network.nodes, import_beliefs silently skips it with no upsert or merge behavior.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-drops-nogoods-with-fewer-than-two-valid-nodes
+### [ACCEPTED] import-beliefs-drops-nogoods-with-fewer-than-two-valid-nodes
 Nogoods are imported only when at least 2 of their referenced nodes exist in the network; otherwise they are silently dropped.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-parses-repos-until-next-header
+### [ACCEPTED] import-beliefs-parses-repos-until-next-header
 parse_repos extracts the ## Repos section into a name-to-path mapping and stops parsing at the next ## header.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-beliefs-first-free-line-is-claim-text
+### [ACCEPTED] import-beliefs-first-free-line-is-claim-text
 parse_beliefs treats the first non-metadata, non-empty line after a claim header as the claim's human-readable text.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-import_beliefs.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-challenge-converts-premise-to-justified-node
+### [ACCEPTED] network-challenge-converts-premise-to-justified-node
 When Network.challenge targets a premise, it converts that target into a justified node with an SL justification containing the challenge in its outlist.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-defend-implemented-via-challenge
+### [ACCEPTED] network-defend-implemented-via-challenge
 Network.defend is implemented by calling self.challenge on the challenge node, creating a premise in the challenge's outlist.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-explain-recurses-through-valid-justification
+### [ACCEPTED] network-explain-recurses-through-valid-justification
 Network.explain recursively traces why a node is IN by finding its valid justification and recursing into antecedents, and why a node is OUT by reporting failed antecedents and violated outlist nodes.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-trace-assumptions-returns-leaf-premises
+### [ACCEPTED] network-trace-assumptions-returns-leaf-premises
 Network.trace_assumptions walks backward through justification chains to return all leaf premise nodes with no justifications.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-schema-contains-five-tables
+### [ACCEPTED] pgapi-schema-contains-five-tables
 PgApi defines five project-partitioned tables: rms_nodes, rms_justifications, rms_nogoods, rms_propagation_log, and rms_network_meta.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-constructor-accepts-connection-string-or-psycopg-connection
+### [ACCEPTED] pgapi-constructor-accepts-connection-string-or-psycopg-connection
 The PgApi constructor accepts either a PostgreSQL connection string or an existing psycopg connection, plus a project_id.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-list-gated-finds-out-nodes-flippable-by-outlist-blockers
+### [ACCEPTED] pgapi-list-gated-finds-out-nodes-flippable-by-outlist-blockers
 PgApi.list_gated finds OUT nodes that would flip IN if their outlist blockers went OUT, implementing the GATE pattern.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-add-node-inherits-access-tags-from-antecedents
+### [ACCEPTED] pgapi-add-node-inherits-access-tags-from-antecedents
 PgApi.add_node inherits access tags from a node's antecedents.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-add-node-returns-node-type-and-premise-count
+### [ACCEPTED] pgapi-add-node-returns-node-type-and-premise-count
 PgApi.add_node returns the node type (premise vs. derived) and the current premise count.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-jsonb-fields-checked-for-string-before-json-loads
+### [ACCEPTED] pgapi-jsonb-fields-checked-for-string-before-json-loads
 PgApi defensively checks every metadata, antecedents, and outlist field with isinstance(x, str) before calling json.loads, because psycopg may or may not auto-deserialize JSONB.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-load-rebuilds-dependents-index
+### [ACCEPTED] storage-load-rebuilds-dependents-index
 Storage.load assigns nodes directly into network.nodes and then calls network._rebuild_dependents() to reconstruct the reverse dependents index.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-save-persists-propagation-log-and-repos
+### [ACCEPTED] storage-save-persists-propagation-log-and-repos
 Storage.save persists the propagation_log and repos tables in addition to nodes, justifications, nogoods, and network_meta.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-load-does-not-validate-json
+### [ACCEPTED] storage-load-does-not-validate-json
 Storage.load performs no validation on loaded JSON columns; malformed JSON raises json.JSONDecodeError and propagates uncaught.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-init-schema-is-idempotent
+### [ACCEPTED] storage-init-schema-is-idempotent
 Storage._init_schema uses CREATE TABLE IF NOT EXISTS and CREATE VIRTUAL TABLE IF NOT EXISTS, making schema initialization safe to run against an existing database.
 - Source: /home/forge/workspace/entries/2026/04/29/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-what-if-tracks-cascade-depth
+### [ACCEPTED] pgapi-what-if-tracks-cascade-depth
 PgApi what_if_retract and what_if_assert annotate cascade effects with BFS depth by following both antecedents and outlist via _find_dependents.
 - Source: /home/forge/workspace/entries/2026/04/29/session-summary.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-propagate-delegates-to-api-propagate
+### [ACCEPTED] cmd-propagate-delegates-to-api-propagate
 cmd_propagate delegates to api.propagate() using the _with_network pattern, removing the only CLI handler that bypassed the API layer.
 - Source: /home/forge/workspace/entries/2026/04/29/session-summary.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pgapi-coverage-gaps-decomposed-into-eight-sub-issues
+### [ACCEPTED] pgapi-coverage-gaps-decomposed-into-eight-sub-issues
 23 missing PgApi functions were catalogued and filed as 8 focused sub-issues numbered #63 through #70 by category.
 - Source: /home/forge/workspace/entries/2026/04/29/session-summary.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] code-expert-update-produced-242-new-beliefs
+### [ACCEPTED] code-expert-update-produced-242-new-beliefs
 A code-expert update run produced 242 new beliefs, bringing the total to 542, with 217 derived beliefs.
 - Source: /home/forge/workspace/entries/2026/04/29/session-summary.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] project-version-is-0-22-0
+### [ACCEPTED] project-version-is-0-22-0
 The project version recorded in the session summary is 0.22.0.
 - Source: /home/forge/workspace/entries/2026/04/29/session-summary.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pytest-configure-registers-pg-marker
+### [ACCEPTED] pytest-configure-registers-pg-marker
 pytest_configure registers the `pg` marker at collection time so `@pytest.mark.pg` does not trigger an unknown-marker warning.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-conftest.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-fixture-initializes-db
+### [ACCEPTED] pg-api-fixture-initializes-db
 The `pg_api` fixture calls `init_db()` on the UUID-scoped `PgApi` instance before yielding it to the test.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-conftest.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-cleanup-deletes-in-dependency-order
+### [ACCEPTED] pg-cleanup-deletes-in-dependency-order
 The `pg_api` teardown deletes rows across the five tracked tables in dependency order, with `rms_propagation_log` first and `rms_nodes` last.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-conftest.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] trace-access-tags-raises-keyerror-for-missing-node
+### [ACCEPTED] trace-access-tags-raises-keyerror-for-missing-node
 `Network.trace_access_tags()` raises `KeyError` for nonexistent node IDs.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derived-node-merges-explicit-and-inherited-access-tags
+### [ACCEPTED] derived-node-merges-explicit-and-inherited-access-tags
 A derived node's effective `access_tags` merge any explicit tags declared on the node with the inherited tags from its antecedents.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] access-tags-survive-sqlite-roundtrip
+### [ACCEPTED] access-tags-survive-sqlite-roundtrip
 `access_tags` survive write-to-SQLite and read-back through `api.add_node` and `api.show_node`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-status-counts-only-visible-nodes
+### [ACCEPTED] get-status-counts-only-visible-nodes
 `get_status` summary counts include only nodes visible under the supplied `visible_to` filter.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_access_tags.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-idempotent-operations-return-empty-changed
+### [ACCEPTED] api-idempotent-operations-return-empty-changed
 Retracting an already-OUT node or asserting an already-IN node returns `changed == []`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-get-belief-set-returns-only-in-node-ids
+### [ACCEPTED] api-get-belief-set-returns-only-in-node-ids
 `api.get_belief_set()` returns only the IDs of nodes whose truth value is IN.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-get-log-supports-last-n-truncation
+### [ACCEPTED] api-get-log-supports-last-n-truncation
 `api.get_log(last=N)` returns at most the last N audit-log entries.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] build-ask-prompt-includes-search-beliefs-tool
+### [ACCEPTED] build-ask-prompt-includes-search-beliefs-tool
 `build_ask_prompt()` always includes the `search_beliefs` tool definition so the LLM knows it can request additional searches.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] build-ask-prompt-appends-tool-history-section
+### [ACCEPTED] build-ask-prompt-appends-tool-history-section
 When `tool_history` is provided, `build_ask_prompt()` appends an 'Additional search results' section containing prior queries and their results.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-unknown-tool-returns-raw-response
+### [ACCEPTED] ask-unknown-tool-returns-raw-response
 When the LLM emits an unrecognized tool name, `ask()` returns the raw LLM response without crashing.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-no-synth-returns-no-results-when-no-fts5-matches
+### [ACCEPTED] ask-no-synth-returns-no-results-when-no-fts5-matches
 In `no_synth=True` mode, `ask()` returns the string 'No results' when FTS5 finds no matches.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-reports-content-changed-with-old-new-hashes
+### [ACCEPTED] check-stale-reports-content-changed-with-old-new-hashes
 When a source file changes, `check_stale()` reports a result with `reason='content_changed'` and includes the old and new hashes.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-file-uses-sha256
+### [ACCEPTED] hash-file-uses-sha256
 `hash_file()` computes a SHA-256 hash of the file's contents.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-mutates-network-in-place
+### [ACCEPTED] hash-sources-mutates-network-in-place
 `hash_sources()` writes computed hashes directly into `net.nodes[id].source_hash` for nodes it backfills.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-requires-source-hash
+### [ACCEPTED] check-stale-requires-source-hash
 `check_stale()` skips IN nodes that have a `source` but no non-empty `source_hash`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-requires-nonempty-source-and-source-hash
+### [ACCEPTED] check-stale-requires-nonempty-source-and-source-hash
 `check_stale` skips nodes that lack `source` metadata, lack `source_hash` metadata, or have an empty-string `source`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-empty-file-with-matching-hash-is-fresh
+### [ACCEPTED] check-stale-empty-file-with-matching-hash-is-fresh
 An existing empty source file whose hash matches the node's `source_hash` is treated as fresh and produces no staleness result.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-content-changed-populates-source-path
+### [ACCEPTED] check-stale-content-changed-populates-source-path
 A `content_changed` result from `check_stale` includes the resolved filesystem path in its `source_path` field.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-repos-none-still-detects-source-deleted
+### [ACCEPTED] check-stale-repos-none-still-detects-source-deleted
 When `check_stale` is called with `repos=None`, a missing source file still produces a `source_deleted` result.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] run-cli-builds-argv-and-captures-streams
+### [ACCEPTED] run-cli-builds-argv-and-captures-streams
 The `run_cli` test helper builds a synthetic `sys.argv` starting with "reasons" (plus optional `--db`), patches stdout/stderr with `StringIO`, calls `main()`, and returns `(stdout, stderr, exit_code)`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-tests-treat-human-readable-output-as-api
+### [ACCEPTED] cli-tests-treat-human-readable-output-as-api
 CLI tests assert on human-readable output substrings such as `Added a [IN]`, `Went OUT`, and `already IN`, treating CLI output copy as part of the tested API.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-idempotent-retract-assert-return-zero
+### [ACCEPTED] cli-idempotent-retract-assert-return-zero
 `retract` on an already-OUT node and `assert` on an already-IN node both return exit code 0 with informational messages rather than an error.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-what-if-does-not-persist-changes
+### [ACCEPTED] cli-what-if-does-not-persist-changes
 CLI `what-if` tests verify that cascade simulation runs without persisting changes and that output contains `NOT modified`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-tests-set-up-networks-via-chained-cli-calls
+### [ACCEPTED] cli-tests-set-up-networks-via-chained-cli-calls
 CLI tests build belief networks by sequentially calling `run_cli("init", ...)`, `run_cli("add", ...)`, and similar commands rather than constructing synthetic database states.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-nogoods-render-under-heading-with-auto-ids
+### [ACCEPTED] compact-nogoods-render-under-heading-with-auto-ids
 `compact()` includes nogood contradiction sets under a `## Nogoods` section with auto-generated IDs.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-truncates-long-text-only-when-truncate-true
+### [ACCEPTED] compact-truncates-long-text-only-when-truncate-true
 `compact()` ellipsis-truncates long belief text when `truncate=True` and preserves it when `truncate=False`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-empty-network-reports-zero-nodes
+### [ACCEPTED] compact-empty-network-reports-zero-nodes
 `compact()` on an empty network produces a valid summary containing `0 nodes tracked`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-shows-antecedents-and-dependent-counts
+### [ACCEPTED] compact-shows-antecedents-and-dependent-counts
 The compact output shows derived-node antecedents as `<- <id>` and displays dependent counts such as `(2 dependents)` when present.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] compact-budget-omits-entries-with-more-omitted-message
+### [ACCEPTED] compact-budget-omits-entries-with-more-omitted-message
 Each compact output section independently respects the token budget and emits a `more … omitted` message when entries are dropped.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_compact.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dangling-dependent-warning-once-per-encounter
+### [ACCEPTED] dangling-dependent-warning-once-per-encounter
 Every dangling dependent reference encountered during propagation produces exactly one warning entry in `net.log`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_dangling_dependents.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dangling-guard-covers-challenge-and-add-justification
+### [ACCEPTED] dangling-guard-covers-challenge-and-add-justification
 The dangling-dependent propagation guard also fires when propagation is triggered through `challenge()` and `add_justification()`, not only through `retract()` and `assert_node()`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_dangling_dependents.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dangling-warning-includes-timestamp
+### [ACCEPTED] dangling-warning-includes-timestamp
 Dangling-dependent warning entries in `net.log` include a `timestamp` field.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_dangling_dependents.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dangling-dependents-injected-by-direct-set-mutation
+### [ACCEPTED] dangling-dependents-injected-by-direct-set-mutation
 Dangling-dependent tests inject ghost IDs by directly mutating a node's `dependents` set, such as `net.nodes["a"].dependents.add("ghost")`, rather than through the public API.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_dangling_dependents.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-ceiling-invariant
+### [ACCEPTED] derive-budget-ceiling-invariant
 `_build_beliefs_section` enforces that the combined count of agent-shown and local-shown beliefs never exceeds the configured `max_beliefs` budget.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-local-remainder-formula
+### [ACCEPTED] derive-budget-local-remainder-formula
 When enough local beliefs exist, `_build_beliefs_section` sets `local_shown` to `max(5, max_beliefs - agent_total)`.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-agent-match-uses-startswith
+### [ACCEPTED] derive-budget-agent-match-uses-startswith
 `_build_beliefs_section` identifies agent beliefs by checking whether node IDs start with the agent name followed by a colon.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-sampling-is-seed-deterministic
+### [ACCEPTED] derive-budget-sampling-is-seed-deterministic
 In sample mode, `_build_beliefs_section` produces identical output across calls when given the same random seed.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-missing-node-operations-raise-keyerror
+### [ACCEPTED] network-missing-node-operations-raise-keyerror
 `Network.retract`, `assert_node`, `explain`, and `add_nogood` raise `KeyError` with message 'not found' when referencing a nonexistent node ID.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-duplicate-node-add-raises-valueerror
+### [ACCEPTED] network-duplicate-node-add-raises-valueerror
 `Network.add_node` raises `ValueError` with message 'already exists' when called with a duplicate node ID.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-multiple-justifications-survive-single-antecedent-retraction
+### [ACCEPTED] network-multiple-justifications-survive-single-antecedent-retraction
 A node with multiple justifications remains IN when only one justification's antecedent is retracted.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-idempotent-retract-assert-return-empty-list
+### [ACCEPTED] network-idempotent-retract-assert-return-empty-list
 Retracting an already-OUT node or asserting an already-IN node returns an empty change list.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-pre-fix-ids-used-len-plus-one
+### [ACCEPTED] nogood-pre-fix-ids-used-len-plus-one
 Before the issue #26 fix, nogood IDs were derived from `len(self.nogoods) + 1`, which allowed ID reuse after deletion.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] nogood-old-db-without-meta-defaults-counter-to-one
+### [ACCEPTED] nogood-old-db-without-meta-defaults-counter-to-one
 When loading a pre-fix database with no `network_meta` table and no existing nogoods, `_next_nogood_id` defaults to 1.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_nogood_id.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-duplicate-add-node-raises-generic-exception
+### [ACCEPTED] pg-api-duplicate-add-node-raises-generic-exception
 `PgApi.add_node` with an existing node ID raises a generic `Exception` rather than a specific subclass.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-missing-node-operations-raise-keyerror
+### [ACCEPTED] pg-api-missing-node-operations-raise-keyerror
 `PgApi.retract_node`, `show_node`, `what_if_retract`, `what_if_assert`, `challenge`, `defend`, `add_justification`, and `add_nogood` raise `KeyError` for nonexistent node IDs.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-defend-id-collision-raises-valueerror
+### [ACCEPTED] pg-api-defend-id-collision-raises-valueerror
 `PgApi.defend` raises `ValueError` when the provided `defense_id` collides with an existing node.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-idempotent-retract-assert-return-empty-changed
+### [ACCEPTED] pg-api-idempotent-retract-assert-return-empty-changed
 `PgApi.retract_node` on an already-OUT node and `assert_node` on an already-IN node return an empty changed list rather than raising.
 - Source: /home/forge/workspace/entries/2026/04/29/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] apply-proposals-requires-prior-validation
+### [ACCEPTED] apply-proposals-requires-prior-validation
 `apply_proposals` trusts its input unconditionally; callers must run `validate_proposals` first to avoid database errors from missing antecedents or duplicate IDs.
 - Source: /home/forge/workspace/entries/2026/04/29/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-negative-two-stage-classification
+### [ACCEPTED] list-negative-two-stage-classification
 `list_negative` uses keyword pre-filtering against a hardcoded `NEGATIVE_TERMS` list of about 50 words, then LLM classification via `ask._invoke_claude` to eliminate false positives.
 - Source: /home/forge/workspace/entries/2026/04/29/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] test-pg-extra-manually-lists-deps
+### [ACCEPTED] test-pg-extra-manually-lists-deps
 The `test-pg` extra in `pyproject.toml` manually lists `pytest`, `pytest-cov`, and `psycopg[binary]>=3.1` instead of composing the `test` and `pg` extras, requiring updates in two places when test dependencies change.
 - Source: /home/forge/workspace/entries/2026/05/05/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] what-if-functions-never-persist
+### [ACCEPTED] what-if-functions-never-persist
 The `what_if_retract` and `what_if_assert` API functions are read-only simulations that load the network, apply the operation in memory, and pass `write=False` to `_with_network`, so no changes are persisted to the database.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-dual-mode-requires-sources-db
+### [ACCEPTED] ask-dual-mode-requires-sources-db
 In ask.py, dual mode requires a sources_db value and raises ValueError when dual=True is used without one.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-natural-flag-strips-belief-metadata
+### [ACCEPTED] ask-natural-flag-strips-belief-metadata
 When natural=True, ask.py uses the natural citation rule without belief IDs and calls _strip_belief_metadata to remove status, justification, and dependency lines from belief context.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-search-source-chunks-uses-stopword-filtered-or-query
+### [ACCEPTED] ask-search-source-chunks-uses-stopword-filtered-or-query
 _search_source_chunks tokenizes the question, filters stop words, runs an OR query against the rag_fts.db SQLite FTS5 index, and returns markdown with filename and section headers.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-tool-loop-status-messages-use-stderr
+### [ACCEPTED] ask-tool-loop-status-messages-use-stderr
 Status messages in ask.py are written to stderr so they do not pollute the answer written to stdout.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-source-path-priority-chain
+### [ACCEPTED] resolve-source-path-priority-chain
 resolve_source_path resolves relative source strings by checking the agent repo, then db_dir, then the repos dict, then ~/git fallback, then the bare path.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-file-returns-full-64-char-sha256
+### [ACCEPTED] hash-file-returns-full-64-char-sha256
 hash_file returns the full 64-character SHA-256 hex digest and does not catch errors for unreadable files.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] hash-sources-force-rehashes-all-source-nodes
+### [ACCEPTED] hash-sources-force-rehashes-all-source-nodes
 hash_sources with force=True re-hashes all source-bearing nodes regardless of whether they already have a source_hash.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-upgrade-hashes-excludes-upgraded-truncated
+### [ACCEPTED] check-stale-upgrade-hashes-excludes-upgraded-truncated
 When upgrade_hashes=True, check_stale silently upgrades matching truncated hashes in place on the node and excludes them from stale results.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-db-option-defaults-to-api-default-db
+### [ACCEPTED] cli-db-option-defaults-to-api-default-db
 Every CLI handler passes args.db through, and the --db option defaults to api.DEFAULT_DB, making the database path user-overridable on every command.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-parse-visible-to-returns-none-when-absent
+### [ACCEPTED] cli-parse-visible-to-returns-none-when-absent
 _parse_visible_to returns None rather than an empty list when --visible-to is absent, and the API layer interprets None as no access control.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-derive-exhaust-implies-auto
+### [ACCEPTED] cli-derive-exhaust-implies-auto
 cmd_derive's --exhaust mode implies --auto because _derive_one_round checks args.auto or args.exhaust before auto-applying proposals.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-output-is-plain-text-not-json
+### [ACCEPTED] cli-output-is-plain-text-not-json
 CLI command handlers format returned result dicts as plain text for terminal output rather than JSON.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-init-catches-fileexistserror-suggests-force
+### [ACCEPTED] cmd-init-catches-fileexistserror-suggests-force
 cmd_init catches FileExistsError and suggests using --force.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-creates-two-infra-nodes-per-agent
+### [ACCEPTED] import-agent-creates-two-infra-nodes-per-agent
 _ensure_agent_nodes creates two infrastructure nodes per agent: agent:active as a bare premise and agent:inactive with an SL justification whose outlist contains agent:active.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-prefixes-ids-at-justification-build-stage
+### [ACCEPTED] import-agent-prefixes-ids-at-justification-build-stage
 Imported belief IDs get the agent_name prefix during _build_justifications, while raw justifications carry unprefixed IDs.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-sync-marks-removed-nodes-retracted-metadata
+### [ACCEPTED] import-agent-sync-marks-removed-nodes-retracted-metadata
 In sync, local-only agent beliefs not present in the remote set are retracted or marked _retracted in metadata, excluding infrastructure nodes.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-dual-format-normalization-shared-claim-schema
+### [ACCEPTED] import-agent-dual-format-normalization-shared-claim-schema
 _normalize_markdown and _normalize_json both produce a common claim dict with id, text, is_out, source, source_hash, date, metadata, and raw_justifications fields.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-model-resolution-supports-four-syntax-forms
+### [ACCEPTED] llm-model-resolution-supports-four-syntax-forms
 resolve_model_cmd supports exact MODEL_COMMANDS names, claude:<submodel>, gemini:<submodel>, and ollama:<model> syntax forms.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-invoke-default-timeout-300-seconds
+### [ACCEPTED] llm-invoke-default-timeout-300-seconds
 invoke_model has a default timeout of 300 seconds for LLM subprocess calls.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-checks-binary-exists-before-spawn
+### [ACCEPTED] llm-checks-binary-exists-before-spawn
 invoke_model uses shutil.which to check that the resolved model binary exists in PATH before spawning the subprocess, raising FileNotFoundError if missing.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-nonzero-exit-raises-runtimeerror-with-stderr
+### [ACCEPTED] llm-nonzero-exit-raises-runtimeerror-with-stderr
 A non-zero exit from an LLM subprocess causes invoke_model to raise RuntimeError containing the subprocess stderr output.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-bfs-propagation-uses-deque-and-visited-set
+### [ACCEPTED] network-bfs-propagation-uses-deque-and-visited-set
 `_propagate()` uses a `deque`-based BFS through the dependents reverse index and a `visited` set to prevent cycles.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-recompute-all-bound-by-node-count-plus-one
+### [ACCEPTED] network-recompute-all-bound-by-node-count-plus-one
 `recompute_all()` iterates to a fixpoint over all derived nodes and is bounded by `len(self.nodes) + 1` iterations.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-add-node-raises-valueerror-on-duplicate-id
+### [ACCEPTED] network-add-node-raises-valueerror-on-duplicate-id
 `add_node()` raises `ValueError` when given an already-existing node ID.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-entrenchment-ranks-premises-above-derived-and-sourced-above-unsourced
+### [ACCEPTED] network-entrenchment-ranks-premises-above-derived-and-sourced-above-unsourced
 `_entrenchment()` scores premises higher than derived nodes, sourced nodes higher than unsourced nodes, and nodes with more dependents higher than nodes with fewer dependents.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-propagate-warns-on-dangling-dependents-without-raising
+### [ACCEPTED] network-propagate-warns-on-dangling-dependents-without-raising
 `_propagate()` logs a warning for a dangling dependent ID that is absent from `self.nodes` but does not raise an exception.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-verify-dependents-detects-index-drift
+### [ACCEPTED] network-verify-dependents-detects-index-drift
 `verify_dependents()` recomputes the dependents index from justifications and diffs it against the live index to detect drift.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-what-if-rolls-back-unconditionally
+### [ACCEPTED] pg-what-if-rolls-back-unconditionally
 `what_if_retract` and `what_if_assert` mutate rows inside a transaction, collect cascade results, and then unconditionally call `self.conn.rollback()` in a `finally` block so simulations are side-effect-free.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-schema-constrains-truth-values-and-justification-types
+### [ACCEPTED] pg-schema-constrains-truth-values-and-justification-types
 The PostgreSQL schema constrains `truth_value` to `'IN'` or `'OUT'` and justification `type` to `'SL'` or `'CP'` via CHECK constraints.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-search-combines-full-text-and-ilike-fallback
+### [ACCEPTED] pg-search-combines-full-text-and-ilike-fallback
 `PgApi.search` uses PostgreSQL `to_tsvector`/`plainto_tsquery` full-text search plus an ILIKE fallback on node IDs and includes 1-hop neighbor expansion.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-list-gated-finds-out-nodes-by-outlist-blockers
+### [ACCEPTED] pg-list-gated-finds-out-nodes-by-outlist-blockers
 `list_gated` finds OUT nodes that would flip IN if their outlist blocker nodes were retracted (GATE pattern).
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-missing-psycopg-raises-importerror-with-install-instructions
+### [ACCEPTED] pg-missing-psycopg-raises-importerror-with-install-instructions
 `PgApi.__init__` calls `_require_psycopg()`, which raises `ImportError` with install instructions when the `psycopg` driver is unavailable.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-add-justification-requires-sl-or-cp
+### [ACCEPTED] pg-add-justification-requires-sl-or-cp
 `PgApi.add_justification` raises `ValueError` when both the `sl` and `cp` justification inputs are empty.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-batch-size-constant-is-20
+### [ACCEPTED] review-batch-size-constant-is-20
 `REVIEW_BATCH_SIZE` is set to 20, so `review_beliefs` sends at most 20 beliefs per LLM call by default.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-format-returns-empty-string-for-missing-node
+### [ACCEPTED] review-format-returns-empty-string-for-missing-node
 `format_belief_for_review` returns an empty string when the requested node ID is not found in the `nodes` dict.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-parser-scans-for-json-array-with-raw-decode
+### [ACCEPTED] review-parser-scans-for-json-array-with-raw-decode
 `parse_review_response` uses `json.JSONDecoder.raw_decode` scanning from each `[` character to extract a JSON array from LLM output that may contain surrounding prose.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-renders-missing-reference-as-not-found-in-network
+### [ACCEPTED] review-renders-missing-reference-as-not-found-in-network
 `format_belief_for_review` renders `(not found in network)` for antecedent or outlist entries missing from the `nodes` dict.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-results-returned-in-batch-order
+### [ACCEPTED] review-results-returned-in-batch-order
 `review_beliefs` returns results in batch order, not necessarily matching input order within a batch.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-save-deletes-and-reinserts-all-rows
+### [ACCEPTED] storage-save-deletes-and-reinserts-all-rows
 `Storage.save()` deletes all rows from every table and re-inserts the full network state in a single SQLite transaction, with no incremental/diff-based persistence.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-fts-table-rebuilt-on-every-save
+### [ACCEPTED] storage-fts-table-rebuilt-on-every-save
 The `nodes_fts` FTS5 virtual table is dropped and recreated on every `Storage.save()` rather than incrementally updated.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-load-trusts-stored-state-without-validation
+### [ACCEPTED] storage-load-trusts-stored-state-without-validation
 `Storage.load()` does not validate that antecedent node IDs exist, truth values are valid, or justification types are recognized; it trusts the database contents written by `save()`.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-fts-uses-porter-stemming
+### [ACCEPTED] storage-fts-uses-porter-stemming
 The `nodes_fts` FTS5 index uses Porter stemming on node ID and text.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] storage-no-connection-pooling-or-retry
+### [ACCEPTED] storage-no-connection-pooling-or-retry
 `Storage` uses one SQLite connection per instance and has no connection pooling or retry logic for `SQLITE_BUSY`.
 - Source: /home/forge/workspace/entries/2026/05/05/reasons_lib-storage.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-reviewed-80-derived-beliefs-in-four-batches
+### [ACCEPTED] review-practice-reviewed-80-derived-beliefs-in-four-batches
 The first live `review-beliefs` run reviewed 80 derived beliefs in 4 batches of 20, using 4 LLM calls total.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-65-of-80-beliefs-passed
+### [ACCEPTED] review-practice-65-of-80-beliefs-passed
 In the first live review run, 65 of 80 reviewed derived beliefs passed the LLM review.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-9-of-80-beliefs-invalid
+### [ACCEPTED] review-practice-9-of-80-beliefs-invalid
 In the first live review run, 9 of 80 reviewed derived beliefs were marked invalid.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-8-retractions-cascaded-about-100-dependents
+### [ACCEPTED] review-practice-8-retractions-cascaded-about-100-dependents
 The first review run retracted 8 invalid beliefs, cascading approximately 100 dependent beliefs OUT and reducing the network from 812 IN to 710 IN.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-two-beliefs-strengthened-with-missing-antecedents
+### [ACCEPTED] review-practice-two-beliefs-strengthened-with-missing-antecedents
 The first review run fixed 2 beliefs by adding missing antecedents that already existed in the network but were not wired into the justification.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-actionable-issue-rate-19-percent
+### [ACCEPTED] review-practice-actionable-issue-rate-19-percent
 The first review run found actionable issues in 19% of reviewed beliefs (15 of 80).
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-retraction-reduced-IN-by-12-5-percent
+### [ACCEPTED] review-practice-retraction-reduced-IN-by-12-5-percent
 After the first review run's retraction cascades, the network's IN count shrank by 12.5%, from 812 to 710.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-practice-llm-call-takes-30-60-seconds
+### [ACCEPTED] review-practice-llm-call-takes-30-60-seconds
 Each review LLM call took approximately 30-60 seconds in the first live run.
 - Source: /home/forge/workspace/entries/2026/05/05/review-beliefs-in-practice.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-tests-use-fresh-sqlite-db-per-test
+### [ACCEPTED] api-tests-use-fresh-sqlite-db-per-test
 The API test suite uses a `db_path` pytest fixture that creates a fresh SQLite database in `tmp_path` for each test.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-functions-accept-db-path-string
+### [ACCEPTED] api-functions-accept-db-path-string
 Public functions in `reasons_lib.api` accept a `db_path` string keyword and open and close their own SQLite connection internally.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-retract-already-out-returns-empty-changed
+### [ACCEPTED] api-retract-already-out-returns-empty-changed
 Calling `api.retract_node()` on an already-OUT node returns `changed: []` without raising an error.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-assert-already-in-returns-empty-changed
+### [ACCEPTED] api-assert-already-in-returns-empty-changed
 Calling `api.assert_node()` on an already-IN node returns `changed: []` without raising an error.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] search-depth-expansion-adds-antecedents
+### [ACCEPTED] search-depth-expansion-adds-antecedents
 `api.search()` depth expansion returns only direct hits at depth 0, adds direct antecedents at depth 1, and adds transitive antecedents at depth 2.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-gated-excludes-retracted-blockers
+### [ACCEPTED] list-gated-excludes-retracted-blockers
 `api.list_gated()` excludes gated nodes whose blockers have been retracted.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-dual-performs-three-sequential-llm-calls
+### [ACCEPTED] ask-dual-performs-three-sequential-llm-calls
 `ask(..., dual=True)` performs three sequential LLM calls: one for TMS beliefs, one for source documents, and one to merge the two answers.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-source-docs-persist-across-tool-rounds
+### [ACCEPTED] ask-source-docs-persist-across-tool-rounds
 In the agentic `ask` loop, source document content included in the prompt persists across tool-call rounds.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] strip-belief-metadata-is-idempotent-on-plain-text
+### [ACCEPTED] strip-belief-metadata-is-idempotent-on-plain-text
 `_strip_belief_metadata` leaves plain belief text unchanged and only removes markdown structural elements such as headers, status lines, and separators.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-returns-results-and-upgrade-count-tuple
+### [ACCEPTED] check-stale-returns-results-and-upgrade-count-tuple
 `check_stale()` returns a tuple `(results, upgraded_count)` where `results` is a list of result dicts and `upgraded_count` counts truncated hashes upgraded in place.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_check_stale.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-existing-empty-file-is-not-deleted
+### [ACCEPTED] check-stale-existing-empty-file-is-not-deleted
 An existing zero-byte source file is not reported as `source_deleted`; it is fresh if its hash matches and `content_changed` if the hash differs.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] check-stale-repos-none-still-detects-missing-files
+### [ACCEPTED] check-stale-repos-none-still-detects-missing-files
 `check_stale()` with `repos=None` still returns `source_deleted` results for missing source files instead of raising an exception.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_check_stale_issue25.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-registers-source-repo
+### [ACCEPTED] import-agent-registers-source-repo
 `import_agent` registers the imported agent's source directory in the repos list, exposed via `api.list_repos()`.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-imports-companion-nogoods
+### [ACCEPTED] import-agent-imports-companion-nogoods
 `import_agent` imports nogoods from a companion `nogoods.md` file alongside the agent's beliefs.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-only-in-excludes-stale-out-beliefs
+### [ACCEPTED] import-agent-only-in-excludes-stale-out-beliefs
 With `only_in=True`, `import_agent` excludes STALE/OUT beliefs entirely so that `api.show_node` on an excluded belief raises `KeyError`.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-claude-bare-argv
+### [ACCEPTED] resolve-model-cmd-claude-bare-argv
 resolve_model_cmd('claude') returns the argv list ['claude', '-p'].
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-claude-submodel-argv
+### [ACCEPTED] resolve-model-cmd-claude-submodel-argv
 resolve_model_cmd('claude:sonnet') returns the argv list ['claude', '-p', '--model', 'sonnet'].
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-gemini-bare-argv
+### [ACCEPTED] resolve-model-cmd-gemini-bare-argv
 resolve_model_cmd('gemini') returns the argv list ['gemini', '--skip-trust', '-p', ''].
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-gemini-submodel-argv
+### [ACCEPTED] resolve-model-cmd-gemini-submodel-argv
 resolve_model_cmd('gemini:flash') returns the argv list ['gemini', '--skip-trust', '-m', 'flash', '-p', ''].
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-ollama-argv
+### [ACCEPTED] resolve-model-cmd-ollama-argv
 resolve_model_cmd('ollama:gemma3:4b') returns the argv list ['ollama', 'run', 'gemma3:4b'].
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] resolve-model-cmd-unknown-prefix-raises-valueerror
+### [ACCEPTED] resolve-model-cmd-unknown-prefix-raises-valueerror
 resolve_model_cmd raises ValueError for an unknown model prefix such as 'gpt-4'.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] invoke-model-forwards-timeout
+### [ACCEPTED] invoke-model-forwards-timeout
 invoke_model forwards its timeout argument to subprocess.run.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-thinking-strip-requires-both-markers
+### [ACCEPTED] llm-thinking-strip-requires-both-markers
 invoke_model strips Ollama thinking output only when both 'Thinking...' and '...done thinking.' markers are present; partial markers leave output unchanged.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_llm.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-derived-node-inherits-union-of-antecedent-access-tags
+### [ACCEPTED] pg-derived-node-inherits-union-of-antecedent-access-tags
 Derived nodes in PgApi inherit the union of their antecedents' access tags.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-what-if-operations-are-read-only
+### [ACCEPTED] pg-what-if-operations-are-read-only
 PgApi what_if_retract() and what_if_assert() report cascades without mutating database state.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-challenge-creates-outlist-entry-forcing-target-out
+### [ACCEPTED] pg-challenge-creates-outlist-entry-forcing-target-out
 A PgApi challenge creates an outlist entry that forces the target node OUT.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-defend-creates-outlist-entry-restoring-target
+### [ACCEPTED] pg-defend-creates-outlist-entry-restoring-target
 A PgApi defense creates an outlist entry on the challenge node, neutralizing the challenge and restoring the target.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-assert-restores-dependents-except-independently-retracted
+### [ACCEPTED] pg-assert-restores-dependents-except-independently-retracted
 Asserting a PgApi node restores transitive dependents whose justifications are satisfied but does not restore nodes that were independently retracted.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-list-gated-excludes-satisfied-gates
+### [ACCEPTED] pg-list-gated-excludes-satisfied-gates
 PgApi list_gated excludes satisfied gates, where a gate is satisfied when its blocker is OUT.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-multi-tenancy-allows-node-id-reuse-across-projects
+### [ACCEPTED] pg-multi-tenancy-allows-node-id-reuse-across-projects
 Two PgApi instances with different project_id values sharing one database can reuse the same node ID independently.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-retract-already-out-returns-empty-changed
+### [ACCEPTED] pg-retract-already-out-returns-empty-changed
 Retracting an already-OUT node in PgApi returns an empty changed list.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-parse-drops-items-without-id
+### [ACCEPTED] review-parse-drops-items-without-id
 parse_review_response silently drops response entries that lack an id field.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-parse-extracts-json-array-from-prose
+### [ACCEPTED] review-parse-extracts-json-array-from-prose
 parse_review_response extracts a JSON array from LLM output even when it is surrounded by prose.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-batches-beliefs-by-review-batch-size
+### [ACCEPTED] review-batches-beliefs-by-review-batch-size
 review_beliefs batches derived beliefs into groups of REVIEW_BATCH_SIZE before sending them to the LLM.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-cli-displays-invalid-insufficient-unnecessary-flags
+### [ACCEPTED] review-cli-displays-invalid-insufficient-unnecessary-flags
 The review-beliefs CLI displays INVALID, INSUFFICIENT, and UNNECESSARY(...) flags for each finding.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-cli-auto-retract-retracts-invalid-beliefs
+### [ACCEPTED] review-cli-auto-retract-retracts-invalid-beliefs
 The review-beliefs CLI with --auto-retract retracts beliefs marked invalid unless --dry-run is active.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-cli-output-file-writes-markdown-findings
+### [ACCEPTED] review-cli-output-file-writes-markdown-findings
 The review-beliefs CLI with -o writes a Markdown findings report.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-format-numbers-only-multiple-justifications
+### [ACCEPTED] review-format-numbers-only-multiple-justifications
 format_belief_for_review numbers justification headers only when a belief has multiple justifications.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-adds-new-remote-beliefs
+### [ACCEPTED] sync-agent-adds-new-remote-beliefs
 sync_agent adds new beliefs present in the remote file to the local database with correct metadata.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-retracts-remote-missing-beliefs
+### [ACCEPTED] sync-agent-retracts-remote-missing-beliefs
 sync_agent retracts local beliefs that are missing from the remote file by setting them OUT.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-updates-changed-description-text
+### [ACCEPTED] sync-agent-updates-changed-description-text
 sync_agent updates the local node description when the remote file changes a belief's text.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-rewires-changed-dependencies
+### [ACCEPTED] sync-agent-rewires-changed-dependencies
 sync_agent rewires justification antecedents when the remote file changes a belief's Depends on list.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-first-run-behaves-as-initial-import
+### [ACCEPTED] sync-agent-first-run-behaves-as-initial-import
 Calling sync_agent for a never-imported agent behaves as an initial import.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-truth-value-changes-cascade-to-dependents
+### [ACCEPTED] sync-agent-truth-value-changes-cascade-to-dependents
 When sync_agent changes a belief's truth value, the change cascades to dependent nodes.
 - Source: /home/forge/workspace/entries/2026/05/05/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] business-planning-documents-live-in-google-drive
+### [ACCEPTED] business-planning-documents-live-in-google-drive
 Business planning source documents are stored in Google Drive rather than on local disk.
 - Source: /home/forge/workspace/entries/2026/05/06/belief-staleness-in-business-planning.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] business-planning-lacks-hash-based-change-detection
+### [ACCEPTED] business-planning-lacks-hash-based-change-detection
 The business planning network has no hash-based source change detection equivalent to check-stale for local files.
 - Source: /home/forge/workspace/entries/2026/05/06/belief-staleness-in-business-planning.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] stale-premise-can-support-dozens-of-derived-conclusions
+### [ACCEPTED] stale-premise-can-support-dozens-of-derived-conclusions
 A single stale premise can support dozens of derived conclusions in the belief network.
 - Source: /home/forge/workspace/entries/2026/05/06/belief-staleness-in-business-planning.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] business-premise-verification-can-take-hours-to-weeks
+### [ACCEPTED] business-premise-verification-can-take-hours-to-weeks
 Verifying a business premise can take hours to weeks per belief.
 - Source: /home/forge/workspace/entries/2026/05/06/belief-staleness-in-business-planning.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-first-run-checked-526-in-beliefs
+### [ACCEPTED] contradictions-first-run-checked-526-in-beliefs
 The first live run of reasons contradictions checked all 526 IN beliefs in the ftl-reasons-expert network.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-first-run-found-8-contradictions
+### [ACCEPTED] contradictions-first-run-found-8-contradictions
 The first live run of reasons contradictions found 8 contradictions.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-first-run-retracted-4-beliefs
+### [ACCEPTED] contradictions-first-run-retracted-4-beliefs
 The first contradictions run retracted 4 beliefs directly.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-medium-severity-findings-filed-issues-100-101-102
+### [ACCEPTED] contradictions-medium-severity-findings-filed-issues-100-101-102
 The 4 medium-severity contradictions in the first run were filed as issues #100, #101, and #102.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] reasons-update-command-implemented-pr-104
+### [ACCEPTED] reasons-update-command-implemented-pr-104
 The reasons update command was implemented in PR #104 during the first contradictions triage session.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-batches-50-beliefs-review-beliefs-batches-20
+### [ACCEPTED] contradictions-batches-50-beliefs-review-beliefs-batches-20
 The contradictions command batches 50 beliefs per LLM call, while review-beliefs batches 20 beliefs with antecedent context.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-scope-all-in-beliefs-review-scope-derived-only
+### [ACCEPTED] contradictions-scope-all-in-beliefs-review-scope-derived-only
 The contradictions command checks all IN beliefs, whereas review-beliefs checks only derived beliefs.
 - Source: /home/forge/workspace/entries/2026/05/06/contradictions-first-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-beliefs-first-pass-targeted-448-derived-beliefs
+### [ACCEPTED] review-beliefs-first-pass-targeted-448-derived-beliefs
 The first full review-beliefs pass targeted all 448 derived beliefs in the ftl-reasons-expert network and reviewed approximately 420 of them.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-beliefs-first-pass-retracted-44-invalid-beliefs
+### [ACCEPTED] review-beliefs-first-pass-retracted-44-invalid-beliefs
 The first full review-beliefs pass retracted 44 invalid derived beliefs.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-beliefs-first-pass-cascade-amplification-was-6-5x
+### [ACCEPTED] review-beliefs-first-pass-cascade-amplification-was-6-5x
 Retracting 44 beliefs in the first review pass caused 286 additional retractions, a 6.5x cascade amplification factor.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] agent-beliefs-retraction-cascaded-to-52-dependents
+### [ACCEPTED] agent-beliefs-retraction-cascaded-to-52-dependents
 Retracting agent-beliefs-undergo-full-revision caused a cascade of 52 dependent beliefs.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-beliefs-batches-20-beliefs-with-600s-timeout
+### [ACCEPTED] review-beliefs-batches-20-beliefs-with-600s-timeout
 review-beliefs evaluates batches of 20 beliefs and required a 600s timeout after two 300s batch failures.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-found-about-20-unnecessary-antecedents
+### [ACCEPTED] review-found-about-20-unnecessary-antecedents
 The first review pass found about 20 beliefs with unnecessary antecedents.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-beliefs-command-introduced-pr-97-v0-33-0
+### [ACCEPTED] review-beliefs-command-introduced-pr-97-v0-33-0
 The review-beliefs command was introduced in PR #97 as v0.33.0.
 - Source: /home/forge/workspace/entries/2026/05/06/full-review-beliefs-results.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-lacks-document-retrieval
+### [ACCEPTED] ftl-reasons-lacks-document-retrieval
 ftl-reasons has no built-in document retrieval or source material navigation.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pageindex-tms-integration-would-add-section-level-provenance
+### [ACCEPTED] pageindex-tms-integration-would-add-section-level-provenance
 Integrating PageIndex with ftl-reasons would let beliefs carry section-level provenance such as document UUID, section path, and page range.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pageindex-can-automate-staleness-verification-retrieval
+### [ACCEPTED] pageindex-can-automate-staleness-verification-retrieval
 PageIndex could automate retrieving the current source section for staleness verification before an LLM checks whether it still supports a belief.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pageindex-tree-diff-can-flag-changed-section-beliefs
+### [ACCEPTED] pageindex-tree-diff-can-flag-changed-section-beliefs
 A section-level diff between old and new PageIndex trees could flag beliefs sourced from changed sections as potentially stale.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pageindex-can-ground-derived-beliefs-in-source-evidence
+### [ACCEPTED] pageindex-can-ground-derived-beliefs-in-source-evidence
 PageIndex could search indexed documents for supporting or contradicting evidence and attach source sections to derived beliefs.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pageindex-tms-integration-requires-pageindex-api-access
+### [ACCEPTED] pageindex-tms-integration-requires-pageindex-api-access
 The proposed PageIndex integration requires PageIndex workspace sharing or API access from other tools.
 - Source: /home/forge/workspace/entries/2026/05/06/pageindex-and-tms-integration.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-build-backend-is-setuptools
+### [ACCEPTED] ftl-reasons-build-backend-is-setuptools
 pyproject.toml declares setuptools >=68.0 as the PEP 517 build backend with build-backend set to setuptools.build_meta.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-version-is-static-0-38-0
+### [ACCEPTED] ftl-reasons-version-is-static-0-38-0
 The ftl-reasons package version is statically declared as 0.38.0 in pyproject.toml and bumped manually.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-extra-requires-psycopg-binary-3-1
+### [ACCEPTED] pg-extra-requires-psycopg-binary-3-1
 The pg optional dependency extra requires psycopg[binary] >=3.1.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-extra-requires-sentence-transformers-2-2-and-scikit-learn-1-2
+### [ACCEPTED] cluster-extra-requires-sentence-transformers-2-2-and-scikit-learn-1-2
 The cluster optional dependency extra requires sentence-transformers >=2.2 and scikit-learn >=1.2.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pytest-testpaths-restricted-to-tests-directory
+### [ACCEPTED] pytest-testpaths-restricted-to-tests-directory
 pytest is configured with testpaths = ["tests"], restricting collection to the tests/ directory.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] uv-lock-generated-from-pyproject-dependency-declarations
+### [ACCEPTED] uv-lock-generated-from-pyproject-dependency-declarations
 The uv.lock file is generated from pyproject.toml's dependency declarations.
 - Source: /home/forge/workspace/entries/2026/05/08/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-with-network-is-class-context-manager
+### [ACCEPTED] api-with-network-is-class-context-manager
 `_with_network` is implemented as a class with `__enter__` and `__exit__` rather than using `@contextmanager`, and it saves the network on clean exit only when `write=True`.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] what-if-operations-never-save
+### [ACCEPTED] what-if-operations-never-save
 `what_if_retract` and `what_if_assert` load the network, perform the operation in memory, diff truth values, and never save to SQLite.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] namespace-active-premise-gates-namespace
+### [ACCEPTED] namespace-active-premise-gates-namespace
 `ensure_namespace` creates a `<ns>:active` premise node that all namespaced beliefs depend on, so retracting that single premise cascades the entire namespace OUT.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-uses-remote-wins
+### [ACCEPTED] sync-agent-uses-remote-wins
 `sync_agent` imports another agent's beliefs with remote-wins merge semantics.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] search-expands-neighbors-via-justification-bfs
+### [ACCEPTED] search-expands-neighbors-via-justification-bfs
 `search` performs neighbor expansion by BFS along justification edges after the FTS5 query.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-json-topologically-orders-nodes
+### [ACCEPTED] import-json-topologically-orders-nodes
 `import_json` uses topological sort to add nodes in dependency order, with a fallback pass for cycles.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-gated-finds-out-nodes-blocked-by-in-outlist
+### [ACCEPTED] list-gated-finds-out-nodes-blocked-by-in-outlist
 `list_gated` finds OUT nodes that are blocked by IN outlist nodes.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] deduplicate-clusters-by-id-token-jaccard
+### [ACCEPTED] deduplicate-clusters-by-id-token-jaccard
 `deduplicate` uses Jaccard similarity on ID tokens to cluster similar beliefs and rewires dependents before retracting duplicates.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-db-flag-available-everywhere
+### [ACCEPTED] cli-db-flag-available-everywhere
 `--db` is added to the top-level parser and is available to every subcommand, defaulting to `api.DEFAULT_DB`.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-exception-types-map-to-failure-modes
+### [ACCEPTED] cli-exception-types-map-to-failure-modes
 The CLI maps `KeyError` to node not found, `ValueError` to invalid input, `FileNotFoundError` to missing file, and `PermissionError` to access-tag violation, exiting with code 1.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cmd-update-prevalidates-one-field
+### [ACCEPTED] cmd-update-prevalidates-one-field
 `cmd_update` validates that at least one of `--text`, `--source`, or `--source-url` is provided before calling the API.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-no-op-cases-exit-zero
+### [ACCEPTED] cli-no-op-cases-exit-zero
 No-op cases such as already OUT, already IN, no nodes, and no matching nodes print informative messages and return exit code 0 rather than raising errors.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-kmeans-uses-n-init-10
+### [ACCEPTED] cluster-kmeans-uses-n-init-10
 `cluster_beliefs` runs KMeans with `n_init=10` and the user's seed for reproducibility.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-k-clamped-to-valid-range
+### [ACCEPTED] cluster-k-clamped-to-valid-range
 The final cluster count `k` is clamped to `[1, len(beliefs)]` so KMeans never receives an invalid cluster count.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-beliefs-returns-selected-ids-and-stats
+### [ACCEPTED] cluster-beliefs-returns-selected-ids-and-stats
 `cluster_beliefs` returns `(selected_ids, cluster_stats)`, where `cluster_stats` includes cluster count, sizes, and model name.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-ml-errors-propagate
+### [ACCEPTED] cluster-ml-errors-propagate
 Beyond the optional-dependency `ImportError`, embedding and clustering errors in `cluster.py` are not caught and propagate to the caller.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-default-batch-size-50
+### [ACCEPTED] contradictions-default-batch-size-50
 `CONTRADICTION_BATCH_SIZE` defaults to 50 beliefs per LLM call.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-prompt-defines-four-types
+### [ACCEPTED] contradictions-prompt-defines-four-types
 `CONTRADICTION_PROMPT` defines four contradiction types: direct negation, incompatible properties, scope conflict, and quantitative mismatch.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-format-truncates-text-200
+### [ACCEPTED] contradictions-format-truncates-text-200
 `format_beliefs_for_contradiction_check` truncates each belief's text at 200 characters and skips IDs that do not exist in the nodes mapping.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-parser-extracts-nogood-blocks
+### [ACCEPTED] contradictions-parser-extracts-nogood-blocks
 `parse_contradiction_response` uses `_NOGOOD_PATTERN` to find `### NOGOOD <id>` blocks and line-parses Claims, Analysis, and Severity fields.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-prompt-excludes-tensions
+### [ACCEPTED] contradictions-prompt-excludes-tensions
 The contradiction prompt instructs the LLM not to flag tensions or tradeoffs, only genuine logical incompatibilities.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-prompt-returns-prompt-and-stats
+### [ACCEPTED] derive-build-prompt-returns-prompt-and-stats
 `build_prompt` returns `(prompt_text, stats_dict)`, where `stats` captures prompt inputs for audit trails.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-depth-premises-zero-derived-one-plus-max
+### [ACCEPTED] derive-depth-premises-zero-derived-one-plus-max
 `_get_depth` assigns premises depth 0 and derived nodes depth 1 plus the maximum antecedent depth, using memoization.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-validate-requires-existing-antecedents-and-unless
+### [ACCEPTED] derive-validate-requires-existing-antecedents-and-unless
 `validate_proposals` rejects a proposal if any antecedent or unless node does not exist in the network.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-proposals-file-roundtrips-through-parser
+### [ACCEPTED] derive-proposals-file-roundtrips-through-parser
 `write_proposals_file` serializes valid proposals to the same `### DERIVE` and `### GATE` markdown format that `parse_proposals` can re-read for human review.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-topic-filter-ors-keywords
+### [ACCEPTED] derive-topic-filter-ors-keywords
 `_filter_by_topic` treats space-separated keywords as OR conditions so any keyword match passes.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-default-budget-groups-by-kebab-prefix
+### [ACCEPTED] derive-default-budget-groups-by-kebab-prefix
 In default budget mode, `_build_beliefs_section` groups beliefs by kebab-case ID prefix and outputs groups largest first, truncating at budget.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-cross-agent-task-injected-when-multi-agent
+### [ACCEPTED] derive-cross-agent-task-injected-when-multi-agent
 `CROSS_AGENT_TASK` is injected into the derive prompt only when multi-agent beliefs are detected.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-sample-uses-reservoir-sampling
+### [ACCEPTED] derive-sample-uses-reservoir-sampling
 `_sample_beliefs` uses reservoir-style random sampling to stay within the token budget.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-markdown-additive-skips-existing
+### [ACCEPTED] import-agent-markdown-additive-skips-existing
 `import_agent()` performs additive Markdown import and skips nodes whose IDs already exist.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-json-preserves-full-justifications
+### [ACCEPTED] import-agent-json-preserves-full-justifications
 `import_agent_json()` imports JSON beliefs while preserving their full justification structure.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-raw-justifications-filtered-before-prefixing
+### [ACCEPTED] import-agent-raw-justifications-filtered-before-prefixing
 During normalization, `raw_justifications` stores unprefixed IDs and filtering to the import set occurs before agent-name prefixing.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-resurrection-clears-retracted
+### [ACCEPTED] sync-agent-resurrection-clears-retracted
 When sync sees a previously OUT node become IN remotely, it clears `_retracted` metadata and calls `network.assert_node()` to resurrect the node.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-defers-assertions-until-after-dependents
+### [ACCEPTED] sync-agent-defers-assertions-until-after-dependents
 Sync collects OUT-to-IN transitions in `assert_after` and asserts them after `_fixup_dependents()` so dependencies are rebuilt first.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-nogoods-prefixed-on-sync
+### [ACCEPTED] import-agent-nogoods-prefixed-on-sync
 `_import_nogoods()` adds prefixed nogood records during sync.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-batch-size-default-20
+### [ACCEPTED] review-batch-size-default-20
 `REVIEW_BATCH_SIZE` defaults to 20 beliefs per LLM review call.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-prompt-requires-six-field-json
+### [ACCEPTED] review-prompt-requires-six-field-json
 `REVIEW_PROMPT` instructs the LLM to return a JSON array with `id`, `valid`, `sufficient`, `necessary`, `unnecessary_antecedents`, and `comment` fields.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-json-parser-scans-for-array
+### [ACCEPTED] review-json-parser-scans-for-array
 `parse_review_response` scans for a JSON array with `json.JSONDecoder.raw_decode` and returns `[]` when no valid array is found.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-preserves-batch-order
+### [ACCEPTED] review-preserves-batch-order
 `review_beliefs` preserves batch ordering so results appear in the same order as input belief IDs except for batches that fail entirely.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-format-returns-empty-for-missing-node
+### [ACCEPTED] review-format-returns-empty-for-missing-node
 `format_belief_for_review` returns an empty string when the requested node does not exist.
 - Source: /home/forge/workspace/entries/2026/05/08/reasons_lib-review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-init-requires-force-to-overwrite
+### [ACCEPTED] api-init-requires-force-to-overwrite
 `api.init_db()` refuses to overwrite an existing database unless `force=True` is passed.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-idempotent-operations-return-empty-changed
+### [ACCEPTED] api-idempotent-operations-return-empty-changed
 Retracting an already-OUT node or asserting an already-IN node is a no-op that returns an empty `changed` set.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-get-belief-set-excludes-out-nodes
+### [ACCEPTED] api-get-belief-set-excludes-out-nodes
 `api.get_belief_set()` returns only IN node IDs and excludes OUT nodes.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] fts-single-character-only-query-returns-empty
+### [ACCEPTED] fts-single-character-only-query-returns-empty
 FTS queries composed only of single-character words return empty results.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] api-tests-use-isolated-temp-sqlite
+### [ACCEPTED] api-tests-use-isolated-temp-sqlite
 `tests/test_api.py` gives each test a fresh SQLite database created via `api.init_db()` in pytest `tmp_path`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-add-supports-derived-nodes-with-sl-flag
+### [ACCEPTED] cli-add-supports-derived-nodes-with-sl-flag
 The CLI `add` subcommand supports derived nodes through the `--sl` flag.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-what-if-outputs-not-modified
+### [ACCEPTED] cli-what-if-outputs-not-modified
 The CLI `what-if` command prints `NOT modified` and does not change network state.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-explain-shows-failed-antecedents-and-violated-outlists
+### [ACCEPTED] cli-explain-shows-failed-antecedents-and-violated-outlists
 The CLI `explain` command displays failed antecedents and violated outlists.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-update-errors-without-text-or-source
+### [ACCEPTED] cli-update-errors-without-text-or-source
 The CLI `update` command returns an error when neither a text nor a source flag is provided.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-init-requires-force-to-overwrite-db
+### [ACCEPTED] cli-init-requires-force-to-overwrite-db
 The CLI `init` command refuses to overwrite an existing database unless `--force` is supplied.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-beliefs-honors-explicit-n-clusters
+### [ACCEPTED] cluster-beliefs-honors-explicit-n-clusters
 When `n_clusters` is passed to `cluster_beliefs`, the returned `stats['n_clusters']` matches the requested value exactly.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-stats-include-embedding-model
+### [ACCEPTED] cluster-stats-include-embedding-model
 The `cluster_beliefs` stats dict includes an `embedding_model` field naming the sentence-transformer model used.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-missing-deps-error-mentions-extra
+### [ACCEPTED] cluster-missing-deps-error-mentions-extra
 `_require_cluster_deps` raises an `ImportError` whose message mentions `ftl-reasons[cluster]` when clustering dependencies are missing.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-cache-embed-returns-ids-and-embeddings
+### [ACCEPTED] cluster-cache-embed-returns-ids-and-embeddings
 `ClusterCache.embed(beliefs)` returns a tuple of belief IDs and their embeddings.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-tests-verify-cross-domain-diversity
+### [ACCEPTED] cluster-tests-verify-cross-domain-diversity
 `test_cluster_beliefs_cross_domain` creates auth and database belief groups and asserts both are represented in the selected output.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-contradiction-response-uses-nogood-markdown-format
+### [ACCEPTED] parse-contradiction-response-uses-nogood-markdown-format
 parse_contradiction_response expects nogoods in markdown format with `### NOGOOD <id>` headers and `Claims:`, `Analysis:`, and `Severity:` fields.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-batching-splits-in-beliefs-by-batch-size
+### [ACCEPTED] contradiction-batching-splits-in-beliefs-by-batch-size
 detect_contradictions with 3 IN beliefs and batch_size=2 makes exactly 2 LLM calls.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-timeout-parameter-passes-through-to-subprocess
+### [ACCEPTED] contradiction-timeout-parameter-passes-through-to-subprocess
 The timeout parameter to detect_contradictions is passed through to the LLM subprocess call.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-parser-returns-empty-on-malformed-output
+### [ACCEPTED] contradiction-parser-returns-empty-on-malformed-output
 If an LLM contradiction response lacks `### NOGOOD` headers, parse_contradiction_response returns an empty list.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-cli-output-writes-markdown-report
+### [ACCEPTED] contradictions-cli-output-writes-markdown-report
 The `reasons contradictions --output` flag writes a markdown report file with proper headers.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-api-auto-apply-records-nogoods
+### [ACCEPTED] contradiction-api-auto-apply-records-nogoods
 `api.detect_contradictions(auto_apply=True)` records detected contradictions by calling `add_nogood`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-proposals-supports-v09-bold-field-format
+### [ACCEPTED] parse-proposals-supports-v09-bold-field-format
 parse_proposals can parse the older v0.9 proposal format that uses bold field names.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-proposals-parses-gate-blocks-with-unless-outlists
+### [ACCEPTED] parse-proposals-parses-gate-blocks-with-unless-outlists
 parse_proposals extracts GATE blocks that include `unless` outlists.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] deduplicate-clusters-jaccard-similar-belief-ids
+### [ACCEPTED] deduplicate-clusters-jaccard-similar-belief-ids
 api.deduplicate finds clusters of belief IDs that are Jaccard-similar.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] dedup-plan-roundtrips-through-write-and-parse
+### [ACCEPTED] dedup-plan-roundtrips-through-write-and-parse
 api.write_dedup_plan output can be parsed by api.parse_dedup_plan with round-trip fidelity.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-proposals-file-roundtrips-through-parse-proposals
+### [ACCEPTED] derive-proposals-file-roundtrips-through-parse-proposals
 write_proposals_file output parses identically through parse_proposals.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] apply-dedup-plan-reports-missing-nodes-as-errors
+### [ACCEPTED] apply-dedup-plan-reports-missing-nodes-as-errors
 api.apply_dedup_plan returns missing nodes as error strings in its result dict rather than raising exceptions.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-conserves-total-slots
+### [ACCEPTED] derive-budget-conserves-total-slots
 `_build_beliefs_section` keeps `agent_shown + local_shown <= max_beliefs`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-count-accumulates-across-agents
+### [ACCEPTED] derive-budget-count-accumulates-across-agents
 Agent belief count in `_build_beliefs_section` accumulates across all agents rather than resetting per agent.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_derive_budget.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-active-premise-has-role-agent-premise
+### [ACCEPTED] import-agent-active-premise-has-role-agent-premise
 import_agent creates the `{agent}:active` sentinel node as an IN premise with `role=agent_premise` metadata.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-stores-original-id-metadata
+### [ACCEPTED] import-agent-stores-original-id-metadata
 Every belief imported by import_agent carries `original_id` metadata.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-only-in-omits-out-beliefs
+### [ACCEPTED] import-agent-only-in-omits-out-beliefs
 When import_agent is called with `only_in=True`, STALE or OUT beliefs from the source are skipped and do not exist in the database.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-reimport-returns-zero-imported
+### [ACCEPTED] import-agent-reimport-returns-zero-imported
 Re-importing the same agent and beliefs returns `claims_imported=0` and `claims_skipped=3`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-registers-source-directory-in-repos
+### [ACCEPTED] import-agent-registers-source-directory-in-repos
 `api.list_repos()` includes an imported agent with its source directory path.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-imports-nogoods
+### [ACCEPTED] import-agent-imports-nogoods
 import_agent imports nogood records from the source; the sample source produces one imported nogood.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-api-supports-depth-sample-dependency-visibility-filters
+### [ACCEPTED] review-api-supports-depth-sample-dependency-visibility-filters
 api.review_beliefs supports `min_depth`, `sample`, `depends_on`, and `visible_to` filtering.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-nodes-supports-review-metadata-filters
+### [ACCEPTED] list-nodes-supports-review-metadata-filters
 api.list_nodes supports `never_reviewed` and `not_reviewed_since` filters, `by_impact` sorting, and includes `last_reviewed` and `review_result` fields.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-cli-no-report-suppresses-report-directory
+### [ACCEPTED] review-cli-no-report-suppresses-report-directory
 The `review-beliefs --no-report` flag suppresses creation of the report directory.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-cli-output-writes-findings-markdown
+### [ACCEPTED] review-cli-output-writes-findings-markdown
 The `review-beliefs -o` flag writes findings to a markdown file.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-auto-retract-retracts-invalid-beliefs
+### [ACCEPTED] review-auto-retract-retracts-invalid-beliefs
 The `review-beliefs --auto-retract` flag actually changes truth values by retracting invalid beliefs.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_review.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-namespaces-beliefs-under-agent-id
+### [ACCEPTED] sync-agent-namespaces-beliefs-under-agent-id
 `sync_agent` stores remote beliefs under namespaced IDs of the form `agent:id` (e.g., `test-agent:alpha-fact`).
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-stale-remote-maps-to-out
+### [ACCEPTED] sync-agent-stale-remote-maps-to-out
 Beliefs marked `[STALE]` in the remote markdown are synced as OUT nodes; `TestSyncNoChanges` expects `beliefs_retracted == 1` for `gamma-stale`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-rewires-dependency-antecedents
+### [ACCEPTED] sync-agent-rewires-dependency-antecedents
 When a remote belief's `Depends on:` line changes, `sync_agent` rewires the corresponding justification antecedents to match.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-registers-repo-directory
+### [ACCEPTED] sync-agent-registers-repo-directory
 `sync_agent` records the agent's file directory in the repo registry, observable through `api.list_repos`.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-counts-justification-only-changes-as-updates
+### [ACCEPTED] sync-agent-counts-justification-only-changes-as-updates
 `sync_agent` increments the `beliefs_updated` counter for justification-only changes, not only for text or truth-value changes.
 - Source: /home/forge/workspace/entries/2026/05/08/tests-test_sync_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-review-response-returns-empty-list-on-malformed-input
+### [ACCEPTED] parse-review-response-returns-empty-list-on-malformed-input
 `parse_review_response` returns an empty list on malformed input — bad JSON, non-list JSON, or items missing `id` fields — rather than raising an exception.
 - Source: /home/forge/workspace/entries/2026/05/08/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-review-response-defaults-missing-booleans-true
+### [ACCEPTED] parse-review-response-defaults-missing-booleans-true
 `parse_review_response` defaults missing `valid`, `sufficient`, and `necessary` boolean fields to `True`.
 - Source: /home/forge/workspace/entries/2026/05/08/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-parse-error-never-generates-validity-warning
+### [ACCEPTED] review-parse-error-never-generates-validity-warning
 A review-response parse error never generates a false-positive validity warning because missing boolean fields default to `True`.
 - Source: /home/forge/workspace/entries/2026/05/08/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] llm-prompts-passed-via-stdin-not-argv
+### [ACCEPTED] llm-prompts-passed-via-stdin-not-argv
 LLM prompts are passed to LLM subprocesses through `subprocess.run(input=...)` rather than as command-line arguments.
 - Source: /home/forge/workspace/entries/2026/05/08/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-compatible-command-count-is-25
+### [ACCEPTED] pg-compatible-command-count-is-25
 25 CLI commands dispatch to PostgreSQL through `PgApi`.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-export-network-filters-private-metadata
+### [ACCEPTED] pg-export-network-filters-private-metadata
 `PgApi.export_network` filters out private metadata keys that start with `_`.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-export-network-respects-visible-to
+### [ACCEPTED] pg-export-network-respects-visible-to
 `PgApi.export_network(visible_to=...)` filters exported nodes by access tags using the `visible_to` argument.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-remove-justification-deletes-nth-by-serial-id
+### [ACCEPTED] pg-remove-justification-deletes-nth-by-serial-id
 `PgApi.remove_justification(node_id, index)` deletes the Nth justification by serial ID order.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-remove-justification-prevents-zero-justifications-for-derived-node
+### [ACCEPTED] pg-remove-justification-prevents-zero-justifications-for-derived-node
 `PgApi.remove_justification` refuses a removal that would leave a derived node with zero justifications.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-update-node-updates-only-provided-fields
+### [ACCEPTED] pg-update-node-updates-only-provided-fields
 `PgApi.update_node` performs a dynamic UPDATE that only sets provided `text`, `source`, and `source_url` fields.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-convert-to-premise-deletes-justifications-and-sets-in
+### [ACCEPTED] pg-convert-to-premise-deletes-justifications-and-sets-in
 `PgApi.convert_to_premise` deletes all justifications for a node and sets its truth value to IN.
 - Source: /home/forge/workspace/entries/2026/05/10/postgresql-backend-support.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] semantic-contradictions-use-all-minilm-l6-v2
+### [ACCEPTED] semantic-contradictions-use-all-minilm-l6-v2
 Semantic contradiction detection embeds beliefs using the sentence-transformers model `all-MiniLM-L6-v2`.
 - Source: /home/forge/workspace/entries/2026/05/10/semantic-contradiction-detection.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] semantic-contradiction-reuses-existing-prompt-parse-pipeline
+### [ACCEPTED] semantic-contradiction-reuses-existing-prompt-parse-pipeline
 After clustering, semantic contradiction detection reuses the existing contradiction prompt/parse pipeline unchanged.
 - Source: /home/forge/workspace/entries/2026/05/10/semantic-contradiction-detection.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] semantic-contradiction-first-run-used-575-in-beliefs-and-20-clusters
+### [ACCEPTED] semantic-contradiction-first-run-used-575-in-beliefs-and-20-clusters
 The first `--semantic` contradiction run processed 575 IN beliefs grouped into 20 clusters.
 - Source: /home/forge/workspace/entries/2026/05/10/semantic-contradiction-detection.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] semantic-contradiction-55-belief-cluster-exceeded-300s-timeout
+### [ACCEPTED] semantic-contradiction-55-belief-cluster-exceeded-300s-timeout
 In the first `--semantic` contradiction run, cluster 1 with 55 beliefs exceeded the 300-second LLM timeout.
 - Source: /home/forge/workspace/entries/2026/05/10/semantic-contradiction-detection.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-version-is-0-40-0
+### [ACCEPTED] ftl-reasons-version-is-0-40-0
 `pyproject.toml` declares the `ftl-reasons` package version as `0.40.0`.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-build-backend-is-setuptools-build-meta
+### [ACCEPTED] ftl-reasons-build-backend-is-setuptools-build-meta
 The project uses `setuptools>=68.0` as the build requirement and `setuptools.build_meta` as the build backend.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-pg-extra-depends-on-psycopg-binary
+### [ACCEPTED] ftl-reasons-pg-extra-depends-on-psycopg-binary
 The `[pg]` optional dependency extra requires `psycopg[binary]>=3.1`.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-cluster-extra-depends-on-sentence-transformers-and-scikit-learn
+### [ACCEPTED] ftl-reasons-cluster-extra-depends-on-sentence-transformers-and-scikit-learn
 The `[cluster]` optional dependency extra requires `sentence-transformers` and `scikit-learn`.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-mcp-extra-depends-on-mcp-1-0
+### [ACCEPTED] ftl-reasons-mcp-extra-depends-on-mcp-1-0
 The `[mcp]` optional dependency extra requires `mcp>=1.0`.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-pytest-testpaths-is-tests
+### [ACCEPTED] ftl-reasons-pytest-testpaths-is-tests
 `pyproject.toml` configures pytest with `testpaths = ["tests"]`.
 - Source: /home/forge/workspace/entries/2026/05/11/pyproject.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] what-if-simulations-are-read-only-and-report-cascade-depth
+### [ACCEPTED] what-if-simulations-are-read-only-and-report-cascade-depth
 `what_if_retract` and `what_if_assert` run the requested operation in memory without `write=True` and use `_cascade_depth()` BFS to report each affected node's distance from the trigger without persisting changes.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-gated-finds-out-nodes-blocked-by-in-outlist
+### [ACCEPTED] list-gated-finds-out-nodes-blocked-by-in-outlist
 `list_gated` finds OUT nodes that are blocked by IN outlist nodes, implementing the gate pattern where a belief flips IN when its blocker goes OUT.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-creates-namespace-active-kill-switch
+### [ACCEPTED] import-agent-creates-namespace-active-kill-switch
 `import_agent` and `sync_agent` prefix imported beliefs with `namespace:` and create a `namespace:active` premise whose retraction cascades OUT every belief from that agent.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] lookup-searches-all-terms-substring
+### [ACCEPTED] lookup-searches-all-terms-substring
 `lookup()` performs an all-terms substring search across the full belief block, including ID, text, source, and dependencies.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-dual-mode-requires-sources-db
+### [ACCEPTED] ask-dual-mode-requires-sources-db
 `ask()` raises `ValueError` when `dual=True` and `sources_db` is not provided.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-dual-short-circuits-if-either-path-empty
+### [ACCEPTED] ask-dual-short-circuits-if-either-path-empty
 `ask()` in dual mode short-circuits the merge step if either the TMS answer or the FTS RAG answer is empty.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-simple-mode-uses-depth-2-markdown-search
+### [ACCEPTED] ask-simple-mode-uses-depth-2-markdown-search
 `ask()` in `simple=True` mode calls `api.search(format="markdown", depth=2)` for the initial belief context.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-source-chunk-search-default-top-k-10
+### [ACCEPTED] ask-source-chunk-search-default-top-k-10
 `_search_source_chunks(question, sources_db, top_k=10)` defaults to returning the top 10 source document chunks.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-command-dispatch-uses-exact-string-dict
+### [ACCEPTED] cli-command-dispatch-uses-exact-string-dict
 `main()` dispatches subcommands through a `commands` dict mapping command-name strings to `cmd_*` functions, so a subcommand registered in argparse but missing from that dict raises `KeyError`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-derive-cluster-and-sample-mutually-exclusive
+### [ACCEPTED] cli-derive-cluster-and-sample-mutually-exclusive
 `cmd_derive` enforces that `--cluster` and `--sample` are mutually exclusive before starting derive work.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-report-timestamps-strip-colons
+### [ACCEPTED] cli-report-timestamps-strip-colons
 Report files written by the CLI use ISO timestamps with colons stripped (for example `T105808`) for filesystem safety.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-derive-exhaust-stops-on-saturation
+### [ACCEPTED] cli-derive-exhaust-stops-on-saturation
 `cmd_derive --exhaust` loops `_derive_one_round` up to `--max-rounds` times and stops when a round adds zero new beliefs (saturation).
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-any-warning-for-three-plus-sl-premises
+### [ACCEPTED] cli-any-warning-for-three-plus-sl-premises
 `_warn_multi_premise` prints a tip when an SL justification has 3 or more premises and `--any` was not passed.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-remainder-favors-largest-clusters
+### [ACCEPTED] cluster-remainder-favors-largest-clusters
 When the sampling budget does not divide evenly across clusters, `cluster_beliefs` allocates remainder slots to the largest clusters first, sorted by descending size.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-auto-k-is-n-beliefs-div-five-clamped
+### [ACCEPTED] cluster-auto-k-is-n-beliefs-div-five-clamped
 `_auto_k` computes the cluster count as `n_beliefs // 5`, clamped to `[2, max_k]`, and `cluster_beliefs` further constrains `max_k` to `budget // 3`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-embed-sorts-belief-ids
+### [ACCEPTED] cluster-embed-sorts-belief-ids
 `ClusterCache.embed()` uses `ids = sorted(beliefs.keys())` so the ID list and embedding array have consistent ordering regardless of dict insertion order.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-default-model-is-all-minilm-l6-v2
+### [ACCEPTED] cluster-default-model-is-all-minilm-l6-v2
 The default sentence-transformer model used by `cluster.py` is `all-MiniLM-L6-v2`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-list-clusters-short-circuits-at-three-or-fewer
+### [ACCEPTED] cluster-list-clusters-short-circuits-at-three-or-fewer
 `list_clusters` short-circuits without clustering when the belief set contains 3 or fewer items.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-batch-size-is-50
+### [ACCEPTED] contradictions-batch-size-is-50
 `CONTRADICTION_BATCH_SIZE` is set to 50, the default number of beliefs sent per LLM contradiction-detection call.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-prompt-defines-four-contradiction-types
+### [ACCEPTED] contradictions-prompt-defines-four-contradiction-types
 `CONTRADICTION_PROMPT` defines four contradiction types: direct negation, incompatible properties, scope conflict, and quantitative mismatch.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-semantic-sub-batches-large-clusters
+### [ACCEPTED] contradictions-semantic-sub-batches-large-clusters
 `detect_contradictions_semantic` further sub-batches large clusters at `CONTRADICTION_BATCH_SIZE` after clustering.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradictions-flush-results-incrementally-to-plan-file
+### [ACCEPTED] contradictions-flush-results-incrementally-to-plan-file
 Both contradiction detection strategies flush results after each batch via `api.write_contradiction_plan`, using `header_written` to toggle between write-new-file and append modes.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-budget-proportional-allocation-min-floor-5
+### [ACCEPTED] derive-budget-proportional-allocation-min-floor-5
 When multiple agents contribute beliefs, `build_prompt` divides prompt budget proportionally to each agent's belief count with a minimum floor of 5.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-detect-agents-skips-active-sentinel
+### [ACCEPTED] derive-detect-agents-skips-active-sentinel
 `_detect_agents` identifies agent namespaces from colon-separated node IDs and skips `:active` sentinel nodes.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-derived-section-sorts-deepest-first
+### [ACCEPTED] derive-derived-section-sorts-deepest-first
 `_build_derived_section` sorts existing derived conclusions by depth with deepest first.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-build-prompt-wraps-template-format-errors
+### [ACCEPTED] derive-build-prompt-wraps-template-format-errors
 `build_prompt` catches `KeyError` and `ValueError` from `str.format()` and suppresses the original traceback with `from None`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-cluster-import-is-lazy
+### [ACCEPTED] derive-cluster-import-is-lazy
 `cluster` is imported lazily inside `_build_beliefs_section` only when `cluster=True`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-rebuilds-dependents-before-recompute
+### [ACCEPTED] import-agent-rebuilds-dependents-before-recompute
 After adding imported nodes and nogoods, `_fixup_dependents()` calls `network._rebuild_dependents()` before `network.recompute_all()` because outlist targets may not have existed when referencing nodes were added.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-lets-network-errors-propagate
+### [ACCEPTED] import-agent-lets-network-errors-propagate
 `import_agent.py` has no explicit try/except blocks; errors from `network.add_node()`, `network.retract()`, or `network.assert_node()` propagate unhandled.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-normalization-uses-unprefixed-ids
+### [ACCEPTED] import-agent-normalization-uses-unprefixed-ids
 Normalized claim dicts use unprefixed belief IDs; namespace prefixing is applied later by import/sync loops and `_build_justifications()`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-returns-stats-dict
+### [ACCEPTED] import-agent-returns-stats-dict
 All four public import/sync functions return a stats dict with counts of imported, skipped, retracted, and propagated beliefs.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sync-agent-preserves-infrastructure-nodes
+### [ACCEPTED] sync-agent-preserves-infrastructure-nodes
 `_sync_claims` excludes `agent:active` and `agent:inactive` from `removed_ids`, so sync never deletes infrastructure nodes.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-import_agent.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-call-tool-joins-content-parts
+### [ACCEPTED] mcp-bridge-call-tool-joins-content-parts
 `call_tool()` returns the MCP result as a single joined string of all content parts.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-get-instructions-returns-server-instructions
+### [ACCEPTED] mcp-bridge-get-instructions-returns-server-instructions
 `get_instructions()` returns the server-provided instructions string captured from `session.initialize()`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-close-joins-thread-with-5s-timeout
+### [ACCEPTED] mcp-bridge-close-joins-thread-with-5s-timeout
 `close()` signals `_shutdown`, joins the background thread with a 5-second timeout, then closes the event loop.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-implements-context-manager
+### [ACCEPTED] mcp-bridge-implements-context-manager
 `McpBridge` implements `__enter__` and `__exit__`, enabling `with McpBridge(command) as bridge:` for automatic connect/close.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-command-parsed-with-shlex
+### [ACCEPTED] mcp-bridge-command-parsed-with-shlex
 `McpBridge` parses its command string with `shlex.split()` into argv for `StdioServerParameters`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-bridge-propagates-background-init-errors
+### [ACCEPTED] mcp-bridge-propagates-background-init-errors
 If MCP session initialization fails on the background thread, `_session_lifecycle` stores the exception in `self._error` and sets `_ready`; `connect()` then re-raises it in the calling thread.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-mcp_client.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-convert-to-premise-unlinks-dependents
+### [ACCEPTED] network-convert-to-premise-unlinks-dependents
 `convert_to_premise()` strips all justifications, unlinks the node from its antecedents' dependents sets, and makes it a premise that defaults to IN.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-remove-justification-cleans-dependents
+### [ACCEPTED] network-remove-justification-cleans-dependents
 `remove_justification()` cleans up dependents entries for references no longer used by the remaining justifications.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-challenge-converts-premise-to-justified
+### [ACCEPTED] network-challenge-converts-premise-to-justified
 If `challenge()` targets a premise, it converts that premise to a justified node with the challenge node in its outlist.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-defend-delegates-to-challenge
+### [ACCEPTED] network-defend-delegates-to-challenge
 `defend(target_id, challenge_id, reason)` is implemented by delegating to `challenge()`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-explain-recurses-valid-justification
+### [ACCEPTED] network-explain-recurses-valid-justification
 For an IN node, `explain()` finds the valid justification and recursively explains its antecedents; for an OUT node, it lists failed antecedents and violated outlist items.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-trace-access-tags-unions-backward-subgraph
+### [ACCEPTED] network-trace-access-tags-unions-backward-subgraph
 `trace_access_tags(node_id)` returns the union of `access_tags` metadata across the entire backward dependency subgraph.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] network-verify-dependents-audits-index-drift
+### [ACCEPTED] network-verify-dependents-audits-index-drift
 `verify_dependents()` compares the live dependents index against what justifications imply and returns error strings.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-network.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-network-meta-stores-per-project-config
+### [ACCEPTED] pg-network-meta-stores-per-project-config
 `rms_network_meta` is a key-value store for per-project configuration such as repo paths and the nogood counter.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-api-accepts-connection-string-or-existing-connection
+### [ACCEPTED] pg-api-accepts-connection-string-or-existing-connection
 `PgApi` constructor accepts either a PostgreSQL connection string or an existing `psycopg` connection, plus a `project_id`.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-get-status-reports-justification-counts
+### [ACCEPTED] pg-get-status-reports-justification-counts
 `PgApi.get_status` lists all nodes with truth values and justification counts.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-lookup-substring-searches-id-text-source-refs
+### [ACCEPTED] pg-lookup-substring-searches-id-text-source-refs
 `PgApi.lookup` performs an all-terms substring search over the full belief block: ID, text, source, and references.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-list-gated-finds-out-nodes-blocked-by-in-outlist
+### [ACCEPTED] pg-list-gated-finds-out-nodes-blocked-by-in-outlist
 `PgApi.list_gated` finds OUT nodes blocked by IN outlist nodes (GATE beliefs).
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-internal-helpers-do-not-commit
+### [ACCEPTED] pg-internal-helpers-do-not-commit
 Internal PgApi helpers such as `_add_node_raw`, `_propagate`, and `_compute_truth` operate on a passed cursor without committing; the public caller owns the transaction boundary.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-derived-node-inherits-union-access-tags
+### [ACCEPTED] pg-derived-node-inherits-union-access-tags
 When PgApi creates a derived node, `_inherit_access_tags` sets its access tags to the union of its antecedents' access tags.
 - Source: /home/forge/workspace/entries/2026/05/11/reasons_lib-pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] search-depth-expansion-adds-antecedents
+### [ACCEPTED] search-depth-expansion-adds-antecedents
 `api.search` with `depth=0` returns only direct FTS matches, `depth=1` adds direct antecedents, and `depth=2` adds transitive antecedents.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] list-nodes-supports-depth-range-filtering
+### [ACCEPTED] list-nodes-supports-depth-range-filtering
 `api.list_nodes()` supports `min_depth` and `max_depth` parameters to filter nodes by justification depth.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-belief-set-returns-only-in-node-ids
+### [ACCEPTED] get-belief-set-returns-only-in-node-ids
 `api.get_belief_set()` returns only the IDs of nodes whose truth value is IN.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-log-supports-last-n-filtering
+### [ACCEPTED] get-log-supports-last-n-filtering
 `api.get_log(last=N)` limits audit log retrieval to the most recent N entries.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_api.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-empty-network-returns-no-beliefs-message
+### [ACCEPTED] ask-empty-network-returns-no-beliefs-message
 When the belief network is empty or no beliefs match the query, `ask()` returns `NO_BELIEFS_MSG` rather than raising an exception.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-dual-mode-uses-three-llm-calls
+### [ACCEPTED] ask-dual-mode-uses-three-llm-calls
 In `dual=True` mode, `ask()` performs three LLM calls: one for the TMS leg, one for the FTS leg, and one merge call.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] build-tools-section-merges-all-bridges
+### [ACCEPTED] build-tools-section-merges-all-bridges
 `_build_tools_section` merges tool descriptors from all provided MCP bridges together with the built-in `search_beliefs` tool.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask_mcp.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] build-tools-section-handles-empty-params-cleanly
+### [ACCEPTED] build-tools-section-handles-empty-params-cleanly
 For a tool whose input schema has empty `properties`, `_build_tools_section` emits a JSON example without a trailing comma after the tool name.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask_mcp.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-prompt-data-source-instructions-header
+### [ACCEPTED] ask-prompt-data-source-instructions-header
 `build_ask_prompt` injects MCP instructions under a `Data Source Instructions` header and omits that header when the instructions are empty.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask_mcp.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ask-mcp-dispatch-routes-by-tool-name
+### [ACCEPTED] ask-mcp-dispatch-routes-by-tool-name
 When the LLM returns an MCP tool call, `ask()` dispatches it to the matching bridge's `call_tool` method and feeds the returned result back into the tool history.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask_mcp.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] build-mcp-instructions-concatenates-bridges
+### [ACCEPTED] build-mcp-instructions-concatenates-bridges
 `_build_mcp_instructions` concatenates instructions from multiple MCP bridges and returns an empty string when no instructions are provided.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_ask_mcp.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-idempotent-operations-report-already-status
+### [ACCEPTED] cli-idempotent-operations-report-already-status
 The CLI reports `already OUT` when retracting an already-OUT node and `already IN` when asserting an already-IN node.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cli-empty-state-queries-exit-zero
+### [ACCEPTED] cli-empty-state-queries-exit-zero
 CLI query commands given an empty database return messages such as `No nodes` or `No matching` with exit code 0, not an error exit code.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] run-cli-harness-catches-systemexit
+### [ACCEPTED] run-cli-harness-catches-systemexit
 The `run_cli` test helper catches `SystemExit` raised by the CLI `main()` function and extracts its exit code.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cli.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-stats-has-fixed-keys-and-sum
+### [ACCEPTED] cluster-stats-has-fixed-keys-and-sum
 `cluster_beliefs` returns a `stats` dictionary containing `n_clusters`, `cluster_sizes`, and `embedding_model`, and the cluster sizes sum to the total number of beliefs.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] auto-k-max-k-caps-cluster-count
+### [ACCEPTED] auto-k-max-k-caps-cluster-count
 `_auto_k` caps the computed cluster count at `max_k` and clamps an explicit `n_clusters` value to the number of beliefs.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-cache-embed-returns-ids-and-embeddings
+### [ACCEPTED] cluster-cache-embed-returns-ids-and-embeddings
 `ClusterCache.embed(beliefs)` returns a tuple of belief IDs and their embeddings and caches embeddings by text.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_cluster.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] run-cli-harness-invokes-cli-in-process
+### [ACCEPTED] run-cli-harness-invokes-cli-in-process
 The run_cli test harness invokes reasons_lib.cli:main in-process by patching sys.argv, sys.stdout, and sys.stderr, returning stdout, stderr, and exit code.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-detection-batches-by-constant-size
+### [ACCEPTED] contradiction-detection-batches-by-constant-size
 detect_contradictions splits IN-only beliefs into batches of CONTRADICTION_BATCH_SIZE and sends each batch as an independent LLM call.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-contradiction-extracts-nogood-id-sections
+### [ACCEPTED] parse-contradiction-extracts-nogood-id-sections
 parse_contradiction_response extracts ### NOGOOD <id> sections from LLM responses, pulling out claims, analysis, and severity.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] contradiction-semantic-variant-clusters-before-llm
+### [ACCEPTED] contradiction-semantic-variant-clusters-before-llm
 detect_contradictions_semantic uses embedding-based clustering to group related beliefs before sending them to the LLM.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_contradictions.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] detect-agents-excludes-active-sentinel
+### [ACCEPTED] detect-agents-excludes-active-sentinel
 _detect_agents identifies colon-namespaced agent prefixes and excludes :active sentinel nodes from belief counts.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] get-depth-computes-derivation-chain-depth
+### [ACCEPTED] get-depth-computes-derivation-chain-depth
 _get_depth returns 0 for premises, 1 for nodes derived from premises, and 2 for nodes derived from depth-1 nodes.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] parse-proposals-supports-legacy-v09-format
+### [ACCEPTED] parse-proposals-supports-legacy-v09-format
 parse_proposals supports the old v0.9 format with backtick-delimited IDs and bold field names, as well as ### DERIVE and ### GATE blocks.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] validate-proposals-rejects-missing-antecedents
+### [ACCEPTED] validate-proposals-rejects-missing-antecedents
 validate_proposals rejects any proposal that references an antecedent not present in the current network.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] topic-filter-matches-ids-and-text-with-or-semantics
+### [ACCEPTED] topic-filter-matches-ids-and-text-with-or-semantics
 _filter_by_topic matches space-separated keywords against both node IDs and text fields using OR semantics.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] sample-beliefs-deterministic-budget-bounded
+### [ACCEPTED] sample-beliefs-deterministic-budget-bounded
 _sample_beliefs returns all beliefs when under budget, caps at the budget when over, and is reproducible with a seeded RNG.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-exhaust-iterates-until-no-new-proposals
+### [ACCEPTED] derive-exhaust-iterates-until-no-new-proposals
 The derive --exhaust option iterates until the LLM produces no new proposals.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derive-auto-writes-json-round-report
+### [ACCEPTED] derive-auto-writes-json-round-report
 derive --auto writes a JSON report with round-by-round stats, and --no-report suppresses the report.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_derive.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-retracted-pin-survives-antecedent-reassertion
+### [ACCEPTED] pg-retracted-pin-survives-antecedent-reassertion
 In PgApi, a node explicitly retracted remains OUT when its antecedent is re-asserted, even though the justification chain is satisfied.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-namespace-auto-creates-active-premise
+### [ACCEPTED] pg-namespace-auto-creates-active-premise
 Calling PgApi.add_node with a namespace parameter auto-creates an <ns>:active premise node and adds it to the derived node's antecedent list.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-namespace-prefixing-is-idempotent
+### [ACCEPTED] pg-namespace-prefixing-is-idempotent
 PgApi.add_node with namespace=agent1 produces agent1:x for input x and does not double-prefix an already-prefixed agent1:x ID.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-challenge-defense-uses-outlist
+### [ACCEPTED] pg-challenge-defense-uses-outlist
 PgApi challenge and defend operate through the outlist non-monotonic mechanism rather than directly toggling truth values, and defending all challenges restores the target to IN.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] pg-derived-access-tags-union-antecedent-tags
+### [ACCEPTED] pg-derived-access-tags-union-antecedent-tags
 In PgApi, a derived node inherits the union of its antecedents' access tags.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] export-markdown-empty-network-handled
+### [ACCEPTED] export-markdown-empty-network-handled
 export_markdown accepts PG connection kwargs for an empty belief network and produces markdown without error.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg_dispatch.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-agent-supports-markdown-and-json-input
+### [ACCEPTED] import-agent-supports-markdown-and-json-input
 The API import_agent function supports both markdown and JSON input variants before dispatching parsed data to PgApi.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg_dispatch.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-json-propagates-file-not-found
+### [ACCEPTED] import-json-propagates-file-not-found
 import_json propagates FileNotFoundError when given a nonexistent path rather than swallowing it.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg_dispatch.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] import-maintenance-repo-negative-cli-now-accept-pg-kwargs
+### [ACCEPTED] import-maintenance-repo-negative-cli-now-accept-pg-kwargs
 Regression tests confirm that import, maintenance, repo, and negative CLI commands previously gated behind _require_sqlite now accept PG kwargs without error.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_pg_dispatch.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] remove-justification-cleans-dependents-index
+### [ACCEPTED] remove-justification-cleans-dependents-index
 After Network.remove_justification, antecedent and outlist nodes' dependents sets are updated to remove the target node unless it remains referenced by another justification.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_remove_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] remove-justification-preserves-shared-antecedent-dependents
+### [ACCEPTED] remove-justification-preserves-shared-antecedent-dependents
 If a node appears in both justifications' antecedent lists, removing one justification does not remove it from the dependents index.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_remove_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] remove-justification-cascades-truth-value
+### [ACCEPTED] remove-justification-cascades-truth-value
 If Network.remove_justification causes a node to flip from IN to OUT, the change propagates to all downstream dependents.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_remove_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] remove-justification-rejects-premises
+### [ACCEPTED] remove-justification-rejects-premises
 Calling Network.remove_justification on a premise node raises ValueError because premises have no justifications to remove.
 - Source: /home/forge/workspace/entries/2026/05/11/tests-test_remove_justification.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] reference-validation-audit-finds-three-uncovered-boundary-gaps
+### [ACCEPTED] reference-validation-audit-finds-three-uncovered-boundary-gaps
 Issue #126 reference validation audit found three specific node ID reference boundaries whose coverage does not establish validation at every boundary.
 - Source: /home/forge/workspace/entries/2026/05/11/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] review-fault-tolerance-audit-finds-three-uncovered-failure-modes
+### [ACCEPTED] review-fault-tolerance-audit-finds-three-uncovered-failure-modes
 Issue #122 review fault tolerance audit found three specific handlers that do not establish coverage of all failure modes.
 - Source: /home/forge/workspace/entries/2026/05/11/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] evolution-tolerance-audit-finds-not-all-boundaries-have-documented-forward-compatibility
+### [ACCEPTED] evolution-tolerance-audit-finds-not-all-boundaries-have-documented-forward-compatibility
 Issue #121 evolution tolerance audit found that not all system boundaries have documented forward-compatibility mechanisms.
 - Source: /home/forge/workspace/entries/2026/05/11/update.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] ftl-reasons-belief-network-is-model-agnostic
+### [ACCEPTED] ftl-reasons-belief-network-is-model-agnostic
 The ftl-reasons belief network is model-agnostic: any LLM that can do tool calling or use CLI commands can query and update it.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-card-is-readme-md-modeled-on-huggingface-model-cards
+### [ACCEPTED] eem-card-is-readme-md-modeled-on-huggingface-model-cards
 The EEM_CARD.md format is modeled on HuggingFace model cards and is the README.md in the EEM repo.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-card-has-yaml-frontmatter-with-schema-version-and-type-eem
+### [ACCEPTED] eem-card-has-yaml-frontmatter-with-schema-version-and-type-eem
 An EEM card has YAML frontmatter with schema_version "1.0" and type "eem".
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-expert-published-to-huggingface-at-benthomasson-eem-expert
+### [ACCEPTED] eem-expert-published-to-huggingface-at-benthomasson-eem-expert
 The eem-expert knowledge base was published to HuggingFace at benthomasson/eem-expert on 2026-05-23.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] huggingface-requires-lowercase-license-field
+### [ACCEPTED] huggingface-requires-lowercase-license-field
 HuggingFace metadata validation requires the license field to be lowercase, such as mit rather than MIT.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] gitignore-excludes-reasons-db-and-wal-files-from-hf-upload
+### [ACCEPTED] gitignore-excludes-reasons-db-and-wal-files-from-hf-upload
 The eem-expert .gitignore excludes reasons.db and its WAL files so that only portable files are uploaded to HuggingFace.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] reasons-import-hf-falls-back-to-raw-http-without-huggingface-hub
+### [ACCEPTED] reasons-import-hf-falls-back-to-raw-http-without-huggingface-hub
 The planned reasons import-hf command is designed to work without huggingface_hub installed by falling back to raw HTTP download for public repositories.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] multiple-eems-merge-into-single-reasons-db-with-shared-node-ids-and-nogoods
+### [ACCEPTED] multiple-eems-merge-into-single-reasons-db-with-shared-node-ids-and-nogoods
 Multiple EEM repositories can be imported into a single reasons.db, where shared node IDs connect across networks and contradictions are detected as nogoods.
 - Source: /home/forge/workspace/entries/2026/05/23/huggingface-eem-distribution.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-builder-runs-on-gce-vms
+### [ACCEPTED] eem-builder-runs-on-gce-vms
 The EEM builder currently runs on GCE VMs.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-supports-sse-and-streamable-http-transports
+### [ACCEPTED] mcp-supports-sse-and-streamable-http-transports
 MCP supports two HTTP transports: SSE and Streamable HTTP.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cloud-run-mcp-server-uses-streamable-http-transport
+### [ACCEPTED] cloud-run-mcp-server-uses-streamable-http-transport
 The Cloud Run MCP server uses Streamable HTTP transport rather than SSE.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cloud-run-mcp-server-loads-network-json-from-gcs-on-cold-start
+### [ACCEPTED] cloud-run-mcp-server-loads-network-json-from-gcs-on-cold-start
 The Cloud Run MCP server loads network.json from GCS on cold start and caches it in memory.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cloud-run-mcp-server-exposes-search-show-explain-list-topics-get-topic-tools
+### [ACCEPTED] cloud-run-mcp-server-exposes-search-show-explain-list-topics-get-topic-tools
 The Cloud Run FastAPI MCP server exposes search, show, explain, list_topics, and get_topic tools.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cloud-run-mcp-server-is-read-side-sharing-network-json-via-gcs-with-gce-builder
+### [ACCEPTED] cloud-run-mcp-server-is-read-side-sharing-network-json-via-gcs-with-gce-builder
 The Cloud Run MCP server handles the read side and shares network.json with the GCE builder via GCS.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] iap-provides-google-oauth-gating-in-front-of-cloud-run-mcp-server
+### [ACCEPTED] iap-provides-google-oauth-gating-in-front-of-cloud-run-mcp-server
 Identity-Aware Proxy in front of Cloud Run provides Google OAuth gating for the MCP server.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cloud-run-scales-to-zero-with-no-idle-cost
+### [ACCEPTED] cloud-run-scales-to-zero-with-no-idle-cost
 Cloud Run scales to zero and incurs no cost when idle.
 - Source: /home/forge/workspace/entries/2026/07/09/mcp-server-cloud-run.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-wiki-generates-static-html-from-network-json
+### [ACCEPTED] eem-wiki-generates-static-html-from-network-json
 The eem-wiki generates static HTML from network.json belief exports.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] eem-wiki-publicly-deployed-to-cloudflare-pages-at-wiki-llmeem-ai
+### [ACCEPTED] eem-wiki-publicly-deployed-to-cloudflare-pages-at-wiki-llmeem-ai
 The eem-wiki is currently deployed publicly to Cloudflare Pages at wiki.llmeem.ai.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] private-wiki-deployment-uses-iap-in-front-of-cloud-run
+### [ACCEPTED] private-wiki-deployment-uses-iap-in-front-of-cloud-run
 A private wiki deployment option uses Google Cloud IAP in front of a Cloud Run service to handle Google OAuth.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] private-wiki-build-uses-eem-wiki-build-all
+### [ACCEPTED] private-wiki-build-uses-eem-wiki-build-all
 The private wiki build pipeline uses eem-wiki build-all to produce the dist/ directory.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] other-static-hosts-lack-built-in-google-oauth-gating
+### [ACCEPTED] other-static-hosts-lack-built-in-google-oauth-gating
 GitHub Pages, Netlify, Vercel, S3+CloudFront, and nginx do not have built-in Google OAuth gating.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] per-customer-wiki-uses-own-dist-build-behind-iap
+### [ACCEPTED] per-customer-wiki-uses-own-dist-build-behind-iap
 Each enterprise customer's private wiki uses its own dist/ build deployed behind IAP and gated to their Google Workspace domain.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
 - Model: openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] wiki-authentication-is-independent-of-build-process
+### [ACCEPTED] wiki-authentication-is-independent-of-build-process
 The authentication question for eem-wiki is independent of the build process because the output is static HTML.
 - Source: /home/forge/workspace/entries/2026/07/09/private-wiki-deployment.md
 - Source URL: none
