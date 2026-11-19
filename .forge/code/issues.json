@@ -1,0 +1,354 @@
+[
+  {
+    "belief_id": "derived-belief-soundness-is-llm-only",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/278",
+    "type": "gate",
+    "state": "open",
+    "title": "[derived-belief-soundness-is-llm-only] Structural validation ensures justification references exist and are IN, but the",
+    "description": "Structural validation ensures justification references exist and are IN, but the logical soundness of the inference from antecedents to derived conclusion is validated only by the proposing LLM \u2014 no code-level check verifies that the reasoning step is logically valid.",
+    "filed_at": "2026-11-19T21:19:38+00:00",
+    "gated_beliefs": [
+      "derived-belief-pipeline-achieves-code-enforced-quality"
+    ]
+  },
+  {
+    "belief_id": "issue-122-review-fault-tolerance-audit",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/279",
+    "type": "gate",
+    "state": "open",
+    "title": "[issue-122-review-fault-tolerance-audit] Issue #122: Audit review module for unhandled failure modes \u2014 three specific han",
+    "description": "Issue #122: Audit review module for unhandled failure modes \u2014 three specific handlers do not establish coverage of all failure modes",
+    "filed_at": "2026-11-19T21:19:39+00:00",
+    "gated_beliefs": [
+      "review-achieves-verified-fault-tolerance",
+      "review-is-read-only-and-fault-tolerant"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-agent-beliefs-undergo-full-revision-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/280",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-agent-beliefs-undergo-full-revision-j0] Invalid: missing bridge between agent subsystem and general revision system (def",
+    "description": "Invalid: missing bridge between agent subsystem and general revision system (defeats agent-beliefs-undergo-full-revision justification 0)",
+    "filed_at": "2026-11-19T21:19:40+00:00",
+    "gated_beliefs": [
+      "agent-beliefs-undergo-full-revision"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-all-identification-is-deterministic-and-collision-free-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/281",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-all-identification-is-deterministic-and-collision-free-j0] review-beliefs: \"Collision-free\" is strictly stronger than the \"consistent, refe",
+    "description": "review-beliefs: \"Collision-free\" is strictly stronger than the \"consistent, referenceable identification\" established by the antecedents \u2014 addressability does not imply collision prevention across identifier spaces. (defeats all-identification-is-deterministic-and-collision-free justification 0)",
+    "filed_at": "2026-11-19T21:19:41+00:00",
+    "gated_beliefs": [
+      "all-identification-is-deterministic-and-collision-free"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-all-llm-interactions-are-bounded-and-fail-soft-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/282",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-all-llm-interactions-are-bounded-and-fail-soft-j0] review-beliefs: The claim attributes environment isolation to both paths, but on",
+    "description": "review-beliefs: The claim attributes environment isolation to both paths, but only the derive antecedent mentions it; additionally \"All LLM-facing operations\" is overclaimed when review and list-negative modules are unaddressed. (defeats all-llm-interactions-are-bounded-and-fail-soft justification 0)",
+    "filed_at": "2026-11-19T21:19:43+00:00",
+    "gated_beliefs": [
+      "all-llm-interactions-are-bounded-and-fail-soft"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-all-network-modifications-are-auditable-and-topology-preserving-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/283",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-all-network-modifications-are-auditable-and-topology-preserving-j0] Invalid: doesn't cover import operations (defeats all-network-modifications-are-",
+    "description": "Invalid: doesn't cover import operations (defeats all-network-modifications-are-auditable-and-topology-preserving justification 0)",
+    "filed_at": "2026-11-19T21:19:44+00:00",
+    "gated_beliefs": [
+      "all-network-modifications-are-auditable-and-topology-preserving"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-api-enforces-typed-preconditions-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/284",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-api-enforces-typed-preconditions-j0] review-beliefs: Three specific boundary validations demonstrate a pattern but ca",
+    "description": "review-beliefs: Three specific boundary validations demonstrate a pattern but cannot establish the claim of \"consistent error contract at every entry point\" without enumerating all entry points. (defeats api-enforces-typed-preconditions justification 0)",
+    "filed_at": "2026-11-19T21:19:45+00:00",
+    "gated_beliefs": [
+      "api-enforces-typed-preconditions"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-architecture-has-no-hidden-fragility-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/285",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-architecture-has-no-hidden-fragility-j0] review-beliefs: Two positive safety properties and one gated known fragility can",
+    "description": "review-beliefs: Two positive safety properties and one gated known fragility cannot prove the universal negative \"no hidden consistency hazards\" \u2014 absence of evidence for other fragilities is not evidence of their absence. (defeats architecture-has-no-hidden-fragility justification 0)",
+    "filed_at": "2026-11-19T21:19:46+00:00",
+    "gated_beliefs": [
+      "architecture-has-no-hidden-fragility"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-ask-degrades-across-all-external-dependencies-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/286",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-ask-degrades-across-all-external-dependencies-j0] review-beliefs: The claim describes FTS5 degradation via \"self-healing derived i",
+    "description": "review-beliefs: The claim describes FTS5 degradation via \"self-healing derived index with substring fallback\" but neither antecedent establishes this mechanism \u2014 the first antecedent only describes falling back TO FTS5, not handling FTS5's own failure. (defeats ask-degrades-across-all-external-dependencies justification 0)",
+    "filed_at": "2026-11-19T21:19:47+00:00",
+    "gated_beliefs": [
+      "ask-degrades-across-all-external-dependencies"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-batch-fault-isolation-is-universal-across-llm-operations-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/287",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-batch-fault-isolation-is-universal-across-llm-operations-j0] review-beliefs: The review antecedent describes per-batch skipping (entire batch",
+    "description": "review-beliefs: The review antecedent describes per-batch skipping (entire batch dropped on LLM failure), which contradicts the claim of fault isolation at the \"individual item level.\" (defeats batch-fault-isolation-is-universal-across-llm-operations justification 0)",
+    "filed_at": "2026-11-19T21:19:48+00:00",
+    "gated_beliefs": [
+      "batch-fault-isolation-is-universal-across-llm-operations"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-both-revision-paths-preserve-system-invariants-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/288",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-both-revision-paths-preserve-system-invariants-j0] Invalid: over-generalizes from 2 specific properties to all system invariants (d",
+    "description": "Invalid: over-generalizes from 2 specific properties to all system invariants (defeats both-revision-paths-preserve-system-invariants justification 0)",
+    "filed_at": "2026-11-19T21:19:50+00:00",
+    "gated_beliefs": [
+      "both-revision-paths-preserve-system-invariants"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-budget-enforcement-is-efficient-across-pipeline-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/289",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-budget-enforcement-is-efficient-across-pipeline-j0] Invalid: universalizes floor bounds to all budget operations when only derive ha",
+    "description": "Invalid: universalizes floor bounds to all budget operations when only derive has floor-5 (defeats budget-enforcement-is-efficient-across-pipeline justification 0)",
+    "filed_at": "2026-11-19T21:19:50+00:00",
+    "gated_beliefs": [
+      "budget-enforcement-is-efficient-across-pipeline"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-bulk-operations-preserve-topology-and-reconcile-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/290",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-bulk-operations-preserve-topology-and-reconcile-j0] review-beliefs: The import antecedent establishes dual reconciliation modes and ",
+    "description": "review-beliefs: The import antecedent establishes dual reconciliation modes and truth state handling but does not mention rewiring justification references (antecedent or outlist), which the claim attributes to both operations. (defeats bulk-operations-preserve-topology-and-reconcile justification 0)",
+    "filed_at": "2026-11-19T21:19:52+00:00",
+    "gated_beliefs": [
+      "bulk-operations-preserve-topology-and-reconcile"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-cli-is-pure-delegation-layer-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/291",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-cli-is-pure-delegation-layer-j0] review-beliefs: The claim includes \"producing binary exit codes and correct stre",
+    "description": "review-beliefs: The claim includes \"producing binary exit codes and correct stream separation\" which neither antecedent establishes \u2014 delegation and flat dispatch do not entail specific exit code semantics or stream routing. (defeats cli-is-pure-delegation-layer justification 0)",
+    "filed_at": "2026-11-19T21:19:53+00:00",
+    "gated_beliefs": [
+      "cli-is-pure-delegation-layer"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-compact-budget-controls-output-size-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/292",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-compact-budget-controls-output-size-j0] review-beliefs: The first antecedent presupposes budget truncation works (\"survi",
+    "description": "review-beliefs: The first antecedent presupposes budget truncation works (\"survive budget truncation\") rather than establishing it, making the derivation circular; the summary-hiding antecedent describes a scenario where output grows, not how the budget constrains it. (defeats compact-budget-controls-output-size justification 0)",
+    "filed_at": "2026-11-19T21:19:55+00:00",
+    "gated_beliefs": [
+      "compact-budget-controls-output-size"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-compact-is-efficient-deterministic-and-bounded-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/293",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-compact-is-efficient-deterministic-and-bounded-j0] Invalid: claims no trade-offs but chars/4 is explicitly an accuracy trade-off (d",
+    "description": "Invalid: claims no trade-offs but chars/4 is explicitly an accuracy trade-off (defeats compact-is-efficient-deterministic-and-bounded justification 0)",
+    "filed_at": "2026-11-19T21:19:56+00:00",
+    "gated_beliefs": [
+      "compact-is-efficient-deterministic-and-bounded"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-context-agnosticism-follows-from-minimality-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/294",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-context-agnosticism-follows-from-minimality-j0] False causal claim: context-agnosticism comes from evaluation purity, not from m",
+    "description": "False causal claim: context-agnosticism comes from evaluation purity, not from minimality. They co-occur but are not causally linked. (defeats context-agnosticism-follows-from-minimality justification 0)",
+    "filed_at": "2026-11-19T21:19:58+00:00",
+    "gated_beliefs": [
+      "context-agnosticism-follows-from-minimality"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-critical-operations-converge-to-fixed-points-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/295",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-critical-operations-converge-to-fixed-points-j0] review-beliefs: Individual convergence of three operations does not establish th",
+    "description": "review-beliefs: Individual convergence of three operations does not establish the system-level claim of reaching stable state \"regardless of operation ordering\" \u2014 without commutativity or serialization guarantees, interleaved operations could produce different fixed points. (defeats critical-operations-converge-to-fixed-points justification 0)",
+    "filed_at": "2026-11-19T21:19:58+00:00",
+    "gated_beliefs": [
+      "critical-operations-converge-to-fixed-points"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-derive-pipeline-is-exhaustive-and-terminating-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/296",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-derive-pipeline-is-exhaustive-and-terminating-j0] Invalid: cycle guard in _get_depth != termination of exhaust loop (defeats deriv",
+    "description": "Invalid: cycle guard in _get_depth != termination of exhaust loop (defeats derive-pipeline-is-exhaustive-and-terminating justification 0)",
+    "filed_at": "2026-11-19T21:20:00+00:00",
+    "gated_beliefs": [
+      "derive-pipeline-is-exhaustive-and-terminating"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-derive-pipeline-is-production-ready-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/297",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-derive-pipeline-is-production-ready-j0] review-beliefs: The claim asserts the pipeline \"correctly allocates budgets\" but",
+    "description": "review-beliefs: The claim asserts the pipeline \"correctly allocates budgets\" but neither antecedent establishes budget allocation correctness \u2014 the defensive antecedent covers validation and the prompt antecedent covers serialization format. (defeats derive-pipeline-is-production-ready justification 0)",
+    "filed_at": "2026-11-19T21:20:01+00:00",
+    "gated_beliefs": [
+      "derive-pipeline-is-production-ready"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-every-mutation-reports-its-effects-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/298",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-every-mutation-reports-its-effects-j0] review-beliefs: Three mutation-reporting mechanisms are demonstrated but the uni",
+    "description": "review-beliefs: Three mutation-reporting mechanisms are demonstrated but the universal claim \"All mutating operations\" is not established \u2014 add_node, propagate, dedup, and import mutations are not shown to report their effects. (defeats every-mutation-reports-its-effects justification 0)",
+    "filed_at": "2026-11-19T21:20:02+00:00",
+    "gated_beliefs": [
+      "every-mutation-reports-its-effects"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-external-belief-ingestion-is-defensively-layered-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/299",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-external-belief-ingestion-is-defensively-layered-j0] review-beliefs: The claim that both paths \"converge on the same underlying mutat",
+    "description": "review-beliefs: The claim that both paths \"converge on the same underlying mutation infrastructure\" is not stated in or derivable from either antecedent \u2014 each antecedent describes its own defense mechanisms without addressing shared infrastructure. (defeats external-belief-ingestion-is-defensively-layered justification 0)",
+    "filed_at": "2026-11-19T21:20:03+00:00",
+    "gated_beliefs": [
+      "external-belief-ingestion-is-defensively-layered"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-minimality-produces-uniformity-and-determinism-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/300",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-minimality-produces-uniformity-and-determinism-j0] review-beliefs: Antecedent 1 establishes minimality\u2192uniformity, but antecedent 2",
+    "description": "review-beliefs: Antecedent 1 establishes minimality\u2192uniformity, but antecedent 2 presents minimality and determinism as co-existing properties that are *unified* in the system, not as one generating the other \u2014 the BFS fixpoint and conservative failure semantics are independent operational design choices, not consequences of semantic minimality, so the claim that minimality is the 'shared generative root' of determinism is an unsupported causal upgrade from co-occurrence to generation. (defeats minimality-produces-uniformity-and-determinism justification 0)",
+    "filed_at": "2026-11-19T21:20:04+00:00",
+    "gated_beliefs": [
+      "minimality-produces-uniformity-and-determinism"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-negative-semantics-are-uniform-through-minimality-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/301",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-negative-semantics-are-uniform-through-minimality-j0] Internal contradiction: claims 'permanent identity effects from challenge' but a",
+    "description": "Internal contradiction: claims 'permanent identity effects from challenge' but antecedent (negative-semantics-are-complete-reversible-and-recoverable) characterizes negative semantics as fully reversible and recoverable (defeats negative-semantics-are-uniform-through-minimality justification 0)",
+    "filed_at": "2026-11-19T21:20:05+00:00",
+    "gated_beliefs": [
+      "negative-semantics-are-uniform-through-minimality"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-premise-identity-is-inherently-transient-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/302",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-premise-identity-is-inherently-transient-j0] review-beliefs: The claim references 'dialectical challenge' and 'defend' as tra",
+    "description": "review-beliefs: The claim references 'dialectical challenge' and 'defend' as transformation mechanisms while the antecedents only establish add_justification, and the 'irreversibly' qualifier is not established \u2014 convert-to-premise could reverse the transformation (defeats premise-identity-is-inherently-transient justification 0)",
+    "filed_at": "2026-11-19T21:20:06+00:00",
+    "gated_beliefs": [
+      "premise-identity-is-inherently-transient"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-propagation-automatically-cascades-on-all-truth-changes-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/303",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-propagation-automatically-cascades-on-all-truth-changes-j0] review-beliefs: The inference relies on the unstated assumption that propagation",
+    "description": "review-beliefs: The inference relies on the unstated assumption that propagation traverses the dependents index to reach all affected nodes \u2014 TMS background knowledge not captured in either antecedent (defeats propagation-automatically-cascades-on-all-truth-changes justification 0)",
+    "filed_at": "2026-11-19T21:20:08+00:00",
+    "gated_beliefs": [
+      "propagation-automatically-cascades-on-all-truth-changes"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-revision-is-lifecycle-safe-and-semantics-preserving-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/304",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-revision-is-lifecycle-safe-and-semantics-preserving-j0] Invalid: cross-applies properties between mechanisms without support (defeats re",
+    "description": "Invalid: cross-applies properties between mechanisms without support (defeats revision-is-lifecycle-safe-and-semantics-preserving justification 0)",
+    "filed_at": "2026-11-19T21:20:09+00:00",
+    "gated_beliefs": [
+      "revision-is-lifecycle-safe-and-semantics-preserving"
+    ]
+  },
+  {
+    "belief_id": "migrated-retraction-rich-governance-emerges-from-minimal-foundations-j0",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/305",
+    "type": "gate",
+    "state": "open",
+    "title": "[migrated-retraction-rich-governance-emerges-from-minimal-foundations-j0] Invalid: metadata/governance is additional machinery beyond minimal TMS primitiv",
+    "description": "Invalid: metadata/governance is additional machinery beyond minimal TMS primitives, not emergent from them (defeats rich-governance-emerges-from-minimal-foundations justification 0)",
+    "filed_at": "2026-11-19T21:20:11+00:00",
+    "gated_beliefs": [
+      "rich-governance-emerges-from-minimal-foundations"
+    ]
+  },
+  {
+    "belief_id": "pg-antecedent-refs-have-no-fk-constraints",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/306",
+    "type": "gate",
+    "state": "open",
+    "title": "[pg-antecedent-refs-have-no-fk-constraints] Antecedent and outlist references in `rms_justifications` are JSONB arrays witho",
+    "description": "Antecedent and outlist references in `rms_justifications` are JSONB arrays without foreign key constraints; nonexistent referenced nodes default to truth value OUT via `truth_cache.get(a, \"OUT\")`.",
+    "filed_at": "2026-11-19T21:20:12+00:00",
+    "gated_beliefs": [
+      "pg-data-integrity-achieves-defense-in-depth",
+      "pg-multi-tenancy-is-referentially-complete",
+      "pgapi-referential-integrity-is-database-enforced",
+      "reference-integrity-is-schema-enforced"
+    ]
+  }
+]
