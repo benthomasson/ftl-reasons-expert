@@ -4054,5 +4054,69 @@
     "source": "general:all-vs-any-justification-semantics",
     "status": "pending",
     "added": "2026-11-19T16:17:41"
+  },
+  {
+    "title": "Where the 16-char digest likely comes from; check whether it is `sha256[:16]` and whether it is a pure function of content.",
+    "kind": "file",
+    "target": "reasons_lib/merkle.py",
+    "source": "file:.forge/proposed-entries.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "The human-readable companion to this machine manifest; explains *why* these 17 targets and not `llm.py`/`pg.py`/`verify.py`.",
+    "kind": "file",
+    "target": ".forge/report.json",
+    "source": "file:.forge/proposed-entries.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "One of the few private helpers promoted to its own article; the fixpoint propagation loop that justifies the whole TMS design.",
+    "kind": "function",
+    "target": "reasons_lib/network.py:_propagate",
+    "source": "file:.forge/proposed-entries.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "How `.forge/proposed-entries.json` is consumed to materialize `entries/` (the `entries/` tree is entirely absent from this checkout, so the apply step lives elsewhere \u2014 likely `.github/workflows/` or a separate wiki repo).",
+    "kind": "general",
+    "target": "forge-propose-apply-pipeline",
+    "source": "file:.forge/proposed-entries.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "Likely the writer of the `propose-beliefs` step; check how `detail`/`counts` are formatted.",
+    "kind": "function",
+    "target": "reasons/propose_update.py:propose_update",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "The cross-file contract shared by `.forge/report.json`, `.forge/proposed-entries.json`, and `costs/*-update.json`; worth pinning down as one schema rather than three ad hoc files.",
+    "kind": "general",
+    "target": "diary-update-pipeline-schema",
+    "source": "file:.forge/report.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "how `costs/*.json` files are named, rotated, consumed, and whether any script validates the aggregate-vs-breakdown invariant.",
+    "kind": "general",
+    "target": "costs-directory-convention",
+    "source": "file:costs/2026-11-19T180331-update.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "why this run reports `cost_dollars: 0.0` for a DeepSeek-V4.1-Flash model behind the `rits` gateway; whether rates are missing or intentionally free.",
+    "kind": "general",
+    "target": "model-pricing-config",
+    "source": "file:costs/2026-11-19T180331-update.json",
+    "status": "pending",
+    "added": "2026-11-20T09:01:05"
   }
 ]

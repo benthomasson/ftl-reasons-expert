@@ -8276,22 +8276,22 @@ The file defines no `__post_init__`, no methods, and no validation, so invalid s
 `Node.truth_value` defaults to `"IN"` and a premise is defined as a `Node` with an empty `justifications` list, so freshly constructed premises are `IN` without any propagation pass.
 - Source: summaries/2026/11/19/reasons-__init__.md
 
-### [ACCEPT] network-cache-keyed-by-mtime
+### [ACCEPTED] network-cache-keyed-by-mtime
 `_network_cache` stores `(mtime, Network)` per `db_path`, and read-only calls (`write=False`) reuse the cached `Network` iff the current file mtime equals the cached one; otherwise a fresh `Storage(db_path).load()` is performed.
 - Source: summaries/2026/11/19/reasons-api.md
 - Rejected: duplicate: Existing `cache-invalidation-is-mtime-only` and `cache-read-returns-identical-object` already capture mtime-keyed cache reuse and fresh load behavior.
 
-### [ACCEPT] write-context-suppressed-on-exception
+### [ACCEPTED] write-context-suppressed-on-exception
 `_with_network.__exit__` saves and publishes only when `write=True` and `exc_type is None`; on write exceptions it neither saves the network nor refreshes `_network_cache`, preserving on-disk/cache agreement.
 - Source: summaries/2026/11/19/reasons-api.md
 - Rejected: duplicate: Existing `cache-write-exception-preserves-prior-state` covers the same no-save-on-exception behavior.
 
-### [ACCEPT] namespaced-writes-prepend-active-premise
+### [ACCEPTED] namespaced-writes-prepend-active-premise
 `add_node(namespace=...)` prefixes the id via `_resolve_namespace` and inserts `{ns}:active` at position 0 of the first justification's `antecedents` (creating the premise node if missing), making retraction of `{ns}:active` a cascade kill switch.
 - Source: summaries/2026/11/19/reasons-api.md
 - Rejected: duplicate: Existing `add-node-namespace-auto-wiring-creates-active-premise` and `api-add-node-auto-wires-namespace-active-premise` capture the same namespace active premise injection.
 
-### [ACCEPT] accept-proposal-requires-snapshot-match
+### [ACCEPTED] accept-proposal-requires-snapshot-match
 `accept_proposal` marks a proposal `stale` and returns `{"applied": False}` whenever the live node's `truth_value` or `text_hash` no longer matches the proposal's `snapshot_json`.
 - Source: summaries/2026/11/19/reasons-api.md
 - Rejected: duplicate: Existing `accept-proposal-detects-drift-before-applying` already covers snapshot/truth/value drift detection.
@@ -8300,17 +8300,17 @@ The file defines no `__post_init__`, no methods, and no validation, so invalid s
 `what_if_retract`, `what_if_assert`, and `what_if_supersede` open `_with_network(..., write=False)` and operate on a `copy.deepcopy` of the network, so the cached `Network` and the database are both left unmodified regardless of outcome.
 - Source: summaries/2026/11/19/reasons-api.md
 
-### [ACCEPT] ask-requires-sources-db-for-dual-mode
+### [ACCEPTED] ask-requires-sources-db-for-dual-mode
 `ask` raises `ValueError` at the top if `dual=True` and `sources_db is None`.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Existing beliefs `ask-dual-mode-requires-sources-db` and `ask-dual-requires-sources-db` already state this exact ValueError contract.
 
-### [ACCEPT] extract-tool-call-implements-json-line-protocol
+### [ACCEPTED] extract-tool-call-implements-json-line-protocol
 `extract_tool_call` parses the first line beginning with `{` that loads as JSON and contains a `"tool"` key.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Existing `ask-tool-call-parsing-is-line-based-json` and related beliefs already capture line-based JSON tool-call extraction with a `"tool"` key.
 
-### [ACCEPT] ask-prevents-tool-calls-in-final-round
+### [ACCEPTED] ask-prevents-tool-calls-in-final-round
 On the last iteration, `build_final_prompt` (no tool schema) is used, and any returned tool call falls back to raw context.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Existing `ask-last-iteration-structurally-forces-answer` already states the final iteration omits tool schema and forces an answer.
@@ -8323,7 +8323,7 @@ A `search_beliefs` result only overwrites `beliefs_context` when it is non-empty
 Dual mode classifies an empty TMS answer via the exact `NO_BELIEFS_MSG` string or the substring `"don't have enough beliefs"`, coupling it to prompt wording.
 - Source: summaries/2026/11/19/reasons-ask.md
 
-### [ACCEPT] ask-falls-back-to-raw-context-on-llm-errors
+### [ACCEPTED] ask-falls-back-to-raw-context-on-llm-errors
 Both `subprocess.TimeoutExpired` and generic exceptions from `invoke_model` return `_beliefs_or_no_match(ctx)` instead of raising.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Already covered by existing `ask-falls-back-to-raw-search` and `ask-never-raises-on-llm-failure` (and `ask-llm-failure-returns-raw-context`), which capture the same fallback-to-raw-context behavior on LLM errors.
@@ -8332,7 +8332,7 @@ Both `subprocess.TimeoutExpired` and generic exceptions from `invoke_model` retu
 `build_wiki` receives the `groups` dict fully formed; it never calls `_assign_topics` itself.
 - Source: summaries/2026/11/19/reasons-build_wiki.md
 
-### [ACCEPT] build-wiki-swallows-llm-errors
+### [ACCEPTED] build-wiki-swallows-llm-errors
 LLM generation failures in `build_wiki` are caught, logged to stderr as `WARN`, and the page falls back to raw markdown rendering.
 - Source: summaries/2026/11/19/reasons-build_wiki.md
 - Rejected: duplicate: Same claim as existing `build-wiki-llm-failure-falls-back-to-template` (errors caught, falls back to template/raw rendering); the stderr WARN detail is a trivial rewording.
@@ -8345,7 +8345,7 @@ The parallel branch is only entered when **both** `model` is truthy and `paralle
 `node_to_page` is a `{node_id: "<slug>.md"}` dict built before rendering and reused by `_format_node` and `_linkify` for cross-reference resolution.
 - Source: summaries/2026/11/19/reasons-build_wiki.md
 
-### [ACCEPT] linkify-sorts-ids-by-length-descending
+### [ACCEPTED] linkify-sorts-ids-by-length-descending
 `_linkify` processes IDs longest-first so that IDs which are substrings of other IDs are linked after longer matches.
 - Source: summaries/2026/11/19/reasons-build_wiki.md
 - Rejected: duplicate: existing `build-wiki-linkify-longest-first-prevents-partial-match` already captures longest-first sorting to prevent partial matches
@@ -8394,7 +8394,7 @@ Every `cmd_*` function other than `_derive_one_round` (and its helpers) performs
 Commands that touch the local filesystem, Merkle hashes, embeddings, or LLM-specific workflows call `_require_sqlite` (or the equivalent inline `REASONS_PG_CONNINFO` check) and abort if PostgreSQL is configured.
 - Source: summaries/2026/11/19/reasons-cli.md
 
-### [ACCEPT] main-dispatches-by-command-string-dict
+### [ACCEPTED] main-dispatches-by-command-string-dict
 `main()` routes subcommand execution through a `commands: dict[str, Callable]` table rather than `argparse.set_defaults(func=...)`.
 - Source: summaries/2026/11/19/reasons-cli.md
 - Rejected: trivial: internal dispatch implementation detail (dict table vs set_defaults), obvious from reading main()
@@ -8459,7 +8459,7 @@ Both `detect_contradictions` and `detect_contradictions_semantic` filter candida
 `parse_contradiction_response` drops any claim not present in `valid_ids` and discards a nogood if fewer than 2 claims survive.
 - Source: summaries/2026/11/19/reasons-contradictions.md
 
-### [ACCEPT] contradictions-requires-2-claims-per-nogood
+### [ACCEPTED] contradictions-requires-2-claims-per-nogood
 A nogood is only retained when its parsed `claims` list has length ≥ 2, mirroring the prompt's minimum-2 rule.
 - Source: summaries/2026/11/19/reasons-contradictions.md
 - Rejected: duplicate: subsumed by parse-contradiction-filters-hallucinated-ids, which already states nogoods with fewer than 2 surviving claims are discarded.
@@ -8560,12 +8560,12 @@ Bare repo names are namespaced under `EEM-Hub` unless `REASONS_HF_ORG` overrides
 `download_network` only wraps 401 and 404 into `RuntimeError`; other `HTTPError` codes propagate raw, unlike `create_repo` and `upload_file` which wrap all codes.
 - Source: summaries/2026/11/19/reasons-hf.md
 
-### [ACCEPT] inactive-relay-implements-kill-switch
+### [ACCEPTED] inactive-relay-implements-kill-switch
 Every imported belief's every outlist includes `<agent>:inactive`, so retracting `<agent>:active` cascades the entire agent's beliefs OUT.
 - Source: summaries/2026/11/19/reasons-import_agent.md
 - Rejected: duplicate: covered by existing active/inactive relay and kill-switch-outlist beliefs such as agent-beliefs-are-permanently-defeasible-and-updatable.
 
-### [ACCEPT] active-premise-is-excluded-from-antecedents
+### [ACCEPTED] active-premise-is-excluded-from-antecedents
 `<agent>:active` is never placed in antecedents of imported justifications; only `<agent>:inactive` appears in outlists.
 - Source: summaries/2026/11/19/reasons-import_agent.md
 - Rejected: duplicate: Same claim already exists as `active-not-in-antecedents`; `active-premise-not-in-antecedents` was also marked covered by it.
@@ -8634,7 +8634,7 @@ Constructing `McpBridge` raises `ImportError` when the optional `mcp` package is
 Tool metadata is fetched once during `connect()` and returned from `list_tools()` without re-querying the server.
 - Source: summaries/2026/11/19/reasons-mcp_client.md
 
-### [ACCEPT] mcpbridge-call-tool-flattens-content
+### [ACCEPTED] mcpbridge-call-tool-flattens-content
 `call_tool()` returns newline-joined text or stringified content from the MCP `CallToolResult`.
 - Source: summaries/2026/11/19/reasons-mcp_client.md
 - Rejected: duplicate: Same claim already covered by existing belief `call-tool-returns-newline-joined-string` which states call_tool() flattens the MCP result's content list into a newline-joined string.
@@ -8687,7 +8687,7 @@ A back-edge encountered during recursive Merkle computation returns `compute_tex
 `SCHEMA_VERSION` is a module constant `"1.0"` and is not derived from the installed package version.
 - Source: summaries/2026/11/19/reasons-metadata.md
 
-### [ACCEPT] build-meta-returns-six-keys
+### [ACCEPTED] build-meta-returns-six-keys
 `build_meta` returns a dict with `schema_version`, `project_name`, `created_at`, `updated_at`, `node_count`, and `generator`.
 - Source: summaries/2026/11/19/reasons-metadata.md
 - Rejected: duplicate: identical to existing `build-meta-returns-fixed-six-key-dict`
@@ -8704,7 +8704,7 @@ A truthy `created_at` argument is copied verbatim; falsey values are replaced wi
 `_get_generator` catches any `Exception` from `importlib.metadata.version("ftl-reasons")` and returns `ftl-reasons/unknown`.
 - Source: summaries/2026/11/19/reasons-metadata.md
 
-### [ACCEPT] mind-service-client-is-pure-stdlib
+### [ACCEPTED] mind-service-client-is-pure-stdlib
 The module imports only from `json`, `os`, and `urllib.*`; no third-party HTTP library is required.
 - Source: summaries/2026/11/19/reasons-mind_service.md
 - Rejected: trivial: merely restates the module's import list, observable from imports
@@ -8745,12 +8745,12 @@ Unlike pure antecedent-only TMSes, this implementation registers outlist nodes i
 `_propagate` short-circuits any dependent with `metadata["_retracted"] == True` so explicitly retracted nodes are not silently reasserted by propagation.
 - Source: summaries/2026/11/19/reasons-network.md
 
-### [ACCEPT] nogood-short-circuits-when-not-all-nodes-in
+### [ACCEPTED] nogood-short-circuits-when-not-all-nodes-in
 `add_nogood` records the `Nogood` object but returns `[]` and performs no backtracking unless every listed node is currently `IN`.
 - Source: summaries/2026/11/19/reasons-network.md
 - Rejected: duplicate: Covered by existing `add-nogood-inactive-contradiction-returns-empty` / `add-nogood-inactive-when-either-node-out`.
 
-### [ACCEPT] supersede-is-reversible-via-outlist
+### [ACCEPTED] supersede-is-reversible-via-outlist
 Because `supersede` uses outlist entries rather than direct truth-value mutation, retracting the `new_id` restores the `old_id` through normal propagation.
 - Source: summaries/2026/11/19/reasons-network.md
 - Rejected: duplicate: existing `all-defeat-mechanisms-are-reversible` already states supersession (outlist-based defeat) is inherently reversible
@@ -8767,7 +8767,7 @@ Because `supersede` uses outlist entries rather than direct truth-value mutation
 every SQL statement filters by `self.domain_id`, and `(id, domain_id)` is the nodes/nogoods primary key, so tenant data is isolated at the schema level.
 - Source: summaries/2026/11/19/reasons-pg.md
 
-### [ACCEPT] what-if-rollbacks-are-unconditional
+### [ACCEPTED] what-if-rollbacks-are-unconditional
 `what_if_retract` and `what_if_assert` both call `self.conn.rollback()` in a `finally`, so they can never persist a state change.
 - Source: summaries/2026/11/19/reasons-pg.md
 - Rejected: duplicate: existing `both-backends-support-safe-hypothetical-reasoning` already covers what-if operations not persisting state changes
@@ -8988,7 +8988,7 @@ A `premise_id` absent from `nodes` produces an empty formatted chunk and no corr
 Access tags are inserted into `node_tags` as `access:<tag>`, while plain `metadata["tags"]` are inserted verbatim.
 - Source: summaries/2026/11/19/reasons-storage.md
 
-### [ACCEPT] load-bypasses-add-node
+### [ACCEPTED] load-bypasses-add-node
 `load()` constructs `Node` objects directly and calls `network._rebuild_dependents()` instead of using `Network.add_node`.
 - Source: summaries/2026/11/19/reasons-storage.md
 - Rejected: duplicate: existing `bootstrap-bypasses-incremental-propagation` already covers loading bypassing incremental `add_node` semantics and rebuilding graph state directly.
@@ -8997,12 +8997,12 @@ Access tags are inserted into `node_tags` as `access:<tag>`, while plain `metada
 `load()` explicitly skips the `next_nogood_id` key in `network_meta`, leaving the counter to be recomputed from loaded nogoods.
 - Source: summaries/2026/11/19/reasons-storage.md
 
-### [ACCEPT] proposals-schema-unused-here
+### [ACCEPTED] proposals-schema-unused-here
 `PROPOSALS_SCHEMA` is declared in this file but never executed by `Storage._init_schema`.
 - Source: summaries/2026/11/19/reasons-storage.md
 - Rejected: trivial: unused/dead schema declaration; low-value implementation detail visible from file structure
 
-### [ACCEPT] build-meta-import-unused
+### [ACCEPTED] build-meta-import-unused
 `build_meta` is imported from `reasons.metadata` but never referenced in this file.
 - Source: summaries/2026/11/19/reasons-storage.md
 - Rejected: trivial: unused import, obvious from imports/naming
@@ -9035,22 +9035,22 @@ Access tags are inserted into `node_tags` as `access:<tag>`, while plain `metada
 `reasons_lib/__init__.py` exists solely to re-export the canonical `reasons` package for legacy imports.
 - Source: summaries/2026/11/19/reasons_lib-__init__.md
 
-### [ACCEPT] reasons-lib-depends-on-reasons
+### [ACCEPTED] reasons-lib-depends-on-reasons
 Importing `reasons_lib` executes `from reasons import *` and therefore imports the `reasons` package.
 - Source: summaries/2026/11/19/reasons_lib-__init__.md
 - Rejected: trivial: stating that module X imports module Y is the canonical trivial example.
 
-### [ACCEPT] reasons-lib-reexports-reasons-public-api
+### [ACCEPTED] reasons-lib-reexports-reasons-public-api
 Names available through `reasons_lib` are determined by `reasons`’s public namespace and optional `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-__init__.md
 - Rejected: trivial: restates star-import namespace semantics visible from a single import line.
 
-### [ACCEPT] reasons-lib-has-no-local-runtime-logic
+### [ACCEPTED] reasons-lib-has-no-local-runtime-logic
 This file defines no classes, functions, constants, or exception handling.
 - Source: summaries/2026/11/19/reasons_lib-__init__.md
 - Rejected: trivial: absence of definitions is directly visible from reading the file.
 
-### [ACCEPT] reasons-lib-does-not-alias-the-reasons-module
+### [ACCEPTED] reasons-lib-does-not-alias-the-reasons-module
 `reasons_lib` is a separate module object whose namespace is populated by a star import, not a true module alias.
 - Source: summaries/2026/11/19/reasons_lib-__init__.md
 - Rejected: trivial: module-identity distinction is derivable from the single star-import line.
@@ -9071,7 +9071,7 @@ The names available on `reasons_lib.api` are determined by `reasons.api`’s sta
 The shim does not define `__all__`, `__getattr__`, or deprecation warnings.
 - Source: summaries/2026/11/19/reasons_lib-api.md
 
-### [ACCEPT] reasons-lib-api-is-imported-by-canonical-modules
+### [ACCEPTED] reasons-lib-api-is-imported-by-canonical-modules
 Canonical modules such as `reasons/ask.py` and `reasons/cli.py` import this legacy shim, so it is part of internal runtime imports, not just external compatibility.
 - Source: summaries/2026/11/19/reasons_lib-api.md
 - Rejected: trivial: merely states module import relations visible from file structure
@@ -9080,62 +9080,62 @@ Canonical modules such as `reasons/ask.py` and `reasons/cli.py` import this lega
 `reasons_lib.ask` contains no implementation; every public name it exposes is a re-export of the corresponding name in `reasons.ask`.
 - Source: summaries/2026/11/19/reasons_lib-ask.md
 
-### [ACCEPT] reasons-lib-ask-depends-on-reasons-ask
+### [ACCEPTED] reasons-lib-ask-depends-on-reasons-ask
 `reasons/ask.py` must be importable for `reasons_lib/ask.py` to load; the dependency direction is `reasons_lib → reasons`, not the reverse.
 - Source: summaries/2026/11/19/reasons_lib-ask.md
 - Rejected: trivial: States the obvious import dependency of a wildcard shim (`from reasons.ask import *` implies reasons_lib→reasons); no non-obvious architectural content.
 
-### [ACCEPT] reasons-lib-ask-uses-star-import
+### [ACCEPTED] reasons-lib-ask-uses-star-import
 The shim relies on `from reasons.ask import *` with `# noqa: F401,F403`, so its public surface is determined by `reasons.ask.__all__` (or its non-underscore names).
 - Source: summaries/2026/11/19/reasons_lib-ask.md
 - Rejected: trivial: Describes a wildcard import visible directly from the file; "module X imports Y" style fact, nothing durable or non-obvious.
 
-### [ACCEPT] reasons-lib-ask-preserves-object-identity
+### [ACCEPTED] reasons-lib-ask-preserves-object-identity
 Calling `reasons_lib.ask.<fn>` executes the exact same function object as `reasons.ask.<fn>`; identity (`is`) holds between the two modules' symbols.
 - Source: summaries/2026/11/19/reasons_lib-ask.md
 - Rejected: trivial: Direct mechanical consequence of `from X import *`; any developer sees this from the one-line shim.
 
-### [ACCEPT] reasons-lib-ask-adds-no-error-handling
+### [ACCEPTED] reasons-lib-ask-adds-no-error-handling
 All exceptions raised inside `reasons.ask` (including at import time) propagate unchanged through `reasons_lib.ask`.
 - Source: summaries/2026/11/19/reasons_lib-ask.md
 - Rejected: trivial: Follows trivially from the file being a bare re-export; no actual error-handling logic exists to reason about.
 
-### [ACCEPT] reasons-lib-build-wiki-is-a-compatibility-shim
+### [ACCEPTED] reasons-lib-build-wiki-is-a-compatibility-shim
 The file contains only a module docstring and a wildcard import from `reasons.build_wiki`, with no local business logic.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: Describes the file's structure (docstring + wildcard import) that is obvious from reading the file; not a substantive invariant.
 
-### [ACCEPT] reasons-lib-build-wiki-requires-reasons-build-wiki
+### [ACCEPTED] reasons-lib-build-wiki-requires-reasons-build-wiki
 Importing `reasons_lib.build_wiki` requires `reasons.build_wiki` to exist and import successfully.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: Obvious from the star-import/forwarding file structure; not a durable invariant.
 
-### [ACCEPT] reasons-lib-build-wiki-export-surface-follows-star-import
+### [ACCEPTED] reasons-lib-build-wiki-export-surface-follows-star-import
 Its re-exported names are determined by star-import semantics from `reasons.build_wiki`, not by an explicit local `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: Visible directly from the import statement; module re-export mechanics are self-evident.
 
-### [ACCEPT] reasons-lib-build-wiki-propagates-import-errors
+### [ACCEPTED] reasons-lib-build-wiki-propagates-import-errors
 It has no try/except, so canonical-module import failures propagate to callers unchanged.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: Obvious consequence of no try/except; anyone can see from the file.
 
-### [ACCEPT] reasons-api-imports-compat-path
+### [ACCEPTED] reasons-api-imports-compat-path
 Repository context lists `reasons/api.py` as an importer of `reasons_lib.build_wiki`, so the compatibility path is still used internally.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: An import relationship any developer sees from imports; not a durable architectural invariant.
 
-### [ACCEPT] reasons-lib-check-stale-re-exports-reasons-check-stale
+### [ACCEPTED] reasons-lib-check-stale-re-exports-reasons-check-stale
 This module forwards the entire public namespace of `reasons.check_stale` via a single `from reasons.check_stale import *`.
 - Source: summaries/2026/11/19/reasons_lib-check_stale.md
 - Rejected: trivial: A star-import forwarding fact self-evident from the module's import statement.
 
-### [ACCEPT] shim-adds-no-new-api
+### [ACCEPTED] shim-adds-no-new-api
 The file defines no functions, classes, or constants of its own; its only runtime artifact is the imported namespace.
 - Source: summaries/2026/11/19/reasons_lib-check_stale.md
 - Rejected: trivial: file-structure observation; no definitions is obvious from the import shim.
 
-### [ACCEPT] shim-requires-reasons-check-stale
+### [ACCEPTED] shim-requires-reasons-check-stale
 The shim has a one-way dependency on `reasons.check_stale`; any import-time failure in the canonical module propagates to legacy importers.
 - Source: summaries/2026/11/19/reasons_lib-check_stale.md
 - Rejected: trivial: the one-way import and standard import-failure propagation are obvious from the shim's import statement.
@@ -9144,12 +9144,12 @@ The shim has a one-way dependency on `reasons.check_stale`; any import-time fail
 The docstring names `reasons.check_stale` as the intended import path, making `reasons_lib.check_stale` a deprecated alias.
 - Source: summaries/2026/11/19/reasons_lib-check_stale.md
 
-### [ACCEPT] shim-uses-noqa-f401-f403
+### [ACCEPTED] shim-uses-noqa-f401-f403
 The star-import line carries `# noqa: F401,F403` to suppress unused-import and star-import lint warnings, and removing it would break lint checks without affecting runtime.
 - Source: summaries/2026/11/19/reasons_lib-check_stale.md
 - Rejected: trivial: lint-comment detail; removing it is a tooling concern, not a durable runtime invariant.
 
-### [ACCEPT] reasons-lib-cli-is-a-shim
+### [ACCEPTED] reasons-lib-cli-is-a-shim
 `reasons_lib/cli.py` contains exactly one executable statement and defines no functions, classes, or constants of its own.
 - Source: summaries/2026/11/19/reasons_lib-cli.md
 - Rejected: ephemeral: exact statement count is a point-in-time file metric, and the no-definitions part is trivial.
@@ -9166,12 +9166,12 @@ The names available from `reasons_lib.cli` are exactly `reasons.cli.__all__` whe
 Importing `reasons_lib.cli` fully imports `reasons.cli` and propagates any of its import-time exceptions, with no try/except in the shim.
 - Source: summaries/2026/11/19/reasons_lib-cli.md
 
-### [ACCEPT] shim-does-not-forward-private-names-or-submodules
+### [ACCEPTED] shim-does-not-forward-private-names-or-submodules
 Star-import semantics prevent `reasons_lib.cli` from exposing underscore-prefixed names or submodules such as `reasons.cli.argparse`.
 - Source: summaries/2026/11/19/reasons_lib-cli.md
 - Rejected: trivial: standard star-import semantics obvious from the import statement
 
-### [ACCEPT] reasons-lib-cli-imported-by-reasons-cli-raises-circularity-question
+### [ACCEPTED] reasons-lib-cli-imported-by-reasons-cli-raises-circularity-question
 The dependency listing claims `reasons/cli.py` imports this shim, which is only safe if that import is guarded or deferred.
 - Source: summaries/2026/11/19/reasons_lib-cli.md
 - Rejected: speculative: asks whether a circular import is safe rather than stating an observed code fact
@@ -9180,142 +9180,142 @@ The dependency listing claims `reasons/cli.py` imports this shim, which is only 
 `reasons_lib/cluster.py` contains no implementation of its own; it re-exports `reasons.cluster` via `from reasons.cluster import *`.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 
-### [ACCEPT] cluster-shim-requires-reasons-package
+### [ACCEPTED] cluster-shim-requires-reasons-package
 Importing `reasons_lib.cluster` hard-fails with `ImportError` if `reasons.cluster` is not importable; there is no try/except fallback.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 - Rejected: trivial: Direct consequence of the wildcard import statement; no fallback is evident from `from reasons.cluster import *` and adds nothing beyond the shim fact.
 
-### [ACCEPT] cluster-shim-preserves-name-identity
+### [ACCEPTED] cluster-shim-preserves-name-identity
 Symbols accessed via `reasons_lib.cluster.X` are the same objects as `reasons.cluster.X`, not copies.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 - Rejected: trivial: Standard Python import semantics — `import *` never copies objects; obvious from module structure.
 
-### [ACCEPT] cluster-shim-inherits-api-from-reasons-cluster
+### [ACCEPTED] cluster-shim-inherits-api-from-reasons-cluster
 The set of names importable from `reasons_lib.cluster` is exactly `reasons.cluster`'s public (`__all__` or non-underscore) namespace; the shim performs no curation.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 - Rejected: trivial: Consequence of `from reasons.cluster import *`, which any developer sees from the import line; redundant with the shim belief.
 
-### [ACCEPT] cluster-shim-suppresses-only-f401-and-f403
+### [ACCEPTED] cluster-shim-suppresses-only-f401-and-f403
 The `# noqa: F401,F403` annotation silences only the "unused import" and "wildcard import" flake8 rules, leaving other linting of this file active.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 - Rejected: trivial: Lint-annotation detail about flake8 rule codes, not a durable architectural or behavioral invariant.
 
-### [ACCEPT] reasons_lib-compact-is-a-shim
+### [ACCEPTED] reasons_lib-compact-is-a-shim
 `reasons_lib/compact.py` contains no implementation and re-exports everything from `reasons.compact` via `import *`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: one-line re-export via `import *` is obvious from file/import structure.
 
-### [ACCEPT] reasons_lib-compact-requires-reasons-compact
+### [ACCEPTED] reasons_lib-compact-requires-reasons-compact
 Importing the shim necessarily triggers a full import of `reasons.compact`, so failures there propagate directly to the legacy path.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: generic Python import behavior, not a durable architectural invariant.
 
-### [ACCEPT] reasons_lib-compact-preserves-object-identity
+### [ACCEPTED] reasons_lib-compact-preserves-object-identity
 Symbols imported from the shim are the same objects as those in `reasons.compact`, not copies or wrappers.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: standard `import *` object identity, obvious Python semantics.
 
-### [ACCEPT] reasons-api-imports-reasons_lib-compact
+### [ACCEPTED] reasons-api-imports-reasons_lib-compact
 `reasons/api.py` still depends on the legacy `reasons_lib` path for compact functionality.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: an ordinary current import/dependency, visible from imports and not a constraint.
 
-### [ACCEPT] reasons_lib-compact-produces-no-own-exports
+### [ACCEPTED] reasons_lib-compact-produces-no-own-exports
 The shim exposes no names that are not also public in `reasons.compact`; its public surface is fully determined by the target module's `__all__` or public naming.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: `import *` public-surface behavior is obvious Python semantics.
 
-### [ACCEPT] reasons-lib-contradictions-is-a-compat-shim
+### [ACCEPTED] reasons-lib-contradictions-is-a-compat-shim
 The module defines no logic and only re-exports `reasons.contradictions` via a star import.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: Obvious from the module’s single star-import/file structure; essentially “module X imports Y.”
 
-### [ACCEPT] reasons-lib-contradictions-requires-reasons-contradictions
+### [ACCEPTED] reasons-lib-contradictions-requires-reasons-contradictions
 Importing the shim fails with the target module's `ImportError` if `reasons.contradictions` cannot be imported.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: This is standard import propagation visible from the import statement.
 
-### [ACCEPT] reasons-lib-contradictions-lacks-all
+### [ACCEPTED] reasons-lib-contradictions-lacks-all
 The shim does not define `__all__`, so `reasons_lib.contradictions.__all__` raises `AttributeError` regardless of the target module.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: Absence of `__all__` is a file-structure detail directly visible in the shim.
 
-### [ACCEPT] reasons-lib-contradictions-exports-identical-objects
+### [ACCEPTED] reasons-lib-contradictions-exports-identical-objects
 Every exported symbol is the same object as its `reasons.contradictions` counterpart (`is` identity holds).
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: Object identity is an immediate consequence of star re-export/import aliasing.
 
-### [ACCEPT] reasons-api-imports-legacy-contradictions
+### [ACCEPTED] reasons-api-imports-legacy-contradictions
 `reasons/api.py` depends on `reasons_lib.contradictions` rather than importing `reasons.contradictions` directly, routing the canonical package through the shim.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: This is a single import-path fact visible from `api.py`, not a broader architectural invariant.
 
-### [ACCEPT] reasons-lib-derive-is-a-shim
+### [ACCEPTED] reasons-lib-derive-is-a-shim
 `reasons_lib/derive.py` contains no logic beyond a docstring and a star import of `reasons.derive`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: visible file/import structure, not an architectural invariant.
 
-### [ACCEPT] reasons-lib-derive-reexports-reasons-derive
+### [ACCEPTED] reasons-lib-derive-reexports-reasons-derive
 All public symbols of `reasons.derive` are bound into `reasons_lib.derive` with identical object identity.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: direct consequence of the star import and visible from the module.
 
-### [ACCEPT] reasons-lib-derive-requires-reasons-derive-importable
+### [ACCEPTED] reasons-lib-derive-requires-reasons-derive-importable
 Import failures in `reasons.derive` propagate unchanged through the shim; there is no fallback or `try/except`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: standard Python import behavior with no fallback.
 
-### [ACCEPT] reasons-api-depends-on-legacy-shim
+### [ACCEPTED] reasons-api-depends-on-legacy-shim
 `reasons/api.py`, `reasons/cli.py`, and three test modules import `reasons_lib.derive` rather than `reasons.derive` directly.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: current import inventory, including a changing count of test modules.
 
-### [ACCEPT] reasons-lib-derive-excludes-private-names
+### [ACCEPTED] reasons-lib-derive-excludes-private-names
 Because the shim uses `import *` with no `__all__` override, underscore-prefixed names in `reasons.derive` are not forwarded.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: standard `import *` semantics visible from the shim.
 
-### [ACCEPT] reasons-lib-derive-defines-no-all
+### [ACCEPTED] reasons-lib-derive-defines-no-all
 The shim does not define `__all__`, so a star import of the shim exposes every non-underscore binding in its namespace.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: standard Python star-import behavior; obvious from absence of `__all__`.
 
-### [ACCEPT] reasons-lib-export-card-is-a-shim
+### [ACCEPTED] reasons-lib-export-card-is-a-shim
 `reasons_lib/export_card.py` contains no implementation logic; its only statement is `from reasons.export_card import *`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: trivial: file structure is directly visible from the shim's single import statement.
 
-### [ACCEPT] reasons-lib-export-card-requires-reasons-export-card
+### [ACCEPTED] reasons-lib-export-card-requires-reasons-export-card
 Importing this module raises `ModuleNotFoundError` if `reasons.export_card` cannot be imported.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: trivial: normal import dependency behavior, obvious from `from ... import *`.
 
-### [ACCEPT] reasons-lib-export-card-reexports-only-public-names
+### [ACCEPTED] reasons-lib-export-card-reexports-only-public-names
 Only names in `reasons.export_card.__all__` (or, if unset, non-underscore names) are exposed through this shim; symbols with leading underscores are not re-exported.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: trivial: standard Python star-import semantics for `__all__` and underscore names.
 
-### [ACCEPT] reasons-lib-export-card-preserves-identity
+### [ACCEPTED] reasons-lib-export-card-preserves-identity
 Re-exported objects are the same Python objects as their `reasons.export_card` counterparts, not copies or wrappers.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: trivial: Python imports preserve object identity by definition; not a durable code invariant.
 
-### [ACCEPT] reasons-lib-export-card-has-two-consumers
+### [ACCEPTED] reasons-lib-export-card-has-two-consumers
 `reasons/api.py` and `tests/test_export_card.py` both import through this path, so removing the shim requires migrating both.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: ephemeral: specific consumer count/inventory changes with test/API edits and is not a durable invariant.
 
-### [ACCEPT] reasons-lib-export-markdown-is-a-shim
+### [ACCEPTED] reasons-lib-export-markdown-is-a-shim
 The file contains no implementation; it re-exports every public name from `reasons.export_markdown`.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 - Rejected: trivial: re-export-only shim behavior is directly visible from the file's imports/structure.
 
-### [ACCEPT] export-markdown-shim-requires-reasons-export-markdown
+### [ACCEPTED] export-markdown-shim-requires-reasons-export-markdown
 Importing `reasons_lib.export_markdown` raises immediately if `reasons.export_markdown` cannot be imported; failures are reported at line 2 of the shim.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 - Rejected: ephemeral: line-number detail is brittle and the underlying import dependency is obvious from the shim.
 
-### [ACCEPT] reasons-api-depends-on-reasons-lib-export-markdown
+### [ACCEPTED] reasons-api-depends-on-reasons-lib-export-markdown
 The canonical `reasons` package still imports the exporter via the legacy `reasons_lib` path.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 - Rejected: trivial: "module imports module" dependency is visible from imports and not a meaningful invariant.
@@ -9324,27 +9324,27 @@ The canonical `reasons` package still imports the exporter via the legacy `reaso
 `reasons_lib.export_markdown` and `reasons.export_markdown` are distinct module objects sharing references; assigning to an attribute on the shim leaves the canonical module unchanged.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 
-### [ACCEPT] export-markdown-shim-emits-no-deprecation-warning
+### [ACCEPTED] export-markdown-shim-emits-no-deprecation-warning
 Neither the import nor any access emits a warning; migration is enforced only by the docstring.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 - Rejected: trivial: Obvious from reading the shim; "migration enforced only by docstring" is an editorial judgment, not a durable observable invariant.
 
-### [ACCEPT] reasons-lib-hf-is-a-shim
+### [ACCEPTED] reasons-lib-hf-is-a-shim
 `reasons_lib/hf.py` contains no logic of its own and exists solely to re-export `reasons.hf`.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: Equivalent to "module re-exports another module" — obvious from file structure/imports.
 
-### [ACCEPT] reasons-lib-hf-reexports-via-star-import
+### [ACCEPTED] reasons-lib-hf-reexports-via-star-import
 The entire file body is a single `from reasons.hf import *` statement.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: "module X imports Y" style fact, directly visible from the source.
 
-### [ACCEPT] reasons-lib-hf-suppresses-flake8-warnings
+### [ACCEPTED] reasons-lib-hf-suppresses-flake8-warnings
 The import carries `# noqa: F401,F403` to keep flake8 clean for the intentionally-unused wildcard import.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: A code-comment detail any developer sees from reading the file.
 
-### [ACCEPT] reasons-lib-hf-propagates-all-errors
+### [ACCEPTED] reasons-lib-hf-propagates-all-errors
 Any exception during `import reasons.hf` propagates unchanged through `reasons_lib.hf`; no error handling exists locally.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: Trivial consequence of the shim having no logic/try-except; obvious from structure.
@@ -9357,7 +9357,7 @@ Any exception during `import reasons.hf` propagates unchanged through `reasons_l
 `reasons_lib/import_agent.py` defines no functions or classes; its entire body is a docstring plus one wildcard re-export from `reasons.import_agent`.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 
-### [ACCEPT] reasons-lib-import-agent-requires-reasons-import-agent
+### [ACCEPTED] reasons-lib-import-agent-requires-reasons-import-agent
 Importing `reasons_lib.import_agent` necessarily executes `reasons/import_agent.py` in full, including its transitive imports.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 - Rejected: trivial: restates standard Python import semantics (importing a module executes it), observable from the import statement
@@ -9366,12 +9366,12 @@ Importing `reasons_lib.import_agent` necessarily executes `reasons/import_agent.
 `reasons/api.py` and `reasons/pg.py` import the legacy shim, creating a `reasons → reasons_lib → reasons.import_agent` import chain.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 
-### [ACCEPT] star-import-drops-private-names
+### [ACCEPTED] star-import-drops-private-names
 Any `_`-prefixed symbol in `reasons/import_agent.py` is unreachable through `reasons_lib.import_agent`, because the wildcard import filters underscore names.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 - Rejected: trivial: tautological consequence of Python wildcard-import behavior (underscore filtering), not a codebase-specific invariant
 
-### [ACCEPT] shim-binds-symbols-by-reference
+### [ACCEPTED] shim-binds-symbols-by-reference
 Exported objects are the same objects as in the canonical module (`is` identity holds), but rebinding an attribute on either module does not affect the other.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 - Rejected: trivial: standard wildcard-import binding semantics visible from imports
@@ -9380,52 +9380,52 @@ Exported objects are the same objects as in the canonical module (`is` identity 
 This file exists only to keep old `reasons_lib.import_beliefs` imports working.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 
-### [ACCEPT] reasons-lib-import-beliefs-requires-reasons-import-beliefs
+### [ACCEPTED] reasons-lib-import-beliefs-requires-reasons-import-beliefs
 Importing this module requires the canonical `reasons.import_beliefs` module to be importable.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 - Rejected: trivial: dependency is evident from the import statement
 
-### [ACCEPT] reasons-lib-import-beliefs-propagates-canonical-import-errors
+### [ACCEPTED] reasons-lib-import-beliefs-propagates-canonical-import-errors
 It has no exception handling, so canonical import failures propagate unchanged.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 - Rejected: trivial: absence of exception handling and normal import error propagation are obvious implementation details
 
-### [ACCEPT] reasons-lib-import-beliefs-has-no-explicit-all
+### [ACCEPTED] reasons-lib-import-beliefs-has-no-explicit-all
 The shim does not define `__all__`; its exported names come from the wildcard import on line 2.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 - Rejected: trivial: absence of `__all__` and wildcard import are visible file-structure details; line number is ephemeral
 
-### [ACCEPT] reasons-lib-import-beliefs-star-imports-canonical-public-api
+### [ACCEPTED] reasons-lib-import-beliefs-star-imports-canonical-public-api
 The only runtime operation is `from reasons.import_beliefs import *`.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 - Rejected: trivial: "module X only does a star import" is directly visible from file structure and imports.
 
-### [ACCEPT] reasons-lib-llm-is-a-shim
+### [ACCEPTED] reasons-lib-llm-is-a-shim
 `reasons_lib/llm.py` contains no implementation logic and only re-exports names from `reasons.llm`.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: trivial: "re-exports names from reasons.llm" is a trivial module-imports-module fact seen from the file's imports.
 
-### [ACCEPT] reasons-lib-llm-requires-reasons-llm
+### [ACCEPTED] reasons-lib-llm-requires-reasons-llm
 Importing `reasons_lib.llm` requires `reasons.llm` to be importable.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: trivial: This is a direct and obvious consequence of the import statement, not a durable non-obvious constraint.
 
-### [ACCEPT] reasons-llm-owns-public-api
+### [ACCEPTED] reasons-llm-owns-public-api
 The public API exposed through this shim is determined by `reasons.llm` and its `__all__` or public non-underscore names.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: trivial: Restates standard Python star-import/`__all__` semantics that any developer sees from the source.
 
-### [ACCEPT] star-import-excludes-underscore-names
+### [ACCEPTED] star-import-excludes-underscore-names
 Names beginning with `_` in `reasons.llm` are not re-exported by this shim unless explicitly included in `reasons.llm.__all__`.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: trivial: Pure Python language semantics (underscore names excluded from star import unless in `__all__`), not a codebase invariant.
 
-### [ACCEPT] shim-propagates-import-errors
+### [ACCEPTED] shim-propagates-import-errors
 This module has no error handling, so failures in `reasons.llm` propagate as import exceptions.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: trivial: Obvious consequence of a wildcard-import shim having no error handling; visible from file structure.
 
-### [ACCEPT] reasons-lib-mcp-client-delegates-to-reasons-mcp-client
+### [ACCEPTED] reasons-lib-mcp-client-delegates-to-reasons-mcp-client
 This file re-exports every public symbol from `reasons.mcp_client` via a single wildcard import and defines nothing of its own.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 - Rejected: trivial: Wildcard re-export with no own definitions is obvious from the single import line.
@@ -9434,37 +9434,37 @@ This file re-exports every public symbol from `reasons.mcp_client` via a single 
 The module docstring directs callers to `reasons.mcp_client`, establishing `reasons` as the canonical package and `reasons_lib` as the compatibility layer.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 
-### [ACCEPT] reasons-cli-requires-shim
+### [ACCEPTED] reasons-cli-requires-shim
 `reasons/cli.py` imports this shim rather than `reasons.mcp_client` directly, so removing the shim without updating the CLI would break imports.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 - Rejected: trivial: Import relationship directly visible in the CLI's imports; removing a module breaking its importers is self-evident.
 
-### [ACCEPT] shim-has-no-error-handling
+### [ACCEPTED] shim-has-no-error-handling
 The file has no `try/except`; `ImportError` from `reasons.mcp_client` propagates unchanged.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 - Rejected: trivial: Absence of try/except is directly visible from the file and not a durable architectural invariant.
 
-### [ACCEPT] reasons-lib-mcp-server-is-a-pure-shim
+### [ACCEPTED] reasons-lib-mcp-server-is-a-pure-shim
 The file defines no functions, classes, or constants; its entire contents are one `from reasons.mcp_server import *` statement.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: Describes file contents ("entire contents are one statement") — equivalent to the "module X imports Y" example; a developer sees this from the file's single import line.
 
-### [ACCEPT] reasons-lib-mcp-server-requires-reasons-mcp-server
+### [ACCEPTED] reasons-lib-mcp-server-requires-reasons-mcp-server
 Importing this module fails with the same exception (e.g. `ModuleNotFoundError` for the `mcp` SDK) as importing `reasons.mcp_server` directly, since there is no fallback.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: Direct consequence of the wildcard re-export statement; "importing this module imports that module" is an obvious fact visible from imports.
 
-### [ACCEPT] wildcard-reexport-omits-underscore-names
+### [ACCEPTED] wildcard-reexport-omits-underscore-names
 Names beginning with `_` in `reasons/mcp_server.py` are not accessible via `reasons_lib.mcp_server`.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: Standard Python `import *` language semantics, not a codebase-specific invariant.
 
-### [ACCEPT] wildcard-reexport-drops-all-attribute
+### [ACCEPTED] wildcard-reexport-drops-all-attribute
 `reasons_lib.mcp_server` has no `__all__` attribute even if `reasons.mcp_server` declares one.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: Standard Python `import *` semantics (does not propagate `__all__`), not a codebase fact.
 
-### [ACCEPT] shim-preserves-object-identity-but-not-binding-identity
+### [ACCEPTED] shim-preserves-object-identity-but-not-binding-identity
 `reasons_lib.mcp_server.X is reasons.mcp_server.X` holds for public `X`, but `monkeypatch.setattr` on the shim does not affect the real module.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: General Python module/binding semantics (rebinding the shim's name doesn't affect the source module); not a durable codebase invariant.
@@ -9473,7 +9473,7 @@ Names beginning with `_` in `reasons/mcp_server.py` are not accessible via `reas
 Any import of `reasons_lib.mcp_server` executes `reasons/mcp_server.py`'s module scope (server construction, tool registration) exactly once per process.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 
-### [ACCEPT] test-mcp-server-depends-on-shim
+### [ACCEPTED] test-mcp-server-depends-on-shim
 `tests/test_mcp_server.py` is the only listed importer of this file, so the canonical `reasons/mcp_server.py` is currently exercised through the alias.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: ephemeral: importer inventory/test arrangement is a point-in-time snapshot, not a durable code invariant
@@ -9490,12 +9490,12 @@ The module docstring designates `reasons.metadata` as the canonical import path;
 The single statement `from reasons.metadata import *` creates a one-way compile-time dependency from `reasons_lib` to `reasons`, so `reasons.metadata` must not import `reasons_lib.metadata` (would be circular).
 - Source: summaries/2026/11/19/reasons_lib-metadata.md
 
-### [ACCEPT] noqa-suppresses-f401-and-f403
+### [ACCEPTED] noqa-suppresses-f401-and-f403
 The trailing `# noqa: F401,F403` suppresses "unused import" and "wildcard import" lint diagnostics, both of which are intentional for this shim pattern.
 - Source: summaries/2026/11/19/reasons_lib-metadata.md
 - Rejected: trivial: lint suppression is self-evident from the `noqa` comment.
 
-### [ACCEPT] reasons-lib-mind-service-is-a-shim
+### [ACCEPTED] reasons-lib-mind-service-is-a-shim
 `reasons_lib/mind_service.py` contains no logic and only forwards names from `reasons/mind_service.py` via a star import.
 - Source: summaries/2026/11/19/reasons_lib-mind_service.md
 - Rejected: trivial: being only a star-import shim is visible from file structure.
@@ -9508,7 +9508,7 @@ Names imported from `reasons_lib.mind_service` and `reasons.mind_service` resolv
 `reasons/api.py` imports `reasons_lib.mind_service`, so removing the shim would break the in-repo API module.
 - Source: summaries/2026/11/19/reasons_lib-mind_service.md
 
-### [ACCEPT] reasons-lib-network-is-shim
+### [ACCEPTED] reasons-lib-network-is-shim
 `reasons_lib/network.py` defines no code of its own; its only statement is `from reasons.network import *`, forwarding all public names from the canonical module.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 - Rejected: trivial: being only a star-import shim is visible from file structure.
@@ -9517,7 +9517,7 @@ Names imported from `reasons_lib.mind_service` and `reasons.mind_service` resolv
 Several `reasons/*` modules (`api.py`, `storage.py`, `compact.py`, `check_stale.py`, `export_card.py`, `export_markdown.py`, `import_agent.py`, `import_beliefs.py`) still import from `reasons_lib.network`, so removing this file would break the canonical package itself, not just tests.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 
-### [ACCEPT] shim-exports-only-public-names
+### [ACCEPTED] shim-exports-only-public-names
 Because `import *` skips underscore-prefixed names and honors `reasons.network.__all__` if defined, private names in `reasons/network.py` are not accessible through the shim.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 - Rejected: trivial: Describes standard Python `import *`/`__all__` semantics rather than a codebase-specific invariant.
@@ -9530,12 +9530,12 @@ Because `import *` skips underscore-prefixed names and honors `reasons.network._
 Importing `reasons_lib.pg` fails at import time if `reasons.pg` is unimportable.
 - Source: summaries/2026/11/19/reasons_lib-pg.md
 
-### [ACCEPT] reasons-lib-pg-honors-reasons-pg-all
+### [ACCEPTED] reasons-lib-pg-honors-reasons-pg-all
 Because it uses `import *`, the set of names exposed depends on `reasons.pg.__all__` if defined.
 - Source: summaries/2026/11/19/reasons_lib-pg.md
 - Rejected: trivial: Restates standard `import *`/`__all__` behavior with no codebase-specific consequence.
 
-### [ACCEPT] reasons-lib-pg-suppresses-lint-warnings
+### [ACCEPTED] reasons-lib-pg-suppresses-lint-warnings
 The `# noqa: F401,F403` comment intentionally disables flake8 unused-import and star-import warnings.
 - Source: summaries/2026/11/19/reasons_lib-pg.md
 - Rejected: trivial: A lint-suppression comment is an obvious implementation detail visible from the file, not a durable architectural invariant.
@@ -9544,22 +9544,22 @@ The `# noqa: F401,F403` comment intentionally disables flake8 unused-import and 
 The docstring directs new code to `reasons.pg`, meaning `reasons_lib.pg` exists only to preserve older import paths.
 - Source: summaries/2026/11/19/reasons_lib-pg.md
 
-### [ACCEPT] reasons-lib-propose-update-is-a-shim
+### [ACCEPTED] reasons-lib-propose-update-is-a-shim
 `reasons_lib/propose_update.py` contains no logic; it is a pure wildcard re-export of `reasons.propose_update`.
 - Source: summaries/2026/11/19/reasons_lib-propose_update.md
 - Rejected: trivial: "Module wildcard re-exports another module" is exactly the kind of fact visible from imports/file structure.
 
-### [ACCEPT] propose-update-shim-requires-canonical-module
+### [ACCEPTED] propose-update-shim-requires-canonical-module
 Importing the shim requires `reasons.propose_update` to be importable, and any failure there propagates with no interception.
 - Source: summaries/2026/11/19/reasons_lib-propose_update.md
 - Rejected: trivial: That a wildcard re-export imports its source (and propagates import errors) is an obvious consequence of how imports work.
 
-### [ACCEPT] propose-update-public-surface-maps-to-upstream-all
+### [ACCEPTED] propose-update-public-surface-maps-to-upstream-all
 The shim's public API is exactly the public surface of `reasons.propose_update` (its `__all__` if defined, otherwise all non-underscore names).
 - Source: summaries/2026/11/19/reasons_lib-propose_update.md
 - Rejected: trivial: Restating that a `from x import *` shim exposes the upstream public surface is evident from the import itself.
 
-### [ACCEPT] shim-defines-no-all
+### [ACCEPTED] shim-defines-no-all
 The shim does not declare `__all__`, so further wildcard re-exports scan its post-wildcard namespace rather than a curated list.
 - Source: summaries/2026/11/19/reasons_lib-propose_update.md
 - Rejected: trivial: absence of `__all__` is visible directly from the file structure; the downstream namespace-scanning consequence is a minor detail of that obvious fact.
@@ -9568,47 +9568,47 @@ The shim does not declare `__all__`, so further wildcard re-exports scan its pos
 The module contains no implementation; it exists solely to re-export symbols from `reasons.pubsub` for legacy import paths.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 
-### [ACCEPT] reasons-lib-pubsub-reexports-via-star-import
+### [ACCEPTED] reasons-lib-pubsub-reexports-via-star-import
 The entire public API surface is inherited through the single statement `from reasons.pubsub import *`.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 - Rejected: trivial: "module X imports Y via star" is exactly the kind of fact obvious from imports.
 
-### [ACCEPT] reasons-lib-pubsub-requires-reasons-pubsub
+### [ACCEPTED] reasons-lib-pubsub-requires-reasons-pubsub
 Importing `reasons_lib.pubsub` fails if `reasons.pubsub` cannot be imported; there is no fallback implementation.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 - Rejected: trivial: "import fails if the target module can't be imported" is inherent to any import statement and obvious from the star import.
 
-### [ACCEPT] reasons-api-imports-reasons-lib-pubsub
+### [ACCEPTED] reasons-api-imports-reasons-lib-pubsub
 `reasons/api.py` reaches pubsub functionality through this legacy shim rather than importing `reasons.pubsub` directly.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 - Rejected: trivial: a module-to-module import fact, directly visible from imports.
 
-### [ACCEPT] reasons-lib-pubsub-has-no-own-symbols
+### [ACCEPTED] reasons-lib-pubsub-has-no-own-symbols
 The module defines no functions, classes, or constants of its own; any future local definition would violate the pure-alias invariant.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 - Rejected: trivial: Pure-alias/empty-module fact visible directly from imports and file structure; the "future definition would violate invariant" part is editorial/speculative.
 
-### [ACCEPT] reasons-lib-repair-re-exports-reasons-repair
+### [ACCEPTED] reasons-lib-repair-re-exports-reasons-repair
 This module defines no symbols locally; its entire namespace is produced by `from reasons.repair import *`.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: trivial: Directly stated by the `from reasons.repair import *` line; an import-shape fact any developer sees.
 
-### [ACCEPT] reasons-lib-repair-requires-reasons-repair
+### [ACCEPTED] reasons-lib-repair-requires-reasons-repair
 Importing `reasons_lib.repair` transitively imports `reasons.repair`; an import error there propagates with no fallback or wrapping.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: trivial: Bare import propagation is obvious Python behavior visible from the import statement.
 
-### [ACCEPT] reasons-api-imports-reasons-lib-repair
+### [ACCEPTED] reasons-api-imports-reasons-lib-repair
 The canonical `reasons/api.py` consumes the legacy shim rather than importing `reasons.repair` directly.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: trivial: "Module X imports Y" dependency fact visible from the import; no durable architectural invariant beyond that.
 
-### [ACCEPT] reasons-lib-repair-is-a-compat-shim
+### [ACCEPTED] reasons-lib-repair-is-a-compat-shim
 The docstring identifies the module as a backwards-compatibility shim and directs new code to `reasons.repair`.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: trivial: Restates the module's name/docstring; obvious from naming and the file itself.
 
-### [ACCEPT] reasons-lib-repair-preserves-underscore-names-only-via-all
+### [ACCEPTED] reasons-lib-repair-preserves-underscore-names-only-via-all
 Names in `reasons.repair` beginning with `_` are re-exported here only if `reasons.repair.__all__` lists them; otherwise they are dropped by the wildcard import.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: trivial: Restates standard Python wildcard-import semantics (underscore names skipped unless in `__all__`); any developer knows this from import behavior.
@@ -9617,12 +9617,12 @@ Names in `reasons.repair` beginning with `_` are re-exported here only if `reaso
 The module defines no functions or classes; its entire body is a docstring plus one star import from `reasons.repair_premises`.
 - Source: summaries/2026/11/19/reasons_lib-repair_premises.md
 
-### [ACCEPT] reasons-lib-repair-premises-requires-reasons-package
+### [ACCEPTED] reasons-lib-repair-premises-requires-reasons-package
 Importing this module fails with `ModuleNotFoundError` unless the sibling `reasons` package is importable.
 - Source: summaries/2026/11/19/reasons_lib-repair_premises.md
 - Rejected: trivial: Merely restates that the star import depends on the `reasons` package being importable — an obvious import-dependency fact.
 
-### [ACCEPT] star-import-does-not-forward-private-names
+### [ACCEPTED] star-import-does-not-forward-private-names
 Names beginning with `_` in `reasons/repair_premises.py` are not accessible via `reasons_lib.repair_premises`.
 - Source: summaries/2026/11/19/reasons_lib-repair_premises.md
 - Rejected: trivial: Basic Python fact that wildcard imports skip names beginning with `_`; duplicates the same standard-language behavior claim.
@@ -9635,67 +9635,67 @@ Monkeypatching `reasons_lib.repair_premises.<name>` does not affect `reasons.rep
 `reasons/api.py` depends on the legacy namespace, creating a back-edge from the canonical package to the compatibility layer.
 - Source: summaries/2026/11/19/reasons_lib-repair_premises.md
 
-### [ACCEPT] reasons-lib-report-belief-is-a-compat-shim
+### [ACCEPTED] reasons-lib-report-belief-is-a-compat-shim
 The module contains no logic of its own; it is a docstring plus a single star-import re-export.
 - Source: summaries/2026/11/19/reasons_lib-report_belief.md
 - Rejected: trivial: A module being "a docstring plus a star-import re-export" is directly visible from file structure and imports; no durable invariant beyond that.
 
-### [ACCEPT] reasons-lib-report-belief-requires-reasons-report-belief
+### [ACCEPTED] reasons-lib-report-belief-requires-reasons-report-belief
 The shim cannot import without `reasons.report_belief` being importable; failure there bubbles up unchanged.
 - Source: summaries/2026/11/19/reasons_lib-report_belief.md
 - Rejected: trivial: The import dependency and that a shim's import failure propagates is obvious from the single re-export structure.
 
-### [ACCEPT] reasons-lib-report-belief-reexports-public-names
+### [ACCEPTED] reasons-lib-report-belief-reexports-public-names
 It forwards only public names (per `__all__` or non-underscore convention) of `reasons.report_belief`, sharing object identity rather than copying.
 - Source: summaries/2026/11/19/reasons_lib-report_belief.md
 - Rejected: trivial: Re-export behavior (star-import sharing object identity) is inherent and obvious from the import statement; "per __all__ or non-underscore convention" is vague/unverified.
 
-### [ACCEPT] reasons-lib-report-belief-enables-legacy-imports
+### [ACCEPTED] reasons-lib-report-belief-enables-legacy-imports
 It preserves `from reasons_lib.report_belief import X` callers during the `reasons_lib` → `reasons` rename.
 - Source: summaries/2026/11/19/reasons_lib-report_belief.md
 - Rejected: trivial: The backward-compat purpose of a shim is obvious from naming and file structure (reasons_lib → reasons rename).
 
-### [ACCEPT] reasons-api-imports-legacy-shim-path
+### [ACCEPTED] reasons-api-imports-legacy-shim-path
 `reasons/api.py` imports from `reasons_lib.report_belief` (the legacy path) rather than `reasons.report_belief`, indicating a partially migrated import.
 - Source: summaries/2026/11/19/reasons_lib-report_belief.md
 - Rejected: trivial: "module X imports Y" import-path fact observable from file structure; the "partially migrated" framing is editorial.
 
-### [ACCEPT] reasons-lib-report-gated-is-a-shim
+### [ACCEPTED] reasons-lib-report-gated-is-a-shim
 `reasons_lib/report_gated.py` defines no logic and only re-exports symbols from `reasons.report_gated`.
 - Source: summaries/2026/11/19/reasons_lib-report_gated.md
 - Rejected: trivial: Describes file structure ("defines no logic, re-exports") directly visible from the module's imports.
 
-### [ACCEPT] reasons-lib-report-gated-requires-reasons-report-gated
+### [ACCEPTED] reasons-lib-report-gated-requires-reasons-report-gated
 This file's import succeeds only if `reasons.report_gated` imports successfully; failures propagate unchanged.
 - Source: summaries/2026/11/19/reasons_lib-report_gated.md
 - Rejected: trivial: Standard Python import propagation; obvious from the star-import structure, not a deliberate invariant.
 
-### [ACCEPT] reasons-lib-report-gated-preserves-object-identity
+### [ACCEPTED] reasons-lib-report-gated-preserves-object-identity
 Symbols re-exported via star import are the same objects as those in `reasons.report_gated`, so `is` and `isinstance` checks hold across both paths.
 - Source: summaries/2026/11/19/reasons_lib-report_gated.md
 - Rejected: trivial: Object identity under star imports is a fundamental Python import semantics fact, obvious to any developer.
 
-### [ACCEPT] reasons-api-depends-on-reasons-lib-shim
+### [ACCEPTED] reasons-api-depends-on-reasons-lib-shim
 `reasons/api.py` still imports from `reasons_lib.report_gated`, so deleting this shim would break the API layer.
 - Source: summaries/2026/11/19/reasons_lib-report_gated.md
 - Rejected: trivial: "reasons/api.py imports from reasons_lib.report_gated" is an import-structure fact; the "deleting would break" conclusion is a trivial inference.
 
-### [ACCEPT] reasons-lib-report-gated-exports-canonical-public-names
+### [ACCEPTED] reasons-lib-report-gated-exports-canonical-public-names
 The names available here equal the public namespace (or `__all__`) of `reasons.report_gated`; underscore-prefixed names are not exposed.
 - Source: summaries/2026/11/19/reasons_lib-report_gated.md
 - Rejected: trivial: ordinary wildcard re-export detail, observable from the shim's import.
 
-### [ACCEPT] review-shim-is-pure-reexport
+### [ACCEPTED] review-shim-is-pure-reexport
 `reasons_lib/review.py` defines no functions, classes, or constants of its own; its only executable statement is a wildcard import from `reasons.review`.
 - Source: summaries/2026/11/19/reasons_lib-review.md
 - Rejected: trivial: structural file detail; "only a wildcard import" is obvious from the module body.
 
-### [ACCEPT] review-shim-requires-reasons-review
+### [ACCEPTED] review-shim-requires-reasons-review
 Importing `reasons_lib.review` necessarily imports the `reasons` package and the `reasons.review` module first, running their full module bodies.
 - Source: summaries/2026/11/19/reasons_lib-review.md
 - Rejected: trivial: follows directly from the wildcard import and Python import semantics.
 
-### [ACCEPT] star-import-binds-snapshot-not-proxy
+### [ACCEPTED] star-import-binds-snapshot-not-proxy
 Names are copied at import time, so rebinding a name in `reasons.review` afterward does not change `reasons_lib.review`'s attribute, though mutation of the shared object is visible through both.
 - Source: summaries/2026/11/19/reasons_lib-review.md
 - Rejected: trivial: general Python import semantics, not a codebase invariant.
@@ -9704,7 +9704,7 @@ Names are copied at import time, so rebinding a name in `reasons.review` afterwa
 `reasons/api.py`, `reasons/repair.py`, and `reasons/review_justifications.py` import `reasons_lib.review`, creating a cross-tree import edge from the new package back to the legacy one.
 - Source: summaries/2026/11/19/reasons_lib-review.md
 
-### [ACCEPT] review-shim-suppresses-f401-f403
+### [ACCEPTED] review-shim-suppresses-f401-f403
 The `# noqa: F401,F403` comment is required for linters to accept the otherwise-unused wildcard import.
 - Source: summaries/2026/11/19/reasons_lib-review.md
 - Rejected: trivial: Lint-comment detail, not a durable code invariant.
@@ -9717,62 +9717,62 @@ The `# noqa: F401,F403` comment is required for linters to accept the otherwise-
 The shim exposes the full public API of the canonical module via `from reasons.review_justifications import *`, and defines no `__all__` of its own.
 - Source: summaries/2026/11/19/reasons_lib-review_justifications.md
 
-### [ACCEPT] review-justifications-shim-has-no-own-logic
+### [ACCEPTED] review-justifications-shim-has-no-own-logic
 The shim contains no classes, functions, or constants defined in-file; any behavior must live in `reasons/review_justifications.py`.
 - Source: summaries/2026/11/19/reasons_lib-review_justifications.md
 - Rejected: trivial: Merely restates that it is a compatibility shim; visible from file structure.
 
-### [ACCEPT] reasons-api-imports-through-shim
+### [ACCEPTED] reasons-api-imports-through-shim
 `reasons/api.py` depends on the legacy `reasons_lib.review_justifications` path rather than the canonical one.
 - Source: summaries/2026/11/19/reasons_lib-review_justifications.md
 - Rejected: trivial: A single import/dependency line, obvious from imports.
 
-### [ACCEPT] shim-import-failure-propagates-as-canonical-failure
+### [ACCEPTED] shim-import-failure-propagates-as-canonical-failure
 Importing the shim raises exactly the exception from `reasons.review_justifications`; there is no `try/except` fallback.
 - Source: summaries/2026/11/19/reasons_lib-review_justifications.md
 - Rejected: trivial: default import behavior of a one-line re-export shim; no fallback is obvious from the import structure.
 
-### [ACCEPT] shim-forwards-to-canonical-module
+### [ACCEPTED] shim-forwards-to-canonical-module
 `reasons_lib/review_premises.py` contains exactly one statement, `from reasons.review_premises import *`, re-exporting the canonical module's public names.
 - Source: summaries/2026/11/19/reasons_lib-review_premises.md
 - Rejected: trivial: a shim file containing `from reasons.review_premises import *` is an obvious import/file-structure fact.
 
-### [ACCEPT] no-logic-in-shim
+### [ACCEPTED] no-logic-in-shim
 The shim defines no functions, classes, or constants of its own; all behavior lives in `reasons.review_premises`.
 - Source: summaries/2026/11/19/reasons_lib-review_premises.md
 - Rejected: trivial: absence of local definitions follows directly from the shim being a re-export.
 
-### [ACCEPT] identity-preserved-across-paths
+### [ACCEPTED] identity-preserved-across-paths
 Objects imported via `reasons_lib.review_premises` are the same objects as those imported via `reasons.review_premises`.
 - Source: summaries/2026/11/19/reasons_lib-review_premises.md
 - Rejected: trivial: Python re-exports via `import *` preserve object identity; obvious from the import mechanism.
 
-### [ACCEPT] api-depends-on-legacy-path
+### [ACCEPTED] api-depends-on-legacy-path
 `reasons/api.py` imports through this leg
 - Source: summaries/2026/11/19/reasons_lib-review_premises.md
 - Rejected: trivial: module import dependency is directly visible from imports and the claim is incomplete.
 
-### [ACCEPT] reasons-lib-storage-is-compat-shim
+### [ACCEPTED] reasons-lib-storage-is-compat-shim
 `reasons_lib/storage.py` contains only a docstring and a wildcard import from `reasons.storage`; it defines no local storage logic.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: describes only the shim file’s docstring/import structure, which is obvious from the file.
 
-### [ACCEPT] reasons-lib-storage-requires-reasons-storage
+### [ACCEPTED] reasons-lib-storage-requires-reasons-storage
 Importing `reasons_lib.storage` fails if `reasons.storage` cannot be imported.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: import-failure dependence is a direct consequence of the wildcard import.
 
-### [ACCEPT] reasons-lib-storage-re-exports-public-names
+### [ACCEPTED] reasons-lib-storage-re-exports-public-names
 Public names exported by `reasons.storage` are bound into the `reasons_lib.storage` namespace at import time.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: standard wildcard-import behavior, not a durable architectural/API invariant.
 
-### [ACCEPT] reasons-lib-storage-has-no-all
+### [ACCEPTED] reasons-lib-storage-has-no-all
 This shim does not define `__all__`, so downstream star imports are governed by normal public-name filtering.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: a minor module-structure detail with no meaningful invariant value.
 
-### [ACCEPT] reasons-lib-storage-does-not-catch-import-errors
+### [ACCEPTED] reasons-lib-storage-does-not-catch-import-errors
 Errors raised while importing `reasons.storage` propagate unchanged through this module.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: propagation of import errors is inherent to the simple re-export shim.
@@ -9781,47 +9781,47 @@ Errors raised while importing `reasons.storage` propagate unchanged through this
 `reasons_lib/verify.py` defines no functions or classes of its own and consists only of a docstring plus a wildcard import from `reasons.verify`.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 
-### [ACCEPT] reasons-lib-verify-forwards-to-reasons-verify
+### [ACCEPTED] reasons-lib-verify-forwards-to-reasons-verify
 `reasons_lib.verify` re-exports every public name of `reasons.verify` at import time via `from reasons.verify import *`.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 - Rejected: duplicate: essentially the same wildcard-reexport claim already made by reasons-lib-verify-is-a-shim
 
-### [ACCEPT] reasons-verify-is-the-canonical-verifier
+### [ACCEPTED] reasons-verify-is-the-canonical-verifier
 The implementation of the verification logic lives in `reasons/verify.py`; `reasons_lib/verify.py` is the legacy alias.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 - Rejected: duplicate: restates the shim relationship captured by reasons-lib-verify-is-a-shim with interpretive "canonical/legacy" framing
 
-### [ACCEPT] tests-is-a-python-package
+### [ACCEPTED] tests-is-a-python-package
 The presence of this empty file makes `tests` an importable regular package.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: obvious fact any developer can see from the presence of the empty file
 
-### [ACCEPT] tests-package-marker-contains-no-code
+### [ACCEPTED] tests-package-marker-contains-no-code
 The file defines no functions, classes, or constants, and has no import-time side effects.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: trivially true for an empty file; no durable insight
 
-### [ACCEPT] tests-init-enables-dotted-imports
+### [ACCEPTED] tests-init-enables-dotted-imports
 It allows test modules to be imported as `tests.<module>`, avoiding name collisions across the many `test_*.py` files.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: Standard Python package behavior; obvious from file structure.
 
-### [ACCEPT] tests-init-requires-conftest-for-fixtures
+### [ACCEPTED] tests-init-requires-conftest-for-fixtures
 Shared fixtures are provided by `tests/conftest.py`, not by this file, so `__init__.py` must stay empty to avoid interfering with pytest's fixture loading.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: speculative: Editorial claim about what the file "must" do; not an observable code fact.
 
-### [ACCEPT] tests-init-is-not-imported-by-production-code
+### [ACCEPTED] tests-init-is-not-imported-by-production-code
 Neither `reasons/` nor `reasons_lib/` depends on the `tests` package.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: Obvious from imports/file structure that production code doesn't import tests.
 
-### [ACCEPT] conftest-fixtures-are-auto-injected
+### [ACCEPTED] conftest-fixtures-are-auto-injected
 The `pg_api` fixture is exposed to all test modules under `tests/` without any explicit `import`, via pytest's conftest auto-discovery.
 - Source: summaries/2026/11/19/tests-conftest.md
 - Rejected: trivial: Standard, well-known pytest conftest auto-discovery behavior.
 
-### [ACCEPT] pg-marker-requires-pytest-configure
+### [ACCEPTED] pg-marker-requires-pytest-configure
 The `pg` marker is registered by `pytest_configure`; without that hook, `@pytest.mark.pg` would trigger unknown-marker warnings.
 - Source: summaries/2026/11/19/tests-conftest.md
 - Rejected: trivial: Standard pytest marker-registration mechanics, obvious to any developer.
@@ -9842,22 +9842,22 @@ The teardown `DELETE` loop orders tables leaves-first (`rms_propagation_log`, `r
 `api.conn.rollback()` at the start of teardown resets failed-transaction state left by the test so the subsequent `DELETE`s succeed.
 - Source: summaries/2026/11/19/tests-conftest.md
 
-### [ACCEPT] pg-api-import-is-deferred
+### [ACCEPTED] pg-api-import-is-deferred
 `from reasons.pg import PgApi` is executed inside the fixture body (not at module top) to avoid importing DB drivers at collection time when `DATABASE_URL` is absent.
 - Source: summaries/2026/11/19/tests-conftest.md
 - Rejected: trivial: implementation detail of import placement in the fixture, visible from the file and not a durable behavioral invariant
 
-### [ACCEPT] derived-nodes-union-access-tags
+### [ACCEPTED] derived-nodes-union-access-tags
 A derived node’s `access_tags` is the union of its explicit tags and all antecedent tags across its justifications, and adding a justification can propagate new tags to dependents.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: Same claim already captured by `access-tags-union-inheritance` and `add-justification-propagates-tags-downstream`.
 
-### [ACCEPT] visible-to-subset-semantics
+### [ACCEPTED] visible-to-subset-semantics
 A tagged node is visible only when all of its tags are contained in `visible_to`; untagged nodes are always visible and omitting `visible_to` disables filtering.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: Core subset-visibility claim already covered by `access-tags-subset-gate` / `access-tags-require-subset-for-visibility`.
 
-### [ACCEPT] restricted-show-explain-trace-raise-permissionerror
+### [ACCEPTED] restricted-show-explain-trace-raise-permissionerror
 `show_node`, `explain_node`, `trace_assumptions`, and `api.trace_access_tags` raise `PermissionError` when the requested node is not visible.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: Already covered by `api-hidden-node-raises-permissionerror`.
@@ -9874,12 +9874,12 @@ A tagged node is visible only when all of its tags are contained in `visible_to`
 `Network.add_justification` returns a dict containing `node_id`, `old_truth_value`, `new_truth_value`, and `changed`.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 
-### [ACCEPT] api-add-justification-requires-a-justification-argument
+### [ACCEPTED] api-add-justification-requires-a-justification-argument
 `api.add_justification` raises `ValueError` matching `"Must provide"` when none of `sl`, `cp`, or `unless` is supplied.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 - Rejected: duplicate: Covered by `api-add-justification-requires-justification-arg`/`-kwarg` which already state ValueError is raised when none of sl/cp/unless is provided.
 
-### [ACCEPT] add-justification-registers-antecedent-and-outlist-dependents
+### [ACCEPTED] add-justification-registers-antecedent-and-outlist-dependents
 Adding a justification registers the target node in the dependents of each antecedent and outlist node.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 - Rejected: duplicate: Covered by existing `add-justification-registers-dependents`, which states dependents are updated for both antecedent and outlist nodes.
@@ -9888,17 +9888,17 @@ Adding a justification registers the target node in the dependents of each antec
 A node with two valid justifications remains `IN` after one supporting antecedent is retracted.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 
-### [ACCEPT] namespaced-add-justification-returns-qualified-node-id
+### [ACCEPTED] namespaced-add-justification-returns-qualified-node-id
 With `namespace="ns"`, `api.add_justification` returns `node_id == "ns:b"`.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 - Rejected: duplicate: Covered by existing `api-add-justification-namespace-prefixes-result-id`, which captures namespace prefixing of the returned node_id.
 
-### [ACCEPT] any-mode-expands-conjunction-into-separate-justifications
+### [ACCEPTED] any-mode-expands-conjunction-into-separate-justifications
 `add_node(..., any_mode=True)` with an N-premise comma-separated `sl` produces N justifications, each containing exactly one antecedent.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 - Rejected: duplicate: Already captured by existing `any-mode-creates-per-premise-justifications`.
 
-### [ACCEPT] any-mode-copies-outlist-to-each-expanded-justification
+### [ACCEPTED] any-mode-copies-outlist-to-each-expanded-justification
 When `unless="enemy"` is supplied alongside `any_mode=True`, every expanded justification contains `"enemy"` in its `outlist`.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 - Rejected: duplicate: Already captured by `any-mode-outlist-preserved` and `any-mode-preserves-full-outlist-semantics`.
@@ -9915,7 +9915,7 @@ With `any_mode=True`, `add_node`'s returned `"premise_count"` is `1` (per unary 
 `api.retract_node` returns a dict with a `"restoration_hints"` list whose entries expose `node_id`, `all_premises`, and `surviving_premises`.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 
-### [ACCEPT] restoration-hints-skip-any-mode-nodes
+### [ACCEPTED] restoration-hints-skip-any-mode-nodes
 Nodes whose justifications are all unary (as produced by `any_mode`) never appear in `restoration_hints`, because the hint gate requires a multi-premise SL.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 - Rejected: duplicate: Same claim as existing `any-mode-nodes-never-produce-restoration-hints` (any_mode nodes produce no restoration hints).
@@ -9924,7 +9924,7 @@ Nodes whose justifications are all unary (as produced by `any_mode`) never appea
 The node passed to `retract_node` is never included in its own `restoration_hints`, even if it has multiple premises.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 
-### [ACCEPT] retract-cascades-to-dependents
+### [ACCEPTED] retract-cascades-to-dependents
 Retracting a node sets every transitive `sl=` dependent to `OUT`, and asserting it back restores the whole subtree symmetrically.
 - Source: summaries/2026/11/19/tests-test_api.md
 - Rejected: duplicate: Covered by existing `api-retract-cascade-is-transitive` and `api-retract-cascade-symmetry`.
@@ -9933,7 +9933,7 @@ Retracting a node sets every transitive `sl=` dependent to `OUT`, and asserting 
 When the target state changed between proposal and acceptance, `accept_proposal` returns `{"applied": False, "status": "stale"}` and does not mutate the store, rather than raising.
 - Source: summaries/2026/11/19/tests-test_api.md
 
-### [ACCEPT] fts-query-calls-are-bounded
+### [ACCEPTED] fts-query-calls-are-bounded
 A single `_fts_search` call for a 20-term query invokes `_fts_query` at most 51 times, evidencing a hard cap on progressive-relaxation fallback attempts.
 - Source: summaries/2026/11/19/tests-test_api.md
 - Rejected: duplicate: Same 51-call bound already captured by `api-fts-search-bounds-query-calls`.
@@ -9946,12 +9946,12 @@ A single `_fts_search` call for a 20-term query invokes `_fts_query` at most 51 
 Passing `access_tags=["internal"]` to `api.add_node` results in a stored tag `access:internal`, not a raw `access_tags` field.
 - Source: summaries/2026/11/19/tests-test_api.md
 
-### [ACCEPT] dual-requires-sources-db
+### [ACCEPTED] dual-requires-sources-db
 `ask(..., dual=True)` without `sources_db` raises `ValueError` with `--dual requires --full-sources`.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: existing `ask-dual-requires-sources-db` and `ask-dual-mode-requires-sources-db` already capture this.
 
-### [ACCEPT] tool-call-loop-is-bounded
+### [ACCEPTED] tool-call-loop-is-bounded
 Full mode permits at most three `search_beliefs` tool rounds before a final synthesis call, as verified by call-count tests.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: already covered by `ask-tool-call-budget-is-three` / `ask-tool-loop-capped-at-three`.
@@ -9960,17 +9960,17 @@ Full mode permits at most three `search_beliefs` tool rounds before a final synt
 If final synthesis times out or returns another tool call, `ask()` returns accumulated belief context rather than raw `search_beliefs` JSON.
 - Source: summaries/2026/11/19/tests-test_ask.md
 
-### [ACCEPT] natural-mode-strips-belief-metadata
+### [ACCEPTED] natural-mode-strips-belief-metadata
 When `natural=True`, prompts omit `**Status:**`, `###` headers, and citation instructions, and include `plain natural language`.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: already covered by existing `ask-natural-mode-strips-metadata-and-cite` (metadata and citation stripping when natural=True).
 
-### [ACCEPT] mcp-servers-bump-max-iterations-to-five
+### [ACCEPTED] mcp-servers-bump-max-iterations-to-five
 When `mcp_servers` is non-empty, `ask()` allows up to 5 tool rounds, so `invoke_model` is called at most 6 times.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: already covered by existing `ask-mcp-iteration-limit-is-five`.
 
-### [ACCEPT] mcp-tool-errors-are-swallowed
+### [ACCEPTED] mcp-tool-errors-are-swallowed
 Exceptions raised by `bridge.call_tool` are caught inside `ask()` (recorded in tool history) and never propagate to the caller.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: already covered by existing `ask-mcp-errors-non-fatal` / `ask-mcp-integration-is-safely-bounded`.
@@ -9979,12 +9979,12 @@ Exceptions raised by `bridge.call_tool` are caught inside `ask()` (recorded in t
 The dict passed as `arguments` to `bridge.call_tool(name, arguments)` is the parsed tool-call minus the `"tool"` key.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 
-### [ACCEPT] tools-section-always-includes-search-beliefs
+### [ACCEPTED] tools-section-always-includes-search-beliefs
 `_build_tools_section` includes the builtin `search_beliefs` tool even when the bridge list is empty.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: exact match of existing `build-tools-section-always-includes-search-beliefs`.
 
-### [ACCEPT] empty-mcp-instructions-produce-no-prompt-section
+### [ACCEPTED] empty-mcp-instructions-produce-no-prompt-section
 `_build_mcp_instructions` returns `""` for empty instructions, and `build_ask_prompt` then omits the `"Data Source Instructions"` header entirely.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: same claim already covered by `build-mcp-instructions-concatenates-bridges` (returns empty string) and `ask-prompt-data-source-instructions-header` (omits header when no instructions).
@@ -9997,12 +9997,12 @@ The dict passed as `arguments` to `bridge.call_tool(name, arguments)` is the par
 `Network.find_culprits` returns culprits sorted so a premise with fewer dependents appears before one with more dependents.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 
-### [ACCEPT] add-nogood-retracts-premises-not-derived-nodes
+### [ACCEPTED] add-nogood-retracts-premises-not-derived-nodes
 `Network.add_nogood` retracts a selected premise and cascades dependent derived nodes `OUT` rather than retracting a derived nogood member directly.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 - Rejected: duplicate: covered by `add-nogood-retraction-prefers-least-entrenched` / `backtracking-retracts-least-entrenched`, which already establish that retraction traces back to premises via justification chains.
 
-### [ACCEPT] inactive-nogood-is-no-op
+### [ACCEPTED] inactive-nogood-is-no-op
 If any node in a nogood is already `OUT`, `Network.add_nogood` returns an empty changed list and emits no backtrack log entry.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 - Rejected: duplicate: identical to existing `add-nogood-inactive-when-either-node-out` and `add-nogood-inactive-contradiction-returns-empty`.
@@ -10011,7 +10011,7 @@ If any node in a nogood is already `OUT`, `Network.add_nogood` returns an empty 
 `_entrenchment` scores sourced premises, `OBSERVATION` metadata, and nodes with more dependents above their unsourced/derived/less-depended counterparts.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 
-### [ACCEPT] db-fixture-seeds-five-beliefs-through-api
+### [ACCEPTED] db-fixture-seeds-five-beliefs-through-api
 The `db` fixture creates five nodes in a temporary SQLite database via `reasons.api.add_node`, including a support link from `deploy-ci-pipeline` to `testing-unit-coverage`.
 - Source: summaries/2026/11/19/tests-test_build_wiki.md
 - Rejected: ephemeral: specific fixture node count and test setup detail, not a durable architectural invariant
@@ -10020,7 +10020,7 @@ The `db` fixture creates five nodes in a temporary SQLite database via `reasons.
 `_format_node` renders cross-references as `[id](page.md#id)` only when the target ID exists in `node_to_page`; otherwise it leaves the ID as plain text.
 - Source: summaries/2026/11/19/tests-test_build_wiki.md
 
-### [ACCEPT] build-wiki-falls-back-on-llm-errors
+### [ACCEPTED] build-wiki-falls-back-on-llm-errors
 When `model` is supplied, `build_wiki` uses `generate_wiki_page`, but a `RuntimeError` from generation does not prevent static `_format_node` Markdown from being written.
 - Source: summaries/2026/11/19/tests-test_build_wiki.md
 - Rejected: duplicate: existing belief `build-wiki-llm-failure-falls-back-to-template` already captures LLM generation failure fallback
@@ -10029,7 +10029,7 @@ When `model` is supplied, `build_wiki` uses `generate_wiki_page`, but a `Runtime
 `build_wiki` creates `index.md` even when there are no beliefs, and that page contains `"No beliefs found"` for an empty database.
 - Source: summaries/2026/11/19/tests-test_build_wiki.md
 
-### [ACCEPT] linkify-replaces-longest-node-ids-first
+### [ACCEPTED] linkify-replaces-longest-node-ids-first
 `_linkify` processes node IDs longest-first so `node-alpha-extended` is linked as a single token rather than partially linking `node-alpha`.
 - Source: summaries/2026/11/19/tests-test_build_wiki.md
 - Rejected: duplicate: Same claim as existing `build-wiki-linkify-longest-first-prevents-partial-match`.
@@ -10074,7 +10074,7 @@ Every result dict must contain exactly `node_id`, `old_hash`, `new_hash`, `sourc
 Nodes that are retracted, lack `source`, lack `source_hash`, or have `source == ""` are omitted from results.
 - Source: summaries/2026/11/19/tests-test_check_stale_issue25.md
 
-### [ACCEPT] defeat-reason-types-has-seven-entries
+### [ACCEPTED] defeat-reason-types-has-seven-entries
 `DEFEAT_REASON_TYPES` contains exactly 7 members.
 - Source: summaries/2026/11/19/tests-test_classify_defeaters.md
 - Rejected: ephemeral: exact member count of a constant changes with edits and is a point-in-time count
@@ -10111,12 +10111,12 @@ Unclassifiable defeaters are collected in `result["errors"]` instead of being ra
 `run_cli()` catches `SystemExit` and returns its `.code`, so tests assert numeric exit codes instead of expecting process termination.
 - Source: summaries/2026/11/19/tests-test_cli.md
 
-### [ACCEPT] cli-tests-use-real-temporary-sqlite-db
+### [ACCEPTED] cli-tests-use-real-temporary-sqlite-db
 Every DB-backed test uses a real SQLite file under pytest’s `tmp_path`, created either by `run_cli("init")` or by `TestProposalLifecycle`’s fixture.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: trivial: test-infrastructure detail obvious from the test code, and essentially duplicates existing test-DB beliefs like `api-tests-use-isolated-temp-sqlite`
 
-### [ACCEPT] global-db-option-precedes-subcommand
+### [ACCEPTED] global-db-option-precedes-subcommand
 `run_cli()` always inserts `--db <path>` immediately after `reasons` and before the command tokens.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: trivial: implementation detail of a test helper (`run_cli`) visible from its code, not a durable invariant
@@ -10125,17 +10125,17 @@ Every DB-backed test uses a real SQLite file under pytest’s `tmp_path`, create
 `export --output=-` is expected to print pure JSON to stdout, as verified by `json.loads(out)` in `test_export_json`.
 - Source: summaries/2026/11/19/tests-test_cli.md
 
-### [ACCEPT] proposal-lifecycle-fixture-preloads-three-nodes
+### [ACCEPTED] proposal-lifecycle-fixture-preloads-three-nodes
 `TestProposalLifecycle.db_path` initializes a DB with `a`, `b`, and `derived-ab` before each test in that class.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: ephemeral: point-in-time fixture setup describing a specific test graph, not a durable invariant
 
-### [ACCEPT] semantic-dedupe-tests-skip-without-cluster-deps
+### [ACCEPTED] semantic-dedupe-tests-skip-without-cluster-deps
 `TestDeduplicateSemantic` is skipped when `reasons.cluster.HAS_CLUSTER_DEPS` is false.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: trivial: test skip condition obvious from the decorator, no architectural insight
 
-### [ACCEPT] cluster-numeric-tests-run-without-extras
+### [ACCEPTED] cluster-numeric-tests-run-without-extras
 The three `_auto_k` tests and `test_require_cluster_deps_message` are the only tests without `@skip_no_cluster`; they exercise pure arithmetic or the missing-dep path.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 - Rejected: ephemeral: test inventory with a count of unskipped tests that changes with test edits
@@ -10144,7 +10144,7 @@ The three `_auto_k` tests and `test_require_cluster_deps_message` are the only t
 When `0 < budget < len(beliefs)`, `cluster_beliefs` returns exactly `budget` ids, not at most `budget`.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 
-### [ACCEPT] cluster-selection-preserves-cross-domain-diversity
+### [ACCEPTED] cluster-selection-preserves-cross-domain-diversity
 With a mixed auth/database corpus and `budget=20`, `cluster_beliefs` selects at least one belief from each domain.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 - Rejected: ephemeral: fixture-specific test scenario rather than a durable general invariant
@@ -10153,7 +10153,7 @@ With a mixed auth/database corpus and `budget=20`, `cluster_beliefs` selects at 
 `sum(cluster_beliefs(...)[1]["cluster_sizes"])` equals the number of input beliefs, and stats include `n_clusters`, `cluster_sizes`, and `embedding_model`.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 
-### [ACCEPT] auto-k-is-n-over-5-capped
+### [ACCEPTED] auto-k-is-n-over-5-capped
 `_auto_k(n)` defaults to `max(2, n // 5)`, `max_k` caps that default, and an explicit `n_clusters` overrides it but is clamped to `n`.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 - Rejected: duplicate: covered by existing auto-k-formula-is-n-div-5-capped-at-20, auto-k-floor-is-two, and auto-k-max-k-caps-cluster-count
@@ -10166,17 +10166,17 @@ The tests require `estimate_tokens(text)` to equal `len(text) // 4` with a minim
 `truncate=True` must insert `...` and suppress a 200-character node text; `truncate=False` must preserve it.
 - Source: summaries/2026/11/19/tests-test_compact.md
 
-### [ACCEPT] compact-budget-is-approximate
+### [ACCEPTED] compact-budget-is-approximate
 A 200-token budget test allows output below 250 estimated tokens and expects omission markers for overflowed sections.
 - Source: summaries/2026/11/19/tests-test_compact.md
 - Rejected: ephemeral: exact 200/250 test tolerance is a point-in-time test detail, not a durable invariant
 
-### [ACCEPT] compact-orders-by-dependent-count
+### [ACCEPTED] compact-orders-by-dependent-count
 In the tested scenario, a node with one dependent must appear before a node with zero dependents.
 - Source: summaries/2026/11/19/tests-test_compact.md
 - Rejected: ephemeral: describes a single tested scenario rather than a general ordering invariant
 
-### [ACCEPT] test-targets-reasons-not-reasons-lib
+### [ACCEPTED] test-targets-reasons-not-reasons-lib
 This test imports from `reasons`, so the parallel `reasons_lib/compact.py` implementation is not exercised here.
 - Source: summaries/2026/11/19/tests-test_compact.md
 - Rejected: trivial: test import/coverage detail obvious from file structure
@@ -10193,7 +10193,7 @@ Both `detect_contradictions` and its semantic variant skip any node whose `truth
 A `subprocess.run` exception during batching is caught and yields `[]` rather than propagating to the caller.
 - Source: summaries/2026/11/19/tests-test_contradictions.md
 
-### [ACCEPT] format-truncation-caps-text-at-200-chars
+### [ACCEPTED] format-truncation-caps-text-at-200-chars
 Truncated belief text including the trailing `...` totals exactly 200 characters.
 - Source: summaries/2026/11/19/tests-test_contradictions.md
 - Rejected: duplicate: same claim already covered by existing `belief-text-truncated-at-200-chars`
@@ -10306,7 +10306,7 @@ Missing targets raise `KeyError`, no-justification targets and empty findings ra
 Applying a `kind == "gate"` proposal whose `unless` antecedent is IN yields `truth_value == "OUT"` until the blocker is retracted, at which point it becomes `"IN"`.
 - Source: summaries/2026/11/19/tests-test_derive.md
 
-### [ACCEPT] any-mode-creates-one-justification-per-antecedent
+### [ACCEPTED] any-mode-creates-one-justification-per-antecedent
 Applying a proposal with `mode == "any"` produces N justifications of length 1 (one per antecedent), and retracting any single antecedent leaves the node IN.
 - Source: summaries/2026/11/19/tests-test_derive.md
 - Rejected: duplicate: Same claim already covered by existing belief `any-mode-creates-per-premise-justifications`.
@@ -10323,12 +10323,12 @@ Both `api.deduplicate(auto=True)` and `api.apply_dedup_plan` rewrite justificati
 The `derive` CLI with `--report-dir` writes a JSON file named `derive-<ts>.json` containing keys `status`, `model`, `exhaust`, `rounds`, and `total_added`; `--exhaust` appends a saturation round whose `added == 0`.
 - Source: summaries/2026/11/19/tests-test_derive.md
 
-### [ACCEPT] test-derive-budget-targets-issue-23
+### [ACCEPTED] test-derive-budget-targets-issue-23
 The module docstring explicitly states these tests cover `_build_beliefs_section` budget calculation for issue #23.
 - Source: summaries/2026/11/19/tests-test_derive_budget.md
 - Rejected: trivial: test docstring/issue reference, not a durable code invariant.
 
-### [ACCEPT] local-budget-floor-is-five
+### [ACCEPTED] local-budget-floor-is-five
 `TestBudgetFloor` asserts the local belief budget never drops below 5 when agents exceed the budget.
 - Source: summaries/2026/11/19/tests-test_derive_budget.md
 - Rejected: duplicate: same claim as existing budget-floor-is-five.
@@ -10349,12 +10349,12 @@ The module docstring explicitly states these tests cover `_build_beliefs_section
 The default defense node ID is `defense-<challenge_id>`, making the defense's identity a deterministic function of the challenge it neutralizes.
 - Source: summaries/2026/11/19/tests-test_dialectical.md
 
-### [ACCEPT] challenge-id-collisions-get-numeric-suffix
+### [ACCEPTED] challenge-id-collisions-get-numeric-suffix
 A second call to `challenge(target)` with the same target produces `challenge-<target>-2`, not an error and not an overwrite.
 - Source: summaries/2026/11/19/tests-test_dialectical.md
 - Rejected: duplicate: Already captured by `challenge-id-auto-generation`, which specifies `challenge-<target>-2` behavior.
 
-### [ACCEPT] retract-is-the-symmetric-undo-for-challenge-and-defense
+### [ACCEPTED] retract-is-the-symmetric-undo-for-challenge-and-defense
 Retracting a challenge restores the target to `IN`; retracting a defense reinstates the challenge and puts the target back to `OUT` — the same `Network.retract` primitive is used for both.
 - Source: summaries/2026/11/19/tests-test_dialectical.md
 - Rejected: duplicate: Covered by existing `all-defeat-mechanisms-are-reversible` and related challenge/defense reversibility beliefs.
@@ -10383,7 +10383,7 @@ The `show` command emits an `Example:` section when an example exists and omits 
 Multiline examples are displayed with each example line prefixed by two spaces.
 - Source: summaries/2026/11/19/tests-test_example.md
 
-### [ACCEPT] run-cli-converts-system-exit-to-code
+### [ACCEPTED] run-cli-converts-system-exit-to-code
 The `run_cli` helper catches `SystemExit` and returns its code, defaulting `None` to `0`.
 - Source: summaries/2026/11/19/tests-test_example.md
 - Rejected: trivial: internal test helper behavior is an implementation detail, not a durable product invariant
@@ -10412,7 +10412,7 @@ A node is counted as a premise when its `justifications` list is empty; any node
 `export_card(Network())` succeeds and emits a card with all counts `0` and a title derived from `project_name`.
 - Source: summaries/2026/11/19/tests-test_export_card.md
 
-### [ACCEPT] export-markdown-tests-target-reasons-package
+### [ACCEPTED] export-markdown-tests-target-reasons-package
 The test module imports `Justification`, `Network`, and `export_markdown` from the `reasons` package, not from `reasons_lib`.
 - Source: summaries/2026/11/19/tests-test_export_markdown.md
 - Rejected: reason-category: trivial, test-module import detail obvious from file structure
@@ -10429,7 +10429,7 @@ Outlist nodes with defeater metadata render via `- Defeated by:`, while outlist 
 The exporter is expected to emit metadata lines such as `- Source:`, `- Source hash:`, `- Date:`, `- Stale reason:`, and `- Superseded by:` when present.
 - Source: summaries/2026/11/19/tests-test_export_markdown.md
 
-### [ACCEPT] defeater-export-tests-call-recompute-all
+### [ACCEPTED] defeater-export-tests-call-recompute-all
 All three defeater/outlist tests call `Network.recompute_all()` before invoking `export_markdown`.
 - Source: summaries/2026/11/19/tests-test_export_markdown.md
 - Rejected: trivial: test implementation detail about test ordering, not a durable code invariant
@@ -10478,17 +10478,17 @@ Passing `include_out=True` causes all three retrieval APIs (`search`, `lookup`, 
 Retracted beliefs are excluded even when they are dependents of a live node returned by `api.search` (`### derived-out` is absent from output).
 - Source: summaries/2026/11/19/tests-test_hide_out.md
 
-### [ACCEPT] tests-bind-to-reasons-facade
+### [ACCEPTED] tests-bind-to-reasons-facade
 The suite imports `api` from `reasons`, not `reasons_lib`, so the `reasons` package must re-export all six used symbols.
 - Source: summaries/2026/11/19/tests-test_hide_out.md
 - Rejected: trivial: describes import statements/test structure visible directly from module imports
 
-### [ACCEPT] active-precondition-is-not-an-antecedent
+### [ACCEPTED] active-precondition-is-not-an-antecedent
 For every imported belief, `{agent}:active` is excluded from `justifications[0].antecedents`; this is the explicit fix for the issue-#16 resurrection bug.
 - Source: summaries/2026/11/19/tests-test_import_agent.md
 - Rejected: duplicate: already captured by existing `active-not-in-antecedents`
 
-### [ACCEPT] every-imported-belief-has-inactive-in-outlist
+### [ACCEPTED] every-imported-belief-has-inactive-in-outlist
 Namespaced beliefs all carry `{agent}:inactive` in their outlist, which is what makes retracting `{agent}:active` cascade through every belief.
 - Source: summaries/2026/11/19/tests-test_import_agent.md
 - Rejected: duplicate: already captured by `agent-beliefs-are-permanently-defeasible-and-updatable` and `active-inactive-relay-pair`
@@ -10547,7 +10547,7 @@ The public API `reasons.api.import_agent` accepts both the Markdown "Beliefs/Nog
 `Node` lifecycle timestamps (`created_at`, `updated_at`, `reviewed_at`, `verified_at`, `retracted_at`) are plain strings with no format enforcement, and a non-empty `retracted_at` is the retraction signal.
 - Source: summaries/2026/11/19/reasons-__init__.md
 
-### [ACCEPT] namespace-active-premise-gates-beliefs-via-antecedent
+### [ACCEPTED] namespace-active-premise-gates-beliefs-via-antecedent
 `ensure_namespace` creates a normal `{ns}:active` premise and `add_node` inserts that premise as the first antecedent, so retracting it cascades namespace beliefs OUT through ordinary SL propagation.
 - Source: summaries/2026/11/19/reasons-api.md
 - Rejected: duplicate: Core claim that add_node creates ns:active and prepends it as an antecedent is already captured by add-node-namespace-auto-wiring-creates-active-premise / api-add-node-auto-wires-namespace-active-premise.
@@ -10568,7 +10568,7 @@ Hive proposals are stored in a separate `proposals` table and `propose_*` functi
 Dual mode detects TMS emptiness via `NO_BELIEFS_MSG` or the substring `"don't have enough beliefs"` and FTS emptiness via `answer_fts.startswith("No relevant documents")`, so changing those prompt/sentinel strings silently breaks dual short-circuiting.
 - Source: summaries/2026/11/19/reasons-ask.md
 
-### [ACCEPT] ask-final-round-omits-tool-schema
+### [ACCEPTED] ask-final-round-omits-tool-schema
 The final ask round uses `FINAL_ASK_PROMPT` with no tool definitions; if the model still emits a tool call, `ask` returns the fallback context instead of looping again.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Covered by existing `ask-last-iteration-structurally-forces-answer`, which already states the final iteration switches to FINAL_ASK_PROMPT and omits tools.
@@ -10577,7 +10577,7 @@ The final ask round uses `FINAL_ASK_PROMPT` with no tool definitions; if the mod
 Tool-loop search results replace `beliefs_context` only when non-empty and not `"No results found."`; empty tool results are recorded in `tool_history` but do not overwrite the current context.
 - Source: summaries/2026/11/19/reasons-ask.md
 
-### [ACCEPT] ask-natural-mode-strips-belief-citations
+### [ACCEPTED] ask-natural-mode-strips-belief-citations
 With `natural=True`, both `_CITE_RULE_NATURAL` and `_strip_belief_metadata` remove belief IDs and structured metadata from the final answer, producing prose-only output.
 - Source: summaries/2026/11/19/reasons-ask.md
 - Rejected: duplicate: Same claim as existing `ask-natural-mode-strips-metadata-and-cite` (and its variants).
@@ -10816,7 +10816,7 @@ The `api:` and `vertex:` invocation path does not call `_record_cost`, so those 
 The API invocation path maps timeout-like exceptions to `subprocess.TimeoutExpired` and other exceptions to `RuntimeError`.
 - Source: summaries/2026/11/19/reasons-llm.md
 
-### [ACCEPT] llm-cli-strips-claudecode-env
+### [ACCEPTED] llm-cli-strips-claudecode-env
 The CLI subprocess environment unconditionally removes `CLAUDECODE` to avoid the Claude CLI recursive-session guard.
 - Source: summaries/2026/11/19/reasons-llm.md
 - Rejected: duplicate: same claim already captured by existing belief `ask-strips-claudecode-env` (`_invoke_claude` removes CLAUDECODE to prevent recursive invocation).
@@ -10885,7 +10885,7 @@ Duplicate antecedent IDs are not deduplicated when computing a justification con
 `verify_all` counts missing hashes in `missing_hashes` and does not emit findings for them; missing hashes are treated as unverified, not mismatched.
 - Source: summaries/2026/11/19/reasons-merkle.md
 
-### [ACCEPT] merkle-supporting-justification-assumed-valid-index
+### [ACCEPTED] merkle-supporting-justification-assumed-valid-index
 `_fresh_merkle_hash` assumes `supporting_justification` is either `None` or a valid index; invalid values can raise `IndexError` or use Python negative indexing unexpectedly.
 - Source: summaries/2026/11/19/reasons-merkle.md
 - Rejected: speculative: Describes hypothetical invalid-input behavior and risks ("can raise IndexError or use negative indexing unexpectedly") rather than an observable invariant.
@@ -11214,12 +11214,12 @@ The verification prompt requests a verbatim quote, but no post-hoc substring che
 `reasons_lib.build_wiki` is a distinct module object from `reasons.build_wiki`; the shim copies names into its own namespace rather than aliasing the canonical module in `sys.modules`.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 
-### [ACCEPT] reasons-lib-build-wiki-downstream-star-import-differs-from-canonical-all
+### [ACCEPTED] reasons-lib-build-wiki-downstream-star-import-differs-from-canonical-all
 Because the shim defines no local `__all__`, `from reasons_lib.build_wiki import *` is governed by the shim's namespace and can differ from `reasons.build_wiki.__all__`, such as omitting underscore-prefixed names even if the canonical module lists them in `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-build_wiki.md
 - Rejected: trivial: standard star-import behavior from the shim namespace; derived implementation detail rather than a durable architecture/API invariant.
 
-### [ACCEPT] reasons-lib-cli-monkeypatch-does-not-reach-canonical-internals
+### [ACCEPTED] reasons-lib-cli-monkeypatch-does-not-reach-canonical-internals
 Monkeypatching a name on `reasons_lib.cli` rebinds only the shim's attribute; internal calls inside `reasons.cli` resolve from `reasons.cli.__dict__` and do not see the patch.
 - Source: summaries/2026/11/19/reasons_lib-cli.md
 - Rejected: duplicate: same namespace-lookup principle as api-llm-mocking-patches-consumer-namespace; shim-patching behavior is a standard consequence.
@@ -11231,126 +11231,126 @@ Monkeypatching a name on `reasons_lib.cli` rebinds only the shim's attribute; in
 **Generated:** 2026-11-19 (batch 9/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] cluster-shim-reverse-import-list-is-mirror-artifact
+### [ACCEPTED] cluster-shim-reverse-import-list-is-mirror-artifact
 The reported reverse-importer list for `reasons_lib.cluster` includes `reasons/cluster.py`, but a literal reverse import would be circular; treat that list as API-surface mirroring, not a real dependency edge.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 - Rejected: meta: about a reported analysis artifact, not a codebase invariant.
 
-### [ACCEPT] cluster-shim-is-pure-reexport
+### [ACCEPTED] cluster-shim-is-pure-reexport
 Duplicate of existing `reasons-lib-is-uniform-star-reexport-shim` / `reasons-lib-is-pure-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 
-### [ACCEPT] cluster-shim-requires-target-importable
+### [ACCEPTED] cluster-shim-requires-target-importable
 Duplicate of existing `reasons-lib-requires-reasons-package` / `shim-fails-fast-without-fallback`.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 
-### [ACCEPT] cluster-shim-preserves-identity
+### [ACCEPTED] cluster-shim-preserves-identity
 Duplicate of existing `star-import-guarantees-object-identity` / `shim-preserves-object-identity`.
 - Source: summaries/2026/11/19/reasons_lib-cluster.md
 
-### [ACCEPT] reasons-api-imports-compact-via-legacy-shim
+### [ACCEPTED] reasons-api-imports-compact-via-legacy-shim
 `reasons/api.py` imports compact functionality through the legacy `reasons_lib.compact` path rather than directly from `reasons.compact`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 - Rejected: trivial: module-import-path detail, not a durable architecture invariant.
 
-### [ACCEPT] compact-shim-is-pure-reexport
+### [ACCEPTED] compact-shim-is-pure-reexport
 Duplicate of existing `reasons-lib-is-uniform-star-reexport-shim` / `reasons-lib-is-pure-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 
-### [ACCEPT] compact-shim-requires-target
+### [ACCEPTED] compact-shim-requires-target
 Duplicate of existing `reasons-lib-requires-reasons-package` / `shim-fails-fast-without-fallback`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 
-### [ACCEPT] compact-shim-preserves-object-identity
+### [ACCEPTED] compact-shim-preserves-object-identity
 Duplicate of existing `star-import-guarantees-object-identity` / `shim-preserves-object-identity`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 
-### [ACCEPT] compact-shim-public-surface-is-target-defined
+### [ACCEPTED] compact-shim-public-surface-is-target-defined
 Duplicate of existing `reasons-lib-star-import-tracks-public-namespace`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 
-### [ACCEPT] compact-shim-import-triggers-full-target-import
+### [ACCEPTED] compact-shim-import-triggers-full-target-import
 Duplicate of existing `reasons-lib-shim-import-is-atomic-eager`.
 - Source: summaries/2026/11/19/reasons_lib-compact.md
 
-### [ACCEPT] contradictions-shim-lacks-own-all
+### [ACCEPTED] contradictions-shim-lacks-own-all
 `reasons_lib.contradictions` does not define `__all__`, so accessing `reasons_lib.contradictions.__all__` raises `AttributeError` even if `reasons.contradictions.__all__` exists.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: absence of `__all__` and the resulting standard `AttributeError` is source-visible implementation detail.
 
-### [ACCEPT] contradictions-shim-docstring-differs-from-canonical
+### [ACCEPTED] contradictions-shim-docstring-differs-from-canonical
 `reasons_lib.contradictions.__doc__` is the shim migration text, not the canonical `reasons.contradictions` docstring.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 - Rejected: trivial: docstring wording difference is not a durable code invariant.
 
-### [ACCEPT] contradictions-shim-is-compat-shim
+### [ACCEPTED] contradictions-shim-is-compat-shim
 Duplicate of existing `reasons-lib-is-uniform-star-reexport-shim` / `reasons-lib-is-pure-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 
-### [ACCEPT] contradictions-shim-requires-target
+### [ACCEPTED] contradictions-shim-requires-target
 Duplicate of existing `reasons-lib-requires-reasons-package` / `shim-fails-fast-without-fallback`.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 
-### [ACCEPT] contradictions-shim-exports-identical-objects
+### [ACCEPTED] contradictions-shim-exports-identical-objects
 Duplicate of existing `star-import-guarantees-object-identity` / `shim-preserves-object-identity`.
 - Source: summaries/2026/11/19/reasons_lib-contradictions.md
 
-### [ACCEPT] derive-shim-name-rebinding-does-not-affect-canonical-internals
+### [ACCEPTED] derive-shim-name-rebinding-does-not-affect-canonical-internals
 Reassigning a name on `reasons_lib.derive` only changes the shim namespace; functions inside `reasons.derive` that reference their own module global continue to see the original binding.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: generic Python module-namespace semantics, not a project-specific invariant.
 
-### [ACCEPT] derive-shim-import-executes-target-side-effects-once
+### [ACCEPTED] derive-shim-import-executes-target-side-effects-once
 Importing `reasons_lib.derive` causes `reasons.derive` module-level initialization/side effects to run once, not duplicated per import path.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 - Rejected: trivial: standard Python import-caching behavior, not a durable project invariant.
 
-### [ACCEPT] derive-shim-is-pure-reexport
+### [ACCEPTED] derive-shim-is-pure-reexport
 Duplicate of existing `reasons-lib-is-uniform-star-reexport-shim` / `reasons-lib-is-pure-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 
-### [ACCEPT] derive-shim-preserves-identity
+### [ACCEPTED] derive-shim-preserves-identity
 Duplicate of existing `star-import-guarantees-object-identity` / `shim-preserves-object-identity`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 
-### [ACCEPT] derive-shim-requires-target
+### [ACCEPTED] derive-shim-requires-target
 Duplicate of existing `reasons-lib-requires-reasons-package` / `shim-fails-fast-without-fallback`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 
-### [ACCEPT] derive-shim-emits-no-deprecation-warning
+### [ACCEPTED] derive-shim-emits-no-deprecation-warning
 Duplicate of existing `reasons-lib-shim-emits-no-deprecation-warning`.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 
-### [ACCEPT] derive-shim-has-no-all
+### [ACCEPTED] derive-shim-has-no-all
 Already covered by existing `reasons-lib-is-uniform-star-reexport-shim` and related star-import beliefs.
 - Source: summaries/2026/11/19/reasons_lib-derive.md
 
-### [ACCEPT] export-card-shim-consumers-include-api-and-export-card-tests
+### [ACCEPTED] export-card-shim-consumers-include-api-and-export-card-tests
 Known first-party importers of `reasons_lib.export_card` include `reasons/api.py` and `tests/test_export_card.py`, so both must migrate before the shim can be removed.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 - Rejected: trivial: importer lists are directly visible from imports, and the migration/removal requirement is an editorial plan rather than a durable invariant.
 
-### [ACCEPT] export-card-shim-is-shim
+### [ACCEPTED] export-card-shim-is-shim
 Duplicate of existing `reasons-lib-is-uniform-star-reexport-shim` / `reasons-lib-is-pure-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
-### [ACCEPT] export-card-shim-requires-canonical-module
+### [ACCEPTED] export-card-shim-requires-canonical-module
 Duplicate of existing `reasons-lib-requires-reasons-package` / `shim-fails-fast-without-fallback`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
-### [ACCEPT] export-card-shim-reexports-only-public-names
+### [ACCEPTED] export-card-shim-reexports-only-public-names
 Duplicate of existing `star-import-shim-skips-underscore-names` / `shim-star-import-respects-target-all`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
-### [ACCEPT] export-card-shim-preserves-identity
+### [ACCEPTED] export-card-shim-preserves-identity
 Duplicate of existing `star-import-guarantees-object-identity` / `shim-preserves-object-identity`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
-### [ACCEPT] export-card-shim-has-no-error-handling
+### [ACCEPTED] export-card-shim-has-no-error-handling
 Duplicate of existing `shim-propagates-exceptions-unchanged`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
-### [ACCEPT] export-card-shim-defines-no-own-names
+### [ACCEPTED] export-card-shim-defines-no-own-names
 Duplicate of existing `reasons-lib-owns-no-unique-code` / `reasons-lib-is-uniform-star-reexport-shim`.
 - Source: summaries/2026/11/19/reasons_lib-export_card.md
 
@@ -11360,22 +11360,22 @@ Duplicate of existing `reasons-lib-owns-no-unique-code` / `reasons-lib-is-unifor
 **Generated:** 2026-11-19 (batch 10/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] export-markdown-shim-is-covered-by-exporter-tests
+### [ACCEPTED] export-markdown-shim-is-covered-by-exporter-tests
 Several exporter-related test modules load through `reasons_lib.export_markdown`, making the shim part of the regression surface for export, metadata, roundtrip, and source-type behavior.
 - Source: summaries/2026/11/19/reasons_lib-export_markdown.md
 - Rejected: trivial: test-module import/coverage inventory is directly visible from test imports and is not an architectural contract.
 
-### [ACCEPT] hf-shim-is-covered-by-hf-import-tests
+### [ACCEPTED] hf-shim-is-covered-by-hf-import-tests
 `tests/test_hf_default_org.py` and `tests/test_import_hf.py` exercise HF behavior through the `reasons_lib.hf` shim, not only through `reasons.hf`.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: which tests import a shim is an import/coverage fact, not a durable codebase invariant.
 
-### [ACCEPT] hf-shim-noqa-suppresses-f401-and-f403
+### [ACCEPTED] hf-shim-noqa-suppresses-f401-and-f403
 `reasons_lib/hf.py` uses `# noqa: F401,F403` to suppress both unused-import and star-import lint warnings for its deliberate wildcard re-export.
 - Source: summaries/2026/11/19/reasons_lib-hf.md
 - Rejected: trivial: a lint-suppression comment is an obvious local implementation detail.
 
-### [ACCEPT] reasons-api-and-pg-import-reasons-lib-import-agent
+### [ACCEPTED] reasons-api-and-pg-import-reasons-lib-import-agent
 `reasons/api.py` and `reasons/pg.py` import agent-import functionality through the legacy `reasons_lib.import_agent` shim, creating a canonical-to-legacy dependency for this module.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 - Rejected: trivial: an import relationship through a shim is directly visible from imports and is not a durable architectural invariant.
@@ -11384,12 +11384,12 @@ Several exporter-related test modules load through `reasons_lib.export_markdown`
 Because `from reasons.import_agent import *` binds names but not `__all__`, `reasons_lib.import_agent.__all__` is absent unless the canonical `__all__` explicitly includes `"__all__"`, so downstream wildcard imports from the shim use the non-underscore rule instead of the canonical `__all__` contract.
 - Source: summaries/2026/11/19/reasons_lib-import_agent.md
 
-### [ACCEPT] import-beliefs-shim-is-covered-by-six-test-modules
+### [ACCEPTED] import-beliefs-shim-is-covered-by-six-test-modules
 Six test modules (`test_import_beliefs`, `test_metadata`, `test_metadata_extended`, `test_nogood_id`, `test_roundtrip`, `test_source_type`) import through the `reasons_lib.import_beliefs` shim, making it part of their regression surface.
 - Source: summaries/2026/11/19/reasons_lib-import_beliefs.md
 - Rejected: trivial: test-module import inventory with a specific count, visible directly from imports
 
-### [ACCEPT] reasons-lib-llm-is-load-bearing-for-canonical-llm-callers
+### [ACCEPTED] reasons-lib-llm-is-load-bearing-for-canonical-llm-callers
 At least fifteen first-party modules under `reasons/` (including `api.py`, `cli.py`, `repair.py`, and `verify.py`) import LLM functionality through `reasons_lib.llm` rather than directly from `reasons.llm`, so the shim is load-bearing for production LLM call sites.
 - Source: summaries/2026/11/19/reasons_lib-llm.md
 - Rejected: ephemeral: specific module-count inventory that changes with code edits
@@ -11405,38 +11405,38 @@ At least fifteen first-party modules under `reasons/` (including `api.py`, `cli.
 The canonical `reasons/cli.py` imports MCP client symbols through `reasons_lib.mcp_client`, creating the chain `reasons.cli -> reasons_lib.mcp_client -> reasons.mcp_client` that stays acyclic only while `reasons.mcp_client` does not import `reasons.cli`.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 
-### [ACCEPT] mcp-client-shim-is-pure-star-reexport
+### [ACCEPTED] mcp-client-shim-is-pure-star-reexport
 This duplicates existing beliefs that every `reasons_lib` shim is a pure `from reasons.X import *` re-export with no local logic.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 
-### [ACCEPT] mcp-client-shim-propagates-import-errors
+### [ACCEPTED] mcp-client-shim-propagates-import-errors
 This duplicates existing beliefs that shims have no error handling and propagate canonical import failures unchanged.
 - Source: summaries/2026/11/19/reasons_lib-mcp_client.md
 
-### [ACCEPT] shim-module-object-is-distinct-from-canonical
+### [ACCEPTED] shim-module-object-is-distinct-from-canonical
 A `reasons_lib.<module>` shim is a distinct module object from `reasons.<module>` (separate `sys.modules` entry, `__name__`, `__file__`, and `__doc__`), even though re-exported class/function objects are identical.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: generic Python module-identity behavior, not a project-specific invariant
 
-### [ACCEPT] shim-star-import-leaks-incidental-imports
+### [ACCEPTED] shim-star-import-leaks-incidental-imports
 Because the shim uses `import *` and defines no local `__all__`, non-underscore names imported at top level by the canonical module (such as `json` or `FastMCP`) also become attributes of the `reasons_lib` shim unless the canonical module defines `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 - Rejected: trivial: standard `import *` behavior, evident from the shim's imports and lack of `__all__`.
 
-### [ACCEPT] mcp-server-tests-enter-through-shim
+### [ACCEPTED] mcp-server-tests-enter-through-shim
 This duplicates existing beliefs that deleting `reasons_lib` shims breaks test imports and that the test suite validates the shim import chain.
 - Source: summaries/2026/11/19/reasons_lib-mcp_server.md
 
-### [ACCEPT] shim-does-not-redeclare-all
+### [ACCEPTED] shim-does-not-redeclare-all
 The `reasons_lib.metadata` shim does not define its own `__all__`, so `from reasons_lib.metadata import *` exports all non-underscore names present in the shim and can diverge from `reasons.metadata.__all__` if that list contains underscore names or omits non-underscore names.
 - Source: summaries/2026/11/19/reasons_lib-metadata.md
 - Rejected: trivial: absence of `__all__` and resulting star-import semantics are obvious from the shim file.
 
-### [ACCEPT] metadata-shim-is-backward-compatibility-alias
+### [ACCEPTED] metadata-shim-is-backward-compatibility-alias
 This duplicates existing beliefs that `reasons_lib/<module>.py` is a pure compatibility alias re-exporting `reasons/<module>.py`.
 - Source: summaries/2026/11/19/reasons_lib-metadata.md
 
-### [ACCEPT] metadata-shim-emits-no-deprecation-signal
+### [ACCEPTED] metadata-shim-emits-no-deprecation-signal
 This duplicates existing beliefs that importing any `reasons_lib` shim emits no `DeprecationWarning` or runtime migration signal.
 - Source: summaries/2026/11/19/reasons_lib-metadata.md
 
@@ -11444,23 +11444,23 @@ This duplicates existing beliefs that importing any `reasons_lib` shim emits no 
 Symbols re-exported through `reasons_lib.mind_service` retain `__module__ == "reasons.mind_service"`, so pickles created via the legacy import path reference the canonical module and do not depend on the shim surviving.
 - Source: summaries/2026/11/19/reasons_lib-mind_service.md
 
-### [ACCEPT] mind-service-shim-is-load-bearing-for-reasons-api
+### [ACCEPTED] mind-service-shim-is-load-bearing-for-reasons-api
 This duplicates existing beliefs that `reasons/api.py` imports through `reasons_lib` and that removing the shims would break internal production code.
 - Source: summaries/2026/11/19/reasons_lib-mind_service.md
 
-### [ACCEPT] mind-service-symbols-are-identical-across-paths
+### [ACCEPTED] mind-service-symbols-are-identical-across-paths
 This duplicates existing beliefs that shim re-exports preserve object identity across `reasons` and `reasons_lib` import paths.
 - Source: summaries/2026/11/19/reasons_lib-mind_service.md
 
-### [ACCEPT] network-internal-modules-use-reasons-lib-shim
+### [ACCEPTED] network-internal-modules-use-reasons-lib-shim
 This duplicates the existing belief that at least nine canonical `reasons/` modules (including `api.py`, `storage.py`, `check_stale.py`, `compact.py`, `export_card.py`, `export_markdown.py`, `import_agent.py`, and `import_beliefs.py`) import from `reasons_lib.*`.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 
-### [ACCEPT] network-shim-preserves-object-identity
+### [ACCEPTED] network-shim-preserves-object-identity
 This duplicates existing beliefs that `reasons_lib.<module>.X is reasons.<module>.X` for re-exported names.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 
-### [ACCEPT] network-shim-exports-only-public-names
+### [ACCEPTED] network-shim-exports-only-public-names
 This duplicates existing beliefs that `import *` skips underscore-prefixed names unless the canonical module explicitly includes them in `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-network.md
 
@@ -11470,12 +11470,12 @@ This duplicates existing beliefs that `import *` skips underscore-prefixed names
 **Generated:** 2026-11-19 (batch 12/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] reasons-lib-pg-is-distinct-module-object
+### [ACCEPTED] reasons-lib-pg-is-distinct-module-object
 `reasons_lib.pg` and `reasons.pg` are distinct module objects in `sys.modules` (not aliases), while each name re-exported by the shim references the same function/class objects as the canonical module.
 - Source: summaries/2026/11/19/reasons_lib-pg.md
 - Rejected: trivial: module identity follows directly from having separate shim and canonical modules.
 
-### [ACCEPT] reasons-api-cli-import-propose-update-via-shim
+### [ACCEPTED] reasons-api-cli-import-propose-update-via-shim
 `reasons/api.py` and `reasons/cli.py` import `propose_update` through `reasons_lib.propose_update` rather than directly from `reasons.propose_update`.
 - Source: summaries/2026/11/19/reasons_lib-propose_update.md
 - Rejected: trivial: specific import path, exactly the kind of obvious dependency fact excluded.
@@ -11488,20 +11488,20 @@ Rebinding a name in a `reasons_lib.<module>` shim (e.g. `monkeypatch.setattr("re
 The `reasons_lib` shims do not set their own `__all__`; when `reasons.<module>` defines `__all__`, the star import copies the listed names but not the `__all__` attribute itself, so `reasons_lib.<module>.__all__` is normally absent.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 
-### [ACCEPT] reasons-api-imports-pubsub-via-shim
+### [ACCEPTED] reasons-api-imports-pubsub-via-shim
 Duplicate of existing `reasons-api-imports-through-reasons-lib-shim`, which already records that `reasons/api.py` imports pubsub through the legacy shim.
 - Source: summaries/2026/11/19/reasons_lib-pubsub.md
 
-### [ACCEPT] reexported-objects-retain-canonical-module-attribute
+### [ACCEPTED] reexported-objects-retain-canonical-module-attribute
 Functions and classes defined in a canonical `reasons.<module>` and re-exported by its `reasons_lib` shim keep their original `__module__` value (e.g. `reasons.repair`), not the shim module path.
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 - Rejected: duplicate: same claim as shim-reexports-retain-canonical-module-attribute
 
-### [ACCEPT] reasons-lib-repair-is-compat-shim
+### [ACCEPTED] reasons-lib-repair-is-compat-shim
 Duplicate of existing shim-package beliefs (`reasons-lib-is-frozen-transitional-layer`, `reasons-lib-is-uniform-star-reexport-shim`).
 - Source: summaries/2026/11/19/reasons_lib-repair.md
 
-### [ACCEPT] reasons-lib-repair-premises-emits-no-deprecation-warning
+### [ACCEPTED] reasons-lib-repair-premises-emits-no-deprecation-warning
 Duplicate of existing `reasons-lib-shim-emits-no-deprecation-warning` / `no-deprecation-warning-emitted-on-shim-import`.
 - Source: summaries/2026/11/19/reasons_lib-repair_premises.md
 
@@ -11530,58 +11530,58 @@ Because `reasons/api.py` imports `reasons_lib.review` and `reasons_lib.review` i
 **Generated:** 2026-11-19 (batch 14/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] reasons-lib-storage-shim-has-no-all
+### [ACCEPTED] reasons-lib-storage-shim-has-no-all
 `reasons_lib/storage.py` defines no `__all__`, so `from reasons_lib.storage import *` uses public-name filtering rather than mirroring `reasons.storage.__all__`.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: absence of `__all__` and standard star-import filtering are obvious implementation details
 
-### [ACCEPT] reasons-lib-storage-star-import-can-expose-canonical-imported-dependencies
+### [ACCEPTED] reasons-lib-storage-star-import-can-expose-canonical-imported-dependencies
 Because the shim uses a bare wildcard import and defines no `__all__`, public imported dependencies in `reasons.storage` can also become available through `reasons_lib.storage` when `reasons.storage` lacks `__all__`.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 - Rejected: trivial: describes standard wildcard-import leakage rather than a durable architectural invariant
 
-### [ACCEPT] reasons-lib-storage-import-errors-propagate-unchanged
+### [ACCEPTED] reasons-lib-storage-import-errors-propagate-unchanged
 This duplicates the existing belief that shim import failures propagate unchanged rather than being wrapped or translated.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 
-### [ACCEPT] reasons-lib-storage-reexports-same-objects
+### [ACCEPTED] reasons-lib-storage-reexports-same-objects
 This duplicates the existing belief that shim re-exports bind the same function/class objects rather than copies.
 - Source: summaries/2026/11/19/reasons_lib-storage.md
 
-### [ACCEPT] reasons-lib-verify-shim-has-no-all
+### [ACCEPTED] reasons-lib-verify-shim-has-no-all
 `reasons_lib/verify.py` defines no `__all__`, so downstream star imports from the shim use Python public-name filtering instead of mirroring `reasons.verify.__all__`.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 - Rejected: trivial: same low-value `__all__` implementation detail for another shim
 
-### [ACCEPT] reasons-lib-verify-star-export-over-exports-canonical-all
+### [ACCEPTED] reasons-lib-verify-star-export-over-exports-canonical-all
 The entry's over-export claim is unsupported: with no shim `__all__`, downstream star import can drop underscore names from a canonical `__all__`, but it cannot bind names the wildcard import did not import.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 
-### [ACCEPT] reasons-lib-verify-canonical-implementation-is-reasons-verify
+### [ACCEPTED] reasons-lib-verify-canonical-implementation-is-reasons-verify
 This duplicates existing beliefs that `reasons/` is canonical and `reasons_lib/` is the legacy shim.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 
-### [ACCEPT] reasons-lib-verify-emits-no-deprecation-warning
+### [ACCEPTED] reasons-lib-verify-emits-no-deprecation-warning
 This duplicates the existing belief that the shim emits no runtime deprecation warning.
 - Source: summaries/2026/11/19/reasons_lib-verify.md
 
-### [ACCEPT] scan-repo-reasons-lib-is-legacy-mirror
+### [ACCEPTED] scan-repo-reasons-lib-is-legacy-mirror
 This duplicates existing beliefs that `reasons_lib/` is a near-duplicate legacy/compat mirror.
 - Source: summaries/2026/11/19/scan-repo.md
 
-### [ACCEPT] scan-repo-two-entry-points
+### [ACCEPTED] scan-repo-two-entry-points
 This duplicates the existing belief about the two console entry points.
 - Source: summaries/2026/11/19/scan-repo.md
 
-### [ACCEPT] scan-repo-core-tms-module-list-is-speculative
+### [ACCEPTED] scan-repo-core-tms-module-list-is-speculative
 The entry presents the core module list as likely rather than as an established invariant, so it is not a reliable codebase claim.
 - Source: summaries/2026/11/19/scan-repo.md
 
-### [ACCEPT] scan-repo-sqlite-default-postgres-optional
+### [ACCEPTED] scan-repo-sqlite-default-postgres-optional
 This duplicates existing beliefs about interchangeable SQLite/Postgres backends.
 - Source: summaries/2026/11/19/scan-repo.md
 
-### [ACCEPT] tests-init-makes-tests-a-package
+### [ACCEPTED] tests-init-makes-tests-a-package
 The empty `tests/__init__.py` makes `tests` a regular Python package so test modules import as `tests.<module>`.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: package status from an empty `__init__.py` is obvious from file structure
@@ -11590,7 +11590,7 @@ The empty `tests/__init__.py` makes `tests` a regular Python package so test mod
 Executable code must not be added to `tests/__init__.py` because it would run on every test-module import before pytest fixtures load.
 - Source: summaries/2026/11/19/tests-__init__.md
 
-### [ACCEPT] tests-fixtures-live-in-conftest-not-init
+### [ACCEPTED] tests-fixtures-live-in-conftest-not-init
 Shared pytest fixtures are provided by `tests/conftest.py`, not by `tests/__init__.py`.
 - Source: summaries/2026/11/19/tests-__init__.md
 - Rejected: trivial: standard pytest file organization visible from directory structure
@@ -11611,15 +11611,15 @@ The `pg_api` fixture calls `api.conn.rollback()` before its DELETE cleanup to cl
 The `pg_api` teardown has no try/finally, so a failure in one of its DELETE statements can prevent `api.close()` from running.
 - Source: summaries/2026/11/19/tests-conftest.md
 
-### [ACCEPT] pg-fixture-lazily-imports-pgapi
+### [ACCEPTED] pg-fixture-lazily-imports-pgapi
 This duplicates the existing belief that `PgApi` is imported lazily inside the fixture to avoid collection-time database imports.
 - Source: summaries/2026/11/19/tests-conftest.md
 
-### [ACCEPT] pg-api-fixture-skips-when-database-url-missing
+### [ACCEPTED] pg-api-fixture-skips-when-database-url-missing
 This duplicates the existing belief that PG tests are gated by `DATABASE_URL` availability.
 - Source: summaries/2026/11/19/tests-conftest.md
 
-### [ACCEPT] pg-fixture-cleans-five-tables-in-fk-safe-order
+### [ACCEPTED] pg-fixture-cleans-five-tables-in-fk-safe-order
 This duplicates the existing beliefs about the five-table cleanup set and FK-safe deletion order.
 - Source: summaries/2026/11/19/tests-conftest.md
 
@@ -11629,22 +11629,22 @@ This duplicates the existing beliefs about the five-table cleanup set and FK-saf
 **Generated:** 2026-11-19 (batch 15/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] derived-access-tags-union-antecedent-tags
+### [ACCEPTED] derived-access-tags-union-antecedent-tags
 Derived nodes' `metadata["access_tags"]` is the union of their explicit tags and all tags reachable through antecedent justifications, including transitive chains and diamond graphs.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: duplicates existing `access-tags-inherit-by-union` / `access-tags-union-inheritance` / `access-tags-are-monotonically-inherited`.
 
-### [ACCEPT] trace-access-tags-returns-union-or-keyerror
+### [ACCEPTED] trace-access-tags-returns-union-or-keyerror
 `Network.trace_access_tags(node_id)` returns the union of tags from the node and its antecedents, returns `[]` for an untagged node, and raises `KeyError` for a missing node.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: union-of-tags semantics already covered by `access-tags-inherit-by-union`; remaining details are trivial.
 
-### [ACCEPT] api-trace-access-tags-returns-structured-result
+### [ACCEPTED] api-trace-access-tags-returns-structured-result
 `api.trace_access_tags(node_id, db_path=...)` returns a dict with `node_id` and `access_tags` after enforcing `visible_to` visibility.
 - Source: summaries/2026/11/19/tests-test_access_tags.md
 - Rejected: duplicate: visibility enforcement is covered by `access-tags-gate-all-query-commands` and dict return by `api-functions-return-dicts`.
 
-### [ACCEPT] add-justification-appends-without-replacing
+### [ACCEPTED] add-justification-appends-without-replacing
 Adding a justification to a node appends the new justification to the existing list rather than replacing prior justifications, and new justifications are appended in call order.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 - Rejected: duplicate: duplicates existing `add-justification-appends-not-replaces`.
@@ -11653,7 +11653,7 @@ Adding a justification to a node appends the new justification to the existing l
 `Network.add_justification(...)` returns a dict containing `node_id`, `old_truth_value`, `new_truth_value`, and `changed`, where `changed` includes the target and any cascaded dependents whose truth value changed.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 
-### [ACCEPT] add-justification-missing-node-raises-keyerror
+### [ACCEPTED] add-justification-missing-node-raises-keyerror
 `Network.add_justification` raises `KeyError` with a message matching `"not found"` when the target node does not exist.
 - Source: summaries/2026/11/19/tests-test_add_justification.md
 - Rejected: duplicate: Same claim as existing `add-justification-nonexistent-node-raises-keyerror`
@@ -11670,7 +11670,7 @@ The `premise_count` field in add results is N for a conjunctive SL with N antece
 With `any_mode=True`, a derived node remains IN after any single premise is retracted and flips OUT only when all expanded premises are retracted.
 - Source: summaries/2026/11/19/tests-test_any_mode.md
 
-### [ACCEPT] init-db-refuses-existing-path-unless-force
+### [ACCEPTED] init-db-refuses-existing-path-unless-force
 `api.init_db(db_path)` returns `{"created": True}` for a new path, raises `FileExistsError` when the path already exists, and overwrites only when `force=True`.
 - Source: summaries/2026/11/19/tests-test_api.md
 - Rejected: duplicate: Existing belief `api-init-requires-force-to-overwrite` already states that `api.init_db()` refuses to overwrite unless `force=True`.
@@ -11695,12 +11695,12 @@ With `any_mode=True`, a derived node remains IN after any single premise is retr
 In `api.search`, a `|` in the query is treated as an OR operator at the query layer.
 - Source: summaries/2026/11/19/tests-test_api.md
 
-### [ACCEPT] ask-tool-loop-bounded-to-three-rounds
+### [ACCEPTED] ask-tool-loop-bounded-to-three-rounds
 `ask()` in default full mode performs at most three tool-call rounds before final synthesis; on final-synthesis timeout, error, or another tool call, it falls back to accumulated belief/search context.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: already covered by `ask-tool-loop-capped-at-three`, `ask-tool-call-budget-is-three`, and `ask-tool-loop-max-three-rounds`
 
-### [ACCEPT] ask-simple-mode-skips-llm-when-no-context
+### [ACCEPTED] ask-simple-mode-skips-llm-when-no-context
 `ask(..., simple=True)` returns `NO_BELIEFS_MSG` without invoking the LLM when there are no matching beliefs and no matching source documents.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: outcome `NO_BELIEFS_MSG` on no matches is already captured by `ask-empty-network-returns-no-beliefs-message`
@@ -11709,7 +11709,7 @@ In `api.search`, a `|` in the query is treated as an OR operator at the query la
 When `sources_db` is provided, source-document search results alone can produce an answer even when belief search returns no matches; with neither belief nor source matches, `ask()` returns `NO_BELIEFS_MSG`.
 - Source: summaries/2026/11/19/tests-test_ask.md
 
-### [ACCEPT] prompt-builders-gate-tool-definitions-and-citation
+### [ACCEPTED] prompt-builders-gate-tool-definitions-and-citation
 Prompt builders gate tool definitions: only `build_ask_prompt` includes `search_beliefs`; simple mode defaults to citation instructions and switches to plain natural language when `natural=True`.
 - Source: summaries/2026/11/19/tests-test_ask.md
 - Rejected: duplicate: combines existing `build-ask-prompt-includes-search-beliefs-tool` and `ask-natural-mode-strips-metadata-and-cite`
@@ -11720,12 +11720,12 @@ Prompt builders gate tool definitions: only `build_ask_prompt` includes `search_
 **Generated:** 2026-11-19 (batch 16/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] mcp-instructions-concatenated-across-bridges
+### [ACCEPTED] mcp-instructions-concatenated-across-bridges
 `_build_mcp_instructions` concatenates `get_instructions()` from all MCP bridges and returns an empty string when every bridge has empty instructions.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: already captured by existing `build-mcp-instructions-concatenates-bridges`
 
-### [ACCEPT] ask-prompt-data-source-header-conditional
+### [ACCEPTED] ask-prompt-data-source-header-conditional
 `build_ask_prompt` inserts the `"Data Source Instructions"` header only when `mcp_instructions` is non-empty; empty instructions omit the header.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: already captured by existing `ask-prompt-data-source-instructions-header`
@@ -11738,7 +11738,7 @@ A caller-supplied `tools_section` fully replaces the default prompt tools block,
 When dispatching an MCP tool call, `ask()` passes `bridge.call_tool(name, args)` with the parsed tool-call dict minus the `"tool"` key.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 
-### [ACCEPT] ask-prompt-avoids-raw-template-braces
+### [ACCEPTED] ask-prompt-avoids-raw-template-braces
 The rendered ask prompt must not contain raw `{{` template placeholder tokens.
 - Source: summaries/2026/11/19/tests-test_ask_mcp.md
 - Rejected: duplicate: already captured by existing `ask-prompt-no-template-placeholders`
@@ -11755,7 +11755,7 @@ The rendered ask prompt must not contain raw `{{` template placeholder tokens.
 `Network.find_culprits` orders culprits by dependent count ascending so a premise with fewer dependents appears before one with more.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 
-### [ACCEPT] inactive-nogood-returns-empty-and-no-log
+### [ACCEPTED] inactive-nogood-returns-empty-and-no-log
 If any node in a nogood is already `OUT`, `Network.add_nogood` returns an empty changed list and writes no backtrack log entry.
 - Source: summaries/2026/11/19/tests-test_backtracking.md
 - Rejected: duplicate: Already covered by `add-nogood-inactive-when-either-node-out`, which states no log entry and no retraction.
@@ -11854,7 +11854,7 @@ In `classify_defeat_reason_types`, an empty classifier result is appended to `re
 Retracting an already-OUT node or asserting an already-IN node exits `0` and prints `"already OUT"` or `"already IN"` respectively.
 - Source: summaries/2026/11/19/tests-test_cli.md
 
-### [ACCEPT] cli-read-commands-enforce-visible-to
+### [ACCEPTED] cli-read-commands-enforce-visible-to
 The `status`, `show`, `explain`, `trace`, and `trace-access-tags` CLI commands enforce `--visible-to`; denied reads exit `1` with `"Access denied"`.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: duplicate: Covered by existing `access-tags-gate-all-query-commands` which already enumerates the same read commands (show, explain, trace, status, trace-access-tags) and their access-tag gating.
@@ -11867,7 +11867,7 @@ The `supersede` command requires exactly one of `new_id` or `--text`; supplying 
 A second `init` without `--force` exits `1` and writes stderr containing `"--force"`.
 - Source: summaries/2026/11/19/tests-test_cli.md
 
-### [ACCEPT] cli-add-rejects-duplicate-ids
+### [ACCEPTED] cli-add-rejects-duplicate-ids
 The `add` command rejects duplicate IDs with exit code `1` and stderr containing `"Error"`.
 - Source: summaries/2026/11/19/tests-test_cli.md
 - Rejected: duplicate: The duplicate-ID rejection semantics are already captured by `api-enforces-typed-preconditions`; the generic exit-1/"Error" CLI wrapper is a trivial restatement.
@@ -11880,7 +11880,7 @@ The `add` command rejects duplicate IDs with exit code `1` and stderr containing
 `list_clusters` returns a dict with `clusters` (each containing `beliefs`), `n_clusters`, and `embedding_model`.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 
-### [ACCEPT] auto-k-default-and-clamp-semantics
+### [ACCEPTED] auto-k-default-and-clamp-semantics
 `_auto_k(n)` defaults to `max(2, n // 5)`; `max_k` caps that auto-derived value, while explicit `n_clusters` wins and is clamped to `n`.
 - Source: summaries/2026/11/19/tests-test_cluster.md
 - Rejected: duplicate: existing beliefs `auto-k-floor-is-two`, `auto-k-formula-is-n-div-5-capped-at-20`, and `auto-k-max-k-caps-cluster-count` already capture the auto-k formula and clamp behavior.
@@ -11935,7 +11935,7 @@ The dangling-dependent regression suite verifies tolerance through `retract()`, 
 When a dangling dependent is detected, the warning log entry’s `value` must include the parent node ID whose `dependents` set contained the missing ID.
 - Source: summaries/2026/11/19/tests-test_dangling_dependents.md
 
-### [ACCEPT] dangling-dependent-regression-tests-target-reasons-package-only
+### [ACCEPTED] dangling-dependent-regression-tests-target-reasons-package-only
 The dangling-dependent regression tests import from `reasons`, not `reasons_lib`, so they directly guard `reasons.network.Network` but do not directly guard parity with `reasons_lib`.
 - Source: summaries/2026/11/19/tests-test_dangling_dependents.md
 - Rejected: trivial: import path/test coverage caveat is obvious and not a durable behavioral invariant
@@ -11996,7 +11996,7 @@ When `defeat_reason_type` is omitted, `defeat_with_scope` returns `""` and does 
 `verify_dependents()` error strings distinguish bogus reverse entries containing `"extra"` from absent reverse entries containing `"missing"`.
 - Source: summaries/2026/11/19/tests-test_dependents_integrity.md
 
-### [ACCEPT] dependents-set-deduplicates-multiple-justifications
+### [ACCEPTED] dependents-set-deduplicates-multiple-justifications
 Because `dependents` is a set, multiple justifications referencing the same antecedent produce a single reverse-index entry rather than duplicate entries.
 - Source: summaries/2026/11/19/tests-test_dependents_integrity.md
 - Rejected: trivial: direct consequence of storing dependents in a set
@@ -12035,7 +12035,7 @@ When `apply_proposals` applies a `gate` proposal, its `unless` entries become th
 `parse_proposals(write_proposals_file(proposals))` reconstructs the same proposal shape, keeping writer and parser in sync.
 - Source: summaries/2026/11/19/tests-test_derive.md
 
-### [ACCEPT] derive-local-budget-has-floor-of-five
+### [ACCEPTED] derive-local-budget-has-floor-of-five
 The derive prompt builder gives the local-belief section at least 5 slots even when agent sections consume the nominal budget.
 - Source: summaries/2026/11/19/tests-test_derive_budget.md
 - Rejected: duplicate: Same claim already exists as `budget-floor-is-five` (currently OUT) describing `_build_beliefs_section` guaranteeing local beliefs at least 5 slots.
@@ -12048,7 +12048,7 @@ The derive prompt builder gives the local-belief section at least 5 slots even w
 `_build_beliefs_section` omits the `Agent:` section when `agents=None` and omits `Local beliefs` when there are no local beliefs.
 - Source: summaries/2026/11/19/tests-test_derive_budget.md
 
-### [ACCEPT] build-beliefs-section-safe-on-empty-or-missing-agent-refs
+### [ACCEPTED] build-beliefs-section-safe-on-empty-or-missing-agent-refs
 `_build_beliefs_section` returns a string without crashing for an empty network or when the agents mapping references nonexistent node IDs.
 - Source: summaries/2026/11/19/tests-test_derive_budget.md
 - Rejected: duplicate: covered by existing budget-section-graceful-emptiness; missing-ref handling is only a minor extension.
@@ -12077,7 +12077,7 @@ A challenge+defend sequence and its metadata survive `Storage.save` → `Storage
 CLI `show` emits an `Example:` section when metadata contains an example and omits that section entirely when no example exists.
 - Source: summaries/2026/11/19/tests-test_example.md
 
-### [ACCEPT] example-and-access-tags-coexist-in-metadata
+### [ACCEPTED] example-and-access-tags-coexist-in-metadata
 An example and access tags can be stored together in node metadata without either field interfering with the other.
 - Source: summaries/2026/11/19/tests-test_example.md
 - Rejected: trivial: metadata fields coexisting is not a meaningful durable invariant
@@ -12104,7 +12104,7 @@ The exported card body must contain the stats table, `## How to Use` with `reaso
 **Generated:** 2026-11-19 (batch 20/20)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] export-markdown-tests-bind-to-reasons-package
+### [ACCEPTED] export-markdown-tests-bind-to-reasons-package
 The export-Markdown tests import `Justification`, `Network`, and `export_markdown` from the `reasons` package rather than `reasons_lib`, so they cover the `reasons` modules directly.
 - Source: summaries/2026/11/19/tests-test_export_markdown.md
 - Rejected: trivial: describes test import paths, which is obvious from the imports/file structure and is test-methodology rather than a durable code invariant
@@ -12141,15 +12141,15 @@ A node with `stale_reason` metadata renders as `[STALE]` rather than `[OUT]` in 
 `import_hf` resolves bare repo names through the default org and returns the fully resolved `repo_id`, preserving an explicitly supplied `owner/repo`.
 - Source: summaries/2026/11/19/tests-test_hf_default_org.md
 
-### [ACCEPT] hf-default-org-is-eem-hub
+### [ACCEPTED] hf-default-org-is-eem-hub
 Already covered by the existing `hf-repo-id-normalization-with-env-override` belief.
 - Source: summaries/2026/11/19/tests-test_hf_default_org.md
 
-### [ACCEPT] hf-publish-errors-when-token-missing
+### [ACCEPTED] hf-publish-errors-when-token-missing
 Already covered by the existing `hf-write-ops-require-caller-provided-token` belief.
 - Source: summaries/2026/11/19/tests-test_hf_default_org.md
 
-### [ACCEPT] hf-create-repo-401-maps-to-authentication-runtimeerror
+### [ACCEPTED] hf-create-repo-401-maps-to-authentication-runtimeerror
 Already covered by the existing `hf-401-always-maps-to-authentication-runtimeerror` belief.
 - Source: summaries/2026/11/19/tests-test_hf_default_org.md
 
@@ -12185,7 +12185,7 @@ A STALE claim imported by `import_agent` as retracted can propagate back to IN d
 `propose_updates()` never computes cascade impact; proposal Markdown shows “not computed” unless an external caller supplies cascade data.
 - Source: summaries/2026/11/19/topic-diary-update-pipeline.md
 
-### [ACCEPT] proposal-taxonomies-are-closed-enums
+### [ACCEPTED] proposal-taxonomies-are-closed-enums
 Already covered by the existing `update-proposals-validate-enums-with-safe-defaults` belief.
 - Source: summaries/2026/11/19/topic-diary-update-pipeline.md
 
@@ -12195,7 +12195,7 @@ Already covered by the existing `update-proposals-validate-enums-with-safe-defau
 **Generated:** 2026-11-19 (parsed from ## Beliefs sections)
 **Source:** 93 summary files
 
-### [ACCEPT] readme-documents-cli-surface-not-python-api
+### [ACCEPTED] readme-documents-cli-surface-not-python-api
 `README.md` specifies ~22 CLI verbs and their flags but never names a Python module, class, or function, so it cannot be used to navigate `reasons/*.py`.
 - Source: summaries/2026/11/19/README.md
 - Rejected: trivial: README documentation inventory, not a durable code invariant
@@ -12208,12 +12208,12 @@ The installable distribution is `ftl-reasons` (`pip install ftl-reasons`, `uv to
 A node is IN if and only if it is an unretracted premise or at least one of its justifications is valid under SL (`all inlist IN`), CP (assumptions consistent), or outlist (`inlist IN and outlist OUT`) semantics.
 - Source: summaries/2026/11/19/README.md
 
-### [ACCEPT] retraction-cascade-enables-rederivation-free-restoration
+### [ACCEPTED] retraction-cascade-enables-rederivation-free-restoration
 Retracting a node transitively marks invalidated dependents OUT, and re-asserting it restores exactly that set by re-evaluating justifications rather than replaying derivations.
 - Source: summaries/2026/11/19/README.md
 - Rejected: duplicate: already covered by api-retract-cascade-is-transitive and api-retract-cascade-symmetry
 
-### [ACCEPT] nogood-resolution-retracts-a-premise-not-an-arbitrary-node
+### [ACCEPTED] nogood-resolution-retracts-a-premise-not-an-arbitrary-node
 Recording a nogood triggers dependency-directed backtracking that walks the justification graph backward and retracts a responsible premise chosen for minimal disruption.
 - Source: summaries/2026/11/19/README.md
 - Rejected: duplicate: already covered by add-nogood-retraction-prefers-least-entrenched and backtracking-retracts-least-entrenched
@@ -12226,7 +12226,7 @@ Recording a nogood triggers dependency-directed backtracking that walks the just
 Staleness detection compares stored source hashes only for IN nodes; `hash-sources` backfills unhashed nodes and `--force` re-hashes all.
 - Source: summaries/2026/11/19/README.md
 
-### [ACCEPT] core-dependencies-are-empty
+### [ACCEPTED] core-dependencies-are-empty
 The base distribution declares `dependencies = []`, so `pip install ftl-reasons` pulls in zero third-party packages and all extras must be lazily imported.
 - Source: summaries/2026/11/19/pyproject.md
 - Rejected: duplicate: existing `architecture-is-self-contained-and-safely-layered` already covers zero runtime dependencies at packaging; this is a trivial rewording
@@ -12235,7 +12235,7 @@ The base distribution declares `dependencies = []`, so `pip install ftl-reasons`
 `[tool.setuptools].packages` explicitly lists `reasons` and `reasons_lib`; any new top-level package is silently excluded from wheels until added to this list.
 - Source: summaries/2026/11/19/pyproject.md
 
-### [ACCEPT] version-is-static
+### [ACCEPTED] version-is-static
 Package version `0.58.0` is a static string with no `dynamic` source, so it must be bumped manually in this file for every release.
 - Source: summaries/2026/11/19/pyproject.md
 - Rejected: ephemeral: embeds specific version 0.58.0 which changes every release; the durable part (static version) is trivial
@@ -12248,12 +12248,12 @@ Package version `0.58.0` is a static string with no `dynamic` source, so it must
 The `reasons` console script targets `reasons.cli:main`, not `reasons_lib.cli:main`, making `reasons/` the canonical CLI package.
 - Source: summaries/2026/11/19/pyproject.md
 
-### [ACCEPT] accept-proposal-revalidates-against-live-network
+### [ACCEPTED] accept-proposal-revalidates-against-live-network
 Every action re-reads the network and compares against the stored `snapshot_json` before mutating; drift short-circuits to `status='stale'`.
 - Source: summaries/2026/11/19/reasons-api-accept_proposal.md
 - Rejected: duplicate: already covered by `accept-proposal-detects-drift-before-applying` (snapshot comparison before mutation)
 
-### [ACCEPT] accept-proposal-returns-stale-not-raises-on-drift
+### [ACCEPTED] accept-proposal-returns-stale-not-raises-on-drift
 Drift is reported as `{"applied": False, "status": "stale"}` rather than as an exception; callers must branch on `applied`.
 - Source: summaries/2026/11/19/reasons-api-accept_proposal.md
 - Rejected: duplicate: already covered by `accept-proposal-drift-yields-stale-not-error`
@@ -12278,7 +12278,7 @@ When `pg_conninfo` is set, none of the SQLite-side drift checks run in this proc
 `sl`, `cp`, and `unless` are parsed as comma-separated strings with no escaping; IDs containing commas cannot be expressed.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 
-### [ACCEPT] add-node-any-mode-produces-or-justifications
+### [ACCEPTED] add-node-any-mode-produces-or-justifications
 When `any_mode=True` and `sl` contains more than one antecedent, one single-antecedent SL justification is created per antecedent.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 - Rejected: duplicate: Exactly matches existing belief `any-mode-creates-per-premise-justifications`.
@@ -12395,7 +12395,7 @@ When `supporting_justification` is a valid index, only that single justification
 An antecedent id absent from `nodes` is silently scored as depth `0` rather than raising.
 - Source: summaries/2026/11/19/reasons-export_card-_node_depth.md
 
-### [ACCEPT] export-card-requires-node-depth
+### [ACCEPTED] export-card-requires-node-depth
 `export_card` depends on `_node_depth` to populate the `Max derivation depth` metric in the generated card.
 - Source: summaries/2026/11/19/reasons-export_card-_node_depth.md
 - Rejected: trivial: direct helper dependency is obvious from code structure and not a durable invariant
@@ -12448,7 +12448,7 @@ The `model` string's prefix (`api:`, `vertex:`, `openai:`, otherwise CLI) select
 `_cost_tracker["elapsed_seconds"]` is incremented even when the call raises, because the increment is in a `finally` block.
 - Source: summaries/2026/11/19/reasons-llm-invoke_model.md
 
-### [ACCEPT] invoke_model-strips-claudecode-env
+### [ACCEPTED] invoke_model-strips-claudecode-env
 The environment passed to CLI subprocesses omits the `CLAUDECODE` key.
 - Source: summaries/2026/11/19/reasons-llm-invoke_model.md
 - Rejected: duplicate: same claim already captured by `ask-strips-claudecode-env` (CLAUDECODE removed from env).
@@ -12457,7 +12457,7 @@ The environment passed to CLI subprocesses omits the `CLAUDECODE` key.
 `ollama:*` responses return before `_parse_cli_json`, so they never call `_record_cost` and never appear in `by_model`.
 - Source: summaries/2026/11/19/reasons-llm-invoke_model.md
 
-### [ACCEPT] api-models-skip-per-model-elapsed
+### [ACCEPTED] api-models-skip-per-model-elapsed
 `api:` and `vertex:` calls never create a `by_model` entry, so their per-model `elapsed_seconds` is never accumulated (only the global counter).
 - Source: summaries/2026/11/19/reasons-llm-invoke_model.md
 - Rejected: duplicate: rewording of existing `api-prefix-does-not-record-cost` (api:/vertex: calls invisible to cost tracking).
@@ -12470,7 +12470,7 @@ The `if model in _cost_tracker["by_model"]` guard means per-model elapsed time o
 `main` assigns `_db` via `_find_db()` before calling `mcp.run()`, so all tool calls use the same path without re-discovery.
 - Source: summaries/2026/11/19/reasons-mcp_server-main.md
 
-### [ACCEPT] main-requires-mcp-package
+### [ACCEPTED] main-requires-mcp-package
 Importing `reasons.mcp_server` fails with `ImportError` if the `mcp` package is unavailable, before `main` can run.
 - Source: summaries/2026/11/19/reasons-mcp_server-main.md
 - Rejected: trivial: hard import dependency is obvious from the module's import statement
@@ -12483,7 +12483,7 @@ Importing `reasons.mcp_server` fails with `ImportError` if the `mcp` package is 
 `mcp.run()` is a blocking stdio transport loop, so `main` normally never returns during server operation.
 - Source: summaries/2026/11/19/reasons-mcp_server-main.md
 
-### [ACCEPT] main-shares-db-with-get-db
+### [ACCEPTED] main-shares-db-with-get-db
 `main` and `_get_db` intentionally share the module global `_db`, and `_get_db`'s `None`-check makes the eager assignment in `main` idempotent.
 - Source: summaries/2026/11/19/reasons-mcp_server-main.md
 - Rejected: duplicate: trivial rewording/extension of main-resolves-db-eagerly
@@ -12504,7 +12504,7 @@ The function only mutates local variables and never writes computed hashes back 
 A single local `cache` is passed through all justification checks to reuse recomputed Merkle hashes.
 - Source: summaries/2026/11/19/reasons-merkle-verify_all.md
 
-### [ACCEPT] verify-all-requires-sortable-node-ids
+### [ACCEPTED] verify-all-requires-sortable-node-ids
 The call to `sorted(net.nodes.items())` requires node IDs to be mutually orderable.
 - Source: summaries/2026/11/19/reasons-merkle-verify_all.md
 - Rejected: trivial: directly follows from a single `sorted()` call and node IDs are already strings.
@@ -12537,7 +12537,7 @@ Each invocation performs a fresh `importlib.metadata.version()` lookup.
 `build_meta` computes the current UTC timestamp once per call and uses it for `updated_at` and for `created_at` only when `created_at` is falsy.
 - Source: summaries/2026/11/19/reasons-metadata-build_meta.md
 
-### [ACCEPT] build-meta-preserves-truthy-created-at
+### [ACCEPTED] build-meta-preserves-truthy-created-at
 `build_meta` copies any truthy `created_at` value unchanged and replaces only falsy values with the current timestamp.
 - Source: summaries/2026/11/19/reasons-metadata-build_meta.md
 - Rejected: duplicate: Already covered by existing belief `build-meta-preserves-created-at`.
@@ -12622,7 +12622,7 @@ Passing `None` or a non-string `response` raises `TypeError` from `enumerate`/`r
 `propose_updates` splits the resolved belief ID list into chunks of `batch_size` and issues exactly one `invoke_model` call per chunk.
 - Source: summaries/2026/11/19/reasons-propose_update-propose_updates.md
 
-### [ACCEPT] propose-updates-swallows-batch-errors
+### [ACCEPTED] propose-updates-swallows-batch-errors
 Any exception inside the per-batch `try` block (including exceptions raised by the `on_batch` callback) is logged to stderr as `WARN: batch N failed` and never propagated.
 - Source: summaries/2026/11/19/reasons-propose_update-propose_updates.md
 - Rejected: duplicate: existing `batch-failures-do-not-abort-propose-updates` already states per-batch exceptions including `on_batch` are caught/logged and not propagated.
@@ -12779,7 +12779,7 @@ A second `import_json` of the same file into a populated DB returns `nodes_impor
 The outlist test only passes if import wires justifications back into the inference engine, not merely into storage; `assert_node("y")` must propagate to `x`.
 - Source: summaries/2026/11/19/tests-test_import_json.md
 
-### [ACCEPT] test-suite-imports-from-reasons-not-reasons-lib
+### [ACCEPTED] test-suite-imports-from-reasons-not-reasons-lib
 This file imports from `reasons` (not the mirrored `reasons_lib`), so regressions in the `reasons_lib` copy will not be caught here.
 - Source: summaries/2026/11/19/tests-test_import_json.md
 - Rejected: trivial: merely restates an import statement, which is obvious from file structure/imports
@@ -12816,7 +12816,7 @@ Every failure path (missing id, bad state, invalid argument) is reported as `{"e
 `mcp_server._db` is a module-level cache consulted by `_get_db()`; setting it in a fixture bypasses filesystem discovery.
 - Source: summaries/2026/11/19/tests-test_mcp_server.md
 
-### [ACCEPT] proposals-defer-mutation-until-acceptance
+### [ACCEPTED] proposals-defer-mutation-until-acceptance
 `propose_retract`, `propose_supersede`, and `propose_add` create `pending` records but leave the belief DB unchanged until `accept_proposal` is invoked.
 - Source: summaries/2026/11/19/tests-test_mcp_server.md
 - Rejected: duplicate: existing `api-proposals-stage-in-separate-table-without-truth-mutation` already states propose_* functions stage in a separate table without mutating the network until acceptance.
@@ -12841,7 +12841,7 @@ A justification’s `content_hash` changes when an antecedent node’s Merkle/te
 For the corruption and cycle cases covered here, `api.check_integrity()` returns a dict and tests assert on `text_mutations`, `chain_mutations`, and `missing_hashes` rather than expecting exceptions.
 - Source: summaries/2026/11/19/tests-test_merkle.md
 
-### [ACCEPT] backfill-requires-missing-hashes
+### [ACCEPTED] backfill-requires-missing-hashes
 `api.backfill_hashes()` fills empty `text_hash`/`content_hash` fields and reports `nodes_updated` and `justifications_updated`; afterward `check_integrity` reports zero missing hashes.
 - Source: summaries/2026/11/19/tests-test_merkle.md
 - Rejected: duplicate: core claim "fills empty text_hash/content_hash fields" is already covered by existing `backfill-hashes-only-fills-missing-hashes`; the reporting keys are a minor rewording
@@ -12954,12 +12954,12 @@ Explicit parameters to `_resolve_config` take precedence over the corresponding 
 `api.import_api(..., init=True)` creates the SQLite database file when it does not yet exist.
 - Source: summaries/2026/11/19/tests-test_mind_service.md
 
-### [ACCEPT] network-requires-justification-type-sl
+### [ACCEPTED] network-requires-justification-type-sl
 `Network.add_node` accepts justifications of type `"SL"`; the test suite only exercises this type, so other types are untested contracts.
 - Source: summaries/2026/11/19/tests-test_network.md
 - Rejected: speculative: the claim that other justification types are "untested contracts" is an editorial judgment, and that add_node accepts SL is trivial.
 
-### [ACCEPT] retract-returns-changed-node-ids
+### [ACCEPTED] retract-returns-changed-node-ids
 Both `retract` and `assert_node` return a `list` of changed node IDs and return `[]` when no state changes.
 - Source: summaries/2026/11/19/tests-test_network.md
 - Rejected: duplicate: already covered by `api-idempotent-operations-return-empty-changed` and `assert-retract-is-idempotent`.
@@ -13004,7 +13004,7 @@ All tests rely on the pytest `setup_function` hook to empty `_network_cache` bef
 `Network.add_nogood` assigns IDs of the form `nogood-<sorted-node-ids>`.
 - Source: summaries/2026/11/19/tests-test_nogood_id.md
 
-### [ACCEPT] nogood-id-node-order-is-normalized
+### [ACCEPTED] nogood-id-node-order-is-normalized
 Supplying nodes as `["b", "a"]` produces the same ID as `["a", "b"]`.
 - Source: summaries/2026/11/19/tests-test_nogood_id.md
 - Rejected: duplicate: subsumed by nogood-ids-are-content-derived, since sorted IDs already imply order normalization
@@ -13049,12 +13049,12 @@ Every test in `tests/test_pg.py` is skipped unless `skip_no_pg` passes, which de
 `PgApi.add_node` raises `KeyError` naming the missing id when any `sl` or `unless` id is absent, so phantom antecedents cannot enter the network.
 - Source: summaries/2026/11/19/tests-test_pg.md
 
-### [ACCEPT] namespace-add-node-implicitly-depends-on-ns-active
+### [ACCEPTED] namespace-add-node-implicitly-depends-on-ns-active
 `PgApi.add_node(..., namespace=ns)` auto-creates `<ns>:active` and adds it to the SL antecedents, so retracting `<ns>:active` cascades the whole namespace to OUT.
 - Source: summaries/2026/11/19/tests-test_pg.md
 - Rejected: duplicate: covered by existing add-node-namespace-auto-wiring-creates-active-premise and api-add-node-auto-wires-namespace-active-premise
 
-### [ACCEPT] what-if-methods-do-not-mutate
+### [ACCEPTED] what-if-methods-do-not-mutate
 `what_if_retract` and `what_if_assert` return predictions but leave `get_status()`/`show_node()` unchanged, which the suite verifies explicitly in `test_what_if_retract_no_mutation` and `test_what_if_assert_no_mutation`.
 - Source: summaries/2026/11/19/tests-test_pg.md
 - Rejected: duplicate: covered by existing both-backends-support-safe-hypothetical-reasoning and api-mutating-ops-use-before-after-diffing
@@ -13067,12 +13067,12 @@ Every test in `tests/test_pg.py` is skipped unless `skip_no_pg` passes, which de
 All persistence is partitioned by `domain_id`; two `PgApi` instances with distinct `domain_id`s can hold the same node id with independent content and no cross-contamination.
 - Source: summaries/2026/11/19/tests-test_pg.md
 
-### [ACCEPT] pg-dispatch-is-context-managed
+### [ACCEPTED] pg-dispatch-is-context-managed
 `_pg_dispatch` instantiates `PgApi` as a context manager and delegates the named method with forwarded kwargs, returning its result unchanged.
 - Source: summaries/2026/11/19/tests-test_pg_dispatch.md
 - Rejected: trivial: internal helper implementation detail already subsumed by PG-dispatch contract beliefs
 
-### [ACCEPT] backend-kwargs-cli-overrides-env
+### [ACCEPTED] backend-kwargs-cli-overrides-env
 `_backend_kwargs` gives CLI args (`args.pg`, `args.domain_id`) precedence over `REASONS_PG_CONNINFO` / `REASONS_PROJECT_ID`.
 - Source: summaries/2026/11/19/tests-test_pg_dispatch.md
 - Rejected: duplicate: existing backend-kwargs-reads-env-var-fallbacks already captures env vars as fallbacks to CLI args
@@ -13117,7 +13117,7 @@ When `metadata["pinned_lines"]` is set, `check_stale(git_aware=True)` reports th
 `pin_source_url` rewrites only `github.com` URLs; non-GitHub URLs are returned unchanged regardless of the SHA argument.
 - Source: summaries/2026/11/19/tests-test_pin_sources.md
 
-### [ACCEPT] propose-update-tests-patch-invoke-model
+### [ACCEPTED] propose-update-tests-patch-invoke-model
 Model-calling tests replace `reasons.propose_update.invoke_model` with a mock to avoid real LLM invocation.
 - Source: summaries/2026/11/19/tests-test_propose_update.md
 - Rejected: trivial: test-implementation detail (mocking LLM in tests) obvious from reading the test file, not a durable codebase invariant
@@ -13182,7 +13182,7 @@ a node remains in an antecedent's `dependents` set as long as *any* surviving ju
 `outlist` entries are added to and removed from `dependents` the same way as `antecedents`.
 - Source: summaries/2026/11/19/tests-test_remove_justification.md
 
-### [ACCEPT] cli-remove-justification-tested-via-subprocess
+### [ACCEPTED] cli-remove-justification-tested-via-subprocess
 the CLI test invokes `uv run reasons ... remove-justification <node> <index>` and asserts stdout contains `"Removed justification 0"`.
 - Source: summaries/2026/11/19/tests-test_remove_justification.md
 - Rejected: trivial: describes a test invocation/assertion rather than a durable code invariant.
@@ -13259,7 +13259,7 @@ Tests intercept LLM calls by reading `kwargs["input"]` from the mocked `subproce
 Outlist identifiers from explanation steps are rendered into the generated belief report.
 - Source: summaries/2026/11/19/tests-test_report_belief.md
 
-### [ACCEPT] report-gated-report-has-markdown-title
+### [ACCEPTED] report-gated-report-has-markdown-title
 All tested report outputs include the exact string `# Gated Beliefs Report`.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 - Rejected: trivial: literal header string visible directly in the report template; no durable architectural/contract value
@@ -13268,12 +13268,12 @@ All tested report outputs include the exact string `# Gated Beliefs Report`.
 `_build_structured_report` must list a blocker with more gated beliefs before one with fewer.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 
-### [ACCEPT] report-gated-llm-invocation-is-patchable-through-reasons-llm
+### [ACCEPTED] report-gated-llm-invocation-is-patchable-through-reasons-llm
 Tests patch `reasons.llm.invoke_model` and require exactly one call when `model` is provided.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 - Rejected: trivial: test mocking/call-count detail, not a durable codebase invariant
 
-### [ACCEPT] api-report-gated-returns-report-and-counts
+### [ACCEPTED] api-report-gated-returns-report-and-counts
 `api.report_gated` returns a dict containing `report`, `blocker_count`, `gated_count`, and `retracted_count`.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 - Rejected: duplicate: already covered by existing `api-report-gated-returns-fixed-shape`
@@ -13282,7 +13282,7 @@ Tests patch `reasons.llm.invoke_model` and require exactly one call when `model`
 The default CLI writes the Markdown report to stdout and a `blocker(s)` summary to stderr.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 
-### [ACCEPT] research-beliefs-is-repair-beliefs-alias
+### [ACCEPTED] research-beliefs-is-repair-beliefs-alias
 `reasons.repair.research_beliefs` is the same function object as `reasons.repair.repair_beliefs`.
 - Source: summaries/2026/11/19/tests-test_research.md
 - Rejected: trivial: obvious function-alias detail with no substantive behavioral contract
@@ -13303,7 +13303,7 @@ Missing node IDs produce `status="error"` with `"not found"` in the error messag
 When `dry_run=True`, the tested repair path avoids `retract_node`, `add_justification`, and `set_metadata` calls while still reporting planned statuses such as `softened` or `abandoned`.
 - Source: summaries/2026/11/19/tests-test_research.md
 
-### [ACCEPT] review-tests-mock-llm-subprocess
+### [ACCEPTED] review-tests-mock-llm-subprocess
 Lower-level review tests patch `reasons.llm.shutil.which` and `reasons.llm.subprocess.run`, so they never invoke a real Claude process.
 - Source: summaries/2026/11/19/tests-test_review.md
 - Rejected: trivial: test-harness mocking detail, not a codebase invariant
@@ -13360,7 +13360,7 @@ Premises lacking a `source` attribute are excluded before LLM invocation and cou
 `api.review_premises(dry_run=True)` never writes `premise_review_result` into node metadata.
 - Source: summaries/2026/11/19/tests-test_review_premises.md
 
-### [ACCEPT] failed-llm-batch-is-swallowed
+### [ACCEPTED] failed-llm-batch-is-swallowed
 A subprocess exception inside a batch is caught and produces no results for that batch without aborting the run.
 - Source: summaries/2026/11/19/tests-test_review_premises.md
 - Rejected: duplicate: covered by existing `batch-failures-do-not-abort-review`, which already states a `_process_batch` exception is caught without aborting the run
@@ -13409,7 +13409,7 @@ Passing a SQLite path without the expected `chunks_fts` table raises `sqlite3.Op
 `cmd_search_sources` emits either text or JSON depending on `args.format`.
 - Source: summaries/2026/11/19/tests-test_search_sources.md
 
-### [ACCEPT] test-helper-manually-populates-fts-index
+### [ACCEPTED] test-helper-manually-populates-fts-index
 `_create_fts_db` inserts into both `chunks` and `chunks_fts` instead of relying on triggers.
 - Source: summaries/2026/11/19/tests-test_search_sources.md
 - Rejected: trivial: Test-helper implementation detail visible from reading the helper; not an architecture invariant or API contract.
@@ -13442,12 +13442,12 @@ Saving and loading through `Storage` preserves nodes, truth values, justificatio
 A `Network` loaded from SQLite supports `retract` and `assert_node` with propagation to dependent nodes.
 - Source: summaries/2026/11/19/tests-test_storage.md
 
-### [ACCEPT] storage-tests-target-reasons-package
+### [ACCEPTED] storage-tests-target-reasons-package
 This test file imports from `reasons`, not `reasons_lib`, so it does not directly cover the duplicate `reasons_lib/storage.py` implementation.
 - Source: summaries/2026/11/19/tests-test_storage.md
 - Rejected: trivial: test-file import/coverage detail, not a durable code invariant
 
-### [ACCEPT] storage-tests-manually-close-connections
+### [ACCEPTED] storage-tests-manually-close-connections
 Each test calls `store.close()` after assertions, but not inside `try/finally` or a context manager.
 - Source: summaries/2026/11/19/tests-test_storage.md
 - Rejected: trivial: test implementation detail about close() placement, not an architectural invariant
@@ -13504,7 +13504,7 @@ A dependency-edge change with identical text yields `beliefs_updated >= 1`, not 
 `reasons.api.topics` returns a dictionary with `topics` sorted by frequency descending and a `total_nodes` count; an empty DB yields empty topics and zero nodes.
 - Source: summaries/2026/11/19/tests-test_topics.md
 
-### [ACCEPT] topics-are-derived-from-node-ids
+### [ACCEPTED] topics-are-derived-from-node-ids
 The tests seed only node IDs and assert on extracted tokens, so topic extraction is driven by node IDs rather than belief body content.
 - Source: summaries/2026/11/19/tests-test_topics.md
 - Rejected: duplicate: existing `assign-topics-parses-id-segments` already states topic extraction parses node ID segments.
@@ -13517,7 +13517,7 @@ The tests require splitting on `-`, `.`, `:`, and `_`, filtering stop words such
 Running `reasons topics --json` must emit stdout that `json.loads` can parse and that contains `topics` and `total_nodes`.
 - Source: summaries/2026/11/19/tests-test_topics.md
 
-### [ACCEPT] run-cli-catches-systemexit-only
+### [ACCEPTED] run-cli-catches-systemexit-only
 The `run_cli` helper catches `SystemExit` and maps `None` to exit code `0`, while any non-`SystemExit` exception propagates to pytest.
 - Source: summaries/2026/11/19/tests-test_topics.md
 - Rejected: trivial: test-helper implementation detail, not a durable codebase invariant or API contract
@@ -13562,12 +13562,12 @@ Explicit `url`, `agent_id`, and `api_key` arguments take precedence over their e
 `fetch_export` and `push_belief` send `MIND_API_KEY` as an `Authorization: Bearer <key>` header.
 - Source: summaries/2026/11/19/topic-MIND_SERVICE-ENV-CONTRACT.md
 
-### [ACCEPT] repo-ci-and-docs-do-not-set-mind-env-vars
+### [ACCEPTED] repo-ci-and-docs-do-not-set-mind-env-vars
 The checked-in docs and `.github/workflows/tests.yml` contain no references to the three variables; tests set and clear them only with `monkeypatch`.
 - Source: summaries/2026/11/19/topic-MIND_SERVICE-ENV-CONTRACT.md
 - Rejected: ephemeral: snapshot of repo/CI contents that changes with any edit and is trivially observable
 
-### [ACCEPT] any-mode-produces-multiple-single-antecedent-sl-justifications
+### [ACCEPTED] any-mode-produces-multiple-single-antecedent-sl-justifications
 With `any_mode=True`, the API creates one SL justification per premise, each containing one antecedent.
 - Source: summaries/2026/11/19/topic-all-vs-any-justification-semantics.md
 - Rejected: duplicate: same claim as existing `any-mode-creates-per-premise-justifications`
@@ -13584,7 +13584,7 @@ Without `any_mode`, multiple premises are stored in a single SL justification wi
 `REVIEW_JUSTIFICATIONS_PROMPT` at `reasons/review_justifications.py:16` explicitly states that all reviewed justifications currently use ALL.
 - Source: summaries/2026/11/19/topic-all-vs-any-justification-semantics.md
 
-### [ACCEPT] storage-representation-exposes-no-explicit-any-mode-field
+### [ACCEPTED] storage-representation-exposes-no-explicit-any-mode-field
 Based on the observed tests and schema searches, ANY is expressed by multiple SL justifications rather than a stored `mode="ANY"` field.
 - Source: summaries/2026/11/19/topic-all-vs-any-justification-semantics.md
 - Rejected: duplicate: covered by existing any-mode-creates-per-premise-justifications and any-mode-expansion-implemented-in-api-layer.
@@ -13613,7 +13613,7 @@ An outlist node becomes `Defeated by` only when its `defeats_node` metadata matc
 Cascade impact is produced at proposal-generation time via `what_if_retract` and rendered into the proposals markdown; acceptance itself is manual via suggested CLI commands.
 - Source: summaries/2026/11/19/topic-cascade-computation.md
 
-### [ACCEPT] what-if-retract-is-read-only
+### [ACCEPTED] what-if-retract-is-read-only
 `what_if_retract` loads a read-only network, applies `net.retract` in memory, and never mutates the database.
 - Source: summaries/2026/11/19/topic-cascade-computation.md
 - Rejected: duplicate: same claim as existing `both-backends-support-safe-hypothetical-reasoning` (what-if reasoning without permanent mutation)
@@ -13634,17 +13634,17 @@ The parser rebuilds each proposal with exactly `id, action, proposed_text, failu
 There is no `accept` symbol in `reasons/propose_update.py`; grep for "accept" returns zero matches, confirming acceptance is out-of-band.
 - Source: summaries/2026/11/19/topic-cascade-computation.md
 
-### [ACCEPT] update-cascade-branch-requires-retract-shaped-data
+### [ACCEPTED] update-cascade-branch-requires-retract-shaped-data
 The UPDATE rendering branch consumes the same `retracted` / `restored` / `total_affected` shape that `what_if_retract` produces, even though the semantically correct simulator for updates is the supersede what-if near `api.py:652`.
 - Source: summaries/2026/11/19/topic-cascade-computation.md
 - Rejected: speculative: bundles an editorial judgment that the supersede what-if is the "semantically correct" simulator for updates, which is not an observable code fact
 
-### [ACCEPT] find-culprits-internal-consumes-entrenchment
+### [ACCEPTED] find-culprits-internal-consumes-entrenchment
 `reasons/pg.py:3316` calls `self._entrenchment(cur, premise_id)` from within the body that begins at `reasons/pg.py:3287`, so culprit selection is ranked by entrenchment score.
 - Source: summaries/2026/11/19/topic-dependency-directed-backtracking.md
 - Rejected: duplicate: Entrenchment-based culprit selection is already covered by `backtracking-retracts-least-entrenched` and `add-nogood-retraction-prefers-least-entrenched`.
 
-### [ACCEPT] culprit-selection-operates-on-premises
+### [ACCEPTED] culprit-selection-operates-on-premises
 The iteration variable at `reasons/pg.py:3316` is `premise_id`, indicating culprits are chosen among support nodes rather than among the nogood's own members.
 - Source: summaries/2026/11/19/topic-dependency-directed-backtracking.md
 - Rejected: trivial: Inferred merely from a variable name (`premise_id`); premise-based culprit selection is already captured by existing backtracking beliefs.
@@ -13685,7 +13685,7 @@ The iteration variable at `reasons/pg.py:3316` is `premise_id`, indicating culpr
 `reasons/report_gated.py` uses `gated_data["blocker_count"]` and `gated_data["gated_count"]` directly instead of deriving them from `blockers`.
 - Source: summaries/2026/11/19/topic-gated-belief-data-shape.md
 
-### [ACCEPT] list-gated-postgres-dispatch-requires-parity
+### [ACCEPTED] list-gated-postgres-dispatch-requires-parity
 `reasons/api.py:list_gated` delegates to `PgApi.list_gated` at `reasons/pg.py:1258` when the Postgres backend is selected.
 - Source: summaries/2026/11/19/topic-gated-belief-data-shape.md
 - Rejected: duplicate: specific instance of existing `all-api-functions-support-pg-dispatch` which already states every public API function supports PG dispatch
@@ -13698,7 +13698,7 @@ Each entry in `gated_data["blockers"]` is consumed as an object containing `text
 `report_gated` sorts retracted premises by `dependent_count` and formats each using `id`, `text`, and `retract_reason`.
 - Source: summaries/2026/11/19/topic-gated-belief-data-shape.md
 
-### [ACCEPT] show-tests-define-cli-output-contract
+### [ACCEPTED] show-tests-define-cli-output-contract
 `tests/test_cli.py:TestShow` asserts `show` output includes `Dependents: b` and `Retract reason: Fixed in PR #1`.
 - Source: summaries/2026/11/19/topic-gated-belief-data-shape.md
 - Rejected: trivial: test-assertion detail with specific ephemeral values ("b", "Fixed in PR #1"), not an architectural invariant
@@ -13739,7 +13739,7 @@ Any parameter with a `None` default (e.g., `belief_ids`, `node_ids` on APIs, `vi
 Importing `reasons/mcp_server.py` requires the optional `mcp>=1.0` extra declared in `pyproject.toml`; otherwise the module raises a targeted `ImportError` before any tool is registered.
 - Source: summaries/2026/11/19/topic-mcp-fastmcp-tool-schema.md
 
-### [ACCEPT] nogood-requires-list-while-propose-update-optional-list
+### [ACCEPTED] nogood-requires-list-while-propose-update-optional-list
 `nogood(node_ids: list[str])` (line 175) lacks a default, so `node_ids` is required; `propose_update(belief_ids: list[str] | None = None)` (line 203) is the only tool in the file that makes the list parameter optional.
 - Source: summaries/2026/11/19/topic-mcp-fastmcp-tool-schema.md
 - Rejected: duplicate: specific instance of with-default-none-params-are-not-required; the "only tool" inventory claim is trivially re-derived from the signature.
@@ -13752,7 +13752,7 @@ Importing `reasons/mcp_server.py` requires the optional `mcp>=1.0` extra declare
 Only Python exceptions from the awaited `session.call_tool` and from `future.result(timeout=60)` propagate out of `McpBridge.call_tool`; returned `isError=True` results do not raise
 - Source: summaries/2026/11/19/topic-mcp-sdk-tool-result-semantics.md
 
-### [ACCEPT] call-tool-raises-on-60s-timeout
+### [ACCEPTED] call-tool-raises-on-60s-timeout
 `call_tool` uses `future.result(timeout=60)` (`reasons/mcp_client.py:104`), which raises `concurrent.futures.TimeoutError` on overrun
 - Source: summaries/2026/11/19/topic-mcp-sdk-tool-result-semantics.md
 - Rejected: duplicate: subsumed by call-tool-propagates-exceptions-only
@@ -13761,12 +13761,12 @@ Only Python exceptions from the awaited `session.call_tool` and from `future.res
 `_call_tool_async` iterates `result.content`, appends `content.text` for blocks that have it, and falls back to `str(content)` otherwise
 - Source: summaries/2026/11/19/topic-mcp-sdk-tool-result-semantics.md
 
-### [ACCEPT] mcp-client-does-not-reference-calltoolresult-type
+### [ACCEPTED] mcp-client-does-not-reference-calltoolresult-type
 The codebase contains no explicit references to the `CallToolResult` type; it duck-types on `.content` and `.text` only
 - Source: summaries/2026/11/19/topic-mcp-sdk-tool-result-semantics.md
 - Rejected: trivial: absence of a type reference is a low-value code search fact and overlaps content/duck-typing semantics
 
-### [ACCEPT] ask-catches-tool-exceptions-into-history
+### [ACCEPTED] ask-catches-tool-exceptions-into-history
 `tests/test_ask_mcp.py` asserts "MCP tool errors are captured in tool history, not raised," implying `ask()` wraps `bridge.call_tool` in a catch block (exact code not in observations)
 - Source: summaries/2026/11/19/topic-mcp-sdk-tool-result-semantics.md
 - Rejected: duplicate: already captured by existing `ask-mcp-errors-non-fatal` and `ask-mcp-integration-is-safely-bounded`
@@ -13827,12 +13827,12 @@ The `cluster` optional dependency in `pyproject.toml` requires `scikit-learn>=1.
 `reasons/api.py` imports `reasons.cluster` inside function bodies (`list_clusters` at line 4954, `find_duplicates` at line 4998), keeping the base install free of the extra.
 - Source: summaries/2026/11/19/topic-optional-dependency-extras.md
 
-### [ACCEPT] reasons-lib-cluster-is-reexport
+### [ACCEPTED] reasons-lib-cluster-is-reexport
 `reasons_lib/cluster.py` is a single `from reasons.cluster import *` line, so its guard and `HAS_CLUSTER_DEPS` are identical objects to those in `reasons.cluster`.
 - Source: summaries/2026/11/19/topic-optional-dependency-extras.md
 - Rejected: trivial: Essentially states that `reasons_lib/cluster.py` is a star-import of `reasons.cluster` — an import/file-structure fact any developer can see directly from the file.
 
-### [ACCEPT] cluster-tests-skip-when-deps-missing
+### [ACCEPTED] cluster-tests-skip-when-deps-missing
 Every behavior test in `tests/test_cluster.py` is decorated with `@skip_no_cluster = pytest.mark.skipif(not HAS_CLUSTER_DEPS, ...)`; only the pure `_auto_k` tests run unconditionally.
 - Source: summaries/2026/11/19/topic-optional-dependency-extras.md
 - Rejected: trivial: Test-organization detail (skip decorators in a test file), not an architecture invariant or behavioral contract of the codebase.
@@ -13845,12 +13845,12 @@ The `api`, `vertex`, `langfuse`, and `openai` extras install `langchain-anthropi
 Each `_HAS_*` flag is set `True` only by a successful optional import and `False` by `ImportError`.
 - Source: summaries/2026/11/19/topic-optional-extras-packaging.md
 
-### [ACCEPT] pyproject-extras-enable-imports-not-direct-flag-assignment
+### [ACCEPTED] pyproject-extras-enable-imports-not-direct-flag-assignment
 `pyproject.toml` extras affect `_HAS_*` values indirectly by making imports available, not by assigning the flags directly.
 - Source: summaries/2026/11/19/topic-optional-extras-packaging.md
 - Rejected: trivial: Restates the obvious mechanism already captured by the `_HAS_*` import-guard belief; a packaging file cannot assign Python flags directly, so this adds no durable code fact.
 
-### [ACCEPT] langfuse-flag-gates-callback-handler
+### [ACCEPTED] langfuse-flag-gates-callback-handler
 `_HAS_LANGFUSE` gates creation/use of `LangfuseCallbackHandler` in `_get_langfuse_handler` at `reasons/llm.py:162`.
 - Source: summaries/2026/11/19/topic-optional-extras-packaging.md
 - Rejected: trivial: obvious from the `_HAS_LANGFUSE` flag and handler name; it is an implementation detail rather than a durable invariant.
@@ -13879,17 +13879,17 @@ An `unless`-only justification represents a premise that holds by default while 
 `reasons/__init__.py` defines the core data model and `pyproject.toml` entry points target `reasons.cli` and `reasons.mcp_server`.
 - Source: summaries/2026/11/19/topic-package-duplication.md
 
-### [ACCEPT] reasons-lib-is-packaged
+### [ACCEPTED] reasons-lib-is-packaged
 `pyproject.toml` includes both `reasons` and `reasons_lib` in `[tool.setuptools].packages`.
 - Source: summaries/2026/11/19/topic-package-duplication.md
 - Rejected: trivial: pyproject.toml package list is an obvious file-structure/config fact visible to any developer
 
-### [ACCEPT] no-internal-python-references-to-reasons-lib
+### [ACCEPTED] no-internal-python-references-to-reasons-lib
 The provided Python-reference search found zero matches for `reasons_lib`.
 - Source: summaries/2026/11/19/topic-package-duplication.md
 - Rejected: ephemeral: a point-in-time result of one search ("found zero matches"), not a durable code fact
 
-### [ACCEPT] reasons-lib-cli-reexports-reasons-cli
+### [ACCEPTED] reasons-lib-cli-reexports-reasons-cli
 `reasons_lib/cli.py` imports `*` from `reasons.cli`.
 - Source: summaries/2026/11/19/topic-package-duplication.md
 - Rejected: trivial: "module X imports from Y" is an obvious import-level fact
@@ -13946,7 +13946,7 @@ Console scripts `reasons` and `reasons-mcp` both target `reasons.*` (`reasons.cl
 The codebase contains no `rsync`/`shutil.copyfile`/`filecmp`/mirror script targeting `reasons_lib`; all apparent "sync"/"duplicate" matches belong to the belief-deduplication feature or git metadata.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirror.md
 
-### [ACCEPT] cli-uses-relative-api-import
+### [ACCEPTED] cli-uses-relative-api-import
 `reasons/cli.py` imports its API via `from . import api`, which is why the same module works unchanged behind the `reasons_lib` shim.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirror.md
 - Rejected: trivial: Describing a module's relative import statement is an obvious fact visible from the file's imports.
@@ -13967,7 +13967,7 @@ CLAUDE.md:35 documents `reasons_lib/` as a re-export shim over `reasons/`, not a
 A search for `copytree|shutil.copy|rsync|ln -s|symlink` found no mechanism that mirrors `reasons/` into `reasons_lib/`.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirroring.md
 
-### [ACCEPT] reasons-lib-lacks-merkle-module
+### [ACCEPTED] reasons-lib-lacks-merkle-module
 `reasons/merkle.py` exists in the root listing, but no `reasons_lib/merkle.py` is present — evidence the trees have drifted.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirroring.md
 - Rejected: reason-category: ephemeral — point-in-time file-listing snapshot asserting a module is absent, which changes with any edit
@@ -13980,17 +13980,17 @@ A search for `copytree|shutil.copy|rsync|ln -s|symlink` found no mechanism that 
 The CLI entry points target `reasons.cli:main` and `reasons.mcp_server:main`, not `reasons_lib`.
 - Source: summaries/2026/11/19/topic-reasons_lib-migration.md
 
-### [ACCEPT] reasons-lib-is-still-packaged
+### [ACCEPTED] reasons-lib-is-still-packaged
 `pyproject.toml` includes both `reasons` and `reasons_lib` in `[tool.setuptools] packages`.
 - Source: summaries/2026/11/19/topic-reasons_lib-migration.md
 - Rejected: trivial: directly readable from pyproject.toml packaging config; obvious file-structure fact
 
-### [ACCEPT] reasons-lib-has-no-observed-deprecation-warning
+### [ACCEPTED] reasons-lib-has-no-observed-deprecation-warning
 No `DeprecationWarning` or `warnings.warn` call was observed in `reasons_lib`.
 - Source: summaries/2026/11/19/topic-reasons_lib-migration.md
 - Rejected: ephemeral: point-in-time observation of absent warning; changes with any edit
 
-### [ACCEPT] reasons-lib-removal-timeline-is-undocumented
+### [ACCEPTED] reasons-lib-removal-timeline-is-undocumented
 The observed changelog, README, `CLAUDE.md`, and `pyproject.toml` do not specify a removal version or date for `reasons_lib`.
 - Source: summaries/2026/11/19/topic-reasons_lib-migration.md
 - Rejected: ephemeral: current documentation state snapshot that expires if docs are updated
@@ -14027,7 +14027,7 @@ An `SL` justification holds only when every antecedent is `IN` and every outlist
 A node is `IN` if at least one of its justifications holds; it is `OUT` only when none holds.
 - Source: summaries/2026/11/19/topic-rms-justification-semantics.md
 
-### [ACCEPT] unless-api-maps-to-outlist
+### [ACCEPTED] unless-api-maps-to-outlist
 The API’s `unless` parameter is parsed into `Justification.outlist`, and `unless` without `sl` creates an empty-antecedent `SL` default.
 - Source: summaries/2026/11/19/topic-rms-justification-semantics.md
 - Rejected: duplicate: existing `api-unless-param-maps-to-outlist` already captures that `unless` maps to `Justification.outlist`
@@ -14040,12 +14040,12 @@ The API’s `unless` parameter is parsed into `Justification.outlist`, and `unle
 A nonexistent outlist node is treated as `OUT`, so it does not block the default justification.
 - Source: summaries/2026/11/19/topic-rms-justification-semantics.md
 
-### [ACCEPT] reasons-lib-contains-33-python-files
+### [ACCEPTED] reasons-lib-contains-33-python-files
 `reasons_lib/` contains 33 file entries, including `__init__.py` and module shims such as `api.py`, `cli.py`, and `verify.py`.
 - Source: summaries/2026/11/19/topic-shim-migration-completeness.md
 - Rejected: ephemeral: specific file count is a point-in-time snapshot that changes with edits.
 
-### [ACCEPT] reasons-lib-init-forwards-to-reasons
+### [ACCEPTED] reasons-lib-init-forwards-to-reasons
 `reasons_lib/__init__.py` contains `from reasons import *`, making it a backwards-compatibility shim.
 - Source: summaries/2026/11/19/topic-shim-migration-completeness.md
 - Rejected: trivial: single import line visible from file contents; not a durable architectural invariant.
@@ -14058,32 +14058,32 @@ Searching `reasons/*` for `from reasons_lib|import reasons_lib` returned zero ma
 A whole-repo search for `from reasons_lib` returned zero matches.
 - Source: summaries/2026/11/19/topic-shim-migration-completeness.md
 
-### [ACCEPT] shim-forwarding-audit-is-inconsistent-with-init
+### [ACCEPTED] shim-forwarding-audit-is-inconsistent-with-init
 The shim forwarding-import audit returned zero matches even though `reasons_lib/__init__.py` contains a matching `from reasons import *` line.
 - Source: summaries/2026/11/19/topic-shim-migration-completeness.md
 - Rejected: meta: audit/search inconsistency, not a durable codebase belief.
 
-### [ACCEPT] supporting-justification-has-zero-observed-usages
+### [ACCEPTED] supporting-justification-has-zero-observed-usages
 The search for `supporting_justification` returned no matches in code or tests.
 - Source: summaries/2026/11/19/topic-supporting-justification-index-lifecycle.md
 - Rejected: meta: reports a search result about exploration notes, not a codebase fact.
 
-### [ACCEPT] add-justification-api-defined-at-api-py-406
+### [ACCEPTED] add-justification-api-defined-at-api-py-406
 `add_justification` is defined at `reasons/api.py:406` and also at `reasons/mcp_server.py:204`.
 - Source: summaries/2026/11/19/topic-supporting-justification-index-lifecycle.md
 - Rejected: ephemeral: line-number snapshot that changes with any edit; not a durable invariant.
 
-### [ACCEPT] remove-justification-api-defined-at-api-py-1129
+### [ACCEPTED] remove-justification-api-defined-at-api-py-1129
 `remove_justification` is defined at `reasons/api.py:1129`.
 - Source: summaries/2026/11/19/topic-supporting-justification-index-lifecycle.md
 - Rejected: ephemeral: line-number snapshot that changes with any edit; not a durable invariant.
 
-### [ACCEPT] network-justification-methods-not-observed
+### [ACCEPTED] network-justification-methods-not-observed
 The tests call `Network.add_justification` and `Network.remove_justification`, but their definitions are absent from the supplied observations.
 - Source: summaries/2026/11/19/topic-supporting-justification-index-lifecycle.md
 - Rejected: meta: claim about what the supplied observations contain, not about the codebase.
 
-### [ACCEPT] justification-tests-assert-truth-and-dependents-not-cache
+### [ACCEPTED] justification-tests-assert-truth-and-dependents-not-cache
 Add/remove tests assert truth values, justification counts, dependents, and changed sets, but none assert `supporting_justification`.
 - Source: summaries/2026/11/19/topic-supporting-justification-index-lifecycle.md
 - Rejected: ephemeral: test coverage snapshot (a negative "none assert" claim) that expires and is not a durable invariant.
@@ -14112,17 +14112,17 @@ Add/remove tests assert truth values, justification counts, dependents, and chan
 `_justification_valid_cached` in `reasons/pg.py:3524` takes only `cur`, `antecedents`, and `outlist`, so it cannot directly distinguish SL from CP.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 
-### [ACCEPT] cp-justifications-store-type-cp
+### [ACCEPTED] cp-justifications-store-type-cp
 `reasons/api.py:331` creates `Justification(type="CP", antecedents=antecedents, outlist=outlist, label=label)`.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 - Rejected: trivial: line-level construction detail already implied by existing CP-justification support.
 
-### [ACCEPT] sl-cp-docstrings-differ
+### [ACCEPTED] sl-cp-docstrings-differ
 `reasons/__init__.py:11-13` defines SL as all antecedents IN and CP as assumptions consistent.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 - Rejected: trivial: basic docstring definitions, not a durable architectural invariant.
 
-### [ACCEPT] network-validator-receives-full-justification
+### [ACCEPTED] network-validator-receives-full-justification
 `_justification_valid(self, j: Justification)` at `reasons/network.py:976` is called with a `Justification` at lines 856, 860, and 970, so it has access to `j.type`.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 - Rejected: trivial: merely restates that a function receives a Justification argument.
@@ -14131,22 +14131,22 @@ Add/remove tests assert truth values, justification counts, dependents, and chan
 `reasons/api.py:457` only expands multi-antecedent SL justifications when `any_mode` is true; CP justifications are not expanded.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 
-### [ACCEPT] extract-tool-call-parses-json-per-line
+### [ACCEPTED] extract-tool-call-parses-json-per-line
 `extract_tool_call` calls `json.loads(line)` at `reasons/ask.py:122`, so it likely only recognizes JSON that occupies a single line.
 - Source: summaries/2026/11/19/topic-tool-calling-json-lines-protocol.md
 - Rejected: duplicate: Already covered by `ask-tool-call-parsing-is-line-based-json` (scans each line of LLM response for valid JSON); also phrased with "likely" (speculative).
 
-### [ACCEPT] ask-treats-none-as-no-tool-call
+### [ACCEPTED] ask-treats-none-as-no-tool-call
 The ask loop checks `tool_call is None` at `reasons/ask.py:516` and `if extract_tool_call(response)` at `:561`, so a parse miss is indistinguishable from an absent tool call.
 - Source: summaries/2026/11/19/topic-tool-calling-json-lines-protocol.md
 - Rejected: duplicate: Covered by `ask-unknown-tool-treats-as-final-answer`, which states parse failures are treated as final answers rather than distinct tool calls.
 
-### [ACCEPT] text-tool-schema-has-tool-key
+### [ACCEPTED] text-tool-schema-has-tool-key
 The extracted object’s `"tool"` key selects the tool at `reasons/ask.py:519`, and all remaining keys become MCP arguments at `:536`.
 - Source: summaries/2026/11/19/topic-tool-calling-json-lines-protocol.md
 - Rejected: duplicate: Covered by `ask-mcp-dispatch-strips-tool-key` and `ask-mcp-dispatch-routes-by-tool-name` (tool key selects tool; remaining keys become args).
 
-### [ACCEPT] ask-consumes-text-not-native-tool-calls
+### [ACCEPTED] ask-consumes-text-not-native-tool-calls
 `reasons/ask.py:514` passes the raw model string to `extract_tool_call`, not a provider-native tool-call structure.
 - Source: summaries/2026/11/19/topic-tool-calling-json-lines-protocol.md
 - Rejected: duplicate: Covered by `ask-uses-text-based-tool-protocol`, which already states ask parses JSON lines from LLM text output rather than a native tool-call API.
@@ -14167,7 +14167,7 @@ An SL justification is valid only when every ID in its `outlist` is `OUT`; missi
 A node with multiple justifications is `IN` if at least one justification is valid.
 - Source: summaries/2026/11/19/topic-truth-maintenance-explanation-chain.md
 
-### [ACCEPT] any-mode-expands-sl-to-or
+### [ACCEPTED] any-mode-expands-sl-to-or
 `any_mode` converts a multi-antecedent SL into one justification per antecedent, making the antecedents alternatives.
 - Source: summaries/2026/11/19/topic-truth-maintenance-explanation-chain.md
 - Rejected: duplicate: same claim as existing `any-mode-creates-per-premise-justifications` (per-premise SL justifications making antecedents alternatives)
@@ -14188,7 +14188,7 @@ Scope beliefs created by `defeat_with_scope` have `truth_value == "IN"`, an empt
 `defeat_reason_type` is written to metadata only when non-empty (`reasons/api.py:1383-1384`), verified by `test_defeat_reason_type_omitted` vs `test_defeat_reason_type_stored`
 - Source: summaries/2026/11/19/topic-truth-maintenance-structured-defeaters.md
 
-### [ACCEPT] classify-defeat-reason-types-skips-already-classified
+### [ACCEPTED] classify-defeat-reason-types-skips-already-classified
 `api.classify_defeat_reason_types` returns already-classified defeaters under `skipped` with reason `"already classified"` rather than overwriting (`test_skips_already_classified`)
 - Source: summaries/2026/11/19/topic-truth-maintenance-structured-defeaters.md
 - Rejected: duplicate: Existing belief `already-classified-defeaters-are-skipped` already captures that re-running classification skips already-classified defeaters.
@@ -14203,22 +14203,22 @@ With `dry_run=True`, classifications appear in the result but the defeater's `me
 **Generated:** 2026-11-19 (batch 1/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] readme-documents-cli-not-python-api
+### [ACCEPTED] readme-documents-cli-not-python-api
 README.md documents the CLI and never the Python API; it contains no module path, class name, or function signature, so it cannot be used to navigate `reasons/*.py`.
 - Source: summaries/2026/11/19/README.md
 - Rejected: trivial: README documentation organization is obvious and not a durable code invariant.
 
-### [ACCEPT] readme-command-table-authoritative-cli-surface
+### [ACCEPTED] readme-command-table-authoritative-cli-surface
 The README `Commands` table is the authoritative list of user-facing CLI verbs and their flags, and must stay in sync with `reasons/cli.py`.
 - Source: summaries/2026/11/19/README.md
 - Rejected: speculative: "authoritative" and "must stay in sync" are normative maintenance claims, not observable code behavior.
 
-### [ACCEPT] readme-domain-vocabulary-is-doyle-tms
+### [ACCEPTED] readme-domain-vocabulary-is-doyle-tms
 README.md defines the project vocabulary using Doyle TMS terms — inlist, outlist, nogood, dependency-directed backtracking, premise, derived — and code renames of these concepts require updating the referenced vocabulary.
 - Source: summaries/2026/11/19/README.md
 - Rejected: trivial: README vocabulary is directly visible; "renames require updating" is editorial.
 
-### [ACCEPT] readme-inline-examples-are-golden-output-fixtures
+### [ACCEPTED] readme-inline-examples-are-golden-output-fixtures
 README `Usage` examples interleave commands with commented expected stdout, effectively making them assertion fixtures that should mirror `tests/test_cli.py`.
 - Source: summaries/2026/11/19/README.md
 - Rejected: speculative: "effectively fixtures" and "should mirror tests" is an inference/editorial judgment.
@@ -14227,12 +14227,12 @@ README `Usage` examples interleave commands with commented expected stdout, effe
 README specifies that `export-markdown` emits `beliefs.md`-compatible markdown and `import-beliefs` consumes exactly that shape, forming a documented round-trip contract.
 - Source: summaries/2026/11/19/README.md
 
-### [ACCEPT] readme-distribution-name-and-install-paths
+### [ACCEPTED] readme-distribution-name-and-install-paths
 README names the PyPI distribution `ftl-reasons` and the `pip`, `uv tool install`, and `uvx` install paths, which must stay in sync with `pyproject.toml`.
 - Source: summaries/2026/11/19/README.md
 - Rejected: trivial: documentation inventory of install commands; the "must stay in sync" clause is an editorial maintenance claim, not a code invariant
 
-### [ACCEPT] readme-test-invocation-contract
+### [ACCEPTED] readme-test-invocation-contract
 README specifies `uv run --extra test pytest tests/ -v` as the test invocation contract.
 - Source: summaries/2026/11/19/README.md
 - Rejected: trivial: test command is directly visible in README and any developer can read it
@@ -14281,7 +14281,7 @@ Read-only calls reuse `_network_cache[db_path]` only when `os.path.getmtime(db_p
 Pubsub delta publishing occurs only for `write=True` when `pubsub.has_subscribers(db_path)` was true at `__enter__`; subscribers added after `__enter__` do not trigger an event.
 - Source: summaries/2026/11/19/reasons-api-_with_network.md
 
-### [ACCEPT] with-network-cache-stale-race
+### [ACCEPTED] with-network-cache-stale-race
 On read-only exit, if another process changes the DB mtime between `__init__` and `__exit__`, the stale in-memory `Network` is cached under the new mtime, causing future stale cache hits.
 - Source: summaries/2026/11/19/reasons-api-_with_network.md
 - Rejected: speculative: hypothetical race-condition cascade analysis predicting future stale cache hits, not a grounded observable fact
@@ -14302,7 +14302,7 @@ In `__exit__`, `store.close()` is not in a `try/finally`, so an exception from `
 `accept_proposal` supports exactly four actions — `add`, `retract`, `supersede`, `nogood` — and raises `ValueError` on any other action.
 - Source: summaries/2026/11/19/reasons-api-accept_proposal.md
 
-### [ACCEPT] accept-proposal-stale-is-normal-outcome
+### [ACCEPTED] accept-proposal-stale-is-normal-outcome
 Drift and lost accept races return `{"applied": False, "status": "stale", ...}` rather than raising, so callers must branch on `applied`/`status`.
 - Source: summaries/2026/11/19/reasons-api-accept_proposal.md
 - Rejected: duplicate: existing `accept-proposal-drift-yields-stale-not-error` already captures that drift returns `applied: False` / `stale` rather than raising
@@ -14327,12 +14327,12 @@ If the network mutation raises after drift checks, the proposals-row update is s
 An `unless`-only `add_node` call creates an SL justification with empty antecedents, i.e. a premise gated by the outlist.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 
-### [ACCEPT] add-node-namespace-auto-creates-active-premise
+### [ACCEPTED] add-node-namespace-auto-creates-active-premise
 Setting `namespace` auto-creates `{namespace}:active` as a premise with metadata `{"agent": namespace, "role": "agent_premise"}`, and scoped nodes depend on it.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 - Rejected: duplicate: Existing `add-node-namespace-auto-wiring-creates-active-premise` already captures that supplying a namespace creates the `ns:active` premise and wires it as an antecedent.
 
-### [ACCEPT] add-node-namespace-prefix-skipped-if-colon
+### [ACCEPTED] add-node-namespace-prefix-skipped-if-colon
 The namespace prefix is not applied when `node_id` already contains `:`, allowing cross-namespace references.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 - Rejected: duplicate: existing api-resolve-namespace-prefixes-only-unqualified-ids already covers prefixing only unqualified IDs.
@@ -14341,7 +14341,7 @@ The namespace prefix is not applied when `node_id` already contains `:`, allowin
 With `any_mode` and `namespace`, only `justifications[0]` gets `{namespace}:active` as an antecedent; the other OR justifications do not depend on the namespace premise.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 
-### [ACCEPT] add-node-premise-count-is-max-antecedents
+### [ACCEPTED] add-node-premise-count-is-max-antecedents
 `add_node`'s return `premise_count` is `max(len(j.antecedents))` over justifications, not the number of justifications.
 - Source: summaries/2026/11/19/reasons-api-add_node.md
 - Rejected: duplicate: existing add-node-returns-premise-count already states premise_count is the antecedent count.
@@ -14452,7 +14452,7 @@ The argparse subcommand registrations and the `commands` dispatch dict are maint
 The `search-sources` subparser declares its own required `--db` for the FTS5 chunk database, shadowing the root `--db` reasons database option for that subcommand.
 - Source: summaries/2026/11/19/reasons-cli-main.md
 
-### [ACCEPT] cli-argparse-syntax-errors-exit-2
+### [ACCEPTED] cli-argparse-syntax-errors-exit-2
 Invalid CLI syntax is handled by argparse, which prints usage to stderr and exits with code 2.
 - Source: summaries/2026/11/19/reasons-cli-main.md
 - Rejected: trivial: standard argparse behavior, not a project-specific invariant
@@ -14499,11 +14499,11 @@ The default organization for bare repo names is read from `REASONS_HF_ORG` on ev
 `resolve_repo_id` does not validate that its result is a valid or exactly two-component HuggingFace repo id.
 - Source: summaries/2026/11/19/reasons-hf-resolve_repo_id.md
 
-### [ACCEPT] resolve-repo-id-prepends-default-org
+### [ACCEPTED] resolve-repo-id-prepends-default-org
 Duplicates existing belief `hf-repo-id-normalization-with-env-override` / `hf-resolve-repo-id-preserves-explicit-org`.
 - Source: summaries/2026/11/19/reasons-hf-resolve_repo_id.md
 
-### [ACCEPT] resolve-repo-id-preserves-explicit-slash-paths
+### [ACCEPTED] resolve-repo-id-preserves-explicit-slash-paths
 Duplicates existing belief `hf-resolve-repo-id-preserves-explicit-org`.
 - Source: summaries/2026/11/19/reasons-hf-resolve_repo_id.md
 
@@ -14562,7 +14562,7 @@ Every return value of `_get_generator()` begins with the literal prefix `ftl-rea
 Any `Exception` raised while importing or calling `importlib.metadata.version` is caught and converted to the version value `"unknown"`.
 - Source: summaries/2026/11/19/reasons-metadata-_get_generator.md
 
-### [ACCEPT] get-generator-imports-importlib-metadata-lazily
+### [ACCEPTED] get-generator-imports-importlib-metadata-lazily
 The `importlib.metadata.version` import occurs inside `_get_generator()`, not at module import time.
 - Source: summaries/2026/11/19/reasons-metadata-_get_generator.md
 - Rejected: trivial: import placement (inside a function vs module scope) is a code-location detail visible from the function body, and the lazy-import pattern is already covered by existing `api-uses-lazy-imports`
@@ -14579,7 +14579,7 @@ The `importlib.metadata.version` import occurs inside `_get_generator()`, not at
 `build_meta()` returns a new mutable `dict` on every call and does not mutate its arguments or module-level state.
 - Source: summaries/2026/11/19/reasons-metadata-build_meta.md
 
-### [ACCEPT] build-meta-does-not-order-created-at-and-updated-at
+### [ACCEPTED] build-meta-does-not-order-created-at-and-updated-at
 `build_meta()` does not validate or enforce that `created_at` is less than or equal to `updated_at`.
 - Source: summaries/2026/11/19/reasons-metadata-build_meta.md
 - Rejected: speculative: describes an absence of validation as a negative claim; it is an editorial inference about what the function "does not enforce" rather than an observable contract, and overlaps conceptually with the created_at handling already captured
@@ -14600,7 +14600,7 @@ The `importlib.metadata.version` import occurs inside `_get_generator()`, not at
 Equal entrenchment scores in `find_culprits` are sorted from set iteration order, so tie-breaking is not reproducible across runs.
 - Source: summaries/2026/11/19/reasons-network-_entrenchment.md
 
-### [ACCEPT] find-culprits-scores-only-premises
+### [ACCEPTED] find-culprits-scores-only-premises
 `find_culprits` feeds `_entrenchment()` only nodes returned by `trace_assumptions`, so every node scored in the primary path is a premise.
 - Source: summaries/2026/11/19/reasons-network-_entrenchment.md
 - Rejected: duplicate: already covered by existing beliefs that the primary retraction path traces justification chains to premises and scores/chooses among those premises.
@@ -14663,7 +14663,7 @@ Any decoded item that is a dict with an `"id"` key is accepted even if the `id` 
 When `belief_ids` is explicitly provided, `propose_updates` filters it to IDs present in `nodes` but does not filter by `truth_value`.
 - Source: summaries/2026/11/19/reasons-propose_update-propose_updates.md
 
-### [ACCEPT] propose-updates-catches-on-batch-callback-exceptions
+### [ACCEPTED] propose-updates-catches-on-batch-callback-exceptions
 Exceptions raised by the `on_batch` callback are caught by the per-batch `try/except` and reported as batch failures rather than propagated.
 - Source: summaries/2026/11/19/reasons-propose_update-propose_updates.md
 - Rejected: duplicate: covered by existing batch-failures-do-not-abort-propose-updates
@@ -14742,27 +14742,27 @@ In `review_beliefs`, formatting happens before the `try` around `invoke_model`, 
 Callers cannot distinguish total parse failure from a legitimate zero-result review because `parse_review_response` returns `[]` in both cases.
 - Source: summaries/2026/11/19/reasons-review-parse_review_response.md
 
-### [ACCEPT] reasons-lib-is-not-wired-to-entry-points
+### [ACCEPTED] reasons-lib-is-not-wired-to-entry-points
 Although both `reasons/` and `reasons_lib/` are declared in `pyproject.toml`, only `reasons` is referenced by console entry points; no entry point targets `reasons_lib`.
 - Source: summaries/2026/11/19/scan-repo-2.md
 - Rejected: trivial: entry-point wiring is directly visible from packaging config and does not state a durable architectural invariant
 
-### [ACCEPT] console-entry-points-map-to-cli-and-mcp-server
+### [ACCEPTED] console-entry-points-map-to-cli-and-mcp-server
 The `reasons` console entry point maps to `reasons.cli:main`, and the `reasons-mcp` entry point maps to the MCP server module.
 - Source: summaries/2026/11/19/scan-repo-2.md
 - Rejected: trivial: obvious console-script mapping from `pyproject.toml`
 
-### [ACCEPT] merkle-py-is-present-only-in-reasons
+### [ACCEPTED] merkle-py-is-present-only-in-reasons
 `merkle.py` exists in `reasons/` but not in `reasons_lib/`, making it the module-level asymmetry between the two packages.
 - Source: summaries/2026/11/19/scan-repo-2.md
 - Rejected: trivial: file-presence asymmetry is directly visible from the package layout and may change with any file move
 
-### [ACCEPT] feature-tests-have-no-dedicated-modules
+### [ACCEPTED] feature-tests-have-no-dedicated-modules
 Feature test files such as `test_backtracking`, `test_dialectical`, `test_research`, `test_summarize`, `test_pin_sources`, `test_hide_out`, `test_access_tags`, and `test_nogood_id` correspond to features threaded through existing modules rather than dedicated production modules.
 - Source: summaries/2026/11/19/scan-repo-2.md
 - Rejected: trivial: test-file organization observation, not a behavioral or architectural invariant
 
-### [ACCEPT] tests-directory-is-flat-with-conftest-hub
+### [ACCEPTED] tests-directory-is-flat-with-conftest-hub
 Tests live in a flat `tests/` directory with one file per feature, and `tests/conftest.py` is the shared fixture hub.
 - Source: summaries/2026/11/19/scan-repo-2.md
 - Rejected: trivial: file-structure/layout observation any developer sees directly; not a code invariant
@@ -14885,7 +14885,7 @@ Nodes created through `api.add_node` have `text_hash` equal to `hashlib.sha256(t
 `api.check_integrity` reports a direct text mutation as a `text_mutation` when stored `text_hash` no longer matches the node’s text.
 - Source: summaries/2026/11/19/tests-test_merkle.md
 
-### [ACCEPT] backfill-hashes-repairs-missing-hash-rows
+### [ACCEPTED] backfill-hashes-repairs-missing-hash-rows
 `api.backfill_hashes` repairs missing node `text_hash` and justification `content_hash` values and reports `nodes_updated`/`justifications_updated` counts.
 - Source: summaries/2026/11/19/tests-test_merkle.md
 - Rejected: duplicate: overlaps existing `backfill-hashes-only-fills-missing-hashes`; only the reporting-count detail is added
@@ -15008,7 +15008,7 @@ An `SL` justification is conjunctive: every antecedent must be `IN` for the just
 `Network.explain(id)` returns a list of dictionaries containing keys such as `node`, `truth_value`, `reason`, `label`, and `failed_antecedents`.
 - Source: summaries/2026/11/19/tests-test_network.md
 
-### [ACCEPT] network-belief-set-contains-only-in-nodes
+### [ACCEPTED] network-belief-set-contains-only-in-nodes
 `Network.get_belief_set()` returns only the IDs of nodes whose truth value is `IN`.
 - Source: summaries/2026/11/19/tests-test_network.md
 - Rejected: duplicate: existing `api-get-belief-set-returns-only-in-node-ids` already states belief sets contain only IN node IDs
@@ -15079,12 +15079,12 @@ An `SL` justification is valid only when every antecedent is `IN` and every outl
 `PgApi.retract_node` returns `{changed, went_out}`, returns an empty `changed` list when the node is already `OUT`, and raises `KeyError` for a missing id.
 - Source: summaries/2026/11/19/tests-test_pg.md
 
-### [ACCEPT] pgapi-propagate-recomputes-from-scratch
+### [ACCEPTED] pgapi-propagate-recomputes-from-scratch
 `PgApi.propagate()` recomputes truth values from scratch, allowing recovery after out-of-band raw SQL writes to `rms_nodes.truth_value`.
 - Source: summaries/2026/11/19/tests-test_pg.md
 - Rejected: duplicate: Same behavior already captured by existing `api-propagate-repairs-external-storage-corruption` for `api.propagate()`.
 
-### [ACCEPT] namespace-add-prefixes-and-wires-active-premise
+### [ACCEPTED] namespace-add-prefixes-and-wires-active-premise
 Adding a node with `namespace=` prefixes the id, auto-creates `<ns>:active`, and adds that active premise as an implicit antecedent so retracting it cascades the whole namespace.
 - Source: summaries/2026/11/19/tests-test_pg.md
 - Rejected: duplicate: Same claim already captured by `add-node-namespace-auto-wiring-creates-active-premise` and `api-add-node-auto-wires-namespace-active-premise` (namespace prefixing covered by `api-resolve-namespace-prefixes-only-unqualified-ids`).
@@ -15273,7 +15273,7 @@ Source-evidence lookup uses a `chunks` table plus an FTS5 `chunks_fts` virtual t
 Every structured, API, and CLI `report_gated` report starts with `# Gated Beliefs Report` and includes `<in_count> IN / <out_count> OUT`, and LLM-generated content does not replace these deterministic pieces.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 
-### [ACCEPT] report-gated-api-return-shape-includes-counts-and-report
+### [ACCEPTED] report-gated-api-return-shape-includes-counts-and-report
 `api.report_gated(db_path=...)` returns a dict containing `report`, `blocker_count`, `gated_count`, and `retracted_count`.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 - Rejected: duplicate: Same claim already exists as `api-report-gated-returns-fixed-shape`.
@@ -15294,7 +15294,7 @@ Default `report-gated` CLI invocation writes the Markdown report to stdout and a
 The CLI accepts `--db` as a global option before the subcommand, e.g. `reasons --db PATH report-gated`.
 - Source: summaries/2026/11/19/tests-test_report_gated.md
 
-### [ACCEPT] research-and-repair-aliases-are-identical-function-objects
+### [ACCEPTED] research-and-repair-aliases-are-identical-function-objects
 `reasons.repair.research_beliefs` is the same function object as `repair_beliefs`, and `api.research` is the same object as `api.repair`.
 - Source: summaries/2026/11/19/tests-test_research.md
 - Rejected: trivial: alias identity is directly visible from a single assignment line, matching the "obvious facts from naming/file structure" trivial category.
@@ -15397,7 +15397,7 @@ The Markdown export→import pipeline preserves an `accepted_pr` value stored in
 `export_markdown` omits the `- Source URL:` and `- Accepted PR:` lines when those fields are unset.
 - Source: summaries/2026/11/19/tests-test_roundtrip.md
 
-### [ACCEPT] api-add-node-lacks-source-hash-and-date-params
+### [ACCEPTED] api-add-node-lacks-source-hash-and-date-params
 `api.add_node` does not accept `source_hash` or `date`; tests set those attributes directly on a `Network` node and re-save.
 - Source: summaries/2026/11/19/tests-test_roundtrip.md
 - Rejected: trivial: function signature absence is directly visible from the code; the accompanying test workaround is an implementation detail rather than a durable invariant
@@ -15414,11 +15414,11 @@ An exported `- Unless: <id>` line re-imports as `justifications[0].outlist == [<
 Passing `repos={...}` to `export_markdown` emits a `## Repos` section in the Markdown.
 - Source: summaries/2026/11/19/tests-test_roundtrip.md
 
-### [ACCEPT] roundtrip-double-export-stability
+### [ACCEPTED] roundtrip-double-export-stability
 Duplicate of existing belief `double-roundtrip-is-idempotent`; no new belief needed.
 - Source: summaries/2026/11/19/tests-test_roundtrip.md
 
-### [ACCEPT] markdown-nogood-format-gap
+### [ACCEPTED] markdown-nogood-format-gap
 Duplicate of existing belief `nogood-export-format-mismatch`; no new belief needed.
 - Source: summaries/2026/11/19/tests-test_roundtrip.md
 
@@ -15438,11 +15438,11 @@ A matched chunk with empty section metadata returns `section == ""`, not `None` 
 In text mode, zero results print a message containing `"No matching chunks"`.
 - Source: summaries/2026/11/19/tests-test_search_sources.md
 
-### [ACCEPT] search-source-chunks-list-dict-contract
+### [ACCEPTED] search-source-chunks-list-dict-contract
 Duplicate of existing belief `search-source-chunks-return-contract`.
 - Source: summaries/2026/11/19/tests-test_search_sources.md
 
-### [ACCEPT] fts-test-helper-manual-index-writes
+### [ACCEPTED] fts-test-helper-manual-index-writes
 Test-helper implementation detail, not a production contract.
 - Source: summaries/2026/11/19/tests-test_search_sources.md
 
@@ -15462,11 +15462,11 @@ A node's `source_type` survives `export_markdown` → `parse_beliefs`/`import_in
 `cmd_show` omits the `Source type:` line when the node has no `source_type` metadata.
 - Source: summaries/2026/11/19/tests-test_source_type.md
 
-### [ACCEPT] source-type-closed-enum-allowlist
+### [ACCEPTED] source-type-closed-enum-allowlist
 Duplicate of existing belief `source-type-is-closed-four-value-enum`.
 - Source: summaries/2026/11/19/tests-test_source_type.md
 
-### [ACCEPT] derive-auto-stamps-derived-source-type
+### [ACCEPTED] derive-auto-stamps-derived-source-type
 Duplicate of existing belief `derive-apply-tags-source-type-as-derived`.
 - Source: summaries/2026/11/19/tests-test_source_type.md
 
@@ -15486,11 +15486,11 @@ Node `source`, `source_hash`, and metadata dictionaries round-trip exactly throu
 Retracted `OUT` truth values persist across `Storage` save/load.
 - Source: summaries/2026/11/19/tests-test_storage.md
 
-### [ACCEPT] storage-load-dependents-rebuild
+### [ACCEPTED] storage-load-dependents-rebuild
 Duplicate of existing belief `storage-rebuilds-dependents-index-from-justifications`.
 - Source: summaries/2026/11/19/tests-test_storage.md
 
-### [ACCEPT] storage-tests-manual-close
+### [ACCEPTED] storage-tests-manual-close
 Test cleanup detail, not a production invariant.
 - Source: summaries/2026/11/19/tests-test_storage.md
 
@@ -15518,7 +15518,7 @@ A summary node has `metadata["summarizes"]` listing covered IDs, and each covere
 `api.summarize` returns a dict containing `summary_id`, `truth_value`, and `over` keys.
 - Source: summaries/2026/11/19/tests-test_summarize.md
 
-### [ACCEPT] summarize-keyerror-valueerror-validation
+### [ACCEPTED] summarize-keyerror-valueerror-validation
 Duplicate of existing belief `summarize-validates-existence-and-uniqueness`.
 - Source: summaries/2026/11/19/tests-test_summarize.md
 
@@ -15560,12 +15560,12 @@ A sync that changes only a justification/dependency edge, with unchanged belief 
 `reasons.api.topics` returns a dict with a `topics` list of `{topic, count}` entries and an integer `total_nodes`; an empty DB returns empty topics and zero total nodes.
 - Source: summaries/2026/11/19/tests-test_topics.md
 
-### [ACCEPT] topics-derived-from-node-ids
+### [ACCEPTED] topics-derived-from-node-ids
 Topic extraction is driven by node IDs, not by belief body text.
 - Source: summaries/2026/11/19/tests-test_topics.md
 - Rejected: duplicate: covered by existing `assign-topics-parses-id-segments` which establishes topics are derived from node ID segments
 
-### [ACCEPT] topic-tokenizer-splits-on-delimiters-and-filters-noise
+### [ACCEPTED] topic-tokenizer-splits-on-delimiters-and-filters-noise
 Topic tokenization splits node IDs on `-`, `.`, `:`, and `_`, filters stop words such as `the`/`use`, and drops two-character tokens such as `ab`/`cd`.
 - Source: summaries/2026/11/19/tests-test_topics.md
 - Rejected: duplicate: largely restates existing `assign-topics-parses-id-segments` (splits on `[-._:]`, drops tokens of length ≤ 2)
@@ -15618,7 +15618,7 @@ Any successful `verify_belief` verification updates the node's `verified_at` tim
 `_resolve_config()` strips trailing slashes from the resolved Mind service URL.
 - Source: summaries/2026/11/19/topic-MIND_SERVICE-ENV-CONTRACT.md
 
-### [ACCEPT] mind-env-vars-unset-in-ci-and-docs
+### [ACCEPTED] mind-env-vars-unset-in-ci-and-docs
 The checked-in docs and `.github/workflows/tests.yml` do not set or reference `MIND_SERVICE_URL`, `MIND_AGENT_ID`, or `MIND_API_KEY`; tests set/clear them only with `monkeypatch`.
 - Source: summaries/2026/11/19/topic-MIND_SERVICE-ENV-CONTRACT.md
 - Rejected: ephemeral: point-in-time snapshot of checked-in docs and CI workflow contents that changes with any repo edit
@@ -15763,7 +15763,7 @@ Only Python exceptions from `session.call_tool` and `future.result(timeout=60)` 
 Because the cycle cut is applied only while a node is in the current `visiting` set, the resulting hash for a cyclic component can depend on traversal and cache order.
 - Source: summaries/2026/11/19/topic-merkle-cycle-handling.md
 
-### [ACCEPT] merkle-cycle-safety-test-asserts-clean-result
+### [ACCEPTED] merkle-cycle-safety-test-asserts-clean-result
 The actual assertions in `test_cycle_safety` are outside the observed excerpt; only the visible docstring saying it checks for infinite loops was observed.
 - Source: summaries/2026/11/19/topic-merkle-cycle-handling.md
 
@@ -15793,7 +15793,7 @@ Importing `reasons.cluster` succeeds even when `sentence-transformers`/`scikit-l
 `_require_cluster_deps()` raises `ImportError` whose message includes the exact `pip install 'ftl-reasons[cluster]'` remediation command.
 - Source: summaries/2026/11/19/topic-optional-dependency-extras.md
 
-### [ACCEPT] cluster-tests-skip-only-dep-requiring-cases
+### [ACCEPTED] cluster-tests-skip-only-dep-requiring-cases
 Clustering behavior tests are skipped when `HAS_CLUSTER_DEPS` is false, while pure `_auto_k` tests run without the cluster extra installed.
 - Source: summaries/2026/11/19/topic-optional-dependency-extras.md
 - Rejected: trivial: test-skip mechanics are not a durable codebase invariant.
@@ -15802,7 +15802,7 @@ Clustering behavior tests are skipped when `HAS_CLUSTER_DEPS` is false, while pu
 Each `_HAS_*` flag in `reasons/llm.py` is set by a successful optional import and cleared to `False` on `ImportError`; extras affect flags only by making those imports available.
 - Source: summaries/2026/11/19/topic-optional-extras-packaging.md
 
-### [ACCEPT] langfuse-flag-gates-langfuse-handler
+### [ACCEPTED] langfuse-flag-gates-langfuse-handler
 `_get_langfuse_handler` checks `_HAS_LANGFUSE` and returns `None` when the langfuse optional dependency/import is absent.
 - Source: summaries/2026/11/19/topic-optional-extras-packaging.md
 - Rejected: trivial: obvious flag guard and specific implementation detail.
@@ -15842,7 +15842,7 @@ The write path computes before/after truth snapshots only when `write` is true a
 The distribution is named `ftl-reasons` while the shipped import packages are `reasons` and `reasons_lib`.
 - Source: summaries/2026/11/19/topic-reasons-lib-mirror.md
 
-### [ACCEPT] reasons-cli-imports-api-relatively
+### [ACCEPTED] reasons-cli-imports-api-relatively
 `reasons/cli.py` imports its API via `from . import api`, so the module works unchanged behind the `reasons_lib` shim.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirror.md
 - Rejected: trivial: describes a relative import and shim compatibility, evident from the import statement.
@@ -15855,12 +15855,12 @@ No `rsync`, `copytree`, `shutil.copy`, mirror script, or CI generation step conn
 `sync_agent` / `cmd_sync_agent` synchronize beliefs between agents and do not mirror `reasons/` into `reasons_lib/`.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirroring.md
 
-### [ACCEPT] changelog-records-rms-to-reasons-rename
+### [ACCEPTED] changelog-records-rms-to-reasons-rename
 `CHANGELOG.md` records a historical rename from `rms` to `reasons` for the CLI, library, and package name.
 - Source: summaries/2026/11/19/topic-reasons_lib-migration.md
 - Rejected: trivial: historical changelog entry, not a durable code invariant.
 
-### [ACCEPT] repair-pattern-llm-call-counts
+### [ACCEPTED] repair-pattern-llm-call-counts
 `search_and_link` makes two extra LLM calls beyond triage, `soften` makes one, and `abandon` / `research` make none.
 - Source: summaries/2026/11/19/topic-repair-patterns.md
 - Rejected: ephemeral: specific per-pattern LLM call counts can change with implementation edits.
@@ -15889,11 +15889,11 @@ Every repair pattern sets its success status regardless of `dry_run`, while all 
 Successful repair statuses are `linked` for `search_and_link`, `softened` for `soften`, `abandoned` for `abandon`, and `needs_research` for `research`; failures include `extraction_failed`, `no_candidates`, `no_match`, and `soften_failed`.
 - Source: summaries/2026/11/19/topic-repair-patterns.md
 
-### [ACCEPT] reasons-lib-has-no-internal-importers
+### [ACCEPTED] reasons-lib-has-no-internal-importers
 The claim that nothing inside the repo imports `reasons_lib` is contradicted by accepted beliefs showing multiple internal `reasons/` modules and tests import through the shim.
 - Source: summaries/2026/11/19/topic-reasons-lib-mirror.md
 
-### [ACCEPT] reasons-lib-entries-are-regular-files-not-symlinks
+### [ACCEPTED] reasons-lib-entries-are-regular-files-not-symlinks
 The file listing labels entries as files but the note itself says this is not conclusive without `git ls-files -s` or `ls -la` evidence.
 - Source: summaries/2026/11/19/topic-reasons-vs-reasons_lib-mirroring.md
 
@@ -15908,7 +15908,7 @@ The file listing labels entries as files but the note itself says this is not co
 When `unless` is supplied without `sl`, the API creates an SL justification with an empty antecedent list and the supplied outlist.
 - Source: summaries/2026/11/19/topic-rms-justification-semantics.md
 
-### [ACCEPT] cycle-fallback-out-satisfies-outlist
+### [ACCEPTED] cycle-fallback-out-satisfies-outlist
 The entry explicitly says the cycle guard/evaluator was not observed, so it cannot claim that cycle-fallback OUT is consumed by outlist checks as OUT.
 - Source: summaries/2026/11/19/topic-rms-justification-semantics.md
 
@@ -15928,7 +15928,7 @@ A node that flips IN→OUT→IN during a cascade produces no pub/sub event becau
 `any_mode` expansion is applied only to SL justifications; CP justifications are not expanded into per-antecedent justifications.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 
-### [ACCEPT] cp-should-differ-from-sl-beyond-current-no-op
+### [ACCEPTED] cp-should-differ-from-sl-beyond-current-no-op
 This is a normative design recommendation, not a factual codebase claim; current observed behavior is already represented by the existing `cp-equals-sl` belief.
 - Source: summaries/2026/11/19/topic-tms-doyle-semantics.md
 
@@ -15938,7 +15938,7 @@ This is a normative design recommendation, not a factual codebase claim; current
 **Generated:** 2026-11-19 (batch 19/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [ACCEPT] tool-call-remaining-keys-map-to-mcp-arguments
+### [ACCEPTED] tool-call-remaining-keys-map-to-mcp-arguments
 In the textual tool-call protocol, the `tool` key selects the tool and every remaining key becomes an MCP argument.
 - Source: summaries/2026/11/19/topic-tool-calling-json-lines-protocol.md
 - Rejected: duplicate: Covered by existing ask-mcp-dispatch-strips-tool-key, which already states the parsed tool call minus `tool` is passed as MCP args.
@@ -15963,8 +15963,231 @@ A defeater node stores `defeater_type`, `defeats_node`, and `defeats_justificati
 Each scope belief stores `scope_of` pointing to the original antecedent and `for_defeater` pointing to the defeater that consumes it.
 - Source: summaries/2026/11/19/topic-truth-maintenance-structured-defeaters.md
 
-### [ACCEPT] defeater-is-a-derived-SL-node
+### [ACCEPTED] defeater-is-a-derived-SL-node
 Duplicate of existing belief `scope-defeater-justification-links-to-scope-beliefs`.
 - Source: summaries/2026/11/19/topic-truth-maintenance-structured-defeaters.md
 
+
+
+---
+
+**Generated:** 2026-11-20 (parsed from ## Beliefs sections)
+**Source:** 6 summary files
+
+### [ACCEPTED] proposed-entries-is-a-flat-content-addressed-manifest
+The file is a single flat JSON object mapping wiki paths to 16-hex-char content digests, with no nested objects, arrays, or metadata envelope.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-keys-use-date-partitioned-paths
+All 17 keys match `entries/YYYY/MM/DD/<slug>.md`, and all 17 currently share the partition `entries/2026/04/23/`.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] slug-derivation-preserves-underscores
+Slugs flatten `/`, `.`, and symbol separators to `-` but keep `_`, as shown by `reasons_lib-__init__.md`, `reasons_lib-network-add_nogood.md`, and `reasons_lib-network-_justification_valid.md`.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-keys-are-lexicographically-sorted
+Keys are ordered by plain string sort, which is why `reasons_lib-network.md` (umbrella) appears after the four `reasons_lib-network-*.md` children.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] slug-namespace-has-three-prefixes
+Every slug begins with `reasons_lib-`, `scan-`, or `topic-`; there is no slug for the sibling `reasons/` package despite its near-identical module list.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-contains-no-tombstones
+The manifest can only express creation/update intent; there is no marker for deleting or orphaning an existing `entries/` file.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] report-json-is-a-runtime-artifact
+`.forge/report.json` is generated pipeline output (not source) written under `.forge/`, and consumers must tolerate it being absent or mid-write.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] summary-counts-mirror-step-counts
+Every numeric field in `summary` (entries, proposed, accepted, total_beliefs) equals the corresponding value in `steps[].counts`, so the two blocks must be updated together.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] diary-update-steps-are-sequential
+`steps[1].started_at` equals `steps[0].completed_at` (18:03:31), enforcing strict sequential stage ordering in the report.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] report-json-is-consumed-by-report-modules
+`reasons/api.py`, `reasons_lib/report_belief.py`, and `reasons_lib/report_gated.py` read this file's schema; renaming keys is a breaking change for them.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] step-counts-shape-varies-by-name
+`counts` is stage-specific (`{entries, proposed}` for `propose-beliefs` vs `{accepted, total_beliefs}` for `accept-beliefs`), so readers must discriminate by `name` before accessing fields.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] cost-file-naming-encodes-timestamp-and-operation
+Files in `costs/` are named `<ISO-timestamp>-<operation>.json`, and both values are echoed inside the payload.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-aggregates-equal-sum-of-by-model
+`calls`, `input_tokens`, `output_tokens`, and `cost_dollars` are redundant aggregates that must equal the sums of the corresponding `by_model` entries.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-is-a-data-artifact-not-imported-code
+No Python module imports this file; it is consumed by directory scanning, so it is safe to delete or rotate.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] update-run-records-belief-deltas
+Each `update` ledger entry reports `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged`, decoupling semantic change from token spend.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] zero-cost-indicates-unpriced-endpoint
+`cost_dollars: 0.0` alongside nonzero token counts means the endpoint has no configured rate, not that the run failed.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] proposed-entries-is-change-detection-manifest
+`.forge/proposed-entries.json` is a manifest mapping each entry path under `entries/2026/04/23/` to a 16-hex-character content hash used to detect which entries have changed.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-has-no-in-repo-consumers
+No code in the repository references the symbols `proposed-entries` or `proposed_entries`; the manifest is read by external Forge tooling, not by the `reasons` package.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md
+
+### [ACCEPTED] ftl-reasons-is-the-distribution-name
+`ftl-reasons` is the PyPI/package identity for the reasons library, referenced in `version("ftl-reasons")`, the `generator: ftl-reasons/<v>` metadata string, and `pip install 'ftl-reasons[extra]'` install hints.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-is-keyed-by-entry-file-path
+Every key in the manifest is a path of the form `entries/YYYY/MM/DD/<slug>.md`, so keys correspond one-to-one with entry files and hashes correspond to their content versions.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md
+
+### [ACCEPTED] forge-report-records-diary-update-pipeline
+`.forge/report.json` stores the status, timestamps, step details, and summary counts for a `diary-update` pipeline run.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-report.md
+
+### [ACCEPTED] diary-update-pipeline-runs-propose-beliefs-then-accept-beliefs
+The `diary-update` pipeline executes `propose-beliefs` before `accept-beliefs`; the accept step begins at the proposal step’s completion timestamp.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-report.md
+
+### [ACCEPTED] accept-beliefs-reports-total-belief-count
+The `accept-beliefs` step records both newly accepted beliefs and the resulting total belief count, as shown by `accepted: 78` and `total_beliefs: 201`.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-report.md
+
+### [ACCEPTED] report-json-tracks-proposed-and-accepted-counts-separately
+The report distinguishes entry count, proposed belief count, accepted belief count, and total belief count in its step counts and top-level summary.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-report.md
+
+### [ACCEPTED] report-json-has-no-in-repo-code-references
+The path `.forge/report.json` has no production or test code usages in this repository, indicating it is a generated/external metadata artifact rather than a referenced code symbol.
+- Source: summaries/2026/11/20/diff-88ce8062-.forge-report.md
+
+### [ACCEPTED] cost-logs-are-per-operation-json-files
+Each LLM operation writes a separate JSON file under `costs/` named `{timestamp}-{operation}.json`.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-log-contains-per-model-breakdown
+Every cost log embeds a `by_model` map recording `calls`, `input_tokens`, `output_tokens`, and `total_cost_usd` per model.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] update-operation-records-belief-deltas
+Cost logs for `operation: "update"` include `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged` counters.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-log-domain-field-may-be-null
+The `domain` field is `null` even when the update targets a named domain (commit says ftl-reasons), so the writer does not guarantee capturing the domain.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] zero-cost-models-still-log-tokens
+Proxied/zero-price models (e.g., `rits/deepseek-ai/DeepSeek-V4.1-Flash-1017`) still log full input/output token counts with `cost_dollars: 0.0`.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+
+---
+
+**Generated:** 2026-11-20 (batch 1/2)
+**Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
+
+### [ACCEPTED] proposed-entries-values-are-16-lowercase-hex
+`.forge/proposed-entries.json` values are exactly 16 lowercase hexadecimal characters and act as content-change digests, not security hashes.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-keys-use-single-date-partition
+Every key in `.forge/proposed-entries.json` is an `entries/YYYY/MM/DD/<slug>.md` path, and the observed manifest uses a single date partition.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-slugs-flatten-source-coordinates
+Entry slugs flatten `/`, `.`, and `:` from source coordinates to `-` while preserving underscores, e.g. `reasons_lib/network.py:add_nogood` becomes `reasons_lib-network-add_nogood`.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-include-private-helpers
+The proposal scope includes private helper symbols such as `_propagate` and `_justification_valid`, so the manifest is not limited to public API entries.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-slug-prefix-is-schema
+Manifest slugs use only the prefixes `reasons_lib-`, `scan-`, or `topic-`; introducing a new prefix would be a schema change.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] proposed-entries-is-flat-sorted-json-without-envelope
+`.forge/proposed-entries.json` is a flat JSON object with lexicographically sorted path keys and no `version`, `generatedAt`, or `root` envelope fields.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [REJECT] proposed-entries-makes-reasons-lib-canonical
+The manifest alone does not establish `reasons_lib/` as canonical over `reasons/`; that claim conflicts with existing beliefs that `reasons_lib` is a legacy/shim package.
+- Source: summaries/2026/11/20/.forge-proposed-entries.md
+
+### [ACCEPTED] report-steps-have-chained-timestamps
+In a completed `.forge/report.json` run, `steps[i+1].started_at` equals `steps[i].completed_at`, so steps are sequential and contiguous.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] report-detail-strings-must-agree-with-counts
+The `detail` strings in `.forge/report.json` numerically agree with the corresponding `counts` values, e.g. `"proposed 260 from 17 entries"` and `"accepted 78 beliefs"`.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] report-total-beliefs-is-post-acceptance-absolute
+`accept-beliefs.counts.total_beliefs` is the post-acceptance belief-base count; subtracting `accepted` from it gives the pre-run count.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] report-updated-at-distinguishes-in-progress-from-complete
+`.forge/report.json` exposes `updated_at` separately from `completed_at`, letting consumers distinguish an in-progress write from a finished run.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [REJECT] report-summary-mirrors-step-counts
+This duplicates the existing belief `forge-report-summary-mirrors-step-counts`.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [REJECT] report-failures-are-recorded-as-status-and-detail
+The entry only speculates about how failed runs would be represented; no failed-run schema or example is provided.
+- Source: summaries/2026/11/20/.forge-report.md
+
+### [ACCEPTED] cost-file-name-encodes-timestamp-and-operation
+Files under `costs/` are named `<ISO-timestamp>-<operation>.json`, and the payload’s `timestamp` and `operation` fields echo the filename components.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-ledger-has-no-in-repo-code-importers
+No Python module imports a `costs/*.json` file; cost ledgers are consumed by directory scanning and can be deleted or rotated without breaking the build.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] update-cost-ledger-records-belief-deltas
+Each `update` cost ledger records `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged`, separating semantic belief-store changes from token spend.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] zero-cost-with-nonzero-tokens-means-unpriced-endpoint
+A `cost_dollars: 0.0` value alongside nonzero token counts indicates the model endpoint has no configured price, not that the run failed.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-ledger-lacks-status-field
+The cost ledger schema has no `status` or `error` field, so a partial run that writes the file cannot be identified as failed from the ledger alone.
+- Source: summaries/2026/11/20/costs-2026-11-19T180331-update.md
+
+
+
+---
+
+**Generated:** 2026-11-20 (batch 2/2)
+**Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
+
+### [ACCEPTED] update-cost-log-records-belief-deltas
+Cost logs for `operation: "update"` include `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged` counters.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] cost-log-domain-field-is-not-guaranteed-non-null
+The `domain` field in a cost log can be `null` even when the update targets a named domain, so consumers must not assume it is populated.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
+
+### [ACCEPTED] zero-cost-models-still-log-token-counts
+Proxied or zero-price models can log full `input_tokens` and `output_tokens` counts while reporting `cost_dollars: 0.0`.
+- Source: summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md
 
