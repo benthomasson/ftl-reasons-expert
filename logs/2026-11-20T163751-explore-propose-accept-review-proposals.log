@@ -1,0 +1,373 @@
+=== explore-propose-accept / review-proposals (round 1) — 2026-11-20T16:37:51 ===
+
+=== Round 1: Review proposals ===
+
+Reviewing 721 proposals (45 already rejected)...
+  Batch 5/145 done (1 completed)
+  REJECT semantic-mode-requires-numpy-and-cluster-cache: trivial: Describes module imports and vague lazy-failure behavior, essentially "module X imports Y" which is explicitly trivial.
+  Batch 6/145 done (2 completed)
+  REJECT changelog-is-reverse-chronological: trivial: Changelog ordering is an obvious documentation fact readable directly from the file, not a durable code invariant or contract.
+  REJECT version-0-11-0-has-no-changelog-heading: ephemeral: A point-in-time snapshot of a file's section headings that any edit can change; not a durable codebase property.
+  REJECT versions-0-8-0-and-0-9-0-are-folded-into-0-10-0: ephemeral: Specific documentation layout detail tied to the current changelog content; not an architecture or API fact.
+  REJECT access-tags-rbac-is-introduced-in-0-18-0: trivial: Restates changelog/version-history content rather than a code invariant; the access-tag behavior is already captured in existing beliefs.
+  REJECT project-renamed-from-rms-to-reasons-in-0-3-0: trivial: Historical changelog fact, obvious from reading the changelog and not a durable code invariant or contract.
+  Batch 1/145 done (3 completed)
+  REJECT any-mode-is-sl-only-and-single-antecedent-noop: duplicate: already covered by `any-mode-only-expands-sl-justifications` and `any-mode-single-premise-no-expansion`
+  REJECT any-mode-reports-premise-count-of-one: duplicate: already covered by `any-mode-premise-count-is-one`
+  Batch 3/145 done (4 completed)
+  Batch 7/145 done (5 completed)
+  REJECT unless-only-produces-sl-with-empty-antecedents: duplicate: already covered by `add-node-outlist-only-creates-empty-antecedent-sl` and related unless-only SL beliefs
+  REJECT write-persistence-requires-clean-context-exit: duplicate: already covered by `add-node-writes-through-with-network` and `api-emits-events-only-after-successful-saves`
+  Batch 4/145 done (6 completed)
+  REJECT changelog-uses-issue-and-pr-references: trivial: changelog bullet formatting is an obvious documentation convention, not a durable code invariant or contract.
+  Batch 2/145 done (7 completed)
+  REJECT defeat-with-scope-is-atomic-on-exception: duplicate: restates the existing `_with_network` save-on-no-exception invariant (`add-node-writes-through-with-network` / `api-with-network-write-false-discards-changes`) applied to one function.
+  Batch 8/145 done (8 completed)
+  Batch 12/145 done (9 completed)
+  Batch 10/145 done (10 completed)
+  Batch 13/145 done (11 completed)
+  REJECT defeat-with-scope-emits-pubsub-events-on-save: duplicate: existing `api-emits-events-only-after-successful-saves` already covers event publication after successful save.
+  Batch 9/145 done (12 completed)
+  Batch 14/145 done (13 completed)
+  REJECT no-synth-bypasses-llm: duplicate: Already captured by existing belief `ask-no-synth-bypasses-llm` ("When `no_synth=True`, `ask()` returns raw `api.search()` results without invoking the Claude CLI").
+  Batch 19/145 done (14 completed)
+  REJECT retract-node-delegates-to-postgres-when-conninfo-set: duplicate: covered by existing `all-api-functions-support-pg-dispatch`
+  Batch 15/145 done (15 completed)
+  Batch 21/145 done (16 completed)
+  REJECT retract-node-opens-write-transaction: duplicate: generic `_with_network(write=True)` load/save/event behavior is already covered by `api-uses-with-network-context-manager`, `api-writes-through-with-network`, and `api-emits-events-only-after-successful-saves`
+  Batch 16/145 done (17 completed)
+  Batch 22/145 done (18 completed)
+  REJECT llm-failures-return-beliefs: duplicate: Covered by existing `ask-never-raises-on-llm-failure` and `ask-falls-back-to-raw-search`, which describe LLM timeouts/exceptions being caught and returning raw search results.
+  REJECT natural-strips-belief-metadata: duplicate: Covered by existing `ask-natural-flag-strips-belief-metadata` and `ask-natural-mode-strips-metadata-and-cite`, which state natural=True calls `_strip_belief_metadata`.
+  REJECT empty-detection-is-string-match: duplicate: Covered by existing `ask-dual-empty-detection-coupled-to-sentinels`, which captures the literal-string emptiness detection; the added "prompt changes can break" clause is speculative editorializing.
+  Batch 20/145 done (19 completed)
+  REJECT build-tools-section-produces-json-example-lines: duplicate: restates the existing text-based JSON tool protocol belief (`ask-uses-text-based-tool-protocol` / `ask-extract-tool-call-is-line-based-json`), and the "intended to" framing is not a new grounded fact.
+  Batch 18/145 done (20 completed)
+  Batch 23/145 done (21 completed)
+  Batch 24/145 done (22 completed)
+  Batch 26/145 done (23 completed)
+  Batch 25/145 done (24 completed)
+  Batch 30/145 done (25 completed)
+  REJECT estimate-tokens-is-pure: trivial: Purity visible from a two-line `len(text)` helper; obvious implementation detail, not a durable invariant.
+  REJECT estimate-tokens-requires-sized-object: trivial: `len()` raising `TypeError` on `None` is standard Python behavior any developer can see.
+  Batch 28/145 done (26 completed)
+  REJECT explain-node-raises-instead-of-returning-errors: duplicate: both exception behaviors for explain_node are already captured by `api-missing-node-raises-keyerror` and `api-hidden-node-raises-permissionerror`
+  Batch 11/145 done (27 completed)
+  Batch 29/145 done (28 completed)
+  Batch 32/145 done (29 completed)
+  Batch 31/145 done (30 completed)
+  Batch 33/145 done (31 completed)
+  REJECT rebuild-dependents-is-canonical: speculative: "should delegate" is an editorial recommendation, not an observable code invariant.
+  Batch 35/145 done (32 completed)
+  Batch 38/145 done (33 completed)
+  REJECT cluster-cache-enables-embedding-reuse: trivial: describes the defining behavior of a cache and is obvious from the class name.
+  Batch 27/145 done (34 completed)
+  REJECT add-justification-does-not-deduplicate: duplicate: existing `add-justification-appends-not-replaces` already captures that new justifications append without replacing or deduplicating.
+  Batch 36/145 done (35 completed)
+  Batch 40/145 done (36 completed)
+  REJECT reasons-lib-mirrors-reasons-except-merkle: ephemeral: directory/module inventory snapshot likely to change with edits.
+  Batch 41/145 done (37 completed)
+  REJECT schema-version-binding-is-mutable-by-convention: trivial: Python's lack of const enforcement is obvious; the "should treat as constant" part is editorial.
+  Batch 34/145 done (38 completed)
+  REJECT justifications-support-outlist-for-non-monotonic-reasoning: trivial: README documentation of `--unless` flag and editorial "basis for challenge/defend"; outlist semantics already covered by existing beliefs
+  REJECT derived-nodes-inherit-antecedent-tags: duplicate: core claim already covered by `access-tags-union-inheritance` / `access-tags-are-monotonically-inherited`
+  REJECT default-sl-with-three-antecedents-produces-one-conjunctive-justification: duplicate: same claim as `all-mode-stored-as-one-multi-antecedent-sl-justification`
+  Batch 42/145 done (39 completed)
+  REJECT any-mode-expansion-requires-more-than-one-antecedent: duplicate: Same claim as existing `any-mode-single-premise-no-expansion`
+  REJECT reasons-lib-check-stale-is-shim: trivial: Describes import structure and line count, not a durable invariant
+  Batch 43/145 done (40 completed)
+  REJECT add-justification-lazily-imports-merkle: trivial: import placement and circular-import rationale are low-level implementation details visible from code.
+  Batch 37/145 done (41 completed)
+  REJECT verify-dependents-assumes-set-valued-dependents: duplicate: `dependents` being set-valued is already covered by existing dependents beliefs.
+  REJECT classify-defeat-reason-has-no-test-verified-prompt-type-sync: speculative: test-coverage/drift-risk claim, not an observable code invariant.
+  Batch 39/145 done (42 completed)
+  REJECT visibility-skipped-when-no-access-tags: duplicate: Existing `access-tags-require-subset-for-visibility` (and `access-tags-subset-gate`) already capture that only tagged nodes are gated by `visible_to`, so untagged nodes are always visible — this is a trivial rewording.
+  Batch 17/145 done (43 completed)
+  REJECT access-tags-inherit-through-antecedents: duplicate: duplicates existing access-tag union/inheritance beliefs such as access-tags-inherit-by-union and access-tags-union-inheritance.
+  REJECT direct-reads-raise-permission-error: duplicate: existing api-hidden-node-raises-permissionerror already covers PermissionError on invisible direct reads.
+  REJECT reasons-lib-storage-is-shim: trivial: re-export via star import is obvious from file structure and includes an ephemeral line reference.
+  Batch 47/145 done (44 completed)
+  Batch 50/145 done (45 completed)
+  REJECT reasons-lib-is-a-thin-re-export: trivial: Obvious fact visible from a single `from reasons import *` line in the package init; no durable architectural invariant.
+  Batch 51/145 done (46 completed)
+  REJECT both-packages-are-installed: trivial: pyproject package listing is a config detail, not a durable architectural invariant
+  REJECT no-sys-modules-aliasing: speculative: absence-based inference, not a durable code fact
+  REJECT visible-to-is-subset-check: duplicate: existing access-tags-subset-gate and related beliefs already capture the subset visibility rule
+  Batch 46/145 done (47 completed)
+  REJECT internal-check-stale-consumers-use-canonical-path: trivial: just enumerates which import path consumers use, obvious from imports
+  Batch 44/145 done (48 completed)
+  REJECT no-deprecation-timeline-documented: trivial: absence-of-documentation claim verifiable by grep; not a codebase invariant or behavior
+  REJECT changelog-mentions-reasons-lib-only-historically: ephemeral: point-in-time changelog snapshot tied to a specific line number
+  Batch 49/145 done (49 completed)
+  REJECT underscore-internals-require-explicit-import: trivial: standard underscore-prefixed wildcard-import behavior; line references are incidental
+  REJECT no-type-tooling-config-blocks-static-verification: speculative: “cannot be statically verified” is an editorial inference not grounded in a hard code invariant
+  REJECT reasons-lib-requires-reasons: trivial: describes a direct import statement visible from the module structure
+  Batch 45/145 done (50 completed)
+  REJECT reasons-storage-contains-storage-class: trivial: Obvious file/class structure and save/load methods, not a durable architectural invariant.
+  REJECT reasons-lib-init-is-shim: trivial: Re-export/import detail visible from file structure; also overlaps with the shim proposal.
+  REJECT provided-grep-cannot-rule-out-from-imports: speculative: Methodological caveat about grep evidence, not an observable code fact.
+  REJECT reasons-storage-depends-on-metadata-and-network: trivial: "Module X imports Y" dependency listing, explicitly trivial.
+  Batch 48/145 done (51 completed)
+  REJECT dual-mode-uses-three-llm-calls-with-simple-true: reason-category: duplicate — same three-call claim already covered by ask-dual-mode-makes-three-llm-calls / ask-dual-mode-uses-three-llm-calls; simple=True adds no new behavioral fact
+  REJECT merge-call-is-skipped-when-one-answer-is-empty: reason-category: duplicate — identical to existing ask-dual-short-circuits-if-either-path-empty
+  Batch 53/145 done (52 completed)
+  REJECT reasons-lib-deletion-requires-import-audit: speculative: editorial judgment/recommendation about deletion being "safe" and requiring confirmation, not an observable code fact
+  Batch 55/145 done (53 completed)
+  REJECT reasons-lib-init-reexports-reasons-api: trivial: describes an import/reexport line visible from file structure, not a durable invariant
+  REJECT reasons-lib-submodules-map-one-to-one: trivial: one-to-one re-export mapping is obvious from imports
+  Batch 54/145 done (54 completed)
+  REJECT cli-example-flag-wiring-is-not-shown-for-update: speculative: claims based on absence of evidence in observed snippets, not an observable code fact
+  REJECT add-tags-cli-calls-api-add-tags: trivial: line-level wiring visible from naming/imports, not a durable invariant
+  REJECT add-source-cli-registered-as-add-source: trivial: CLI command registration is obvious from the mapping and function names
+  REJECT add-tags-and-add-source-write-directly-to-tables: trivial: restates what the function body/docstring obviously shows, low-insight implementation detail
+  Batch 58/145 done (55 completed)
+  REJECT reasons-lib-has-no-removal-criterion: ephemeral: an absence-of-anywhere-in-observed-files claim is a point-in-time snapshot of documentation/planning, not a durable code invariant
+  Batch 52/145 done (56 completed)
+  REJECT docstring-lists-update-tests-but-file-lacks-them: meta: test-coverage inventory claim about a test file, not a durable behavioral invariant
+  REJECT update-symbol-search-returned-zero: ephemeral: point-in-time search snapshot ("found zero matches") that reflects a one-off exploration result, not a durable code fact
+  Batch 57/145 done (57 completed)
+  Batch 56/145 done (58 completed)
+  REJECT reasons-lib-has-no-python-source-references: ephemeral: point-in-time repo-grep result and "currently" count that changes with edits
+  REJECT reasons-lib-emits-no-deprecation-warning: ephemeral: negative code-search snapshot, not a durable semantic invariant
+  REJECT reasons-lib-references-concentrate-in-forge-config: ephemeral: specific match counts in files are point-in-time observations
+  Batch 64/145 done (59 completed)
+  REJECT save-implementation-not-observed: meta: describes absence in exploration observations, not an observable codebase fact.
+  REJECT reasons-lib-network-is-a-shim: trivial: describes a re-export import and line count obvious from file structure.
+  REJECT no-module-imports-reasons-lib-network: ephemeral: “zero matches” is a search snapshot that changes with any import edit.
+  REJECT reasons-api-uses-relative-network-import: trivial: import statement obvious from module structure.
+  REJECT reasons-storage-uses-relative-network-import: trivial: import statement obvious from module structure.
+  Batch 59/145 done (60 completed)
+  REJECT reasons-lib-is-compatibility-shim: trivial: describes star-import/module structure directly visible from the files
+  REJECT packaging-ships-both-reasons-and-reasons-lib: trivial: pyproject package listing is an obvious configuration/file-structure fact
+  REJECT reasons-lib-imports-emit-no-deprecation-warning: trivial: absence of warnings.warn is directly visible source inspection
+  REJECT cli-deprecations-are-unrelated-to-reasons-lib: trivial: negative comparison of unrelated CLI aliases with line-specific details
+  REJECT reasons-lib-removal-not-scheduled-in-observed-docs: speculative: absence of a removal date in docs does not establish a schedule and is a documentation snapshot
+  Batch 63/145 done (61 completed)
+  REJECT count-bug-is-invisible-at-n-equals-one: ephemeral: describes observability of a specific count bug, not a durable code invariant.
+  REJECT reasons-lib-reexports-reasons: trivial: module import/reexport fact obvious from file structure.
+  REJECT reasons-lib-has-no-deprecation-warning: trivial: absence of warning and docstring content is obvious file detail, not an architectural invariant.
+  REJECT deprecation-marker-search-finds-no-reasons-lib-deprecation: ephemeral: grep/search snapshot with line numbers that change.
+  REJECT reasons-lib-removal-requires-packaging-update: speculative: future deletion requirement/editorial consequence, not a current code invariant.
+  Batch 62/145 done (62 completed)
+  REJECT reasons-lib-top-level-exports-include-justification-node-nogood: trivial: enumerates names exposed by a star import, which is directly visible from the imports in `reasons/__init__.py`
+  REJECT packaging-includes-reasons-lib: ephemeral: references a specific line number in pyproject.toml; a point-in-time config snapshot that changes with any edit
+  Batch 65/145 done (63 completed)
+  REJECT reasons-lib-uses-star-import: trivial: the star-import re-export is directly visible in `__init__.py` and is an implementation/import detail.
+  REJECT reasons-defines-no-all: trivial: absence of `__all__` and the imported names are directly visible from file structure.
+  Batch 60/145 done (64 completed)
+  REJECT reasons-init-holds-implementation: trivial: Obvious from file structure; any developer can see __init__.py defines these dataclasses.
+  REJECT reasons-lib-shipped-in-distribution: trivial: Single visible pyproject.toml entry; obvious packaging fact.
+  REJECT reasons-exports-core-dataclasses-from-init: duplicate: Trivial rewording of `reasons-init-holds-implementation`; both assert the canonical dataclasses live in `reasons/__init__.py`.
+  Batch 68/145 done (65 completed)
+  REJECT class-attribute-monkeypatches-are-shared: trivial: Generic Python object-identity fact, not a codebase-specific invariant.
+  REJECT count-bug-produces-quadratic-metric: ephemeral: Describes historical buggy code rather than current durable behavior.
+  REJECT count-bug-causes-local-budget-starvation: ephemeral: Historical bug impact, not a current invariant, and redundant with count-feeds-local-budget.
+  Batch 61/145 done (66 completed)
+  REJECT pyproject-packages-includes-reasons_lib: ephemeral: line-number snapshot of pyproject contents
+  REJECT reasons_lib-api-shim-maps-to-reasons-api: ephemeral: includes specific module line count instead of a durable invariant
+  REJECT reasons-lib-api-is-shim: ephemeral: line count and wildcard import are point-in-time/trivial details
+  REJECT reasons-api-holds-implementation: ephemeral: specific line count and function inventory are snapshot details
+  Batch 67/145 done (67 completed)
+  REJECT accept-revalidates-drift-before-apply: duplicate: Already covered by `accept-proposal-revalidates-against-live-network`, `accept-proposal-detects-drift-before-applying`, and stale-return beliefs.
+  REJECT truth-value-drift-compares-snapshot-to-current: duplicate: Same drift/snapshot comparison is already captured by `accept-proposal-requires-snapshot-match` and revalidation beliefs.
+  REJECT drift-cases-are-pinned-by-api-tests: ephemeral: Test coverage and line-specific inventory is a point-in-time snapshot, not a durable code invariant.
+  REJECT mcp-accept-doc-requires-drift-revalidation: duplicate: Restates the already-covered drift revalidation and stale behavior, merely as documentation.
+  Batch 72/145 done (68 completed)
+  REJECT pubsub-events-emitted-after-save: duplicate: Existing `api-emits-events-only-after-successful-saves` already captures that events are published only after successful persistence and current values are visible.
+  Batch 73/145 done (69 completed)
+  REJECT reasons-replaces-reasons-lib: speculative: Editorial/historical inference about package replacement intent from a branch name and doc description, not an observable code invariant.
+  REJECT tests-bind-to-reasons-tree: trivial: Import fact obvious from reading the test file; the "confirms canonical tree" is an inference, not an architectural invariant.
+  Batch 66/145 done (70 completed)
+  REJECT reasons-lib-removal-requires-editing-pyproject-toml: speculative: conditional prediction about consequences of a hypothetical future deletion ("would leave a dangling package reference"), not an observable current fact
+  REJECT changelog-omits-reasons-lib-rename: ephemeral: point-in-time snapshot of current CHANGELOG contents that would change if documentation is later added
+  REJECT reasons-init-exports-core-model: trivial: restates obvious module contents/imports visible from file structure, and relies on an ephemeral count ("at least 10 test modules")
+  Batch 70/145 done (71 completed)
+  REJECT both-packages-are-packaged-via-setuptools: ephemeral: "currently installs both" is a point-in-time packaging state visible from pyproject, not a durable invariant
+  REJECT no-internal-code-imports-reasons-lib: ephemeral: a repo-wide search returning zero matches is a snapshot observation, not a durable architectural rule
+  Batch 69/145 done (72 completed)
+  REJECT reasons-lib-has-no-internal-consumers: ephemeral: relies on a `total_count` import snapshot rather than a durable dependency rule.
+  REJECT relative-imports-are-confined-to-reasons-api: speculative: includes a “removable” inference about `tests/__init__.py`, not an observable invariant.
+  REJECT tests-init-has-no-content: ephemeral: file-content snapshot (single empty line) that changes with edits.
+  Batch 71/145 done (73 completed)
+  REJECT reasons-lib-export-surface-requires-reasons-public-names: trivial: restates generic Python star-import behavior and `from reasons import *` mechanics, obvious from the import statement
+  REJECT reasons-no-all-enables-default-underscore-filtering: trivial: describes a generic Python wildcard-import rule plus the absence of `__all__`, visible directly from the file
+  REJECT reasons-lib-reexports-dataclass-and-field: trivial: it is simply noting that `dataclass` and `field` are public imports and thus re-exported, an obvious consequence of the imports
+  REJECT direct-imports-do-not-require-all: trivial: generic Python language semantics about direct imports vs `__all__`, not a codebase-specific invariant
+  Batch 76/145 done (74 completed)
+  REJECT reasons-lib-lacks-merkle-shim: ephemeral: point-in-time snapshot of which shim files currently exist; changes as soon as the missing shim is added
+  REJECT reasons-merkle-contains-real-implementation: trivial: obvious from reading the file; "contains functions and isn't a shim" is a surface fact, not an invariant
+  REJECT grep-observations-conflict-with-file-reads: meta: about the exploration/grep process and conflicting notes, not a codebase fact
+  REJECT reasons_lib-has-no-real-definitions: duplicate: same claim as reasons-lib-is-backwards-compatibility-package (shims with no real definitions)
+  Batch 77/145 done (75 completed)
+  REJECT entry-points-use-canonical-module: trivial: direct observation of pyproject.toml script entries; obvious from file structure/config.
+  REJECT reasons-lib-init-reexports-reasons: trivial: single-line file content (`from reasons import *`) visible directly from the file/imports.
+  REJECT reasons-lib-api-reexports-reasons-api: trivial: single-line file content (`from reasons.api import *`) visible directly from the file/imports.
+  Batch 79/145 done (76 completed)
+  REJECT tests-import-reasons: trivial: Import statement is obvious from file structure and does not state a durable invariant.
+  REJECT pytest-collects-tests-directory: trivial: Test path configuration is directly visible in pyproject.toml and not an architectural invariant.
+  REJECT ci-test-command-unconfirmed: ephemeral: Point-in-time negative search result, not a durable code fact.
+  REJECT no-observed-package-sync-automation: ephemeral: Absence observed by a one-time search, not a durable invariant.
+  Batch 82/145 done (77 completed)
+  REJECT topics-module-is-unrelated-to-pubsub: duplicate: core word-frequency extraction is already covered by `api-topics-returns-sorted-topics-and-total-nodes`; the no-pub/sub claim is a trivial negative restatement.
+  Batch 74/145 done (78 completed)
+  REJECT changelog-has-no-reasons-lib-removal-timeline: ephemeral: point-in-time snapshot of file contents (negative claim about current CHANGELOG entries that changes with any edit)
+  REJECT pyproject-version-disagrees-with-changelog: ephemeral: compares specific version numbers that change with every release
+  Batch 81/145 done (79 completed)
+  REJECT search-results-contradict-conftest-content: meta: observation about a search report contradiction, not a codebase invariant
+  REJECT no-sys-path-manipulation-in-repo: speculative: infers import-resolution strategy from a grep absence rather than an observable code fact
+  REJECT importlib-is-used-only-for-metadata: trivial: restates visible import statements and line-specific usage
+  Batch 75/145 done (80 completed)
+  REJECT reasons-package-lacks-all: trivial: absence of `__all__` is a file-structure/import fact any developer can see
+  REJECT reasons-init-binds-dataclass-and-field: trivial: "module imports names" is the canonical trivial import fact
+  Batch 84/145 done (81 completed)
+  REJECT reasons-lib-shim-is-bare-reexport: trivial: essentially a "module X imports Y" structural fact, obvious from the file
+  REJECT reasons-lib-is-documented-as-backwards-compat-shim: trivial: documentation observation, not a durable code invariant
+  REJECT reasons-lib-deletion-is-not-announced: ephemeral: point-in-time absence-of-notice in current docs, changes with any doc edit
+  Batch 83/145 done (82 completed)
+  REJECT reasons-lib-llm-reexports-reasons-llm: trivial: "module X imports Y" — a single wildcard import statement visible directly in the file.
+  REJECT changelog-lacks-reasons-lib-shim-deprecation-entry: meta: an observation about documentation/changelog state and absence of a deprecation policy, not a codebase invariant.
+  REJECT no-removal-schedule-observed: meta: a statement about what the exploration notes do/don't contain and absence of a future removal plan.
+  REJECT reported-zero-reference-counts-are-unreliable: speculative: a judgment that a search result is untrustworthy and "needs verification," not a grounded code fact.
+  Batch 80/145 done (83 completed)
+  REJECT reasons-lib-init-star-imports-reasons: trivial: describes a star import and leaked names directly visible from imports/file structure
+  REJECT reasons-api-star-import-leaks-implementation-names: trivial: import statement and exposed top-level names are obvious from reading the module imports
+  REJECT all-in-source-limits-star-export: trivial: general Python `__all__`/star-import semantics, not a codebase invariant
+  REJECT shim-files-contain-star-imports: meta: point-in-time tool-result unreliability and "must be re-run" note, not a durable codebase belief
+  REJECT reasons-api-has-no-all: trivial: absence of `__all__` and the resulting leaked names are visible from the module structure/imports
+  Batch 85/145 done (84 completed)
+  REJECT reasons-lib-modules-re-export-from-reasons: trivial: shim modules are visible from file structure/imports, not a durable architectural invariant
+  Batch 88/145 done (85 completed)
+  REJECT dependents-index-maps-both-antecedent-and-outlist-references: duplicate: effectively the same claim as existing `add-justification-registers-antecedent-and-outlist-dependents`.
+  REJECT any-mode-converts-conjunctive-sl-to-disjunctive: duplicate: same claim as existing `any-mode-expands-sl-to-or`.
+  Batch 89/145 done (86 completed)
+  REJECT unless-argument-populates-outlist: duplicate: same claim as existing `api-unless-param-maps-to-outlist` (unless maps to outlist), just reworded with line refs
+  REJECT tms-vocabulary-is-doyle-1979-not-de-kleer: trivial: documentation citation attribution with a "zero grep matches" count, obvious from reading docs, not a code invariant
+  Batch 90/145 done (87 completed)
+  Batch 91/145 done (88 completed)
+  REJECT fts-search-relaxation-budget-is-shared-50-query-cap: duplicate: same claim as existing `api-fts-search-bounds-query-calls` (at most 51 internal FTS query calls regardless of input length)
+  Batch 93/145 done (89 completed)
+  REJECT noqa-suppresses-undefined-name-detection: speculative: "surface can drift silently" is a risk/editorial judgment, not an observable fact
+  Batch 86/145 done (90 completed)
+  REJECT changelog-has-no-code-consumers: trivial: obvious from file type and references; not a durable architectural invariant
+  REJECT changelog-uses-only-three-change-categories: ephemeral: current changelog category inventory can change with any documentation edit
+  REJECT changelog-has-missing-and-folded-version-headings: ephemeral: point-in-time snapshot of version headings and inline tags
+  REJECT changelog-rename-explains-reasons-lib-and-ftl-reasons: trivial: documentation history rather than a codebase invariant
+  Batch 92/145 done (91 completed)
+  REJECT wildcard-shims-are-unfiltered: ephemeral: specific counts (33 wildcard imports, zero __all__ declarations) change with edits
+  REJECT sl-antecedents-parsed-from-comma-separated-string: duplicate: existing add-node-requires-comma-separated-ids already covers comma-separated sl parsing
+  REJECT node-dependents-is-set-of-node-ids: trivial: obvious data-structure type visible from Node definition and usage
+  Batch 87/145 done (92 completed)
+  Batch 97/145 done (93 completed)
+  REJECT add-justification-requires-one-support-form: duplicate: already covered by existing `api-add-justification-requires-*` and `add-justification-requires-type` beliefs.
+  Batch 94/145 done (94 completed)
+  Batch 96/145 done (95 completed)
+  Batch 98/145 done (96 completed)
+  Batch 101/145 done (97 completed)
+  Batch 99/145 done (98 completed)
+  REJECT reasons_lib-requires-pyproject-update-before-deletion: ephemeral: current packaging state/migration snapshot that changes when the legacy package is removed
+  REJECT reasons_lib-does-not-emit-deprecation-warnings: trivial: negative code-search inventory of markers, not a durable architectural invariant
+  REJECT reasons_lib-api-maps-to-reasons-api: trivial: single star-import/re-export fact visible from file structure and subsumed by the pure-shim invariant
+  Batch 78/145 done (99 completed)
+  Batch 100/145 done (100 completed)
+  Batch 104/145 done (101 completed)
+  Batch 103/145 done (102 completed)
+  REJECT retract-node-pg-return-shape-is-backend-defined: speculative: editorial judgment ("callers must test the actual payload", "intended contract") rather than a grounded observable code fact
+  Batch 105/145 done (103 completed)
+  Batch 107/145 done (104 completed)
+  Batch 95/145 done (105 completed)
+  Batch 102/145 done (106 completed)
+  Batch 109/145 done (107 completed)
+  Batch 111/145 done (108 completed)
+  Batch 110/145 done (109 completed)
+  Batch 108/145 done (110 completed)
+  Batch 116/145 done (111 completed)
+  Batch 114/145 done (112 completed)
+  Batch 112/145 done (113 completed)
+  Batch 117/145 done (114 completed)
+  Batch 115/145 done (115 completed)
+  Batch 113/145 done (116 completed)
+  REJECT add-justification-requires-existing-node: duplicate: Already covered by `add-justification-missing-node-raises-keyerror`, which states `Network.add_justification` raises `KeyError` when the target node does not exist.
+  Batch 120/145 done (117 completed)
+  REJECT schema-version-is-string-literal-1-0: trivial: direct constant assignment value is obvious from source and does not express a broader invariant
+  Batch 118/145 done (118 completed)
+  REJECT add-justification-returns-diff-dict: duplicate: trivial rewording of existing `add-justification-returns-truth-transition-and-changed` / `add-justification-returns-change-dict`
+  Batch 119/145 done (119 completed)
+  Batch 121/145 done (120 completed)
+  REJECT pyproject-declares-reasons-and-reasons-mcp-entry-points: trivial: pyproject entry-point declarations are directly visible packaging metadata, not a durable code invariant
+  REJECT pyproject-defines-pg-mcp-llm-cluster-extras: trivial: optional-dependency group listing is directly visible packaging metadata
+  Batch 124/145 done (121 completed)
+  REJECT list-negative-filters-visibility-before-llm-prompt: duplicate: Existing `api-visible-to-filters-both-result-and-prompt` already captures that `visible_to` filters the LLM prompt, making this a rewording.
+  Batch 125/145 done (122 completed)
+  REJECT api-imports-check-stale-pinning-helpers: — trivial: describes an import statement (module X imports Y) visible from file structure
+  REJECT canonical-modules-consume-check-stale-directly: — trivial: observation about which import path modules use, obvious from imports
+  Batch 127/145 done (123 completed)
+  Batch 129/145 done (124 completed)
+  REJECT default-multi-premise-sl-is-conjunctive: duplicate: already covered by `all-mode-stored-as-one-multi-antecedent-sl-justification` and `all-justification-stored-as-single-sl-with-multiple-antecedents`
+  REJECT any-mode-skips-expansion-for-single-premise: duplicate: already covered by `any-mode-single-premise-no-expansion`
+  REJECT add-justification-any-mode-expands-only-sl: duplicate: already covered by `any-mode-only-expands-sl` and `any-mode-only-expands-sl-justifications`
+  Batch 126/145 done (125 completed)
+  REJECT no-all-declarations-exist-repo-wide: ephemeral: repository-wide zero count is a point-in-time snapshot that changes with edits.
+  REJECT pyproject-lacks-static-type-checker-config: speculative: the absence of config is observable, but the claim that the shim “cannot be statically verified” is an editorial inference, not an invariant.
+  Batch 128/145 done (126 completed)
+  REJECT verify-dependents-requires-set-like-dependents: trivial: describes a basic Python set-operation precondition rather than a durable codebase invariant
+  Batch 122/145 done (127 completed)
+  REJECT storage-depends-on-metadata-and-network: trivial: visible import statement and module dependency
+  REJECT storage-class-provides-save-load: trivial: class name and save/load methods are obvious from file structure
+  Batch 130/145 done (128 completed)
+  REJECT dual-mode-simple-true-costs-three-llm-calls: duplicate: existing beliefs already state dual mode makes three LLM calls (TMS + FTS RAG + merge), including simple/dual variants.
+  Batch 132/145 done (129 completed)
+  Batch 123/145 done (130 completed)
+  REJECT merkle-tests-import-canonical-reasons-module: trivial: describes a test import path, obvious from imports
+  Batch 135/145 done (131 completed)
+  REJECT reasons-lib-has-no-declared-removal-criterion: ephemeral: current repository documentation snapshot, not a durable code invariant
+  Batch 131/145 done (132 completed)
+  REJECT dual-merge-call-skipped-when-one-side-empty: reason-category: duplicate — existing `ask-dual-short-circuits-if-either-path-empty` already states the merge step is skipped when either side is empty.
+  REJECT entrenchment-is-implemented-in-network-and-pg: reason-category: trivial — merely states that both files define a function of a given name returning an int, observable from file/naming structure.
+  Batch 133/145 done (133 completed)
+  REJECT retract-node-failure-skips-save-publish-and-cache-update: duplicate: covered by existing add-node-writes-through-with-network and api-noop-or-failed-mutations-emit-no-events
+  Batch 106/145 done (134 completed)
+  Batch 137/145 done (135 completed)
+  REJECT tests-package-init-is-empty-marker: ephemeral: empty-file/package-layout snapshot that changes with repository edits.
+  REJECT tests-relative-imports-absent: trivial: import pattern is directly visible and low-value.
+  REJECT stale-accept-requires-reread-and-repropose: speculative: prescriptive caller guidance rather than an observable code invariant.
+  Batch 136/145 done (136 completed)
+  REJECT reasons-lib-module-attribute-patching-lacks-regression-tests: ephemeral: test-coverage gap is a point-in-time snapshot that changes when tests are added
+  REJECT count-bug-quadratic-metric-was-accounting-only: speculative: historical bug-impact/accounting analysis, not a current code invariant
+  REJECT count-bug-invisible-at-single-belief-agent: speculative: test-design recommendation about regression coverage, not an observable invariant
+  REJECT cli-deprecations-unrelated-to-reasons-lib: ephemeral: inventory of observed deprecation strings is a point-in-time snapshot
+  Batch 134/145 done (137 completed)
+  REJECT pytest-pythonpath-not-configured: trivial: config/file-structure detail visible in pyproject, not an architecture invariant.
+  REJECT tests-directory-lacks-init-py: trivial: file-structure/import-path detail obvious from the tests layout.
+  REJECT reasons-init-lacks-all: trivial: module export detail obvious from __init__.py and default Python semantics.
+  REJECT reasons-merkle-is-real-sha256-implementation: trivial: module content fact obvious by inspection, not a durable architectural rule.
+  REJECT ci-workflow-is-single-tests-yml: trivial: CI file inventory is obvious file structure and can change.
+  Batch 139/145 done (138 completed)
+  REJECT pytest-testpaths-point-to-tests-directory: trivial: test discovery path is an obvious fact visible directly from the pytest config file.
+  REJECT tests-conftest-pg-fixture-imports-canonical-reasons-pg: trivial: which package a fixture imports is obvious from the import statement itself.
+  REJECT deprecated-string-matches-are-unrelated-to-reasons-lib: speculative: interpretive judgment about what grep matches mean, not a durable behavioral invariant.
+  Batch 140/145 done (139 completed)
+  REJECT doyle-1979-is-codebase-declared-ancestor: trivial: obvious documentation-citation fact, and the "no grep matches" part is a point-in-time snapshot, not a durable code invariant
+  REJECT unless-parameter-maps-to-outlist: duplicate: already captured by existing `api-unless-param-maps-to-outlist` and `api-unless-defaults-to-sl-type`
+  Batch 144/145 done (140 completed)
+  REJECT reasons-lib-init-imports-from-reasons-root-only: trivial: import/star-import relationship is directly visible from module structure
+  REJECT shim-local-all-does-not-remove-attributes: trivial: general Python __all__ semantics, not a codebase-specific invariant
+  Batch 141/145 done (141 completed)
+  Batch 145/145 done (142 completed)
+  REJECT pg-api-init-failure-skips-post-yield-cleanup: trivial: standard pytest fixture semantics evident from setup-before-yield structure
+  Batch 138/145 done (143 completed)
+  REJECT shim-noqa-masks-star-import-surface-drift: speculative: linter-detection risk analysis, not a runtime/API invariant
+  REJECT noqa-comments-do-not-constrain-runtime-shim-exports: trivial: comments obviously only silence linter warnings and do not affect runtime namespace
+  Batch 142/145 done (144 completed)
+  REJECT unless-only-produces-empty-antecedent-sl: duplicate: already captured by add-node-outlist-only-creates-empty-antecedent-sl
+  Batch 143/145 done (145 completed)
+
+Reviewed 721 proposals: 509 kept, 212 rejected
+Rejections by category:
+  trivial: 91
+  duplicate: 46
+  ephemeral: 40
+  speculative: 22
+  meta: 7
+  reason-category: 4
+  — trivial: 2
+  Round 1: Review proposals took 7m 30s

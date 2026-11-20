@@ -1604,7 +1604,7 @@
     "kind": "function",
     "target": "reasons/review_justifications.py:review_justifications",
     "source": "file:reasons/review_premises.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:17:22"
   },
   {
@@ -1612,7 +1612,7 @@
     "kind": "general",
     "target": "external-tag-source-preservation",
     "source": "file:reasons/storage.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:18:09"
   },
   {
@@ -1620,7 +1620,7 @@
     "kind": "function",
     "target": "reasons/check_stale.py:resolve_source_path",
     "source": "file:reasons/verify.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:18:39"
   },
   {
@@ -1628,7 +1628,7 @@
     "kind": "general",
     "target": "verdict-taxonomy-consumers",
     "source": "file:reasons/verify.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:18:39"
   },
   {
@@ -1636,7 +1636,7 @@
     "kind": "diff",
     "target": "reasons/__init__.py vs reasons_lib/__init__.py",
     "source": "file:reasons_lib/__init__.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:19:10"
   },
   {
@@ -1644,7 +1644,7 @@
     "kind": "general",
     "target": "backwards-compatibility-strategy",
     "source": "file:reasons_lib/__init__.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:19:10"
   },
   {
@@ -1652,7 +1652,7 @@
     "kind": "general",
     "target": "legacy-namespace-migration",
     "source": "file:reasons_lib/api.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:20:32"
   },
   {
@@ -1660,7 +1660,7 @@
     "kind": "function",
     "target": "reasons/ask.py:ask",
     "source": "file:reasons_lib/ask.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:21:11"
   },
   {
@@ -1668,7 +1668,7 @@
     "kind": "general",
     "target": "package-alias-migration",
     "source": "file:reasons_lib/ask.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:21:11"
   },
   {
@@ -1676,7 +1676,7 @@
     "kind": "general",
     "target": "package-compatibility-strategy",
     "source": "file:reasons_lib/build_wiki.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:21:41"
   },
   {
@@ -1684,7 +1684,7 @@
     "kind": "function",
     "target": "reasons/check_stale.py:__all__",
     "source": "file:reasons_lib/check_stale.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:22:10"
   },
   {
@@ -1692,7 +1692,7 @@
     "kind": "general",
     "target": "backwards-compatibility-shim-migration-plan",
     "source": "file:reasons_lib/check_stale.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:22:10"
   },
   {
@@ -1700,7 +1700,7 @@
     "kind": "general",
     "target": "dual-package-migration",
     "source": "file:reasons_lib/cli.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:22:39"
   },
   {
@@ -1708,7 +1708,7 @@
     "kind": "general",
     "target": "reasons-vs-reasons-lib-mirroring",
     "source": "file:reasons_lib/cluster.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:23:01"
   },
   {
@@ -1716,7 +1716,7 @@
     "kind": "general",
     "target": "reasons-vs-reasons_lib-migration",
     "source": "file:reasons_lib/compact.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:23:18"
   },
   {
@@ -1724,7 +1724,7 @@
     "kind": "function",
     "target": "reasons/compact.py:compact_thoughts",
     "source": "file:reasons_lib/compact.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:23:18"
   },
   {
@@ -1732,7 +1732,7 @@
     "kind": "general",
     "target": "package-rename-shim-strategy",
     "source": "file:reasons_lib/derive.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:24:27"
   },
   {
@@ -1740,7 +1740,7 @@
     "kind": "general",
     "target": "compatibility-shim-pattern",
     "source": "file:reasons_lib/export_card.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:24:50"
   },
   {
@@ -1748,7 +1748,7 @@
     "kind": "general",
     "target": "reasons-lib-to-reasons-migration",
     "source": "file:reasons_lib/export_markdown.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:25:30"
   },
   {
@@ -1756,7 +1756,7 @@
     "kind": "general",
     "target": "package-rename-compat-strategy",
     "source": "file:reasons_lib/import_agent.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:26:43"
   },
   {
@@ -1764,7 +1764,7 @@
     "kind": "general",
     "target": "deprecation-signalling",
     "source": "file:reasons_lib/import_agent.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:26:43"
   },
   {
@@ -1772,7 +1772,7 @@
     "kind": "general",
     "target": "star-import-semantics",
     "source": "file:reasons_lib/import_beliefs.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:27:36"
   },
   {
@@ -1780,7 +1780,7 @@
     "kind": "general",
     "target": "backwards-compatibility-shim",
     "source": "file:reasons_lib/llm.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:28:03"
   },
   {
@@ -1788,7 +1788,7 @@
     "kind": "general",
     "target": "package-rename-migration",
     "source": "file:reasons_lib/llm.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:28:03"
   },
   {
@@ -1796,7 +1796,7 @@
     "kind": "general",
     "target": "star-import-reexport-pitfalls",
     "source": "file:reasons_lib/mcp_server.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:29:20"
   },
   {
@@ -1804,7 +1804,7 @@
     "kind": "general",
     "target": "reasons-vs-reasons_lib-rename",
     "source": "file:reasons_lib/metadata.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:29:50"
   },
   {
@@ -1812,7 +1812,7 @@
     "kind": "general",
     "target": "import-star-reexport-hazards",
     "source": "file:reasons_lib/metadata.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:29:50"
   },
   {
@@ -1820,7 +1820,7 @@
     "kind": "general",
     "target": "star-import-namespace-leakage",
     "source": "file:reasons_lib/mind_service.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:30:10"
   },
   {
@@ -1828,7 +1828,7 @@
     "kind": "general",
     "target": "import-direction-audit",
     "source": "file:reasons_lib/network.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:30:32"
   },
   {
@@ -1836,7 +1836,7 @@
     "kind": "general",
     "target": "reasons-lib-package-shim-pattern",
     "source": "file:reasons_lib/pg.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:31:17"
   },
   {
@@ -1844,7 +1844,7 @@
     "kind": "general",
     "target": "namespace-migration-strategy",
     "source": "file:reasons_lib/propose_update.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:31:34"
   },
   {
@@ -1852,7 +1852,7 @@
     "kind": "general",
     "target": "package-layout-migration",
     "source": "file:reasons_lib/pubsub.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:32:13"
   },
   {
@@ -1860,7 +1860,7 @@
     "kind": "general",
     "target": "pubsub-event-contracts",
     "source": "file:reasons_lib/pubsub.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:32:13"
   },
   {
@@ -1868,7 +1868,7 @@
     "kind": "general",
     "target": "namespace-rename-migration",
     "source": "file:reasons_lib/repair_premises.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:33:31"
   },
   {
@@ -1876,7 +1876,7 @@
     "kind": "general",
     "target": "reasons-vs-reasons-lib-migration",
     "source": "file:reasons_lib/review.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:34:13"
   },
   {
@@ -1884,7 +1884,7 @@
     "kind": "diff",
     "target": "git log --follow -- reasons_lib/review_justifications.py",
     "source": "file:reasons_lib/review_justifications.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:34:46"
   },
   {
@@ -1892,7 +1892,7 @@
     "kind": "general",
     "target": "shim-migration-policy",
     "source": "file:reasons_lib/review_premises.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:35:05"
   },
   {
@@ -1900,7 +1900,7 @@
     "kind": "general",
     "target": "python-star-import-semantics",
     "source": "file:reasons_lib/storage.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:35:49"
   },
   {
@@ -1908,7 +1908,7 @@
     "kind": "general",
     "target": "compatibility-shim-migration",
     "source": "file:reasons_lib/storage.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:35:49"
   },
   {
@@ -1916,7 +1916,7 @@
     "kind": "file",
     "target": "CHANGELOG.md",
     "source": "file:reasons_lib/verify.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:36:27"
   },
   {
@@ -1924,7 +1924,7 @@
     "kind": "general",
     "target": "pytest-importmodes",
     "source": "file:tests/__init__.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:36:45"
   },
   {
@@ -1932,7 +1932,7 @@
     "kind": "general",
     "target": "pep-420-namespace-packages",
     "source": "file:tests/__init__.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:36:45"
   },
   {
@@ -1940,7 +1940,7 @@
     "kind": "general",
     "target": "pytest-fixture-lifecycle",
     "source": "file:tests/conftest.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:37:25"
   },
   {
@@ -1948,7 +1948,7 @@
     "kind": "function",
     "target": "reasons/network.py:add_justification",
     "source": "file:tests/test_access_tags.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:38:36"
   },
   {
@@ -1956,7 +1956,7 @@
     "kind": "function",
     "target": "reasons/api.py:list_nodes",
     "source": "file:tests/test_access_tags.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:38:36"
   },
   {
@@ -1964,7 +1964,7 @@
     "kind": "function",
     "target": "reasons/api.py:explain_node",
     "source": "file:tests/test_access_tags.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:38:36"
   },
   {
@@ -1972,7 +1972,7 @@
     "kind": "general",
     "target": "access-control-tag-visibility-semantics",
     "source": "file:tests/test_access_tags.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:38:36"
   },
   {
@@ -1980,7 +1980,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network.add_justification",
     "source": "file:tests/test_add_justification.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:39:31"
   },
   {
@@ -1988,7 +1988,7 @@
     "kind": "function",
     "target": "reasons/api.py:add_justification",
     "source": "file:tests/test_add_justification.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:39:31"
   },
   {
@@ -1996,7 +1996,7 @@
     "kind": "general",
     "target": "truth-maintenance-semantics",
     "source": "file:tests/test_add_justification.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:39:31"
   },
   {
@@ -2004,7 +2004,7 @@
     "kind": "function",
     "target": "reasons/api.py:retract_node",
     "source": "file:tests/test_any_mode.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:40:01"
   },
   {
@@ -2012,7 +2012,7 @@
     "kind": "general",
     "target": "any-mode-vs-and-mode-semantics",
     "source": "file:tests/test_any_mode.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:40:01"
   },
   {
@@ -2020,7 +2020,7 @@
     "kind": "function",
     "target": "reasons/api.py:_fts_search",
     "source": "file:tests/test_api.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:40:49"
   },
   {
@@ -2028,7 +2028,7 @@
     "kind": "general",
     "target": "proposal-drift-and-staling",
     "source": "file:tests/test_api.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:40:49"
   },
   {
@@ -2036,7 +2036,7 @@
     "kind": "function",
     "target": "reasons/ask.py:_search_source_chunks",
     "source": "file:tests/test_ask.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:41:56"
   },
   {
@@ -2044,7 +2044,7 @@
     "kind": "general",
     "target": "dual-answer-merge-strategy",
     "source": "file:tests/test_ask.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:41:56"
   },
   {
@@ -2052,7 +2052,7 @@
     "kind": "function",
     "target": "reasons/ask.py:_build_tools_section",
     "source": "file:tests/test_ask_mcp.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:42:37"
   },
   {
@@ -2060,7 +2060,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network.add_nogood",
     "source": "file:tests/test_backtracking.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:44:18"
   },
   {
@@ -2068,7 +2068,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network.find_culprits",
     "source": "file:tests/test_backtracking.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T11:44:18"
   },
   {
@@ -2076,7 +2076,7 @@
     "kind": "general",
     "target": "entrenchment-heuristic",
     "source": "file:tests/test_backtracking.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:44:18"
   },
   {
@@ -2084,7 +2084,7 @@
     "kind": "function",
     "target": "reasons/build_wiki.py:build_wiki",
     "source": "file:tests/test_build_wiki.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:45:28"
   },
   {
@@ -2092,7 +2092,7 @@
     "kind": "function",
     "target": "reasons/build_wiki.py:_format_node",
     "source": "file:tests/test_build_wiki.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:45:28"
   },
   {
@@ -2100,7 +2100,7 @@
     "kind": "function",
     "target": "reasons/check_stale.py:check_stale",
     "source": "file:tests/test_check_stale.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:46:54"
   },
   {
@@ -2108,7 +2108,7 @@
     "kind": "general",
     "target": "reasons-vs-reasons_lib",
     "source": "file:tests/test_check_stale_issue25.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:47:51"
   },
   {
@@ -2116,7 +2116,7 @@
     "kind": "function",
     "target": "reasons/review.py:classify_defeat_reason",
     "source": "file:tests/test_classify_defeaters.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:48:25"
   },
   {
@@ -2124,7 +2124,7 @@
     "kind": "function",
     "target": "reasons/api.py:classify_defeat_reason_types",
     "source": "file:tests/test_classify_defeaters.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:48:25"
   },
   {
@@ -2132,7 +2132,7 @@
     "kind": "function",
     "target": "reasons/api.py:defeat_justification",
     "source": "file:tests/test_classify_defeaters.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:48:25"
   },
   {
@@ -2140,7 +2140,7 @@
     "kind": "general",
     "target": "cli-access-control",
     "source": "file:tests/test_cli.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:50:08"
   },
   {
@@ -2148,7 +2148,7 @@
     "kind": "function",
     "target": "reasons/cluster.py:cluster_beliefs",
     "source": "file:tests/test_cluster.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:51:12"
   },
   {
@@ -2156,7 +2156,7 @@
     "kind": "function",
     "target": "reasons/cluster.py:_auto_k",
     "source": "file:tests/test_cluster.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:51:12"
   },
   {
@@ -2164,7 +2164,7 @@
     "kind": "function",
     "target": "reasons/compact.py:estimate_tokens",
     "source": "file:tests/test_compact.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:51:53"
   },
   {
@@ -2172,7 +2172,7 @@
     "kind": "general",
     "target": "soft-budget-algorithm",
     "source": "file:tests/test_compact.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:51:53"
   },
   {
@@ -2180,7 +2180,7 @@
     "kind": "function",
     "target": "reasons/contradictions.py:detect_contradictions_semantic",
     "source": "file:tests/test_contradictions.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:52:27"
   },
   {
@@ -2188,7 +2188,7 @@
     "kind": "function",
     "target": "reasons/api.py:detect_contradictions",
     "source": "file:tests/test_contradictions.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:52:27"
   },
   {
@@ -2196,7 +2196,7 @@
     "kind": "general",
     "target": "dangling-dependents-issue-22",
     "source": "file:tests/test_dangling_dependents.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:53:42"
   },
   {
@@ -2204,7 +2204,7 @@
     "kind": "function",
     "target": "reasons/network.py:retract",
     "source": "file:tests/test_dangling_dependents.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:53:42"
   },
   {
@@ -2212,7 +2212,7 @@
     "kind": "function",
     "target": "reasons/api.py:mark_duplicate",
     "source": "file:tests/test_deduplication.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:54:26"
   },
   {
@@ -2220,7 +2220,7 @@
     "kind": "function",
     "target": "reasons/api.py:mark_superseded",
     "source": "file:tests/test_deduplication.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:54:26"
   },
   {
@@ -2228,7 +2228,7 @@
     "kind": "general",
     "target": "truth-maintenance-cascade",
     "source": "file:tests/test_deduplication.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:54:26"
   },
   {
@@ -2236,7 +2236,7 @@
     "kind": "general",
     "target": "truth-maintenance-system",
     "source": "file:tests/test_defeat_justification.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:55:23"
   },
   {
@@ -2244,7 +2244,7 @@
     "kind": "function",
     "target": "reasons/api.py:defeat_with_scope",
     "source": "file:tests/test_defeat_with_scope.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:56:32"
   },
   {
@@ -2252,7 +2252,7 @@
     "kind": "function",
     "target": "reasons/network.py:_rebuild_dependents",
     "source": "file:tests/test_dependents_integrity.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:57:18"
   },
   {
@@ -2260,7 +2260,7 @@
     "kind": "function",
     "target": "reasons/network.py:verify_dependents",
     "source": "file:tests/test_dependents_integrity.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:57:18"
   },
   {
@@ -2268,7 +2268,7 @@
     "kind": "function",
     "target": "reasons/api.py:_rewrite_dependents",
     "source": "file:tests/test_dependents_integrity.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:57:18"
   },
   {
@@ -2276,7 +2276,7 @@
     "kind": "function",
     "target": "reasons/api.py:deduplicate",
     "source": "file:tests/test_derive.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:57:56"
   },
   {
@@ -2284,7 +2284,7 @@
     "kind": "function",
     "target": "reasons/cluster.py:cluster_beliefs_intra",
     "source": "file:tests/test_derive.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:57:56"
   },
   {
@@ -2292,7 +2292,7 @@
     "kind": "function",
     "target": "reasons/derive.py:_build_beliefs_section",
     "source": "file:tests/test_derive_budget.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:58:33"
   },
   {
@@ -2300,7 +2300,7 @@
     "kind": "function",
     "target": "reasons/derive.py:build_prompt",
     "source": "file:tests/test_derive_budget.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:58:33"
   },
   {
@@ -2308,7 +2308,7 @@
     "kind": "general",
     "target": "issue-23-regression-math",
     "source": "file:tests/test_derive_budget.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:58:33"
   },
   {
@@ -2316,7 +2316,7 @@
     "kind": "general",
     "target": "doyle-section-6-tms",
     "source": "file:tests/test_dialectical.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:59:01"
   },
   {
@@ -2324,7 +2324,7 @@
     "kind": "function",
     "target": "reasons/api.py:show_node",
     "source": "file:tests/test_example.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:59:53"
   },
   {
@@ -2332,7 +2332,7 @@
     "kind": "general",
     "target": "example-update-coverage",
     "source": "file:tests/test_example.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T11:59:53"
   },
   {
@@ -2340,7 +2340,7 @@
     "kind": "function",
     "target": "reasons/export_card.py:export_card",
     "source": "file:tests/test_export_card.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:00:35"
   },
   {
@@ -2348,7 +2348,7 @@
     "kind": "function",
     "target": "reasons/metadata.py:SCHEMA_VERSION",
     "source": "file:tests/test_export_card.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:00:35"
   },
   {
@@ -2356,7 +2356,7 @@
     "kind": "general",
     "target": "eem-card-format",
     "source": "file:tests/test_export_card.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:00:35"
   },
   {
@@ -2364,7 +2364,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network.recompute_all",
     "source": "file:tests/test_export_markdown.py",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-19T12:01:41"
   },
   {
@@ -2372,7 +2372,7 @@
     "kind": "function",
     "target": "reasons/export_markdown.py:export_markdown",
     "source": "file:tests/test_export_markdown.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:01:41"
   },
   {
@@ -2380,7 +2380,7 @@
     "kind": "general",
     "target": "defeater-metadata-model",
     "source": "file:tests/test_export_markdown.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:01:41"
   },
   {
@@ -2388,7 +2388,7 @@
     "kind": "repo",
     "target": "reasons-vs-reasons_lib-sync",
     "source": "file:tests/test_export_markdown.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:01:41"
   },
   {
@@ -2396,7 +2396,7 @@
     "kind": "function",
     "target": "reasons/api.py:publish_hf",
     "source": "file:tests/test_hf_default_org.py",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-19T12:02:13"
   },
   {
@@ -4118,5 +4118,1309 @@
     "source": "file:costs/2026-11-19T180331-update.json",
     "status": "pending",
     "added": "2026-11-20T09:01:05"
+  },
+  {
+    "title": "Resolve the duplicated package tree before trusting imports; determines where real logic lives.",
+    "kind": "general",
+    "target": "reasons-vs-reasons-lib",
+    "source": "scan:repo",
+    "status": "pending",
+    "added": "2026-11-20T16:00:31"
+  },
+  {
+    "title": "Shows how a batch of beliefs is formatted, sent to the LLM, and parsed; the unit of failure that `review_justifications` catches.",
+    "kind": "function",
+    "target": "reasons/review_justifications.py:_process_batch",
+    "source": "function:reasons/review_justifications.py:review_justifications",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Inspect the implementation after `:942` to see exactly which tables are written and whether any transaction/locking behavior exists.",
+    "kind": "function",
+    "target": "reasons/api.py:add_tags",
+    "source": "general:external-tag-source-preservation",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Inspect the implementation after `:1013` to compare source-table writes with tag-table writes.",
+    "kind": "function",
+    "target": "reasons/api.py:add_source",
+    "source": "general:external-tag-source-preservation",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Search for the actual `save` implementation and compare its tag/source handling to the direct writes performed by `add_tags` / `add_source`.",
+    "kind": "general",
+    "target": "save-direct-write-reconciliation",
+    "source": "general:external-tag-source-preservation",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "same resolver used for backfilling missing hashes",
+    "kind": "function",
+    "target": "reasons/check_stale.py:hash_sources",
+    "source": "function:reasons/check_stale.py:resolve_source_path",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "how `source` strings are generated at import time (agent vs. expert vs. bare path)",
+    "kind": "general",
+    "target": "source-path-conventions",
+    "source": "function:reasons/check_stale.py:resolve_source_path",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Compare verification-verdict `STALE`, imported-status `STALE`, and source-staleness `STALE` across `verify.py`, `import_*.py`, `export_markdown.py`, and `check_stale.py`.",
+    "kind": "general",
+    "target": "stale-semantics",
+    "source": "general:verdict-taxonomy-consumers",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Whether tests verify `import reasons_lib`, `from reasons_lib.api import ...`, and other historical import paths.",
+    "kind": "general",
+    "target": "shim-test-coverage",
+    "source": "general:backwards-compatibility-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Check issues, telemetry, or external repos before deleting a published import path.",
+    "kind": "general",
+    "target": "downstream-reasons-lib-usage",
+    "source": "general:legacy-namespace-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "String-matching the model\u2019s refusal phrase is fragile; explore prompt/parse coupling invariants",
+    "kind": "general",
+    "target": "dual-mode-empty-detection",
+    "source": "function:reasons/ask.py:ask",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "In `dual` mode `timeout` is per-call, not total; callers of `ask(..., dual=True)` may inadvertently block for minutes",
+    "kind": "general",
+    "target": "timeout-budgeting",
+    "source": "function:reasons/ask.py:ask",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Verify that `reasons_lib` is included in wheels/sdists and whether external callers rely on it.",
+    "kind": "general",
+    "target": "packaging-backcompat",
+    "source": "general:package-alias-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Simulate renaming `reasons` or `reasons.api` to see exactly which shim imports break.",
+    "kind": "diff",
+    "target": "rename-reasons-package",
+    "source": "general:package-alias-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Audit whether `reasons_lib/{network,storage,merkle,compact,derive,mcp_server}.py` still exist; this is the delta between \"`import reasons_lib` works\" and \"all historical `reasons_lib.X` imports work\".",
+    "kind": "general",
+    "target": "reasons_lib-submodule-coverage",
+    "source": "general:package-compatibility-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:02:14"
+  },
+  {
+    "title": "Run a complete search for `reasons_lib`, including dynamic imports, docs, scripts, and downstream consumers; the displayed searches are truncated.",
+    "kind": "general",
+    "target": "full-reasons-lib-import-audit",
+    "source": "general:backwards-compatibility-shim-migration-plan",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Add or inspect tests that import `reasons_lib.check_stale` to catch star-import and public-API regressions before removing the shim.",
+    "kind": "general",
+    "target": "shim-compatibility-tests",
+    "source": "general:backwards-compatibility-shim-migration-plan",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Search the repo and published packages for `import reasons_lib` and `from reasons_lib` to decide whether wholesale deletion breaks callers.",
+    "kind": "general",
+    "target": "reasons-lib-import-sites",
+    "source": "general:dual-package-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Determine whether `reasons_lib` is an externally supported path that requires warnings before removal.",
+    "kind": "general",
+    "target": "public-api-deprecation-policy",
+    "source": "general:dual-package-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Draft the deletion plus import rewrites to `reasons.*` for any remaining internal usages.",
+    "kind": "diff",
+    "target": "remove-reasons_lib",
+    "source": "general:dual-package-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Run a corrected/complete grep over all 33 `reasons_lib/` files for `^from reasons(\\.| import)` to verify the shim pattern reliably.",
+    "kind": "general",
+    "target": "reliable-reasons-lib-shim-scan",
+    "source": "general:reasons-vs-reasons-lib-mirroring",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Determine whether downstream users still import `reasons_lib`, since internal references are inconclusive in the provided observations.",
+    "kind": "general",
+    "target": "external-consumer-compat",
+    "source": "general:reasons-vs-reasons_lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Look for project policy on backward compatibility, deprecation windows, and major-version removals.",
+    "kind": "general",
+    "target": "release-deprecation-policy",
+    "source": "general:reasons-vs-reasons_lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Search PyPI dependents / GitHub for `import reasons_lib` before deleting, since the shim is silent.",
+    "kind": "general",
+    "target": "downstream-consumer-audit",
+    "source": "general:package-rename-shim-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Reconcile `pyproject.toml` version `0.58.0` with `CHANGELOG.md` topping out at `0.18.0`, and document the `reasons_lib` rename retroactively.",
+    "kind": "general",
+    "target": "changelog-version-sync",
+    "source": "general:package-rename-shim-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Search repository issues/PRs for any planned removal or migration discussions.",
+    "kind": "general",
+    "target": "reasons-lib-deprecation-issues",
+    "source": "general:compatibility-shim-pattern",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Decide whether `reasons_lib` is still a supported external import path or can be removed as an internal rename cleanup.",
+    "kind": "general",
+    "target": "reasons-lib-compatibility-policy",
+    "source": "general:reasons-lib-to-reasons-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Compare the old shim modules against `reasons/__init__.py`, `reasons/api.py`, and `reasons/storage.py` to verify re-export parity.",
+    "kind": "diff",
+    "target": "reasons_lib-to-reasons-rename",
+    "source": "general:reasons-lib-to-reasons-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Search outside the repo, such as downstream packages or documentation, for `import reasons_lib` and `from reasons_lib`.",
+    "kind": "general",
+    "target": "external-consumer-search",
+    "source": "general:reasons-lib-to-reasons-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Enumerate every file under `reasons_lib/` to confirm whether all are 3-line shims or whether any file contains implementation.",
+    "kind": "general",
+    "target": "reasons-lib-file-inventory",
+    "source": "general:package-rename-compat-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Re-run recursive searches for `from reasons_lib` and `import reasons_lib`, because the reported zero counts contradict the sampled file contents.",
+    "kind": "general",
+    "target": "dependency-direction-grep",
+    "source": "general:package-rename-compat-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Use this as an example implementation function to verify no competing implementation exists in `reasons_lib`.",
+    "kind": "function",
+    "target": "reasons/api.py:_get_node_tags",
+    "source": "general:package-rename-compat-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:03:28"
+  },
+  {
+    "title": "Compare how CLI aliases (`reasons/cli.py:3064`, `reasons/cli.py:3854`) and the Python shim are both deprecated via documentation only, suggesting a project-wide pattern.",
+    "kind": "general",
+    "target": "deprecation-strategy",
+    "source": "general:deprecation-signalling",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Compare `dir(reasons)`, `dir(reasons_lib)`, and each `reasons_lib/*.py` shim against the intended documented API.",
+    "kind": "general",
+    "target": "implicit-public-api-audit",
+    "source": "general:star-import-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Plan the migration from wildcard shims to explicit imports and/or `__all__` while preserving backwards compatibility.",
+    "kind": "general",
+    "target": "explicit-reexport-migration",
+    "source": "general:star-import-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Look for pytest cases that import every name through `reasons_lib` to detect wildcard-re-export regressions.",
+    "kind": "general",
+    "target": "compat-shim-test-coverage",
+    "source": "general:backwards-compatibility-shim",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Proposed one-line `__all__` in `reasons/__init__.py:1` that would curate wildcard re-exports without editing 33 shim files.",
+    "kind": "general",
+    "target": "add-reasons-all",
+    "source": "general:backwards-compatibility-shim",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Run pyright under `strict` against a consumer that imports from `reasons_lib` to see what falls back to `Any`.",
+    "kind": "general",
+    "target": "pyright-strict-vs-shim",
+    "source": "general:backwards-compatibility-shim",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Search the whole repo (including downstream projects) for live `reasons_lib` imports to know when the shim can be deleted.",
+    "kind": "general",
+    "target": "reasons_lib-removal-plan",
+    "source": "general:package-rename-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Build a table of {shim path, source module `__all__`, private names in source, tests that patch through shim} for all ~30 shims; the 0-match results in this prompt are not trustworthy until re-run without filters.",
+    "kind": "general",
+    "target": "shim-audit-matrix",
+    "source": "general:star-import-reexport-pitfalls",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Decide between explicit imports, `__all__` mirroring, and `sys.modules` aliasing; each has different implications for type checkers, Sphinx autosummary, and pickle compatibility.",
+    "kind": "general",
+    "target": "star-import-replacement-strategy",
+    "source": "general:star-import-reexport-pitfalls",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Compare the `reasons_lib` shim against other deprecated aliases in the CLI to determine whether the project's convention is docstring-only deprecation or runtime warnings.",
+    "kind": "general",
+    "target": "deprecation-rollout-pattern",
+    "source": "general:reasons-vs-reasons_lib-rename",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Inspect release history for whether `reasons_lib` has ever been announced for removal on PyPI or in a GitHub release, since the local changelog is incomplete.",
+    "kind": "repo",
+    "target": "ftl-reasons",
+    "source": "general:reasons-vs-reasons_lib-rename",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Check consumers that rely on `reasons_lib.__name__`, `__spec__`, reload behavior, pickling, or submodule imports.",
+    "kind": "general",
+    "target": "import-aliasing-compatibility",
+    "source": "general:import-star-reexport-hazards",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Add tests that patch `reasons.Node` and `reasons_lib.Node` to verify which module attributes are visible through each import path.",
+    "kind": "general",
+    "target": "monkeypatch-test-strategy",
+    "source": "general:import-star-reexport-hazards",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Confirm whether `reasons` has submodules; top-level `sys.modules` aliasing does not automatically alias `reasons.foo` to `reasons_lib.foo`.",
+    "kind": "general",
+    "target": "reasons-submodule-layout",
+    "source": "general:import-star-reexport-hazards",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Search downstream callers before adding `__all__`, since code may be relying on incidental names like `from reasons import dataclass`.",
+    "kind": "general",
+    "target": "star-import-compatibility",
+    "source": "general:star-import-namespace-leakage",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Grep GitHub/PyPI dependents for `from reasons_lib`/`import reasons_lib` before deleting the shim",
+    "kind": "general",
+    "target": "reasons-lib-external-consumer-audit",
+    "source": "general:import-direction-audit",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "The AST dumper collapses `from .network import X` to `module: \"network\"`, which is the root cause of this misread",
+    "kind": "general",
+    "target": "relative-import-json-serialization",
+    "source": "general:import-direction-audit",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Understand the real Merkle hashing API that a shim would re-export.",
+    "kind": "function",
+    "target": "reasons/merkle.py:compute_merkle_hash",
+    "source": "general:reasons-lib-package-shim-pattern",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Compare every `reasons_lib` module against its `reasons` counterpart for non-shim exceptions.",
+    "kind": "general",
+    "target": "reasons-lib-shim-consistency",
+    "source": "general:reasons-lib-package-shim-pattern",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Reconcile why grep found no `from reasons` imports despite direct file reads showing them.",
+    "kind": "general",
+    "target": "grep-evidence-gap",
+    "source": "general:reasons-lib-package-shim-pattern",
+    "status": "pending",
+    "added": "2026-11-20T16:05:17"
+  },
+  {
+    "title": "Search downstream users, tests, and docs for remaining `reasons_lib` imports before planning removal.",
+    "kind": "general",
+    "target": "reasons-lib-external-usage",
+    "source": "general:namespace-migration-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:06:46"
+  },
+  {
+    "title": "Run a tree-walk over `reasons_lib/*.py` and grep for `from reasons` to enumerate the actual shim set, since the observation grep for `reasons_lib` only found usage, not shim contents.",
+    "kind": "general",
+    "target": "alternate-shim-scan",
+    "source": "general:package-layout-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Check git history / issue tracker for a planned `reasons_lib` removal (version, date, or deprecation-warning addition) to confirm the end state is removal rather than permanent dual maintenance.",
+    "kind": "general",
+    "target": "deprecation-removal-timeline",
+    "source": "general:package-layout-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Search external packaging/dependency metadata off-repo to gauge how many consumers still rely on `reasons_lib`, which determines how much longer the shim must ship.",
+    "kind": "general",
+    "target": "downstream-importers",
+    "source": "general:package-layout-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Investigate whether `_pg_dispatch` / `api.topics(db_path=..., pg_conninfo=...)` emit analogous events, or whether pub/sub is file-DB-only.",
+    "kind": "general",
+    "target": "pg-backend-pubsub",
+    "source": "general:pubsub-event-contracts",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "The canonical API surface that `reasons_lib/api.py` re-exports by `*`; confirms what the shim actually exposes.",
+    "kind": "file",
+    "target": "reasons/api.py:1-60",
+    "source": "general:reasons-vs-reasons-lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Enumerate any PyPI packages or internal services that `import reasons_lib`; this is the sole gate on deletion.",
+    "kind": "general",
+    "target": "downstream-consumers-of-reasons_lib",
+    "source": "general:reasons-vs-reasons-lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Check whether `reasons_lib/__init__.py` emits a `DeprecationWarning` (it does not, per line 1-3 of the observation) and decide whether one should be added before deletion.",
+    "kind": "general",
+    "target": "deprecation-schedule",
+    "source": "general:reasons-vs-reasons-lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "The only historical reference to `reasons_lib.api`; gives the origin context for the shim.",
+    "kind": "file",
+    "target": "CHANGELOG.md:136",
+    "source": "general:reasons-vs-reasons-lib-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Look for roadmap, issue labels, or semver policy that might define when compatibility shims are removed.",
+    "kind": "general",
+    "target": "backwards-compatibility-policy",
+    "source": "general:shim-migration-policy",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Search tests for imports of `reasons_lib` to see whether compatibility behavior is explicitly tested.",
+    "kind": "general",
+    "target": "reasons-lib-import-tests",
+    "source": "general:shim-migration-policy",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "No tests currently assert the shim\u2019s export contract; add tests around `__all__` and wildcard imports if this API matters.",
+    "kind": "general",
+    "target": "export-contract-tests",
+    "source": "general:python-star-import-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Rerun a broader search including `from reasons_lib.storage import ...` and dynamic imports.",
+    "kind": "general",
+    "target": "import-usage-audit",
+    "source": "general:compatibility-shim-migration",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "`0.18.0` documents inheritance, forward propagation, `PermissionError` on single-node reads, and nogood filtering in exports; trace how `--visible-to` is threaded through `show`/`list`/`search`/`export` in `reasons/cli.py` and `reasons_lib/storage.py`.",
+    "kind": "general",
+    "target": "access-tags-rbac",
+    "source": "file:CHANGELOG.md",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "The `rms` \u2192 `reasons` rename (with the 5pp ablation rationale) explains the dual `reasons/` and `reasons_lib/` directories; inspect the tree at that tag to see what moved.",
+    "kind": "diff",
+    "target": "0.3.0-rename",
+    "source": "file:CHANGELOG.md",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Whether a script asserts `## [<version>]` exists at the top of `CHANGELOG.md` before publishing to PyPI; this is what would have caught the missing `0.11.0` entry.",
+    "kind": "general",
+    "target": "release-checklist",
+    "source": "file:CHANGELOG.md",
+    "status": "pending",
+    "added": "2026-11-20T16:06:47"
+  },
+  {
+    "title": "Try deleting `reasons_lib/__init__.py` locally; note the shim still imports but star-re-export breaks (PEP 420 behavior)",
+    "kind": "general",
+    "target": "namespace-package-vs-regular-package",
+    "source": "general:pytest-importmodes",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "How `prepend` vs `append` vs `importlib` change `sys.path` mutation and test-module naming, which is the decisive factor for dropping `tests/__init__.py`.",
+    "kind": "general",
+    "target": "pytest-import-modes",
+    "source": "general:pep-420-namespace-packages",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "The central generator fixture whose skip, yield, and teardown behavior determines the test failure modes.",
+    "kind": "function",
+    "target": "tests/conftest.py:pg_api",
+    "source": "general:pytest-fixture-lifecycle",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Explore pytest\u2019s finalization rules for setup exceptions, skip exceptions, and scoped fixtures.",
+    "kind": "general",
+    "target": "pytest-generator-fixture-semantics",
+    "source": "general:pytest-fixture-lifecycle",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Inspect `reasons.pg.PgApi` to see whether constructor or `init_db()` failures leave open connections/resources.",
+    "kind": "general",
+    "target": "pg-api-lifecycle",
+    "source": "general:pytest-fixture-lifecycle",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "The paired reverse operation and how `remaining_refs` cleanup avoids stale `dependents` entries; contrast with `_rebuild_dependents`.",
+    "kind": "function",
+    "target": "reasons/network.py:remove_justification",
+    "source": "function:reasons/network.py:add_justification",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Where `metadata[\"_retracted\"]` is honored vs bypassed (`recompute_all` vs `add_justification`), and how that affects restoration semantics.",
+    "kind": "general",
+    "target": "retracted-flag-consistency",
+    "source": "function:reasons/network.py:add_justification",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Recursive depth computation with cycle guard and memoization; used by `min_depth`/`max_depth` and `sort=\"depth\"`.",
+    "kind": "function",
+    "target": "reasons/api.py:_node_depth",
+    "source": "function:reasons/api.py:list_nodes",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "`_is_visible` semantics (`all()` subset check), and where else (search/compact/export) it gates node visibility.",
+    "kind": "general",
+    "target": "access-tag-visibility-model",
+    "source": "function:reasons/api.py:list_nodes",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "The security predicate; its \"no tags \u21d2 public\" rule shapes every access check in this module.",
+    "kind": "function",
+    "target": "reasons/api.py:_is_visible",
+    "source": "function:reasons/api.py:explain_node",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Trace how `except PermissionError as e:` handlers at `cli.py:521, 644, 746, 816, 834` format the denial for the user",
+    "kind": "general",
+    "target": "permission-error-to-cli-message",
+    "source": "general:access-control-tag-visibility-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "How OR expansion is modeled (multiple single-antecedent justifications rather than a special `ANY` type), and why `premise_count` is hardcoded to `1` in that branch.",
+    "kind": "general",
+    "target": "any-mode-OR-vs-AND-semantics",
+    "source": "function:reasons/api.py:add_justification",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "The BFS over the dependents index that both computes cascade radius and drives the `depth`/`dependents` fields in `retract`/`assert_node` results",
+    "kind": "function",
+    "target": "reasons/api.py:_cascade_depth",
+    "source": "general:truth-maintenance-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "The actual evaluator that applies the \"OR across justifications, AND inside a justification\" rule and distinguishes SL from CP; not visible in the supplied snippet but required to fully understand \u00a71\u2013\u00a72",
+    "kind": "function",
+    "target": "reasons/network.py:Network.evaluate",
+    "source": "general:truth-maintenance-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "How CP (\"assumptions are consistent\") is validated during propagation \u2014 the snippet only asserts the contract, not the algorithm",
+    "kind": "general",
+    "target": "cp-consistency-check",
+    "source": "general:truth-maintenance-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:08:14"
+  },
+  {
+    "title": "Shows how `premise_count` and `any_mode` drive the user-facing 3+ premise tip.",
+    "kind": "function",
+    "target": "reasons/cli.py:_warn_multi_premise",
+    "source": "general:any-mode-vs-and-mode-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Explore how the RMS evaluates multiple justifications and antecedents to decide IN/OUT.",
+    "kind": "general",
+    "target": "truth-value-evaluation",
+    "source": "general:any-mode-vs-and-mode-semantics",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "The helper that builds `\"t1\" \"t2\"` and runs `MATCH ... ORDER BY rank LIMIT 200`; understanding the implicit AND semantics is essential for interpreting `_fts_search` results.",
+    "kind": "function",
+    "target": "reasons/api.py:_fts_query",
+    "source": "function:reasons/api.py:_fts_search",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Handles `foo|bar` queries by running each subterm through `_fts_search` with per-branch fallback; useful for understanding how OR composition interacts with relaxation.",
+    "kind": "function",
+    "target": "reasons/api.py:_or_search",
+    "source": "function:reasons/api.py:_fts_search",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "The exact stop-word list feeding step 3; changing this changes the relaxation behavior because it determines which terms survive the primary filter.",
+    "kind": "function",
+    "target": "reasons/api.py:_STOP_WORDS",
+    "source": "function:reasons/api.py:_fts_search",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Shows the exact SQL and return semantics for proposal-time `(target, action)` staling.",
+    "kind": "function",
+    "target": "reasons/api.py:_stale_older_pending",
+    "source": "general:proposal-drift-and-staling",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Explore pending/stale/accepted proposal states and how CLI, API, and MCP callers react to each.",
+    "kind": "general",
+    "target": "proposal-status-lifecycle",
+    "source": "general:proposal-drift-and-staling",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Consumer that renders this output into `FTS_RAG_PROMPT` and returns a \"No relevant documents\" fallback on empty context",
+    "kind": "function",
+    "target": "reasons/ask.py:_fts_rag_answer",
+    "source": "function:reasons/ask.py:_search_source_chunks",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "The `chunks` table and FTS5 virtual table schema; determines what `filename`, `section`, and `rank` mean",
+    "kind": "general",
+    "target": "chunks-fts-schema",
+    "source": "function:reasons/ask.py:_search_source_chunks",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "How the `dual=True` path combines TMS and FTS answers, of which this chunk context is one input",
+    "kind": "general",
+    "target": "dual-answer-merge",
+    "source": "function:reasons/ask.py:_search_source_chunks",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Builds `MERGE_PROMPT` and invokes the third LLM call.",
+    "kind": "function",
+    "target": "reasons/ask.py:_merge_answers",
+    "source": "general:dual-answer-merge-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "How `simple=True` vs `simple=False` changes 3 vs up to 5 LLM calls.",
+    "kind": "general",
+    "target": "dual-mode-cost-profile",
+    "source": "general:dual-answer-merge-strategy",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "The duck-typed contract (`list_tools`, `call_tool`, `get_instructions`) enforced only implicitly.",
+    "kind": "general",
+    "target": "mcp-bridge-interface",
+    "source": "function:reasons/ask.py:_build_tools_section",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "How this text-based function-calling approach trades reliability for model-portability versus native tool APIs.",
+    "kind": "general",
+    "target": "prompt-tool-protocol",
+    "source": "function:reasons/ask.py:_build_tools_section",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Compare the SQL-backed implementation with the in-memory one and check for parity.",
+    "kind": "function",
+    "target": "reasons/pg.py:_entrenchment",
+    "source": "general:entrenchment-heuristic",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Verify whether the two `_entrenchment` implementations produce identical scores for the same node data.",
+    "kind": "general",
+    "target": "entrenchment-parity-network-vs-pg",
+    "source": "general:entrenchment-heuristic",
+    "status": "pending",
+    "added": "2026-11-20T16:09:44"
+  },
+  {
+    "title": "Deterministic cross-URL linking of node IDs; governs the inter-page navigation guarantees of the wiki.",
+    "kind": "function",
+    "target": "reasons/build_wiki.py:_linkify",
+    "source": "function:reasons/build_wiki.py:build_wiki",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Slug derivation and collision surface; understanding it is prerequisite to prediction of filenames.",
+    "kind": "function",
+    "target": "reasons/build_wiki.py:_page_name",
+    "source": "function:reasons/build_wiki.py:build_wiki",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "How partial LLM failures degrade the wiki into raw-node rendering, and how callers should detect it.",
+    "kind": "general",
+    "target": "llm-generation-fallback",
+    "source": "function:reasons/build_wiki.py:build_wiki",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Contrasts deterministic node rendering with the LLM prompt-oriented belief formatter.",
+    "kind": "function",
+    "target": "reasons/build_wiki.py:_format_beliefs_for_prompt",
+    "source": "function:reasons/build_wiki.py:_format_node",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "The formatter relies heavily on fields like `truth_value`, `justifications`, `supporting_justification`, `dependents`, and `metadata`.",
+    "kind": "general",
+    "target": "belief-node-detail-shape",
+    "source": "function:reasons/build_wiki.py:_format_node",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "The interaction of `pinned_sha` and `pinned_lines` and why the pinned-lines path bumps `source_hash` with a full-file hash even when only a range is relevant.",
+    "kind": "general",
+    "target": "git-aware-pinning",
+    "source": "function:reasons/check_stale.py:check_stale",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "The only git helper in this module that doesn't catch `TimeoutExpired`; worth understanding when the whole call can fail mid-flight.",
+    "kind": "function",
+    "target": "reasons/check_stale.py:get_file_commit_sha",
+    "source": "function:reasons/check_stale.py:check_stale",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Determines whether `reasons_lib/` re-exports from `reasons/` or contains duplicated mirrored modules.",
+    "kind": "general",
+    "target": "reasons-lib-shim-vs-mirror",
+    "source": "general:reasons-vs-reasons_lib",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Checks whether any test imports through `reasons_lib` to catch stale shim behavior.",
+    "kind": "general",
+    "target": "backwards-compat-test-coverage",
+    "source": "general:reasons-vs-reasons_lib",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Whether `DEFEAT_REASON_TYPES` and `CLASSIFY_DEFEAT_REASON_PROMPT` are kept in sync anywhere (grep for both slugs in the repo).",
+    "kind": "general",
+    "target": "defeat-reason-type-taxonomy",
+    "source": "function:reasons/review.py:classify_defeat_reason",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "How other call sites cope with chatty/nonconforming LLM output (compare with `parse_review_response`'s `raw_decode` strategy).",
+    "kind": "general",
+    "target": "llm-output-normalization",
+    "source": "function:reasons/review.py:classify_defeat_reason",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Understand why each classification triggers a full load/save/pubsub cycle, and whether a batched write path exists elsewhere.",
+    "kind": "function",
+    "target": "reasons/api.py:set_metadata",
+    "source": "function:reasons/api.py:classify_defeat_reason_types",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Determines what metadata survives export (e.g. `_`-prefixed keys are stripped) and how `_network_cache` affects repeated reads.",
+    "kind": "function",
+    "target": "reasons/api.py:export_network",
+    "source": "function:reasons/api.py:classify_defeat_reason_types",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Which `defeat_reason_type` values are meaningful in this system and how downstream reports group on them.",
+    "kind": "general",
+    "target": "defeater-taxonomy",
+    "source": "function:reasons/api.py:classify_defeat_reason_types",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "How `_with_network` diffs pre/post truth values and publishes events; relevant to any write-side side effect",
+    "kind": "general",
+    "target": "pubsub-change-events",
+    "source": "function:reasons/api.py:defeat_justification",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Inspect the backward dependency traversal, union-of-tags calculation, and permission gate.",
+    "kind": "function",
+    "target": "reasons/api.py:trace_access_tags",
+    "source": "general:cli-access-control",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Build a matrix of commands showing whether `--visible-to` filters results, blocks a direct read, or restricts publish/export output.",
+    "kind": "general",
+    "target": "visible-to-command-matrix",
+    "source": "general:cli-access-control",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Explains how `cluster_beliefs` and `cluster_beliefs_intra` are used by the derive pipeline.",
+    "kind": "general",
+    "target": "derive-pipeline-cluster-mode",
+    "source": "function:reasons/cluster.py:cluster_beliefs",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Investigates cases where quota caps cause fewer than `budget` beliefs to be selected.",
+    "kind": "general",
+    "target": "cluster-budget-underfill",
+    "source": "function:reasons/cluster.py:cluster_beliefs",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Calls `_auto_k` without a budget-derived `max_k` and guards small belief sets before clustering.",
+    "kind": "function",
+    "target": "reasons/cluster.py:list_clusters",
+    "source": "function:reasons/cluster.py:_auto_k",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Compare this heuristic with elbow/silhouette methods and consider why one cluster per five beliefs was chosen.",
+    "kind": "general",
+    "target": "kmeans-cluster-count-selection",
+    "source": "function:reasons/cluster.py:_auto_k",
+    "status": "pending",
+    "added": "2026-11-20T16:11:26"
+  },
+  {
+    "title": "Demonstrates the actual budget checks, footer reservation, and section truncation logic.",
+    "kind": "function",
+    "target": "reasons/compact.py:compact",
+    "source": "function:reasons/compact.py:estimate_tokens",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Explains why `chars / 4` is only a rough approximation and where it fails.",
+    "kind": "general",
+    "target": "bpe-token-estimation",
+    "source": "function:reasons/compact.py:estimate_tokens",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Covers the design pattern of fitting summaries into LLM context windows.",
+    "kind": "general",
+    "target": "token-budgeted-context-injection",
+    "source": "function:reasons/compact.py:estimate_tokens",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The public API wrapper and how it threads `budget` into the network compact implementation.",
+    "kind": "function",
+    "target": "reasons/api.py:compact",
+    "source": "general:soft-budget-algorithm",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Why chars/4 diverges from real model tokenizers for code, IDs, and markdown.",
+    "kind": "general",
+    "target": "bpe-tokenization",
+    "source": "general:soft-budget-algorithm",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The non-semantic variant; compare random batching versus semantic clustering, especially coverage and duplicate behavior.",
+    "kind": "function",
+    "target": "reasons/contradictions.py:detect_contradictions",
+    "source": "function:reasons/contradictions.py:detect_contradictions_semantic",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The tradeoff between topical grouping and missing contradictions that span different clusters.",
+    "kind": "general",
+    "target": "semantic-clustering-contradiction-coverage",
+    "source": "function:reasons/contradictions.py:detect_contradictions_semantic",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The mutating operation behind `auto_apply`; shows why retraction cascades can occur and what `changed` / `backtracked_to` mean.",
+    "kind": "function",
+    "target": "reasons/api.py:add_nogood",
+    "source": "function:reasons/api.py:detect_contradictions",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Review the regression diff that changed the `KeyError` behavior into warn-and-skip behavior.",
+    "kind": "diff",
+    "target": "issue-22-dangling-dependent-guard",
+    "source": "general:dangling-dependents-issue-22",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Keep source-file staleness separate from reverse-index stale/dangling dependents.",
+    "kind": "general",
+    "target": "check-stale-vs-dependents-staleness",
+    "source": "general:dangling-dependents-issue-22",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The inverse operation; note it clears `_retracted` and `retract_reason` is not cleared automatically",
+    "kind": "function",
+    "target": "reasons/network.py:assert_node",
+    "source": "function:reasons/network.py:retract",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Understand exactly how the retraction cascade and `changed` list are computed; this is what determines the meaning of the returned `changed`.",
+    "kind": "function",
+    "target": "reasons/network.py:Network.retract",
+    "source": "function:reasons/api.py:mark_duplicate",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The graph-native (reversible) alternative; uses outlist instead of `retract()`, so cascades behave differently when `new_id` goes OUT.",
+    "kind": "function",
+    "target": "reasons/api.py:supersede",
+    "source": "function:reasons/api.py:mark_superseded",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Higher-level variant that creates the replacement node and supersedes in one call; what most callers should use.",
+    "kind": "function",
+    "target": "reasons/api.py:supersede_with_text",
+    "source": "function:reasons/api.py:mark_superseded",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The modern mutation path (`propose_supersession` + `accept_proposal`) that intentionally avoids this string-metadata style.",
+    "kind": "general",
+    "target": "proposals-accept-flow",
+    "source": "function:reasons/api.py:mark_superseded",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "Defines the `Node.dependents` set (IDs of nodes whose SL justifications reference this node) and the `truth_value`/`\"OUT\"` state that propagation mutates.",
+    "kind": "file",
+    "target": "reasons/node.py",
+    "source": "general:truth-maintenance-cascade",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The `{\"action\": \"warn\", \"target\", \"value\", \"timestamp\"}` log contract used for observability of skipped dependents; worth verifying against `net.log` consumers.",
+    "kind": "general",
+    "target": "dangling-dependents-log-schema",
+    "source": "general:truth-maintenance-cascade",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "`SKILL.md:38` introduces nogoods (a set of nodes that cannot all be IN); check whether the resolution machinery follows Doyle's contradiction handling or de Kleer-style nogood records, since the codebase cites only Doyle.",
+    "kind": "general",
+    "target": "nogood-vs-doyle",
+    "source": "general:truth-maintenance-system",
+    "status": "pending",
+    "added": "2026-11-20T16:13:05"
+  },
+  {
+    "title": "The interplay of justification `antecedents` (IN to satisfy) vs `outlist` (OUT to satisfy) explains why *both* are treated as \"dependents\" here.",
+    "kind": "general",
+    "target": "tms-nonmonotonic-outlist-semantics",
+    "source": "function:reasons/network.py:_rebuild_dependents",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Explore every code path that adds, removes, rebuilds, or manually adjusts `dependents` sets.",
+    "kind": "general",
+    "target": "dependents-index-maintenance",
+    "source": "function:reasons/network.py:verify_dependents",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Reviewed-plan caller; also uses this helper.",
+    "kind": "function",
+    "target": "reasons/api.py:apply_dedup_plan",
+    "source": "function:reasons/api.py:_rewrite_dependents",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "How `dependents` sets are populated incrementally by `add_node` / `add_justification` and re-hydrated in `export_network` / `import_json`.",
+    "kind": "general",
+    "target": "reverse-index-consistency",
+    "source": "function:reasons/api.py:_rewrite_dependents",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Tokenization strategy for IDs (determines what \"similar ID\" means in practice).",
+    "kind": "function",
+    "target": "reasons/derive.py_something:_jaccard",
+    "source": "function:reasons/api.py:deduplicate",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "How `round_num`, `cache`, and clustering strategy are wired into the derive pipeline.",
+    "kind": "general",
+    "target": "derive-cluster-mode",
+    "source": "function:reasons/cluster.py:cluster_beliefs_intra",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "The shared sampling helper; verify its `rng.sample` behavior and the docstring/implementation mismatch noted above.",
+    "kind": "function",
+    "target": "reasons/derive.py:_sample_beliefs",
+    "source": "function:reasons/derive.py:_build_beliefs_section",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Constructs the `agents` dict consumed here; explains why the sort key (`len(agents[a])`) diverges from the display count (`in_nodes`).",
+    "kind": "function",
+    "target": "reasons/derive.py:_detect_agents",
+    "source": "function:reasons/derive.py:_build_beliefs_section",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Defines depth semantics, supporting-justification behavior, and cycle guard logic.",
+    "kind": "function",
+    "target": "reasons/derive.py:_get_depth",
+    "source": "function:reasons/derive.py:build_prompt",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Explores supported placeholders and brace-escaping behavior for `prompt_template`.",
+    "kind": "general",
+    "target": "custom-prompt-template-contract",
+    "source": "function:reasons/derive.py:build_prompt",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "The `max(5, int(max_beliefs * len(agent_beliefs) / total_all))` formula; explore how the `max(5, \u2026)` floor interacts with the post-loop `count` to produce the overall `max_beliefs` cap (and where it can still overflow in pathological multi-agent networks).",
+    "kind": "general",
+    "target": "proportional-budget-allocation",
+    "source": "general:issue-23-regression-math",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "Compare the current line to the pre-fix placement; understand that the change is purely loop-scoping, not a semantic change to `count`'s meaning.",
+    "kind": "diff",
+    "target": "299",
+    "source": "general:issue-23-regression-math",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "The Doyle TMS propagation loop; explains why cascades work identically for dialectics and ordinary justifications.",
+    "kind": "function",
+    "target": "reasons/network.py:propagate",
+    "source": "general:doyle-section-6-tms",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "The source paper; read \u00a71\u20133 for SL/CP justifications and \u00a76 for the dialectical framing cited in `tests/test_dialectical.py`.",
+    "kind": "general",
+    "target": "doyle-1979-truth-maintenance-system",
+    "source": "general:doyle-section-6-tms",
+    "status": "pending",
+    "added": "2026-11-20T16:14:49"
+  },
+  {
+    "title": "The PostgreSQL counterpart that must return the same shape; check whether it honors `supporting_justification`, `content_hash`, etc.",
+    "kind": "function",
+    "target": "reasons/pg.py:PgApi.show_node",
+    "source": "function:reasons/api.py:show_node",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "How tags/sources moved out of the serialized `Network` into side tables, and which write paths must stay in sync.",
+    "kind": "general",
+    "target": "node_tags-and-node_sources-table-migration",
+    "source": "function:reasons/api.py:show_node",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Search for the actual CLI/API update code to verify whether any update path accepts and persists `example`.",
+    "kind": "general",
+    "target": "update-command-implementation",
+    "source": "general:example-update-coverage",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Confirms the shape of `nodes`, `truth_value`, `justifications`, `supporting_justification`, and `nogoods`.",
+    "kind": "function",
+    "target": "reasons/network.py:Network",
+    "source": "function:reasons/export_card.py:export_card",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Look up the external HF/EEM schema to confirm required vs optional fields.",
+    "kind": "general",
+    "target": "HuggingFace EEM card specification",
+    "source": "general:eem-card-format",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Understand the external schema this output claims compatibility with, so changes here can be evaluated against a real spec.",
+    "kind": "general",
+    "target": "beliefs-md-format",
+    "source": "function:reasons/export_markdown.py:export_markdown",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Understand how `Justification` rows vs. defeater nodes interact (two ways to defeat a belief in this system).",
+    "kind": "general",
+    "target": "defeater-vs-justification-model",
+    "source": "general:defeater-metadata-model",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "How `propose_update.py` writes `.forge/proposed-entries.json` and `.forge/report.json`, and whether the loop is human-gated.",
+    "kind": "general",
+    "target": "forge-propose-update-loop",
+    "source": "repo-overview",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Defines token precedence (argument \u2192 `HF_TOKEN` \u2192 CLI cache); the exact order matters for both `publish_hf` and `import_hf`.",
+    "kind": "function",
+    "target": "reasons/hf.py:_resolve_token",
+    "source": "function:reasons/api.py:publish_hf",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Determines retry/error behavior; a mid-sequence failure here leaves partial remote state.",
+    "kind": "function",
+    "target": "reasons/hf.py:upload_file",
+    "source": "function:reasons/api.py:publish_hf",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
+  },
+  {
+    "title": "Corresponds to `tests/test_hf_default_org.py`; explains how a bare `repo_id` (no slash) is resolved to a full `org/name`.",
+    "kind": "general",
+    "target": "hf-default-org",
+    "source": "function:reasons/api.py:publish_hf",
+    "status": "pending",
+    "added": "2026-11-20T16:16:02"
   }
 ]

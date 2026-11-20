@@ -1,0 +1,993 @@
+=== explore-propose-accept / explore (round 1) — 2026-11-20T16:00:34 ===
+
+=== Round 1: Explore (up to 100 topics) ===
+
+
+========================================
+[1-10/100] (306 remaining in queue)
+========================================
+  [function] reasons/review_justifications.py:review_justifications
+  [general] external-tag-source-preservation
+  [function] reasons/check_stale.py:resolve_source_path
+  [general] verdict-taxonomy-consumers
+  [diff] reasons/__init__.py vs reasons_lib/__init__.py
+  [general] backwards-compatibility-strategy
+  [general] legacy-namespace-migration
+  [function] reasons/ask.py:ask
+  [general] package-alias-migration
+  [general] package-compatibility-strategy
+Explaining [function] reasons/review_justifications.py:review_justifications with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] external-tag-source-preservation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/check_stale.py:resolve_source_path with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] verdict-taxonomy-consumers with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [diff] reasons/__init__.py vs reasons_lib/__init__.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Error getting diff: Git diff failed: fatal: ambiguous argument 'origin/main...reasons/__init__.py vs reasons_lib/__init__.py': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+Explaining [general] backwards-compatibility-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] legacy-namespace-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/ask.py:ask with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-alias-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-compatibility-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-review_justifications-review_justifications.md
+Queued 1 new topic(s) (307 pending)
+Surfaced 5 belief(s):
+  review-justifications-is-read-only: The function never mutates `nodes` or the underlying database; it only returns a
+  parallel-results-are-unordered: When `parallel > 0`, returned results follow batch completion order, not the inp
+  belief-ids-is-weakly-honored: Explicit `belief_ids` are still re-filtered by `truth_value == "IN"` and multi-a
+  batch-errors-are-swallowed: Any exception from `_process_batch` or `on_batch` is logged to stderr and never 
+  on-batch-receives-cumulative-list: `on_batch` is called with the same growing `all_results` list each iteration; ca
+Entry: summaries/2026/11/20/topic-external-tag-source-preservation.md
+Queued 3 new topic(s) (310 pending)
+Surfaced 5 belief(s):
+  add-tags-cli-calls-api-add-tags: `reasons/cli.py:590` calls `api.add_tags(args.node_id, args.tags, **_backend_kwa
+  add-source-cli-registered-as-add-source: `reasons/cli.py:3942` maps `"add-source"` to `cmd_add_source`, which calls `api.
+  add-tags-and-add-source-write-directly-to-tables: `reasons/storage.py:210` states that `add_tags()` and `add_source()` write direc
+  postgresql-rejects-add-tags-and-add-source: `reasons/api.py:942` and `reasons/api.py:1013` raise `NotImplementedError` for P
+  save-implementation-not-observed: The observations contain no `save` definition and no out-of-band comment matches
+Entry: summaries/2026/11/20/reasons-check_stale-resolve_source_path.md
+Queued 2 new topic(s) (312 pending)
+Surfaced 5 belief(s):
+  resolve-source-path-requires-file-existence: The function returns a `Path` only after verifying `path.exists()`; otherwise it
+  resolve-source-path-checks-agent-repo-first: When `agent` is present in `repos`, that repo is consulted before `db_dir` and t
+  resolve-source-path-splits-once: `source.split("/", 1)` preserves remaining path segments, so multi-level relativ
+  resolve-source-path-falls-back-to-git-home: If the first segment isn't a key in `repos`, resolution uses `~/git/<repo_name>/
+  resolve-source-path-returns-none-on-missing-source: Empty `source` and any unresolved/ nonexistent path yield `None`, which callers 
+Entry: summaries/2026/11/20/topic-verdict-taxonomy-consumers.md
+Queued 1 new topic(s) (313 pending)
+Surfaced 5 belief(s):
+  four-value-taxonomy-is-defined-in-verify-py: `reasons/verify.py:4` and `:23-26` define `CONFIRMED`, `STALE`, `PARTIAL`, and `
+  api-verify-consumer-defaults-missing-verdict-to-inconclusive: `reasons/api.py:3874` uses `verdict.get("verdict", "INCONCLUSIVE")`.
+  api-verify-consumer-handles-only-confirmed-and-stale: `reasons/api.py:3876-3878` branches only on `CONFIRMED` and `STALE`; no `PARTIAL
+  cli-verdict-display-maps-all-four-values: `reasons/cli.py:2236-2237` maps all four verdicts to display symbols, and `:2245
+  imported-status-retraction-recognizes-only-stale-and-out: `reasons/import_agent.py:105`, `reasons/import_beliefs.py:271`, and `reasons/pg.
+Entry: summaries/2026/11/20/topic-backwards-compatibility-strategy.md
+Queued 1 new topic(s) (314 pending)
+Surfaced 6 belief(s):
+  reasons-is-canonical-package: The implementation and public model classes live in `reasons/__init__.py`; `reas
+  reasons-lib-requires-reasons: `reasons_lib/__init__.py:2` depends on `from reasons import *` for top-level com
+  reasons-lib-api-shim-requires-reasons-api: `reasons_lib/api.py:2` re-exports from `reasons.api` to preserve old submodule i
+  reasons-lib-cli-shim-requires-reasons-cli: `reasons_lib/cli.py:2` re-exports from `reasons.cli` to preserve old CLI-module 
+  both-packages-are-installed: `pyproject.toml:31` lists both `reasons` and `reasons_lib` in setuptools package
+Entry: summaries/2026/11/20/topic-legacy-namespace-migration.md
+Queued 1 new topic(s) (315 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-packaged: `pyproject.toml:31` includes `"reasons_lib"` in `[tool.setuptools].packages`, so
+  reasons-lib-reexports-reasons: `reasons_lib/__init__.py` uses `from reasons import *`, making it a compatibilit
+  reasons-lib-has-no-deprecation-warning: `reasons_lib/__init__.py` does not emit a `DeprecationWarning`; it only contains
+  deprecation-marker-search-finds-no-reasons-lib-deprecation: The observed `deprecat` matches are unrelated CLI/API strings at `reasons/api.py
+  reasons-lib-removal-requires-packaging-update: Because `reasons_lib` is listed in `pyproject.toml`, deletion also requires remo
+Entry: summaries/2026/11/20/reasons-ask-ask.md
+Queued 2 new topic(s) (317 pending)
+Surfaced 7 belief(s):
+  dual-requires-sources-db: `dual=True` with `sources_db=None` raises `ValueError("--dual requires --full-so
+  no-synth-bypasses-llm: When `no_synth=True`, `ask` returns `api.search(...)` directly and never calls `
+  full-mode-uses-tool-loop: Non-simple, non-dual, non-no_synth mode iterates up to `MAX_ITERATIONS` (3) or 5
+  llm-failures-return-beliefs: LLM timeouts and exceptions are swallowed and return `_beliefs_or_no_match(ctx)`
+  timeout-is-per-call: The `timeout` parameter bounds each `invoke_model` call, not the total wall time
+Entry: summaries/2026/11/20/topic-package-alias-migration.md
+Queued 2 new topic(s) (319 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-a-static-star-import-shim: `reasons_lib/__init__.py` and `reasons_lib/api.py` mirror via literal `from reas
+  reasons-lib-top-level-exports-include-justification-node-nogood: Because `reasons/__init__.py` has no `__all__`, `reasons_lib` top-level star imp
+  reasons-lib-does-not-auto-mirror-new-submodules: Adding `reasons.foo` does not create `reasons_lib.foo`; a physical `reasons_lib/
+  reasons-lib-module-objects-are-distinct-from-reasons: `reasons_lib.api` is a separate module object; imported names are shared referen
+  packaging-includes-reasons-lib: `pyproject.toml` line 31 includes `reasons_lib` in the setuptools packages list.
+Entry: summaries/2026/11/20/topic-package-compatibility-strategy.md
+Queued 1 new topic(s) (320 pending)
+Surfaced 6 belief(s):
+  reasons_lib-is-a-shim: `reasons_lib/__init__.py` contains only `from reasons import *`, so any name it 
+  reasons_lib-api-shim-delegates-to-reasons-api: `reasons_lib/api.py` has no direct imports other than `from reasons.api import *
+  entry-points-target-reasons-package-only: `[project.scripts]` in `pyproject.toml` maps both `reasons` and `reasons-mcp` to
+  pyproject-ships-both-packages: `[tool.setuptools].packages` in `pyproject.toml` (line 31) lists both `"reasons"
+  reasons-replaces-reasons-lib: The origin branch `rename-reasons-lib-to-reasons` and the `CLAUDE.md` descriptio
+
+========================================
+[11-20/100] (310 remaining in queue)
+========================================
+  [function] reasons/check_stale.py:__all__
+  [general] backwards-compatibility-shim-migration-plan
+  [general] dual-package-migration
+  [general] reasons-vs-reasons-lib-mirroring
+  [general] reasons-vs-reasons_lib-migration
+  [function] reasons/compact.py:compact_thoughts
+  [general] package-rename-shim-strategy
+  [general] compatibility-shim-pattern
+  [general] reasons-lib-to-reasons-migration
+  [general] package-rename-compat-strategy
+Explaining [function] reasons/check_stale.py:__all__ with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol '__all__' not found in reasons/check_stale.py (skipping)
+Explaining [general] backwards-compatibility-shim-migration-plan with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] dual-package-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-vs-reasons-lib-mirroring with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-vs-reasons_lib-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/compact.py:compact_thoughts with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'compact_thoughts' not found in reasons/compact.py (skipping)
+Explaining [general] package-rename-shim-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] compatibility-shim-pattern with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-lib-to-reasons-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-rename-compat-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/topic-backwards-compatibility-shim-migration-plan.md
+Queued 2 new topic(s) (312 pending)
+Surfaced 5 belief(s):
+  reasons-lib-check-stale-is-shim: `reasons_lib/check_stale.py` is a 3-line compatibility shim that star-imports fr
+  reasons-check-stale-is-canonical: The implementation lives in `reasons/check_stale.py`, and the shim docstring dir
+  internal-check-stale-consumers-use-canonical-path: Observed internal consumers import `.check_stale` or `reasons.check_stale`, not 
+  reasons-lib-shim-leaks-star-imported-names: Because the shim uses `from reasons.check_stale import *` and no `__all__` is ob
+  reasons-lib-removal-requires-packaging-change: `pyproject.toml` installs both `reasons` and `reasons_lib`, so removing the shim
+Entry: summaries/2026/11/20/topic-dual-package-migration.md
+Queued 3 new topic(s) (315 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-pure-shim-package: All five observed `reasons_lib/*.py` files are pure re-export shims with no loca
+  reasons-lib-init-reexports-reasons-api: `reasons_lib/__init__.py` line 2 re-exports the top-level `reasons` API via `fro
+  reasons-lib-submodules-map-one-to-one: `api.py`, `storage.py`, `metadata.py`, and `cli.py` each re-export from the same
+  reasons-lib-has-no-deprecation-hooks: The observed shims contain no `DeprecationWarning`, `warnings.warn`, or `__getat
+  reasons-lib-deletion-requires-import-audit: Wholesale deletion is safe from `reasons_lib`’s contents but requires confirming
+Entry: summaries/2026/11/20/topic-reasons-vs-reasons-lib-mirroring.md
+Queued 1 new topic(s) (316 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-a-backwards-compat-shim: `CLAUDE.md:35` documents `reasons_lib/` as a backwards-compat shim that re-expor
+  reasons-lib-init-reexports-reasons: `reasons_lib/__init__.py` line 1 is `from reasons import *  # noqa: F401,F403`.
+  reasons-lib-api-reexports-reasons-api: `reasons_lib/api.py` line 1 is `from reasons.api import *  # noqa: F401,F403`.
+  reasons-lib-llm-reexports-reasons-llm: `reasons_lib/llm.py` line 1 is `from reasons.llm import *  # noqa: F401,F403`.
+  changelog-lacks-reasons-lib-shim-deprecation-entry: `CHANGELOG.md:136` mentions `reasons_lib.api` only as an added API layer; no cha
+Entry: summaries/2026/11/20/topic-reasons-vs-reasons_lib-migration.md
+Queued 2 new topic(s) (318 pending)
+Surfaced 5 belief(s):
+  reasons-is-canonical-package: The real data model and entry points live under `reasons`, as shown by `reasons/
+  reasons-lib-reexports-reasons: `reasons_lib/__init__.py:2` executes `from reasons import *`, so `reasons_lib` a
+  packaging-includes-both-packages: `pyproject.toml:31` explicitly lists both `reasons` and `reasons_lib` in `[tool.
+  no-removal-schedule-observed: The provided observations contain no deprecation warning, removal date, changelo
+  reported-zero-reference-counts-are-unreliable: `references_to_reasons_lib` reports `0`, but `pyproject.toml:31` and `reasons_li
+Entry: summaries/2026/11/20/topic-package-rename-shim-strategy.md
+Queued 2 new topic(s) (320 pending)
+Surfaced 6 belief(s):
+  reasons-lib-implements-a-shim: `reasons_lib/__init__.py` and `reasons_lib/api.py` contain only a docstring plus
+  both-packages-are-packaged-via-setuptools: `pyproject.toml` `[tool.setuptools] packages = ["reasons", "reasons_lib"]` means
+  no-internal-code-imports-reasons-lib: A repo-wide search for `reasons_lib` returned zero matches, so all first-party i
+  cli-entry-points-use-canonical-reasons: `[project.scripts]` maps `reasons` and `reasons-mcp` to `reasons.cli:main` and `
+  reasons-lib-removal-requires-editing-pyproject-toml: Deleting `reasons_lib/` without also dropping `"reasons_lib"` from `[tool.setupt
+Entry: summaries/2026/11/20/topic-compatibility-shim-pattern.md
+Queued 1 new topic(s) (321 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-backwards-compat-shim: `reasons_lib/` is documented as a backwards-compat shim that re-exports from `re
+  canonical-import-is-reasons: The canonical import path is `reasons`; `reasons_lib` is retained as an alias fo
+  no-deprecation-timeline-documented: Neither `CHANGELOG.md` nor `CLAUDE.md` states a deprecation or removal timeline 
+  pyproject-still-ships-reasons-lib: `pyproject.toml` still includes both `reasons` and `reasons_lib` in `[tool.setup
+  changelog-mentions-reasons-lib-only-historically: `CHANGELOG.md:136` mentions `reasons_lib.api` only in the `0.1.0` entry; later c
+Entry: summaries/2026/11/20/topic-reasons-lib-to-reasons-migration.md
+Queued 3 new topic(s) (324 pending)
+Surfaced 5 belief(s):
+  reasons_lib-is-a-shim-package: `reasons_lib/__init__.py`, `reasons_lib/api.py`, and `reasons_lib/storage.py` ar
+  reasons_lib-has-no-real-definitions: The aggregate `^(def|class) ` search across `reasons_lib` returns zero matches.
+  reasons_lib-requires-pyproject-update-before-deletion: `pyproject.toml` still lists `reasons_lib` in `[tool.setuptools].packages`.
+  reasons_lib-does-not-emit-deprecation-warnings: No `DeprecationWarning`, `warnings.warn`, `__getattr__`, or `__all__` markers we
+  reasons_lib-api-maps-to-reasons-api: `reasons_lib/api.py` re-exports `reasons.api` via `from reasons.api import *`.
+Entry: summaries/2026/11/20/topic-package-rename-compat-strategy.md
+Queued 3 new topic(s) (327 pending)
+Surfaced 5 belief(s):
+  reasons-lib-api-is-shim: `reasons_lib/api.py` is 3 lines and line 1 re-exports `reasons.api` via wildcard
+  reasons-lib-init-is-shim: `reasons_lib/__init__.py` is 3 lines and line 1 re-exports `reasons` via wildcar
+  reasons-api-holds-implementation: `reasons/api.py` is 5,886 lines and contains implementation functions such as `_
+  reasons-init-holds-implementation: `reasons/__init__.py` defines core dataclasses `Justification`, `Node`, and `Nog
+  observed-dependency-direction-is-reasons-lib-to-reasons: The sampled `reasons_lib` files import from `reasons`; no sampled `reasons` file
+
+========================================
+[21-30/100] (317 remaining in queue)
+========================================
+  [general] deprecation-signalling
+  [general] star-import-semantics
+  [general] backwards-compatibility-shim
+  [general] package-rename-migration
+  [general] star-import-reexport-pitfalls
+  [general] reasons-vs-reasons_lib-rename
+  [general] import-star-reexport-hazards
+  [general] star-import-namespace-leakage
+  [general] import-direction-audit
+  [general] reasons-lib-package-shim-pattern
+Explaining [general] deprecation-signalling with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] star-import-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] backwards-compatibility-shim with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-rename-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] star-import-reexport-pitfalls with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-vs-reasons_lib-rename with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] import-star-reexport-hazards with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] star-import-namespace-leakage with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] import-direction-audit with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-lib-package-shim-pattern with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/topic-deprecation-signalling.md
+Queued 1 new topic(s) (318 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-a-thin-re-export: `reasons_lib/__init__.py` imports everything from `reasons` via `from reasons im
+  reasons-lib-has-no-runtime-warning: Importing `reasons_lib` emits no `DeprecationWarning`; the only migration signal
+  reasons-lib-is-still-packaged: `pyproject.toml` lists `reasons_lib` under `[tool.setuptools] packages`, so the 
+  reasons-lib-has-no-removal-criterion: No sunset version, migration deadline, or deprecation checklist exists for `reas
+  cli-deprecations-use-help-text-only: The project's other deprecations (`reasons/cli.py:3064`, `reasons/cli.py:3854`) 
+Entry: summaries/2026/11/20/topic-star-import-semantics.md
+Queued 2 new topic(s) (320 pending)
+Surfaced 5 belief(s):
+  reasons-init-has-no-all: `reasons/__init__.py` defines no `__all__`, so `from reasons import *` uses Pyth
+  reasons-lib-init-reexports-dataclass-and-field: `reasons_lib/__init__.py:2` re-exports `dataclass` and `field` because `reasons/
+  reasons-lib-init-has-no-all: `reasons_lib/__init__.py` defines no `__all__`, so its own wildcard export is no
+  wildcard-shims-are-unfiltered: The repo has 33 wildcard imports and zero `__all__` declarations, so each `reaso
+  reasons-lib-is-packaged-shim: `pyproject.toml` packages both `reasons` and `reasons_lib`, so the wildcard comp
+Entry: summaries/2026/11/20/topic-backwards-compatibility-shim.md
+Queued 3 new topic(s) (323 pending)
+Surfaced 5 belief(s):
+  reasons-lib-reexports-leak-dataclass-field: Because `reasons/__init__.py:3` imports `dataclass` and `field` and no `__all__`
+  no-all-anywhere-forces-name-based-filtering: With zero `__all__` declarations repo-wide (`grep_all_exports` total 0), every w
+  underscore-internals-require-explicit-import: `_STOP_WORDS` and `_TOPIC_STOP_WORDS` used at `reasons/pg.py:943` and `reasons/p
+  no-type-tooling-config-blocks-static-verification: `pyproject.toml` has no `[tool.mypy]`, `[tool.pyright]`, or `py.typed` marker, s
+  shim-package-is-shipped: `[tool.setuptools] packages = ["reasons", "reasons_lib"]` at `pyproject.toml:31`
+Entry: summaries/2026/11/20/topic-package-rename-migration.md
+Queued 1 new topic(s) (324 pending)
+Surfaced 7 belief(s):
+  reasons-is-canonical-package: `reasons/` contains the actual implementation (dataclasses, network, storage, AP
+  reasons-lib-is-a-backwards-compat-shim: `reasons_lib/__init__.py` is a 3-line shim docstring plus `from reasons import *
+  reasons-lib-shipped-in-distribution: `pyproject.toml` lists `packages = ["reasons", "reasons_lib"]`, so the shim is w
+  reasons-rename-created-reasons-lib: The v0.3.0 `rms → reasons` rename left `reasons_lib` as the legacy import name; 
+  reasons-exports-core-dataclasses-from-init: `reasons/__init__.py` defines the canonical `Justification`, `Node`, and `Nogood
+Entry: summaries/2026/11/20/topic-star-import-reexport-pitfalls.md
+Queued 2 new topic(s) (326 pending)
+Surfaced 6 belief(s):
+  shim-files-contain-star-imports: Both observed shims (`reasons_lib/__init__.py:3`, `reasons_lib/api.py:3`) use `f
+  reasons-api-has-no-all: Neither `reasons/api.py` nor `reasons_lib` defines `__all__`, so star import fal
+  star-import-excludes-private-helpers: `_is_visible`, `_get_node_tags`, `_filter_by_tags`, `_resolve_namespace`, `_with
+  __all__-is-not-propagated-by-star: `__all__` starts with `__`, so `from module import *` never copies it; `reasons_
+  monkeypatch-on-shim-is-a-no-op: `monkeypatch.setattr(reasons_lib.api, "Storage", Fake)` cannot affect `reasons.a
+Entry: summaries/2026/11/20/topic-reasons-vs-reasons_lib-rename.md
+Queued 2 new topic(s) (328 pending)
+Surfaced 6 belief(s):
+  reasons-is-canonical-tree: `reasons/` is the canonical module tree; `reasons_lib/` is explicitly a backward
+  reasons-lib-shim-re-exports-reasons: `reasons_lib/__init__.py:3` executes `from reasons import *`, so top-level names
+  reasons-lib-emits-no-deprecation-warning: Neither `reasons_lib/__init__.py` nor any observed file calls `warnings.warn`/`D
+  pyproject-ships-both-reasons-and-reasons-lib: `pyproject.toml:31` packages `reasons` and `reasons_lib` together in the single 
+  changelog-has-no-reasons-lib-removal-timeline: The only `reasons_lib` mention in `CHANGELOG.md` is line 136 (0.1.0 origin note)
+Entry: summaries/2026/11/20/topic-import-star-reexport-hazards.md
+Queued 3 new topic(s) (331 pending)
+Surfaced 5 belief(s):
+  reasons-lib-uses-star-import: `reasons_lib/__init__.py` re-exports via `from reasons import *` rather than ali
+  reasons-defines-no-all: `reasons/__init__.py` has no `__all__`, so the star import also exposes `datacla
+  reasons-lib-module-identity-diverges: Without a `sys.modules` assignment, `reasons_lib` and `reasons` are distinct mod
+  module-attribute-monkeypatches-are-not-shared: Replacing `reasons.Node` does not update `reasons_lib.Node` under the current sh
+  class-attribute-monkeypatches-are-shared: Patching an attribute on the `Node` class object is visible through both imports
+Entry: summaries/2026/11/20/topic-star-import-namespace-leakage.md
+Queued 1 new topic(s) (332 pending)
+Surfaced 5 belief(s):
+  reasons-package-lacks-all: The repository search found no `__all__` definitions, so `from reasons import *`
+  reasons-init-binds-dataclass-and-field: `reasons/__init__.py:2` imports `dataclass` and `field`, making those incidental
+  reasons-lib-init-star-imports-reasons: `reasons_lib/__init__.py:1` imports all non-underscore names from `reasons`, inc
+  reasons-api-star-import-leaks-implementation-names: `reasons_lib/api.py:1` star-imports from `reasons/api.py`, which lacks `__all__`
+  all-in-source-limits-star-export: Defining `__all__` in the source module limits what downstream star imports rece
+Entry: summaries/2026/11/20/topic-import-direction-audit.md
+Queued 2 new topic(s) (334 pending)
+Surfaced 6 belief(s):
+  reasons-lib-network-is-a-shim: `reasons_lib/network.py` is a 3-line re-export (`from reasons.network import *`)
+  no-module-imports-reasons-lib-network: A repo-wide search for `reasons_lib\.network` returns zero matches; no source fi
+  reasons-api-uses-relative-network-import: `reasons/api.py` imports `Network` via `from .network import Network`, not via `
+  reasons-storage-uses-relative-network-import: `reasons/storage.py` imports `Network` via `from .network import Network`, not v
+  reasons-lib-is-still-packaged: `pyproject.toml` lists both `reasons` and `reasons_lib` under `[tool.setuptools]
+Entry: summaries/2026/11/20/topic-reasons-lib-package-shim-pattern.md
+Queued 3 new topic(s) (337 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-backwards-compatibility-package: `reasons_lib/__init__.py`, `api.py`, and `verify.py` are 3-line shims that wildc
+  reasons-lib-lacks-merkle-shim: `reasons_lib/merkle.py` is absent even though `reasons/merkle.py` exists.
+  reasons-lib-mirrors-reasons-except-merkle: Every filename in `reasons_lib` has a same-named counterpart under `reasons`, an
+  reasons-merkle-contains-real-implementation: `reasons/merkle.py` contains SHA-256 Merkle hashing functions and is not a shim.
+  grep-observations-conflict-with-file-reads: The empty grep result for `from reasons|import reasons` conflicts with direct re
+
+========================================
+[31-40/100] (327 remaining in queue)
+========================================
+  [general] namespace-migration-strategy
+  [general] package-layout-migration
+  [general] pubsub-event-contracts
+  [general] namespace-rename-migration
+  [general] reasons-vs-reasons-lib-migration
+  [diff] git log --follow -- reasons_lib/review_justifications.py
+  [general] shim-migration-policy
+  [general] python-star-import-semantics
+  [general] compatibility-shim-migration
+  [file] CHANGELOG.md
+Explaining [general] namespace-migration-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-layout-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] pubsub-event-contracts with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] namespace-rename-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-vs-reasons-lib-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [diff] git log --follow -- reasons_lib/review_justifications.py with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Error getting diff: Git diff failed: fatal: ambiguous argument 'origin/main...git log --follow -- reasons_lib/review_justifications.py': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+Explaining [general] shim-migration-policy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] python-star-import-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] compatibility-shim-migration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [file] CHANGELOG.md with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/topic-namespace-migration-strategy.md
+Queued 1 new topic(s) (328 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-compatibility-shim: `reasons_lib/__init__.py` and `reasons_lib/api.py` are thin star-import shims ov
+  packaging-ships-both-reasons-and-reasons-lib: `pyproject.toml` lists both `reasons` and `reasons_lib` in `[tool.setuptools] pa
+  reasons-lib-imports-emit-no-deprecation-warning: Neither observed `reasons_lib` shim file calls `warnings.warn` or emits a `Depre
+  cli-deprecations-are-unrelated-to-reasons-lib: The deprecated CLI aliases at `reasons/cli.py:3064` and `reasons/cli.py:3854` co
+  reasons-lib-removal-not-scheduled-in-observed-docs: The observed docs describe `reasons_lib` as backwards-compatible but contain no 
+Entry: summaries/2026/11/20/topic-package-layout-migration.md
+Queued 3 new topic(s) (331 pending)
+Surfaced 5 belief(s):
+  reasons_lib-is-a-shim-package: Every observed file under `reasons_lib/` (`__init__.py`, `api.py`) is a 3-line `
+  reasons-is-canonical-package: Both `pyproject.toml` entry points (`reasons = "reasons.cli:main"`, `reasons-mcp
+  reasons_lib-has-no-internal-dependents: A repo-wide grep for `reasons_lib` returns zero matches outside `pyproject.toml`
+  pyproject-packages-includes-reasons_lib: `pyproject.toml` declares `packages = ["reasons", "reasons_lib"]` at lines 32–33
+  reasons_lib-api-shim-maps-to-reasons-api: The shim at `reasons_lib/api.py` re-exports `reasons.api` (a 5,886-line module),
+Entry: summaries/2026/11/20/topic-pubsub-event-contracts.md
+Queued 1 new topic(s) (332 pending)
+Surfaced 6 belief(s):
+  pubsub-channel-key-is-db-path-or-global: The only channel discriminator is `db_path`; `None` is the global channel that r
+  pubsub-publish-skips-empty-batches: `publish` returns immediately when `events` is empty, so subscribers are never c
+  pubsub-subscriber-errors-do-not-propagate: Each subscriber is invoked inside `try/except Exception` that logs and swallows,
+  change-event-has-no-cause-metadata: `ChangeEvent` carries only `type`, `node_id`, `old_truth_value`, `new_truth_valu
+  pubsub-events-emitted-after-save: `pubsub.publish` is called after the write transaction commits, so any callback 
+Entry: summaries/2026/11/20/topic-namespace-rename-migration.md
+Surfaced 5 belief(s):
+  reasons-lib-has-no-python-source-references: A repo grep for `reasons_lib` in Python returns 0 matches, so no Python source f
+  reasons-lib-is-explicitly-packaged: `pyproject.toml:31` includes `"reasons_lib"` in the `packages` list, so it is pa
+  reasons-lib-reexports-reasons: `reasons_lib/__init__.py` is a 3-line shim whose only code is `from reasons impo
+  reasons-lib-emits-no-deprecation-warning: There are no `DeprecationWarning`, `warnings.warn`, or `deprecated` matches in `
+  reasons-lib-references-concentrate-in-forge-config: 13 of the 17 observed `reasons_lib` matches are in `.forge/proposed-entries.json
+Entry: summaries/2026/11/20/topic-reasons-vs-reasons-lib-migration.md
+Queued 4 new topic(s) (336 pending)
+Surfaced 5 belief(s):
+  reasons_lib-reexports-reasons: `reasons_lib/__init__.py:3` and `reasons_lib/api.py:3` are pure `from reasons… i
+  reasons-requires-no-reasons_lib: No file in the repository imports `reasons_lib`; the dependency arrow only point
+  reasons_lib-can-be-deleted-without-internal-breakage: Removing `reasons_lib/` and dropping the entry at `pyproject.toml:31` breaks no 
+  entry-points-use-canonical-module: Both `project.scripts` entries (`pyproject.toml:27-28`) resolve to `reasons.cli:
+  reasons_lib-shim-has-narrow-surface: `reasons_lib/` covers only `reasons` top-level and `reasons.api`; any legacy `fr
+Entry: summaries/2026/11/20/topic-shim-migration-policy.md
+Queued 2 new topic(s) (338 pending)
+Surfaced 5 belief(s):
+  reasons-lib-shim-is-bare-reexport: `reasons_lib/__init__.py:1` contains only `from reasons import *` and emits no w
+  reasons-lib-is-packaged: `pyproject.toml` includes both `reasons` and `reasons_lib` in `[tool.setuptools]
+  reasons-lib-has-no-observed-deprecation-warning: Grep for “deprecat” in Python files found no match in `reasons_lib`.
+  reasons-lib-is-documented-as-backwards-compat-shim: `CLAUDE.md:24` and `CLAUDE.md:35` describe it as an alias/backwards-compat shim.
+  reasons-lib-deletion-is-not-announced: Observed README, CHANGELOG, and retirement-language searches contain no removal 
+Entry: summaries/2026/11/20/topic-python-star-import-semantics.md
+Queued 1 new topic(s) (339 pending)
+Surfaced 5 belief(s):
+  reasons-lib-export-surface-requires-reasons-public-names: `reasons_lib/__init__.py` exports whatever public names it receives from `from r
+  reasons-no-all-enables-default-underscore-filtering: Because `reasons/__init__.py` has no `__all__`, wildcard imports use Python’s de
+  reasons-lib-reexports-dataclass-and-field: `dataclass` and `field` are public imports in `reasons/__init__.py` and therefor
+  direct-imports-do-not-require-all: Direct imports such as `from reasons_lib import Justification` work because the 
+  packaging-includes-reasons-lib-shim: `pyproject.toml` packages both `reasons` and `reasons_lib`, making the shim part
+Entry: summaries/2026/11/20/topic-compatibility-shim-migration.md
+Queued 1 new topic(s) (340 pending)
+Surfaced 5 belief(s):
+  reasons-lib-storage-is-shim: `reasons_lib/storage.py:2` re-exports `reasons.storage` via a star import.
+  reasons-storage-contains-storage-class: The real persistence implementation is `reasons/storage.py:Storage`, with `save`
+  reasons-lib-init-is-shim: `reasons_lib/__init__.py:2` re-exports the canonical `reasons` package.
+  provided-grep-cannot-rule-out-from-imports: The observed grep patterns omit `from reasons_lib.storage import ...`, so zero m
+  reasons-storage-depends-on-metadata-and-network: `reasons/storage.py` imports `SCHEMA_VERSION`, `build_meta`, and `Network` from 
+Entry: summaries/2026/11/20/CHANGELOG.md
+Queued 3 new topic(s) (343 pending)
+Surfaced 7 belief(s):
+  changelog-follows-keep-a-changelog-1-1-0: The preamble (lines 1–5) explicitly cites Keep a Changelog 1.1.0, and only its `
+  changelog-is-reverse-chronological: Entries run from `[0.18.0] - 2026-04-25` at the top down to `[0.1.0] - 2026-03-2
+  version-0-11-0-has-no-changelog-heading: No `## [0.11.0]` section exists between `[0.10.0]` and `[0.12.0]`.
+  versions-0-8-0-and-0-9-0-are-folded-into-0-10-0: Their features appear as bullets annotated `(0.8.0)` and `(0.9.0)` inside the `[
+  access-tags-rbac-is-introduced-in-0-18-0: The `access_tags` field, `--visible-to`, tag inheritance, forward propagation, a
+
+========================================
+[41-50/100] (333 remaining in queue)
+========================================
+  [general] pytest-importmodes
+  [general] pep-420-namespace-packages
+  [general] pytest-fixture-lifecycle
+  [function] reasons/network.py:add_justification
+  [function] reasons/api.py:list_nodes
+  [function] reasons/api.py:explain_node
+  [general] access-control-tag-visibility-semantics
+  [function] reasons/network.py:Network.add_justification
+  [function] reasons/api.py:add_justification
+  [general] truth-maintenance-semantics
+Explaining [general] pytest-importmodes with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] pep-420-namespace-packages with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] pytest-fixture-lifecycle with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:add_justification with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:list_nodes with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:explain_node with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] access-control-tag-visibility-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:Network.add_justification with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'Network.add_justification' not found in reasons/network.py (skipping)
+Explaining [function] reasons/api.py:add_justification with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] truth-maintenance-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/topic-pytest-importmodes.md
+Queued 1 new topic(s) (334 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-a-star-import-shim: `reasons_lib/__init__.py:2` re-exports every public `reasons` name via `from rea
+  no-sys-path-manipulation-in-repo: `grep "sys\.path"` returns zero matches; import resolution relies on the runtime
+  importlib-is-used-only-for-metadata: Both `importlib` imports (`reasons/cli.py:13`, `reasons/metadata.py:17`) are `im
+  setuptools-ships-both-top-level-packages: `pyproject.toml` lists `packages = ["reasons", "reasons_lib"]`, so both are inst
+  reasons-lib-has-no-internal-consumers: `grep "reasons_lib"` outside its own file returns zero matches; the shim targets
+Entry: summaries/2026/11/20/topic-pep-420-namespace-packages.md
+Queued 1 new topic(s) (335 pending)
+Surfaced 7 belief(s):
+  reasons-init-exports-core-model: `reasons/__init__.py` defines `Justification`, `Node`, and `Nogood` in module sc
+  reasons-lib-shim-requires-reasons-init: `reasons_lib/__init__.py:2` does `from reasons import *`, so it depends on names
+  reasons-lib-has-no-internal-consumers: `package_level_reasons_lib_imports.total_count` is 0, meaning the shim exists on
+  reasons-targets-python-3-10-or-newer: `pyproject.toml` sets `requires-python = ">=3.10"`, so PEP 420 namespace package
+  setuptools-packaging-uses-explicit-package-list: `[tool.setuptools] packages = ["reasons", "reasons_lib"]` hard-codes two package
+Entry: summaries/2026/11/20/topic-pytest-fixture-lifecycle.md
+Queued 3 new topic(s) (338 pending)
+Surfaced 5 belief(s):
+  pg-api-is-function-scoped: `pg_api` has no `scope=` argument, so pytest creates and tears it down once per 
+  pg-api-skips-before-yield-when-database-url-missing: If `DATABASE_URL` is absent at conftest import, `pytest.skip` at `tests/conftest
+  pg-api-teardown-is-not-exception-safe: Cleanup at `tests/conftest.py:32-39` runs without `try/finally`, so a failure in
+  pg-availability-is-captured-at-import-time: `pg_available` at `tests/conftest.py:13` and `skip_no_pg` at line 14 are evaluat
+  search-results-contradict-conftest-content: Reported zero matches for `@pytest.fixture`, `yield`, and `pytest.skip` conflict
+Entry: summaries/2026/11/20/reasons-network-add_justification.md
+Queued 2 new topic(s) (340 pending)
+Surfaced 6 belief(s):
+  add-justification-does-not-deduplicate: The function never checks whether an equivalent justification is already attache
+  add-justification-silently-skips-unknown-node-ids: Antecedent/outlist IDs absent from `self.nodes` are ignored for the `dependents`
+  add-justification-ignores-retracted-flag: Unlike `recompute_all`, this function does not check `node.metadata["_retracted"
+  add-justification-return-omits-tag-changes: The returned `changed` list contains only truth-value changes; `_propagate_acces
+  add-justification-may-change-supporting-justification-without-new-truth-value: `_compute_truth` reassigns `node.supporting_justification` on every call, even w
+Entry: summaries/2026/11/20/reasons-api-list_nodes.md
+Queued 2 new topic(s) (342 pending)
+Surfaced 6 belief(s):
+  list-nodes-count-is-pagination-invariant: The returned `count` reflects the post-filter total before `limit`/`offset` are 
+  list-nodes-limit-clamped-minimum-one: A non-`None` `limit` is coerced to `max(1, limit)`; `limit=None` means unlimited
+  list-nodes-depth-populated-only-when-requested: The `depth` field is `None` in the common path and is populated only when `min_d
+  not-reviewed-filters-require-justifications: Both `not_reviewed_since` and `never_reviewed` silently skip premise nodes (thos
+  pg-list-nodes-rejects-depth-tag-review-and-impact-filters: The PostgreSQL branch raises `NotImplementedError` for `challenged`, `min_depth`
+Entry: summaries/2026/11/20/reasons-api-explain_node.md
+Queued 1 new topic(s) (343 pending)
+Surfaced 5 belief(s):
+  explain-node-is-read-only: `explain_node` never mutates the network or database; it uses `_with_network` wi
+  explain-node-pg-dispatch-bypasses-sqlite: A truthy `pg_conninfo` routes the call to `PgApi.explain_node` and completely ig
+  explain-node-checks-target-node-visibility-only: The `PermissionError` guard applies only to `node_id`; the returned `steps` are 
+  explain-node-treats-untagged-nodes-as-public: `_is_visible` returns `True` whenever `metadata["access_tags"]` is empty, so unt
+  explain-node-raises-instead-of-returning-errors: Missing nodes raise `KeyError` and access denials raise `PermissionError`; the f
+Entry: summaries/2026/11/20/topic-access-control-tag-visibility-semantics.md
+Queued 1 new topic(s) (344 pending)
+Surfaced 6 belief(s):
+  subset-rule-implemented-in-_is_visible: `_is_visible` at `reasons/api.py:39-46` returns True iff every tag in `node.meta
+  omitted-visible-to-disables-access-check: When `visible_to` is `None` or omitted, no access filter is applied and all node
+  list-operations-silently-filter-forbidden-nodes: `list_nodes`, `search`, `lookup`, `get_status`, `export_network`, `export_markdo
+  named-retrieval-raises-PermissionError: `show_node` (`api.py:886`), `explain_node` (`:1047`), `trace_assumptions` (`:107
+  derived-nodes-inherit-antecedent-tags: Derived nodes carry the union of their antecedents' `access_tags`, so `explain_n
+Entry: summaries/2026/11/20/reasons-api-add_justification.md
+Queued 1 new topic(s) (345 pending)
+Surfaced 7 belief(s):
+  sl-takes-precedence-over-cp: When both `sl` and `cp` are non-empty, `cp` is silently ignored due to the `elif
+  any-mode-is-sl-only-and-single-antecedent-noop: `any_mode` only expands when `jtype == "SL"` and `len(antecedents) > 1`; it is o
+  any-mode-reports-premise-count-of-one: In the `any_mode` branch the returned `premise_count` is hardcoded to `1` regard
+  namespace-resolution-does-not-add-active-antecedent: Unlike `add_node`, `add_justification` resolves namespace prefixes on antecedent
+  unless-only-produces-sl-with-empty-antecedents: Providing only `unless` (no `sl`/`cp`) creates an SL justification with `anteced
+Entry: summaries/2026/11/20/topic-truth-maintenance-semantics.md
+Queued 3 new topic(s) (348 pending)
+Surfaced 6 belief(s):
+  in-requires-any-valid-justification: A node's `truth_value` becomes `"IN"` iff it is a premise (no justifications) or
+  sl-justification-requires-all-antecedents-in-and-all-outlist-out: An SL justification is valid iff every antecedent is IN and every outlist node i
+  dependents-index-maps-both-antecedent-and-outlist-references: `Y.dependents` contains X whenever X cites Y as an antecedent **or** as an outli
+  challenge-implements-outlist-defeat: Dialectical challenges are modeled by appending the challenge's node ID to the t
+  absent-outlist-node-is-treated-as-out: A justification may reference an outlist node that does not exist in the network
+
+========================================
+[51-60/100] (338 remaining in queue)
+========================================
+  [function] reasons/api.py:retract_node
+  [general] any-mode-vs-and-mode-semantics
+  [function] reasons/api.py:_fts_search
+  [general] proposal-drift-and-staling
+  [function] reasons/ask.py:_search_source_chunks
+  [general] dual-answer-merge-strategy
+  [function] reasons/ask.py:_build_tools_section
+  [function] reasons/network.py:Network.add_nogood
+  [function] reasons/network.py:Network.find_culprits
+  [general] entrenchment-heuristic
+Explaining [function] reasons/api.py:retract_node with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] any-mode-vs-and-mode-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:_fts_search with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] proposal-drift-and-staling with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/ask.py:_search_source_chunks with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] dual-answer-merge-strategy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/ask.py:_build_tools_section with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:Network.add_nogood with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'Network.add_nogood' not found in reasons/network.py (skipping)
+Explaining [function] reasons/network.py:Network.find_culprits with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'Network.find_culprits' not found in reasons/network.py (skipping)
+Explaining [general] entrenchment-heuristic with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-api-retract_node.md
+Surfaced 6 belief(s):
+  retract-node-returns-four-keys: The local-backend return dict has exactly four keys: `changed`, `went_out`, `wen
+  retract-node-delegates-to-postgres-when-conninfo-set: When `pg_conninfo` is truthy, the function bypasses the SQLite path entirely and
+  retract-node-opens-write-transaction: The SQLite path uses `_with_network(db_path, write=True)`, which always reloads 
+  retraction-hints-scan-only-first-multi-antecedent-sl: The hint loop `break`s after the first `SL` justification with `len(antecedents)
+  retract-node-does-not-validate-node-id: The function does not validate `node_id`; a missing node surfaces as a `KeyError
+Entry: summaries/2026/11/20/topic-any-mode-vs-and-mode-semantics.md
+Queued 2 new topic(s) (340 pending)
+Surfaced 5 belief(s):
+  default-sl-with-three-antecedents-produces-one-conjunctive-justification: Without `any_mode`, `sl="a,b,c"` creates one SL justification with three anteced
+  any-mode-expands-multi-premise-sl-into-unary-justifications: With `any_mode=True`, `sl="a,b,c"` creates three justifications, each with one a
+  any-mode-expansion-requires-more-than-one-antecedent: The expansion branch only runs when `len(antecedents) > 1`, so `sl="a"` remains 
+  any-mode-is-rejected-by-postgresql-backend: Both `api.add_node` and `api.add_justification` raise `NotImplementedError` when
+  cli-multi-premise-warning-is-suppressed-by-any: `_warn_multi_premise` prints only when `premise_count >= 3` and `any_mode` is fa
+Entry: summaries/2026/11/20/reasons-api-_fts_search.md
+Queued 3 new topic(s) (343 pending)
+Surfaced 5 belief(s):
+  fts-search-swallows-sqlite-errors: `_fts_search` catches `sqlite3.OperationalError` and `sqlite3.DatabaseError` and
+  fts-search-uses-and-semantics: `_fts_query` joins terms with spaces inside FTS5, producing implicit AND matchin
+  fts-search-relaxation-budget-is-global: The 50-query budget is shared across all relaxation levels, so wider term sets e
+  fts-search-returns-empty-on-budget-exhaustion: When the relaxation budget runs out, `_fts_search` returns `[]`, never a partial
+  fts-search-filters-single-char-terms: Terms of length ≤ 1 are discarded in both the primary filter and the stop-word f
+Entry: summaries/2026/11/20/topic-proposal-drift-and-staling.md
+Queued 2 new topic(s) (345 pending)
+Surfaced 5 belief(s):
+  proposal-staling-is-keyed-by-action-and-target: `_stale_older_pending` in `reasons/api.py:5199` takes `target_id` and `action` a
+  accept-revalidates-drift-before-apply: `reasons/api.py:5631-5633` re-validates against the live network and marks a pro
+  truth-value-drift-compares-snapshot-to-current: `reasons/api.py:5719` and `:5740` emit a “Truth value drifted” message comparing
+  drift-cases-are-pinned-by-api-tests: `tests/test_api.py:1240-1263` covers target already OUT, target deleted, add-nod
+  mcp-accept-doc-requires-drift-revalidation: `reasons/mcp_server.py:485-488` documents accept as applying a change only after
+Entry: summaries/2026/11/20/reasons-ask-_search_source_chunks.md
+Queued 3 new topic(s) (348 pending)
+Surfaced 5 belief(s):
+  search-source-chunks-swallows-db-errors: Catches `sqlite3.OperationalError` and `sqlite3.DatabaseError` and returns `""` 
+  search-source-chunks-returns-markdown: Returns a `### [i] filename[ > section]` markdown block per row, joined by `\n\n
+  search-source-chunks-requires-fts5-schema: Requires `chunks_fts` and `chunks` tables to exist in `sources_db`; the schema i
+  search-source-chunks-has-file-creation-side-effect: Because `sqlite3.connect` opens the target path, a nonexistent `sources_db` leav
+  search-source-chunks-enables-rag-context: Its output is embedded under `## Source Documents` in `ask()` and as `{context}`
+Entry: summaries/2026/11/20/topic-dual-answer-merge-strategy.md
+Queued 2 new topic(s) (350 pending)
+Surfaced 5 belief(s):
+  dual-mode-uses-three-llm-calls-with-simple-true: In dual mode with `simple=True`, the code makes one TMS call, one FTS RAG call, 
+  merge-call-is-skipped-when-one-answer-is-empty: If either the TMS or FTS answer is empty, `ask()` returns the non-empty answer d
+  merge-prompt-preserves-both-citation-styles: `MERGE_PROMPT` instructs the model to preserve TMS belief-ID citations and FTS f
+  fts-rag-returns-no-relevant-documents-sentinel: `_fts_rag_answer` returns `"No relevant documents found for this question."` whe
+  tms-tool-loop-can-increase-dual-calls-to-five: With `simple=False`, dual mode can use up to three TMS tool-loop rounds plus one
+Entry: summaries/2026/11/20/reasons-ask-_build_tools_section.md
+Queued 2 new topic(s) (352 pending)
+Surfaced 5 belief(s):
+  build-tools-section-always-injects-search-beliefs: The section unconditionally includes the `search_beliefs` example even when `mcp
+  build-tools-section-requires-name-and-description: Each MCP tool dict must contain `"name"` and `"description"` keys; missing keys 
+  build-tools-section-truncates-descriptions: Only the first line of an MCP tool description is emitted as the trailing commen
+  build-tools-section-produces-json-example-lines: Each emitted tool line is intended to be valid JSON so `extract_tool_call` can r
+  build-tools-section-skips-param-escape: Parameter descriptions are interpolated into `<…>` placeholders without escaping
+Entry: summaries/2026/11/20/topic-entrenchment-heuristic.md
+Queued 2 new topic(s) (354 pending)
+Surfaced 5 belief(s):
+  _entrenchment-is-implemented-in-network-and-pg: Both `reasons/network.py:291` and `reasons/pg.py:3328` define an `_entrenchment`
+  beliefs-type-is-read-from-node-metadata: `_entrenchment` reads `beliefs_type` from node metadata and uppercases it at `re
+  source-presence-increases-entrenchment: `tests/test_backtracking.py:259` asserts sourced nodes have higher entrenchment 
+  observation-outranks-derived-in-entrenchment: `tests/test_backtracking.py:266` asserts an `OBSERVATION` node has higher entren
+  dependent-count-is-len-dependents-in-network-path: `reasons/network.py:372` computes dependent count as `len(self.nodes[premise_id]
+
+========================================
+[61-70/100] (344 remaining in queue)
+========================================
+  [function] reasons/build_wiki.py:build_wiki
+  [function] reasons/build_wiki.py:_format_node
+  [function] reasons/check_stale.py:check_stale
+  [general] reasons-vs-reasons_lib
+  [function] reasons/review.py:classify_defeat_reason
+  [function] reasons/api.py:classify_defeat_reason_types
+  [function] reasons/api.py:defeat_justification
+  [general] cli-access-control
+  [function] reasons/cluster.py:cluster_beliefs
+  [function] reasons/cluster.py:_auto_k
+Explaining [function] reasons/build_wiki.py:build_wiki with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/build_wiki.py:_format_node with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/check_stale.py:check_stale with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-vs-reasons_lib with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/review.py:classify_defeat_reason with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:classify_defeat_reason_types with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:defeat_justification with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cli-access-control with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/cluster.py:cluster_beliefs with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/cluster.py:_auto_k with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-build_wiki-build_wiki.md
+Queued 3 new topic(s) (347 pending)
+Surfaced 5 belief(s):
+  build-wiki-produces-index-and-per-group-pages: Writes exactly one `index.md` plus one markdown file per label in `groups`.
+  build-wiki-swallows-llm-exceptions: Exceptions from `generate_wiki_page` are caught, logged to stderr as `WARN:`, an
+  slug-collision-appends-2-repeatedly: The collision loop appends `-2` cumulatively (`foo`, `foo-2`, `foo-2-2`), not an
+  build-wiki-requires-node-details-truth-value-and-text: `_format_node` directly indexes `node_detail["truth_value"]` and `node_detail["t
+  node-to-page-mapping-is-last-writer-wins: If a node ID appears in multiple groups, `node_to_page[nid]` points to the last 
+Entry: summaries/2026/11/20/reasons-build_wiki-_format_node.md
+Queued 2 new topic(s) (349 pending)
+Surfaced 5 belief(s):
+  format-node-requires-truth-value-and-text: `_format_node` directly indexes `truth_value` and `text`, so missing either rais
+  format-node-renders-defeaters-only-with-all-details: Defeater rendering is skipped when `all_details` is `None` or otherwise falsey.
+  format-node-links-use-page-anchors: Cross-reference links are emitted as `[node_id](page#node_id)` when `node_to_pag
+  supporting-justification-splits-active-and-other-antecedents: When `supporting_justification` is a valid index, that justification’s anteceden
+  format-node-has-no-defeater-sorting: Defeaters are emitted in outlist iteration order and are not deduplicated.
+Entry: summaries/2026/11/20/reasons-check_stale-check_stale.md
+Queued 2 new topic(s) (351 pending)
+Surfaced 6 belief(s):
+  check-stale-mutates-network-in-place: `check_stale` mutates `node.source_hash`, `node.metadata["pinned_sha"]`, and `no
+  check-stale-skips-non-in-nodes: Only nodes with `truth_value == "IN"` are considered; all other nodes are silent
+  check-stale-returns-3-tuple: Returns `(stale_results, upgraded_count, sha_bumped_count)`; `results` only list
+  truncated-hash-is-16-hex-chars: Legacy truncated hashes are assumed to be exactly 16 characters and a string pre
+  git-aware-pinned-lines-skips-content-hash: When `git_aware=True` and a pinned line range is unchanged, `check_stale` skips 
+Entry: summaries/2026/11/20/topic-reasons-vs-reasons_lib.md
+Queued 2 new topic(s) (353 pending)
+Surfaced 5 belief(s):
+  tests-import-reasons: `tests/conftest.py` imports `PgApi` from `reasons.pg` inside the `pg_api` fixtur
+  reasons-lib-re-exports-reasons: `CLAUDE.md:35` describes `reasons_lib/` as a backwards-compat shim that re-expor
+  pytest-collects-tests-directory: `pyproject.toml` sets `[tool.pytest.ini_options] testpaths = ["tests"]`.
+  ci-test-command-unconfirmed: The only workflow search found no `pytest`, `python -m`, `reasons_lib`, or `reas
+  no-observed-package-sync-automation: Search for `rsync`, `cp -r`, `mirror`, or `sync` in CI/sync scripts returned zer
+Entry: summaries/2026/11/20/reasons-review-classify_defeat_reason.md
+Queued 2 new topic(s) (355 pending)
+Surfaced 5 belief(s):
+  classify-defeat-reason-returns-empty-string-on-failure: Any exception from `invoke_model`, or any output not containing a listed type, y
+  classify-defeat-reason-catches-all-exceptions: The `try` wraps only the `invoke_model` call; a non-string return then raises `A
+  classify-defeat-reason-output-is-lowercased: Both exact-match and substring-match operate on `result.strip().lower()`, so mod
+  substring-fallback-is-order-sensitive: When multiple canonical types appear in the model output, the first in `DEFEAT_R
+  classify-defeat-reason-has-no-test-verified-prompt-type-sync: Nothing in the module asserts that `CLASSIFY_DEFEAT_REASON_PROMPT` and `DEFEAT_R
+Entry: summaries/2026/11/20/reasons-api-classify_defeat_reason_types.md
+Queued 3 new topic(s) (358 pending)
+Surfaced 7 belief(s):
+  classify-defeat-reason-types-is-a-batch-backfill: The function's only job is to populate `defeat_reason_type` metadata on existing
+  dry-run-defaults-to-true: The function does not mutate the database unless the caller explicitly passes `d
+  skipped-list-excludes-non-defeaters: Nodes without `defeats_node` metadata are silently ignored, not included in the 
+  llm-exceptions-propagate-unwrapped: There is no `try/except` around `classify_defeat_reason`, so an LLM failure abor
+  each-write-is-a-separate-transaction: When `dry_run=False`, each classification invokes `set_metadata`, causing one lo
+Entry: summaries/2026/11/20/reasons-api-defeat_justification.md
+Queued 1 new topic(s) (359 pending)
+Surfaced 6 belief(s):
+  defeat-justification-requires-in-range-index: The function raises `IndexError` when `justification_index` is negative or `>= l
+  defeat-justification-produces-premise-defeater: The defeater is added via `net.add_node` with no justifications, so it evaluates
+  defeat-justification-manually-updates-dependents: Because premises have no justifications, the reverse edge `defeater.dependents.a
+  defeat-justification-is-idempotent-on-outlist-but-not-on-node: Appending `defeater_id` to `outlist` is guarded, but creating the defeater node 
+  defeat-justification-returns-only-flipped-nodes: `changed` is computed by diffing against a pre-add snapshot, not from `recompute
+Entry: summaries/2026/11/20/topic-cli-access-control.md
+Queued 2 new topic(s) (361 pending)
+Surfaced 5 belief(s):
+  visible-to-is-subset-check: A node with `access_tags` is visible only when every tag is present in `visible_
+  access-tags-inherit-through-antecedents: Derived nodes receive the union of antecedent `access_tags` plus explicit tags, 
+  direct-reads-raise-permission-error: `show`, `explain`, `trace`, and `trace_access_tags` raise `PermissionError` when
+  list-search-status-lookup-filter-results: `list_nodes`, `search`, `lookup`, and `get_status` filter out invisible nodes ra
+  cli-translates-permission-error-to-access-denied: CLI handlers print `Access denied: {e}` to stderr when a permission failure esca
+Entry: summaries/2026/11/20/reasons-cluster-cluster_beliefs.md
+Queued 2 new topic(s) (363 pending)
+Surfaced 5 belief(s):
+  cluster-beliefs-requires-cluster-deps-even-when-short-circuiting: Calls `_require_cluster_deps()` before checking `len(beliefs) <= budget`, so mis
+  cluster-beliefs-returns-all-keys-in-insertion-order-when-within-budget: The shortcut returns `list(beliefs.keys())` with stats using `n_clusters=1`, `cl
+  cluster-beliefs-may-return-fewer-than-budget: Per-cluster quotas are capped by cluster size and unused quota is not redistribu
+  cluster-beliefs-mutates-provided-cache: When a `ClusterCache` is passed, `cache.embed` adds new `(node_id, text_hash)` e
+  cluster-beliefs-cluster-sizes-use-label-order: `cluster_stats["cluster_sizes"]` is ordered by ascending KMeans label, while sam
+Entry: summaries/2026/11/20/reasons-cluster-_auto_k.md
+Queued 2 new topic(s) (365 pending)
+Surfaced 5 belief(s):
+  auto-k-uses-floor-division-by-five: In auto mode the initial candidate is `n_beliefs // 5`.
+  explicit-cluster-override-bypasses-max-k: When `n_clusters` is not `None`, `max_k` is never read.
+  auto-k-enforces-minimum-two-for-at-least-two-beliefs: Auto mode returns at least `2` when `n_beliefs >= 2`.
+  auto-k-applies-max-k-before-minimum-two: Because `max_k` is applied before the floor of `2`, `max_k` values of `0` or `1`
+  auto-k-returns-zero-for-zero-beliefs: `_auto_k(0)` returns `0`, which is not a valid KMeans cluster count.
+
+========================================
+[71-80/100] (355 remaining in queue)
+========================================
+  [function] reasons/compact.py:estimate_tokens
+  [general] soft-budget-algorithm
+  [function] reasons/contradictions.py:detect_contradictions_semantic
+  [function] reasons/api.py:detect_contradictions
+  [general] dangling-dependents-issue-22
+  [function] reasons/network.py:retract
+  [function] reasons/api.py:mark_duplicate
+  [function] reasons/api.py:mark_superseded
+  [general] truth-maintenance-cascade
+  [general] truth-maintenance-system
+Explaining [function] reasons/compact.py:estimate_tokens with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] soft-budget-algorithm with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/contradictions.py:detect_contradictions_semantic with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:detect_contradictions with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] dangling-dependents-issue-22 with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:retract with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:mark_duplicate with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:mark_superseded with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] truth-maintenance-cascade with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] truth-maintenance-system with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-compact-estimate_tokens.md
+Queued 3 new topic(s) (358 pending)
+Surfaced 5 belief(s):
+  estimate-tokens-uses-floor-division: The function returns `max(1, len(text) // 4)`, so lengths `0` through `7` all es
+  estimate-tokens-is-pure: It has no side effects and depends only on `len(text)`.
+  estimate-tokens-approximates-bpe-without-tokenizer: It uses a character-count heuristic rather than an actual BPE tokenizer or model
+  compact-uses-estimate-tokens-for-budget-checks: `reasons/compact.py:compact` uses it to reserve footer space and test candidate 
+  estimate-tokens-requires-sized-object: Passing `None` or an object without `__len__` raises `TypeError` from `len`.
+Entry: summaries/2026/11/20/topic-soft-budget-algorithm.md
+Queued 2 new topic(s) (360 pending)
+Surfaced 5 belief(s):
+  token-estimation-uses-chars-per-four: `estimate_tokens` returns `max(1, len(text) // 4)` and is used to approximate to
+  compact-budget-includes-structural-lines: Section headers, blank separators, omission messages, and the footer are added t
+  over-budget-check-omits-newline-for-next-line: `_over_budget` estimates a candidate line without the `+1` newline that `_add_li
+  footer-reservation-uses-placeholder-budget: `footer_tokens` is estimated from `"Token count: ~{budget} / {budget} budget"` r
+  omission-lines-bypass-budget-check: Overflow messages like `... (N more ... omitted)` are appended without an `_over
+Entry: summaries/2026/11/20/reasons-contradictions-detect_contradictions_semantic.md
+Queued 2 new topic(s) (362 pending)
+Surfaced 5 belief(s):
+  semantic-detection-returns-empty-without-in-beliefs: If no candidate IDs remain after filtering for `truth_value == "IN"`, the functi
+  semantic-detection-filters-claims-by-global-valid-ids: `parse_contradiction_response` is called with `valid_ids=set(belief_ids)`, so re
+  semantic-detection-swallows-llm-and-flush-exceptions: Exceptions from `invoke_model`, `parse_contradiction_response`, or `_flush_resul
+  semantic-detection-skips-singleton-clusters: Clusters with fewer than two belief IDs are skipped without an LLM call.
+  semantic-detection-uses-fixed-batch-size: Within each cluster, beliefs are chunked by the module constant `CONTRADICTION_B
+Entry: summaries/2026/11/20/reasons-api-detect_contradictions.md
+Queued 1 new topic(s) (363 pending)
+Surfaced 7 belief(s):
+  detect-contradictions-only-checks-in-beliefs: Only nodes whose `truth_value` is `"IN"` are ever candidates, regardless of what
+  detect-contradictions-silently-ignores-unknown-ids: IDs in `belief_ids` that are missing or `OUT` are dropped without any error or c
+  detect-contradictions-auto-apply-swallows-errors: Failures during `add_nogood` are printed to `stderr` and are not raised, and are
+  checked-is-bounded-by-total-in: `total_in` is captured before `belief_ids`/`sample` filtering, so `checked <= to
+  detect-contradictions-auto-apply-mutates-db: With `auto_apply=True`, the call records nogoods via `add_nogood`, which can ret
+Entry: summaries/2026/11/20/topic-dangling-dependents-issue-22.md
+Queued 2 new topic(s) (365 pending)
+Surfaced 6 belief(s):
+  dangling-dependent-guard-prevents-keyerror: `_propagate` must skip missing dependent IDs instead of indexing `network.nodes`
+  propagation-warns-and-continues-on-dangling-dependents: Dangling dependents produce warning log entries and do not block valid dependent
+  dangling-ids-are-excluded-from-changed: `retract()` does not include dangling dependent IDs in its returned `changed` li
+  rebuild-dependents-removes-phantom-entries: `_rebuild_dependents()` clears and reconstructs the reverse index, removing inje
+  verify-dependents-is-read-only: `verify_dependents()` detects extra/missing dependent entries without modifying 
+Entry: summaries/2026/11/20/reasons-network-retract.md
+Queued 1 new topic(s) (366 pending)
+Surfaced 5 belief(s):
+  retract-returns-empty-when-already-out: If `node.truth_value == "OUT"` on entry, `retract` refreshes `retracted_at`/`upd
+  retract-sets-sticky-retracted-flag: Every call sets `node.metadata["_retracted"] = True`, which causes `_propagate` 
+  retract-does-not-overwrite-reason-when-blank: A falsy `reason` argument leaves any pre-existing `metadata["retract_reason"]` i
+  retract-bypasses-compute-truth: Unlike `_propagate`, `retract` assigns `"OUT"` directly, overriding premises tha
+  retract-propagates-only-on-in-to-out-transition: The cascade through dependents only runs when the target transitions from `IN` t
+Entry: summaries/2026/11/20/reasons-api-mark_duplicate.md
+Queued 1 new topic(s) (367 pending)
+Surfaced 5 belief(s):
+  mark-duplicate-raises-on-self-reference: Passing the same ID for `source_id` and `canonical_id` raises `ValueError`.
+  mark-duplicate-is-sqlite-only: `mark_duplicate` has no `pg_conninfo`/`domain_id` parameters and never calls `_p
+  mark-duplicate-does-not-rewrite-dependents: The function records `duplicate_of` and retracts, but never rewires dependent ju
+  mark-duplicate-produces-retraction-cascade: Its returned `changed` list is the cascade of truth-value changes from `Network.
+  mark-duplicate-stores-duplicate-of-metadata: It writes `duplicate_of` and `retract_reason` into the source node's `metadata` 
+Entry: summaries/2026/11/20/reasons-api-mark_superseded.md
+Queued 3 new topic(s) (370 pending)
+Surfaced 5 belief(s):
+  mark-superseded-is-irreversible: `mark_superseded` uses `Network.retract()`, not an outlist justification, so the
+  mark-superseded-does-not-touch-new-id: The function only mutates `old_id`'s metadata and truth value; `new_id`'s truth 
+  mark-superseded-requires-both-nodes-to-preexist: Unlike `supersede_with_text`, this function raises `KeyError` for the replacemen
+  mark-superseded-updates-metadata-before-cascade: The `superseded_by` and `retract_reason` keys are written to `node.metadata` *be
+  mark-superseded-emits-pubsub-deltas: Because it opens `_with_network(db_path, write=True)` with subscribers present, 
+Entry: summaries/2026/11/20/topic-truth-maintenance-cascade.md
+Queued 2 new topic(s) (372 pending)
+Surfaced 6 belief(s):
+  sl-antecedents-parsed-from-comma-separated-string: SL antecedents arrive as a comma-separated `sl` string and are split at `reasons
+  node-dependents-is-set-of-node-ids: Each `Node.dependents` is a `set` of node IDs (evidenced by `.add(...)` and `.up
+  retract-forces-unsupported-sl-dependents-out: `Network.retract` cascades through `dependents` and sets `truth_value = "OUT"` o
+  propagate-emits-warn-for-dangling-dependents: Missing dependent IDs produce `{"action": "warn", "target": <id>, "value": "dang
+  propagate-excludes-dangling-from-visited-and-changed: Dangling IDs are skipped, never added to the `visited` set, and never appear in 
+Entry: summaries/2026/11/20/topic-truth-maintenance-system.md
+Queued 1 new topic(s) (373 pending)
+Surfaced 5 belief(s):
+  outlist-is-non-monotonic-justification: An `outlist` requires every listed node to be OUT for the justification to hold,
+  unless-argument-populates-outlist: The API `unless=` parameter is split on commas and assigned verbatim to `Justifi
+  retracted-nodes-remain-stored-for-restoration: Retracted nodes stay in the DB specifically to enable restoration without rederi
+  defeat-justification-appends-to-outlist: Defeating a justification adds a defeater node ID to `justification.outlist` rat
+  tms-vocabulary-is-doyle-1979-not-de-kleer: Every "TMS" citation in the codebase points to Doyle 1979 (`README.md:3,198`; `r
+
+========================================
+[81-90/100] (363 remaining in queue)
+========================================
+  [function] reasons/api.py:defeat_with_scope
+  [function] reasons/network.py:_rebuild_dependents
+  [function] reasons/network.py:verify_dependents
+  [function] reasons/api.py:_rewrite_dependents
+  [function] reasons/api.py:deduplicate
+  [function] reasons/cluster.py:cluster_beliefs_intra
+  [function] reasons/derive.py:_build_beliefs_section
+  [function] reasons/derive.py:build_prompt
+  [general] issue-23-regression-math
+  [general] doyle-section-6-tms
+Explaining [function] reasons/api.py:defeat_with_scope with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:_rebuild_dependents with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:verify_dependents with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:_rewrite_dependents with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:deduplicate with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/cluster.py:cluster_beliefs_intra with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/derive.py:_build_beliefs_section with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/derive.py:build_prompt with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] issue-23-regression-math with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] doyle-section-6-tms with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-api-defeat_with_scope.md
+Surfaced 5 belief(s):
+  defeat-with-scope-creates-derived-defeater: The defeater node created by `defeat_with_scope` has an SL justification over sc
+  defeat-with-scope-does-not-link-antecedents: Scope belief nodes are created as premises with no justification dependency on t
+  defeat-with-scope-requires-nonempty-scope-findings: Passing an empty `scope_findings` list raises `ValueError` before any mutation.
+  defeat-with-scope-is-atomic-on-exception: Any exception raised inside the write context prevents `Storage.save` and cache 
+  defeat-with-scope-emits-pubsub-events-on-save: When pubsub subscribers exist, the write path computes truth-value changes from 
+Entry: summaries/2026/11/20/reasons-network-_rebuild_dependents.md
+Queued 1 new topic(s) (364 pending)
+Surfaced 6 belief(s):
+  rebuild-dependents-is-canonical: The docstring designates `_rebuild_dependents` as the sole canonical rebuild; ot
+  outlist-nodes-are-dependents: `dependents` contains IDs referenced through justification `outlist` in addition
+  dangling-references-are-silently-skipped: Antecedent/outlist IDs not present in `self.nodes` are ignored rather than raisi
+  rebuild-clears-before-rebuilding: A first pass resets every node's `dependents` to `set()` before edges are re-add
+  self-referencing-justifications-produce-self-dependents: A node whose justification lists itself in `antecedents` or `outlist` will have 
+Entry: summaries/2026/11/20/reasons-network-verify_dependents.md
+Queued 1 new topic(s) (365 pending)
+Surfaced 5 belief(s):
+  verify-dependents-reads-only: `verify_dependents` does not mutate the network, nodes, dependents sets, or audi
+  expected-dependents-are-derived-from-antecedents-and-outlists: Both `Justification.antecedents` and `Justification.outlist` contribute expected
+  verify-dependents-ignores-missing-node-references: Justification references to IDs not present in `self.nodes` are silently skipped
+  verify-dependents-returns-errors-not-exceptions: Extra or missing dependents are reported in the returned list rather than raised
+  verify-dependents-assumes-set-valued-dependents: The implementation requires `Node.dependents` to support set subtraction with an
+Entry: summaries/2026/11/20/reasons-api-_rewrite_dependents.md
+Queued 2 new topic(s) (367 pending)
+Surfaced 5 belief(s):
+  _rewrite-dependents-requires-consistent-reverse-index: Only nodes already listed in `old_node.dependents` get their justifications rewr
+  _rewrite-dependents-reassigns-justification-lists: Uses list-comprehension reassignment, so `j.antecedents` and `j.outlist` become 
+  _rewrite-dependents-processes-antecedents-and-outlist: Rewrites both `antecedents` and `outlist` entries equal to `old_id`, and mirrors
+  _rewrite-dependents-does-not-recompute-truth-values: Truth-value propagation is deferred; callers must invoke `net.retract(old_id)` a
+  _rewrite-dependents-assumes-old-and-new-are-distinct: Passing `old_id == new_id` silently corrupts the `dependents` set (adds then dis
+Entry: summaries/2026/11/20/reasons-api-deduplicate.md
+Queued 1 new topic(s) (368 pending)
+Surfaced 5 belief(s):
+  deduplicate-consideres-only-in-nodes: Only nodes with `truth_value == "IN"` are candidates; OUT nodes are silently exc
+  auto-true-enables-dependents-rewrite: When `auto=True`, dependents' justifications are rewritten to reference the kept
+  kept-node-tiebreaks-by-largest-id: On ties in dependents count, `max(..., key=(dependents, nid))` picks the *larges
+  deduplicate-does-not-call-recompute-all: Unlike `defeat_justification`, this function does not call `net.recompute_all()`
+  semantic-mode-requires-numpy-and-cluster-cache: `semantic=True` imports `numpy` and `reasons.cluster.ClusterCache`, both of whic
+Entry: summaries/2026/11/20/reasons-cluster-cluster_beliefs_intra.md
+Queued 1 new topic(s) (369 pending)
+Surfaced 5 belief(s):
+  cluster-beliefs-intra-requires-cluster-deps: The function raises `ImportError` before the early-return path if clustering dep
+  cluster-beliefs-intra-produces-at-most-budget-ids: The selected ID list length is always at most `budget`, but may be shorter when 
+  focus-cluster-rotates-by-round-num-mod-k: The focus cluster is selected as `round_num % k` over clusters sorted by descend
+  cluster-sizes-do-not-map-to-focus-cluster: `cluster_sizes` is in ascending cluster-label order, while `focus_cluster` index
+  cluster-cache-enables-embedding-reuse: Reusing a `ClusterCache` persists newly computed embeddings in its internal cach
+Entry: summaries/2026/11/20/reasons-derive-_build_beliefs_section.md
+Queued 2 new topic(s) (371 pending)
+Surfaced 5 belief(s):
+  in-nodes-exclude-derived: `_build_beliefs_section` only includes base beliefs: nodes with `truth_value == 
+  budget-floor-can-exceed-max: Per-agent and local budgets use `max(5, ...)`, so the total displayed beliefs ca
+  cluster-mode-ignores-sample-flag: When `cluster` or `intra_cluster` is truthy, the `sample` parameter is not consu
+  cluster-stats-presence-signals-cluster-mode: The second return value is a dict iff clustering ran (early-return path); otherw
+  agent-sort-uses-total-node-count: Agent ordering sorts by `len(agents[a])` (all namespaced nodes, including OUT an
+Entry: summaries/2026/11/20/reasons-derive-build_prompt.md
+Queued 2 new topic(s) (373 pending)
+Surfaced 5 belief(s):
+  build-prompt-returns-prompt-and-stats: `build_prompt` returns a `(prompt_text, stats_dict)` tuple and builds stats from
+  topic-filter-runs-before-depth-and-dependency-calculations: Topic filtering is applied before depth, dependency, and agent calculations.
+  derived-section-includes-out-nodes: The derived section includes all filtered nodes with non-empty justifications, i
+  agent-budget-allocation-can-exceed-budget: In non-clustered agent mode, `_build_beliefs_section` allocates at least 5 belie
+  custom-template-unknown-placeholder-raises-valueerror: Custom prompt templates with unknown placeholders raise `ValueError` listing the
+Entry: summaries/2026/11/20/topic-issue-23-regression-math.md
+Queued 2 new topic(s) (375 pending)
+Surfaced 5 belief(s):
+  count-accumulates-agent-beliefs-linearly: In the fixed code, `count` in `_build_beliefs_section` equals `Σ_i len(belief_id
+  count-bug-produces-quadratic-metric: The original buggy placement (`count += len(belief_ids)` inside the per-belief l
+  count-feeds-local-budget: The remaining budget for non-agent beliefs is computed as `remaining = max(5, ma
+  count-bug-causes-local-budget-starvation: Because inflated `count` exceeds `max_beliefs`, the `max(5, …)` floor clamps loc
+  count-bug-is-invisible-at-n-equals-one: When a given agent contributes exactly one belief, `N_i² = N_i`, so the bug does
+Entry: summaries/2026/11/20/topic-doyle-section-6-tms.md
+Queued 2 new topic(s) (377 pending)
+Surfaced 5 belief(s):
+  doyle-1979-is-the-stated-data-model-basis: The `reasons/__init__.py` module docstring explicitly names Doyle (1979) as the 
+  justification-outlist-enables-nonmonotonic-belief: A `Justification` is valid only while all `inlist` nodes are `IN` and all `outli
+  challenge-creates-a-new-IN-node-not-a-target-flag: `Network.challenge` mints a node named `challenge-<target>` whose `truth_value` 
+  defend-invalidates-challenge-by-node-mechanism: After `defend`, the challenge node is `OUT` and the target is `IN`, demonstratin
+  dialectical-depth-is-unbounded: Because challenges/defenses are nodes, they can be recursively challenged; `test
+
+========================================
+[91-100/100] (367 remaining in queue)
+========================================
+  [function] reasons/api.py:show_node
+  [general] example-update-coverage
+  [function] reasons/export_card.py:export_card
+  [function] reasons/metadata.py:SCHEMA_VERSION
+  [general] eem-card-format
+  [function] reasons/network.py:Network.recompute_all
+  [function] reasons/export_markdown.py:export_markdown
+  [general] defeater-metadata-model
+  [repo] reasons-vs-reasons_lib-sync
+  [function] reasons/api.py:publish_hf
+Explaining [function] reasons/api.py:show_node with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] example-update-coverage with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/export_card.py:export_card with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/metadata.py:SCHEMA_VERSION with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] eem-card-format with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:Network.recompute_all with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'Network.recompute_all' not found in reasons/network.py (skipping)
+Explaining [function] reasons/export_markdown.py:export_markdown with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] defeater-metadata-model with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [repo] reasons-vs-reasons_lib-sync with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:publish_hf with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/20/reasons-api-show_node.md
+Queued 2 new topic(s) (369 pending)
+Surfaced 5 belief(s):
+  show_node-returns-aliased-mutable-state: The returned dict shares its `metadata` dict and each justification's `anteceden
+  visibility-skipped-when-no-access-tags: `_is_visible` returns `True` for nodes without `access_tags` regardless of `visi
+  show-node-dispatches-before-sqlite-touches-db: When `pg_conninfo` is truthy, `show_node` returns from `_pg_dispatch` before ope
+  show-node-read-populates-cache-on-error: The `_with_network` context manager re-stores `(mtime, network)` in `_network_ca
+  show-node-reads-tags-sources-outside-network-cache: `tags` and `sources` are fetched via a fresh `sqlite3.connect(db_path)` rather t
+Entry: summaries/2026/11/20/topic-example-update-coverage.md
+Queued 1 new topic(s) (370 pending)
+Surfaced 5 belief(s):
+  docstring-lists-update-tests-but-file-lacks-them: `tests/test_example.py:1` claims update coverage, while the file defines only ad
+  add-node-stores-example-in-metadata: `reasons/api.py:add_node` sets `metadata["example"]` when `example` is not `None
+  pg-add-path-stores-example-in-metadata: `reasons/pg.py` sets `metadata["example"]` when `example` is not `None` at lines
+  update-symbol-search-returned-zero: The gathered searches found zero definitions for symbol `update` and zero matche
+  cli-example-flag-wiring-is-not-shown-for-update: `reasons/cli.py:3085` defines `--example`, and line 59 passes it via `getattr`, 
+Entry: summaries/2026/11/20/reasons-export_card-export_card.md
+Queued 1 new topic(s) (371 pending)
+Surfaced 5 belief(s):
+  export-card-returns-markdown-string: `export_card` always returns a `str` built by joining `lines` with `"\n"`; it ne
+  export-card-handles-empty-network: An empty `network.nodes` yields `total=0`, `retraction_pct="0%"`, and `max_depth
+  premises-counted-by-absence-of-justifications: `premises` is defined as nodes whose `justifications` is falsy, and `derived = t
+  max-depth-prefers-supporting-justification: `_node_depth` descends only the `supporting_justification` when that index is va
+  yaml-quoting-is-partial: Only `project_name` and `base_network` are double-quoted; `license`, `domain` it
+Entry: summaries/2026/11/20/reasons-metadata-SCHEMA_VERSION.md
+Surfaced 5 belief(s):
+  schema-version-is-string-literal: `SCHEMA_VERSION` is bound to the literal string `"1.0"` when `reasons.metadata` 
+  build-meta-produces-schema-version: `build_meta()` always includes `SCHEMA_VERSION` as the `"schema_version"` field 
+  schema-version-is-not-application-version: The metadata schema version and the package/generator version are separate conce
+  schema-version-lacks-runtime-validation: No code validates the format of `SCHEMA_VERSION` or checks it against the metada
+  schema-version-binding-is-mutable-by-convention: Python does not prevent reassigning `reasons.metadata.SCHEMA_VERSION`, although 
+Entry: summaries/2026/11/20/topic-eem-card-format.md
+Queued 1 new topic(s) (372 pending)
+Surfaced 5 belief(s):
+  eem-card-is-readme-with-yaml-frontmatter: `export_card()` returns a README-style string with YAML frontmatter delimited by
+  eem-card-type-is-hardcoded-eem: The generated frontmatter always sets `type` to `"eem"`.
+  base-network-records-parent-eem: `base_network` is emitted as a quoted parent ID or `null` when absent.
+  source-repos-records-provenance: `source_repos` is emitted as a YAML list or `[]` when absent.
+  eem-card-schema-version-comes-from-metadata: `schema_version` is populated from `metadata.SCHEMA_VERSION` through `build_meta
+Entry: summaries/2026/11/20/reasons-export_markdown-export_markdown.md
+Queued 1 new topic(s) (373 pending)
+Surfaced 6 belief(s):
+  node-sorting-in-first-then-alphabetical: Nodes are ordered by `(truth_value != "IN", id)`, producing IN nodes first and a
+  stale-status-maps-from-out-plus-reason: A node with `truth_value == "OUT"` and either `stale_reason` or `retract_reason`
+  beliefs-type-defaults-from-justifications: Missing `beliefs_type` defaults to `DERIVED` when `node.justifications` is non-e
+  defeater-vs-unless-disambiguated-by-defeats-node: An outlist id is treated as `Defeated by` only when the corresponding node's `me
+  export-markdown-has-no-side-effects: The function performs no I/O and mutates no input; it returns a pure `str` for t
+Entry: summaries/2026/11/20/topic-defeater-metadata-model.md
+Queued 1 new topic(s) (374 pending)
+Surfaced 5 belief(s):
+  defeater-type-affects-defeater-id: `defeater_type` is embedded in the defeater node ID (`f"{defeater_type}-{node_id
+  defeats-node-enables-defeater-classification: `classify_defeat_reason_types` requires `metadata["defeats_node"]` to identify d
+  defeater-type-enables-classification-filtering: `classify_defeat_reason_types` accepts `defeater_type_filter` and skips candidat
+  defeat-reason-type-written-conditionally: `defeat_justification` only adds `defeat_reason_type` to metadata when the argum
+  migrated-retraction-produces-defeater: `migrate_retract_to_defeaters` produces defeaters with `defeater_type="migrated-
+Entry: summaries/2026/11/20/repo-overview.md
+Queued 1 new topic(s) (375 pending)
+Surfaced 6 belief(s):
+  pyproject-declares-no-required-runtime-dependencies: `dependencies = []`; every non-stdlib package is behind an optional extra.
+  cli-entry-point-is-reasons-cli-main: `[project.scripts] reasons = "reasons.cli:main"` is the sole CLI wiring.
+  mcp-entry-point-is-reasons-mcp-server-main: `[project.scripts] reasons-mcp = "reasons.mcp_server:main"` is the sole MCP wiri
+  reasons-lib-mirrors-reasons-except-merkle: `reasons_lib/` contains every module in `reasons/` except `merkle.py`, which exi
+  storage-supports-sqlite-by-default-and-postgres-optionally: `storage.py` is stdlib SQLite; `pg.py` is gated behind the `pg` extra (psycopg).
+Entry: summaries/2026/11/20/reasons-api-publish_hf.md
+Queued 3 new topic(s) (378 pending)
+Surfaced 5 belief(s):
+  publish-hf-requires-token: `publish_hf` raises `RuntimeError` before any network or export I/O when `_resol
+  publish-hf-produces-three-artifacts: On success `publish_hf` uploads exactly `["network.json", "beliefs.md", "README.
+  publish-hf-does-not-rollback: `publish_hf` has no try/except or cleanup; a mid-sequence upload failure leaves 
+  publish-hf-private-is-create-only: The `private` argument is forwarded only to `create_repo` and has no effect on a
+  publish-hf-delegates-hf-io-to-hf-module: All HuggingFace interaction (token resolution, repo id normalization, creation, 
+
+Explored 100 topic(s). 378 remaining in queue.
+  Round 1: Explore (up to 100 topics) took 15m 28s
