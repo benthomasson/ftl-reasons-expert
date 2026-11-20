@@ -3,8 +3,8 @@
     "schema_version": "1.0",
     "project_name": "reasons",
     "created_at": "2026-07-08T10:24:03+00:00",
-    "updated_at": "2026-11-20T01:00:13+00:00",
-    "node_count": 4218,
+    "updated_at": "2026-11-20T09:04:03+00:00",
+    "node_count": 4266,
     "generator": "reasonsforge/0.74.0"
   },
   "nodes": {
@@ -144,6 +144,25 @@
       "metadata": {},
       "created_at": "2026-11-18T19:38:53+00:00",
       "updated_at": "2026-11-18T19:38:53+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "accept-beliefs-reports-total-belief-count": {
+      "text": "The `accept-beliefs` step records both newly accepted beliefs and the resulting total belief count, as shown by `accepted: 78` and `total_beliefs: 201`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "42301793b20ef6833f8374eaece9a474f4eaf2943b01e4dac9fded05ea9d155f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -18659,6 +18678,196 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "cost-aggregates-equal-sum-of-by-model": {
+      "text": "`calls`, `input_tokens`, `output_tokens`, and `cost_dollars` are redundant aggregates that must equal the sums of the corresponding `by_model` entries.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "f5a2a29feb64dccd3c4a5a21deabe81b1efbe6b5f865ed4badffbd3098e725c6",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-file-name-encodes-timestamp-and-operation": {
+      "text": "Files under `costs/` are named `<ISO-timestamp>-<operation>.json`, and the payload\u2019s `timestamp` and `operation` fields echo the filename components.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "21808cd4acd210241a324c93f8576512c121dab3b36d24981c2c3adb36e4e9af",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-file-naming-encodes-timestamp-and-operation": {
+      "text": "Files in `costs/` are named `<ISO-timestamp>-<operation>.json`, and both values are echoed inside the payload.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b9036c44eec1f15fb037d00b37f9d9bd11108087669e7a631c722ddcb0741ad0",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-is-a-data-artifact-not-imported-code": {
+      "text": "No Python module imports this file; it is consumed by directory scanning, so it is safe to delete or rotate.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "8fd147138cf385a9d57dc4b807e9154dafb91e73af44b0ddf90751d10ce80240",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-ledger-has-no-in-repo-code-importers": {
+      "text": "No Python module imports a `costs/*.json` file; cost ledgers are consumed by directory scanning and can be deleted or rotated without breaking the build.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "72d10de4e1a61c6baaa5aca8a4109e530de715075c48ce45711ca99638833bdc",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-ledger-lacks-status-field": {
+      "text": "The cost ledger schema has no `status` or `error` field, so a partial run that writes the file cannot be identified as failed from the ledger alone.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b1c7f43a6930544cebd210ec6bbbe41fd8baa47fddb1f90ec5905dcb4774d7f6",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-log-contains-per-model-breakdown": {
+      "text": "Every cost log embeds a `by_model` map recording `calls`, `input_tokens`, `output_tokens`, and `total_cost_usd` per model.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ee81e4556716a7cac3178207362aafe7e1fd1457ea23db472baf7166bf60df09",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-log-domain-field-is-not-guaranteed-non-null": {
+      "text": "The `domain` field in a cost log can be `null` even when the update targets a named domain, so consumers must not assume it is populated.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "75eaff1f6b9d05be83d1db5cd3e6f3b695dad6f3eb989a3739b465ca6494adfe",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-log-domain-field-may-be-null": {
+      "text": "The `domain` field is `null` even when the update targets a named domain (commit says ftl-reasons), so the writer does not guarantee capturing the domain.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "4f2dfb14b238055238cff2ab598ff94290930c5bf85d3afa448c1cf1a8753134",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "cost-logs-are-per-operation-json-files": {
+      "text": "Each LLM operation writes a separate JSON file under `costs/` named `{timestamp}-{operation}.json`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "308d8adf4174ddc345be69cc2081df410bffdff79b386d07b2e9361da35dcb9e",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "cost-recording-requires-successful-cli-json-parse": {
       "text": "`_parse_cli_json` is the only place `_record_cost` is called; malformed or non-conforming CLI JSON returns the raw string and leaves the cost tracker unchanged.",
       "truth_value": "IN",
@@ -25297,6 +25506,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "diary-update-pipeline-runs-propose-beliefs-then-accept-beliefs": {
+      "text": "The `diary-update` pipeline executes `propose-beliefs` before `accept-beliefs`; the accept step begins at the proposal step\u2019s completion timestamp.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b234d2bdecdc2ed3356ab0fdf89b7c70f524a73a90c46948c1e2084a33257298",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "diary-update-report-is-generated-run-artifact": {
       "text": "`.forge/report.json` is a generated run-report artifact for the `diary-update` pipeline; this commit only refreshes run metadata and counts rather than editing domain logic.",
       "truth_value": "IN",
@@ -25312,6 +25540,25 @@
       },
       "created_at": "2026-11-18T20:17:57+00:00",
       "updated_at": "2026-11-18T20:17:57+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "diary-update-steps-are-sequential": {
+      "text": "`steps[1].started_at` equals `steps[0].completed_at` (18:03:31), enforcing strict sequential stage ordering in the report.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "8d5e47d49e12050fa6b9314a5efaa311c1565619487239d7224f0db8d028c2b4",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -30648,6 +30895,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "forge-report-records-diary-update-pipeline": {
+      "text": "`.forge/report.json` stores the status, timestamps, step details, and summary counts for a `diary-update` pipeline run.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "7830424587f725c7133931a267cfb01ad783fc97672d91e81a9296a9461f87ab",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "forge-report-shared-across-reasons-and-reasons-lib": {
       "text": "Both `reasons/` and `reasons_lib/` contain modules that read `.forge/report.json`, so schema changes must be synchronized across the two trees.",
       "truth_value": "IN",
@@ -31440,6 +31706,25 @@
       },
       "created_at": "2026-11-19T01:32:48+00:00",
       "updated_at": "2026-11-19T01:32:48+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "ftl-reasons-is-the-distribution-name": {
+      "text": "`ftl-reasons` is the PyPI/package identity for the reasons library, referenced in `version(\"ftl-reasons\")`, the `generator: ftl-reasons/<v>` metadata string, and `pip install 'ftl-reasons[extra]'` install hints.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "1e9262e0e6fc8f94773d5b12ec482073ab78c74b20154b4aac345c4ddd1c8730",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -58572,6 +58857,253 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "proposed-entries-contains-no-tombstones": {
+      "text": "The manifest can only express creation/update intent; there is no marker for deleting or orphaning an existing `entries/` file.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "84ba29013eecfb0d775e14f0bb42e09d841ad8319b626aac032b1ec2a5ce6ad8",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-has-no-in-repo-consumers": {
+      "text": "No code in the repository references the symbols `proposed-entries` or `proposed_entries`; the manifest is read by external Forge tooling, not by the `reasons` package.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "c150cc889b8851fbd523d87982a5a318f0110efb18a04dc6813187b5d45d809f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-include-private-helpers": {
+      "text": "The proposal scope includes private helper symbols such as `_propagate` and `_justification_valid`, so the manifest is not limited to public API entries.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "daab47b7215e0d52e0d5fdd77dfc70fdd79c056c2f589e02d9d98d0cd39e940d",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-is-a-flat-content-addressed-manifest": {
+      "text": "The file is a single flat JSON object mapping wiki paths to 16-hex-char content digests, with no nested objects, arrays, or metadata envelope.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "c0aeeb9cc031673b8cb2fffaed551cb368e45b0b675bb524635ce71b63f5b816",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-is-change-detection-manifest": {
+      "text": "`.forge/proposed-entries.json` is a manifest mapping each entry path under `entries/2026/04/23/` to a 16-hex-character content hash used to detect which entries have changed.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "590bf4a63942cd9415e123007de90c9326bf3ecef1b52935dca8423d206fbe88",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-is-flat-sorted-json-without-envelope": {
+      "text": "`.forge/proposed-entries.json` is a flat JSON object with lexicographically sorted path keys and no `version`, `generatedAt`, or `root` envelope fields.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "c1b93c85466d4d097577bb0aedf57c919be2b37b55ac8817f12f1c92e0a5a2b7",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-is-keyed-by-entry-file-path": {
+      "text": "Every key in the manifest is a path of the form `entries/YYYY/MM/DD/<slug>.md`, so keys correspond one-to-one with entry files and hashes correspond to their content versions.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ef2c0406a46209c8ef7b20920911a78ad6275b62c0c71c67430a28e8b8527d9d",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-keys-are-lexicographically-sorted": {
+      "text": "Keys are ordered by plain string sort, which is why `reasons_lib-network.md` (umbrella) appears after the four `reasons_lib-network-*.md` children.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "cd6659731cbfd2ed193e46738ddeb294cfdbb95fbd7c3f1cbad5d3c4a53ba1c0",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-keys-use-date-partitioned-paths": {
+      "text": "All 17 keys match `entries/YYYY/MM/DD/<slug>.md`, and all 17 currently share the partition `entries/2026/04/23/`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ec03a4dd8b191e7e2fca59c708959cbe0fe092a3ab1f5371d66822c54cf171b5",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-keys-use-single-date-partition": {
+      "text": "Every key in `.forge/proposed-entries.json` is an `entries/YYYY/MM/DD/<slug>.md` path, and the observed manifest uses a single date partition.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "2d27bf1bc022c66f00aec5695639e7456edc0a9dfa9aa6aa7b8a6e3465ad95fb",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-slug-prefix-is-schema": {
+      "text": "Manifest slugs use only the prefixes `reasons_lib-`, `scan-`, or `topic-`; introducing a new prefix would be a schema change.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "9962cb3f3cc1f4737557146edd3515b2e95fb0008ff72d56f13f2266fdcc1089",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-slugs-flatten-source-coordinates": {
+      "text": "Entry slugs flatten `/`, `.`, and `:` from source coordinates to `-` while preserving underscores, e.g. `reasons_lib/network.py:add_nogood` becomes `reasons_lib-network-add_nogood`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "789867941fc67e642a672273a8a83c15f76ab5a880ad3e321e87f20e86a2f84d",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "proposed-entries-values-are-16-lowercase-hex": {
+      "text": "`.forge/proposed-entries.json` values are exactly 16 lowercase hexadecimal characters and act as content-change digests, not security hashes.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "90516075d7f7597652adf60080087fad2d490fc4e8829cbb4d5f8801f38dfdb2",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "provider-dispatch-is-string-prefix-not-plugin": {
       "text": "Provider selection in `invoke_model` is a flat `startswith` cascade (`api:`, `vertex:`, `openai:`, then CLI) with no class hierarchy, plugin registry, or factory pattern \u2014 adding a provider requires one new `if` branch and one `_invoke_*` function.",
       "truth_value": "IN",
@@ -65807,6 +66339,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-detail-strings-must-agree-with-counts": {
+      "text": "The `detail` strings in `.forge/report.json` numerically agree with the corresponding `counts` values, e.g. `\"proposed 260 from 17 entries\"` and `\"accepted 78 beliefs\"`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ac19d2f189392d82e94e806af2fda6f732ffc61f6e9c857623a6db896a3ebd29",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-gated-api-return-shape-includes-counts-and-report": {
       "text": "`api.report_gated(db_path=...)` returns a dict containing `report`, `blocker_count`, `gated_count`, and `retracted_count`.",
       "truth_value": "IN",
@@ -66295,6 +66846,82 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-json-has-no-in-repo-code-references": {
+      "text": "The path `.forge/report.json` has no production or test code usages in this repository, indicating it is a generated/external metadata artifact rather than a referenced code symbol.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "f7125eb628f95cd7cc4942d03aaafabf4eb8e533ae098ff55bfa747d0e467d60",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-json-is-a-runtime-artifact": {
+      "text": "`.forge/report.json` is generated pipeline output (not source) written under `.forge/`, and consumers must tolerate it being absent or mid-write.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "e81d8a03d27be78218c8b1504aaab25e560339be8f7f1b4ed8b3cb45b061e66a",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-json-is-consumed-by-report-modules": {
+      "text": "`reasons/api.py`, `reasons_lib/report_belief.py`, and `reasons_lib/report_gated.py` read this file's schema; renaming keys is a breaking change for them.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "20c993f0cbc8cc5043859b7533025defdbb8b73f31bb3aa09b573e2db885a7d2",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-json-tracks-proposed-and-accepted-counts-separately": {
+      "text": "The report distinguishes entry count, proposed belief count, accepted belief count, and total belief count in its step counts and top-level summary.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "dd95b0e0b6727bc328ffba5361219f8294fe7c5bfb8bb79b649399b5149332a5",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-source-evidence-uses-chunks-fts5": {
       "text": "Source-evidence lookup uses a `chunks` table plus an FTS5 `chunks_fts` virtual table to map source text back to premise IDs.",
       "truth_value": "IN",
@@ -66310,6 +66937,25 @@
       },
       "created_at": "2026-11-19T16:44:41+00:00",
       "updated_at": "2026-11-19T16:44:41+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-steps-have-chained-timestamps": {
+      "text": "In a completed `.forge/report.json` run, `steps[i+1].started_at` equals `steps[i].completed_at`, so steps are sequential and contiguous.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ba98d557a9a4a45307bfe5dbe4b750282bb5bb9a88dd13ca880715df2421955a",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -66333,6 +66979,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-total-beliefs-is-post-acceptance-absolute": {
+      "text": "`accept-beliefs.counts.total_beliefs` is the post-acceptance belief-base count; subtracting `accepted` from it gives the pre-run count.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "8493a142131d16fc79821c01ad2652b308d1ef2c88874714c6b57383badb2937",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-truth-value-markers-are-binary": {
       "text": "In all report renderers, the TMS truth-value marker is binary: `+` if and only if `truth_value == \"IN\"`, and `-` for every other value (OUT, UNKNOWN, retracted) with no distinct marker per non-IN state.",
       "truth_value": "IN",
@@ -66348,6 +67013,25 @@
       },
       "created_at": "2026-11-01T21:34:08+00:00",
       "updated_at": "2026-11-01T21:34:08+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-updated-at-distinguishes-in-progress-from-complete": {
+      "text": "`.forge/report.json` exposes `updated_at` separately from `completed_at`, letting consumers distinguish an in-progress write from a finished run.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "9990eac2996522bbfe65d09081992e24577de18ca36cf385dae26eaf4780647f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -74903,6 +75587,44 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "slug-derivation-preserves-underscores": {
+      "text": "Slugs flatten `/`, `.`, and symbol separators to `-` but keep `_`, as shown by `reasons_lib-__init__.md`, `reasons_lib-network-add_nogood.md`, and `reasons_lib-network-_justification_valid.md`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "2108770c803a77171f374145583d8ba7e31d00e0decfc392c020182764db8c4e",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "slug-namespace-has-three-prefixes": {
+      "text": "Every slug begins with `reasons_lib-`, `scan-`, or `topic-`; there is no slug for the sibling `reasons/` package despite its near-identical module list.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-proposed-entries.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "033d737b3bb8beffb55edc8e979cd611b8979fc27bf64cc24b7a9450fe3e6ca1",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "snapshot-requires-active-subscribers": {
       "text": "The write path computes before/after truth snapshots only when `write` is true and `pubsub.has_subscribers(db_path)` is true.",
       "truth_value": "IN",
@@ -76550,6 +77272,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "step-counts-shape-varies-by-name": {
+      "text": "`counts` is stage-specific (`{entries, proposed}` for `propose-beliefs` vs `{accepted, total_beliefs}` for `accept-beliefs`), so readers must discriminate by `name` before accessing fields.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "cd044ab5c12563ddcf35916a85d457001f7a4219966a644445682642c13428ec",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "sticky-retraction-survives-recompute-all": {
       "text": "A node with `_retracted` metadata stays OUT even when `recompute_all()` re-evaluates the entire network \u2014 sticky retraction is a durable pin that only `assert_node` can clear",
       "truth_value": "IN",
@@ -78176,6 +78917,25 @@
       },
       "created_at": "2026-11-19T16:44:40+00:00",
       "updated_at": "2026-11-19T16:44:40+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "summary-counts-mirror-step-counts": {
+      "text": "Every numeric field in `summary` (entries, proposed, accepted, total_beliefs) equals the corresponding value in `steps[].counts`, so the two blocks must be updated together.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "0bbff704fa348f7f9cf2ea6060552e4973fb5132b6a48238f02ada7f3b27f26f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -82970,6 +83730,44 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "update-cost-ledger-records-belief-deltas": {
+      "text": "Each `update` cost ledger records `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged`, separating semantic belief-store changes from token spend.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "f28395af1d54ce7d9015423d20f694f15feee0d2f65243fee1035666dc97d6cc",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "update-cost-log-records-belief-deltas": {
+      "text": "Cost logs for `operation: \"update\"` include `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged` counters.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "bb744d6f5816b225d4b7e0f5209d71cfe2cacdb02bfa8f6fbb680b5c005a8eef",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "update-node-preserves-justifications": {
       "text": "`api.update_node` modifies text and source metadata without altering the node's justification list or truth value.",
       "truth_value": "IN",
@@ -82983,6 +83781,25 @@
       "metadata": {},
       "created_at": "2026-11-01T19:10:21+00:00",
       "updated_at": "",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "update-operation-records-belief-deltas": {
+      "text": "Cost logs for `operation: \"update\"` include `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged` counters.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "bb744d6f5816b225d4b7e0f5209d71cfe2cacdb02bfa8f6fbb680b5c005a8eef",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -83002,6 +83819,25 @@
       },
       "created_at": "2026-11-01T21:35:30+00:00",
       "updated_at": "2026-11-01T21:35:30+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "update-run-records-belief-deltas": {
+      "text": "Each `update` ledger entry reports `beliefs_added`, `beliefs_retracted`, and `beliefs_unchanged`, decoupling semantic change from token spend.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "7e6bff65ffc6ef7a2d431ca8cca5401d94a1a8ee5a1968d1ced057696127aa4f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -85277,6 +86113,82 @@
       },
       "created_at": "2026-11-18T20:17:57+00:00",
       "updated_at": "2026-11-18T20:17:57+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "zero-cost-indicates-unpriced-endpoint": {
+      "text": "`cost_dollars: 0.0` alongside nonzero token counts means the endpoint has no configured rate, not that the run failed.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "0fec4b5ebc66c8cd62181bbba1d1a16e09b611ab8220823ded825f64b9828a4e",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "zero-cost-models-still-log-token-counts": {
+      "text": "Proxied or zero-price models can log full `input_tokens` and `output_tokens` counts while reporting `cost_dollars: 0.0`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "18ad19730851d09b37825edcd0e178e0790f2ba5dd542d94c942705727f9f961",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "zero-cost-models-still-log-tokens": {
+      "text": "Proxied/zero-price models (e.g., `rits/deepseek-ai/DeepSeek-V4.1-Flash-1017`) still log full input/output token counts with `cost_dollars: 0.0`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/diff-88ce8062-costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "8973635e1d5734c1e67a9e868448b03219b3a15f1c9e0e01f27dadabc407d510",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "zero-cost-with-nonzero-tokens-means-unpriced-endpoint": {
+      "text": "A `cost_dollars: 0.0` value alongside nonzero token counts indicates the model endpoint has no configured price, not that the run failed.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/20/costs-2026-11-19T180331-update.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "bc484d99e37f4011a54f713a8add8556e4ebfed046ac19a428ba777b30e8cd7b",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-20T09:02:28"
+      },
+      "created_at": "2026-11-20T09:02:28+00:00",
+      "updated_at": "2026-11-20T09:02:28+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
