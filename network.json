@@ -3,8 +3,8 @@
     "schema_version": "1.0",
     "project_name": "reasons",
     "created_at": "2026-07-08T10:24:03+00:00",
-    "updated_at": "2026-11-21T01:00:19+00:00",
-    "node_count": 5030,
+    "updated_at": "2026-11-21T09:02:50+00:00",
+    "node_count": 5046,
     "generator": "reasonsforge/0.74.0"
   },
   "nodes": {
@@ -163,6 +163,44 @@
       "metadata": {},
       "created_at": "2026-11-18T19:38:53+00:00",
       "updated_at": "2026-11-18T19:38:53+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "accept-beliefs-does-not-recount-existing-beliefs": {
+      "text": "Re-running `accept-beliefs` over the same proposals accepts 0 new beliefs while `total_beliefs` remains unchanged, so already-stored beliefs are not re-counted as newly accepted.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "bd3909c130307e8194ad6f8a39720b2e314c138bb6141368bc6cd28b2040c64d",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "accept-beliefs-is-idempotent": {
+      "text": "Re-running `accept-beliefs` against the same 260 proposals accepts 0 new beliefs (versus 78 on first run) while `total_beliefs` remains 201, so acceptance is state-dependent and does not re-count already-stored beliefs.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b61d70fd51feca41861ff7c0a8e083a5f1eb17cb8de51526b2b95c466fa4b7e3",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -29847,6 +29885,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "diary-update-pipeline-has-two-steps": {
+      "text": "The `diary-update` pipeline is composed of an ordered `propose-beliefs` step followed by an `accept-beliefs` step, recorded sequentially in `steps[]` with per-step status, timestamps, counts, and `duration_seconds`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "30a3870c1267a94e2d0928e4baefbbb711befc3ce92b322b8228a75c5a57ef87",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "diary-update-pipeline-records-two-ordered-steps": {
       "text": "The `diary-update` pipeline records exactly two ordered steps: `propose-beliefs` followed by `accept-beliefs`.",
       "truth_value": "IN",
@@ -31007,6 +31064,25 @@
       },
       "created_at": "2026-11-19T16:44:41+00:00",
       "updated_at": "2026-11-19T16:44:41+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "duration-seconds-derives-from-timestamps": {
+      "text": "Each step's `duration_seconds` equals `completed_at \u2212 started_at` (both 0.01s in this run).",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "d2f69fe6a478cc7ea5db94300c6414eba316248db20485ef88fceca66b33d2ea",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -66300,6 +66376,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "propose-beliefs-duration-is-not-fixed": {
+      "text": "`propose-beliefs` `duration_seconds` can vary by orders of magnitude across runs with identical inputs (200.75s \u2192 0.01s), indicating the step's work is cacheable or skippable when the entries are unchanged.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "1aac156dd9325a8f34362f6013deae08551c08ef1744252e6cb66fe04c3ef3cf",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "propose-stage-requires-external-accept": {
       "text": "`format_proposal_markdown()` emits suggested `reasons update`/`reasons retract` commands but does not execute them.",
       "truth_value": "IN",
@@ -77515,6 +77610,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-envelope-has-five-top-level-fields": {
+      "text": "`.forge/report.json` has a top-level envelope containing `pipeline`, `started_at`, `updated_at`, `status`, and `completed_at`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "925da6b06efa0dc0b67d9647ef1ad5493fd5b107a9a1e601de2134e666c52763",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-failures-are-recorded-as-status-and-detail": {
       "text": "The entry only speculates about how failed runs would be represented; no failed-run schema or example is provided.",
       "truth_value": "IN",
@@ -78020,6 +78134,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-is-generated-artifact": {
+      "text": "`.forge/report.json` is a pipeline run ledger written by the diary-update workflow, not hand-maintained source.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "baabe68e3de950b757ea5a79e43af6c469b406bf714de671b71ab73b04173116",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-json-has-no-in-repo-code-references": {
       "text": "The path `.forge/report.json` has no production or test code usages in this repository, indicating it is a generated/external metadata artifact rather than a referenced code symbol.",
       "truth_value": "IN",
@@ -78115,6 +78248,63 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-status-completed-enables-gated-publishing": {
+      "text": "Downstream `report_gated.py` treats the top-level `status` as a gate; only `completed` runs pass.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "9677d93a72838a2ac2349c79d3ccdc8e2e8838875950ff4c4a23894925c70f38",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-step-duration-equals-timestamp-delta": {
+      "text": "Each step\u2019s `duration_seconds` equals the difference between its `completed_at` and `started_at` timestamps.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "ec97c48d36d04ddf3bb9a4bc6cf67bd22f2859c536abc8fdb6806661c339fb5b",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-steps-are-ordered": {
+      "text": "`steps[]` preserves execution order, with `propose-beliefs` before `accept-beliefs`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "c5c93ddba167db38af0be27d3787eeb61017dc67a38e684058c995924f9ded42",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-steps-have-chained-timestamps": {
       "text": "In a completed `.forge/report.json` run, `steps[i+1].started_at` equals `steps[i].completed_at`, so steps are sequential and contiguous.",
       "truth_value": "IN",
@@ -78170,6 +78360,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-total-beliefs-corresponds-to-reasons-api-metric": {
+      "text": "The report\u2019s `total_beliefs` field corresponds to the same `total_beliefs` metric exposed by `reasons/api.py` and `reasons/pg.py` and printed by `reasons/cli.py`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "e69f16c9f3680d4e8c4c52fb8287c1ff92260a7b729598c20169d677eaa1213f",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-total-beliefs-is-post-acceptance-absolute": {
       "text": "`accept-beliefs.counts.total_beliefs` is the post-acceptance belief-base count; subtracting `accepted` from it gives the pre-run count.",
       "truth_value": "IN",
@@ -78185,6 +78394,25 @@
       },
       "created_at": "2026-11-20T09:02:28+00:00",
       "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-total-beliefs-maps-to-reasons-namespace-metric": {
+      "text": "The report's `total_beliefs` field corresponds to the namespace `total_beliefs` metric exposed by `reasons/api.py` and `reasons/pg.py` and printed by `reasons/cli.py`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "6733bf72fbdb2133a4801177e8a358900896325d19fc3e574aae49b39b2fad92",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -78223,6 +78451,25 @@
       },
       "created_at": "2026-11-20T09:02:28+00:00",
       "updated_at": "2026-11-20T09:02:28+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-updated-at-equals-completed-at-on-success": {
+      "text": "On a completed `.forge/report.json` run, the top-level `updated_at` timestamp equals `completed_at`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "f3392b1d5a6a14f48d584728e3f59bf2f648e09edc7167e93d405a98720a5c7c",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -92179,6 +92426,44 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "summary-accepted-count-is-per-run": {
+      "text": "`summary.accepted` reports newly accepted beliefs for that run, not the cumulative store size; the cumulative size is `summary.total_beliefs` (201), which is unchanged across runs.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "d2cecdcf349e1205035a1c1dcf4f56227adeacd8dcfbf68f01bc8a5212bfa8fa",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "summary-accepted-count-is-per-run-not-cumulative": {
+      "text": "`summary.accepted` reports newly accepted beliefs for that run, while cumulative store size is reported separately as `summary.total_beliefs`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "9fc07a350c9ce7442c4bd4f04ffc883fef57d19ca681e270ceb9b75894476a0a",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "summary-counts-mirror-step-counts": {
       "text": "Every numeric field in `summary` (entries, proposed, accepted, total_beliefs) equals the corresponding value in `steps[].counts`, so the two blocks must be updated together.",
       "truth_value": "IN",
@@ -100098,6 +100383,25 @@
       },
       "created_at": "2026-11-18T20:17:57+00:00",
       "updated_at": "2026-11-18T20:17:57+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "zero-accepted-beliefs-still-completes": {
+      "text": "A run that accepts 0 beliefs still records `status: \"completed\"` and a `completed_at` timestamp; a zero-accept result is not treated as a failure.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/21/diff-746f7074-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "a06e98d673b3c843f030d4eb19a0c8a69f1103d1b04c318e47374dd8bb718e30",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-21T09:01:32"
+      },
+      "created_at": "2026-11-21T09:01:32+00:00",
+      "updated_at": "2026-11-21T09:01:32+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
