@@ -1,0 +1,297 @@
+=== explore-propose-accept / review-proposals (round 1) — 2026-11-21T16:37:03 ===
+
+=== Round 1: Review proposals ===
+
+Reviewing 721 proposals (34 already rejected)...
+  Batch 4/145 done (1 completed)
+  REJECT claude-md-lists-a-curated-subset-of-modules-and-commands: speculative: editorial judgment about documentation completeness ("must be verified rather than trusted"), with ephemeral counts ("roughly half of ~34 modules")
+  Batch 2/145 done (2 completed)
+  Batch 6/145 done (3 completed)
+  Batch 7/145 done (4 completed)
+  Batch 5/145 done (5 completed)
+  Batch 9/145 done (6 completed)
+  REJECT check-integrity-requires-merkle-module: trivial: import-laziness detail visible from code; not a durable architectural invariant
+  Batch 3/145 done (7 completed)
+  Batch 10/145 done (8 completed)
+  Batch 11/145 done (9 completed)
+  REJECT init-db-raises-on-existing-file-unless-forced: duplicate: equivalent to existing `api-init-requires-force-to-overwrite`
+  Batch 8/145 done (10 completed)
+  REJECT alias-captures-object-not-name: duplicate: existing `api-research-is-api-repair-alias` already records that `research` is the same function object as `repair`; the rebinding conditional is trivial Python alias semantics.
+  Batch 15/145 done (11 completed)
+  Batch 1/145 done (12 completed)
+  Batch 13/145 done (13 completed)
+  Batch 12/145 done (14 completed)
+  Batch 18/145 done (15 completed)
+  Batch 17/145 done (16 completed)
+  REJECT summarize-dispatches-to-pg-when-pg-conninfo-set: duplicate: covered by existing `all-api-functions-support-pg-dispatch`
+  Batch 19/145 done (17 completed)
+  REJECT verify-belief-requires-verify-module: trivial: describes import/call-time dependency visible from the module structure
+  Batch 21/145 done (18 completed)
+  REJECT sync-agent-atomic-write-via-with-network: duplicate: Same exception-skips-save invariant already captured by existing `add-node-writes-through-with-network` and `api-layer-ensures-atomic-isolated-mutations`.
+  Batch 20/145 done (19 completed)
+  Batch 22/145 done (20 completed)
+  Batch 16/145 done (21 completed)
+  Batch 24/145 done (22 completed)
+  Batch 25/145 done (23 completed)
+  Batch 27/145 done (24 completed)
+  Batch 23/145 done (25 completed)
+  Batch 29/145 done (26 completed)
+  REJECT parse-beliefs-is-a-leaf-dependency: trivial: import listing is visible directly from the file's imports; "imports only re" is not a durable architectural constraint
+  Batch 30/145 done (27 completed)
+  REJECT research-is-repair: duplicate: existing `api-research-is-api-repair-alias` already states `research` is the same function object as `repair`.
+  REJECT research-preserves-repair-name: duplicate: same-function alias already entails identical `__name__` and `__doc__`.
+  REJECT research-has-no-wrapper: duplicate: same alias belief already covers no wrapper or distinct logic.
+  REJECT repair-produces-needs-research-status: speculative: "motivating the alias" is design-intent commentary, not an observable code fact.
+  Batch 14/145 done (28 completed)
+  Batch 31/145 done (29 completed)
+  REJECT gemini-prefix-check-is-redundant: trivial: Minor code-level redundancy observation, not an architecture invariant, API contract, or data-flow rule.
+  Batch 32/145 done (30 completed)
+  REJECT inactive-relay-node-implements-kill-switch: duplicate: The relay pair, the unconditional `agent:inactive` outlist, and the per-agent cascade on retracting `active` are already captured by `active-inactive-relay-pair`, `agent-beliefs-are-permanently-defeasible-and-updatable`, and `agent-cascades-are-isolated-by-namespace`.
+  Batch 28/145 done (31 completed)
+  REJECT get-db-delegates-discovery: trivial: describes a function calling another, an obvious structural fact evident from reading the code
+  Batch 33/145 done (32 completed)
+  Batch 35/145 done (33 completed)
+  Batch 37/145 done (34 completed)
+  Batch 36/145 done (35 completed)
+  Batch 40/145 done (36 completed)
+  Batch 38/145 done (37 completed)
+  REJECT what-if-retract-raises-keyerror: duplicate: Covered by existing `api-missing-node-raises-keyerror`, which states `what_if_*` raises KeyError for missing node IDs.
+  Batch 39/145 done (38 completed)
+  Batch 42/145 done (39 completed)
+  Batch 41/145 done (40 completed)
+  Batch 43/145 done (41 completed)
+  Batch 34/145 done (42 completed)
+  Batch 44/145 done (43 completed)
+  Batch 45/145 done (44 completed)
+  REJECT outlist-changes-cascade-to-dependents: duplicate: Same claim as existing `antecedent-and-outlist-cascades-have-opposed-truth-effects` describing opposed outlist-edge effects on dependents.
+  REJECT nogood-resolution-backtracks-to-premise: duplicate: Rewords existing `add-nogood-retracts-premises-not-derived-nodes` and `add-nogood-retraction-prefers-least-entrenched`.
+  Batch 49/145 done (45 completed)
+  REJECT inactive-relay-inverts-active: duplicate: same relay structure already captured by `active-inactive-relay-pair` (active premise + inactive node with outlist=[active])
+  REJECT inactive-not-in-antecedents: duplicate: already covered by `kill-switch-uses-outlist-not-antecedent` and `active-not-in-antecedents`
+  Batch 48/145 done (46 completed)
+  REJECT repository-is-single-workflow-file: ephemeral: "exactly one file" is a point-in-time repository snapshot that changes with any addition.
+  REJECT tests-yml-is-declarative-yaml: trivial: obvious from the `.yml` format and file structure.
+  REJECT tests-yml-defines-a-test-pipeline: trivial: obvious from the path and filename `workflows/tests.yml`.
+  REJECT workflows-directory-has-no-siblings: ephemeral: filesystem tree contents are a point-in-time snapshot.
+  REJECT tests-yml-is-the-sole-configuration-surface: speculative: infers a complete configuration surface from a limited repository tree.
+  Batch 47/145 done (47 completed)
+  REJECT get-cost-summary-has-no-observed-cli-usage: ephemeral: observed usage inventory is a point-in-time snapshot that can change with any edit and is not a durable invariant.
+  Batch 51/145 done (48 completed)
+  REJECT commands-dict-is-defined-at-reasons-cli-line-3923: ephemeral: line-number snapshot ("only ... at line 3923") that changes with any edit
+  REJECT subparser-group-is-created-at-reasons-cli-line-3065: ephemeral: specific line-number location snapshot that expires on edit
+  REJECT reasons-lib-cli-is-a-re-export: trivial: "module X imports Y and adds nothing" is visible from the import statements
+  REJECT observed-add-parser-calls-use-string-literal-names: relative-names ephemeral: "30 listed" is a changing count, and literal-name usage is trivial structural observation
+  Batch 50/145 done (49 completed)
+  REJECT mcp-server-enables-agent-access: trivial: module purpose is obvious from its filename and MCP naming
+  REJECT mcp-client-enables-external-resource-ingest: trivial: module purpose is obvious from its filename and MCP naming
+  Batch 46/145 done (50 completed)
+  REJECT outlist-absent-nodes-treated-as-out: duplicate: same claim already captured by existing belief `absent-outlist-node-is-treated-as-out` (nonexistent outlist node treated as OUT).
+  REJECT outlist-only-justification-is-defeatable-premise: duplicate: core claim (unless-only creates SL justification with empty antecedents / premise-like) already covered by `add-node-outlist-only-creates-empty-antecedent-sl`.
+  Batch 53/145 done (51 completed)
+  REJECT sum-gf-abstraction-rationale-only-appears-in-test-docstring: meta: point-in-time search-result observation about where documentation appears, not a codebase invariant
+  Batch 54/145 done (52 completed)
+  REJECT export-network-delegates-to-pg-backend: duplicate: covered by existing `all-api-functions-support-pg-dispatch` (and it's a bare call-site/line citation)
+  REJECT export-network-output-depends-on-database-state: trivial: only cites a pg.py line location; "export depends on DB state" is an obvious fact
+  REJECT mirror-parity-is-not-covered-by-observed-tests: meta: test-search result/coverage inventory, not a codebase invariant
+  REJECT pyproject-packages-includes-reasons-lib: trivial: packaging list visible directly from pyproject.toml; line-specific file contents
+  REJECT cli-entrypoints-use-reasons-package: trivial: entry-point mapping is obvious from pyproject file structure, analogous to import/naming facts
+  Batch 56/145 done (53 completed)
+  REJECT cmd-search-sources-returns-none: trivial: "returns None" and "prints to stdout" is the default behavior any developer sees in a CLI command handler; low informational value.
+  REJECT apply-proposals-catches-per-proposal-exceptions: duplicate: existing `apply-proposals-converts-api-errors-to-result-strings` already captures that per-proposal exceptions are caught and returned as strings.
+  Batch 26/145 done (54 completed)
+  REJECT reasons_lib-mcp-server-re-exports-reasons-mcp-server: trivial: module re-export is directly visible from imports/file structure and the “3-line” count is ephemeral.
+  REJECT reasons-mcp-main-definition-unobserved: speculative: records an exploration gap/unverified absence rather than a grounded durable code fact.
+  Batch 58/145 done (55 completed)
+  REJECT no-issue-16-marker-in-visible-code: speculative: negative grep result plus speculation about where the marker "must" live; an exploration artifact, not a durable code invariant
+  Batch 61/145 done (56 completed)
+  REJECT publish-hf-imports-token-helper: trivial: reports an import/call-site fact visible directly from the source, not a durable architectural invariant.
+  REJECT import-hf-token-path-not-established: meta: describes an observation gap in the exploration notes rather than a codebase fact.
+  Batch 60/145 done (57 completed)
+  Batch 52/145 done (58 completed)
+  REJECT propose-updates-produces-proposals-without-applying: speculative: “dry_run is unnecessary by design” is an editorial/design judgment, not an observable code invariant.
+  REJECT dry-run-grep-result-contradicts-tests: speculative: unresolved either/or explanation about a grep/test mismatch, not a durable code fact.
+  REJECT export-network-canonical-definition-in-reasons-api: ephemeral: “only observed definition is at line 1814” is a line/location snapshot that changes with edits.
+  REJECT reasons-lib-network-is-compatibility-shim: trivial: a module’s `from reasons.network import *` re-export is directly visible from its imports.
+  Batch 55/145 done (59 completed)
+  REJECT test-ask-setup-uses-rebuild: trivial: test setup detail visible from test code, not an architectural invariant
+  REJECT test-search-sources-directly-seeds-fts: trivial: test-specific seeding detail, not durable system behavior
+  REJECT reasons-lib-hf-is-a-reexport: trivial: reexport/import fact obvious from file contents
+  Batch 59/145 done (60 completed)
+  REJECT test-import-mismatch: speculative: It is a hedged, point-in-time claim ("likely alias or stale-API regression seam") scoped to "first 400 lines," not a durable observable contract; the actual absence of the symbol is not established.
+  Batch 62/145 done (61 completed)
+  REJECT telemetry-has-no-import-signal: ephemeral: snapshot of provided telemetry artifacts, not a durable code invariant
+  REJECT downstream-import-evidence-is-absent: meta: about absence of evidence in exploration observations, not codebase behavior
+  Batch 57/145 done (62 completed)
+  Batch 63/145 done (63 completed)
+  REJECT mcp-server-is-fastmcp-instance: trivial: obvious from imports/naming and cited line numbers; instantiating FastMCP("reasons") and calling mcp.run() is visible from the module structure
+  REJECT mcp-server-uses-default-transport: trivial: the absence of a transport argument to mcp.run() is directly visible from the call site
+  Batch 66/145 done (64 completed)
+  Batch 64/145 done (65 completed)
+  REJECT derived-node-tracing-requires-sl-parameter: trivial: `sl` encoding antecedent edges is obvious from parameter semantics and already covered by existing SL/antecedent beliefs.
+  REJECT cycle-guard-search-in-reasons-returns-empty: ephemeral: zero-match grep is a point-in-time search snapshot, not a durable code invariant.
+  Batch 68/145 done (66 completed)
+  REJECT subprocess-run-is-implicit-contract: ephemeral: hinges on a specific "roughly 30+" test count that changes with any test edit
+  REJECT review-justifications-uses-shallow-seam: speculative: "refactor-resilient pattern" is an editorial judgment rather than an observable code invariant
+  REJECT test-llm-is-legitimate-deep-patcher: speculative: "legitimate/intended boundary" is an editorial judgment about test design, not a code fact
+  Batch 65/145 done (67 completed)
+  Batch 70/145 done (68 completed)
+  REJECT trace-derived-belief-expands-to-supporting-premises: trivial: describes a specific test assertion (test-coverage claim) rather than an architectural or data-flow invariant
+  Batch 67/145 done (69 completed)
+  REJECT parse-nogoods-is-defined-in-import-beliefs: trivial: A specific line-number/file-location fact obvious from reading the source, not a durable architectural invariant.
+  REJECT test-docstring-asserts-nogood-format-mismatch: duplicate: Restates the same nogood colon/export format mismatch already captured by nogood-markdown-roundtrip-is-broken, and is trivial test-docstring content.
+  Batch 72/145 done (70 completed)
+  REJECT pin-tests-are-in-memory-only: ephemeral: point-in-time test-coverage snapshot that expires with any test change, not a durable code invariant
+  REJECT source-type-allowlist-is-hard-coded: duplicate: existing `add-node-validates-source-type` already captures the exact four-value allowlist for `source_type`
+  Batch 69/145 done (71 completed)
+  REJECT export-nogood-writer-not-identified-in-observations: meta: claim about what the observations contain, not a codebase invariant
+  REJECT grep-nogood-nnn-only-matches-test-docstring: ephemeral: point-in-time grep-result snapshot about literal occurrence
+  REJECT grep-nogood-export-strings-is-inconclusive: meta: claim about search methodology/evidence inconclusiveness, not code behavior
+  Batch 73/145 done (72 completed)
+  REJECT outlist-absent-node-treated-as-out: duplicate: Same claim as existing `absent-outlist-node-is-treated-as-out`.
+  REJECT outlist-only-api-node-is-sl-typed: duplicate: Same claim as existing `api-unless-defaults-to-sl-type` and `add-node-outlist-only-creates-empty-antecedent-sl`.
+  Batch 74/145 done (73 completed)
+  Batch 75/145 done (74 completed)
+  Batch 78/145 done (75 completed)
+  REJECT require-sqlite-gates-remaining-sqlite-only-commands: ephemeral: The "19 production calls" is a point-in-time count that changes with any edit; the durable claim about which commands reject PostgreSQL is obscured by the snapshot count.
+  REJECT no-longer-blocked-tests-cover-migrated-cli-groups: ephemeral: References specific test class names and line numbers (`:335`, `:443`, `:542`) that change with edits; it is a test-inventory snapshot rather than a durable codebase fact.
+  Batch 76/145 done (76 completed)
+  REJECT hash-sources-string-is-test-only: trivial: test-coverage inventory claim about which command labels appear in tests, not a durable architectural invariant
+  REJECT sl-is-comma-separated-string-of-node-ids: duplicate: same claim already captured by existing `add-node-requires-comma-separated-ids`
+  Batch 77/145 done (77 completed)
+  Batch 71/145 done (78 completed)
+  REJECT count-test-functions-observation-is-wrong: meta: about the exploration tooling's behavior, not the codebase
+  REJECT cli-tests-cover-commands-readme-omits: ephemeral: point-in-time test/documentation coverage inventory that changes with any edit
+  REJECT readme-flags-untested-in-cli: ephemeral: snapshot of current test coverage vs README that shifts with any edit
+  Batch 79/145 done (79 completed)
+  REJECT chunks-to-premises-link-is-not-observed: speculative: negative exploration-coverage observation ("not observed") rather than a grounded positive code fact
+  Batch 85/145 done (80 completed)
+  REJECT reasons_lib-requires-reasons: trivial: restates the obvious import dependency (reasons_lib imports from reasons), essentially the "module X imports Y" case and a trivial rewording of the authoritative-direction claim.
+  REJECT repo-code-depends-on-reasons-not-reasons_lib: ephemeral: hinges on a point-in-time inventory count ("zero reasons_lib import usages") that changes with any edit.
+  Batch 81/145 done (81 completed)
+  REJECT api-requires-facade-justification: trivial: restates an import statement (`from . import Justification`); the "breaks on removal" consequence is tautological from the import itself.
+  Batch 82/145 done (82 completed)
+  REJECT chunks-fts-requires-rebuild-or-direct-insert: ephemeral: observation of test setup, not a durable schema invariant
+  Batch 84/145 done (83 completed)
+  REJECT readme-hyphen-command-names-evade-underscore-search: meta: coverage-count methodology about the audit, not a durable codebase invariant.
+  REJECT storage-module-is-tested-but-undocumented: trivial: inferred from test imports and README absence, not an architectural/API invariant.
+  REJECT reasons-lib-has-no-test-coverage: ephemeral: test-coverage snapshot that changes with tests; not a code invariant.
+  REJECT changelog-is-stale-after-0-18: ephemeral: point-in-time version/count mismatch that expires with any release or changelog edit.
+  Batch 80/145 done (84 completed)
+  Batch 87/145 done (85 completed)
+  Batch 88/145 done (86 completed)
+  REJECT pg-init-db-also-has-untested-alter-branches: ephemeral: primarily a point-in-time test-coverage observation ("fresh-database tests skip") rather than a durable code invariant
+  REJECT import-beliefs-tests-lack-out-coverage: ephemeral: test-fixture coverage inventory, not a durable behavioral claim
+  Batch 86/145 done (87 completed)
+  REJECT missing-file-covered-only-at-cli: ephemeral: test-coverage snapshot that changes with any test edit
+  REJECT pg-dispatch-tests-use-mocks: ephemeral: test-coverage snapshot about mocking behavior
+  REJECT no-topics-output-has-trailing-period: trivial: exact CLI punctuation/test assertion detail
+  REJECT nonempty-summary-uses-result-topic-count: trivial: test dependency on exact CLI output formatting
+  Batch 89/145 done (88 completed)
+  Batch 94/145 done (89 completed)
+  Batch 93/145 done (90 completed)
+  REJECT topics-tests-use-substring-assertions: trivial: test-internal assertion style, not a durable code invariant or contract
+  REJECT topics-from-docstring-is-not-runtime-output: trivial: note about where a string literal appears (docstring/help text) rather than a behavioral contract
+  Batch 90/145 done (91 completed)
+  Batch 95/145 done (92 completed)
+  Batch 96/145 done (93 completed)
+  Batch 98/145 done (94 completed)
+  REJECT derive-module-observation-lacks-trace-sl-collection: ephemeral: snapshot of what a partial observation contains, not a durable code invariant.
+  REJECT observed-code-does-not-show-sl-premise-dedup: meta: concerns the completeness of the exploration notes, not codebase behavior.
+  Batch 91/145 done (95 completed)
+  REJECT init-db-refuses-existing-db-without-force: duplicate: already captured by existing belief `api-init-requires-force-to-overwrite`
+  Batch 97/145 done (96 completed)
+  REJECT remove-justification-must-not-be-nested-in-with-network: speculative: editorial "should not" guidance and a predicted clobbering risk rather than an observable invariant
+  Batch 99/145 done (97 completed)
+  Batch 100/145 done (98 completed)
+  REJECT nogood-backtracking-retracts-fewest-dependents-culprit: duplicate: duplicates existing add-nogood-retraction and dependent-count beliefs; the fewest-dependents claim is already covered as a docstring mismatch
+  REJECT claude-md-is-auto-loaded-agent-context: trivial: obvious repository/tooling fact, not a durable code invariant
+  REJECT cli-uses-reasons-console-script: trivial: documentation/packaging convention visible from pyproject.toml, not a meaningful architectural invariant
+  REJECT test-suite-requires-pytest-test-extra: trivial: test-command documentation/configuration fact, not a durable codebase invariant
+  Batch 92/145 done (99 completed)
+  Batch 104/145 done (100 completed)
+  Batch 101/145 done (101 completed)
+  REJECT research-inherits-repair-contract-and-side-effects: duplicate: restates the existing `api-research-is-api-repair-alias` (same function object trivially implies same parameters, returns, exceptions, and side effects).
+  Batch 103/145 done (102 completed)
+  REJECT report-gated-has-four-key-return-contract: duplicate: existing `api-report-gated-returns-report-and-counts` already states the same four-key return contract.
+  REJECT research-is-repair-alias: duplicate: existing `api-research-is-api-repair-alias` states the same function-object identity.
+  REJECT research-alias-captures-original-repair-binding: trivial: generic consequence of a module-level alias already covered by `api-research-is-api-repair-alias`.
+  Batch 102/145 done (103 completed)
+  REJECT chunks-fts-uses-rebuild-command-in-tests: trivial: describes test-fixture implementation mechanics (inserting rows then issuing the FTS 'rebuild' command) rather than a durable production invariant or API/data-flow rule
+  Batch 83/145 done (104 completed)
+  Batch 106/145 done (105 completed)
+  REJECT review-justifications-delegates-with-unfiltered-belief-ids: duplicate: same wrapper/filter-delegation claim as review-justifications-total-candidates-can-diverge-from-reviewed
+  Batch 105/145 done (106 completed)
+  REJECT verify-belief-unknown-verdict-is-inconclusive: duplicate: Same claim already covered by existing `api-verify-consumer-defaults-missing-verdict-to-inconclusive` (and `api-verdict-applier-defaults-missing-to-inconclusive`).
+  Batch 109/145 done (107 completed)
+  Batch 108/145 done (108 completed)
+  Batch 107/145 done (109 completed)
+  Batch 110/145 done (110 completed)
+  Batch 111/145 done (111 completed)
+  Batch 112/145 done (112 completed)
+  Batch 115/145 done (113 completed)
+  Batch 118/145 done (114 completed)
+  Batch 116/145 done (115 completed)
+  Batch 114/145 done (116 completed)
+  Batch 119/145 done (117 completed)
+  Batch 117/145 done (118 completed)
+  Batch 113/145 done (119 completed)
+  Batch 120/145 done (120 completed)
+  Batch 121/145 done (121 completed)
+  Batch 124/145 done (122 completed)
+  REJECT what-if-retract-raises-keyerror-for-missing-node: duplicate: existing `api-missing-node-raises-keyerror` already states `what_if_*` raise `KeyError` for missing node IDs.
+  Batch 122/145 done (123 completed)
+  Batch 123/145 done (124 completed)
+  Batch 125/145 done (125 completed)
+  REJECT pyproject-optional-extras-gate-optional-subsystems: trivial: The presence of optional extras in pyproject.toml is obvious from the file and does not state a durable dependency constraint.
+  Batch 126/145 done (126 completed)
+  REJECT observed-cli-cost-usage-uses-format-cost-summary: ephemeral: point-in-time inventory of where functions are used, not a durable invariant
+  Batch 129/145 done (127 completed)
+  REJECT trace-assumptions-deduplicates-root-premises: duplicate: existing `api-trace-assumptions-returns-premises-dict` already states it returns a de-duplicated premises list; this is a trivial rewording.
+  REJECT cli-subparser-handler-parity-lacks-structural-test: trivial: test coverage/inventory observation, not a durable code invariant.
+  Batch 128/145 done (128 completed)
+  REJECT justification-type-validation-lives-in-code-not-schema: duplicate: merely restates the consequence of the previous proposal about the unconstrained `type` column
+  REJECT sum-gf-only-documented-in-test-docstring: ephemeral: a point-in-time documentation/search-coverage snapshot, not a durable code invariant
+  REJECT outlist-tests-exercise-pure-tms-without-retracted-flag: trivial: describes what a test file does rather than a codebase invariant
+  Batch 130/145 done (129 completed)
+  Batch 132/145 done (130 completed)
+  REJECT merkle-module-only-in-canonical-reasons-tree: ephemeral: file-existence inventory is a point-in-time snapshot, not a durable invariant
+  Batch 127/145 done (131 completed)
+  Batch 135/145 done (132 completed)
+  Batch 134/145 done (133 completed)
+  REJECT test-ask-setup-rebuilds-chunks-fts: trivial: test-fixture implementation detail, not a durable architecture/API invariant
+  REJECT test-search-sources-directly-seeds-chunks-fts: trivial: test-seeding implementation detail, not a durable invariant
+  REJECT cli-help-documents-token-cache-path: trivial: help-text documentation detail, redundant with the token-cache-path behavior
+  Batch 133/145 done (134 completed)
+  Batch 138/145 done (135 completed)
+  REJECT no-longer-blocked-tests-correspond-to-import-maintenance-repo-negative: trivial: maps test class names to CLI areas without stating a durable code invariant
+  REJECT hash-sources-string-in-require-sqlite-tests-is-label-only: ephemeral: records a point-in-time test occurrence/gate inventory
+  Batch 136/145 done (136 completed)
+  REJECT hide-out-tests-are-presentation-filter-only: trivial: test-scope/coverage claim, not a durable code invariant
+  REJECT pin-sources-tests-are-orthogonal-to-retracted-flag: trivial: test-scope/coverage claim, not a durable code invariant
+  REJECT entrenchment-tests-cover-project-specific-heuristic: trivial: test-coverage claim, not a code invariant
+  Batch 131/145 done (137 completed)
+  Batch 141/145 done (138 completed)
+  REJECT changelog-lags-package-version: ephemeral: point-in-time version/documentation state that changes with every release
+  REJECT readme-never-mentions-reasons-lib: trivial: obvious documentation-content fact, not an architecture invariant
+  Batch 140/145 done (139 completed)
+  Batch 142/145 done (140 completed)
+  Batch 144/145 done (141 completed)
+  Batch 145/145 done (142 completed)
+  Batch 143/145 done (143 completed)
+  REJECT readme-usage-documents-untested-cli-options: ephemeral: test assertion coverage snapshot, not a durable code invariant
+  REJECT test-cli-exercises-undocumented-commands: ephemeral: documentation/test coverage snapshot that changes with edits
+  REJECT readme-output-formats-are-under-asserted-by-tests: ephemeral: test assertion coverage inventory, not a durable behavioral claim
+  Batch 139/145 done (144 completed)
+  REJECT non-empty-sl-creates-justification-for-derived-node: trivial: obvious from the `sl` parameter's naming and existing beliefs like `api-unless-param-maps-to-outlist` and `all-mode-stored-as-one-multi-antecedent-sl-justification`
+  REJECT sl-encodes-comma-separated-node-ids: duplicate: already captured by `add-node-requires-comma-separated-ids`
+  Batch 137/145 done (145 completed)
+
+Reviewed 721 proposals: 584 kept, 137 rejected
+Rejections by category:
+  trivial: 50
+  duplicate: 33
+  ephemeral: 32
+  speculative: 12
+  meta: 9
+  relative-names ephemeral: 1
+  Round 1: Review proposals took 4m 36s
