@@ -1,0 +1,1026 @@
+=== explore-propose-accept / explore (round 1) — 2026-11-22T16:00:35 ===
+
+=== Round 1: Explore (up to 100 topics) ===
+
+
+========================================
+[1-10/100] (418 remaining in queue)
+========================================
+  [general] reasons-lib-removal-policy
+  [repo] reasons_lib
+  [repo] reasons
+  [general] shim-audit-reconciliation
+  [general] compatibility-shim-removal-policy
+  [function] reasons/api.py:propose_retraction
+  [general] proposal-concurrency-model
+  [function] reasons/pubsub.py:publish
+  [function] reasons/pubsub.py:has_subscribers
+  [general] write-path-snapshot-lifecycle
+Explaining [general] reasons-lib-removal-policy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [repo] reasons_lib with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [repo] reasons with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] shim-audit-reconciliation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] compatibility-shim-removal-policy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:propose_retraction with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] proposal-concurrency-model with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pubsub.py:publish with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pubsub.py:has_subscribers with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] write-path-snapshot-lifecycle with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-reasons-lib-removal-policy.md
+Queued 2 new topic(s) (420 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-backwards-compat-shim: `CLAUDE.md:35` describes `reasons_lib/` as a backwards-compat shim that re-expor
+  reasons-lib-is-included-in-package-list: `pyproject.toml:31` includes both `"reasons"` and `"reasons_lib"` in `[tool.setu
+  no-markdown-deprecation-matches: The Markdown search for `deprecat` returned zero matches.
+  no-literal-markdown-roadmap-issue-markers: The Markdown search for `roadmap|issue|TODO|FIXME` returned zero matches.
+  python-deprecation-matches-do-not-mention-reasons-lib: The three `deprecat` Python matches at `reasons/api.py:3919` and `reasons/cli.py
+Entry: summaries/2026/11/22/repo-overview.md
+Queued 1 new topic(s) (421 pending)
+Surfaced 5 belief(s):
+  flat-package-layout: All modules live directly under the single `reasons_lib` package, with no nested
+  cli-is-entry-point: `cli.py` is the only declared entry point for the project.
+  storage-abstracts-pg: `storage.py` defines the persistence interface that `pg.py` implements as the Po
+  llm-centralizes-model-calls: `llm.py` is the shared abstraction used by workflow modules (`derive.py`, `revie
+  mcp-server-pairs-with-client: `mcp_server.py` exposes the library over MCP and `mcp_client.py` consumes extern
+Entry: summaries/2026/11/22/repo-overview-2.md
+Queued 1 new topic(s) (422 pending)
+Surfaced 6 belief(s):
+  storage-is-the-persistence-boundary: All durable state access is routed through `storage.py`, with `pg.py` as a concr
+  pg-implements-storage: `pg.py` depends on `storage.py`; no domain module imports `pg.py` directly.
+  propose-update-requires-review: Mutations flow from `propose_update.py` through `review.py` (or `review_premises
+  merkle-enables-premise-repair: Content-addressed belief identity from `merkle.py` is what allows `repair.py` an
+  domain-core-excludes-llm: The reasoning modules (`derive`, `verify`, `contradictions`, `repair`) do not im
+Entry: summaries/2026/11/22/topic-shim-audit-reconciliation.md
+Queued 2 new topic(s) (424 pending)
+Surfaced 5 belief(s):
+  reasons-lib-init-contains-import-star: `reasons_lib/__init__.py` line 2 contains `from reasons import *  # noqa: F401,F
+  reasons-lib-reexports-reasons: `reasons_lib` is a backwards-compat shim that re-exports from `reasons/`.
+  forwarding-audit-searches-literal-forwarding: The `find_forwarding_audit_references` query used pattern `"forwarding"` and ret
+  from-reasons-import-star-regex-matches-init: The regex `from reasons import \*` matches exactly one occurrence in `reasons_li
+  pyproject-packages-include-reasons-lib: `pyproject.toml` line 31 lists both `reasons` and `reasons_lib` in `packages`.
+Entry: summaries/2026/11/22/topic-compatibility-shim-removal-policy.md
+Queued 2 new topic(s) (426 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-not-used-internally: The gathered Python search for `reasons_lib` returned zero matches across the co
+  reasons-lib-shims-reexport-reasons-modules: `reasons_lib/__init__.py` re-exports `reasons`, and `reasons_lib/api.py` re-expo
+  reasons-lib-is-packaged: `pyproject.toml` includes `"reasons_lib"` in `[tool.setuptools] packages`.
+  changelog-documents-reasons-lib-api-as-python-api-layer: `CHANGELOG.md:136` records `reasons_lib.api` as a Python API layer returning dic
+  readme-omits-reasons-lib: The observed `README.md` content does not mention `reasons_lib`.
+Entry: summaries/2026/11/22/reasons-api-propose_retraction.md
+Queued 2 new topic(s) (428 pending)
+Surfaced 5 belief(s):
+  propose-retraction-does-not-mutate-truth-values: On the SQLite path it only writes/stales proposal rows; graph truth values are n
+  propose-retraction-requires-target-in: In the SQLite path, missing targets raise `KeyError` and already-OUT targets rai
+  propose-retraction-auto-stales-pending-retractions: Before inserting, it marks existing pending proposals for the same target and `a
+  propose-retraction-stores-snapshot-and-impact-json: The proposal row stores a JSON snapshot of `truth_value`/`text_hash` and the `wh
+  postgres-propose-retraction-ignores-tags: The `pg_conninfo` branch delegates without passing `tags`, so tags are not persi
+Entry: summaries/2026/11/22/topic-proposal-concurrency-model.md
+Queued 3 new topic(s) (431 pending)
+Surfaced 5 belief(s):
+  reasons-lib-propose-update-is-reexport-shim: `reasons_lib/propose_update.py:1` only re-exports from `reasons.propose_update`.
+  reasons-lib-storage-is-reexport-shim: `reasons_lib/storage.py:1` only re-exports from `reasons.storage`.
+  accept-definition-not-found-in-observations: The `find_accept_definition` search returned zero matches for `def accept|accept
+  guarded-update-not-observed: The `find_guarded_update` search returned zero matches for `UPDATE|WHERE|status`
+  db-path-locking-code-not-observed: The `search_db_path_usage` and `search_locking_lease` searches both returned zer
+Entry: summaries/2026/11/22/reasons-pubsub-publish.md
+Queued 3 new topic(s) (434 pending)
+Surfaced 6 belief(s):
+  publish-returns-immediately-on-empty-events: An empty `events` list causes `publish` to return before reading `_subscribers`.
+  subscriber-exceptions-are-swallowed-not-propagated: Exceptions raised by subscribers are caught, logged via `logger.exception`, and 
+  global-subscribers-received-by-every-publish-call: Subscribers registered with `db_path=None` are invoked on every `publish` call, 
+  dispatch-iterates-a-snapshot-of-subscribers: `publish` iterates a copied list (`list(...)` + `extend(...)`), so `_subscribers
+  publish-does-not-filter-events-by-db-path: `publish` does not inspect `ChangeEvent.db_path`; it relies on the caller to sup
+Entry: summaries/2026/11/22/reasons-pubsub-has_subscribers.md
+Queued 1 new topic(s) (435 pending)
+Surfaced 5 belief(s):
+  has-subscribers-checks-global-first: `has_subscribers` returns `True` immediately whenever the global `None` subscrib
+  has-subscribers-none-parameter-checks-only-global: Passing `None` or omitting `db_path` checks only the global subscriber bucket; i
+  has-subscribers-uses-exact-db-path-match: For a non-`None` `db_path`, the function checks global subscribers plus only the
+  has-subscribers-is-read-only: The function only reads `_subscribers`; it performs no mutation, logging, I/O, o
+  has-subscribers-has-no-locking: The function performs no synchronization, so concurrent subscription changes can
+Entry: summaries/2026/11/22/topic-write-path-snapshot-lifecycle.md
+Queued 3 new topic(s) (438 pending)
+Surfaced 5 belief(s):
+  storage-save-commits-on-context-exit: `Storage.save` at `reasons/storage.py:206` writes inside `with self.conn:`, so S
+  storage-save-does-not-publish: `Storage.save` contains no call to `publish`; event dispatching is handled elsew
+  publish-is-dispatch-only: `publish` at `reasons/pubsub.py:70` only fans out `ChangeEvent`s to subscribers 
+  pubsub-docstring-asserts-post-save-publish: `reasons/pubsub.py` states that publish is called by `_with_network.__exit__` af
+  with-network-exit-is-missing: The `_with_network` implementation needed to prove `after` snapshot and publish 
+
+========================================
+[11-20/100] (428 remaining in queue)
+========================================
+  [general] accept-flow
+  [function] reasons/propose_update.py:format_proposal_markdown
+  [general] propose-update-cli-entrypoint
+  [general] locate-scope-discrepancy
+  [general] detected-contradiction-tier
+  [function] reasons/api.py:_filter_by_tags
+  [function] reasons/api.py:_format_markdown
+  [function] reasons/pg.py:PgApi.search
+  [function] reasons/ask.py:extract_tool_call
+  [general] native-tool-calling-adoption
+Explaining [general] accept-flow with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/propose_update.py:format_proposal_markdown with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] propose-update-cli-entrypoint with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] locate-scope-discrepancy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] detected-contradiction-tier with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:_filter_by_tags with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:_format_markdown with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:PgApi.search with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'PgApi.search' not found in reasons/pg.py (skipping)
+Explaining [function] reasons/ask.py:extract_tool_call with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] native-tool-calling-adoption with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-accept-flow.md
+Queued 1 new topic(s) (429 pending)
+Surfaced 5 belief(s):
+  what-if-retract-is-non-mutating: `what_if_retract` returns cascade effects without modifying the database (docstr
+  proposal-cascades-use-what-if: Proposals are annotated with per-proposal cascades computed via `what_if_retract
+  retract-command-invokes-api-retract-node: `cmd_retract` in `reasons/cli.py` calls `api.retract_node(args.node_id, reason=a
+  retract-reason-persists-as-metadata: The `--reason` value is stored on the node as `metadata["retract_reason"]`, whic
+  propose-time-and-accept-time-cascades-can-diverge: Because the advisory cascade is a snapshot and the command-triggered cascade re-
+Entry: summaries/2026/11/22/reasons-propose_update-format_proposal_markdown.md
+Queued 2 new topic(s) (431 pending)
+Surfaced 5 belief(s):
+  format-proposal-markdown-requires-id-and-action: The function assumes `proposal` has both `"id"` and `"action"` keys; missing eit
+  action-is-uppercased-for-display-and-branching: `proposal["action"].upper()` is compared against `"UPDATE"`/`"RETRACT"`, so acti
+  cascade-none-renders-not-computed: When `cascade` is `None` (or `{}`), the output always contains `**Cascade impact
+  command-escapes-only-double-quotes: The `reasons update` line escapes only `"` in `proposed_text`; `reasons retract`
+  cascade-item-text-truncated-to-80-chars: Every cascade listing entry slices `item["text"]` to `[:80]`, so long belief tex
+Entry: summaries/2026/11/22/topic-propose-update-cli-entrypoint.md
+Queued 1 new topic(s) (432 pending)
+Surfaced 5 belief(s):
+  cli-to-propose-updates-requires-api-layer: The `propose-update` CLI command does not call `propose_updates` directly; it go
+  cmd-propose-update-is-the-cli-handler: `cmd_propose_update` at `reasons/cli.py:2775` is the sole CLI handler for the `p
+  proposal-basis-defaults-to-prior-knowledge: Any proposal whose `basis` is missing or invalid is coerced to `prior-knowledge`
+  basis-taxonomy-is-closed: `propose_updates` only emits bases from `{source-divergence, detected-contradict
+  mcp-propose-update-shares-the-api-path: `reasons/mcp_server.py:287` calls the same `api.propose_update` as the CLI, so a
+Entry: summaries/2026/11/22/topic-locate-scope-discrepancy.md
+Queued 3 new topic(s) (435 pending)
+Surfaced 5 belief(s):
+  propose-update-does-not-implement-acceptance: `reasons/propose_update.py` lacks any `auto_accept` / `auto-accept` literals acr
+  reasons-lib-propose-update-is-a-reexport-shim: `reasons_lib/propose_update.py` contains only `from reasons.propose_update impor
+  propose-updates-emits-proposals-not-acceptances: `propose_updates` returns a list of proposal dicts via `parse_update_proposals`;
+  forge-diary-update-pipeline-accepted-zero: `.forge/report.json` shows `accept-beliefs` accepted 0 beliefs out of 201 total,
+  grep-auto-accept-result-lacks-scope-and-revision: `grep_auto_accept_terms` reports `total_count: 0` with no `paths` or `rev` field
+Entry: summaries/2026/11/22/topic-detected-contradiction-tier.md
+Queued 1 new topic(s) (436 pending)
+Surfaced 5 belief(s):
+  propose-update-basis-taxonomy-omits-detected-contradiction-cost: In `reasons/propose_update.py`, `detected-contradiction` is in `BASES` and descr
+  propose-update-renders-all-bases-for-review: `format_proposals_file` instructs reviewers to accept proposals by running sugge
+  contradiction-detection-writes-plan-not-nogood: `detect_contradictions` returns parsed nogood candidates and optionally writes a
+  api-detect-contradictions-has-explicit-auto-apply: `tests/test_contradictions.py:test_auto_apply_calls_add_nogood` calls `api.detec
+  design-doc-policy-evidence-missing: The docs search for `detected[-_]contradiction|auto[-_]accept|scrutiniz|cheap` r
+Entry: summaries/2026/11/22/reasons-api-_filter_by_tags.md
+Surfaced 5 belief(s):
+  empty-tag-filters-short-circuits-before-db-access: When `tag_filters` is falsy, `_filter_by_tags` returns the input list without ca
+  tag-filter-key-uses-exact-membership-not-substring: The `"tag"` filter key performs Python `in` over the node's tag list, which is e
+  prefix-keys-auto-prefix-with-colon: Every non-`"tag"` filter key is expanded to `"{key}:{value}"` before the members
+  filter-groups-are-anded-within-or: A node must satisfy every key in `tag_filters`; within one key, matching any val
+  empty-filter-values-exclude-all-nodes: A filter value list of `[]` makes `any(...)` return `False`, so the correspondin
+Entry: summaries/2026/11/22/reasons-api-_format_markdown.md
+Queued 2 new topic(s) (438 pending)
+Surfaced 5 belief(s):
+  format-markdown-assumes-valid-node-ids: `_format_markdown` indexes `net.nodes[nid]` with no membership check, so any mat
+  neighbor-ids-are-sorted-and-deduplicated: Neighbor output is alphabetical because `neighbor_ids` is a set that is `sorted(
+  depends-on-flattens-justifications: The `Depends on:` line concatenates antecedents across every justification witho
+  format-markdown-has-no-side-effects: The function performs only reads of node fields and string assembly; it never mu
+  search-defaults-to-format-markdown: `search()` routes to `_format_markdown` whenever `format` is not `json`, `minima
+Entry: summaries/2026/11/22/reasons-ask-extract_tool_call.md
+Queued 1 new topic(s) (439 pending)
+Surfaced 5 belief(s):
+  extract-tool-call-returns-none-without-valid-tool-json: It returns `None` if no stripped line begins with `{` and parses as a JSON objec
+  extract-tool-call-requires-single-line-json: It scans individual stripped lines, so pretty-printed or multi-line JSON tool ca
+  extract-tool-call-swallows-jsondecodeerror: Malformed JSON lines are skipped rather than raising out of the function.
+  extract-tool-call-does-not-validate-schema: It checks only for the presence of a `"tool"` key and does not validate the tool
+  extract-tool-call-enables-ask-tool-loop: A non-`None` result in `ask` causes the loop to execute a requested tool or trea
+Entry: summaries/2026/11/22/topic-native-tool-calling-adoption.md
+Queued 2 new topic(s) (441 pending)
+Surfaced 6 belief(s):
+  invoke-model-returns-only-str: `invoke_model` in `reasons/llm.py:275` returns `str`, and callers like `reasons/
+  api-backends-discard-tool-calls: `_invoke_api` calls `llm.invoke(prompt, config=...)` and returns only `response.
+  openai-backend-filters-non-text-items: `_invoke_openai` only appends text from `item.type == "message"` items, so Respo
+  tool-calls-are-text-parsed-today: The current tool-calling path is prompt-based: `ask.py` builds a prompt that des
+  cli-backends-lack-native-tool-surface: `resolve_model_cmd` and the CLI branch of `invoke_model` pass only a prompt on s
+
+========================================
+[21-30/100] (431 remaining in queue)
+========================================
+  [function] reasons/build_wiki.py:_assign_topics
+  [function] reasons/api.py:list_clusters
+  [file] .github/workflows/tests.yml
+  [general] package-rename-history
+  [file] tests/
+  [function] reasons/check_stale.py:file_lines_changed_since
+  [function] reasons/check_stale.py:parse_diff_hunks
+  [function] reasons/api.py:check_stale
+  [function] reasons/llm.py:_record_cost
+  [general] cost-tracker-thread-safety
+Explaining [function] reasons/build_wiki.py:_assign_topics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:list_clusters with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [file] .github/workflows/tests.yml with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] package-rename-history with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [file] tests/ with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/check_stale.py:file_lines_changed_since with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/check_stale.py:parse_diff_hunks with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:check_stale with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/llm.py:_record_cost with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cost-tracker-thread-safety with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/reasons-build_wiki-_assign_topics.md
+Queued 2 new topic(s) (433 pending)
+Surfaced 5 belief(s):
+  assign-topics-splits-on-four-delimiters: Node IDs are split on hyphen, dot, underscore, and colon only.
+  assign-topics-ignores-short-segments: Split ID segments of length two or less are discarded before matching.
+  assign-topics-first-match-wins: A node is assigned to the first split segment that exactly matches a topic label
+  assign-topics-omits-empty-groups: The returned dictionary excludes topic and `"Other"` buckets whose lists are emp
+  assign-topics-requires-topic-key: Every element of `topics` must contain a `"topic"` key or `KeyError` is raised.
+Entry: summaries/2026/11/22/reasons-api-list_clusters.md
+Queued 1 new topic(s) (434 pending)
+Surfaced 5 belief(s):
+  list-clusters-delegates-to-cluster-module: The API wrapper forwards all filtering results to `reasons.cluster.list_clusters
+  status-empty-string-disables-truth-filter: Passing `status=""` (or `None`) is equivalent to "include IN and OUT nodes" beca
+  list-clusters-is-read-only: The function enters `_with_network(db_path)` without `write=True`, so no `Storag
+  list-clusters-short-circuits-empty-set: When no nodes survive filters, it returns `{"clusters": [], "n_clusters": 0, "em
+  visible-to-requires-subset-tags: A node is clustered only if all of its `access_tags` are in `visible_to`, matchi
+Entry: summaries/2026/11/22/.github-workflows-tests.md
+Queued 1 new topic(s) (435 pending)
+Surfaced 6 belief(s):
+  workflow-triggers-only-on-main: The workflow runs on `push` and `pull_request` events filtered to the `main` bra
+  test-matrix-has-four-python-versions: The `test` job fans out over Python 3.10, 3.11, 3.12, and 3.13 on `ubuntu-latest
+  workflow-requires-test-extra-for-pytest: pytest is installed solely through `uv run --extra test`, so removing pytest fro
+  workflow-provides-no-service-containers: The job defines no `services:` or `env:` blocks, so tests requiring Postgres, Pu
+  workflow-not-locked-to-resolved-dependencies: The test command omits `--frozen`/`--locked`, so dependencies are re-resolved at
+Entry: summaries/2026/11/22/topic-package-rename-history.md
+Queued 2 new topic(s) (437 pending)
+Surfaced 5 belief(s):
+  ftl-reasons-distribution-name: `pyproject.toml` line 6 declares the distribution name as `ftl-reasons`; `README
+  reasons-is-canonical-import-package: `reasons_lib/__init__.py` lines 1-2 and `CLAUDE.md` lines 24/35 identify `reason
+  reasons-lib-is-not-a-distribution-name: `reasons_lib` appears only as a packaged top-level package in `pyproject.toml` l
+  ftl-reasons-packages-both-import-paths: `pyproject.toml` line 31 includes both `reasons` and `reasons_lib`, so the distr
+  reasons-lib-reexports-top-level-reasons-names: `reasons_lib/__init__.py` line 2 uses `from reasons import *`, so top-level name
+Entry: summaries/2026/11/22/repo-overview-3.md
+Surfaced 6 belief(s):
+  outlist-implies-tms-semantics: Justifications carry an **outlist** (premises required to be OUT), confirming th
+  mind-service-orchestrates-interfaces: The CLI, HTTP API, and MCP server all route through the mind service; none talk 
+  storage-requires-postgres: Persistence tests target a real Postgres backend (`test_pg.py`, `test_pg_dispatc
+  merkle-enables-content-deduplication: Belief content is Merkle-hashed (`test_merkle.py`), which is what enables dedupl
+  hf-import-defaults-to-configured-org: HuggingFace imports resolve to a configurable default org when none is supplied 
+Entry: summaries/2026/11/22/reasons-check_stale-file_lines_changed_since.md
+Queued 3 new topic(s) (440 pending)
+Surfaced 5 belief(s):
+  file_lines_changed_since-is-conservative-on-error: Returns `True` on non-zero git exit codes and `TimeoutExpired`, forcing content-
+  file_lines_changed_since-uses-old-side-line-numbers: Hunk ranges come from the old side of the diff, matching line numbers stored in 
+  file_lines_changed_since-skips-pure-insertions: Because `parse_diff_hunks` discards hunks with old-side count=0, insertions abov
+  file_lines_changed_since-enables-pinned-lines-fast-path: A `False` return lets `check_stale` skip `hash_file` and optionally bump `pinned
+  file_lines_changed_since-requires-git-worktree-parent: It relies on `filepath.parent` being inside a git working tree; only `filepath.n
+Entry: summaries/2026/11/22/reasons-check_stale-parse_diff_hunks.md
+Queued 2 new topic(s) (442 pending)
+Surfaced 7 belief(s):
+  parse-diff-hunks-returns-inclusive-ranges: The end value is computed as `start + count - 1`, so tuples are inclusive closed
+  parse-diff-hunks-skips-pure-insertions: Hunks with old-side count `0` are dropped so that pure insertions (`@@ -N,0 +M,K
+  parse-diff-hunks-defaults-missing-count-to-one: When the `,<count>` part of the old side is absent, the code substitutes `1`, ma
+  parse-diff-hunks-parses-old-side-only: New-side start/count are matched by the regex but never captured or returned; on
+  parse-diff-hunks-is-pure: The function performs no I/O, spawns no subprocesses, and mutates no external st
+Entry: summaries/2026/11/22/reasons-api-check_stale.md
+Queued 1 new topic(s) (443 pending)
+Surfaced 5 belief(s):
+  check-stale-delegates-to-check-stale-module: The staleness algorithm lives in `reasons/check_stale.py`; `api.check_stale` onl
+  check-stale-write-mode-gated-by-flags: The network is opened with `write=True` only when `upgrade_hashes` or `git_aware
+  check-stale-falls-back-to-net-repos: When `repos` is `None`, the function uses `net.repos` (the persisted repo map); 
+  check-stale-pg-dispatch-bypasses-sqlite-path: If `pg_conninfo` is truthy, the function returns via `_pg_dispatch` and never to
+  check-stale-checked-count-is-eligibility-count: `checked` counts IN nodes that have both `source` and `source_hash`, not the num
+Entry: summaries/2026/11/22/reasons-llm-_record_cost.md
+Queued 1 new topic(s) (444 pending)
+Surfaced 5 belief(s):
+  cost-tracker-requires-cost-lock: Every mutation and read of `_cost_tracker` occurs inside a `with _cost_lock:` bl
+  record-cost-produces-per-model-entry: After the first call for a given `model`, `_cost_tracker["by_model"][model]` is 
+  record-cost-is-additive-not-idempotent: Repeated invocations accumulate rather than replace; only `reset_cost_tracker()`
+  api-and-vertex-paths-skip-cost-tracking: `_record_cost` is never invoked for `api:` / `vertex:` / `ollama:` models, so th
+  elapsed-seconds-updated-outside-record-cost: Per-model `elapsed_seconds` is initialized to `0.0` in `_record_cost` but only i
+Entry: summaries/2026/11/22/topic-cost-tracker-thread-safety.md
+Queued 3 new topic(s) (447 pending)
+Surfaced 5 belief(s):
+  _cost-lock-is-a-module-level-threading-lock: `reasons/llm.py:57` defines `_cost_lock = threading.Lock()`, a single process-lo
+  _cost-lock-has-five-acquisition-sites: `with _cost_lock:` appears at `reasons/llm.py` lines 71, 83, 89, 105, and 323.
+  _cost-lock-is-non-reentrant: Because `_cost_lock` is a plain `threading.Lock`, same-thread nested acquisition
+  _cost-lock-acquisition-has-no-timeout: The observed `with _cost_lock:` form uses blocking acquisition without a timeout
+  cost-lock-concurrency-tests-are-absent: The observed tests contain no matches for `_cost_lock`, `cost_lock`, `contention
+
+========================================
+[31-40/100] (437 remaining in queue)
+========================================
+  [function] reasons/llm.py:get_cost_summary
+  [function] reasons/cli.py:1696
+  [function] tests/test_cluster.py:test_require_cluster_deps_message
+  [general] optional-dependency-guard-pattern
+  [function] reasons/llm.py:_invoke_api
+  [general] cost-tracker-design
+  [function] reasons/api.py:parse_contradiction_plan
+  [function] reasons/api.py:apply_contradiction_plan
+  [general] contradiction-review-workflow
+  [general] namespace-isolation
+Explaining [function] reasons/llm.py:get_cost_summary with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/cli.py:1696 with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] tests/test_cluster.py:test_require_cluster_deps_message with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] optional-dependency-guard-pattern with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/llm.py:_invoke_api with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cost-tracker-design with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:parse_contradiction_plan with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:apply_contradiction_plan with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] contradiction-review-workflow with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] namespace-isolation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/reasons-llm-get_cost_summary.md
+Queued 2 new topic(s) (439 pending)
+Surfaced 5 belief(s):
+  get-cost-summary-returns-deep-copy: `get_cost_summary` returns `copy.deepcopy(_cost_tracker)`, so mutations to the r
+  cost-tracker-access-is-lock-serialized: Every read or write of `_cost_tracker` in this module is performed while holding
+  get-cost-summary-is-non-destructive: Calling `get_cost_summary` does not reset or modify accumulated counters.
+  by-model-is-lazily-populated: `_cost_tracker["by_model"]` starts empty and only gains entries when `_record_co
+  cost-summary-may-underreport-cost: Because several provider paths (`_invoke_openai`, Gemini CLI parsing) call `_rec
+Entry: summaries/2026/11/22/reasons-cli-L1696.md
+Queued 2 new topic(s) (441 pending)
+Surfaced 5 belief(s):
+  cluster-flags-gate-clustercache-import: `ClusterCache` is imported only when `args.cluster` or `args.intra_cluster` is t
+  clustercache-importerror-produces-exit-code-1: Any `ImportError` raised by the `.cluster` import or by `ClusterCache.__init__` 
+  clustercache-non-importerror-exceptions-propagate: `RuntimeError`, `OSError`, `ValueError`, and other non-`ImportError` exceptions 
+  loading-message-printed-before-model-load: The `Loading embedding model...` message (line 1692) is emitted before `ClusterC
+  default-embedding-model-is-all-minilm-l6-v2: When `--embedding-model` is not supplied, `ClusterCache` is instantiated with `a
+Entry: summaries/2026/11/22/tests-test_cluster-test_require_cluster_deps_message.md
+Queued 3 new topic(s) (444 pending)
+Surfaced 5 belief(s):
+  test-skips-when-cluster-deps-installed: If `HAS_CLUSTER_DEPS` is true, `test_require_cluster_deps_message` calls `pytest
+  missing-cluster-deps-test-requires-import-error: When `HAS_CLUSTER_DEPS` is false, the test fails unless `_require_cluster_deps()
+  cluster-import-error-message-requires-extra-name: The expected `ImportError` string must contain the literal text `ftl-reasons[clu
+  cluster-missing-deps-path-requires-importable-helper: `_require_cluster_deps` must remain importable from `reasons.cluster` even when 
+  cluster-deps-flag-is-set-false-by-any-initial-import-error: In `tests/test_cluster.py`, the top-level `except ImportError` assigns `HAS_CLUS
+Entry: summaries/2026/11/22/topic-optional-dependency-guard-pattern.md
+Queued 2 new topic(s) (446 pending)
+Surfaced 6 belief(s):
+  pg-guard-leaves-dict-row-unbound: In `reasons/pg.py`, the `except ImportError` clause rebinds only `psycopg = None
+  mcp-server-guard-is-eager: `reasons/mcp_server.py` raises `ImportError` at module import time, while `reaso
+  cluster-guard-tests-boolean-not-None: `reasons/cluster.py` gates on the derived boolean `HAS_CLUSTER_DEPS`, not on `Se
+  langfuse-extra-degrades-silently: `reasons/llm.py:_get_langfuse_handler` returns `None` (rather than raising) when
+  api-defers-pg-import-to-pgapi: `reasons/api.py` never imports `psycopg` directly; `_pg_dispatch` imports `PgApi
+Entry: summaries/2026/11/22/reasons-llm-_invoke_api.md
+Queued 2 new topic(s) (448 pending)
+Surfaced 5 belief(s):
+  api-prefix-requires-langchain-anthropic: `api:` models raise `ImportError` unless `_HAS_LANGCHAIN_ANTHROPIC` is true.
+  vertex-prefix-requires-google-cloud-project: `vertex:` models raise `RuntimeError` when `GOOGLE_CLOUD_PROJECT` is unset or em
+  _invoke_api-does-not-record-token-costs: This function never calls `_record_cost`; token/cost tracking is only performed 
+  timeout-classification-is-heuristic: Timeout detection uses a case-insensitive substring search for `"timeout"` in th
+  return-value-is-not-coerced: The function returns `response.content` directly and assumes it is a string, wit
+Entry: summaries/2026/11/22/topic-cost-tracker-design.md
+Queued 1 new topic(s) (449 pending)
+Surfaced 6 belief(s):
+  elapsed-seconds-requires-no-usage-reporting: `_cost_tracker["elapsed_seconds"]` is incremented in `invoke_model`'s `finally` 
+  by-model-entry-requires-record-cost: A `_cost_tracker["by_model"]` entry can only be created inside `_record_cost` (l
+  api-and-vertex-skip-cost-recording: `_invoke_api` returns only `response.content` and never calls `_record_cost`, so
+  ollama-skips-json-parsing: `invoke_model` returns raw `output` for `ollama:` models before reaching `_parse
+  format-gated-on-calls-not-elapsed: `format_cost_summary` returns `""` when `calls == 0` even if `elapsed_seconds > 
+Entry: summaries/2026/11/22/reasons-api-parse_contradiction_plan.md
+Queued 1 new topic(s) (450 pending)
+Surfaced 5 belief(s):
+  parse-contradiction-plan-is-pure: `parse_contradiction_plan` performs no I/O, no DB access, and mutates no shared 
+  apply-marker-drives-inclusion: Only headers ending in `[APPLY]` (case-sensitive) contribute entries; `[SKIP]` a
+  entries-require-claims: An `[APPLY]` header without a subsequent `- Claims:` line is silently dropped fr
+  claims-split-on-comma: Claim IDs are split on literal `,` and stripped of outer backticks; embedded com
+  header-flushes-previous-block: The parser is streaming: the previous block is flushed when the next `### NOGOOD
+Entry: summaries/2026/11/22/reasons-api-apply_contradiction_plan.md
+Surfaced 5 belief(s):
+  apply-contradiction-plan-is-sqlite-only: Unlike most other `api.py` functions, this function has no `pg_conninfo` / `doma
+  apply-contradiction-plan-is-non-atomic: Each plan entry is applied by a separate `add_nogood` write transaction; a failu
+  apply-contradiction-plan-requires-id-key: The exception handler formats errors with `entry['id']`, so a missing `"id"` rai
+  apply-contradiction-plan-maps-to-add-nogood: The function is a thin loop over `add_nogood`; it adds no validation, no filteri
+  apply-contradiction-plan-produces-backtracked-to: Each successful result includes the premise actually retracted by `add_nogood`, 
+Entry: summaries/2026/11/22/topic-contradiction-review-workflow.md
+Queued 1 new topic(s) (451 pending)
+Surfaced 5 belief(s):
+  propose-updates-defaults-to-in-beliefs: When `belief_ids` is `None`, `propose_updates` selects only nodes whose `truth_v
+  parse-update-proposals-validates-taxonomy: Invalid `action` defaults to `"update"`, invalid `failure_mode` defaults to `""`
+  proposal-markdown-suggests-cli-commands: `format_proposal_markdown` emits `reasons update <id> "<text>"` for updates and 
+  nogood-backtracking-retracts-premises: According to `tests/test_backtracking.py`, `Network.add_nogood` retracts a premi
+  cli-entrypoint-is-reasons-cli-main: `pyproject.toml` maps the `reasons` script to `reasons.cli:main`.
+Entry: summaries/2026/11/22/topic-namespace-isolation.md
+Queued 3 new topic(s) (454 pending)
+Surfaced 5 belief(s):
+  namespace-active-enables-global-retraction: Because `ns:active` is added as an antecedent to every justification in the name
+  any-mode-implements-or-semantics: `any_mode=True` expands a multi-antecedent SL into one justification per anteced
+  namespace-active-is-skipped-in-derivation: `reasons/derive.py:150–151` explicitly skips nodes whose ID ends with `:active`,
+  any-mode-requires-sqlite: `reasons/api.py:313–314` and `:432–433` raise `NotImplementedError` when `any_mo
+  agent-inactive-prevents-beliefs: Per `reasons/import_agent.py:4–9`, retracting `agent:active` drives `agent:inact
+
+========================================
+[41-50/100] (444 remaining in queue)
+========================================
+  [function] reasons/api.py:list_gated
+  [general] truth-maintenance-propagation
+  [general] cycle-handling-in-recursive-memoization
+  [general] supporting-justification-semantics
+  [general] timestamp-preservation
+  [general] defeater-metadata-propagation
+  [general] beliefs-md-import-normalization
+  [function] reasons/hf.py:create_repo
+  [general] huggingface-repo-id-validation
+  [general] REASONS_HF_ORG-configuration
+Explaining [function] reasons/api.py:list_gated with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] truth-maintenance-propagation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cycle-handling-in-recursive-memoization with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] supporting-justification-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] timestamp-preservation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] defeater-metadata-propagation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] beliefs-md-import-normalization with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/hf.py:create_repo with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] huggingface-repo-id-validation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] REASONS_HF_ORG-configuration with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/reasons-api-list_gated.md
+Queued 1 new topic(s) (445 pending)
+Surfaced 5 belief(s):
+  list-gated-excludes-superseded-out-nodes: Any OUT node with a truthy `metadata["superseded_by"]` is skipped before its jus
+  list-gated-filters-gated-nodes-by-visible-to: The `_is_visible` check is applied to the OUT (gated) node, so nodes failing the
+  list-gated-omits-blocker-visibility-check: Blocker IDs and `text` are included in the result without any `visible_to` filte
+  list-gated-requires-in-blocker: An `outlist` entry only counts as a gate if the referenced node exists in the ne
+  list-gated-delegates-to-postgres-when-pg-conninfo-set: When `pg_conninfo` is truthy, the function calls `PgApi.list_gated` via `_pg_dis
+Entry: summaries/2026/11/22/topic-truth-maintenance-propagation.md
+Queued 1 new topic(s) (446 pending)
+Surfaced 5 belief(s):
+  recompute-all-is-defined-in-network-py: `Network.recompute_all` is declared at `reasons/network.py:904` with return type
+  recompute-all-iterates-to-fixpoint: The docstring at `reasons/network.py:907` states the function "Iterates to a fix
+  recompute-all-exists-in-pg-backend: A parallel implementation documented as "Recompute truth values for all derived 
+  recompute-all-respects-retracted-metadata: Tests at `tests/test_network.py:147-149` and `tests/test_import_agent.py:172` re
+  outlist-nodes-are-dependents: `Network._rebuild_dependents` (`reasons/network.py:~30-45`) registers target nod
+Entry: summaries/2026/11/22/topic-cycle-handling-in-recursive-memoization.md
+Queued 1 new topic(s) (447 pending)
+Surfaced 5 belief(s):
+  cycle-guard-uses-zero-placeholder: The depth helpers set `memo[nid] = 0` before recursing to mark an in-progress no
+  depth-functions-overwrite-placeholder-after-recursion: After visiting antecedents, the helpers overwrite the placeholder with `max_d + 
+  depth-memo-is-keyed-only-by-node-id: The memo cache does not distinguish “visiting” from “finished” and is not parame
+  depth-order-dependence-requires-cycles: In an acyclic graph, memoized max-depth should be order-independent; order-depen
+  depth-code-duplicated-across-files: The same memoized depth pattern appears in `api.py`, `derive.py`, `export_card.p
+Entry: summaries/2026/11/22/topic-supporting-justification-semantics.md
+Queued 1 new topic(s) (448 pending)
+Surfaced 5 belief(s):
+  supporting-justification-is-list-index: `Node.supporting_justification` is an integer index into `node.justifications`, 
+  none-means-no-selected-justification: `None` is the default and cleared sentinel meaning no supporting justification i
+  merkle-requires-valid-index: A non-`None` `supporting_justification` must index `node.justifications` or `rea
+  storage-maps-none-to-sql-null: `reasons/storage.py` persists `supporting_justification` as a nullable `INTEGER`
+  network-clears-supporting-justification-to-none: `reasons/network.py` sets `supporting_justification` to `None` at lines 685 and 
+Entry: summaries/2026/11/22/topic-timestamp-preservation.md
+Queued 1 new topic(s) (449 pending)
+Surfaced 5 belief(s):
+  storage-save-writes-created-at-from-node-object: `Storage.save()` binds `node.created_at` directly into the `nodes.created_at` co
+  storage-save-rewrites-node-rows: `Storage.save()` deletes all node rows before reinserting them, so preservation 
+  storage-timestamps-are-text-columns: `nodes.created_at` and related timestamps are `TEXT` columns with empty-string d
+  build-meta-preserves-supplied-created-at: `build_meta()` returns the caller-provided `created_at` if truthy, otherwise a U
+  propose-update-does-not-handle-created-at: The observed `reasons/propose_update.py` content generates proposals but contain
+Entry: summaries/2026/11/22/topic-defeater-metadata-propagation.md
+Queued 1 new topic(s) (450 pending)
+Surfaced 6 belief(s):
+  defeats-node-is-required-for-classification: `classify_defeat_reason_types` skips any node without a `defeats_node` metadata 
+  defeater-type-defaults-to-invalid-inference: The default `defeater_type` is `"invalid-inference"` in both defeat API function
+  defeat-reason-type-is-omitted-when-empty: `defeat_reason_type` is only written to metadata when the caller supplies a non-
+  migration-produces-migrated-retraction-defeaters: The migration path tags every migrated defeater with `defeater_type = "migrated-
+  defeat-reason-type-requires-llm-classification: `defeat_reason_type` is populated post-hoc by `classify_defeat_reason_types` via
+Entry: summaries/2026/11/22/topic-beliefs-md-import-normalization.md
+Queued 2 new topic(s) (452 pending)
+Surfaced 5 belief(s):
+  markdown-export-writes-duplicate-of-bullet: `export_markdown` emits `- Duplicate of: <id>` when `metadata["duplicate_of"]` e
+  duplicate-of-parser-not-in-observations: The provided `duplicate_of` search results contain no match in `reasons/import_b
+  stale-status-requires-out-and-reason: Export maps a node to `[STALE]` only when its truth value is `OUT` and it has `s
+  stale-export-imports-as-retraction: `test_stale_node_round_trip` verifies that an exported `[STALE]` node with `Stal
+  nogood-markdown-roundtrip-has-known-format-mismatch: The observed test notes that `parse_nogoods` expects `nogood-N: label`, while ex
+Entry: summaries/2026/11/22/reasons-hf-create_repo.md
+Queued 1 new topic(s) (453 pending)
+Surfaced 5 belief(s):
+  create-repo-is-idempotent: A `409 Conflict` from the Hub is swallowed and the function returns the resolved
+  create-repo-requires-explicit-token: Unlike `download_network`, this function performs no `HF_TOKEN` / cached-token f
+  create-repo-produces-resolved-repo-id: The return value is `resolve_repo_id(repo_id)`, not the raw argument and not the
+  create-repo-splits-on-first-slash: The payload's `organization`/`name` derive from `parsed_id.split("/", 1)`, so ex
+  create-repo-does-not-handle-urlerror: Non-`HTTPError` failures (DNS, TLS, timeout as `URLError`) propagate out of the 
+Entry: summaries/2026/11/22/topic-huggingface-repo-id-validation.md
+Surfaced 5 belief(s):
+  resolve-repo-id-accepts-any-string-with-slash: `resolve_repo_id("org/repo/extra")` returns `"org/repo/extra"` unchanged because
+  create-repo-assumes-one-slash: `create_repo` calls `parsed_id.split("/", 1)` at `reasons/hf.py:98` and will rai
+  resolve-repo-id-url-parsing-is-substring-based: The URL branch at `reasons/hf.py:38-42` splits on the literal text `"huggingface
+  create-repo-always-sends-organization: `create_repo` always includes the first path segment as `"organization"` in the 
+  hf-module-hardcodes-model-repo-type: `create_repo` sends `"type": "model"` at `reasons/hf.py:104`, and `upload_file` 
+Entry: summaries/2026/11/22/topic-REASONS_HF_ORG-configuration.md
+Queued 1 new topic(s) (454 pending)
+Surfaced 5 belief(s):
+  resolve-repo-id-normalizes-input-not-env-override: `resolve_repo_id` strips whitespace and trailing slashes from `repo_id`, but doe
+  empty-env-override-produces-leading-slash: If `REASONS_HF_ORG` is set to an empty string, a bare repo ID resolves to `/<rep
+  explicit-org-skips-env-override: A normalized `repo_id` containing `/` returns before `REASONS_HF_ORG` is read, s
+  empty-normalized-repo-id-produces-trailing-slash: Empty or slash-only `repo_id` values normalize to `""` and resolve to `"<default
+  tests-cover-input-trailing-slash-not-override-edge-cases: Tests cover trailing slash in repo input and a clean env override, but not empty
+
+========================================
+[51-60/100] (444 remaining in queue)
+========================================
+  [repo] benthomasson/ftl-reasons
+  [function] reasons/network.py:_compute_truth
+  [function] reasons/network.py:recompute_all
+  [general] retracted-node-semantics
+  [general] justification-evaluation-around-api-1590
+  [function] reasons/llm.py:_get_langfuse_handler
+  [general] optional-dependency-runtime-matrix
+  [function] reasons/mcp_client.py:_call_tool_async
+  [general] mcp-sdk-calltoolresult
+  [function] reasons/mcp_client.py:call_tool
+Explaining [repo] benthomasson/ftl-reasons with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:_compute_truth with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:recompute_all with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] retracted-node-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] justification-evaluation-around-api-1590 with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/llm.py:_get_langfuse_handler with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] optional-dependency-runtime-matrix with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/mcp_client.py:_call_tool_async with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] mcp-sdk-calltoolresult with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/mcp_client.py:call_tool with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/repo-overview-4.md
+Surfaced 6 belief(s):
+  core-has-zero-required-runtime-dependencies: `pyproject.toml` declares `dependencies = []` and all third-party packages are g
+  reasons-has-two-parallel-package-trees: `reasons/` and `reasons_lib/` list the same module filenames, except `reasons_li
+  console-scripts-target-the-reasons-package: Both `reasons` and `reasons-mcp` entry points in `[project.scripts]` resolve to 
+  storage-implements-two-backends: `storage.py` (SQLite via stdlib) and `pg.py` (Postgres via `psycopg`) provide th
+  extras-gate-optional-capabilities: Every non-stdlib capability (Postgres, LLM, MCP, clustering, Langfuse tracing) i
+Entry: summaries/2026/11/22/reasons-network-_compute_truth.md
+Queued 1 new topic(s) (445 pending)
+Surfaced 5 belief(s):
+  compute-truth-prefers-newest-valid-justification: When multiple justifications are valid, `_compute_truth` selects the highest-ind
+  compute-truth-returns-in-for-any-valid-justification: A justified node returns `"IN"` as soon as `_justification_valid` returns true f
+  compute-truth-preserves-premise-truth-value: For a node with no justifications, `_compute_truth` returns the node’s existing 
+  compute-truth-does-not-assign-truth-value: `_compute_truth` only returns `"IN"` or `"OUT"`; assigning the result to `node.t
+  compute-truth-ignores-retraction-metadata: `_compute_truth` does not inspect `_retracted`; retraction filtering is handled 
+Entry: summaries/2026/11/22/reasons-network-recompute_all.md
+Queued 2 new topic(s) (447 pending)
+Surfaced 6 belief(s):
+  recompute-all-skips-premises: Nodes with an empty `justifications` list are never visited or mutated by `recom
+  recompute-all-skips-retracted-nodes: Nodes with `metadata["_retracted"]` truthy are excluded from the sweep, so retra
+  recompute-all-ignores-dependents-index: Unlike `_propagate`, `recompute_all` does not consult `node.dependents`; correct
+  recompute-all-mutates-supporting-justification: Every visited derived node has its `supporting_justification` field rewritten, e
+  recompute-all-max-iterations-is-a-hard-cap: The loop stops after `len(self.nodes) + 1` passes and does not raise, warn, or l
+Entry: summaries/2026/11/22/topic-retracted-node-semantics.md
+Queued 1 new topic(s) (448 pending)
+Surfaced 5 belief(s):
+  retracted-flag-locks-node-out: `_retracted` metadata is set when a node is retracted or imported as `OUT`/`STAL
+  propagation-skips-retracted-dependents: `_propagate()` skips nodes with `_retracted` when they appear in a predecessor’s
+  dependents-index-remains-structural: `_retracted` does not remove the node from the reverse `dependents` set; the ski
+  clearing-retracted-enables-repropagation: Removing `_retracted` through the import/API paths makes the node eligible for n
+  retracted-nodes-can-still-be-antecedents: A node with `_retracted` can be referenced by later justifications, but it remai
+Entry: summaries/2026/11/22/topic-justification-evaluation-around-api-1590.md
+Queued 2 new topic(s) (450 pending)
+Surfaced 5 belief(s):
+  missing-outlist-defaults-to-out: `truth_cache.get(o, "OUT") == "OUT"` at `reasons/pg.py:3158` and `reasons/pg.py:
+  outlist-ok-is-all-out: `outlist_ok` is `True` only when every outlist node maps to `"OUT"` in `truth_ca
+  justification-fire-requires-inlist-ok-and-outlist-ok: The gate `inlist_ok and outlist_ok` appears at `reasons/api.py:1594`, `reasons/n
+  cycle-guard-stores-zero-in-memo: Both `reasons/api.py:3378` and `reasons/derive.py:123` set `memo[x] = 0` as the 
+  truth-cache-holds-in-and-out: The comparison `truth_cache.get(o, "OUT") == "OUT"` in `reasons/pg.py` implies `
+Entry: summaries/2026/11/22/reasons-llm-_get_langfuse_handler.md
+Queued 3 new topic(s) (453 pending)
+Surfaced 5 belief(s):
+  langfuse-handler-is-lazy-cached: `_get_langfuse_handler` attempts Langfuse initialization only once per process, 
+  langfuse-handler-requires-public-key: A truthy `LANGFUSE_PUBLIC_KEY` environment variable is required for the function
+  langfuse-handler-caches-negative-results: Once `_langfuse_checked` becomes true, missing dependency, missing key, or const
+  langfuse-handler-is-not-locked: The first-call initialization path has no synchronization, so concurrent first c
+  langfuse-handler-does-not-validate-secret: The function checks only `LANGFUSE_PUBLIC_KEY` and does not validate `LANGFUSE_S
+Entry: summaries/2026/11/22/topic-optional-dependency-runtime-matrix.md
+Queued 2 new topic(s) (455 pending)
+Surfaced 5 belief(s):
+  llm-extra-composes-api-vertex-langfuse: The `llm` extra installs `langchain-anthropic`, `langchain-google-vertexai`, and
+  pg-extra-corresponds-to-pg-backend-checks: CLI commands check `args.pg` and `REASONS_PG_CONNINFO`, and several reject execu
+  mcp-extra-requires-mcp-for-reasons-mcp-entrypoint: The `reasons-mcp` console script points at `reasons.mcp_server:main`, while `mcp
+  storage-module-is-sqlite-specific: `reasons/storage.py` implements SQLite persistence and does not contain PostgreS
+  test-extra-does-not-declare-runtime-provider: The `test` extra adds only `pytest`, `pytest-cov`, and `pyyaml`, and docs invoke
+Entry: summaries/2026/11/22/reasons-mcp_client-_call_tool_async.md
+Queued 3 new topic(s) (458 pending)
+Surfaced 5 belief(s):
+  call-tool-async-returns-newline-joined-content: `_call_tool_async` returns one string produced by joining each `result.content` 
+  call-tool-async-requires-live-session: It assumes `self._session` is a live initialized MCP `ClientSession` bound to th
+  call-tool-async-propagates-exceptions: Exceptions from `ClientSession.call_tool`, content iteration, or the final join 
+  call-tool-async-does-not-apply-timeout: Timeout enforcement exists only in `McpBridge.call_tool` via `future.result(time
+  call-tool-async-assumes-text-is-string: If a content object has a `text` attribute, its value is appended directly witho
+Entry: summaries/2026/11/22/topic-mcp-sdk-calltoolresult.md
+Queued 2 new topic(s) (460 pending)
+Surfaced 6 belief(s):
+  client-uses-call-tool-result-content-channel: `_call_tool_async` in `reasons/mcp_client.py` joins text from every item in `res
+  client-does-not-catch-mcperror: `McpBridge.call_tool` calls `future.result(timeout=60)` without a `try/except`, 
+  server-embeds-errors-in-tool-content: Every error branch in `reasons/mcp_server.py` (e.g. `show()`, `retract()`, `what
+  server-does-not-import-sdk-error-types: `reasons/mcp_server.py` imports only `FastMCP` from `mcp.server.fastmcp` and nev
+  fastmcp-maps-exceptions-to-is-error: The `@mcp.tool()` decorator wraps a plain Python function; a normal return becom
+Entry: summaries/2026/11/22/reasons-mcp_client-call_tool.md
+Queued 3 new topic(s) (463 pending)
+Surfaced 5 belief(s):
+  call-tool-requires-connected-event-loop: `call_tool` assumes `connect()` already created a running `_loop`; it does not c
+  call-tool-blocks-caller-for-up-to-60-seconds: `future.result(timeout=60)` blocks the calling thread with a hardcoded 60-second
+  call-tool-timeout-does-not-cancel-operation: A `future.result` timeout raises to the caller but does not cancel the scheduled
+  call-tool-returns-flattened-text-content: On success it returns `result.content` texts joined by newlines, converting non-
+  call-tool-ignores-calltoolresult-iserror: The method never checks `result.isError`, so server-reported tool errors are ret
+
+========================================
+[61-70/100] (453 remaining in queue)
+========================================
+  [general] fastmcp-schema-generation
+  [function] reasons/merkle.py:verify_justification
+  [function] reasons/merkle.py:compute_content_hash
+  [function] reasons/merkle.py:backfill_hashes
+  [general] cycle-detection-contract
+  [general] importlib.metadata.version
+  [general] ftl-reasons-packaging-metadata
+  [general] editable-install-versioning
+  [general] schema-version-compatibility
+  [function] reasons/api.py:import_api
+Explaining [general] fastmcp-schema-generation with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/merkle.py:verify_justification with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/merkle.py:compute_content_hash with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/merkle.py:backfill_hashes with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cycle-detection-contract with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] importlib.metadata.version with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] ftl-reasons-packaging-metadata with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] editable-install-versioning with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] schema-version-compatibility with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/api.py:import_api with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-fastmcp-schema-generation.md
+Queued 2 new topic(s) (455 pending)
+Surfaced 5 belief(s):
+  mcp-server-defines-propose-update: `reasons/mcp_server.py` registers `propose_update` via `@mcp.tool()` with `belie
+  mcp-get-tools-is-instance-method-not-repo-symbol: `mcp.get_tools()` resolves to a method on the module-level `FastMCP("reasons")` 
+  mcp-dependency-is-unpinned-beyond-lower-bound: `pyproject.toml` declares `mcp>=1.0` with no upper bound and no direct pydantic 
+  schema-dialect-is-unasserted-in-tests: No test or source file references `anyOf` or `nullable`, so the dialect is entir
+  propose-retract-tags-shares-belief-ids-dialect: `propose_retract(tags: list[str] | None = None)` uses the same union-optional pa
+Entry: summaries/2026/11/22/reasons-merkle-verify_justification.md
+Queued 2 new topic(s) (457 pending)
+Surfaced 5 belief(s):
+  verify-justification-returns-none-without-content-hash: A falsy `content_hash` causes an immediate `None` return before any recomputatio
+  verify-justification-uses-current-text: The recomputed hash is based on `compute_text_hash(node.text)` and fresh recursi
+  verify-justification-ignores-missing-antecedents: Antecedent IDs not present in `net.nodes` are silently excluded from the recompu
+  verify-justification-mutates-supplied-cache: When `cache` is passed, recursive Merkle hashes may be inserted into it, though 
+  verify-justification-returns-chain-mutation-finding: A mismatch between stored and recomputed hashes returns a dict with type `"chain
+Entry: summaries/2026/11/22/reasons-merkle-compute_content_hash.md
+Queued 1 new topic(s) (458 pending)
+Surfaced 5 belief(s):
+  compute-content-hash-ignores-stored-text-hash: It recomputes text hashes from `node.text` and never reads `node.text_hash`.
+  compute-content-hash-mutates-cache: It populates the provided cache with node-level Merkle hashes, but not the final
+  missing-antecedents-are-skipped: Antecedent IDs absent from `net.nodes` are silently omitted from the hash input.
+  cycle-placeholder-is-empty-string-hash: A node encountered while already in `visiting` and not cached is replaced with `
+  cache-values-are-trusted-without-recomputation: Cached node Merkle hashes are returned directly, so stale cache entries produce 
+Entry: summaries/2026/11/22/reasons-merkle-backfill_hashes.md
+Queued 1 new topic(s) (459 pending)
+Surfaced 5 belief(s):
+  backfill-only-fills-falsy-hashes: The function assigns `text_hash`/`content_hash` only when the existing value is 
+  backfill-computes-from-current-text: Content hashes are computed from live `node.text`, not from any `text_hash` writ
+  backfill-is-idempotent: A second call on the same network returns `{"nodes_updated": 0, "justifications_
+  backfill-mutates-in-place: It mutates `node.text_hash` and `justification.content_hash` on objects reachabl
+  backfill-skips-missing-antecedents: Antecedent IDs not present in `net.nodes` are excluded from the content hash via
+Entry: summaries/2026/11/22/topic-cycle-detection-contract.md
+Queued 2 new topic(s) (461 pending)
+Surfaced 5 belief(s):
+  verification-exposes-structural-findings: The Merkle verification path builds a `findings` list and `reasons/api.py:2739-2
+  backfill-delegates-to-merkle: `reasons/api.py:backfill_hashes` delegates to `reasons.merkle.backfill_hashes` a
+  cycle-guard-is-not-a-public-detector: `reasons/api.py:3378` and `reasons/derive.py:123` use `memo[...] = 0` as an inte
+  cycle-test-only-proves-termination: `tests/test_merkle.py:193-200` documents cycle safety as avoiding an infinite lo
+  backfill-cli-reports-counts-not-findings: `reasons/cli.py:1105-1112` formats backfill output as `backfilled`/`rehashed` co
+Entry: summaries/2026/11/22/topic-importlib.metadata.md
+Queued 1 new topic(s) (462 pending)
+Surfaced 6 belief(s):
+  distribution-lookup-requires-a-dist-info-on-sys-path: `importlib.metadata.version("ftl-reasons")` returns a value only when some `sys.
+  get-generator-swallows-package-not-found-error: `reasons/metadata.py:_get_generator` (lines 15–20) catches every exception from 
+  cli-version-flag-has-no-metadata-fallback: `reasons/cli.py:3057` calls `_pkg_version('ftl-reasons')` unguarded inside `argp
+  pyproject-declares-distribution-name-ftl-reasons: `pyproject.toml` `[project].name = "ftl-reasons"` and `version = "0.58.0"` are t
+  metadata-tests-accept-unknown-version: `tests/test_metadata_extended.py:test_generator_format` asserts only a `ftl-reas
+Entry: summaries/2026/11/22/topic-ftl-reasons-packaging-metadata.md
+Queued 2 new topic(s) (464 pending)
+Surfaced 6 belief(s):
+  version-lookup-requires-ftl-reasons-distribution: `importlib.metadata.version("ftl-reasons")` succeeds only when a distribution na
+  pyproject-declares-distribution-name-ftl-reasons: `pyproject.toml` sets `[project].name = "ftl-reasons"` with version `0.58.0`.
+  import-names-differ-from-distribution-name: The packages `reasons` and `reasons_lib` are importable, but the distribution is
+  cli-version-flag-eagerly-resolves-metadata: `reasons/cli.py:3057` calls `_pkg_version('ftl-reasons')` when the argument pars
+  metadata-module-eagerly-resolves-version: `reasons/metadata.py:18` calls `version("ftl-reasons")` at module import time.
+Entry: summaries/2026/11/22/topic-editable-install-versioning.md
+Queued 2 new topic(s) (466 pending)
+Surfaced 5 belief(s):
+  generator-version-reads-installed-metadata: `_get_generator()` calls `importlib.metadata.version("ftl-reasons")` and does no
+  pyproject-toml-owns-source-version: `pyproject.toml` declares `version = "0.58.0"` for the `ftl-reasons` project.
+  build-meta-emits-generator-field: `build_meta()` writes `_get_generator()` output into the `"generator"` field of 
+  missing-distribution-yields-unknown: Any exception from `importlib.metadata.version("ftl-reasons")` is caught and con
+  package-init-has-no-version-attribute: `reasons/__init__.py` defines dataclasses but does not define `__version__`.
+Entry: summaries/2026/11/22/topic-schema-version-compatibility.md
+Queued 3 new topic(s) (469 pending)
+Surfaced 6 belief(s):
+  schema-version-is-write-only: `schema_version` is written to storage and exports (`reasons/storage.py:195`, `r
+  runtime-version-is-display-only: `importlib.metadata.version` is used only to render `--version` output (`reasons
+  rejection-is-proposal-scoped: The only "reject" implementation is `reasons/api.py:reject_proposal` (line 5801)
+  upgrade-hashes-is-not-schema-upgrade: `reasons/check_stale.py:66` `upgrade_hashes` expands truncated git commit SHAs t
+  postgres-capability-gate-is-the-only-compat-rejection: `reasons/api.py:3420-3437` is the sole code path that raises on an unsupported r
+Entry: summaries/2026/11/22/reasons-api-import_api.md
+Queued 1 new topic(s) (470 pending)
+Surfaced 5 belief(s):
+  import-api-auto-initializes-sqlite: For SQLite backends, `import_api` initializes a missing database unconditionally
+  import-api-requires-init-for-postgres: For PostgreSQL, `init=True` is required to auto-create the schema because the lo
+  import-api-delegates-to-import-json: All node/nogood/repo installation is performed by `import_json`; `import_api` is
+  import-api-uses-temp-file-with-finally-cleanup: The downloaded JSON is always written to a `NamedTemporaryFile(delete=False)` an
+  import-api-parses-json-twice-when-initializing: When initialization runs, `json_str` is parsed once for `meta.project_name` and 
+
+========================================
+[71-80/100] (460 remaining in queue)
+========================================
+  [general] mind-service-secret-management
+  [function] reasons/network.py:find_culprits
+  [function] reasons/network.py:trace_assumptions
+  [function] reasons/network.py:add_nogood
+  [function] reasons/network.py:_justification_valid
+  [function] reasons/pg.py:_justification_valid_cached
+  [general] nogood-consistency-check
+  [function] reasons/pg.py:_find_dependents
+  [function] reasons/pg.py:propagate
+  [function] reasons/pg.py:_compute_truth
+Explaining [general] mind-service-secret-management with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:find_culprits with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:trace_assumptions with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:add_nogood with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/network.py:_justification_valid with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:_justification_valid_cached with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] nogood-consistency-check with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:_find_dependents with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:propagate with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:_compute_truth with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-mind-service-secret-management.md
+Queued 3 new topic(s) (463 pending)
+Surfaced 5 belief(s):
+  mind-api-key-resolution-order: `_resolve_config` uses an explicit `api_key` argument before falling back to `MI
+  mind-api-key-is-runtime-env-config: `reasons/mind_service.py` reads `MIND_API_KEY` from `os.environ` only; no file-b
+  unit-tests-isolate-mind-api-key: `tests/test_mind_service.py` sets and deletes `MIND_API_KEY` via `monkeypatch` r
+  cli-api-key-defaults-to-env: The CLI documents `MIND_API_KEY` as the default environment source for `--api-ke
+  gitignore-does-not-ignore-dotenv: The observed `.gitignore` contains no `.env` or secret-file pattern.
+Entry: summaries/2026/11/22/reasons-network-find_culprits.md
+Queued 1 new topic(s) (464 pending)
+Surfaced 6 belief(s):
+  find-culprits-is-pure: `find_culprits` performs no mutation or logging and is callable safely as a read
+  find-culprits-skips-invalid-inputs: Nodes not in `self.nodes` or with `truth_value != "IN"` are silently skipped rat
+  would-resolve-is-heuristic: A premise appearing in `would_resolve` for a nogood node only means the premise 
+  find-culprits-returns-only-premises: Every candidate's `premise` field points to a node with `justifications == []`, 
+  entrenchment-sorted-ascending: Candidates are sorted by ascending `entrenchment`, so the least-protected assump
+Entry: summaries/2026/11/22/reasons-network-trace_assumptions.md
+Queued 2 new topic(s) (466 pending)
+Surfaced 5 belief(s):
+  trace-assumptions-requires-start-node-existence: It raises `KeyError` only for the requested node; missing antecedent IDs encount
+  trace-assumptions-traverses-all-antecedent-edges: It follows every `Justification.antecedents` entry regardless of justification t
+  trace-assumptions-ignores-outlist: Nodes listed in `Justification.outlist` are never traversed or returned as assum
+  trace-assumptions-defines-premise-structurally: A premise is a node with an empty `justifications` list, not a node with empty a
+  trace-assumptions-returns-dfs-list: It returns a unique list in depth-first discovery order, not a sorted set, despi
+Entry: summaries/2026/11/22/reasons-network-add_nogood.md
+Queued 1 new topic(s) (467 pending)
+Surfaced 5 belief(s):
+  add-nogood-records-before-active-check: It appends a `Nogood` and logs it before determining whether all listed nodes ar
+  inactive-nogood-returns-empty: If any listed node is not `IN`, `add_nogood` returns `[]` and performs no retrac
+  active-nogood-selects-least-entrenched-culprit: When `find_culprits` returns candidates, `add_nogood` retracts `culprits[0]["pre
+  nogood-is-not-enforced-during-propagation: `_compute_truth` and `_justification_valid` never consult `self.nogoods`, so lat
+  may-retract-already-out-premise: Because `find_culprits` traces all justifications and does not filter premises b
+Entry: summaries/2026/11/22/reasons-network-_justification_valid.md
+Queued 1 new topic(s) (468 pending)
+Surfaced 5 belief(s):
+  justification-validation-requires-antecedents-in: A justification is valid only if every antecedent exists in `self.nodes` and has
+  missing-outlist-nodes-satisfy-empty-clause: An outlist entry referencing a nonexistent node contributes `True` to the outlis
+  justification-type-filter-rejects-unknown-types: Any `j.type` other than `"SL"` or `"CP"` causes `_justification_valid` to return
+  justification-validation-is-pure: `_justification_valid` performs no mutation, logging, or I/O; it only reads `sel
+  compute-truth-depends-on-justification-validity: `_compute_truth` returns `"IN"` iff at least one of a node's justifications pass
+Entry: summaries/2026/11/22/reasons-pg-_justification_valid_cached.md
+Queued 1 new topic(s) (469 pending)
+Surfaced 5 belief(s):
+  justification-validity-uses-out-default-for-missing-nodes: `truth_cache.get(x, "OUT")` causes missing antecedents to fail validity while mi
+  _justification_valid_cached-requires-reiterable-arguments: The function iterates `antecedents` and `outlist` twice each, so generators woul
+  justification-validity-predicate-duplicated-in-compute-truth-propagate-and-explain: Equivalent logic appears in `_compute_truth`, `_propagate`, and `_justification_
+  _justification_valid_cached-is-a-helper-only-for-explain-node: Its only caller is `_explain_recursive`, which uses it to select the responsible
+  _justification_valid_cached-produces-bool-and-never-raises-for-missing-nodes: It returns a plain boolean for present references and treats absent ones without
+Entry: summaries/2026/11/22/topic-nogood-consistency-check.md
+Queued 1 new topic(s) (470 pending)
+Surfaced 5 belief(s):
+  no-consistency-predicate-exists: No function definition matching `is_consistent`, `check_consist`, or `def .*cons
+  nogoods-are-node-id-sets: Nogood IDs are derived from sorted node IDs and persisted/imported as sets of no
+  add-nogood-mutates-and-backtracks: `api.add_nogood` records a nogood via `net.add_nogood(node_ids)` and returns `ch
+  contradiction-detection-filters-to-in-nodes: `detect_contradictions` only checks nodes with `truth_value == "IN"` and returns
+  cp-consistency-documented-not-implemented: The only observed assumptions/consistency match is the CP docstring at `reasons/
+Entry: summaries/2026/11/22/reasons-pg-_find_dependents.md
+Queued 2 new topic(s) (472 pending)
+Surfaced 6 belief(s):
+  _find_dependents-uses-jsonb-containment: The query relies on PostgreSQL's `@>` JSONB containment to match `["nid"]` again
+  outlist-nodes-are-dependents: Both antecedents and outlist entries count as dependencies because either can ch
+  _find_dependents-performs-query-per-id: The method issues one SQL round-trip per element of `node_ids`, not a batched `A
+  _find_dependents-requires-active-cursor: Callers must supply an open cursor from the same connection; the method never cr
+  _find_dependents-empty-input-returns-empty-set: A falsy `node_ids` returns `set()` without touching the DB; the guard is not an 
+Entry: summaries/2026/11/22/reasons-pg-propagate.md
+Queued 2 new topic(s) (474 pending)
+Surfaced 5 belief(s):
+  propagate-skips-retracted-nodes: The loop reads `metadata._retracted` and `continue`s before recomputing, so retr
+  propagate-excludes-premises: The `JOIN rms_justifications` in the node-selection query means a node with zero
+  propagate-changed-list-is-union-not-diff: The returned `all_changed` set accumulates node ids across every pass; it is not
+  propagate-treats-truth-value-strings-as-opaque: Comparison is `old_tv != new_tv` on raw strings; no semantic interpretation of `
+  propagate-has-silent-non-convergence: When the fixpoint is not reached within `node_count + 1` passes, the loop exits 
+Entry: summaries/2026/11/22/reasons-pg-_compute_truth.md
+Queued 1 new topic(s) (475 pending)
+Surfaced 5 belief(s):
+  _compute_truth-ignores-justification-type: The `type` column is fetched (`SL`/`CP`) but never consumed; both are evaluated 
+  _compute_truth-is-read-only: The function only issues SELECT statements and never updates, commits, or logs; 
+  _compute_truth-returns-IN-for-premises: If `rms_justifications` contains no rows for `node_id` in the current domain, th
+  _compute_truth-treats-missing-refs-as-OUT: The `truth_cache.get(..., "OUT")` fallback means a referenced node that no longe
+  _compute_truth-requires-uncommitted-visibility: Callers must invoke it inside the same transaction that wrote the justifications
+
+========================================
+[81-90/100] (465 remaining in queue)
+========================================
+  [general] truth-maintenance-rms
+  [general] dual-backend-parity
+  [function] reasons/propose_update.py:format_belief_for_update
+  [general] on-batch-cumulative-callback-pattern
+  [file] reasons/propose_update.py:PROPOSE_UPDATE_PROMPT
+  [general] deepcopy-read-only-network-pattern
+  [function] reasons/pubsub.py:compute_changes
+  [function] reasons/repair.py:triage_belief
+  [general] truth-maintenance-system-graph-structure
+  [function] reasons/repair.py:_do_search_and_link
+Explaining [general] truth-maintenance-rms with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] dual-backend-parity with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/propose_update.py:format_belief_for_update with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] on-batch-cumulative-callback-pattern with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [file] reasons/propose_update.py:PROPOSE_UPDATE_PROMPT with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] deepcopy-read-only-network-pattern with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pubsub.py:compute_changes with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/repair.py:triage_belief with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] truth-maintenance-system-graph-structure with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/repair.py:_do_search_and_link with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-truth-maintenance-rms.md
+Queued 2 new topic(s) (467 pending)
+Surfaced 6 belief(s):
+  sl-justification-requires-all-antecedents-in-and-all-outlist-out: An SL justification is only valid when every antecedent is IN and every outlist 
+  absent-outlist-node-is-treated-as-out: An outlist node that does not exist in the network is treated as OUT (unbelieved
+  backtracking-retracts-premises-not-derived-nodes: `add_nogood` retracts a depth-0 premise selected by `find_culprits`, never a der
+  inactive-nogood-short-circuits-backtracking: If any node in a nogood is already OUT, `add_nogood` returns an empty changed li
+  entrenchment-prefers-evidence-over-speculation: `_entrenchment` scores sourced premises, OBSERVATION-typed nodes, and high-depen
+Entry: summaries/2026/11/22/topic-dual-backend-parity.md
+Queued 2 new topic(s) (469 pending)
+Surfaced 5 belief(s):
+  pg-entrenchment-takes-cursor: `PgApi._entrenchment` requires a Postgres cursor and node ID, unlike `Network._e
+  no-shared-entrenchment-helper-visible: `reasons/pg.py` imports no shared entrenchment helper from `reasons/network.py`,
+  network-entrenchment-tested-directly: `tests/test_backtracking.py` calls `Network._entrenchment` directly and asserts 
+  pg-entrenchment-tested-indirectly: `tests/test_pg.py` `TestFindCulprits.test_find_culprits` indirectly asserts that
+  pg-entrenchment-rule-coverage-limited: The shown PG tests do not directly assert the full set of entrenchment ordering 
+Entry: summaries/2026/11/22/reasons-propose_update-format_belief_for_update.md
+Queued 1 new topic(s) (470 pending)
+Surfaced 5 belief(s):
+  format-belief-for-update-returns-empty-string-for-missing-node: When `node_id` is not in `nodes` (or maps to a falsy value), the function return
+  format-belief-for-update-ignores-non-list-set-dependents: If `dependents` is not a `list` or `set` (e.g., a tuple or dict), no dependent s
+  format-belief-for-update-marks-justificationless-nodes-as-premises: Nodes with empty/missing `justifications` emit the line `Type: premise (no justi
+  justification-numbering-requires-multiple-justifications: The `Justification N/M:` header is emitted only when `len(justs) > 1`.
+  format-belief-for-update-produces-prompt-fragment: Its return value is concatenated with `"\n\n"` into the `{beliefs}` slot of `PRO
+Entry: summaries/2026/11/22/topic-on-batch-cumulative-callback-pattern.md
+Queued 1 new topic(s) (471 pending)
+Surfaced 5 belief(s):
+  review-on-batch-is-per-batch: `reasons/review_justifications.py:123` documents `on_batch` as a callback invoke
+  pubsub-callback-is-per-write: `reasons/pubsub.py:42` documents subscriber callbacks as receiving a list of `Ch
+  llm-callback-is-per-invocation: `reasons/llm.py:236` passes a Langfuse callback handler into a single `llm.invok
+  cli-has-no-direct-callback-handling: `reasons/cli.py` has zero matches for callback or token/chunk streaming terms in
+  no-cumulative-callback-evidence: The observations show per-batch/per-write callbacks and no cumulative callback i
+Entry: summaries/2026/11/22/reasons-propose_update-PROPOSE_UPDATE_PROMPT.md
+Queued 1 new topic(s) (472 pending)
+Surfaced 5 belief(s):
+  PROPOSE_UPDATE_PROMPT-has-placeholder-beliefs: The template contains exactly one substitution placeholder, `{beliefs}`, and all
+  propose-updates-requires-propose-update-prompt: `propose_updates` cannot build a batch request without calling `PROPOSE_UPDATE_P
+  propose-update-prompt-maps-to-failure-modes-and-bases: The enumerated failure modes and bases in the prompt text correspond to the `FAI
+  parse-update-proposals-downgrades-unknown-enums: Values outside `FAILURE_MODES`/`BASES` are silently replaced with `""`/`"prior-k
+  propose-updates-swallows-batch-failures: Exceptions from rendering, invoking the model, or parsing are caught per-batch a
+Entry: summaries/2026/11/22/topic-deepcopy-read-only-network-pattern.md
+Queued 2 new topic(s) (474 pending)
+Surfaced 5 belief(s):
+  what-if-api-functions-use-deepcopy: `what_if_retract`, `what_if_assert`, and `what_if_supersede` each deep-copy `net
+  network-class-is-mutable: `Network` at `reasons/network.py:17` exposes mutating operations such as `add_no
+  no-readonly-network-enforcement-found: No observed code implements frozen/read-only `Network` enforcement via `__setatt
+  pg-what-if-path-dispatches-to-pg-methods: `api.what_if_retract/assert/supersede` call `_pg_dispatch` for Postgres, reachin
+  read-only-network-invariant-is-social: In the observations, the “never mutate read-only `Network`” invariant is maintai
+Entry: summaries/2026/11/22/reasons-pubsub-compute_changes.md
+Queued 2 new topic(s) (476 pending)
+Surfaced 5 belief(s):
+  compute-changes-produces-node-changed-events: For valid string-valued snapshots, it returns one `"node_changed"` event per add
+  missing-before-key-yields-none-old-truth-value: Keys present only in `after` get `old_truth_value=None`.
+  missing-after-key-yields-none-new-truth-value: Keys present only in `before` get `new_truth_value=None`.
+  compute-changes-emits-after-order-then-before-only-order: Events for `after` keys are emitted first in `after` iteration order, followed b
+  compute-changes-does-not-publish-or-mutate-state: It returns a list of events but does not call `publish`, mutate inputs, or modif
+Entry: summaries/2026/11/22/reasons-repair-triage_belief.md
+Queued 2 new topic(s) (478 pending)
+Surfaced 5 belief(s):
+  triage-belief-returns-parsed-dict: `triage_belief` always returns a dict with keys `pattern` and `rationale`, never
+  triage-belief-pattern-is-validated: Any non-empty `pattern` in the returned dict is guaranteed to be a member of `VA
+  triage-belief-propagates-invoke-model-errors: Exceptions from `invoke_model` (network, timeout, auth) are not caught inside `t
+  triage-belief-empty-pattern-signals-failure: An empty `pattern` return indicates triage failure and is the caller's signal (v
+  triage-belief-no-retry: The function issues exactly one LLM call per invocation; no retry or fallback lo
+Entry: summaries/2026/11/22/topic-truth-maintenance-system-graph-structure.md
+Queued 1 new topic(s) (479 pending)
+Surfaced 5 belief(s):
+  justification-valid-iff-antecedents-in-and-outlist-out: A `Justification` is valid only when every antecedent is IN **and** every outlis
+  node-in-if-any-justification-valid: A derived node is IN when at least one of its justifications is valid, so multip
+  outlist-nodes-register-as-dependents: Nodes listed in an outlist have the target registered in their `dependents` set,
+  node-depth-is-structural: `_node_depth` anchors premises at 0 and computes derived depth as `max(anteceden
+  cascade-depth-is-operational: `_cascade_depth` is a BFS hop count from the just-changed node to each affected 
+Entry: summaries/2026/11/22/reasons-repair-_do_search_and_link.md
+Queued 1 new topic(s) (480 pending)
+Surfaced 5 belief(s):
+  search-and-link-returns-four-tuple: `_do_search_and_link` returns `(status, claim, matched_ids, rationale)` where st
+  search-and-link-filters-to-leaf-in-premises: Candidates must have `truth_value == "IN"`, differ from `belief_id`, not appear 
+  search-and-link-uses-first-justification-only: When `node["justifications"]` contains multiple entries, only `justifications[0]
+  search-and-link-dry-run-skips-db-mutation: With `dry_run=True` the function still performs both LLM calls and search but sk
+  search-and-link-json-decode-errors-yield-empty-results: Malformed JSON from `search_fn` is caught and converted to `[]`, producing `"no_
+
+========================================
+[91-100/100] (470 remaining in queue)
+========================================
+  [general] metadata-taxonomy
+  [function] reasons/repair_premises.py:_repair_one
+  [function] reasons/repair_premises.py:repair_premises
+  [general] llm-json-response-parsing
+  [general] premise-repair-actions
+  [general] git-ls-files-mode-bits
+  [general] reasons-lib-drift-audit
+  [general] cp-justification-semantics
+  [function] reasons/pg.py:PgApi.list_gated
+  [function] reasons/cli.py:cmd_show
+Explaining [general] metadata-taxonomy with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/repair_premises.py:_repair_one with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/repair_premises.py:repair_premises with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] llm-json-response-parsing with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] premise-repair-actions with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] git-ls-files-mode-bits with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] reasons-lib-drift-audit with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [general] cp-justification-semantics with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Explaining [function] reasons/pg.py:PgApi.list_gated with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Symbol 'PgApi.list_gated' not found in reasons/pg.py (skipping)
+Explaining [function] reasons/cli.py:cmd_show with openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017...
+Entry: summaries/2026/11/22/topic-metadata-taxonomy.md
+Queued 1 new topic(s) (471 pending)
+Surfaced 5 belief(s):
+  repair-action-is-write-only-in-observed-code: No observed CLI or report module reads `repair_action` or `repair_research`; onl
+  repair-action-has-six-observed-values: `repair_action` is written as `rewritten`, `retracted`, `search_and_link`, `soft
+  repair-research-stores-triage-rationale: The `research` branch writes the triage rationale string to `repair_research` be
+  repair-metadata-writes-respect-dry-run: Repair metadata writes occur inside `not dry_run` guards; dry-run tests assert `
+  set-metadata-is-backend-dispatched: `api.set_metadata` delegates to PostgreSQL via `_pg_dispatch` and otherwise uses
+Entry: summaries/2026/11/22/reasons-repair_premises-_repair_one.md
+Queued 2 new topic(s) (473 pending)
+Surfaced 7 belief(s):
+  _repair_one-requires-node-in-nodes: `nodes[node_id]` is accessed with a bare subscript before the `try`, so a missin
+  _repair_one-swallows-only-try-block-exceptions: Any exception inside the `try` maps to `action: "error"` with `rationale = str(e
+  _repair_one-returns-first-parsed-item: Only `parsed[0]` is returned, and its `id` is never checked against `node_id`.
+  parse-failure-maps-to-retract: When `parse_repair_response` yields an empty list, `_repair_one` returns `action
+  action-values-not-validated: `parse_repair_response` uses `item.get("action", "retract")` without restricting
+Entry: summaries/2026/11/22/reasons-repair_premises-repair_premises.md
+Queued 1 new topic(s) (474 pending)
+Surfaced 6 belief(s):
+  parallel-results-not-in-input-order: When `parallel > 0`, `all_results` is ordered by completion, not by `premise_ids
+  on-result-receives-shared-mutable-list: `on_result` is called with the same `all_results` reference each time; callers m
+  missing-node-id-raises-key-error: A `premise_id` absent from `nodes` raises `KeyError` because `_repair_one` uses 
+  _repair_one-swallows-llm-errors: LLM and parse failures inside `_repair_one` are converted to dicts with `action 
+  empty-premise-ids-returns-empty-list: A falsy `premise_ids` short-circuits to `[]` before any I/O or thread-pool const
+Entry: summaries/2026/11/22/topic-llm-json-response-parsing.md
+Queued 1 new topic(s) (475 pending)
+Surfaced 5 belief(s):
+  extract-tool-call-requires-line-leading-brace: `extract_tool_call` only attempts `json.loads` on lines whose first non-whitespa
+  extract-tool-call-swallows-json-errors: `extract_tool_call` catches only `json.JSONDecodeError` and continues, so a line
+  parse-cli-json-never-raises: `_parse_cli_json` catches `JSONDecodeError`/`ValueError` and non-dict payloads, 
+  parse-cli-json-fallback-skips-cost-accounting: When `_parse_cli_json` falls back to raw output, `_record_cost` is never called,
+  ollama-thinking-stripping-is-provider-scoped: Only models with the `ollama:` prefix strip `Thinking...`/`...done thinking.` ma
+Entry: summaries/2026/11/22/topic-premise-repair-actions.md
+Surfaced 6 belief(s):
+  retract-is-a-truth-value-transition: `retract_node` (`reasons/api.py:473`) flips a node to OUT and cascades to depend
+  retract-preserves-restorability: Retraction records `retracted_at` (schema in `reasons/__init__.py:49`) and is re
+  rewrite-is-not-a-top-level-api: No symbol named `rewrite` has a function definition; `rewrite` exists only as a 
+  rewrite-dependents-enables-surviving-dependents: `_rewrite_dependents(net, old_id, new_id)` redirects dependents' references so t
+  premise-repair-rewrite-requires-corrected-text: The repair protocol requires `corrected_text` to be a complete replacement when 
+Entry: summaries/2026/11/22/topic-git-ls-files-mode-bits.md
+Queued 2 new topic(s) (477 pending)
+Surfaced 4 belief(s):
+  reasons-lib-is-a-setuptools-package: `pyproject.toml` line 31 includes `reasons_lib` in `[tool.setuptools].packages`.
+  reasons-lib-workspace-listing-has-33-file-entries: The workspace listing reports 33 entries under `reasons_lib/`, all typed as file
+  git-mode-120000-identifies-symlinks: In `git ls-files -s` output, `120000` identifies a symlink while `100644` identi
+  observed-data-lacks-git-ls-files-output: No actual `git ls-files -s reasons_lib/` output is present in the observations, 
+Entry: summaries/2026/11/22/topic-reasons-lib-drift-audit.md
+Queued 1 new topic(s) (478 pending)
+Surfaced 5 belief(s):
+  reasons-lib-is-a-shim-not-a-mirror: `reasons_lib/__init__.py` re-exports from `reasons` via `from reasons import *` 
+  merkle-gap-is-structural-not-isolated: The missing `reasons_lib/merkle.py` reflects the same omission that also hides `
+  reasons-merkle-is-imported-only-via-reasons: Every reference to `merkle` in the repo uses `reasons.merkle` (or relative `.mer
+  reasons_lib-has-zero-internal-consumers: `find_reasons_lib_references` returns 0 matches, so any reliance on the shim ori
+  package-list-includes-both: `pyproject.toml` `packages` lists both `"reasons"` and `"reasons_lib"`, so the s
+Entry: summaries/2026/11/22/topic-cp-justification-semantics.md
+Queued 2 new topic(s) (480 pending)
+Surfaced 5 belief(s):
+  cp-is-a-justification-type: CP is represented as `Justification(type="CP")` and is accepted by the API, CLI,
+  cp-doc-rule-is-consistency: `reasons/__init__.py:13` states that a CP node is `IN` iff its assumptions are c
+  network-add-node-delegates-truth-to-compute-truth: `Network.add_node` calls `_compute_truth` for nodes with justifications; nodes w
+  network-line-982-handles-sl-and-cp: `reasons/network.py:982` contains a shared `if j.type in ("SL", "CP")` branch.
+  retract-and-assert-use-propagate: `Network.retract` and `Network.assert_node` update the target node and call `_pr
+Entry: summaries/2026/11/22/reasons-cli-cmd_show.md
+Queued 1 new topic(s) (481 pending)
+Surfaced 5 belief(s):
+  cmd-show-only-catches-lookup-errors: `cmd_show` catches `KeyError`/`PermissionError` only around the `api.show_node` 
+  cmd-show-requires-non-optional-top-level-keys: `cmd_show` accesses `node['source']`, `node['source_hash']`, `node['metadata']`,
+  cmd-show-assumes-metadata-is-a-dict: `cmd_show` assumes `node["metadata"]` is a dict (not `None`); calling `.get` on 
+  cmd-show-truncates-pinned-sha: When `metadata["pinned_sha"]` is truthy, `cmd_show` displays only its first 12 c
+  cmd-show-uses-fixed-timestamp-order: Timestamp display order is hard-coded to `created_at, updated_at, reviewed_at, v
+
+Explored 100 topic(s). 481 remaining in queue.
+  Round 1: Explore (up to 100 topics) took 17m 15s

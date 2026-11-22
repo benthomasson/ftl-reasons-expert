@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-22T16:17:50",
+  "operation": "explore-propose-accept-explore",
+  "domain": null,
+  "model": "openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "calls": 145,
+  "input_tokens": 1424620,
+  "output_tokens": 632822,
+  "cost_dollars": 0.0,
+  "by_model": {
+    "openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+      "calls": 145,
+      "input_tokens": 1424620,
+      "output_tokens": 632822,
+      "total_cost_usd": 0.0
+    }
+  },
+  "beliefs_added": 0,
+  "beliefs_retracted": 0,
+  "beliefs_unchanged": 0,
+  "round_number": 1,
+  "wall_clock_seconds": 1034.54
+}
