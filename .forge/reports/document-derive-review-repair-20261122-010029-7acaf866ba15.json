@@ -1,0 +1,170 @@
+{
+  "pipeline": "document-derive-review-repair",
+  "job_id": "7acaf866ba15",
+  "started_at": "2026-11-22T01:00:29+00:00",
+  "updated_at": "2026-11-22T04:06:03+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "name": "derive",
+      "status": "pending"
+    },
+    {
+      "name": "review",
+      "status": "pending"
+    },
+    {
+      "name": "repair",
+      "status": "pending"
+    },
+    {
+      "name": "deduplicate",
+      "status": "pending"
+    },
+    {
+      "name": "c1-derive",
+      "status": "completed",
+      "started_at": "2026-11-22T01:00:29+00:00",
+      "completed_at": "2026-11-22T01:11:09+00:00",
+      "detail": "added 68, 10m 40s",
+      "counts": {
+        "added": 68
+      },
+      "duration_seconds": 639.53
+    },
+    {
+      "name": "c1-review",
+      "status": "completed",
+      "started_at": "2026-11-22T01:11:09+00:00",
+      "completed_at": "2026-11-22T01:17:48+00:00",
+      "detail": "reviewed 48, invalid 5, 6m 39s",
+      "counts": {
+        "reviewed": 48,
+        "invalid": 5
+      },
+      "duration_seconds": 398.91
+    },
+    {
+      "name": "c1-repair",
+      "status": "completed",
+      "started_at": "2026-11-22T01:17:48+00:00",
+      "completed_at": "2026-11-22T01:20:19+00:00",
+      "detail": "2m 32s",
+      "counts": {
+        "linked": 0,
+        "softened": 1,
+        "abandoned": 0
+      },
+      "duration_seconds": 151.65
+    },
+    {
+      "name": "c1-deduplicate",
+      "status": "completed",
+      "started_at": "2026-11-22T01:20:19+00:00",
+      "completed_at": "2026-11-22T02:15:03+00:00",
+      "detail": "54m 43s",
+      "duration_seconds": 3283.48
+    },
+    {
+      "name": "c2-derive",
+      "status": "completed",
+      "started_at": "2026-11-22T02:17:44+00:00",
+      "completed_at": "2026-11-22T02:31:16+00:00",
+      "detail": "added 47, 13m 32s",
+      "counts": {
+        "added": 47
+      },
+      "duration_seconds": 812.24
+    },
+    {
+      "name": "c2-review",
+      "status": "completed",
+      "started_at": "2026-11-22T02:31:16+00:00",
+      "completed_at": "2026-11-22T02:34:53+00:00",
+      "detail": "reviewed 33, invalid 5, 3m 36s",
+      "counts": {
+        "reviewed": 33,
+        "invalid": 5
+      },
+      "duration_seconds": 216.39
+    },
+    {
+      "name": "c2-repair",
+      "status": "completed",
+      "started_at": "2026-11-22T02:34:53+00:00",
+      "completed_at": "2026-11-22T02:37:59+00:00",
+      "detail": "3m 7s",
+      "counts": {
+        "linked": 0,
+        "softened": 0,
+        "abandoned": 0
+      },
+      "duration_seconds": 186.61
+    },
+    {
+      "name": "c2-deduplicate",
+      "status": "completed",
+      "started_at": "2026-11-22T02:37:59+00:00",
+      "completed_at": "2026-11-22T03:07:56+00:00",
+      "detail": "29m 57s",
+      "duration_seconds": 1796.73
+    },
+    {
+      "name": "c3-derive",
+      "status": "completed",
+      "started_at": "2026-11-22T03:11:42+00:00",
+      "completed_at": "2026-11-22T03:22:33+00:00",
+      "detail": "added 63, 10m 52s",
+      "counts": {
+        "added": 63
+      },
+      "duration_seconds": 651.53
+    },
+    {
+      "name": "c3-review",
+      "status": "completed",
+      "started_at": "2026-11-22T03:22:33+00:00",
+      "completed_at": "2026-11-22T03:31:12+00:00",
+      "detail": "reviewed 44, invalid 8, 8m 39s",
+      "counts": {
+        "reviewed": 44,
+        "invalid": 8
+      },
+      "duration_seconds": 518.61
+    },
+    {
+      "name": "c3-repair",
+      "status": "completed",
+      "started_at": "2026-11-22T03:31:12+00:00",
+      "completed_at": "2026-11-22T03:33:48+00:00",
+      "detail": "2m 36s",
+      "counts": {
+        "linked": 0,
+        "softened": 5,
+        "abandoned": 0
+      },
+      "duration_seconds": 156.06
+    },
+    {
+      "name": "c3-deduplicate",
+      "status": "completed",
+      "started_at": "2026-11-22T03:33:48+00:00",
+      "completed_at": "2026-11-22T03:59:24+00:00",
+      "detail": "25m 36s",
+      "duration_seconds": 1536.0
+    }
+  ],
+  "completed_at": "2026-11-22T04:06:03+00:00",
+  "summary": {
+    "cycles": 3,
+    "total_derived": 178,
+    "total_reviewed": 125,
+    "total_invalid": 18,
+    "total_linked": 0,
+    "total_softened": 6,
+    "total_abandoned": 0,
+    "converged": false,
+    "total_rederived": 95,
+    "duration_seconds": 11134.06
+  }
+}
