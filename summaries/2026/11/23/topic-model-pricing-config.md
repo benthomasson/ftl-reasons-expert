@@ -1,0 +1,89 @@
+---
+model: "openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+date: 2026-11-23
+---
+
+# Topic: why this run reports `cost_dollars: 0.0` for a DeepSeek-V4.1-Flash model behind the `rits` gateway; whether rates are missing or intentionally free.
+
+## Why `cost_dollars` is `0.0` here
+
+Short version: **the pipeline has no source of dollar cost for an OpenAI-compatible endpoint like `openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017`. It is not a missing-rate-table bug in the sense of a known model with no price entry, and it is not a deliberate "this model is free" declaration — it is simply that the cost accumulator defaults to `0.0` and nothing in the API path ever writes a non-zero value into it.**
+
+### 1. Where the number actually comes from
+
+The generated file `costs/2026-11-19T180331-update.json` reports `"cost_dollars": 0.0` alongside real token counts (`input_tokens: 49387`, `output_tokens: 41591`) and `calls: 4`. That shape matches `_cost_tracker` in `reasons/llm.py`:
+
+- `_cost_tracker` is initialized with `"total_cost_usd": 0.0` (top of `reasons/llm.py`, within the first 200 lines shown).
+- `_record_cost(model, input_tokens, output_tokens, cost_usd)` adds to both `input_tokens`/`output_tokens` and `total_cost_usd`.
+- `get_cost_summary()` deep-copies that tracker (used to write the JSON).
+
+So `cost_dollars: 0.0` is the sum of whatever `cost_usd` values were passed to `_record_cost`. The tokens are non-zero, so `_record_cost` **is** being called — the fourth argument is arriving as `0.0`.
+
+### 2. This model does not go through the CLI cost path
+
+`resolve_model_cmd` in `reasons/llm.py` explicitly raises for OpenAI-prefixed models:
+
+```
+if model.startswith("openai:"):
+    raise ValueError(f"OpenAI models use the API directly: {model}")
+```
+
+And the tests confirm `api:`/`vertex:` prefixes dispatch to `_invoke_api` (`TestInvokeModelApiDispatch.test_api_prefix_dispatches`, `test_vertex_prefix_dispatches` in `tests/test_llm.py`). So `openai:rits/...` is an API-path call, not a subprocess call.
+
+The only place the code extracts a **dollar** figure from a provider response is `_parse_cli_json`:
+
+- Claude-style CLI JSON: `cost_usd = data.get("total_cost_usd", 0.0)`.
+- Gemini CLI: hardcoded `_record_cost(model, input_tokens, output_tokens, 0.0)`.
+
+Neither applies here. `_invoke_api` (lines ~200–327 of `reasons/llm.py`, **not included in the observation**) is what runs, and the tests for it (`TestInvokeApi.test_api_invokes_chat_anthropic`) only assert the returned content — they do not assert any cost recording. The JSON output proves `_invoke_api` does record tokens, but the cost argument is evidently `0.0`: a standard OpenAI chat-completion response carries `usage.total_tokens`/`prompt_tokens`/`completion_tokens`, but **no dollar amount**.
+
+### 3. There is no local rate table to fall back on
+
+If `_invoke_api` wanted to compute dollars itself, it would need an input/output price map. There isn't one:
+
+- `find_pricing_rate_logic` matched 287 lines, but every match is a false positive — `migrated`, `separated`, `restored`, `inherits` — none are `per_million`, `input_cost`, `MODEL_RATES`, or similar. No pricing constant exists in the codebase.
+- `find_deepseek_model_mentions` returned **0** matches — the model is not hardcoded anywhere, so no bespoke DeepSeek pricing branch could exist.
+- `find_rits_gateway_mentions` returned only substring hits inside `culprits`/`inherits` in `reasons/api.py`, `reasons/network.py`, `reasons/pg.py`, and `tests/*` — **the string `rits` as a gateway is not referenced in code at all.** The gateway is configured purely through the model string (`openai:rits/...`), so there is no place for a rits-specific price to live either.
+
+### 4. So: missing rates, or intentionally free?
+
+Neither in the strict sense. The code has:
+
+- **No provider cost for this endpoint** (OpenAI-compatible chat completions don't return `total_cost_usd`).
+- **No local rate table** to convert the 49,387 input + 41,591 output tokens into dollars.
+- **No model-specific override** for `DeepSeek-V4.1-Flash-1017` or for the `rits` gateway.
+
+Therefore the last argument to `_record_cost` stays at its default `0.0`, `total_cost_usd` never increments, and the writer emits `cost_dollars: 0.0`.
+
+Whether the gateway actually bills zero is outside this codebase — the observations cannot settle that. The code's behavior is consistent with "the gateway is silent about price and we have no price table," which is indistinguishable at the output level from "it's free."
+
+### 5. What would change this
+
+Either of:
+
+- A local rate map (e.g., `deepseek-ai/DeepSeek-V4.1-Flash-1017 → $X / 1M input, $Y / 1M output`) consulted in `_invoke_api`; or
+- The gateway returning a cost field that `_invoke_api` reads and forwards to `_record_cost`.
+
+Note also that `find_cost_dollars_usage` returned **0 matches** even though the JSON contains `"cost_dollars"`. That means the key is generated by serialization code that names it `cost_dollars` while the in-memory field is `total_cost_usd` — so search on `cost_dollars` will not find the writer. Search on `total_cost_usd` instead.
+
+### Caveats — what is not observable here
+
+- `_invoke_api` (lines ~200–327 of `reasons/llm.py`) is **not shown**; only its test contract is. The exact place it calls `_record_cost(..., 0.0)` is inferred, not directly read.
+- The script that writes `costs/*.json` is not shown, so the mapping from `_cost_tracker` to `cost_dollars` is inferred from field alignment.
+- Nothing here proves the rits gateway charges or doesn't charge.
+
+## Topics to Explore
+
+- [function] `reasons/llm.py:_invoke_api` — The unseen half of the module; confirms whether it extracts `response.usage` for tokens and what it passes as `cost_usd` (the crux of this question).
+- [function] `reasons/llm.py:_record_cost` — The single choke point that accumulates `total_cost_usd`; adding a rate lookup here or at its call sites would make this run report a real number.
+- [file] `tests/test_llm.py` — `TestInvokeApi` shows the current contract for API calls (content only, no cost assertions); any rate-table change belongs here first.
+- [general] `costs-json-writer` — The (unseen) code that serializes `_cost_tracker` into `costs/*.json` and renames `total_cost_usd` to `cost_dollars`; needed to explain why the `cost_dollars` search returned 0.
+- [general] `rits-gateway-configuration` — Since `rits` appears nowhere in code, find where `openai:rits/...` is supplied (env var, config, CLI flag) to know whether the gateway can expose a cost field.
+
+## Beliefs
+
+- `api-model-costs-default-to-zero` — For `openai:`/`api:`/`vertex:` models, `_invoke_api` calls `_record_cost` with the final argument `0.0`, so `total_cost_usd` stays at its initial `0.0` while tokens accumulate.
+- `cli-costs-come-from-provider-json` — `_parse_cli_json` only records a non-zero cost from `data.get("total_cost_usd", 0.0)`; the Gemini branch hardcodes `0.0`.
+- `no-local-pricing-table` — The codebase contains no `per_million` / `input_cost` / `MODEL_RATES`-style rate constant; all `find_pricing_rate_logic` hits are substring false positives.
+- `rits-gateway-is-not-referenced-in-code` — The `rits` string only appears as part of `culprits`/`inherits`, so gateway identity is conveyed solely through the `openai:rits/...` model string.
+- `openai-prefix-bypasses-resolve-model-cmd` — `resolve_model_cmd` raises `ValueError` for `openai:` models, so `openai:rits/...` must be routed to `_invoke_api` before CLI resolution.
