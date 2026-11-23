@@ -350,5 +350,222 @@
       "pgapi-referential-integrity-is-database-enforced",
       "reference-integrity-is-schema-enforced"
     ]
+  },
+  {
+    "belief_id": "reasons-lib-api-circular-import-risk-with-canonical-importers",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/307",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-api-circular-import-risk-with-canonical-importers] `reasons.api` must not import modules such as `reasons.ask` or `reasons.cli` at ",
+    "description": "`reasons.api` must not import modules such as `reasons.ask` or `reasons.cli` at module load, because those modules import `reasons_lib.api` and would complete a cycle with `reasons_lib.api -> reasons.api`.",
+    "filed_at": "2026-11-23T01:03:07+00:00",
+    "gated_beliefs": [
+      "reasons-api-shim-imports-are-identity-preserving-and-safe"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-deletion-blocked-by-internal-importers",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/308",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-deletion-blocked-by-internal-importers] The `reasons_lib/` package cannot be safely deleted until at least 9 internal `r",
+    "description": "The `reasons_lib/` package cannot be safely deleted until at least 9 internal `reasons/` modules and 25+ test files are migrated to import directly from `reasons.*`, because all of them currently resolve their symbols through the shim's star-import re-export.",
+    "filed_at": "2026-11-23T01:03:08+00:00",
+    "gated_beliefs": [
+      "reasons-lib-atomic-code-deletion-is-safe-unless-internal-importers-remain",
+      "reasons-lib-atomic-deletion-is-safe-after-migration",
+      "reasons-lib-atomic-deletion-ready-after-importer-and-timeline-gaps-out",
+      "reasons-lib-behavior-preserving-removal-is-safe",
+      "reasons-lib-can-be-retired-after-audit-and-packaging-update",
+      "reasons-lib-can-be-retired-as-semantic-no-op",
+      "reasons-lib-is-atomically-deletable-while-import-and-packaging-blockers-out",
+      "reasons-lib-removal-preserves-semantics-when-blockers-are-out",
+      "reasons-lib-retirement-is-runtime-safe"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-does-not-auto-mirror-new-submodules",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/309",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-does-not-auto-mirror-new-submodules] Adding `reasons.foo` does not create `reasons_lib.foo`; a physical `reasons_lib/",
+    "description": "Adding `reasons.foo` does not create `reasons_lib.foo`; a physical `reasons_lib/foo.py` wrapper is required.",
+    "filed_at": "2026-11-23T01:03:09+00:00",
+    "gated_beliefs": [
+      "reasons-lib-compatibility-is-transparent-while-coverage-gaps-out",
+      "reasons-lib-mirrored-imports-are-behavior-neutral",
+      "reasons-lib-star-import-compatibility-is-safe"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-emits-no-deprecation-warning",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/310",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-emits-no-deprecation-warning] There are no `DeprecationWarning`, `warnings.warn`, or `deprecated` matches in `",
+    "description": "There are no `DeprecationWarning`, `warnings.warn`, or `deprecated` matches in `reasons_lib`, so importing it currently gives no deprecation signal.",
+    "filed_at": "2026-11-23T01:03:10+00:00",
+    "gated_beliefs": [
+      "reasons-lib-deprecation-path-requires-removal-criterion-and-warning"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-has-no-declared-removal-criterion",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/311",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-has-no-declared-removal-criterion] No sunset version, migration deadline, pending-removal marker, or deprecation ch",
+    "description": "No sunset version, migration deadline, pending-removal marker, or deprecation checklist for `reasons_lib` appears in the observed repository files.",
+    "filed_at": "2026-11-23T01:03:11+00:00",
+    "gated_beliefs": [
+      "reasons-lib-can-be-retired-as-semantic-no-op"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-has-no-deprecation-hooks",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/312",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-has-no-deprecation-hooks] The observed shims contain no `DeprecationWarning`, `warnings.warn`, or `__getat",
+    "description": "The observed shims contain no `DeprecationWarning`, `warnings.warn`, or `__getattr__` deprecation mechanism.",
+    "filed_at": "2026-11-23T01:03:12+00:00",
+    "gated_beliefs": [
+      "reasons-lib-deprecation-signal-is-effective",
+      "reasons-lib-is-migration-ready-if-deprecation-and-incomplete-mirror-gaps-are-out"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-has-no-removal-criterion",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/313",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-has-no-removal-criterion] No sunset version, migration deadline, or deprecation checklist exists for `reas",
+    "description": "No sunset version, migration deadline, or deprecation checklist exists for `reasons_lib` anywhere in the observed files.",
+    "filed_at": "2026-11-23T01:03:14+00:00",
+    "gated_beliefs": [
+      "reasons-lib-can-be-retired-after-audit-and-packaging-update",
+      "reasons-lib-deprecation-path-requires-removal-criterion-and-warning"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-is-stale-and-incomplete",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/314",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-is-stale-and-incomplete] The `reasons_lib/` package is missing at least two modules that exist in `reason",
+    "description": "The `reasons_lib/` package is missing at least two modules that exist in `reasons/` (`merkle.py`, `storage.py`), indicating the legacy package is not kept in sync with the canonical implementation and is slated for eventual removal.",
+    "filed_at": "2026-11-23T01:03:15+00:00",
+    "gated_beliefs": [
+      "reasons-api-legacy-shim-routing-is-safe-when-shim-drift-is-out",
+      "reasons-lib-is-migration-ready-if-deprecation-and-incomplete-mirror-gaps-are-out",
+      "reasons-lib-mirrored-api-surface-is-complete",
+      "reasons-lib-object-identity-compatibility-is-auditable-unless-mirror-gaps-and-patch-tests-out",
+      "reasons-lib-provides-complete-backwards-compatibility",
+      "reasons-lib-star-import-compatibility-is-safe"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-is-strict-subset-of-reasons",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/315",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-is-strict-subset-of-reasons] `reasons_lib/` is missing several modules that exist in `reasons/` (including `m",
+    "description": "`reasons_lib/` is missing several modules that exist in `reasons/` (including `mcp_client.py`, `mcp_server.py`, `hf.py`, `pubsub.py`), so the legacy package does not cover the full canonical API surface.",
+    "filed_at": "2026-11-23T01:03:16+00:00",
+    "gated_beliefs": [
+      "reasons-lib-compatibility-is-transparent-while-coverage-gaps-out",
+      "reasons-lib-wildcard-compatibility-is-faithful"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-lacks-merkle-module",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/316",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-lacks-merkle-module] `reasons/merkle.py` exists in the root listing, but no `reasons_lib/merkle.py` i",
+    "description": "`reasons/merkle.py` exists in the root listing, but no `reasons_lib/merkle.py` is present \u2014 evidence the trees have drifted.",
+    "filed_at": "2026-11-23T01:03:18+00:00",
+    "gated_beliefs": [
+      "reasons-api-legacy-shim-routing-is-safe-when-shim-drift-is-out",
+      "reasons-lib-mirrored-imports-are-behavior-neutral"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-lacks-merkle-shim",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/317",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-lacks-merkle-shim] `reasons_lib/merkle.py` is absent even though `reasons/merkle.py` exists.",
+    "description": "`reasons_lib/merkle.py` is absent even though `reasons/merkle.py` exists.",
+    "filed_at": "2026-11-23T01:03:19+00:00",
+    "gated_beliefs": [
+      "reasons-lib-mirrored-api-surface-is-complete",
+      "reasons-lib-object-identity-compatibility-is-auditable-unless-mirror-gaps-and-patch-tests-out"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-module-attribute-patching-lacks-regression-tests",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/318",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-module-attribute-patching-lacks-regression-tests] No tests patch `reasons.Node` or `reasons_lib.Node` to verify module-level monke",
+    "description": "No tests patch `reasons.Node` or `reasons_lib.Node` to verify module-level monkeypatch visibility through the shim.",
+    "filed_at": "2026-11-23T01:03:20+00:00",
+    "gated_beliefs": [
+      "reasons-lib-object-identity-compatibility-is-auditable-unless-mirror-gaps-and-patch-tests-out",
+      "reasons-lib-star-import-compatibility-is-safe"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-removal-requires-packaging-change",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/319",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-removal-requires-packaging-change] `pyproject.toml` installs both `reasons` and `reasons_lib`, so removing the shim",
+    "description": "`pyproject.toml` installs both `reasons` and `reasons_lib`, so removing the shim requires updating packaging as well as imports.",
+    "filed_at": "2026-11-23T01:03:22+00:00",
+    "gated_beliefs": [
+      "reasons-lib-behavior-preserving-removal-is-safe",
+      "reasons-lib-can-be-retired-as-semantic-no-op",
+      "reasons-lib-is-atomically-deletable-while-import-and-packaging-blockers-out",
+      "reasons-lib-removal-preserves-semantics-when-blockers-are-out"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-removal-timeline-is-undocumented",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/320",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-removal-timeline-is-undocumented] The observed changelog, README, `CLAUDE.md`, and `pyproject.toml` do not specify",
+    "description": "The observed changelog, README, `CLAUDE.md`, and `pyproject.toml` do not specify a removal version or date for `reasons_lib`.",
+    "filed_at": "2026-11-23T01:03:23+00:00",
+    "gated_beliefs": [
+      "reasons-lib-atomic-deletion-ready-after-importer-and-timeline-gaps-out",
+      "reasons-lib-deprecation-signal-is-effective"
+    ]
+  },
+  {
+    "belief_id": "reasons-lib-shims-hardcode-reasons-import-path",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/321",
+    "type": "gate",
+    "state": "open",
+    "title": "[reasons-lib-shims-hardcode-reasons-import-path] Both observed `reasons_lib` shims import literally from `reasons`/`reasons.api`,",
+    "description": "Both observed `reasons_lib` shims import literally from `reasons`/`reasons.api`, so renaming or moving the canonical package/module breaks the shim unless those wrapper imports are updated.",
+    "filed_at": "2026-11-23T01:03:25+00:00",
+    "gated_beliefs": [
+      "reasons-lib-wildcard-compatibility-is-faithful"
+    ]
+  },
+  {
+    "belief_id": "system-is-externally-controlled-and-internally-self-correcting",
+    "url": "https://github.com/benthomasson/ftl-reasons/issues/322",
+    "type": "gate",
+    "state": "open",
+    "title": "[system-is-externally-controlled-and-internally-self-correcting] The system achieves dual-layer assurance: external interfaces are fully controll",
+    "description": "The system achieves dual-layer assurance: external interfaces are fully controlled through bidirectional token bounds and defensive belief ingestion, while internal consistency is actively maintained through contradiction resolution at derivation time and staleness detection at maintenance time.",
+    "filed_at": "2026-11-23T01:03:26+00:00",
+    "gated_beliefs": [
+      "system-is-externally-controlled-for-tracked-sources-and-internally-self-correcting-for-supported-cases"
+    ]
   }
 ]
