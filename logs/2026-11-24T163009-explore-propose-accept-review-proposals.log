@@ -1,0 +1,279 @@
+=== explore-propose-accept / review-proposals (round 1) — 2026-11-24T16:30:09 ===
+
+=== Round 1: Review proposals ===
+
+Reviewing 721 proposals (29 already rejected)...
+  Batch 2/145 done (1 completed)
+  Batch 6/145 done (2 completed)
+  Batch 1/145 done (3 completed)
+  REJECT export-network-conjunctive-acl: duplicate: already covered by existing access-tag subset/all-semantics beliefs such as `access-tags-subset-gate` and `access-tags-use-all-semantics`
+  Batch 7/145 done (4 completed)
+  Batch 4/145 done (5 completed)
+  REJECT apply-dedup-plan-requires-writable-db: duplicate: existing add-node-writes-through-with-network already states every write uses _with_network(write=True) and skips save on exception.
+  Batch 5/145 done (6 completed)
+  Batch 12/145 done (7 completed)
+  Batch 8/145 done (8 completed)
+  Batch 9/145 done (9 completed)
+  Batch 10/145 done (10 completed)
+  Batch 13/145 done (11 completed)
+  REJECT linkify-is-not-markdown-aware: speculative: The "may match IDs inside code, URLs, or existing Markdown syntax if boundary conditions allow" is a hedged prediction/risk analysis rather than a grounded observable fact.
+  Batch 14/145 done (12 completed)
+  Batch 16/145 done (13 completed)
+  Batch 15/145 done (14 completed)
+  REJECT add-nogood-requires-all-nodes-in-for-culprit-reporting: duplicate: already covered by add-nogood-inactive-when-either-node-out and add-nogood-validates-node-ids-before-record
+  REJECT add-nogood-appends-exactly-one-nogood: duplicate: existing add-nogood-always-records and add-nogood-records-before-active-check already capture the append behavior
+  Batch 3/145 done (15 completed)
+  REJECT trace-access-tags-dispatches-to-pg: duplicate: covered by existing all-api-functions-support-pg-dispatch claim
+  REJECT is-visible-requires-subset: duplicate: already captured by access-tags-require-subset-for-visibility and access-tags-subset-gate
+  REJECT access-tags-persist-in-metadata: duplicate: already captured by access-tags-are-stored-in-metadata-not-node-tags
+  Batch 11/145 done (16 completed)
+  Batch 20/145 done (17 completed)
+  Batch 19/145 done (18 completed)
+  Batch 18/145 done (19 completed)
+  Batch 21/145 done (20 completed)
+  Batch 24/145 done (21 completed)
+  Batch 22/145 done (22 completed)
+  Batch 27/145 done (23 completed)
+  Batch 28/145 done (24 completed)
+  REJECT add-nogood-retracts-least-entrenched-culprit: duplicate: Already captured by `active-nogood-selects-least-entrenched-culprit` (and the docstring mismatch by `add-nogood-docstring-mismatches-lowest-entrenchment-retraction`).
+  Batch 25/145 done (25 completed)
+  Batch 26/145 done (26 completed)
+  Batch 23/145 done (27 completed)
+  REJECT reasons-has-reasons-lib-mirror: trivial: directory/module-set comparison is obvious from file structure and not a durable architecture invariant
+  Batch 30/145 done (28 completed)
+  REJECT external-hf-eem-schema-not-in-observations: meta: reports an exploration/search result and observation absence, not a codebase fact
+  Batch 31/145 done (29 completed)
+  Batch 17/145 done (30 completed)
+  REJECT import-hf-test-fixture-has-meta-nodes-nogoods-repos: trivial: describes test fixture contents visible from the file, not a codebase invariant
+  REJECT missing-outlist-node-is-treated-as-out: duplicate: same claim as the retracted belief `absent-outlist-node-is-treated-as-out`
+  Batch 32/145 done (31 completed)
+  REJECT metadata-is-the-formatter-label-source: ephemeral: inventory/count of metadata keys (“at least nine”) is a point-in-time snapshot.
+  Batch 34/145 done (32 completed)
+  REJECT dependents-usage-unverified: meta: comment on missing observations, not a codebase fact.
+  REJECT schema-version-is-internal-metadata: speculative: semantic internal-vs-external interpretation is not a directly observable code contract.
+  Batch 35/145 done (33 completed)
+  Batch 29/145 done (34 completed)
+  Batch 39/145 done (35 completed)
+  REJECT no-external-schema-url-found-in-observed-matches: ephemeral: point-in-time search result/negative observation, not a durable codebase invariant
+  Batch 36/145 done (36 completed)
+  REJECT project-structure-lists-ten-modules: ephemeral: point-in-time count of modules in documentation
+  REJECT readme-commands-table-missing-import-json-check-integrity-backfill-hashes: ephemeral: documentation drift snapshot that changes with edits
+  REJECT mcp-server-undocumented-in-project-structure: ephemeral: documentation omission snapshot that can be fixed immediately
+  Batch 40/145 done (37 completed)
+  REJECT codebase-has-no-markdown-token-handling: speculative: zero grep matches do not prove no tokenizer-aware handling exists
+  Batch 38/145 done (38 completed)
+  REJECT compact-and-pg-duplicate-estimator: trivial: code-duplication observation is obvious from the two call sites and not a durable architecture invariant
+  REJECT estimate-tokens-is-locked-by-tests: speculative: describes a change-impact prediction (“test-breaking”) rather than a durable production invariant
+  Batch 37/145 done (39 completed)
+  REJECT warn-log-action-is-filtered-by-tests: trivial: test-only observation discoverable from test code
+  Batch 43/145 done (40 completed)
+  REJECT warn-writer-not-confirmed: speculative: describes what a code search failed to find and asserts something "must be verified," not a durable codebase fact.
+  Batch 44/145 done (41 completed)
+  REJECT cli-test-suite-undocumented-in-test-list: ephemeral: documentation counts and test-file list are point-in-time snapshots that change with edits
+  Batch 41/145 done (42 completed)
+  Batch 48/145 done (43 completed)
+  REJECT tests-do-not-compare-prompt-and-types: trivial: test-assertion gap visible from the test file; not an architecture/API invariant.
+  REJECT defeat-reason-types-has-seven-hyphenated-values: ephemeral: specific count of seven values changes with taxonomy edits.
+  Batch 46/145 done (44 completed)
+  Batch 49/145 done (45 completed)
+  REJECT defeat-reason-types-definition-location: ephemeral: line-specific definition location snapshot
+  REJECT classify-defeat-reason-prompt-definition-location: ephemeral: line-specific definition location snapshot
+  REJECT prompt-does-not-reference-types-constant: trivial: single call-site detail subsumed by validation-role belief
+  Batch 45/145 done (46 completed)
+  REJECT derive-lazily-imports-cluster-functions: trivial: import placement and line numbers are directly visible from code and not durable architectural facts
+  Batch 50/145 done (47 completed)
+  REJECT literal-braces-require-doubling: trivial: standard Python str.format consequence already implied by prompt-template-uses-python-str-format
+  Batch 42/145 done (48 completed)
+  REJECT cp-justification-type-is-cp: trivial: obvious data-field fact visible from naming and the --cp/--sl flags
+  REJECT challenge-requires-outlist-defeat: speculative: "must be lowering" is an inference about mechanism, not an observable code fact
+  Batch 51/145 done (49 completed)
+  REJECT simple-flag-is-forwarded-from-cli: trivial: forwarding a CLI arg into a function call is an obvious wiring fact visible from the code, not a durable architectural invariant
+  Batch 53/145 done (50 completed)
+  REJECT no-test-imports-reasons_lib: ephemeral: zero-match grep result is a point-in-time snapshot of the current test suite, not a durable architecture invariant
+  REJECT conftest-has-no-shim-guard: ephemeral: negative snapshot of current test configuration, not a durable codebase invariant
+  Batch 33/145 done (51 completed)
+  REJECT network-entrenchment-is-directly-tested: ephemeral: exact line numbers and direct-call snapshot are point-in-time
+  REJECT pg-entrenchment-has-no-observed-direct-tests: meta: about gathered observations rather than a durable codebase fact
+  REJECT entrenchment-parity-is-unproven: meta: about the absence of evidence in observations, not an observable codebase invariant
+  Batch 54/145 done (52 completed)
+  REJECT dialectical-tests-cite-doyle-section-6: trivial: documentation-location detail observable from file inspection, not an architecture/API/data-flow invariant.
+  Batch 52/145 done (53 completed)
+  Batch 57/145 done (54 completed)
+  Batch 56/145 done (55 completed)
+  REJECT cache-token-is-read-from-hf-cli-file: duplicate: restates the cache-file fallback already captured by token-fallback-order-is-explicit-then-env-then-cache; only adds a trivial whitespace-stripping detail.
+  Batch 58/145 done (56 completed)
+  REJECT propose-update-batches-in-groups-of-10: ephemeral: exact batch-size constant and slicing detail is an implementation value likely to change
+  REJECT propose-update-persistence-likely-in-api: speculative: says "likely" and infers persistence location rather than stating a verified code fact
+  Batch 55/145 done (57 completed)
+  Batch 47/145 done (58 completed)
+  Batch 60/145 done (59 completed)
+  Batch 61/145 done (60 completed)
+  Batch 64/145 done (61 completed)
+  REJECT reasons-package-contains-no-issue-16-marker: ephemeral: repo-wide grep result is a point-in-time snapshot that changes with any edit
+  REJECT issue-16-fix-is-import-agent-active-premise: duplicate: same claim as existing `active-not-in-antecedents` / `active-premise-is-excluded-from-antecedents` (active premise is outlist, not antecedent)
+  REJECT test-import-agent-regression-covers-issue-16: ephemeral: test file line number and comment detail are a point-in-time snapshot
+  REJECT changelog-is-the-only-durable-issue-reference: ephemeral: negative search sweep over tracked files is a point-in-time snapshot that expires with any edit
+  Batch 59/145 done (62 completed)
+  REJECT mcp-bridge-is-concrete-bridge-implementation: trivial: class inventory and absence of an import are obvious from file structure/imports
+  Batch 63/145 done (63 completed)
+  REJECT add-nogood-documented-contract-includes-backtracked-to: duplicate: return fields `nogood_id`, `changed`, and `backtracked_to` are already covered by existing beliefs `add-nogood-api-returns-nogood-id-key` and `add-nogood-mutates-and-backtracks`; only trivially adds `nodes` and "documented".
+  Batch 65/145 done (64 completed)
+  REJECT codebase-citations-are-doyle-only: meta: records an exploration search outcome rather than a codebase invariant
+  Batch 66/145 done (65 completed)
+  Batch 62/145 done (66 completed)
+  REJECT acceptance-is-manual-command: duplicate: existing belief `all-proposals-require-manual-command` already states that proposals are accepted by running suggested commands, making this a trivial rewording
+  Batch 69/145 done (67 completed)
+  Batch 70/145 done (68 completed)
+  REJECT floor-of-five-can-exceed-global-budget: duplicate: Same claim as existing `agent-budget-allocation-can-exceed-budget` (5-floor can make per-agent quotas exceed the budget)
+  Batch 67/145 done (69 completed)
+  REJECT parse-helpers-confirmed-present-in-repair-py: ephemeral: point-in-time search snapshot ("appear within lines 1–250, leaving only orchestrator symbol unverified") rather than a durable code fact
+  Batch 74/145 done (70 completed)
+  REJECT proposal-states-absent: speculative: Broad lifecycle conclusion from absence of strings in observed code; existing beliefs describe pending/accepted proposal states.
+  Batch 68/145 done (71 completed)
+  REJECT add-justification-mirrors-new-edges: duplicate: Same claim as existing `add-justification-registers-dependents` (updates dependents set on antecedent/outlist nodes).
+  REJECT review-prompt-emits-scope-findings: speculative: Describes a prompt requirement/LLM output contract, not an observable runtime invariant of the codebase.
+  REJECT challenge-symbol-defined-only-in-api: speculative: "only intended entry point" is an editorial/intent claim, and the line-number reference is ephemeral.
+  REJECT grep-observations-are-inconsistent: meta: About the search/exploration tooling and its scoping, not the codebase itself.
+  Batch 75/145 done (72 completed)
+  REJECT reasons-lib-is-backcompat-shim: duplicate: existing all-reasons-lib-files-follow-shim-pattern already covers the shim pattern.
+  REJECT reasons-lib-reexports-via-star-import: trivial: single star-import and line-2 detail is obvious from file structure.
+  REJECT reasons-is-canonical-source: ephemeral: specific file line counts are point-in-time snapshots that change with edits.
+  REJECT reasons-lib-has-no-additional-imports: trivial: a single parsed star-import is an obvious import-level fact.
+  Batch 71/145 done (73 completed)
+  REJECT merkle-module-is-canonical-only-in-reasons: ephemeral: “all observed” absence claim is a point-in-time search result, not a durable code invariant.
+  REJECT script-entry-points-use-reasons-not-reasons-lib: trivial: Entry-point mapping is directly visible configuration and adds no architectural invariant beyond the canonical package belief.
+  REJECT reasons-init-does-not-export-merkle-submodule: trivial: Star-import/export behavior is obvious from `__init__`, and the causal claim is not a durable invariant.
+  REJECT reasons-lib-is-included-in-setuptools-packages: trivial: Specific pyproject line listing packages is an obvious configuration detail and line-number-specific.
+  Batch 72/145 done (74 completed)
+  REJECT parse-review-response-consumption-unknown: speculative: reports an unresolved observation gap rather than a code fact
+  REJECT review-justifications-and-propose-update-do-not-emit-scope-findings: speculative: absence in a partially observed file cannot support ruling out the orchestrator
+  Batch 76/145 done (75 completed)
+  REJECT budget-check-requires-footer-tokens: speculative: describes a hypothetical cascade risk ("removing + footer_tokens would break a test") rather than an observable invariant.
+  Batch 80/145 done (76 completed)
+  Batch 79/145 done (77 completed)
+  REJECT test-repair-imports-repair-smuggled-beliefs: trivial: "imports X from Y" is a basic import statement, explicitly trivial per criteria.
+  REJECT repair-py-names-orchestrator-repair-beliefs: trivial: naming/docstring observation plus grep absence, visible from reading the file.
+  REJECT reasons-lib-repair-is-a-star-shim: trivial: "module X imports Y" (star-import shim), explicitly trivial per criteria.
+  REJECT missing-import-name-fails-whole-module-collection: trivial: general pytest collection behavior (and includes an ephemeral 542-line count).
+  Batch 73/145 done (78 completed)
+  REJECT outlist-nodes-are-propagated-as-dependents: duplicate: existing `add-justification-registers-dependents` already covers outlist nodes in the dependents reverse index.
+  REJECT propagation-iterates-dependents-uniformly: duplicate: existing `all-truth-effects-propagate-through-outlist-paths` already captures propagation through both antecedent and outlist edges.
+  REJECT outlist-flips-cascade-through-dependents: duplicate: existing `antecedent-and-outlist-cascades-have-opposed-truth-effects` already captures the opposing outlist cascade.
+  Batch 78/145 done (79 completed)
+  REJECT tests-dotted-reasons-grep-zero: ephemeral: records a grep-result snapshot rather than a durable code invariant
+  REJECT tests-plain-reasons-grep-zero: ephemeral: records a grep-result snapshot rather than a durable code invariant
+  REJECT tests-reasons-lib-grep-zero: ephemeral: records a grep-result snapshot rather than a durable code invariant
+  Batch 77/145 done (80 completed)
+  Batch 84/145 done (81 completed)
+  REJECT hf-uses-urllib-only: trivial: import-level fact about urllib vs requests/huggingface_hub
+  Batch 83/145 done (82 completed)
+  REJECT add-node-persists-example-in-metadata: duplicate: already covered by `add-node-stores-example-in-metadata`
+  REJECT no-visible-update-signature-accepts-example: speculative: negative observation from partial/visible code is not a durable API invariant
+  Batch 81/145 done (83 completed)
+  Batch 85/145 done (84 completed)
+  REJECT no-cli-visible-to-flag-in-observations: meta: describes an exploration search scope/grep result ("captured scope"), not a durable codebase fact.
+  REJECT is-visible-implements-subset-semantics: duplicate: already captured by existing beliefs such as `access-tags-subset-gate`, `access-tags-use-all-semantics`, and `access-tags-require-subset-for-visibility`.
+  REJECT tag-inheritance-prevents-explain-leak: duplicate: union-of-antecedent inheritance is already recorded (`access-tags-inherit-through-antecedents`); the safety rationale is editorial spin on the same fact.
+  Batch 82/145 done (85 completed)
+  Batch 86/145 done (86 completed)
+  Batch 88/145 done (87 completed)
+  REJECT add-nogood-empty-node-ids-vacuously-all-in: duplicate: re-describes the empty-input crash already captured by `add-nogood-empty-input-raises-indexerror`
+  Batch 87/145 done (88 completed)
+  Batch 89/145 done (89 completed)
+  Batch 93/145 done (90 completed)
+  Batch 91/145 done (91 completed)
+  REJECT supersede-delegates-revision-to-network-supersede: trivial: wrapper delegating to the same-named Network method is apparent from call structure and adds no non-obvious invariant
+  Batch 90/145 done (92 completed)
+  Batch 94/145 done (93 completed)
+  Batch 95/145 done (94 completed)
+  Batch 96/145 done (95 completed)
+  Batch 97/145 done (96 completed)
+  Batch 98/145 done (97 completed)
+  Batch 99/145 done (98 completed)
+  Batch 101/145 done (99 completed)
+  Batch 100/145 done (100 completed)
+  Batch 103/145 done (101 completed)
+  Batch 102/145 done (102 completed)
+  REJECT trace-access-tags-returns-unfiltered-ancestor-union: duplicate: captures the same unfiltered-union behavior as trace-access-tags-checks-only-start-node, with added editorial "intentionally"
+  REJECT trace-access-tags-empty-visible-to-requires-untagged-start: duplicate: trivial consequence of existing access-tags-subset-gate semantics (empty visible_to admits only empty access_tags)
+  Batch 92/145 done (103 completed)
+  REJECT upload-file-overwrites-remote-path-nonatomically: speculative: timeout-after-PUT remote-change risk is a prediction/cascade analysis, not an observable code fact.
+  Batch 104/145 done (104 completed)
+  Batch 106/145 done (105 completed)
+  Batch 108/145 done (106 completed)
+  Batch 107/145 done (107 completed)
+  Batch 105/145 done (108 completed)
+  Batch 113/145 done (109 completed)
+  REJECT cli-subcommand-dispatch-maps-to-modules: trivial: describes obvious file structure (a dispatch table visible from the module) and adds an editorial "implicit module inventory" framing rather than a durable architectural invariant.
+  Batch 110/145 done (110 completed)
+  REJECT mcp-tool-signatures-form-external-contract: trivial: Restates generic FastMCP decorator behavior rather than a specific codebase fact.
+  Batch 114/145 done (111 completed)
+  Batch 111/145 done (112 completed)
+  REJECT tests-conftest-has-no-shim-guard: ephemeral: point-in-time negative claim about current conftest contents, expires with any edit.
+  REJECT ci-has-no-reasons-lib-guard: ephemeral: snapshot of current CI config absence, not durable.
+  REJECT no-tests-import-reasons-lib: ephemeral: a current grep-returns-zero snapshot that changes with any test edit.
+  Batch 112/145 done (113 completed)
+  Batch 109/145 done (114 completed)
+  REJECT claude-md-project-structure-enumerates-ten-reasons-modules: ephemeral: exact module count is a documentation snapshot that changes as the project evolves.
+  Batch 117/145 done (115 completed)
+  Batch 119/145 done (116 completed)
+  REJECT mcp-server-entry-point-is-undocumented-in-project-structure: ephemeral: documentation Project Structure list is a point-in-time snapshot, not a durable code invariant.
+  REJECT cli-test-suite-is-absent-from-project-structure-test-list: ephemeral: CHANGELOG test count and documentation file list reflect transient documentation state.
+  REJECT claude-md-and-readme-command-lists-diverge-in-both-directions: ephemeral: documentation command-list divergence is doc-inventory drift, not a durable codebase contract.
+  Batch 118/145 done (117 completed)
+  REJECT compact-tests-lock-chars-over-four-estimator: speculative: predicts that replacing the estimator will break tests rather than stating a durable code invariant.
+  Batch 115/145 done (118 completed)
+  REJECT init-db-has-no-observed-clear-network-cache-call: ephemeral: observed symbol-usage snapshot, not a durable invariant
+  REJECT coarse-mtime-collision-can-return-pre-reinitialization-network: speculative: conditional cache-staleness risk analysis
+  Batch 120/145 done (119 completed)
+  Batch 123/145 done (120 completed)
+  REJECT build-wiki-and-export-markdown-consume-defeat-reason-type: speculative: the claim includes an unestablished uncertainty about grouping behavior rather than a durable code fact
+  Batch 122/145 done (121 completed)
+  REJECT defeat-reason-types-and-prompt-colocated-in-review-py: trivial: mere co-location of two constants in a file is obvious from file structure.
+  REJECT classify-defeat-reason-prompt-single-use-site: ephemeral: single-call-site observation is a point-in-time usage snapshot.
+  Batch 121/145 done (122 completed)
+  REJECT node-dependents-is-a-set: duplicate: existing `add-justification-registers-dependents` already establishes `dependents` is a set; the remaining implications are generic set behavior.
+  REJECT chunks-table-column-order-is-id-text-cluster-filename-section: trivial: exact fixture/schema column order is a low-value implementation detail visible from the schema.
+  Batch 116/145 done (123 completed)
+  Batch 126/145 done (124 completed)
+  Batch 125/145 done (125 completed)
+  REJECT entrenchment-implementations-differ-by-cursor-parameter: trivial: low-value signature difference directly visible from function definitions
+  Batch 127/145 done (126 completed)
+  Batch 129/145 done (127 completed)
+  Batch 130/145 done (128 completed)
+  REJECT challenge-node-references-target-through-justification: speculative: the dependents direction is inverted; an antecedent target should gain the challenge node in its dependents set, not the reverse.
+  Batch 124/145 done (129 completed)
+  Batch 132/145 done (130 completed)
+  REJECT import-agent-active-premise-belongs-in-outlist: duplicate: restates existing `active-not-in-antecedents` and `kill-switch-uses-outlist-not-antecedent` beliefs about the active premise being in the outlist rather than antecedents.
+  Batch 131/145 done (131 completed)
+  Batch 134/145 done (132 completed)
+  Batch 136/145 done (133 completed)
+  Batch 133/145 done (134 completed)
+  REJECT only-network-entrenchment-has-direct-test-coverage: ephemeral: test coverage status is a point-in-time snapshot and not a durable code invariant
+  Batch 128/145 done (135 completed)
+  REJECT derive-agent-budget-floor-can-exceed-global-cap: duplicate: already captured by existing `agent-budget-allocation-can-exceed-budget` (per-agent 5-belief floor can push total over budget)
+  Batch 137/145 done (136 completed)
+  Batch 138/145 done (137 completed)
+  REJECT challenge-is-defined-in-reasons-api: trivial: function definition location is obvious from file structure/naming
+  Batch 140/145 done (138 completed)
+  Batch 142/145 done (139 completed)
+  Batch 141/145 done (140 completed)
+  Batch 145/145 done (141 completed)
+  REJECT repair-orchestrator-name-mismatch-between-test-and-docstring: trivial: naming/docstring mismatch is obvious and transient
+  Batch 139/145 done (142 completed)
+  Batch 144/145 done (143 completed)
+  REJECT node-tags-store-access-tags-with-access-prefix: duplicate: Already captured by `access-tags-are-prefixed` (access tags stored as `access:<tag>` in node_tags, plain metadata tags unprefixed).
+  REJECT add-nogood-returns-backtracked-to-and-changed: duplicate: Return fields nogood_id/changed/backtracked are already covered by `add-nogood-api-returns-nogood-id-key` and `add-nogood-mutates-and-backtracks`; "documents" framing is trivial.
+  REJECT add-nogood-appends-to-network-nogood-ledger: duplicate: The net.add_nogood call/return is already captured by `add-nogood-mutates-and-backtracks` and `add-nogood-api-returns-nogood-id-key`; reading the appended ledger entry is an implementation detail.
+  Batch 135/145 done (144 completed)
+  REJECT derived-tag-union-enables-target-only-visibility-check: duplicate: Existing access-tag inheritance and transitive subset-gating beliefs already capture the union and target-visibility consequence.
+  Batch 143/145 done (145 completed)
+
+Reviewed 721 proposals: 601 kept, 120 rejected
+Rejections by category:
+  duplicate: 32
+  ephemeral: 32
+  trivial: 30
+  speculative: 19
+  meta: 7
+  Round 1: Review proposals took 4m 34s
