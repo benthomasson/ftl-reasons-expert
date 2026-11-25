@@ -1,0 +1,306 @@
+=== explore-propose-accept / review-proposals (round 1) — 2026-11-25T16:31:23 ===
+
+=== Round 1: Review proposals ===
+
+Reviewing 738 proposals (38 already rejected)...
+  Batch 3/148 done (1 completed)
+  Batch 4/148 done (2 completed)
+  Batch 6/148 done (3 completed)
+  Batch 5/148 done (4 completed)
+  REJECT pin-sources-preserves-truth-values: speculative: "expected" truth preservation and "should emit no events" are predictions/editorial judgments, not grounded observable invariants.
+  Batch 2/148 done (5 completed)
+  Batch 9/148 done (6 completed)
+  REJECT write-with-network-exception-discards-changes: duplicate: core claim (exception skips save()) is already covered by existing `add-node-writes-through-with-network`
+  REJECT backfill-hashes-produces-no-pubsub-events: trivial: hash backfilling not altering truth_value is obvious from naming; empty event consequence is derivable
+  Batch 1/148 done (7 completed)
+  Batch 7/148 done (8 completed)
+  Batch 11/148 done (9 completed)
+  Batch 10/148 done (10 completed)
+  Batch 8/148 done (11 completed)
+  Batch 15/148 done (12 completed)
+  Batch 13/148 done (13 completed)
+  Batch 18/148 done (14 completed)
+  Batch 19/148 done (15 completed)
+  Batch 17/148 done (16 completed)
+  REJECT propose-retract-depends-on-mcp-tool-decorator: trivial: @mcp.tool() registration is framework-obvious and the "without it" claim is generic, not a durable codebase invariant.
+  Batch 14/148 done (17 completed)
+  Batch 20/148 done (18 completed)
+  Batch 12/148 done (19 completed)
+  Batch 21/148 done (20 completed)
+  Batch 22/148 done (21 completed)
+  Batch 25/148 done (22 completed)
+  Batch 26/148 done (23 completed)
+  REJECT list-gated-tests-pg-dispatch: ephemeral: point-in-time port status and line-number snapshot
+  REJECT hash-sources-is-still-gated: ephemeral: specific gated-command count and status snapshot
+  Batch 24/148 done (24 completed)
+  REJECT beliefs-grep-hits-are-domain-vocabulary: ephemeral: Point-in-time grep snapshot with a specific occurrence count that changes with any edit; not a durable invariant.
+  REJECT url-encoding-helpers-absent: speculative: Negative search result ("no observed code uses...") is absence-of-evidence, not a grounded durable codebase fact.
+  Batch 28/148 done (25 completed)
+  REJECT tests-cover-only-safe-agent-ids: ephemeral: test coverage snapshot with specific safe IDs, not a durable code invariant
+  REJECT reasons-lib-cli-is-alias-of-reasons-cli: trivial: one-line star import and alias consequence is obvious from module imports
+  REJECT pg-support-guard-is-duplicated-five-times: ephemeral: specific count of handlers is a point-in-time snapshot
+  Batch 29/148 done (26 completed)
+  REJECT subparser-definitions-live-outside-observed-window: meta: describes the exploration session's observed window/unobserved tail, not a stable codebase fact.
+  REJECT api-accepts-db-path-keyword: speculative: prescribes that "any new subcommand must emit a db_path key" and generalizes from an observed slice rather than stating a grounded durable contract.
+  REJECT api-functions-route-through-pg-dispatch: duplicate: already covered by existing belief `all-api-functions-support-pg-dispatch`.
+  Batch 30/148 done (27 completed)
+  REJECT sync-preserves-inactive-outlist: ephemeral: fixture-specific test snapshot, not a durable general invariant.
+  REJECT retracting-active-cascades-alpha-out: duplicate: already covered by agent-inactive-prevents-beliefs / active-premise-is-retraction-entry-point.
+  REJECT retracting-active-cascades-beta-out: duplicate: transitive cascade already covered by existing agent-revocation and propagation beliefs.
+  REJECT sync-restores-locally-retracted-alpha: ephemeral: test-specific scenario with fixture nodes, not a general sync contract.
+  REJECT restored-alpha-still-cascades-on-revocation: duplicate: repeats existing active-retraction cascade behavior.
+  Batch 23/148 done (28 completed)
+  REJECT classify-review-result-precedence-unverified: meta: describes missing observation evidence, not a codebase invariant
+  Batch 27/148 done (29 completed)
+  REJECT sync-agent-adds-inactive-to-every-claim-outlist: duplicate: duplicates existing kill-switch/agent-inactive outlist beliefs.
+  Batch 16/148 done (30 completed)
+  REJECT chunks-absent-outside-tests: ephemeral: Point-in-time grep result, not a durable codebase fact.
+  REJECT scripts-directory-missing: trivial: Obvious file-structure absence and search-root detail.
+  Batch 33/148 done (31 completed)
+  REJECT no-chunk-builder-definition-in-production-scope: ephemeral: negative search result is a point-in-time observation, not a durable codebase invariant
+  REJECT reasons-cli-has-4015-lines: ephemeral: exact line count is a point-in-time snapshot that changes with any edit
+  Batch 34/148 done (32 completed)
+  Batch 35/148 done (33 completed)
+  REJECT topics-phrases-are-undocumented: meta: concerns documentation search absence, not stable codebase behavior
+  Batch 37/148 done (34 completed)
+  REJECT chunks-population-not-in-observed-production: meta: describes a search-result limitation, not a stable codebase behavior
+  Batch 32/148 done (35 completed)
+  REJECT pg-import-json-real-shape-is-not-tested-in-observed-dispatch-test: ephemeral: test-coverage snapshot can change with test edits and is not a stable codebase invariant
+  REJECT summarize-api-shape-is-tested-only-for-sqlite-in-observations: ephemeral: observed-test assertion coverage is a point-in-time snapshot, not durable system behavior
+  Batch 31/148 done (36 completed)
+  Batch 36/148 done (37 completed)
+  REJECT add-nogood-contract-includes-backtracking: duplicate: Same return contract already covered by existing add-nogood-returns-backtracked-to-and-changed and add-nogood-documented-contract-includes-backtracked-to beliefs.
+  REJECT reasons-has-no-project-id-use-sites: ephemeral: Zero-match search result is a point-in-time exploration snapshot, not a durable code invariant.
+  REJECT reasons-has-no-withdrawal-markers: ephemeral: Zero-match search result is a point-in-time exploration snapshot, not a durable code invariant.
+  Batch 40/148 done (38 completed)
+  Batch 44/148 done (39 completed)
+  REJECT precedence-has-no-tests: speculative: editorial judgment about test-coverage gaps ("unprotected against regressions"), not an observable codebase invariant
+  Batch 43/148 done (40 completed)
+  REJECT disjunctive-any-mode-is-sl-only: duplicate: restates existing `add-justification-any-mode-expands-only-sl` / `add-justification-any-mode-is-sl-only-and-pg-unsupported`
+  REJECT pubsub-publish-targets-local-registry-only: duplicate: essentially redundant rewording of `pubsub-subscribers-are-process-local`
+  Batch 38/148 done (41 completed)
+  REJECT any-mode-expands-and-to-or: duplicate: Covered by existing any-mode SL expansion beliefs such as `add-justification-any-mode-expands-only-sl` and `add-node-any-mode-produces-or-justifications`.
+  Batch 39/148 done (42 completed)
+  REJECT no-explicit-bom-or-crlf-handling-located: meta: describes absence in search results, not a codebase invariant
+  Batch 45/148 done (43 completed)
+  REJECT reasons-lib-has-no-project-id-use-sites: ephemeral: zero-match search result is a point-in-time snapshot, not a durable code invariant
+  REJECT tests-have-no-project-id-use-sites: ephemeral: zero-match search result is a point-in-time snapshot, not a durable code invariant
+  REJECT changelog-has-no-project-id-deprecation-entry: ephemeral: line-ranged absence in CHANGELOG is a snapshot tied to current file contents
+  Batch 41/148 done (44 completed)
+  Batch 47/148 done (45 completed)
+  REJECT test-imports-api-as-module: trivial: test import style and caller-detection/grep pattern are obvious and not a durable codebase invariant
+  Batch 42/148 done (46 completed)
+  Batch 46/148 done (47 completed)
+  REJECT parse-cli-json-calls-json-loads: trivial: mechanical implementation detail (a single json.loads inside try) visible from reading the function body, subsumed by the fallback behavior belief
+  REJECT reasons-lib-llm-is-a-reexport-shim: duplicate: trivial specific instance of existing `all-reasons-lib-files-follow-shim-pattern` shim-pattern belief
+  REJECT raw-decode-ignores-trailing-data: trivial: general Python standard-library fact about `JSONDecoder.raw_decode`, not a codebase-specific invariant
+  Batch 50/148 done (48 completed)
+  REJECT repo-has-no-lockfile: ephemeral: point-in-time file-presence snapshot whose environment-determined version claim is an inference, not a grounded invariant
+  Batch 53/148 done (49 completed)
+  REJECT json-loads-enforces-single-document: trivial: standard-library behavior and call-site usage, not a durable codebase invariant
+  REJECT multiple-values-require-looping-end-index: trivial: standard-library parsing behavior plus an implementation absence
+  Batch 51/148 done (50 completed)
+  REJECT raw-decode-used-in-six-response-parser-files: ephemeral: point-in-time inventory of file occurrences that changes with refactoring
+  Batch 54/148 done (51 completed)
+  REJECT repo-has-no-langfuse-secret-key-reference: ephemeral: Point-in-time snapshot built on a specific search-hit count ("returns only four hits") that changes with any edit; not a durable invariant.
+  REJECT langfuse-langchain-import-requires-v3: speculative: The concrete import path is visible, but the claim that it is "only stable in the Langfuse v3 layout" is an external-library stability judgment not grounded in observable repo code.
+  Batch 52/148 done (52 completed)
+  Batch 48/148 done (53 completed)
+  REJECT raw-decode-calls-paired-with-jsondecoder: trivial: A census-style generalization ("every observed call has a nearby instantiation") and a standard Python API requirement — `raw_decode` is a `JSONDecoder` method, so pairing is obvious and not a durable codebase invariant.
+  REJECT regex-finditer-parsers-coexist-with-raw-decode: trivial: A line-pinned enumeration of which call sites use `finditer` vs `raw_decode`; it states no invariant, contract, or data-flow rule and any developer can grep the same result.
+  Batch 55/148 done (54 completed)
+  REJECT reasons-lib-api-is-a-shim: trivial: describes a file that only re-exports imports, visible directly from file structure/imports.
+  REJECT no-auth-keyword-matches: ephemeral: a zero-match search snapshot that changes with any edit and is a limitation of the search session, not a durable codebase invariant.
+  REJECT no-route-declarations: ephemeral: a zero-occurrence search snapshot that changes with any edit, not a stable architectural fact.
+  REJECT access-control-is-tag-based-not-token-based: duplicate: covered by existing beliefs like `access-tags-require-subset-for-visibility` and `access-tag-membership-is-exact-and-case-sensitive`.
+  Batch 58/148 done (55 completed)
+  Batch 57/148 done (56 completed)
+  REJECT outlist-drop-breaks-cascade-and-restoration: duplicate: follows directly from the accepted outlist semantics and existing reversible-defeat beliefs.
+  REJECT any-mode-flattens-conjunction-to-disjunction: duplicate: already covered by existing any-mode expansions and multi-antecedent SL belief.
+  REJECT justification-serialization-is-inlined: ephemeral: search-match count and line locations are point-in-time details that change with edits.
+  Batch 56/148 done (57 completed)
+  REJECT grep-results-contradict-test-file: meta: describes an inconsistency in exploration/grep observations rather than a durable codebase invariant.
+  REJECT visible-test-file-has-ten-which-patches-and-nine-run-patches: ephemeral: specific counts within a supplied line range are snapshot observations.
+  REJECT test-read-is-truncated: ephemeral: reports a point-in-time file length and truncated observation segment.
+  Batch 59/148 done (58 completed)
+  REJECT first-segment-split-alone-is-insufficient: speculative: conditional analysis about insufficiency rather than an observable code invariant
+  REJECT reasons-llm-defines-parse-cli-json-at-line-123: trivial: simple function definition location is an obvious code fact and not a durable belief
+  Batch 49/148 done (59 completed)
+  REJECT no-st-mtime-ns-usage: speculative: infers a global absence ("no code path") from a single exploration scan's zero-match result, which is not a durable codebase invariant
+  Batch 61/148 done (60 completed)
+  REJECT import-agent-requires-fixup-dependents: duplicate: Covered by existing beliefs that import-agent rebuilds dependents before recompute (e.g. import-agent-rebuilds-dependents-before-recompute referenced in agent-revocation-requires-dependent-index-rebuild).
+  Batch 63/148 done (61 completed)
+  Batch 62/148 done (62 completed)
+  Batch 64/148 done (63 completed)
+  REJECT cross-module-consistency-unverified: meta: about exploration coverage, not a stable codebase behavior
+  Batch 60/148 done (64 completed)
+  REJECT nogood-text-serializer-not-in-observations: meta: Describes a limitation of the exploration observations, not a stable codebase fact (same pattern as rejected `211-tests-claim-unverified-by-observations`).
+  Batch 65/148 done (65 completed)
+  REJECT reset-before-boundary-enables-crash-safety: speculative: editorial rationale ("ensures a clean slate") rather than an observable code fact; the observable reset-at-start pattern is already covered by cli-requires-reset-before-each-command.
+  Batch 68/148 done (66 completed)
+  REJECT cli-has-no-rollback-semantics: speculative: the atomicity-delegation claim is an unobserved inference about the api.py layer rather than an observable code fact
+  Batch 66/148 done (67 completed)
+  REJECT add-node-commits-before-derived-state: duplicate: Already covered by existing add-node-is-non-transactional and add-node-has-no-partial-failure-rollback beliefs.
+  REJECT reload-vs-reuse-undetermined: meta: Describes an exploration-session evidence gap, not a stable codebase behavior.
+  Batch 67/148 done (68 completed)
+  Batch 73/148 done (69 completed)
+  REJECT what-if-retract-is-defined-at-reasons-api-512: ephemeral: line-number location snapshot that changes with edits
+  Batch 74/148 done (70 completed)
+  REJECT pg-dispatch-forwards-kwargs: trivial: restates test assertions rather than a durable production invariant
+  Batch 72/148 done (71 completed)
+  REJECT two-nogoods-file-branches-per-json-capable-importer: ephemeral: line-numbered code-layout snapshot whose branch count/locations expire with edits
+  Batch 70/148 done (72 completed)
+  REJECT hash-sources-and-check-stale-dispatch-to-pgapi: trivial: restates test class names (`TestHashSourcesDispatch`, `TestCheckStaleDispatch`); no invariant beyond what the test naming already shows.
+  Batch 69/148 done (73 completed)
+  REJECT json-pg-dispatch-assertions-incomplete: ephemeral: test coverage gaps are point-in-time snapshots, not durable code behavior
+  REJECT storage-load-pattern-exists-in-roundtrip-tests: trivial: test-file implementation pattern is obvious and not a durable invariant
+  Batch 71/148 done (74 completed)
+  REJECT accept-proposal-drift-revalidation-is-documented: reason-category: duplicate — same re-validation-and-mark-stale behavior already captured by `accept-proposal-revalidates-against-live-network` and `accept-revalidates-drift-before-apply`; only adds that the docstring repeats it.
+  REJECT no-pending-references-in-tests: reason-category: meta — reports a test-search metadata result (zero matches), not a stable codebase fact.
+  REJECT no-pending-transition-assertions-found: reason-category: meta — reports a search-pattern match count from exploration, not a codebase invariant.
+  REJECT propose-update-tests-cover-update-and-retract-actions: reason-category: meta — describes test-coverage analysis / what a search found rather than a durable architectural or behavioral invariant.
+  REJECT check-stale-tests-cover-source-hash-staleness: reason-category: meta — describes test-coverage analysis derived from search results rather than a durable codebase behavior.
+  Batch 75/148 done (75 completed)
+  REJECT autocommit-true-defeats-rollback: trivial: general psycopg library semantics, not a codebase-specific fact
+  REJECT grep-nogood-export-strings-is-absent: ephemeral: negative grep/search-result snapshot rather than a durable codebase invariant
+  Batch 76/148 done (76 completed)
+  Batch 79/148 done (77 completed)
+  REJECT reasons_lib-metadata-reexports-reasons-metadata: trivial: describes a wildcard import/reexport visible from file structure and naming, not a durable architectural invariant.
+  Batch 80/148 done (78 completed)
+  REJECT alias-shim-has-no-dedicated-tests: ephemeral: point-in-time test-suite absence/count snapshot
+  REJECT metadata-retracted-flag-is-written-in-import-agent: ephemeral: relies on specific line numbers and a 'most writes' count that changes with edits
+  Batch 78/148 done (79 completed)
+  REJECT any-mode-expands-sl-into-or-justifications: duplicate: covered by existing `add-justification-any-mode-expands-only-sl` and `add-node-any-mode-produces-or-justifications`
+  REJECT any-mode-requires-sl-jtype-in-add-justification: duplicate: same gating already captured by `add-justification-any-mode-expands-only-sl`
+  REJECT any-mode-reports-expanded-premise-count: duplicate: same as existing `any-mode-add-justification-premise-count-is-one`
+  Batch 83/148 done (80 completed)
+  Batch 81/148 done (81 completed)
+  Batch 85/148 done (82 completed)
+  REJECT changelog-has-no-four-value-vocabulary-entry: ephemeral: changelog line count and absence claim are a point-in-time snapshot
+  REJECT migrate-defeaters-tests-use-binary-truth-values: ephemeral: test assertion snapshot, not a durable code invariant
+  REJECT issue-24-denormalization-targets-dependents-index: ephemeral: branch ref is transient repository state, not stable codebase behavior
+  Batch 84/148 done (83 completed)
+  REJECT cli-review-repair-commands-not-in-first-800-lines: ephemeral: line-range snapshot based on unread exploration coverage, not a durable codebase invariant
+  Batch 87/148 done (84 completed)
+  REJECT schema-version-mismatch-not-rejected: speculative: "No observed..." is an exploration limitation, not a grounded code invariant.
+  Batch 82/148 done (85 completed)
+  REJECT sl-parsing-in-api-add-node-splits-comma-separated-antecedents: duplicate: already covered by `add-node-requires-comma-separated-ids`
+  Batch 86/148 done (86 completed)
+  REJECT url-quoting-belongs-in-mind-service: speculative: design recommendation about where quoting should live, not an observed code fact
+  REJECT tests-use-only-url-safe-agent-ids: ephemeral: snapshot of current test coverage that changes with edits
+  Batch 90/148 done (87 completed)
+  REJECT no-url-escaping-helpers: ephemeral: zero-use search result is a point-in-time count that changes with any edit
+  Batch 89/148 done (88 completed)
+  REJECT no-url-error-handling-in-repo: ephemeral: "zero occurrences" is a grep count snapshot that changes with any edit, and the "network-level failures are not explicitly handled" part is an inference
+  REJECT connect-timeout-surfaces-as-url-error: speculative: general Python library behavior and a prediction of differing exception types at call sites rather than an observable codebase invariant
+  Batch 92/148 done (89 completed)
+  REJECT with-network-call-sites-pass-db-path: reason-category: trivial: merely restating that call sites pass their own db_path, obvious from naming/structure
+  Batch 93/148 done (90 completed)
+  REJECT check-stale-grep-shows-no-url-unquoting: ephemeral: point-in-time description of what a session grep returned, not a durable code invariant
+  REJECT existing-endswith-tests-do-not-cover-url-suffixes: ephemeral: snapshot of which test hits were visible in the session, not a stable property
+  REJECT http-error-is-subclass-of-url-error: trivial: general Python stdlib inheritance fact, not a codebase-specific invariant
+  Batch 91/148 done (91 completed)
+  Batch 94/148 done (92 completed)
+  Batch 96/148 done (93 completed)
+  Batch 95/148 done (94 completed)
+  Batch 98/148 done (95 completed)
+  REJECT export-markdown-shim-re-exports-reasons-export-markdown: trivial: Describes an obvious wildcard-import compatibility shim, visible from imports/file structure.
+  REJECT test-nogoods-section-asserts-literal-nogood-strings: trivial: Narrow test assertion about literal strings, not a durable architectural or API invariant.
+  REJECT nogood-test-search-observation-is-inconsistent: meta: Describes a search/observation inconsistency, not codebase behavior.
+  REJECT export-implementation-source-not-observed: meta: Describes an exploration limitation, not a code fact.
+  REJECT reasons-lib-api-is-bare-reexport: trivial: Describes an obvious wildcard re-export/import; the “3-line” detail is also ephemeral.
+  Batch 77/148 done (96 completed)
+  Batch 97/148 done (97 completed)
+  Batch 101/148 done (98 completed)
+  Batch 100/148 done (99 completed)
+  Batch 103/148 done (100 completed)
+  REJECT propose-retract-does-not-accept-proposals: duplicate: restates existing pending-proposal/manual-acceptance and accept-proposal drift-revalidation beliefs
+  Batch 102/148 done (101 completed)
+  Batch 99/148 done (102 completed)
+  Batch 104/148 done (103 completed)
+  Batch 105/148 done (104 completed)
+  Batch 88/148 done (105 completed)
+  REJECT format-data-for-prompt-produces-report-prompt-data: duplicate: trivially restates what the function name `_format_data_for_prompt` already conveys; describes obvious formatting behavior rather than a durable invariant.
+  Batch 106/148 done (106 completed)
+  Batch 108/148 done (107 completed)
+  Batch 107/148 done (108 completed)
+  REJECT retracting-active-sentinel-cascades-agent-beliefs-out: duplicate: specific instance of existing active-premise retraction and agent-revocation beliefs
+  Batch 110/148 done (109 completed)
+  REJECT verify-beliefs-lazy-imports-invoke-model: trivial: implementation import placement detail, not a durable architectural invariant
+  Batch 109/148 done (110 completed)
+  Batch 111/148 done (111 completed)
+  Batch 113/148 done (112 completed)
+  Batch 112/148 done (113 completed)
+  Batch 117/148 done (114 completed)
+  Batch 119/148 done (115 completed)
+  REJECT agent-id-url-builders-lack-path-encoding: duplicate: same claim as agent-id-interpolated-raw-into-url-path; raw interpolation implies no path encoding
+  REJECT agent-id-url-tests-cover-only-safe-values: ephemeral: test coverage snapshot that changes with any test edit
+  Batch 114/148 done (116 completed)
+  REJECT storage-constructor-takes-db-path-first-positional: trivial: the constructor signature and its first positional parameter are directly visible from the code; this is an obvious structural fact, not a durable invariant worth recording.
+  REJECT pg-show-node-returns-core-verdict-fields: ephemeral: phrased as a snapshot of what a test asserts ("is tested to return at least"), not a stable API contract about the code itself.
+  REJECT pg-import-json-dispatch-test-mocks-real-shape: ephemeral: describes the current test's mocking behavior and a coverage gap; it is a point-in-time observation about the test suite, not a codebase invariant.
+  REJECT summarize-shape-tested-only-for-sqlite: ephemeral: "no observed test asserts..." is a snapshot of current test coverage that changes with any test edit, not a durable codebase fact.
+  Batch 115/148 done (117 completed)
+  Batch 118/148 done (118 completed)
+  Batch 122/148 done (119 completed)
+  REJECT any-mode-excludes-cp-justifications: duplicate: Same claim already covered by existing beliefs that any_mode expansion is SL-only and ignored for CP justifications.
+  Batch 120/148 done (120 completed)
+  REJECT tests-import-api-as-module: trivial: import style in a test file is visible from file structure, and the caller-detection implication is a derived note rather than a durable API contract
+  Batch 121/148 done (121 completed)
+  Batch 123/148 done (122 completed)
+  Batch 125/148 done (123 completed)
+  Batch 124/148 done (124 completed)
+  REJECT reasons-api-exposes-function-contract-not-http-server: trivial: obvious from the file name/structure that api.py is a Python module rather than an HTTP server.
+  Batch 128/148 done (125 completed)
+  Batch 129/148 done (126 completed)
+  Batch 131/148 done (127 completed)
+  REJECT gemini-json-tests-omit-token-total-assertions: ephemeral: point-in-time test coverage gap, not a durable codebase invariant
+  REJECT pin-source-url-disambiguation-requires-more-than-first-slash: speculative: analytical inference about parsing requirements rather than an observable code fact
+  Batch 126/148 done (128 completed)
+  REJECT clear-race-can-repopulate-invalidated-entry: speculative: describes a possible interleaving outcome rather than a directly observable invariant
+  Batch 116/148 done (129 completed)
+  Batch 133/148 done (130 completed)
+  Batch 130/148 done (131 completed)
+  Batch 134/148 done (132 completed)
+  REJECT parse-nogoods-is-used-by-import-agent-and-pg-paths: trivial: call-site list is a trivial code fact, not a durable invariant
+  Batch 132/148 done (133 completed)
+  REJECT storage-roundtrip-test-uses-fresh-load: trivial: standard save/load test pattern obvious from test structure, not a durable code invariant
+  Batch 136/148 done (134 completed)
+  REJECT json-import-dispatch-test-asserts-only-agent-name: speculative: test-coverage gap judgment rather than a durable codebase invariant
+  Batch 135/148 done (135 completed)
+  Batch 137/148 done (136 completed)
+  REJECT retracted-flag-writes-concentrated-in-import-agent: ephemeral: vague distributional snapshot ("most writes are in X") that shifts with any refactor, not a stable invariant
+  Batch 140/148 done (137 completed)
+  REJECT export-markdown-test-asserts-nogood-section: trivial: single test assertion is implementation detail, not a durable codebase invariant
+  Batch 139/148 done (138 completed)
+  Batch 127/148 done (139 completed)
+  REJECT backtracking-tests-do-not-assert-cycle-rejection: ephemeral: test-coverage snapshot, not a durable code invariant
+  Batch 143/148 done (140 completed)
+  REJECT tests-assert-schema-version-roundtrip: trivial: test import/assertion detail is evident from test code, not a durable codebase invariant
+  Batch 141/148 done (141 completed)
+  REJECT codebase-has-no-url-quoting-helpers: ephemeral: point-in-time negative search snapshot that expires with any edit adding URL quoting
+  Batch 145/148 done (142 completed)
+  Batch 144/148 done (143 completed)
+  REJECT visible-proposal-tests-cover-actions-not-lifecycle-states: ephemeral: test-coverage snapshot is not a durable codebase invariant
+  Batch 138/148 done (144 completed)
+  REJECT urllib-failure-tests-cover-only-http-error: ephemeral: test mock coverage is a point-in-time snapshot that changes as tests are added.
+  Batch 148/148 done (145 completed)
+  REJECT sl-antecedents-parsed-by-comma-split-in-api: duplicate: existing `add-node-requires-comma-separated-ids` already covers comma-separated `sl` parsing.
+  REJECT sl-acyclicity-not-enforced-at-api-or-storage: speculative: relies on absence in observed layers and concedes possible enforcement in an unobserved layer.
+  Batch 142/148 done (146 completed)
+  REJECT mind-service-tests-use-only-url-safe-agent-ids: speculative: coverage-gap claim about test fixtures, not a durable codebase invariant.
+  REJECT check-stale-url-match-has-no-url-parsing: duplicate: same claim as check-stale-url-match-uses-raw-endswith.
+  Batch 146/148 done (147 completed)
+  REJECT endswith-tests-do-not-cover-url-suffixes: ephemeral: A point-in-time snapshot of test coverage that changes with any test edit; not a durable code invariant.
+  REJECT http-error-is-url-error-subclass-requires-specific-first: trivial: General Python/urllib language fact, not a codebase-specific belief.
+  Batch 147/148 done (148 completed)
+
+Reviewed 738 proposals: 595 kept, 143 rejected
+Rejections by category:
+  ephemeral: 51
+  trivial: 31
+  duplicate: 27
+  speculative: 17
+  meta: 11
+  reason-category: 6
+  Round 1: Review proposals took 5m 50s

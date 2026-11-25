@@ -5604,7 +5604,7 @@
     "kind": "general",
     "target": "gemini-cli-json-schema",
     "source": "function:reasons/llm.py:_parse_cli_json",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5612,7 +5612,7 @@
     "kind": "general",
     "target": "claude-cli-json-schema",
     "source": "function:reasons/llm.py:_parse_cli_json",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5620,7 +5620,7 @@
     "kind": "general",
     "target": "per-invocation-cost-isolation",
     "source": "general:cost-tracking",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5628,7 +5628,7 @@
     "kind": "general",
     "target": "langfuse-sdk-env-vars",
     "source": "general:langfuse-tracing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5636,7 +5636,7 @@
     "kind": "general",
     "target": "langfuse-v2-vs-v3-import-path",
     "source": "general:langfuse-tracing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5644,7 +5644,7 @@
     "kind": "function",
     "target": "reasons/mcp_server.py:propose_retract",
     "source": "function:reasons/mcp_server.py:propose_update",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5652,7 +5652,7 @@
     "kind": "general",
     "target": "store-llm-proposals-shape",
     "source": "function:reasons/mcp_server.py:propose_update",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5660,7 +5660,7 @@
     "kind": "function",
     "target": "reasons/storage.py:Storage._init_schema",
     "source": "general:proposal-lifecycle",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5668,7 +5668,7 @@
     "kind": "general",
     "target": "proposal-state-machine-tests",
     "source": "general:proposal-lifecycle",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:04:35"
   },
   {
@@ -5676,7 +5676,7 @@
     "kind": "function",
     "target": "reasons/api.py:backfill_hashes",
     "source": "function:reasons/api.py:check_integrity",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5684,7 +5684,7 @@
     "kind": "general",
     "target": "merkle-chain-design",
     "source": "function:reasons/api.py:check_integrity",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5692,7 +5692,7 @@
     "kind": "general",
     "target": "support-link-graph-invariants",
     "source": "general:merkle-cycle-detection",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5700,7 +5700,7 @@
     "kind": "function",
     "target": "reasons/verify.py:verify_beliefs",
     "source": "general:merkle-cycle-detection",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5708,7 +5708,7 @@
     "kind": "general",
     "target": "frontmatter-parsing-edge-cases",
     "source": "function:reasons/import_beliefs.py:strip_frontmatter",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5716,7 +5716,7 @@
     "kind": "general",
     "target": "schema-version-consumers",
     "source": "general:metadata-schema-versioning",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5724,7 +5724,7 @@
     "kind": "general",
     "target": "_retracted-flag-lifecycle",
     "source": "function:reasons/api.py:migrate_retract_to_defeaters",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5732,7 +5732,7 @@
     "kind": "general",
     "target": "retracted-flag-writers",
     "source": "general:outlist-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5740,7 +5740,7 @@
     "kind": "general",
     "target": "environment-variable-configuration",
     "source": "function:reasons/mind_service.py:_resolve_config",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5748,7 +5748,7 @@
     "kind": "general",
     "target": "agent-id-url-escaping",
     "source": "function:reasons/mind_service.py:_resolve_config",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5756,7 +5756,7 @@
     "kind": "general",
     "target": "urllib-http-error-semantics",
     "source": "function:reasons/mind_service.py:fetch_export",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5764,7 +5764,7 @@
     "kind": "general",
     "target": "url-path-segment-escaping",
     "source": "function:reasons/mind_service.py:fetch_export",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5772,7 +5772,7 @@
     "kind": "general",
     "target": "mind-service-belief-api-contract",
     "source": "function:reasons/mind_service.py:push_belief",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5780,7 +5780,7 @@
     "kind": "general",
     "target": "lossy-network-transfer",
     "source": "function:reasons/api.py:export_api",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:05:48"
   },
   {
@@ -5788,7 +5788,7 @@
     "kind": "general",
     "target": "agent-export-endpoint-source",
     "source": "general:mind-service-wire-protocol",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5796,7 +5796,7 @@
     "kind": "general",
     "target": "schema-version-validation",
     "source": "general:mind-service-wire-protocol",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5804,7 +5804,7 @@
     "kind": "general",
     "target": "mtime-based-cache-invalidation",
     "source": "function:reasons/api.py:clear_network_cache",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5812,7 +5812,7 @@
     "kind": "general",
     "target": "cache-concurrency",
     "source": "function:reasons/api.py:clear_network_cache",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5820,7 +5820,7 @@
     "kind": "function",
     "target": "reasons/api.py:what_if_assert",
     "source": "function:reasons/api.py:what_if_retract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5828,7 +5828,7 @@
     "kind": "general",
     "target": "proposal-impact-flow",
     "source": "function:reasons/api.py:what_if_retract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5836,7 +5836,7 @@
     "kind": "general",
     "target": "conditional-proof-justifications",
     "source": "general:doyle-outlist-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5844,7 +5844,7 @@
     "kind": "function",
     "target": "reasons/pg.py:_collect_what_if_results",
     "source": "function:reasons/pg.py:what_if_retract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5852,7 +5852,7 @@
     "kind": "function",
     "target": "reasons/pg.py:what_if_assert",
     "source": "function:reasons/pg.py:what_if_retract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5860,7 +5860,7 @@
     "kind": "general",
     "target": "psycopg-autocommit-rollback",
     "source": "function:reasons/pg.py:what_if_retract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5868,7 +5868,7 @@
     "kind": "general",
     "target": "defeasible-logic-model",
     "source": "general:argumentation-network-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:07:41"
   },
   {
@@ -5876,7 +5876,7 @@
     "kind": "function",
     "target": "reasons/pg.py:PgApi.__exit__",
     "source": "function:reasons/api.py:_pg_dispatch",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5884,7 +5884,7 @@
     "kind": "general",
     "target": "backend-parity",
     "source": "function:reasons/api.py:_pg_dispatch",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5892,7 +5892,7 @@
     "kind": "function",
     "target": "reasons/cli.py:_require_sqlite",
     "source": "function:reasons/cli.py:_backend_kwargs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5900,7 +5900,7 @@
     "kind": "general",
     "target": "env-var-precedence-rules",
     "source": "function:reasons/cli.py:_backend_kwargs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5908,7 +5908,7 @@
     "kind": "general",
     "target": "deprecated-project-id-alias",
     "source": "function:reasons/cli.py:_backend_kwargs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5916,7 +5916,7 @@
     "kind": "general",
     "target": "PgApi-method-coverage",
     "source": "general:pg-vs-sqlite-backend-parity",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5924,7 +5924,7 @@
     "kind": "function",
     "target": "reasons/check_stale.py:pin_sources",
     "source": "function:reasons/check_stale.py:pin_source_url",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5932,7 +5932,7 @@
     "kind": "general",
     "target": "github-slash-ref-handling",
     "source": "function:reasons/check_stale.py:pin_source_url",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5940,7 +5940,7 @@
     "kind": "general",
     "target": "url-suffix-matching-edge-cases",
     "source": "function:reasons/check_stale.py:pin_source_url",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5948,7 +5948,7 @@
     "kind": "file",
     "target": "reasons/storage.py:load",
     "source": "general:metadata-persistence",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5956,7 +5956,7 @@
     "kind": "function",
     "target": "reasons/api.py:pin_sources",
     "source": "general:metadata-persistence",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5964,7 +5964,7 @@
     "kind": "diff",
     "target": "reasons/pg.py:SCHEMA vs reasons/storage.py:SCHEMA",
     "source": "general:metadata-persistence",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5972,7 +5972,7 @@
     "kind": "general",
     "target": "pin-persistence-tests",
     "source": "general:metadata-persistence",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5980,7 +5980,7 @@
     "kind": "general",
     "target": "llm-json-extraction-pattern",
     "source": "general:llm-response-parsing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5988,7 +5988,7 @@
     "kind": "function",
     "target": "reasons/pubsub.py:unsubscribe",
     "source": "general:subscriber-lifecycle",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -5996,7 +5996,7 @@
     "kind": "general",
     "target": "with-network-pubsub-call-site",
     "source": "general:subscriber-lifecycle",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -6004,7 +6004,7 @@
     "kind": "general",
     "target": "cross-process-pubsub",
     "source": "general:subscriber-lifecycle",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -6012,7 +6012,7 @@
     "kind": "function",
     "target": "reasons/pg.py:PgApi.remove_justification",
     "source": "function:reasons/api.py:remove_justification",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:09:40"
   },
   {
@@ -6020,7 +6020,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network._rebuild_dependents",
     "source": "general:truth-value-propagation",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6028,7 +6028,7 @@
     "kind": "general",
     "target": "truth-value-semantics",
     "source": "general:truth-value-propagation",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6036,7 +6036,7 @@
     "kind": "function",
     "target": "reasons/api.py:repair_premises",
     "source": "general:dry-run-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6044,7 +6044,7 @@
     "kind": "general",
     "target": "dry_run-grep-discrepancy",
     "source": "general:dry-run-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6052,7 +6052,7 @@
     "kind": "function",
     "target": "reasons/api.py:what_if_supersede",
     "source": "general:dry-run-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6060,7 +6060,7 @@
     "kind": "function",
     "target": "reasons/api.py:trace_assumptions",
     "source": "function:reasons/api.py:report_belief",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6068,7 +6068,7 @@
     "kind": "general",
     "target": "postgres-backend-dispatch-pattern",
     "source": "function:reasons/api.py:report_belief",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6076,7 +6076,7 @@
     "kind": "general",
     "target": "chunk-ingestion-pipeline",
     "source": "general:source-evidence-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6084,7 +6084,7 @@
     "kind": "general",
     "target": "chunks-to-premises-link",
     "source": "general:source-evidence-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6092,7 +6092,7 @@
     "kind": "function",
     "target": "reasons/report_gated.py:_format_data_for_prompt",
     "source": "function:reasons/report_gated.py:_build_structured_report",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6100,7 +6100,7 @@
     "kind": "function",
     "target": "reasons/report_gated.py:report_gated",
     "source": "function:reasons/report_gated.py:_build_structured_report",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6108,7 +6108,7 @@
     "kind": "general",
     "target": "gated-report-data-contract",
     "source": "function:reasons/report_gated.py:_build_structured_report",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6116,7 +6116,7 @@
     "kind": "general",
     "target": "network-cache-mtime-invalidation",
     "source": "function:reasons/api.py:report_gated",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6124,7 +6124,7 @@
     "kind": "general",
     "target": "truth-maintenance-repair-workflow",
     "source": "function:reasons/repair.py:repair_beliefs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6132,7 +6132,7 @@
     "kind": "function",
     "target": "reasons/api.py:repair",
     "source": "function:reasons/api.py:research",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6140,7 +6140,7 @@
     "kind": "function",
     "target": "reasons/api.py:repair_smuggled",
     "source": "function:reasons/api.py:research",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6148,7 +6148,7 @@
     "kind": "general",
     "target": "research-alias-design",
     "source": "function:reasons/api.py:research",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:11:18"
   },
   {
@@ -6156,7 +6156,7 @@
     "kind": "general",
     "target": "pg-parity-gaps",
     "source": "function:reasons/api.py:review_beliefs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6164,7 +6164,7 @@
     "kind": "general",
     "target": "_review_result-priority",
     "source": "function:reasons/api.py:review_beliefs",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6172,7 +6172,7 @@
     "kind": "general",
     "target": "mock-seam-audit",
     "source": "general:llm-mocking-contract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6180,7 +6180,7 @@
     "kind": "general",
     "target": "json-raw-decode-semantics",
     "source": "function:reasons/review_justifications.py:parse_justification_review",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6188,7 +6188,7 @@
     "kind": "general",
     "target": "llm-classification-round-trip",
     "source": "function:reasons/api.py:review_justifications",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6196,7 +6196,7 @@
     "kind": "file",
     "target": "reasons/extract.py",
     "source": "general:llm-json-parsing-strategy",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6204,7 +6204,7 @@
     "kind": "function",
     "target": "reasons/derive.py:parse_proposals",
     "source": "general:llm-json-parsing-strategy",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6212,7 +6212,7 @@
     "kind": "general",
     "target": "json-loads-grep-discrepancy",
     "source": "general:llm-json-parsing-strategy",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6220,7 +6220,7 @@
     "kind": "general",
     "target": "model-response-validation-contract",
     "source": "general:llm-json-parsing-strategy",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6228,7 +6228,7 @@
     "kind": "general",
     "target": "review-metadata-schema",
     "source": "function:reasons/api.py:review_premises",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6236,7 +6236,7 @@
     "kind": "file",
     "target": "reasons/justification.py",
     "source": "general:premise-vs-derived-classification",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6244,7 +6244,7 @@
     "kind": "general",
     "target": "sl-vs-cp-vs-unless",
     "source": "general:premise-vs-derived-classification",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6252,7 +6252,7 @@
     "kind": "general",
     "target": "nogood-export-writer",
     "source": "general:nogood-format-gap",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6260,7 +6260,7 @@
     "kind": "general",
     "target": "regex-escaping-in-grep",
     "source": "general:nogood-format-gap",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6268,7 +6268,7 @@
     "kind": "general",
     "target": "fts5-schema-and-rank",
     "source": "function:reasons/ask.py:search_source_chunks",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6276,7 +6276,7 @@
     "kind": "general",
     "target": "argparse-subparser-db-shadowing",
     "source": "function:reasons/cli.py:cmd_search_sources",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:12:53"
   },
   {
@@ -6284,7 +6284,7 @@
     "kind": "general",
     "target": "chunks-schema-provenance",
     "source": "general:source-chunk-indexing-pipeline",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6292,7 +6292,7 @@
     "kind": "general",
     "target": "node-fts-population-strategy",
     "source": "general:source-chunk-indexing-pipeline",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6300,7 +6300,7 @@
     "kind": "general",
     "target": "partial-failure-handling",
     "source": "function:reasons/derive.py:apply_proposals",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6308,7 +6308,7 @@
     "kind": "general",
     "target": "source-type-migration",
     "source": "general:metadata-schema-evolution",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6316,7 +6316,7 @@
     "kind": "function",
     "target": "reasons/pg.py:PgApi.init_db",
     "source": "general:sqlite-schema-migrations",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6324,7 +6324,7 @@
     "kind": "general",
     "target": "schema-version-migration-policy",
     "source": "general:sqlite-schema-migrations",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6332,7 +6332,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network.summarize",
     "source": "function:reasons/api.py:summarize",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-21T16:14:12"
   },
   {
@@ -6340,7 +6340,7 @@
     "kind": "general",
     "target": "pg-sqlite-parity",
     "source": "function:reasons/api.py:sync_agent",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6348,7 +6348,7 @@
     "kind": "function",
     "target": "reasons/import_agent.py:_build_justifications",
     "source": "general:agent-revocation-cascade",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6356,7 +6356,7 @@
     "kind": "function",
     "target": "tests/test_sync_agent.py:TestSyncAgentRevocation",
     "source": "general:agent-revocation-cascade",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6364,7 +6364,7 @@
     "kind": "general",
     "target": "network-rebuild-dependents",
     "source": "general:agent-revocation-cascade",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6372,7 +6372,7 @@
     "kind": "function",
     "target": "reasons/pg.py:sync_agent",
     "source": "general:sync-error-paths",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6380,7 +6380,7 @@
     "kind": "general",
     "target": "partial-mutation-on-exception",
     "source": "general:sync-error-paths",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6388,7 +6388,7 @@
     "kind": "general",
     "target": "postgresql-backend-parity",
     "source": "function:reasons/api.py:topics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -6396,7 +6396,7 @@
     "kind": "general",
     "target": "cli-output-contract",
     "source": "general:topics-cli-output-format",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-21T16:16:54"
   },
   {
@@ -10158,5 +10158,1093 @@
     "source": "function:reasons/pg.py:export_network",
     "status": "pending",
     "added": "2026-11-24T16:14:44"
+  },
+  {
+    "title": "Where the retraction cascade ends and dependency-directed backtracking begins; the key conceptual seam to nail down when reading `storage.py` + `contradictions.py`.",
+    "kind": "general",
+    "target": "propagation-vs-backtracking-boundary",
+    "source": "scan:repo",
+    "status": "pending",
+    "added": "2026-11-25T16:00:45"
+  },
+  {
+    "title": "Investigate Gemini CLI's released JSON schema and changelog across versions to confirm `stats.models.<name>.tokens.{input,candidates}` is still emitted.",
+    "kind": "general",
+    "target": "gemini-cli-contract",
+    "source": "general:gemini-cli-json-schema",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Decide whether to probe `gemini --version` at invocation and warn/fail on unknown versions.",
+    "kind": "general",
+    "target": "version-pinning",
+    "source": "general:gemini-cli-json-schema",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Persisted form of `_cost_tracker`, showing how token counts and `total_cost_usd` are surfaced to users.",
+    "kind": "file",
+    "target": "costs/2026-11-19T180331-update.json",
+    "source": "general:claude-cli-json-schema",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Audit other module-level mutables (`_cost_tracker`, `_langfuse_handler` at `reasons/llm.py:158`, `_db` at `reasons/mcp_server.py:48/593`) to see whether they follow the same reset discipline.",
+    "kind": "general",
+    "target": "process-global-state-initialization",
+    "source": "general:per-invocation-cost-isolation",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "The Langfuse docs page describing `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`/`LANGFUSE_BASE_URL`, and sampling options for the `langfuse>=2.0` version declared in `pyproject.toml`.",
+    "kind": "general",
+    "target": "langfuse-v2-env-vars",
+    "source": "general:langfuse-sdk-env-vars",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Confirm the module path each major version exposes (`langfuse.callback` vs `langfuse.langchain`) and when the move landed.",
+    "kind": "general",
+    "target": "langfuse-v2-vs-v3-layout",
+    "source": "general:langfuse-v2-vs-v3-import-path",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "How `FastMCP` derives the client-facing JSON schema from annotations like `list[str] | None` and defaults, which governs what an LLM client can actually send.",
+    "kind": "general",
+    "target": "mcp-tool-schema-derivation",
+    "source": "function:reasons/mcp_server.py:propose_retract",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Search all API/MCP responses for `count`, `stored_count`, and `skipped` to see whether this rename is an isolated exception or a broader pattern.",
+    "kind": "general",
+    "target": "api-response-schema-consistency",
+    "source": "general:store-llm-proposals-shape",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Confirms source-hash staleness coverage, which is distinct from `pending \u2192 stale`",
+    "kind": "function",
+    "target": "tests/test_check_stale.py:TestCheckStale.test_stale_node",
+    "source": "general:proposal-state-machine-tests",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Search non-test source for `pending`, `accepted`, `rejected`, `withdrawn`, and `stale` to locate the real transition implementation",
+    "kind": "general",
+    "target": "proposal-state-machine",
+    "source": "general:proposal-state-machine-tests",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Determine whether the codebase needs new tests or whether the lifecycle exists under different terminology",
+    "kind": "general",
+    "target": "missing-pending-transition-tests",
+    "source": "general:proposal-state-machine-tests",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "How `text_hash`, `content_hash`, and `source_hash` chain together; critical before discussion of `check_integrity` tamper detection.",
+    "kind": "general",
+    "target": "merkle-integrity-model",
+    "source": "function:reasons/api.py:backfill_hashes",
+    "status": "pending",
+    "added": "2026-11-25T16:01:41"
+  },
+  {
+    "title": "Callers must batch beliefs externally because `verify_beliefs` builds one unbounded combined prompt.",
+    "kind": "general",
+    "target": "prompt-size-batching",
+    "source": "function:reasons/verify.py:verify_beliefs",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Determine whether unclosed frontmatter, CRLF, BOM, and duplicate keys have tests or only undocumented behavior.",
+    "kind": "general",
+    "target": "frontmatter-edge-case-coverage",
+    "source": "general:frontmatter-parsing-edge-cases",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Rerun a valid repo-wide search for both `SCHEMA_VERSION` and `schema_version`; the provided zero-count grep conflicts with the read files.",
+    "kind": "general",
+    "target": "schema-version-grep",
+    "source": "general:schema-version-consumers",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Search for comparisons, branching, or migration dispatch keyed on schema version outside `metadata.py`.",
+    "kind": "general",
+    "target": "migration-and-version-check-logic",
+    "source": "general:schema-version-consumers",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "How `_retracted` is re-synced on incremental imports (lines 400-500).",
+    "kind": "function",
+    "target": "reasons/import_agent.py:_import_beliefs",
+    "source": "general:_retracted-flag-lifecycle",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Disambiguate the `metadata[\"_retracted\"]` boolean from the `retracted_at` timestamp column in `storage.py`.",
+    "kind": "general",
+    "target": "retracted-vs-retracted_at",
+    "source": "general:_retracted-flag-lifecycle",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "PostgreSQL retraction path that sets `metadata[\"_retracted\"]` and `retracted_at`; compare with `assert_node`.",
+    "kind": "function",
+    "target": "reasons/pg.py:retract_node",
+    "source": "general:retracted-flag-writers",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Plan how to remove the `_retracted` metadata flag and rely on `truth_value`/`retracted_at` consistently.",
+    "kind": "general",
+    "target": "metadata-retracted-flag-migration",
+    "source": "general:retracted-flag-writers",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Observed docs have no env var mentions; check README or deployment manifests for production guidance.",
+    "kind": "general",
+    "target": "mind-service-deployment-docs",
+    "source": "general:environment-variable-configuration",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Confirm the allowed agent-ID charset and whether the server decodes percent-encoded path segments.",
+    "kind": "general",
+    "target": "agent-id-api-contract",
+    "source": "general:agent-id-url-escaping",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Grep the repo for `except Exception`, `except OSError`, and `except URLError` to see if higher-level callers retry or mask network failures that these modules re-raise.",
+    "kind": "general",
+    "target": "network-error-handling-gaps",
+    "source": "general:urllib-http-error-semantics",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Confirm the wrapping behavior on the deployed Python (the union-syntax type hints imply 3.10+) by reading `urllib.request.AbstractHTTPHandler.do_open` and `urllib.error` in the target runtime.",
+    "kind": "general",
+    "target": "urllib-error-hierarchy",
+    "source": "general:urllib-http-error-semantics",
+    "status": "pending",
+    "added": "2026-11-25T16:03:28"
+  },
+  {
+    "title": "Confirm whether the API server treats `%2F` in the path as an encoded `/` or as a path separator, since that determines whether `quote(agent_id, safe=\"\")` is a complete defence.",
+    "kind": "general",
+    "target": "server-encoded-slash-routing",
+    "source": "general:url-path-segment-escaping",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Search the repo for `FastAPI(`, `Flask(`, `APIRouter(`, `uvicorn.run`, or a `Dockerfile`/`Procfile` to locate (or rule out) an actual HTTP server that the API is wrapped in.",
+    "kind": "general",
+    "target": "http-server-entrypoint",
+    "source": "general:mind-service-belief-api-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "The actual justification-validity predicate combining `inlist` and `outlist`; every flattening argument must hold up against this function",
+    "kind": "function",
+    "target": "reasons/api.py:1590",
+    "source": "general:lossy-network-transfer",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "The disjunction-vs-conjunction hazard guarded by the LLM review at `reasons/api.py:4186-4188` and the CLI tip at `reasons/cli.py:36-38`",
+    "kind": "general",
+    "target": "any-mode-all-vs-any",
+    "source": "general:lossy-network-transfer",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Verify that `test_import_json.py` proves outlist and type survive export/import, and whether `merkle.py` covers outlist mutations",
+    "kind": "diff",
+    "target": "import-json-roundtrip",
+    "source": "general:lossy-network-transfer",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Accepts `beliefs.md` or `network.json`; this is the server-side handler body for `POST .../beliefs` in waiting.",
+    "kind": "function",
+    "target": "reasons/api.py:import_agent_beliefs",
+    "source": "general:agent-export-endpoint-source",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "The actual FastAPI/Flask app that hosts these routes is not in this snapshot; search sibling packages, deployment configs, and compose files.",
+    "kind": "general",
+    "target": "mind-service-server-location",
+    "source": "general:agent-export-endpoint-source",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "If you intend to reject `!= \"1.0\"`, you need a plan for how version bumps (e.g. `\"2.0\"`) migrate existing on-disk registries",
+    "kind": "general",
+    "target": "schema-version-migration-strategy",
+    "source": "general:schema-version-validation",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Where `PRAGMA journal_mode=WAL` is configured; inspect whether any path runs `wal_checkpoint`, since that determines how visible external writes are to `getmtime(\"reasons.db\")`.",
+    "kind": "function",
+    "target": "reasons/storage.py:Storage.__init__",
+    "source": "general:mtime-based-cache-invalidation",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Research how long external WAL commits remain invisible to the main file's mtime and how to force a checkpoint with `PRAGMA wal_checkpoint(TRUNCATE)`.",
+    "kind": "general",
+    "target": "sqlite-wal-checkpoint-visibility",
+    "source": "general:mtime-based-cache-invalidation",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Alternatives worth considering: hashing the DB (as `reasons/check_stale.py:hash_file` already does for source files), reading `PRAGMA data_version` / `PRAGMA schema_version`, or listening to SQLite update hooks.",
+    "kind": "general",
+    "target": "mtime-bypass-strategies",
+    "source": "general:mtime-based-cache-invalidation",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Evaluate a `threading.Lock` around `_network_cache` (or per-`db_path` `RLock`) as the minimal fix",
+    "kind": "general",
+    "target": "cache-invalidation-locking",
+    "source": "general:cache-concurrency",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Whether mtime-granularity collisions can mask the race even after locking",
+    "kind": "general",
+    "target": "mtime-invalidation-correctness",
+    "source": "general:cache-concurrency",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Read the drift tests around `tests/test_api.py:1240-1263` and the CLI/MCP drift tests to see which fields are asserted stale.",
+    "kind": "general",
+    "target": "proposal-drift-tests",
+    "source": "general:proposal-impact-flow",
+    "status": "pending",
+    "added": "2026-11-25T16:04:50"
+  },
+  {
+    "title": "Computes the depth value returned by `_collect_what_if_results`; verify BFS semantics, cycle handling, and the meaning of unreachable depth `0`.",
+    "kind": "function",
+    "target": "reasons/pg.py:_cascade_depth_pg",
+    "source": "function:reasons/pg.py:_collect_what_if_results",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Pattern of using uncommitted DB transactions + rollback for what-if analysis and its concurrency implications (locking, snapshot isolation, interaction with caller transactions)",
+    "kind": "general",
+    "target": "transaction-as-simulation",
+    "source": "function:reasons/pg.py:what_if_assert",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Confirm the current behaviour on clean exit vs exception path, and decide whether borrowed-connection exits should `rollback()` or require the caller to be transactional.",
+    "kind": "function",
+    "target": "reasons/pg.py:__exit__",
+    "source": "general:psycopg-autocommit-rollback",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "The docstring (\"Caller is responsible for transaction management\") is the clearest statement of the simulation contract; any top-level method relying on it inherits the same `autocommit` assumption.",
+    "kind": "function",
+    "target": "reasons/pg.py:_add_node_raw",
+    "source": "general:psycopg-autocommit-rollback",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Understand close-without-commit behavior in psycopg v3, which is what currently makes \"simulation\" work for owned connections but fails silently for borrowed `autocommit=True` connections.",
+    "kind": "general",
+    "target": "psycopg-v3-transaction-semantics",
+    "source": "general:psycopg-autocommit-rollback",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Determine whether nogood enforcement is minimal, chronological, priority-based, or otherwise.",
+    "kind": "general",
+    "target": "nogood-backtracking-policy",
+    "source": "general:defeasible-logic-model",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Compare its return shape with the SQLite `api.summarize` expectations in `tests/test_summarize.py`.",
+    "kind": "function",
+    "target": "reasons/pg.py:PgApi.summarize",
+    "source": "general:backend-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Add tests that run the same scenario against SQLite and Postgres and compare dict key sets and nested shapes.",
+    "kind": "general",
+    "target": "backend-parity-contract-tests",
+    "source": "general:backend-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Several handlers (`mark-duplicate`, `defeat-*`, `migrate-defeaters`, `classify-defeaters`) still inline the same check instead of calling `_require_sqlite`; a cleanup opportunity if these should ever be unified.",
+    "kind": "general",
+    "target": "pg-dispatch-inconsistency",
+    "source": "function:reasons/cli.py:_require_sqlite",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "No tests assert `--domain-id` vs `--project-id` or `REASONS_DOMAIN_ID` vs `REASONS_PROJECT_ID` ordering; consider adding one.",
+    "kind": "general",
+    "target": "precedence-test-gap",
+    "source": "general:env-var-precedence-rules",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Check whether `reasons_lib.api` exposes project-scoped parameters independently of the CLI.",
+    "kind": "general",
+    "target": "reasons-lib-api-surface",
+    "source": "general:deprecated-project-id-alias",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Audit all `os.environ` reads, especially `REASONS_PG_CONNINFO`, to separate active configuration from removed legacy variables.",
+    "kind": "general",
+    "target": "environment-variable-usage",
+    "source": "general:deprecated-project-id-alias",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Determine whether `report_gated` needs its own `PgApi` method or inherits portability from `list_gated`.",
+    "kind": "general",
+    "target": "report_gated-composition",
+    "source": "general:PgApi-method-coverage",
+    "status": "pending",
+    "added": "2026-11-25T16:06:04"
+  },
+  {
+    "title": "Whether `node.metadata` can ever be `None` given `pin_sources`'s unguarded `.get`; determines whether the AttributeError path is reachable.",
+    "kind": "general",
+    "target": "network-metadata-nullability",
+    "source": "function:reasons/check_stale.py:pin_sources",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Shows the exact input/output contract for `feature/fix/src/main.py` and whether a source path is supplied.",
+    "kind": "function",
+    "target": "tests/test_pin_sources.py:test_rewrites_slashed_branch_with_source_path",
+    "source": "general:github-slash-ref-handling",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Understand how GitHub resolves ambiguous `/blob/` URLs when branch names contain slashes.",
+    "kind": "general",
+    "target": "github-ref-resolution",
+    "source": "general:github-slash-ref-handling",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Compare using an explicit source path, GitHub API ref lookup, or local git refs to rewrite branch URLs to SHAs.",
+    "kind": "general",
+    "target": "source-url-pinning-strategy",
+    "source": "general:github-slash-ref-handling",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Add tests for query strings, fragments, encoded paths, trailing slashes, and path-boundary false positives.",
+    "kind": "general",
+    "target": "url-suffix-matching-tests",
+    "source": "general:url-suffix-matching-edge-cases",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Explore `urllib.parse.urlsplit`, `unquote`, and component-wise comparison instead of raw `str.endswith`.",
+    "kind": "general",
+    "target": "urlsplit-vs-urlparse-and-unquote",
+    "source": "general:url-suffix-matching-edge-cases",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Decide how to treat relative source paths, encoded slashes, trailing directory slashes, and path separators across operating systems.",
+    "kind": "general",
+    "target": "path-normalization-policy",
+    "source": "general:url-suffix-matching-edge-cases",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Why `load` skips `next_nogood_id` and how the network avoids ID collisions afterwards.",
+    "kind": "general",
+    "target": "next-nogood-id-derivation",
+    "source": "function:reasons/storage.py:load",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "How `node_tags` / `node_sources` are preserved by `save` but not loaded into `Network`.",
+    "kind": "general",
+    "target": "external-tag-and-source-persistence",
+    "source": "function:reasons/storage.py:load",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Whether the `pubsub.compute_changes` call inside `_with_network` produces events for metadata-only mutations (a pin is expected not to fire events, but the mechanism is worth confirming because it filters by truth_value only).",
+    "kind": "general",
+    "target": "pubsub-events-on-metadata-writes",
+    "source": "function:reasons/api.py:pin_sources",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Compare how `pin_update` returns `{\"updated\", \"count\" (successes only), \"errors\"}` while `pin_sources` returns `{\"pinned\", \"count\" (all results)}`; the inconsistency affects how callers should interpret `count`.",
+    "kind": "diff",
+    "target": "pin_update vs pin_sources",
+    "source": "function:reasons/api.py:pin_sources",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Understand why `node.metadata[\"verified_at\"]` and `node.verified_at` are different persistence targets.",
+    "kind": "general",
+    "target": "metadata-vs-node-fields",
+    "source": "general:pin-persistence-tests",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Explores the exact-match `db_path` keying model and how `None` differs from database-specific subscriptions.",
+    "kind": "general",
+    "target": "pubsub-db-path-scoping",
+    "source": "function:reasons/pubsub.py:unsubscribe",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Explore how callers use `subscribe(callback, db_path)` and whether they rely on `None` for global subscriptions.",
+    "kind": "general",
+    "target": "pubsub-subscriber-registration",
+    "source": "general:with-network-pubsub-call-site",
+    "status": "pending",
+    "added": "2026-11-25T16:07:37"
+  },
+  {
+    "title": "Compare broker, DB-notification, outbox, and polling approaches for delivery guarantees and operational cost.",
+    "kind": "general",
+    "target": "cross-process-event-transport",
+    "source": "general:cross-process-pubsub",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "How the codebase distinguishes premises (no justifications, IN by default) from derived nodes (justifications, IN iff at least one is valid).",
+    "kind": "general",
+    "target": "premise-vs-derived-semantics",
+    "source": "general:truth-value-semantics",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "The Doyle TMS two-state model and why \"no support yet\" is expressed as a premise rather than a third state.",
+    "kind": "general",
+    "target": "IN-OUT-state-machine",
+    "source": "general:truth-value-semantics",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Converts `--apply` into `dry_run = not args.apply` and dispatches to the API at line 294; this is the production caller path for the flag.",
+    "kind": "function",
+    "target": "reasons/cli.py:291",
+    "source": "general:dry_run-grep-discrepancy",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Investigate why the scoped regex search returned 0 for both `dry_run` and `^(def|class) ` while `find_usages` and `read` succeeded; this affects every future scoped query.",
+    "kind": "general",
+    "target": "scoped-search-path-resolution",
+    "source": "general:dry_run-grep-discrepancy",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "The actual backward traversal; whether it dedups, handles cycles, and includes the target itself.",
+    "kind": "function",
+    "target": "reasons/network.py:Network.trace_assumptions",
+    "source": "function:reasons/api.py:trace_assumptions",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Why the wrapper re-checks visibility on premises instead of trusting `trace_access_tags`-style union.",
+    "kind": "general",
+    "target": "access-tag-propagation",
+    "source": "function:reasons/api.py:trace_assumptions",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Trace the structured-vs-LLM rendering path and verify it is fully database-agnostic.",
+    "kind": "function",
+    "target": "reasons/report_belief.py:report_belief",
+    "source": "general:postgres-backend-dispatch-pattern",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Find production DDL or migration code defining `chunks` and `chunks_fts`; tests imply an FTS5 external-content table over `chunks.id`.",
+    "kind": "general",
+    "target": "chunks-schema-and-migrations",
+    "source": "general:chunk-ingestion-pipeline",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Search all non-test code for production writes to `chunks` and `chunks_fts`, including triggers, `executemany`, ORM writes, and `rebuild` commands.",
+    "kind": "general",
+    "target": "chunks-ingestion-pipeline",
+    "source": "general:chunk-ingestion-pipeline",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Determine when production code rebuilds or incrementally syncs `chunks_fts` after modifying `chunks`.",
+    "kind": "general",
+    "target": "search-index-refresh-lifecycle",
+    "source": "general:chunk-ingestion-pipeline",
+    "status": "pending",
+    "added": "2026-11-25T16:08:39"
+  },
+  {
+    "title": "Find where the `chunks_fts` DB is populated from source documents (the missing upstream half of the RAG flow).",
+    "kind": "general",
+    "target": "chunks-ingest-pipeline",
+    "source": "general:chunks-to-premises-link",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Trace where `gated_data`, `retracted_premises`, and `blocker_details` are produced (CLI/`reasons list-gated`) to understand why certain keys are `.get`-defaulted while others are hard-indexed.",
+    "kind": "general",
+    "target": "gated-belief-data-shapes",
+    "source": "function:reasons/report_gated.py:_format_data_for_prompt",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Wraps prompt construction and the `invoke_model` call where LLM failures originate.",
+    "kind": "function",
+    "target": "reasons/report_gated.py:generate_report",
+    "source": "function:reasons/report_gated.py:report_gated",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Locate the query/builder for the `retracted` variable passed at `reasons/api.py:3721`.",
+    "kind": "general",
+    "target": "retracted-premises-producer",
+    "source": "general:gated-report-data-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "The missing body at `reasons/api.py:3716` determines whether `blocker_details` contains anything besides `dependent_count`.",
+    "kind": "general",
+    "target": "blocker-details-builder",
+    "source": "general:gated-report-data-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Explore `Storage.save`/`Storage.load` transaction and locking behavior to understand cross-process writer safety.",
+    "kind": "general",
+    "target": "storage-save-concurrency",
+    "source": "general:network-cache-mtime-invalidation",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Whether the review verdicts (`valid`, `scope_findings`, `defeat_reason_type`) are ever written back to the DB or are purely consumed by the in-memory `repair_beliefs`.",
+    "kind": "general",
+    "target": "review-result-persistence",
+    "source": "general:truth-maintenance-repair-workflow",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "The actual repair engine; defines the status vocabulary (`linked`/`softened`/`abandoned`/`needs_research`) that this wrapper aggregates. Understanding its `dry_run` semantics is critical.",
+    "kind": "file",
+    "target": "src/reasons/repair.py",
+    "source": "function:reasons/api.py:repair",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Determines which beliefs get flagged as `valid: False` in the first place; its `include_out`/`min_depth`/`depends_on` filters interact with `belief_ids`.",
+    "kind": "function",
+    "target": "src/reasons/api.py:review_beliefs",
+    "source": "function:reasons/api.py:repair",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Sibling function using an almost identical orchestration pattern; comparing the two shows the intended template for \"review then act\" APIs.",
+    "kind": "function",
+    "target": "src/reasons/api.py:repair_smuggled",
+    "source": "function:reasons/api.py:repair",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "The alias `research = repair` is defined at module scope; check CLI wiring and `tests/test_research.py` to see how the two intents differ at the surface.",
+    "kind": "file",
+    "target": "src/reasons/api.py",
+    "source": "function:reasons/api.py:repair",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Trace where `dry_run` is honored vs. ignored (inline review is always dry; repair must honor the flag) and verify nothing mutates the DB in a `dry_run=True` call.",
+    "kind": "general",
+    "target": "dry-run-propagation",
+    "source": "function:reasons/api.py:repair",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Background on what a \"smuggled premise\" is and how the review LLM decides `valid=False`, to understand why repair tries to link existing premises rather than rewrite text.",
+    "kind": "general",
+    "target": "smuggled-premise-detection",
+    "source": "function:reasons/api.py:repair_smuggled",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Determine whether external downstream packages still import `from reasons_lib.api import ...`, which would explain why the alias still exists and why wrapper-level tests were deliberately not added.",
+    "kind": "general",
+    "target": "backwards-compat-import-strategy",
+    "source": "general:research-alias-design",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Decide whether PG tags should be queried from `metadata JSONB` or a dedicated table, and how filters/access checks map to SQL.",
+    "kind": "general",
+    "target": "pg-tag-filtering-design",
+    "source": "general:pg-parity-gaps",
+    "status": "pending",
+    "added": "2026-11-25T16:10:11"
+  },
+  {
+    "title": "Read the full body to confirm the exact four-way branch order and returned labels.",
+    "kind": "function",
+    "target": "reasons/api.py:_classify_review_result",
+    "source": "general:_review_result-priority",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Decide whether to extract a CLI runner function, a runner class, or dependency-injected callables.",
+    "kind": "general",
+    "target": "boundary-refactor-design",
+    "source": "general:mock-seam-audit",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Ensure `subprocess.TimeoutExpired` behavior remains stable for both CLI and API timeout paths.",
+    "kind": "general",
+    "target": "subprocess-timeout-semantics",
+    "source": "general:mock-seam-audit",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Compare extraction and fallback strategies across `repair`, `review`, `propose_update`, and related modules.",
+    "kind": "general",
+    "target": "llm-response-json-extraction",
+    "source": "general:json-raw-decode-semantics",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Determine how callers consume the cumulative `all_results` list passed to `on_batch` and whether they copy it.",
+    "kind": "general",
+    "target": "review-callback-contract",
+    "source": "general:llm-classification-round-trip",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Confirm whether any parallel review path exists outside the observed `review_beliefs` signature.",
+    "kind": "general",
+    "target": "parallel-review-implementation",
+    "source": "general:llm-classification-round-trip",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Shows the network-level checks applied after parsing, including missing nodes, duplicate IDs, and minimum antecedent count.",
+    "kind": "function",
+    "target": "reasons/derive.py:validate_proposals",
+    "source": "function:reasons/derive.py:parse_proposals",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Writes the new markdown format that `parse_proposals` is expected to round-trip.",
+    "kind": "function",
+    "target": "reasons/derive.py:write_proposals_file",
+    "source": "function:reasons/derive.py:parse_proposals",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Explore how the v0.9 and v0.10 formats differ and where strict regex parsing may require retries.",
+    "kind": "general",
+    "target": "llm-markdown-format-compatibility",
+    "source": "function:reasons/derive.py:parse_proposals",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Re-run grep from the repo root with explicit include/ignore flags and compare revision/time to explain the false negatives.",
+    "kind": "general",
+    "target": "grep-scope-and-staleness",
+    "source": "general:json-loads-grep-discrepancy",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Search for other modules that consume LLM output and parse it into schemas/JSON; the observations do not include those modules.",
+    "kind": "general",
+    "target": "downstream-llm-output-parsers",
+    "source": "general:model-response-validation-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Re-run the invalid/malformed/coerce/schema searches because the provided zero-match summaries conflict with visible tests.",
+    "kind": "repo",
+    "target": "tests",
+    "source": "general:model-response-validation-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Re-run the `review_result|last_.*_reviewed|reviewed_at` grep across all 134 matches (tests, CLI, docs) to catalog every key variant not visible here.",
+    "kind": "general",
+    "target": "full-review-metadata-grep",
+    "source": "general:review-metadata-schema",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Where `cmd_review_premises` / `cmd_review_beliefs` / `cmd_review_justifications` serialize their return summaries; may reveal an external-facing key schema separate from persisted metadata.",
+    "kind": "general",
+    "target": "cli-review-dispatch",
+    "source": "general:review-metadata-schema",
+    "status": "pending",
+    "added": "2026-11-25T16:11:31"
+  },
+  {
+    "title": "Trace the truth-value evaluation for `SL` justifications to confirm exactly how antecedents and outlists determine `IN`/`OUT`.",
+    "kind": "general",
+    "target": "belief-semantics",
+    "source": "general:sl-vs-cp-vs-unless",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Shows how incoming markdown is normalized through `parse_nogoods`.",
+    "kind": "function",
+    "target": "reasons/import_agent.py:_normalize_nogoods_markdown",
+    "source": "general:nogood-export-writer",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Search the codebase for the exporter that writes nogoods markdown/text, likely near round-trip or export tests.",
+    "kind": "general",
+    "target": "nogood-text-export",
+    "source": "general:nogood-export-writer",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Re-run the `nogood` search across the actual `reasons/` package and reproduce the regex/escaping behavior.",
+    "kind": "general",
+    "target": "nogood-search-scope-and-escaping",
+    "source": "general:regex-escaping-in-grep",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Search for `rebuild`, triggers on `chunks`, or inserts into `chunks_fts` to understand how the index stays synchronized.",
+    "kind": "general",
+    "target": "chunks-fts-maintenance",
+    "source": "general:fts5-schema-and-rank",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Understand how SQLite FTS5 interprets MATCH strings, especially since the code passes a query parameter directly into `MATCH ?`.",
+    "kind": "general",
+    "target": "fts5-query-syntax",
+    "source": "general:fts5-schema-and-rank",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Audit which commands support PG (via `_backend_kwargs`) versus which are hard-blocked by the duplicated `args.pg` guard; this is the invariant a new subcommand must preserve.",
+    "kind": "general",
+    "target": "sqlite-vs-pg-parity",
+    "source": "general:argparse-subparser-db-shadowing",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Token-budgeted network summary; the closest existing concept to \"chunking\" in the production code.",
+    "kind": "function",
+    "target": "reasons/mcp_server.py:compact",
+    "source": "general:chunks-schema-provenance",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Every CLI command and MCP tool funnels into `reasons.api`; the builder, if production, must be reachable through that module.",
+    "kind": "general",
+    "target": "reasons-api-boundary",
+    "source": "general:chunks-schema-provenance",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Confirm whether the pattern search was recursive over `reasons/` subpackages; otherwise the negative result is incomplete.",
+    "kind": "general",
+    "target": "grep-scope-coverage",
+    "source": "general:chunks-schema-provenance",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Check whether any tests directly assert `nodes_fts` contents or MATCH behavior after `Storage.save`, since the observed tests only cover round-trip state and separate `chunks_fts` fixtures.",
+    "kind": "general",
+    "target": "nodes-fts-test-coverage",
+    "source": "general:node-fts-population-strategy",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "The concrete transaction/commit boundary for a single CLI mutation; needed to verify rollback semantics.",
+    "kind": "function",
+    "target": "reasons/db.py:SqliteApi.add_node",
+    "source": "general:partial-failure-handling",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Several commands explicitly reject `--pg` at runtime; understanding which operations are SQLite-only clarifies why no retry/rollback uniform contract exists across backends.",
+    "kind": "general",
+    "target": "pg-vs-sqlite-parity",
+    "source": "general:partial-failure-handling",
+    "status": "pending",
+    "added": "2026-11-25T16:12:43"
+  },
+  {
+    "title": "Grep for the actual four identifiers and any canonical set/constant; without locating this we can't judge growth vs. normalization.",
+    "kind": "general",
+    "target": "four-value-vocabulary-definition",
+    "source": "general:source-type-migration",
+    "status": "pending",
+    "added": "2026-11-25T16:12:44"
+  },
+  {
+    "title": "Read full issue bodies (not just branch names) for issues 171\u2013210 and any vocabulary-related ticket, since branch names alone are insufficient.",
+    "kind": "general",
+    "target": "issue-tracker-acceptance-criteria",
+    "source": "general:source-type-migration",
+    "status": "pending",
+    "added": "2026-11-25T16:12:44"
+  },
+  {
+    "title": "Verify that migrations are column/table-existence driven rather than version driven.",
+    "kind": "function",
+    "target": "reasons/storage.py:_init_schema",
+    "source": "general:schema-version-migration-policy",
+    "status": "pending",
+    "added": "2026-11-25T16:15:08"
+  },
+  {
+    "title": "Decide whether the project should reject unknown schema versions, auto-migrate, or continue treating `schema_version` as informational metadata.",
+    "kind": "general",
+    "target": "schema-migration-policy",
+    "source": "general:schema-version-migration-policy",
+    "status": "pending",
+    "added": "2026-11-25T16:15:08"
+  },
+  {
+    "title": "Has two `if nogoods_file:` branches (lines 1960\u20131963 and 1995\u20131998); the audit hinges on what the JSON branch actually does with the parsed nogoods",
+    "kind": "function",
+    "target": "reasons/api.py:import_agent",
+    "source": "general:pg-sqlite-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Not in the returned slice; needed to confirm whether PG accepts `nogoods=` at all or ignores `nogoods_file` for JSON",
+    "kind": "function",
+    "target": "reasons/pg.py:PgApi.import_agent",
+    "source": "general:pg-sqlite-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "End-to-end compare of SQLite `import_json` vs `PgApi.import_json(data=...)`, tracking whether `--nogoods` is merged on both sides or silently dropped",
+    "kind": "general",
+    "target": "json-import-parity",
+    "source": "general:pg-sqlite-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Shows how `agent:active` and `agent:inactive` are created and why `inactive_id` is the kill switch.",
+    "kind": "function",
+    "target": "reasons/import_agent.py:_ensure_agent_nodes",
+    "source": "function:reasons/import_agent.py:_build_justifications",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "The semantics of antecedents/inlist and outlist in justifications and why `inactive` appears in `outlist`.",
+    "kind": "general",
+    "target": "jtms-justification-inlist-outlist",
+    "source": "function:tests/test_sync_agent.py:TestSyncAgentRevocation",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Read the full wrapper to see whether it only rebuilds dependents or performs extra import-time validation.",
+    "kind": "function",
+    "target": "reasons/import_agent.py:_fixup_dependents",
+    "source": "general:network-rebuild-dependents",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "The additive-only sibling of `sync_agent`; diffing the two reveals which sync-specific logic (removal, `_retracted` clearing, `assert_after`) was added.",
+    "kind": "function",
+    "target": "reasons/pg.py:import_agent",
+    "source": "function:reasons/pg.py:sync_agent",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "The nogood import helper; only-imports-\u22652-valid-nodes rule and ID collision handling.",
+    "kind": "function",
+    "target": "reasons/pg.py:_import_agent_nogoods",
+    "source": "function:reasons/pg.py:sync_agent",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "How `active` / `inactive` gate every claim via outlists; the central trick of the entire agent-import/sync design.",
+    "kind": "general",
+    "target": "kill-switch-semantics",
+    "source": "function:reasons/pg.py:sync_agent",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Search the repo for `to_dict`/`from_dict`/`load_network`/`save_network`/`psycopg` usage; `Network` itself has no persistence API, and the `pg` optional dependency in `pyproject.toml` implies a separate module owns this",
+    "kind": "general",
+    "target": "network-persistence-layer",
+    "source": "general:partial-mutation-on-exception",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Identify the functions enclosing lines 582 and 599 and check whether they catch exceptions, discard the `network`, or reuse it on subsequent attempts",
+    "kind": "general",
+    "target": "import-agent-callers",
+    "source": "general:partial-mutation-on-exception",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Look for tests that exercise the same operations on SQLite and PG and compare semantic results, not just mock dispatch.",
+    "kind": "general",
+    "target": "cross-backend-parity-tests",
+    "source": "general:postgresql-backend-parity",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
+  },
+  {
+    "title": "Check whether the MCP tool exposes similar text or structured output and whether it shares the same contract.",
+    "kind": "function",
+    "target": "reasons/mcp_server.py:topics",
+    "source": "general:cli-output-contract",
+    "status": "pending",
+    "added": "2026-11-25T16:15:09"
   }
 ]
