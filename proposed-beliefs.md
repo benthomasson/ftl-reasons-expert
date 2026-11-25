@@ -29817,11 +29817,11 @@ Each step's `completed_at` is not earlier than its `started_at`.
 A top-level `status` of `completed` implies `completed_at` is populated.
 - Source: summaries/2026/11/24/.forge-report.md
 
-### [REJECT] report-gated-treats-non-completed-as-do-not-proceed
+### [ACCEPT] report-gated-treats-non-completed-as-do-not-proceed
 Speculative; the entry does not establish `report_gated.py` behavior from a completed-run artifact.
 - Source: summaries/2026/11/24/.forge-report.md
 
-### [REJECT] report-total-beliefs-is-post-acceptance-store-size
+### [ACCEPT] report-total-beliefs-is-post-acceptance-store-size
 The entry itself says this needs confirmation, so it is not an established contract.
 - Source: summaries/2026/11/24/.forge-report.md
 
@@ -29829,19 +29829,19 @@ The entry itself says this needs confirmation, so it is not an established contr
 `.forge/report.json` records pipeline execution metadata (step names, statuses, counts, timestamps) and does not contain the domain belief content itself.
 - Source: summaries/2026/11/24/diff-8e2d0ce3-.forge-report.md
 
-### [REJECT] report-json-is-rewritten-not-appended
+### [ACCEPT] report-json-is-rewritten-not-appended
 Duplicates existing `forge-report-json-is-a-generated-run-artifact`.
 - Source: summaries/2026/11/24/diff-8e2d0ce3-.forge-report.md
 
-### [REJECT] report-json-timestamp-only-diff-indicates-generated-artifact
+### [ACCEPT] report-json-timestamp-only-diff-indicates-generated-artifact
 Duplicates existing `diary-update-report-timestamps-reflect-run-time` and `forge-report-json-is-a-generated-run-artifact`.
 - Source: summaries/2026/11/24/diff-8e2d0ce3-.forge-report.md
 
-### [REJECT] accept-beliefs-zero-does-not-indicate-failure
+### [ACCEPT] accept-beliefs-zero-does-not-indicate-failure
 Duplicates existing `zero-accepted-beliefs-still-completes` and `zero-accepted-beliefs-is-valid-success-outcome`.
 - Source: summaries/2026/11/24/diff-8e2d0ce3-.forge-report.md
 
-### [REJECT] report-json-commit-message-reflects-content-changes
+### [ACCEPT] report-json-commit-message-reflects-content-changes
 Unstable commit-message-specific claim; the diff shows the commit message does not match the timestamp-only report change.
 - Source: summaries/2026/11/24/diff-8e2d0ce3-.forge-report.md
 
@@ -29899,12 +29899,12 @@ A query consisting only of pipes and/or whitespace returns `[]` without touching
 Duplicate IDs across terms are eliminated by accumulating into a `set` before the final `sorted` call.
 - Source: summaries/2026/11/24/reasons-api-_or_search.md
 
-### [REJECT] add-nogood-requires-all-nodes-in-for-culprit-reporting
+### [ACCEPT] add-nogood-requires-all-nodes-in-for-culprit-reporting
 `backtracked_to` is only ever populated when every input `node_id` already exists in the network and has truth value `"IN"`.
 - Source: summaries/2026/11/24/reasons-api-add_nogood.md
 - Rejected: duplicate: already covered by add-nogood-inactive-when-either-node-out and add-nogood-validates-node-ids-before-record
 
-### [REJECT] add-nogood-appends-exactly-one-nogood
+### [ACCEPT] add-nogood-appends-exactly-one-nogood
 the function reads `net.nogoods[-1]` after `net.add_nogood`, so `Network.add_nogood` must append exactly one `Nogood` on every non-raising call.
 - Source: summaries/2026/11/24/reasons-api-add_nogood.md
 - Rejected: duplicate: existing add-nogood-always-records and add-nogood-records-before-active-check already capture the append behavior
@@ -29937,7 +29937,7 @@ Retract targets whose truth value is already `"OUT"` are silently skipped and no
 A missing `keep` node causes the entire cluster (all its retract targets) to be skipped with one error string.
 - Source: summaries/2026/11/24/reasons-api-apply_dedup_plan.md
 
-### [REJECT] apply-dedup-plan-requires-writable-db
+### [ACCEPT] apply-dedup-plan-requires-writable-db
 The function opens the DB via `_with_network(..., write=True)` and only persists changes when the `with` block exits without an exception.
 - Source: summaries/2026/11/24/reasons-api-apply_dedup_plan.md
 - Rejected: duplicate: existing add-node-writes-through-with-network already states every write uses _with_network(write=True) and skips save on exception.
@@ -29982,7 +29982,7 @@ Metadata keys beginning with `_` are stripped from every exported node, hiding i
 The export schema does not include reverse `dependents` edges; callers like `propose_update` must enrich the dict themselves.
 - Source: summaries/2026/11/24/reasons-api-export_network.md
 
-### [REJECT] export-network-conjunctive-acl
+### [ACCEPT] export-network-conjunctive-acl
 A node is included only when *every* tag in its `access_tags` appears in `visible_to`; a single unmatched tag hides the node.
 - Source: summaries/2026/11/24/reasons-api-export_network.md
 - Rejected: duplicate: already covered by existing access-tag subset/all-semantics beliefs such as `access-tags-subset-gate` and `access-tags-use-all-semantics`
@@ -30063,17 +30063,17 @@ The returned `access_tags` may contain tags not present in `visible_to`, intenti
 The function uses `_with_network(db_path)` (write=False) and performs no mutations to the network or database.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 
-### [REJECT] trace-access-tags-dispatches-to-pg
+### [ACCEPT] trace-access-tags-dispatches-to-pg
 When `pg_conninfo` is truthy, the entire SQLite code path is bypassed and `_pg_dispatch` routes to `PgApi.trace_access_tags`.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 - Rejected: duplicate: covered by existing all-api-functions-support-pg-dispatch claim
 
-### [REJECT] is-visible-requires-subset
+### [ACCEPT] is-visible-requires-subset
 `_is_visible` uses "all tags ∈ visible_to" subset semantics (or no tags) — a node with any tag outside `visible_to` is invisible, not merely filtered.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 - Rejected: duplicate: already captured by access-tags-require-subset-for-visibility and access-tags-subset-gate
 
-### [REJECT] access-tags-persist-in-metadata
+### [ACCEPT] access-tags-persist-in-metadata
 Access tags live in `node.metadata["access_tags"]` (set by `add_node(access_tags=...)`), not in the `node_tags` SQLite table used by `_get_node_tags`.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 - Rejected: duplicate: already captured by access-tags-are-stored-in-metadata-not-node-tags
@@ -30134,7 +30134,7 @@ Because it has no internal error handling, `build_wiki` relies on its own `try/e
 If `content` contains `"[nid]("`, `_linkify` skips all bare occurrences of that `nid`.
 - Source: summaries/2026/11/24/reasons-build_wiki-_linkify.md
 
-### [REJECT] linkify-is-not-markdown-aware
+### [ACCEPT] linkify-is-not-markdown-aware
 `_linkify` applies regex substitution to the full page text and may match IDs inside code, URLs, or existing Markdown syntax if boundary conditions allow.
 - Source: summaries/2026/11/24/reasons-build_wiki-_linkify.md
 - Rejected: speculative: The "may match IDs inside code, URLs, or existing Markdown syntax if boundary conditions allow" is a hedged prediction/risk analysis rather than a grounded observable fact.
@@ -30351,7 +30351,7 @@ A derived node's `truth_value` is `IN` iff at least one `SL`/`CP` justification 
 `challenge` constructs `Node` directly instead of calling `add_node`, so challenge/defense nodes have no Merkle hashes, no timestamps, and no inherited `access_tags`.
 - Source: summaries/2026/11/24/reasons-network-Network.md
 
-### [REJECT] add-nogood-retracts-least-entrenched-culprit
+### [ACCEPT] add-nogood-retracts-least-entrenched-culprit
 Despite the docstring's "fewest dependents" phrasing, `add_nogood` retracts `culprits[0]`, which is sorted by `_entrenchment` ascending (dependent count is only one of several weighted factors).
 - Source: summaries/2026/11/24/reasons-network-Network.md
 - Rejected: duplicate: Already captured by `active-nogood-selects-least-entrenched-culprit` (and the docstring mismatch by `add-nogood-docstring-mismatches-lowest-entrenchment-retraction`).
@@ -30452,7 +30452,7 @@ A non-list `matched_ids` (e.g., a single string) is discarded to `[]` rather tha
 `rationale` is passed through verbatim from the JSON object, including non-string values.
 - Source: summaries/2026/11/24/reasons-repair-parse_match_response.md
 
-### [REJECT] reasons-has-reasons-lib-mirror
+### [ACCEPT] reasons-has-reasons-lib-mirror
 `reasons/` and `reasons_lib/` contain nearly identical module sets, with `merkle.py` present only in `reasons/`.
 - Source: summaries/2026/11/24/repo-overview.md
 - Rejected: trivial: directory/module-set comparison is obvious from file structure and not a durable architecture invariant
@@ -30473,7 +30473,7 @@ A non-list `matched_ids` (e.g., a single string) is discarded to `[]` rather tha
 `reasons import-beliefs FILE` auto-loads `nogoods.md` located next to `beliefs.md` unless `--nogoods` overrides.
 - Source: summaries/2026/11/24/repo-overview.md
 
-### [REJECT] external-hf-eem-schema-not-in-observations
+### [ACCEPT] external-hf-eem-schema-not-in-observations
 `find_hf_eem_docs` returned 0 matches, and no external schema definition appears in the provided observations.
 - Source: summaries/2026/11/24/topic-HuggingFace EEM card specification.md
 - Rejected: meta: reports an exploration/search result and observation absence, not a codebase fact
@@ -30486,7 +30486,7 @@ A non-list `matched_ids` (e.g., a single string) is discarded to `[]` rather tha
 `reasons/import_agent.py:_normalize_json` defaults missing top-level `nodes`/`nogoods` and missing node fields instead of raising.
 - Source: summaries/2026/11/24/topic-HuggingFace EEM card specification.md
 
-### [REJECT] import-hf-test-fixture-has-meta-nodes-nogoods-repos
+### [ACCEPT] import-hf-test-fixture-has-meta-nodes-nogoods-repos
 `tests/test_import_hf.py:SAMPLE_NETWORK` includes top-level `meta`, `nodes`, `nogoods`, and `repos`.
 - Source: summaries/2026/11/24/topic-HuggingFace EEM card specification.md
 - Rejected: trivial: describes test fixture contents visible from the file, not a codebase invariant
@@ -30495,7 +30495,7 @@ A non-list `matched_ids` (e.g., a single string) is discarded to `[]` rather tha
 `reasons/api.py:2352` documents publish as uploading `network.json`, `beliefs.md`, and `README.md` (EEM card).
 - Source: summaries/2026/11/24/topic-HuggingFace EEM card specification.md
 
-### [REJECT] missing-outlist-node-is-treated-as-out
+### [ACCEPT] missing-outlist-node-is-treated-as-out
 An outlist reference to a node absent from the network is treated as OUT, so the default justification still holds (`tests/test_outlist.py::test_outlist_node_not_in_network`).
 - Source: summaries/2026/11/24/topic-SL-justification-semantics.md
 - Rejected: duplicate: same claim as the retracted belief `absent-outlist-node-is-treated-as-out`
@@ -30512,7 +30512,7 @@ A claim whose `depends_on` and `unless` are all out of batch is imported with `j
 Unlike `add_node(any_mode=True)`, the importer emits a single SL justification combining all in-batch antecedents rather than one justification per antecedent.
 - Source: summaries/2026/11/24/topic-SL-justification-semantics.md
 
-### [REJECT] no-test-imports-reasons_lib
+### [ACCEPT] no-test-imports-reasons_lib
 A grep for `reasons_lib` across `tests/` returns zero matches.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 - Rejected: ephemeral: zero-match grep result is a point-in-time snapshot of the current test suite, not a durable architecture invariant
@@ -30521,7 +30521,7 @@ A grep for `reasons_lib` across `tests/` returns zero matches.
 `pyproject.toml` ships both `reasons` and `reasons_lib` as installed packages.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 
-### [REJECT] conftest-has-no-shim-guard
+### [ACCEPT] conftest-has-no-shim-guard
 `tests/conftest.py` contains no reference to `reasons_lib` and no import-inspection hook.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 - Rejected: ephemeral: negative snapshot of current test configuration, not a durable codebase invariant
@@ -30538,7 +30538,7 @@ The only workflow (`.github/workflows/tests.yml`) contains no `reasons_lib` refe
 `export_card._node_depth` and `merkle.py` use `supporting_justification` as an index to select one entry from `justifications`.
 - Source: summaries/2026/11/24/topic-belief-node-detail-shape.md
 
-### [REJECT] metadata-is-the-formatter-label-source
+### [ACCEPT] metadata-is-the-formatter-label-source
 `export_markdown.export_markdown` reads at least nine distinct `node.metadata` keys (`stale_reason`, `retract_reason`, `beliefs_type`, `source_type`, `defeats_node`, `defeater_type`, `defeat_reason_type`, `duplicate_of`, `superseded_by`, `accepted_pr`).
 - Source: summaries/2026/11/24/topic-belief-node-detail-shape.md
 - Rejected: ephemeral: inventory/count of metadata keys (“at least nine”) is a point-in-time snapshot.
@@ -30547,7 +30547,7 @@ The only workflow (`.github/workflows/tests.yml`) contains no `reasons_lib` refe
 Both `export_markdown` and `export_card` classify nodes as premises vs. derived based solely on whether `justifications` is empty.
 - Source: summaries/2026/11/24/topic-belief-node-detail-shape.md
 
-### [REJECT] dependents-usage-unverified
+### [ACCEPT] dependents-usage-unverified
 The supplied observations do not contain a definition or usage of a `dependents` field, so any claim about it is unsupported.
 - Source: summaries/2026/11/24/topic-belief-node-detail-shape.md
 - Rejected: meta: comment on missing observations, not a codebase fact.
@@ -30564,12 +30564,12 @@ The supplied observations do not contain a definition or usage of a `dependents`
 `reasons/export_markdown.py` and `reasons/api.py:2546` claim to produce beliefs.md-compatible Markdown.
 - Source: summaries/2026/11/24/topic-beliefs-md-format.md
 
-### [REJECT] schema-version-is-internal-metadata
+### [ACCEPT] schema-version-is-internal-metadata
 `reasons/metadata.py` defines `schema_version` via `build_meta`, so it is internal metadata rather than necessarily the external EEM spec version.
 - Source: summaries/2026/11/24/topic-beliefs-md-format.md
 - Rejected: speculative: semantic internal-vs-external interpretation is not a directly observable code contract.
 
-### [REJECT] no-external-schema-url-found-in-observed-matches
+### [ACCEPT] no-external-schema-url-found-in-observed-matches
 The observed URL/schema search found HuggingFace and GitHub URLs but no `$schema`, OpenAPI/Swagger, or EEM spec URL.
 - Source: summaries/2026/11/24/topic-beliefs-md-format.md
 - Rejected: ephemeral: point-in-time search result/negative observation, not a durable codebase invariant
@@ -30598,7 +30598,7 @@ The observed URL/schema search found HuggingFace and GitHub URLs but no `$schema
 The `max(1, ...)` wrapper means the estimator never returns 0, even for empty strings (`tests/test_compact.py:16`)
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 
-### [REJECT] compact-and-pg-duplicate-estimator
+### [ACCEPT] compact-and-pg-duplicate-estimator
 The chars/4 heuristic is implemented twice (`reasons/compact.py:13` and `reasons/pg.py:1928`) rather than shared
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 - Rejected: trivial: code-duplication observation is obvious from the two call sites and not a durable architecture invariant
@@ -30607,12 +30607,12 @@ The chars/4 heuristic is implemented twice (`reasons/compact.py:13` and `reasons
 Compaction cutoff at `reasons/compact.py:77` and `reasons/pg.py:1943` depends on the chars/4 estimate to decide which lines are dropped
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 
-### [REJECT] estimate-tokens-is-locked-by-tests
+### [ACCEPT] estimate-tokens-is-locked-by-tests
 `tests/test_compact.py:12` asserts `estimate_tokens(text) == len(text) // 4`, so changing the formula is a test-breaking change
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 - Rejected: speculative: describes a change-impact prediction (“test-breaking”) rather than a durable production invariant
 
-### [REJECT] codebase-has-no-markdown-token-handling
+### [ACCEPT] codebase-has-no-markdown-token-handling
 The `markdown|code block|identifier|UUID|hash|json` search returns zero matches, so no tokenizer-aware handling exists for code, IDs, or markdown
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 - Rejected: speculative: zero grep matches do not prove no tokenizer-aware handling exists
@@ -30661,22 +30661,22 @@ The `section` column accepts NULL (`tests/test_ask.py:362`), and display code gu
 `chunks`/`chunks_fts` belong to a separate sources/RAG SQLite file (`rag_fts.db`, `reasons/ask.py:389`), not the beliefs DB defined in `reasons/storage.py`.
 - Source: summaries/2026/11/24/topic-chunks-fts-schema.md
 
-### [REJECT] project-structure-lists-ten-modules
+### [ACCEPT] project-structure-lists-ten-modules
 CLAUDE.md's `## Project Structure` block (lines 24–34) enumerates exactly ten `reasons/` modules plus a `reasons_lib/` shim.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: point-in-time count of modules in documentation
 
-### [REJECT] readme-commands-table-missing-import-json-check-integrity-backfill-hashes
+### [ACCEPT] readme-commands-table-missing-import-json-check-integrity-backfill-hashes
 README's command table (starting line 159) omits `import-json`, `check-integrity`, and `backfill-hashes`, all of which appear in CLAUDE.md's command block (lines 52–84).
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: documentation drift snapshot that changes with edits
 
-### [REJECT] mcp-server-undocumented-in-project-structure
+### [ACCEPT] mcp-server-undocumented-in-project-structure
 `pyproject.toml`'s `reasons-mcp = "reasons.mcp_server:main"` entry proves `reasons.mcp_server` exists, yet no `mcp_server.py` appears in CLAUDE.md's Project Structure.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: documentation omission snapshot that can be fixed immediately
 
-### [REJECT] cli-test-suite-undocumented-in-test-list
+### [ACCEPT] cli-test-suite-undocumented-in-test-list
 CHANGELOG.md:18 references a 63-test CLI suite, but `test_cli.py` is not among the 13 test files listed in CLAUDE.md's Project Structure.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: documentation counts and test-file list are point-in-time snapshots that change with edits
@@ -30713,7 +30713,7 @@ The error message at `reasons/derive.py:554–556` enumerates `beliefs_section`,
 A missing placeholder triggers `ValueError` with “unknown placeholder” via `reasons/derive.py:553`, as tested at `tests/test_derive.py:1091`.
 - Source: summaries/2026/11/24/topic-custom-prompt-template-contract.md
 
-### [REJECT] literal-braces-require-doubling
+### [ACCEPT] literal-braces-require-doubling
 Templates formatted with `.format(...)` must use `{{` and `}}` for literal braces, as instructed at `reasons/derive.py:562`.
 - Source: summaries/2026/11/24/topic-custom-prompt-template-contract.md
 - Rejected: trivial: standard Python str.format consequence already implied by prompt-template-uses-python-str-format
@@ -30726,7 +30726,7 @@ Templates formatted with `.format(...)` must use `{{` and `}}` for literal brace
 `net.log` is treated as a list of dict entries; tests index `e["action"]` directly and call `net.log.clear()`.
 - Source: summaries/2026/11/24/topic-dangling-dependents-log-schema.md
 
-### [REJECT] warn-log-action-is-filtered-by-tests
+### [ACCEPT] warn-log-action-is-filtered-by-tests
 Tests in `tests/test_dangling_dependents.py` and `tests/test_network.py` select warnings with `e["action"] == "warn"`.
 - Source: summaries/2026/11/24/topic-dangling-dependents-log-schema.md
 - Rejected: trivial: test-only observation discoverable from test code
@@ -30739,7 +30739,7 @@ Tests in `tests/test_dangling_dependents.py` and `tests/test_network.py` select 
 `reasons/storage.py:344-346` and `reasons/pg.py:3279` persist `net.log`-style entries as `(timestamp, action, target, value)`.
 - Source: summaries/2026/11/24/topic-dangling-dependents-log-schema.md
 
-### [REJECT] warn-writer-not-confirmed
+### [ACCEPT] warn-writer-not-confirmed
 The observed code search did not locate an `"action": "warn"` write site or skipped-dependents implementation, so the writer must be verified directly.
 - Source: summaries/2026/11/24/topic-dangling-dependents-log-schema.md
 - Rejected: speculative: describes what a code search failed to find and asserts something "must be verified," not a durable codebase fact.
@@ -30764,17 +30764,17 @@ The symbol usage scan shows `clear_network_cache` is not called from `init_db`; 
 If a forced reinitialization produces the same coarse `st_mtime` as the cached value, `_with_network` can return the pre-reinitialization `Network`.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 
-### [REJECT] defeat-reason-types-definition-location
+### [ACCEPT] defeat-reason-types-definition-location
 `DEFEAT_REASON_TYPES` is defined in `reasons/review.py:85`.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: ephemeral: line-specific definition location snapshot
 
-### [REJECT] classify-defeat-reason-prompt-definition-location
+### [ACCEPT] classify-defeat-reason-prompt-definition-location
 `CLASSIFY_DEFEAT_REASON_PROMPT` is defined in `reasons/review.py:95`.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: ephemeral: line-specific definition location snapshot
 
-### [REJECT] prompt-does-not-reference-types-constant
+### [ACCEPT] prompt-does-not-reference-types-constant
 The prompt format call at `reasons/review.py:120` does not pass or reference `DEFEAT_REASON_TYPES`.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: trivial: single call-site detail subsumed by validation-role belief
@@ -30783,7 +30783,7 @@ The prompt format call at `reasons/review.py:120` does not pass or reference `DE
 `DEFEAT_REASON_TYPES` is used at `reasons/review.py:130-132` for result validation/extraction, not for constructing the prompt.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 
-### [REJECT] tests-do-not-compare-prompt-and-types
+### [ACCEPT] tests-do-not-compare-prompt-and-types
 `tests/test_classify_defeaters.py:160-162` checks list length and hyphen format but does not assert prompt contents match the list.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: trivial: test-assertion gap visible from the test file; not an architecture/API invariant.
@@ -30792,7 +30792,7 @@ The prompt format call at `reasons/review.py:120` does not pass or reference `DE
 The canonical valid `defeat_reason_type` values are defined by `DEFEAT_REASON_TYPES` in `reasons/review.py`.
 - Source: summaries/2026/11/24/topic-defeater-taxonomy.md
 
-### [REJECT] defeat-reason-types-has-seven-hyphenated-values
+### [ACCEPT] defeat-reason-types-has-seven-hyphenated-values
 Tests assert `DEFEAT_REASON_TYPES` contains exactly seven values and each contains a hyphen.
 - Source: summaries/2026/11/24/topic-defeater-taxonomy.md
 - Rejected: ephemeral: specific count of seven values changes with taxonomy edits.
@@ -30869,7 +30869,7 @@ In `cluster_beliefs_intra`, `round_num % k` selects `focus_idx` from size-sorted
 `_build_beliefs_section` filters to `truth_value == "IN"` nodes excluding derived nodes before passing `{id: text}` to clustering.
 - Source: summaries/2026/11/24/topic-derive-pipeline-cluster-mode.md
 
-### [REJECT] derive-lazily-imports-cluster-functions
+### [ACCEPT] derive-lazily-imports-cluster-functions
 `reasons/derive.py` imports `cluster_beliefs_intra` at line 211 and `cluster_beliefs` at line 219 only inside the active clustering branch.
 - Source: summaries/2026/11/24/topic-derive-pipeline-cluster-mode.md
 - Rejected: trivial: import placement and line numbers are directly visible from code and not durable architectural facts
@@ -30890,7 +30890,7 @@ In `_build_beliefs_section`, `if intra_cluster ... elif cluster` means setting b
 An SL justification is valid iff every antecedent is IN and every outlist node is OUT (`README.md:9,15`, `reasons/__init__.py:11`).
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 
-### [REJECT] cp-justification-type-is-cp
+### [ACCEPT] cp-justification-type-is-cp
 `Justification.type` is a plain string that takes the value `"CP"` (or `"SL"`) and is set by `--cp`/`--sl` in `api.py:331,334,444`.
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 - Rejected: trivial: obvious data-field fact visible from naming and the --cp/--sl flags
@@ -30899,7 +30899,7 @@ An SL justification is valid iff every antecedent is IN and every outlist node i
 `Network.challenge(target, reason)` creates a node with id `challenge-<target>` (suffixed `-2`, `-3` on repetition) that is IN and carries `metadata["challenge_target"] == target` (`tests/test_dialectical.py:47,57,71`).
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 
-### [REJECT] challenge-requires-outlist-defeat
+### [ACCEPT] challenge-requires-outlist-defeat
 Because a challenge places the target OUT while `challenge-<target>` is IN, the dialectical mechanism must be lowering challenges into the SL/outlist defeat layer described in `README.md:15`.
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 - Rejected: speculative: "must be lowering" is an inference about mechanism, not an observable code fact
@@ -30908,7 +30908,7 @@ Because a challenge places the target OUT while `challenge-<target>` is IN, the 
 `net.retract("challenge-<target>")` restores the challenged target to IN, and `net.retract("defense-<challenge>")` reinstates the challenge (making the target OUT again) (`tests/test_dialectical.py:82,138`).
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 
-### [REJECT] dialectical-tests-cite-doyle-section-6
+### [ACCEPT] dialectical-tests-cite-doyle-section-6
 The §6 attribution for challenge/defend appears only in the `tests/test_dialectical.py` docstring, not in any production module or the README.
 - Source: summaries/2026/11/24/topic-doyle-1979-truth-maintenance-system.md
 - Rejected: trivial: documentation-location detail observable from file inspection, not an architecture/API/data-flow invariant.
@@ -30945,7 +30945,7 @@ Documented at `reasons/ask.py:102-103` and asserted by `test_simple_prompt_has_n
 `ask()`'s signature at `reasons/ask.py:384` and the `store_true` CLI flag at `reasons/cli.py:3596` both default `simple` to `False`.
 - Source: summaries/2026/11/24/topic-dual-mode-cost-profile.md
 
-### [REJECT] simple-flag-is-forwarded-from-cli
+### [ACCEPT] simple-flag-is-forwarded-from-cli
 `reasons/cli.py:1374` forwards `args.simple` into `ask(simple=...)`.
 - Source: summaries/2026/11/24/topic-dual-mode-cost-profile.md
 - Rejected: trivial: forwarding a CLI arg into a function call is an obvious wiring fact visible from the code, not a durable architectural invariant
@@ -30954,12 +30954,12 @@ Documented at `reasons/ask.py:102-103` and asserted by `test_simple_prompt_has_n
 Both `reasons/network.py` and `reasons/pg.py` define `_entrenchment`; the Postgres version additionally requires a `cur` argument.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 
-### [REJECT] network-entrenchment-is-directly-tested
+### [ACCEPT] network-entrenchment-is-directly-tested
 `tests/test_backtracking.py` directly calls `net._entrenchment(...)` at lines 230, 259, 266, and 275.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 - Rejected: ephemeral: exact line numbers and direct-call snapshot are point-in-time
 
-### [REJECT] pg-entrenchment-has-no-observed-direct-tests
+### [ACCEPT] pg-entrenchment-has-no-observed-direct-tests
 The gathered observations show no test calling the Postgres `_entrenchment` implementation.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 - Rejected: meta: about gathered observations rather than a durable codebase fact
@@ -30968,7 +30968,7 @@ The gathered observations show no test calling the Postgres `_entrenchment` impl
 Both implementations store an `"entrenchment"` value on resolution candidates and sort candidates by that field.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 
-### [REJECT] entrenchment-parity-is-unproven
+### [ACCEPT] entrenchment-parity-is-unproven
 The observations contain no function bodies or cross-backend assertions, so identical scores for the same node data are not demonstrated.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 - Rejected: meta: about the absence of evidence in observations, not an observable codebase invariant
@@ -30981,7 +30981,7 @@ The observed `reasons/propose_update.py` source contains no writes to `.forge/pr
 `propose_updates` returns a list of normalized proposal dicts and optionally calls `on_batch` with the accumulated results.
 - Source: summaries/2026/11/24/topic-forge-propose-update-loop.md
 
-### [REJECT] propose-update-batches-in-groups-of-10
+### [ACCEPT] propose-update-batches-in-groups-of-10
 `PROPOSE_UPDATE_BATCH_SIZE` is `10`, and `propose_updates` processes `belief_ids` in slices of that size.
 - Source: summaries/2026/11/24/topic-forge-propose-update-loop.md
 - Rejected: ephemeral: exact batch-size constant and slicing detail is an implementation value likely to change
@@ -30990,7 +30990,7 @@ The observed `reasons/propose_update.py` source contains no writes to `.forge/pr
 The `propose_updates` loop contains no interactive approval or confirmation logic and continues after batch failures.
 - Source: summaries/2026/11/24/topic-forge-propose-update-loop.md
 
-### [REJECT] propose-update-persistence-likely-in-api
+### [ACCEPT] propose-update-persistence-likely-in-api
 `reasons/api.py` contains `propose_update` and a documented conversion step for storing LLM proposal output, making it the likely persistence layer for `.forge` proposal files.
 - Source: summaries/2026/11/24/topic-forge-propose-update-loop.md
 - Rejected: speculative: says "likely" and infers persistence location rather than stating a verified code fact
@@ -31051,7 +31051,7 @@ If no token is resolved and the repo requires auth, `download_network` raises `R
 `create_repo` and `upload_file` have required `token: str` parameters and do not call `_resolve_token` themselves.
 - Source: summaries/2026/11/24/topic-huggingface-hub-auth.md
 
-### [REJECT] cache-token-is-read-from-hf-cli-file
+### [ACCEPT] cache-token-is-read-from-hf-cli-file
 The cached fallback is the plain file `Path.home() / ".cache" / "huggingface" / "token"`, read and stripped of whitespace.
 - Source: summaries/2026/11/24/topic-huggingface-hub-auth.md
 - Rejected: duplicate: restates the cache-file fallback already captured by token-fallback-order-is-explicit-then-env-then-cache; only adds a trivial whitespace-stripping detail.
@@ -31060,22 +31060,22 @@ The cached fallback is the plain file `Path.home() / ".cache" / "huggingface" / 
 `CHANGELOG.md` line 33 pairs issue #16 with PR #17 under release 0.16.0 (2026-04-18).
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 
-### [REJECT] reasons-package-contains-no-issue-16-marker
+### [ACCEPT] reasons-package-contains-no-issue-16-marker
 Repo-wide `#16\b` matches occur only in `CHANGELOG.md` and `tests/test_import_agent.py`; `reasons/` contains zero.
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 - Rejected: ephemeral: repo-wide grep result is a point-in-time snapshot that changes with any edit
 
-### [REJECT] issue-16-fix-is-import-agent-active-premise
+### [ACCEPT] issue-16-fix-is-import-agent-active-premise
 The fix moves the active premise from antecedent to outlist so per-belief retraction is independent.
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 - Rejected: duplicate: same claim as existing `active-not-in-antecedents` / `active-premise-is-excluded-from-antecedents` (active premise is outlist, not antecedent)
 
-### [REJECT] test-import-agent-regression-covers-issue-16
+### [ACCEPT] test-import-agent-regression-covers-issue-16
 `tests/test_import_agent.py:358` documents issue #16 as the "core bug" and exercises the active-premise-as-antecedent path.
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 - Rejected: ephemeral: test file line number and comment detail are a point-in-time snapshot
 
-### [REJECT] changelog-is-the-only-durable-issue-reference
+### [ACCEPT] changelog-is-the-only-durable-issue-reference
 No TODO/FIXME/XXX/HACK, workflow, or commit-message marker for #16 exists in tracked files.
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 - Rejected: ephemeral: negative search sweep over tracked files is a point-in-time snapshot that expires with any edit
@@ -31148,7 +31148,7 @@ The same `[`-scanning `raw_decode` pattern appears in `propose_update`, `repair_
 `ask()` will call `list_tools`, `get_instructions`, and `call_tool` on every object passed in `mcp_servers`; no other bridge methods are invoked.
 - Source: summaries/2026/11/24/topic-mcp-bridge-interface.md
 
-### [REJECT] mcp-bridge-is-concrete-bridge-implementation
+### [ACCEPT] mcp-bridge-is-concrete-bridge-implementation
 `McpBridge` is the only production class in `reasons/mcp_client.py` implementing the three-method contract, and it is not imported by `reasons/ask.py`.
 - Source: summaries/2026/11/24/topic-mcp-bridge-interface.md
 - Rejected: trivial: class inventory and absence of an import are obvious from file structure/imports
@@ -31193,7 +31193,7 @@ Exceptions raised inside `call_tool` are captured into tool history and do not a
 `Nogood` IDs are derived from sorted node IDs, e.g. `nogood-a-b`, and survive save/load.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 
-### [REJECT] add-nogood-documented-contract-includes-backtracked-to
+### [ACCEPT] add-nogood-documented-contract-includes-backtracked-to
 `api.add_nogood` documents return fields `nogood_id`, `nodes`, `changed`, and `backtracked_to`.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 - Rejected: duplicate: return fields `nogood_id`, `changed`, and `backtracked_to` are already covered by existing beliefs `add-nogood-api-returns-nogood-id-key` and `add-nogood-mutates-and-backtracks`; only trivially adds `nodes` and "documented".
@@ -31206,7 +31206,7 @@ Exceptions raised inside `call_tool` are captured into tool history and do not a
 The observed `repair.py` code triages invalid beliefs into `search_and_link`, `soften`, `abandon`, or `research`.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 
-### [REJECT] codebase-citations-are-doyle-only
+### [ACCEPT] codebase-citations-are-doyle-only
 The observed Doyle/de Kleer citation search found Doyle references but no de Kleer references.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 - Rejected: meta: records an exploration search outcome rather than a codebase invariant
@@ -31235,7 +31235,7 @@ Args are built by excluding the `"tool"` key, and no schema validation or type c
 `reasons/derive.py:283` computes a per-agent quota from the agent’s share of `total_all`, not a global cap.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 
-### [REJECT] floor-of-five-can-exceed-global-budget
+### [ACCEPT] floor-of-five-can-exceed-global-budget
 The `max(5, ...)` floor at `reasons/derive.py:283` can make the sum of per-agent quotas exceed `max_beliefs` when there are many agents.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 - Rejected: duplicate: Same claim as existing `agent-budget-allocation-can-exceed-budget` (5-floor can make per-agent quotas exceed the budget)
@@ -31252,7 +31252,7 @@ Lines `reasons/derive.py:339` and `:343` compare `count` to `max_beliefs`; the f
 `reasons/derive.py:325` passes `max_beliefs` into `_sample_beliefs`, making the sampling path a second control point for the global cap.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 
-### [REJECT] proposal-states-absent
+### [ACCEPT] proposal-states-absent
 No `pending` or `accepted` proposal state strings appear anywhere in the observed code; the proposal lifecycle ends at markdown rendering.
 - Source: summaries/2026/11/24/topic-proposal-status-lifecycle.md
 - Rejected: speculative: Broad lifecycle conclusion from absence of strings in observed code; existing beliefs describe pending/accepted proposal states.
@@ -31265,7 +31265,7 @@ In `reasons/propose_update.py`, `"stale"` is a member of `FAILURE_MODES` classif
 `format_belief_for_update` reads `metadata.stale_reason` from a belief node and renders it as `Stale reason: ...`; it is belief-level metadata, not proposal state.
 - Source: summaries/2026/11/24/topic-proposal-status-lifecycle.md
 
-### [REJECT] acceptance-is-manual-command
+### [ACCEPT] acceptance-is-manual-command
 `format_proposal_markdown` emits `reasons update <id> "..."` / `reasons retract <id> --reason "..."` strings; the module itself persists no acceptance state and does not invoke those commands.
 - Source: summaries/2026/11/24/topic-proposal-status-lifecycle.md
 - Rejected: duplicate: existing belief `all-proposals-require-manual-command` already states that proposals are accepted by running suggested commands, making this a trivial rewording
@@ -31310,22 +31310,22 @@ Both `propose_supersession` and `accept_proposal` persist via `_pg_dispatch(pg_c
 Pubsub is documented as called by `_with_network.__exit__` after save completes, so subscribers see final persisted truth values rather than intermediate cascade states.
 - Source: summaries/2026/11/24/topic-pubsub-change-events.md
 
-### [REJECT] reasons-lib-is-backcompat-shim
+### [ACCEPT] reasons-lib-is-backcompat-shim
 Every sampled `reasons_lib/*.py` file is a 3-line backwards-compatibility shim, not a duplicated implementation.
 - Source: summaries/2026/11/24/topic-reasons-lib-shim-vs-mirror.md
 - Rejected: duplicate: existing all-reasons-lib-files-follow-shim-pattern already covers the shim pattern.
 
-### [REJECT] reasons-lib-reexports-via-star-import
+### [ACCEPT] reasons-lib-reexports-via-star-import
 `reasons_lib/__init__.py`, `reasons_lib/api.py`, and `reasons_lib/cli.py` each contain exactly one `from reasons.<sub> import *` on line 2.
 - Source: summaries/2026/11/24/topic-reasons-lib-shim-vs-mirror.md
 - Rejected: trivial: single star-import and line-2 detail is obvious from file structure.
 
-### [REJECT] reasons-is-canonical-source
+### [ACCEPT] reasons-is-canonical-source
 `reasons/__init__.py` (59 lines) and `reasons/api.py` (5886 lines) contain the actual implementations of `Justification`, `Node`, `Nogood`, and the functional API.
 - Source: summaries/2026/11/24/topic-reasons-lib-shim-vs-mirror.md
 - Rejected: ephemeral: specific file line counts are point-in-time snapshots that change with edits.
 
-### [REJECT] reasons-lib-has-no-additional-imports
+### [ACCEPT] reasons-lib-has-no-additional-imports
 Parsed imports for `reasons_lib/api.py` show only `{"module": "reasons.api", "names": ["*"]}`, proving no extra dependencies or local code.
 - Source: summaries/2026/11/24/topic-reasons-lib-shim-vs-mirror.md
 - Rejected: trivial: a single parsed star-import is an obvious import-level fact.
@@ -31334,22 +31334,22 @@ Parsed imports for `reasons_lib/api.py` show only `{"module": "reasons.api", "na
 Implementation and runtime behavior live under `reasons/`; `reasons_lib/` re-exports from it.
 - Source: summaries/2026/11/24/topic-reasons-vs-reasons_lib-duality.md
 
-### [REJECT] merkle-module-is-canonical-only-in-reasons
+### [ACCEPT] merkle-module-is-canonical-only-in-reasons
 All observed Merkle imports target `reasons.merkle`; there is no observed `reasons_lib.merkle` reference or shim.
 - Source: summaries/2026/11/24/topic-reasons-vs-reasons_lib-duality.md
 - Rejected: ephemeral: “all observed” absence claim is a point-in-time search result, not a durable code invariant.
 
-### [REJECT] script-entry-points-use-reasons-not-reasons-lib
+### [ACCEPT] script-entry-points-use-reasons-not-reasons-lib
 `pyproject.toml` maps `reasons` and `reasons-mcp` to `reasons.cli:main` and `reasons.mcp_server:main`.
 - Source: summaries/2026/11/24/topic-reasons-vs-reasons_lib-duality.md
 - Rejected: trivial: Entry-point mapping is directly visible configuration and adds no architectural invariant beyond the canonical package belief.
 
-### [REJECT] reasons-init-does-not-export-merkle-submodule
+### [ACCEPT] reasons-init-does-not-export-merkle-submodule
 `reasons/__init__.py` exposes dataclasses only, so `from reasons import *` does not automatically create `reasons_lib.merkle`.
 - Source: summaries/2026/11/24/topic-reasons-vs-reasons_lib-duality.md
 - Rejected: trivial: Star-import/export behavior is obvious from `__init__`, and the causal claim is not a durable invariant.
 
-### [REJECT] reasons-lib-is-included-in-setuptools-packages
+### [ACCEPT] reasons-lib-is-included-in-setuptools-packages
 `pyproject.toml:31` lists `reasons_lib` alongside `reasons` in `[tool.setuptools].packages`.
 - Source: summaries/2026/11/24/topic-reasons_lib deprecation strategy.md
 - Rejected: trivial: Specific pyproject line listing packages is an obvious configuration detail and line-number-specific.
@@ -31358,22 +31358,22 @@ All observed Merkle imports target `reasons.merkle`; there is no observed `reaso
 `CLAUDE.md:24` and `CLAUDE.md:35` describe `reasons_lib` as a backwards-compat alias/shim.
 - Source: summaries/2026/11/24/topic-reasons_lib deprecation strategy.md
 
-### [REJECT] test-repair-imports-repair-smuggled-beliefs
+### [ACCEPT] test-repair-imports-repair-smuggled-beliefs
 `tests/test_repair.py` (import block starting at line 10) requests `repair_smuggled_beliefs` from `reasons.repair`.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: trivial: "imports X from Y" is a basic import statement, explicitly trivial per criteria.
 
-### [REJECT] repair-py-names-orchestrator-repair-beliefs
+### [ACCEPT] repair-py-names-orchestrator-repair-beliefs
 `reasons/repair.py:9` documents the orchestrator as `repair_beliefs`, and no other `*orchestrat*` reference exists in the codebase.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: trivial: naming/docstring observation plus grep absence, visible from reading the file.
 
-### [REJECT] reasons-lib-repair-is-a-star-shim
+### [ACCEPT] reasons-lib-repair-is-a-star-shim
 `reasons_lib/repair.py` is exactly one line, `from reasons.repair import *`, so its public surface is determined entirely by `reasons/repair.py`'s top-level names.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: trivial: "module X imports Y" (star-import shim), explicitly trivial per criteria.
 
-### [REJECT] missing-import-name-fails-whole-module-collection
+### [ACCEPT] missing-import-name-fails-whole-module-collection
 An `ImportError` on `tests/test_repair.py:10` prevents any of the module's 542 lines of tests from executing, converting assertion failures into a single collection error.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: trivial: general pytest collection behavior (and includes an ephemeral 542-line count).
@@ -31382,7 +31382,7 @@ An `ImportError` on `tests/test_repair.py:10` prevents any of the module's 542 l
 `VALID_PATTERNS` in `reasons/repair.py` contains `{"search_and_link", "soften", "abandon", "research"}`, four patterns, contradicting the "Three patterns" module docstring.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 
-### [REJECT] parse-helpers-confirmed-present-in-repair-py
+### [ACCEPT] parse-helpers-confirmed-present-in-repair-py
 `parse_extract_response`, `parse_match_response`, `extract_smuggled_claim`, and `find_matching_premises` all appear within `reasons/repair.py` lines 1–250, leaving only the orchestrator symbol unverified.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: ephemeral: point-in-time search snapshot ("appear within lines 1–250, leaving only orchestrator symbol unverified") rather than a durable code fact
@@ -31403,32 +31403,32 @@ At `add_node` time, edges whose target is not yet in `self.nodes` are silently d
 `Network.supersede` explicitly calls `self.nodes[new_id].dependents.add(target_id)` when wiring the new node's `outlist`, which is what makes `"old" in net.nodes["new"].dependents` hold in the supersede test.
 - Source: summaries/2026/11/24/topic-reverse-index-consistency.md
 
-### [REJECT] add-justification-mirrors-new-edges
+### [ACCEPT] add-justification-mirrors-new-edges
 `Network.add_justification` adds the host node to the `dependents` set of every new antecedent/outlist target, as asserted by `TestMutationPathIntegrity::test_after_add_justification`.
 - Source: summaries/2026/11/24/topic-reverse-index-consistency.md
 - Rejected: duplicate: Same claim as existing `add-justification-registers-dependents` (updates dependents set on antecedent/outlist nodes).
 
-### [REJECT] review-prompt-emits-scope-findings
+### [ACCEPT] review-prompt-emits-scope-findings
 `REVIEW_PROMPT` in `reasons/review.py` requires the LLM to populate `scope_findings` (list of `{antecedent, establishes, does_not_establish}`) and `missing_property` (string) whenever `valid` is false.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: speculative: Describes a prompt requirement/LLM output contract, not an observable runtime invariant of the codebase.
 
-### [REJECT] challenge-symbol-defined-only-in-api
+### [ACCEPT] challenge-symbol-defined-only-in-api
 `challenge` is defined exactly once, at `reasons/api.py:1720` (`def challenge(`), making it the only intended entry point for structured challenge/defeat creation.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: speculative: "only intended entry point" is an editorial/intent claim, and the line-number reference is ephemeral.
 
-### [REJECT] grep-observations-are-inconsistent
+### [ACCEPT] grep-observations-are-inconsistent
 The reported greps return zero matches for `scope_findings`, `missing_property`, and `challenge\(`, yet `reasons/review.py` contains literal `scope_findings`/`missing_property` strings and `reasons/api.py:1720` contains `def challenge(`; the grep scoping must be narrowed or filtered.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: meta: About the search/exploration tooling and its scoping, not the codebase itself.
 
-### [REJECT] parse-review-response-consumption-unknown
+### [ACCEPT] parse-review-response-consumption-unknown
 Only the first ~200 of 272 lines of `reasons/review.py` are observed, so whether `parse_review_response` preserves `scope_findings`/`missing_property` is not established.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: speculative: reports an unresolved observation gap rather than a code fact
 
-### [REJECT] review-justifications-and-propose-update-do-not-emit-scope-findings
+### [ACCEPT] review-justifications-and-propose-update-do-not-emit-scope-findings
 Neither `reasons/review_justifications.py` (all 192 lines observed) nor the observed portion of `reasons/propose_update.py` defines or references `scope_findings`/`missing_property`, ruling them out as the orchestrator.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: speculative: absence in a partially observed file cannot support ruling out the orchestrator
@@ -31453,17 +31453,17 @@ It does not expose `n_clusters` or `seed` and relies on `_auto_k` defaults via `
 `CONTRADICTION_BATCH_SIZE` is 50 and semantic contradiction detection uses it for within-cluster batching.
 - Source: summaries/2026/11/24/topic-semantic-clustering-contradiction-coverage.md
 
-### [REJECT] tests-dotted-reasons-grep-zero
+### [ACCEPT] tests-dotted-reasons-grep-zero
 The `from reasons\.` grep across `tests/` returned zero matches.
 - Source: summaries/2026/11/24/topic-test-imports-audit.md
 - Rejected: ephemeral: records a grep-result snapshot rather than a durable code invariant
 
-### [REJECT] tests-plain-reasons-grep-zero
+### [ACCEPT] tests-plain-reasons-grep-zero
 The `from reasons import|import reasons` grep across `tests/` returned zero matches.
 - Source: summaries/2026/11/24/topic-test-imports-audit.md
 - Rejected: ephemeral: records a grep-result snapshot rather than a durable code invariant
 
-### [REJECT] tests-reasons-lib-grep-zero
+### [ACCEPT] tests-reasons-lib-grep-zero
 The `reasons_lib` grep across `tests/` returned zero matches.
 - Source: summaries/2026/11/24/topic-test-imports-audit.md
 - Rejected: ephemeral: records a grep-result snapshot rather than a durable code invariant
@@ -31476,17 +31476,17 @@ The `reasons_lib` grep across `tests/` returned zero matches.
 An SL justification is satisfied iff every `antecedents` entry is IN and every `outlist` entry is OUT (reasons/__init__.py:11-12).
 - Source: summaries/2026/11/24/topic-tms-nonmonotonic-outlist-semantics.md
 
-### [REJECT] outlist-nodes-are-propagated-as-dependents
+### [ACCEPT] outlist-nodes-are-propagated-as-dependents
 Both `add_node`/`add_justification` (reasons/api.py:2579-2582, 2650-2653) and `_rebuild_dependents` register the derived node under both antecedent and outlist node `dependents` sets.
 - Source: summaries/2026/11/24/topic-tms-nonmonotonic-outlist-semantics.md
 - Rejected: duplicate: existing `add-justification-registers-dependents` already covers outlist nodes in the dependents reverse index.
 
-### [REJECT] propagation-iterates-dependents-uniformly
+### [ACCEPT] propagation-iterates-dependents-uniformly
 `_propagate` (reasons/api.py:745) does not distinguish antecedent vs. outlist edges; both trigger re-evaluation through the same `current.dependents` loop.
 - Source: summaries/2026/11/24/topic-tms-nonmonotonic-outlist-semantics.md
 - Rejected: duplicate: existing `all-truth-effects-propagate-through-outlist-paths` already captures propagation through both antecedent and outlist edges.
 
-### [REJECT] outlist-flips-cascade-through-dependents
+### [ACCEPT] outlist-flips-cascade-through-dependents
 Asserting an outlist node retracts its dependent and retracting it restores the dependent (tests/test_outlist.py:TestOutlistCascading), which is only possible because outlist nodes are in the reverse index.
 - Source: summaries/2026/11/24/topic-tms-nonmonotonic-outlist-semantics.md
 - Rejected: duplicate: existing `antecedent-and-outlist-cascades-have-opposed-truth-effects` already captures the opposing outlist cascade.
@@ -31511,7 +31511,7 @@ When a node has `metadata["summarizes"]`, its covered IDs are removed from `visi
 `in_nodes.sort(key=lambda n: len(n.dependents), reverse=True)` is applied *twice* (once before Section 2, once again inside Section 3 on `visible_nodes`), so the cheapest admission policy is always "most-depended-on first."
 - Source: summaries/2026/11/24/topic-token-budgeted-context-injection.md
 
-### [REJECT] budget-check-requires-footer-tokens
+### [ACCEPT] budget-check-requires-footer-tokens
 Removing `+ footer_tokens` from `_over_budget` would allow the final `Token count: ~N / N budget` line to exceed the declared budget for small budgets, breaking `test_budget_respected_across_all_sections`.
 - Source: summaries/2026/11/24/topic-token-budgeted-context-injection.md
 - Rejected: speculative: describes a hypothetical cascade risk ("removing + footer_tokens would break a test") rather than an observable invariant.
@@ -31536,7 +31536,7 @@ Removing `+ footer_tokens` from `_over_budget` would allow the final `Token coun
 In `_build_structured_report`, `marker = "+" if tv == "IN" else "-"` renders any non-`IN` value, including `UNKNOWN`, with the same minus marker as `OUT`.
 - Source: summaries/2026/11/24/topic-unknown-status-policy.md
 
-### [REJECT] add-node-persists-example-in-metadata
+### [ACCEPT] add-node-persists-example-in-metadata
 `api.add_node` stores non-`None` `example` as `node.metadata["example"]` at `reasons/api.py:379-380`.
 - Source: summaries/2026/11/24/topic-update-command-implementation.md
 - Rejected: duplicate: already covered by `add-node-stores-example-in-metadata`
@@ -31549,7 +31549,7 @@ In `_build_structured_report`, `marker = "+" if tv == "IN" else "-"` renders any
 `Storage.save` serializes `node.metadata` to `metadata_json`, and `Storage.load` deserializes it, so metadata keys such as `example` persist.
 - Source: summaries/2026/11/24/topic-update-command-implementation.md
 
-### [REJECT] no-visible-update-signature-accepts-example
+### [ACCEPT] no-visible-update-signature-accepts-example
 The discovered update functions (`pin_update`, `propose_update`, `propose_updates`) and CLI handlers do not expose an `example` parameter in the observed code.
 - Source: summaries/2026/11/24/topic-update-command-implementation.md
 - Rejected: speculative: negative observation from partial/visible code is not a durable API invariant
@@ -31558,17 +31558,17 @@ The discovered update functions (`pin_update`, `propose_update`, `propose_update
 `format_proposal_markdown` in `reasons/propose_update.py` suggests `reasons update ...` commands, but no matching `cmd_update` definition appears in the update-definition search.
 - Source: summaries/2026/11/24/topic-update-command-implementation.md
 
-### [REJECT] no-cli-visible-to-flag-in-observations
+### [ACCEPT] no-cli-visible-to-flag-in-observations
 The only surfaced grep for argparse (`find_cli_argparse`) returned 0 matches, so `visible_to` is exposed as a Python kwarg, not a shell flag, within the captured scope.
 - Source: summaries/2026/11/24/topic-visible-to-command-matrix.md
 - Rejected: meta: describes an exploration search scope/grep result ("captured scope"), not a durable codebase fact.
 
-### [REJECT] is-visible-implements-subset-semantics
+### [ACCEPT] is-visible-implements-subset-semantics
 `_is_visible` (`reasons/api.py:36-47`) treats a node as visible iff every `access_tags` entry is contained in `visible_to`; untagged nodes are always visible.
 - Source: summaries/2026/11/24/topic-visible-to-command-matrix.md
 - Rejected: duplicate: already captured by existing beliefs such as `access-tags-subset-gate`, `access-tags-use-all-semantics`, and `access-tags-require-subset-for-visibility`.
 
-### [REJECT] tag-inheritance-prevents-explain-leak
+### [ACCEPT] tag-inheritance-prevents-explain-leak
 Derived nodes inherit the union of antecedent `access_tags` (`tests/test_access_tags.py:TestInheritance`), which is what makes `explain_node` and `trace_assumptions` safe without per-antecedent visibility checks.
 - Source: summaries/2026/11/24/topic-visible-to-command-matrix.md
 - Rejected: duplicate: union-of-antecedent inheritance is already recorded (`access-tags-inherit-through-antecedents`); the safety rationale is editorial spin on the same fact.
@@ -31581,7 +31581,7 @@ Derived nodes inherit the union of antecedent `access_tags` (`tests/test_access_
 `export_network` accepts `visible_to` (`reasons/api.py:1814`) and drops nogoods referencing invisible nodes (`test_export_network_filters_nogoods`), so the exported artifact — not just the query result — is scoped.
 - Source: summaries/2026/11/24/topic-visible-to-command-matrix.md
 
-### [REJECT] hf-uses-urllib-only
+### [ACCEPT] hf-uses-urllib-only
 `reasons/hf.py` imports `Request` and `urlopen` from `urllib.request` and does not import `requests` or `huggingface_hub`.
 - Source: summaries/2026/11/24/topic-zero-dependency-http-clients.md
 - Rejected: trivial: import-level fact about urllib vs requests/huggingface_hub
@@ -31668,7 +31668,7 @@ Callers invoke `_stale_older_pending` immediately before `_next_proposal_id`, so
 `add_nogood` returns `backtracked_to = None` both when not all input nodes are IN and when `find_culprits` returns an empty list.
 - Source: summaries/2026/11/24/reasons-api-add_nogood.md
 
-### [REJECT] add-nogood-empty-node-ids-vacuously-all-in
+### [ACCEPT] add-nogood-empty-node-ids-vacuously-all-in
 An empty `node_ids` list makes `all_in` vacuously true in `add_nogood`, so `find_culprits` and `add_nogood` are called with an empty list.
 - Source: summaries/2026/11/24/reasons-api-add_nogood.md
 - Rejected: duplicate: re-describes the empty-input crash already captured by `add-nogood-empty-input-raises-indexerror`
@@ -31739,16 +31739,16 @@ On the SQLite path, `set_metadata` raises `KeyError` for a missing node and the 
 On the SQLite path, `supersede(..., transitive=True)` defeats every ancestor in the supersession chain so only the latest version remains `IN`.
 - Source: summaries/2026/11/24/reasons-api-supersede.md
 
-### [REJECT] supersede-delegates-revision-to-network-supersede
+### [ACCEPT] supersede-delegates-revision-to-network-supersede
 The `supersede` API wrapper delegates the actual belief-revision logic to `Network.supersede` rather than implementing outlist manipulation itself.
 - Source: summaries/2026/11/24/reasons-api-supersede.md
 - Rejected: trivial: wrapper delegating to the same-named Network method is apparent from call structure and adds no non-obvious invariant
 
-### [REJECT] apply-dedup-plan-rewrites-before-retracting
+### [ACCEPT] apply-dedup-plan-rewrites-before-retracting
 Duplicate of existing belief `dedup-rewrites-before-retracting`.
 - Source: summaries/2026/11/24/reasons-api-apply_dedup_plan.md
 
-### [REJECT] export-network-visible-to-is-conjunctive
+### [ACCEPT] export-network-visible-to-is-conjunctive
 Duplicate of existing belief `access-tags-require-subset-for-visibility`.
 - Source: summaries/2026/11/24/reasons-api-export_network.md
 
@@ -31791,7 +31791,7 @@ supersede_with_text does not call _resolve_namespace and uses old_id verbatim, s
 trace_access_tags applies visible_to only to the starting node and does not filter ancestor tags from the returned union.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 
-### [REJECT] trace-access-tags-returns-unfiltered-ancestor-union
+### [ACCEPT] trace-access-tags-returns-unfiltered-ancestor-union
 trace_access_tags returns the union of metadata.access_tags along the backward dependency chain, intentionally including tags not present in visible_to.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 - Rejected: duplicate: captures the same unfiltered-union behavior as trace-access-tags-checks-only-start-node, with added editorial "intentionally"
@@ -31800,7 +31800,7 @@ trace_access_tags returns the union of metadata.access_tags along the backward d
 When pg_conninfo is truthy, trace_access_tags bypasses the SQLite path and dispatches to PgApi.trace_access_tags via _pg_dispatch.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 
-### [REJECT] trace-access-tags-empty-visible-to-requires-untagged-start
+### [ACCEPT] trace-access-tags-empty-visible-to-requires-untagged-start
 Passing visible_to=[] to trace_access_tags requires the starting node to have no access_tags to pass the visibility check.
 - Source: summaries/2026/11/24/reasons-api-trace_access_tags.md
 - Rejected: duplicate: trivial consequence of existing access-tags-subset-gate semantics (empty visible_to admits only empty access_tags)
@@ -32009,7 +32009,7 @@ Any node ID not present in `derived` is treated as a base premise with depth `0`
 `_get_depth` returns `1 + max(antecedent depths)`, so it measures the deepest selected antecedent chain rather than the number of justifications.
 - Source: summaries/2026/11/24/reasons-derive-_get_depth.md
 
-### [REJECT] get-depth-cycle-guard-can-underestimate
+### [ACCEPT] get-depth-cycle-guard-can-underestimate
 This duplicates existing `node-depth-cycle-guard-returns-provisional-zero`, which already records that the cycle guard can return provisional zero depths.
 - Source: summaries/2026/11/24/reasons-derive-_get_depth.md
 
@@ -32068,7 +32068,7 @@ A private-repo 403 from HuggingFace is not rewritten by `download_network`; it p
 On success `upload_file` returns `None`, discards the response body, and does not return a commit ID or remote URL.
 - Source: summaries/2026/11/24/reasons-hf-upload_file.md
 
-### [REJECT] upload-file-overwrites-remote-path-nonatomically
+### [ACCEPT] upload-file-overwrites-remote-path-nonatomically
 Uploading to an existing path overwrites it; a timeout after the server accepts the PUT can still leave the remote file changed despite an exception.
 - Source: summaries/2026/11/24/reasons-hf-upload_file.md
 - Rejected: speculative: timeout-after-PUT remote-change risk is a prediction/cascade analysis, not an observable code fact.
@@ -32202,7 +32202,7 @@ Running `reasons init` creates a SQLite database file named `reasons.db` for the
 `reasons/storage.py` defines the SQLite schema for nodes, justifications, dependents edges, nogoods, and the propagation audit log, making the schema the persisted TMS domain model.
 - Source: summaries/2026/11/24/scan-repo.md
 
-### [REJECT] cli-subcommand-dispatch-maps-to-modules
+### [ACCEPT] cli-subcommand-dispatch-maps-to-modules
 `reasons/cli.py` has a subcommand dispatch table that enumerates every CLI command and serves as an implicit module inventory.
 - Source: summaries/2026/11/24/scan-repo.md
 - Rejected: trivial: describes obvious file structure (a dispatch table visible from the module) and adds an editorial "implicit module inventory" framing rather than a durable architectural invariant.
@@ -32235,17 +32235,17 @@ An SL justification holds only when every antecedent is IN and every outlist nod
 The importer's topological sort and justification edge construction use the same `claim_by_id` predicate, so edges are only created to nodes that will actually be present in the imported batch.
 - Source: summaries/2026/11/24/topic-SL-justification-semantics.md
 
-### [REJECT] tests-conftest-has-no-shim-guard
+### [ACCEPT] tests-conftest-has-no-shim-guard
 `tests/conftest.py` contains no `reasons_lib` reference and no collection or import-inspection hook that would fail tests importing the shim.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 - Rejected: ephemeral: point-in-time negative claim about current conftest contents, expires with any edit.
 
-### [REJECT] ci-has-no-reasons-lib-guard
+### [ACCEPT] ci-has-no-reasons-lib-guard
 The only CI workflow, `.github/workflows/tests.yml`, contains no `reasons_lib` reference, so CI does not currently fail on shim usage in tests.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 - Rejected: ephemeral: snapshot of current CI config absence, not durable.
 
-### [REJECT] no-tests-import-reasons-lib
+### [ACCEPT] no-tests-import-reasons-lib
 A grep for `reasons_lib` across `tests/` returns zero matches, so no test currently imports the compatibility shim.
 - Source: summaries/2026/11/24/topic-backwards-compat-test-coverage.md
 - Rejected: ephemeral: a current grep-returns-zero snapshot that changes with any test edit.
@@ -32292,7 +32292,7 @@ A grep for `reasons_lib` across `tests/` returns zero matches, so no test curren
 `export_markdown` emits each claim as a heading of the form `### {node.id} [{status}] {btype}`.
 - Source: summaries/2026/11/24/topic-beliefs-md-format.md
 
-### [REJECT] mcp-tool-signatures-form-external-contract
+### [ACCEPT] mcp-tool-signatures-form-external-contract
 MCP tools are exposed through FastMCP decorators, so tool parameter names, type hints, defaults, and docstrings define the external MCP schema.
 - Source: summaries/2026/11/24/topic-beliefs-md-format.md
 - Rejected: trivial: Restates generic FastMCP decorator behavior rather than a specific codebase fact.
@@ -32313,7 +32313,7 @@ The `reasons/pg.py` module contains duplicate token-estimation logic using the s
 The compact budget check reserves footer space through the same `estimate_tokens` heuristic before deciding whether to drop lines.
 - Source: summaries/2026/11/24/topic-bpe-token-estimation.md
 
-### [REJECT] compact-tests-lock-chars-over-four-estimator
+### [ACCEPT] compact-tests-lock-chars-over-four-estimator
 `tests/test_compact.py` asserts `estimate_tokens(text) == len(text) // 4` and related exact outputs, so replacing the heuristic with a real tokenizer breaks tests.
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 - Rejected: speculative: predicts that replacing the estimator will break tests rather than stating a durable code invariant.
@@ -32326,11 +32326,11 @@ The observed token-estimation path applies a single character-count formula and 
 Compaction output includes a footer reporting token count as `~{current_tokens} / {budget} budget`, signaling that the count is an estimate.
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 
-### [REJECT] chars-over-four-undercounts-urls-by-three-to-four-times
+### [ACCEPT] chars-over-four-undercounts-urls-by-three-to-four-times
 The quantified 3-4x undercount for URLs is an illustrative estimate, not a measured codebase invariant or enforced behavior.
 - Source: summaries/2026/11/24/topic-bpe-tokenization.md
 
-### [REJECT] node-dependents-is-a-set
+### [ACCEPT] node-dependents-is-a-set
 `Node.dependents` is declared as a `set[str]`, so duplicate justification edges collapse and iteration order is not guaranteed.
 - Source: summaries/2026/11/24/topic-check-stale-vs-dependents-staleness.md
 - Rejected: duplicate: existing `add-justification-registers-dependents` already establishes `dependents` is a set; the remaining implications are generic set behavior.
@@ -32339,7 +32339,7 @@ The quantified 3-4x undercount for URLs is an illustrative estimate, not a measu
 Dependents verification and rebuild operate on `justifications` and `dependents`, not on `source` or `source_hash`.
 - Source: summaries/2026/11/24/topic-check-stale-vs-dependents-staleness.md
 
-### [REJECT] api-check-stale-wrapper-may-check-dependents
+### [ACCEPT] api-check-stale-wrapper-may-check-dependents
 The wrapper body was not observed, so claiming it checks dependents is unsupported speculation.
 - Source: summaries/2026/11/24/topic-check-stale-vs-dependents-staleness.md
 
@@ -32349,7 +32349,7 @@ The wrapper body was not observed, so claiming it checks dependents is unsupport
 **Generated:** 2026-11-24 (batch 10/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [REJECT] chunks-table-column-order-is-id-text-cluster-filename-section
+### [ACCEPT] chunks-table-column-order-is-id-text-cluster-filename-section
 The `chunks` table fixtures establish column order `(id, text, cluster, filename, section)`.
 - Source: summaries/2026/11/24/topic-chunks-fts-schema.md
 - Rejected: trivial: exact fixture/schema column order is a low-value implementation detail visible from the schema.
@@ -32370,27 +32370,27 @@ The `chunks.section` column can be NULL, and display code checks its truthiness 
 `chunks` and `chunks_fts` belong to a separate sources/RAG SQLite database, not the beliefs database defined in `reasons/storage.py`.
 - Source: summaries/2026/11/24/topic-chunks-fts-schema.md
 
-### [REJECT] claude-md-project-structure-enumerates-ten-reasons-modules
+### [ACCEPT] claude-md-project-structure-enumerates-ten-reasons-modules
 CLAUDE.md’s Project Structure block lists exactly ten `reasons/` modules plus the `reasons_lib/` shim.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: exact module count is a documentation snapshot that changes as the project evolves.
 
-### [REJECT] mcp-server-entry-point-is-undocumented-in-project-structure
+### [ACCEPT] mcp-server-entry-point-is-undocumented-in-project-structure
 `pyproject.toml` exposes `reasons-mcp = reasons.mcp_server:main`, but `mcp_server.py` is absent from CLAUDE.md’s Project Structure list.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: documentation Project Structure list is a point-in-time snapshot, not a durable code invariant.
 
-### [REJECT] cli-test-suite-is-absent-from-project-structure-test-list
+### [ACCEPT] cli-test-suite-is-absent-from-project-structure-test-list
 CHANGELOG references a 63-test CLI suite, but `tests/test_cli.py` is not among the test files listed in CLAUDE.md’s Project Structure.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: CHANGELOG test count and documentation file list reflect transient documentation state.
 
-### [REJECT] claude-md-and-readme-command-lists-diverge-in-both-directions
+### [ACCEPT] claude-md-and-readme-command-lists-diverge-in-both-directions
 CLAUDE.md’s command block and README’s command table are not supersets of each other: each documents commands or flags the other omits.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 - Rejected: ephemeral: documentation command-list divergence is doc-inventory drift, not a durable codebase contract.
 
-### [REJECT] 211-tests-claim-unverified-by-observations
+### [ACCEPT] 211-tests-claim-unverified-by-observations
 The claim describes a limitation of the exploration session, not a stable codebase behavior or invariant.
 - Source: summaries/2026/11/24/topic-claude-md-drift-audit.md
 
@@ -32433,7 +32433,7 @@ The `propagation_log` table stores log entries as `(timestamp, action, target, v
 `clear_network_cache` is defined in `reasons/api.py` and can clear either one database path’s cached network or all cached networks.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 
-### [REJECT] init-db-has-no-observed-clear-network-cache-call
+### [ACCEPT] init-db-has-no-observed-clear-network-cache-call
 Observed symbol usages show `clear_network_cache` is invoked only from tests, not from `init_db`.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 - Rejected: ephemeral: observed symbol-usage snapshot, not a durable invariant
@@ -32442,7 +32442,7 @@ Observed symbol usages show `clear_network_cache` is invoked only from tests, no
 `_with_network(db, write=True)` loads a different `Network` object than the cached read-mode path, so write operations do not reuse the cached object.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 
-### [REJECT] coarse-mtime-collision-can-return-pre-reinitialization-network
+### [ACCEPT] coarse-mtime-collision-can-return-pre-reinitialization-network
 If `init_db(force=True)` recreates a database within the same coarse mtime bucket as a cached read, `_with_network` can treat the cache as valid and return the pre-reinitialization `Network`.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 - Rejected: speculative: conditional cache-staleness risk analysis
@@ -32451,11 +32451,11 @@ If `init_db(force=True)` recreates a database within the same coarse mtime bucke
 Clearing the cache inside the `init_db` process does not invalidate other processes’ cached networks; those processes still rely on mtime and may retain stale networks.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 
-### [REJECT] force-init-cache-clear-is-recommendation
+### [ACCEPT] force-init-cache-clear-is-recommendation
 This is a prescriptive recommendation that `init_db(force=True)` should call `clear_network_cache`, not an observed code invariant.
 - Source: summaries/2026/11/24/topic-database-cache-invalidation.md
 
-### [REJECT] defeat-reason-types-and-prompt-colocated-in-review-py
+### [ACCEPT] defeat-reason-types-and-prompt-colocated-in-review-py
 `DEFEAT_REASON_TYPES` and `CLASSIFY_DEFEAT_REASON_PROMPT` are both defined in `reasons/review.py`.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: trivial: mere co-location of two constants in a file is obvious from file structure.
@@ -32468,12 +32468,12 @@ The `CLASSIFY_DEFEAT_REASON_PROMPT.format(...)` call does not reference or pass 
 `DEFEAT_REASON_TYPES` is used to validate or extract `classify_defeat_reason` results rather than to construct the classification prompt.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 
-### [REJECT] classify-defeat-reason-prompt-single-use-site
+### [ACCEPT] classify-defeat-reason-prompt-single-use-site
 `CLASSIFY_DEFEAT_REASON_PROMPT` is formatted only in the observed `classify_defeat_reason` call site.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 - Rejected: ephemeral: single-call-site observation is a point-in-time usage snapshot.
 
-### [REJECT] combined-grep-zero-matches-is-absence-evidence
+### [ACCEPT] combined-grep-zero-matches-is-absence-evidence
 The combined slug grep returned zero matches but conflicts with symbol-usage results that found both slugs, so it is unreliable as evidence of absence.
 - Source: summaries/2026/11/24/topic-defeat-reason-type-taxonomy.md
 
@@ -32493,7 +32493,7 @@ The combined slug grep returned zero matches but conflicts with symbol-usage res
 `report_gated.py` and `report_belief.py` never read `defeat_reason_type`; gated reporting groups by retracted premises and active blockers, and belief reporting traces justifications.
 - Source: summaries/2026/11/24/topic-defeater-taxonomy.md
 
-### [REJECT] build-wiki-and-export-markdown-consume-defeat-reason-type
+### [ACCEPT] build-wiki-and-export-markdown-consume-defeat-reason-type
 `build_wiki.py` and `export_markdown.py` read `defeat_reason_type` from node metadata, but the observed code does not establish grouping behavior.
 - Source: summaries/2026/11/24/topic-defeater-taxonomy.md
 - Rejected: speculative: the claim includes an unestablished uncertainty about grouping behavior rather than a durable code fact
@@ -32538,12 +32538,12 @@ Converting a derived node to a premise discards its justifications and removes t
 `retract` and `assert_node` change truth values and trigger propagation but do not add or remove entries in `dependents`.
 - Source: summaries/2026/11/24/topic-dependents-index-maintenance.md
 
-### [REJECT] challenge-node-references-target-through-justification
+### [ACCEPT] challenge-node-references-target-through-justification
 `Network.challenge(target, text)` creates a new node whose justification references the target, causing the target ID to appear in the challenge node’s `dependents` set.
 - Source: summaries/2026/11/24/topic-dependents-index-maintenance.md
 - Rejected: speculative: the dependents direction is inverted; an antecedent target should gain the challenge node in its dependents set, not the reverse.
 
-### [REJECT] scanner-zero-dependents-occurrences-is-true
+### [ACCEPT] scanner-zero-dependents-occurrences-is-true
 The scanner’s zero-occurrence result for `dependents` is contradicted by visible tests and is a false negative, not a code fact.
 - Source: summaries/2026/11/24/topic-dependents-index-maintenance.md
 
@@ -32597,7 +32597,7 @@ A challenge node stores `metadata["challenge_target"]`, and the target node’s 
 Source chunks from `_search_source_chunks` are inserted as `{context}` in `FTS_RAG_PROMPT`; only the synthesized FTS answer reaches `MERGE_PROMPT`.
 - Source: summaries/2026/11/24/topic-dual-answer-merge.md
 
-### [REJECT] dual-path-skips-merge-on-no-results
+### [ACCEPT] dual-path-skips-merge-on-no-results
 The entry explicitly says whether the merger is skipped when either side returns a no-results sentinel is not shown.
 - Source: summaries/2026/11/24/topic-dual-answer-merge.md
 
@@ -32613,7 +32613,7 @@ The entry explicitly says whether the merger is skipped when either side returns
 `--simple` is a `store_true` CLI flag forwarded into `ask(simple=args.simple)`.
 - Source: summaries/2026/11/24/topic-dual-mode-cost-profile.md
 
-### [REJECT] simple-mode-prefetches-retrieval-programmatically
+### [ACCEPT] simple-mode-prefetches-retrieval-programmatically
 The entry explicitly says whether TMS/FTS are programmatic prefetches or separate LLM calls in simple mode is not shown.
 - Source: summaries/2026/11/24/topic-dual-mode-cost-profile.md
 
@@ -32623,7 +32623,7 @@ The entry explicitly says whether TMS/FTS are programmatic prefetches or separat
 **Generated:** 2026-11-24 (batch 13/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [REJECT] entrenchment-implementations-differ-by-cursor-parameter
+### [ACCEPT] entrenchment-implementations-differ-by-cursor-parameter
 `reasons/network.py:_entrenchment` takes only `node_id`, while `reasons/pg.py:_entrenchment` also requires a database cursor argument.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 - Rejected: trivial: low-value signature difference directly visible from function definitions
@@ -32632,7 +32632,7 @@ The entry explicitly says whether TMS/FTS are programmatic prefetches or separat
 Both network and Postgres entrenchment call sites store an `"entrenchment"` value on resolution candidates and sort candidates by that field.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 
-### [REJECT] only-network-entrenchment-has-direct-test-coverage
+### [ACCEPT] only-network-entrenchment-has-direct-test-coverage
 `tests/test_backtracking.py` directly calls `net._entrenchment`, and no captured test calls the Postgres `_entrenchment` implementation or asserts cross-backend parity.
 - Source: summaries/2026/11/24/topic-entrenchment-parity-network-vs-pg.md
 - Rejected: ephemeral: test coverage status is a point-in-time snapshot and not a durable code invariant
@@ -32699,7 +32699,7 @@ The publish path fails with a `"token required"` error when neither `HF_TOKEN` n
 **Generated:** 2026-11-24 (batch 14/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [REJECT] import-agent-active-premise-belongs-in-outlist
+### [ACCEPT] import-agent-active-premise-belongs-in-outlist
 The import-agent fix places the active premise in the justification outlist rather than the antecedent so retracting an imported belief does not invalidate sibling beliefs.
 - Source: summaries/2026/11/24/topic-issue-16-origin.md
 - Rejected: duplicate: restates existing `active-not-in-antecedents` and `kill-switch-uses-outlist-not-antecedent` beliefs about the active premise being in the outlist rather than antecedents.
@@ -32783,7 +32783,7 @@ A bridge missing `list_tools`, `get_instructions`, or `call_tool` fails with `At
 `reasons/storage.py:SCHEMA` creates indexed relational side tables `node_tags` and `node_sources` for queryable tags and sources.
 - Source: summaries/2026/11/24/topic-node_tags-and-node_sources-table-migration.md
 
-### [REJECT] node-tags-store-access-tags-with-access-prefix
+### [ACCEPT] node-tags-store-access-tags-with-access-prefix
 `node_tags.tag` stores `access_tags` entries with an `access:` prefix, while arbitrary `metadata["tags"]` entries are stored unprefixed.
 - Source: summaries/2026/11/24/topic-node_tags-and-node_sources-table-migration.md
 - Rejected: duplicate: Already captured by `access-tags-are-prefixed` (access tags stored as `access:<tag>` in node_tags, plain metadata tags unprefixed).
@@ -32792,16 +32792,16 @@ A bridge missing `list_tools`, `get_instructions`, or `call_tool` fails with `At
 `Storage.save` is the only observed transaction that reconciles in-memory `Network` data with `node_tags` and `node_sources`.
 - Source: summaries/2026/11/24/topic-node_tags-and-node_sources-table-migration.md
 
-### [REJECT] pg-has-parallel-source-side-table-migration
+### [ACCEPT] pg-has-parallel-source-side-table-migration
 The observed PostgreSQL code stores sources in `rms_nodes` columns and does not show a parallel PG side-table migration.
 - Source: summaries/2026/11/24/topic-node_tags-and-node_sources-table-migration.md
 
-### [REJECT] add-nogood-returns-backtracked-to-and-changed
+### [ACCEPT] add-nogood-returns-backtracked-to-and-changed
 `api.add_nogood` documents return fields `nogood_id`, `nodes`, `changed`, and `backtracked_to`.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 - Rejected: duplicate: Return fields nogood_id/changed/backtracked are already covered by `add-nogood-api-returns-nogood-id-key` and `add-nogood-mutates-and-backtracks`; "documents" framing is trivial.
 
-### [REJECT] add-nogood-appends-to-network-nogood-ledger
+### [ACCEPT] add-nogood-appends-to-network-nogood-ledger
 The local `api.add_nogood` path calls `net.add_nogood(node_ids)` and then reads the newly appended entry from `net.nogoods`.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 - Rejected: duplicate: The net.add_nogood call/return is already captured by `add-nogood-mutates-and-backtracks` and `add-nogood-api-returns-nogood-id-key`; reading the appended ledger entry is an implementation detail.
@@ -32814,7 +32814,7 @@ The local `api.add_nogood` path calls `net.add_nogood(node_ids)` and then reads 
 Network export includes nogoods, and import supports JSON/Markdown nogood restoration including auto-detected `nogoods.md`.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 
-### [REJECT] atms-context-labeling-is-implemented
+### [ACCEPT] atms-context-labeling-is-implemented
 The observed resolution behavior is dependency-directed backtracking with entrenchment scoring, not ATMS-style context labeling.
 - Source: summaries/2026/11/24/topic-nogood-vs-doyle.md
 
@@ -32834,7 +32834,7 @@ If the model emits a tool call during the final prompt phase, the code performs 
 The same text JSON tool protocol is used across CLI backends and LangChain-backed `api:`/`vertex:` models.
 - Source: summaries/2026/11/24/topic-prompt-tool-protocol.md
 
-### [REJECT] native-tool-schema-adapters-are-used-per-provider
+### [ACCEPT] native-tool-schema-adapters-are-used-per-provider
 The observed design sends the same text prompt to every backend and has no per-provider native tool-schema adapter.
 - Source: summaries/2026/11/24/topic-prompt-tool-protocol.md
 
@@ -32842,7 +32842,7 @@ The observed design sends the same text prompt to every backend and has no per-p
 `agent_budget` is computed as the agent’s share of `total_all` candidate beliefs multiplied by `max_beliefs`, then floored.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 
-### [REJECT] derive-agent-budget-floor-can-exceed-global-cap
+### [ACCEPT] derive-agent-budget-floor-can-exceed-global-cap
 The `max(5, ...)` per-agent floor can make the sum of per-agent quotas exceed `max_beliefs` when many agents have small shares.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 - Rejected: duplicate: already captured by existing `agent-budget-allocation-can-exceed-budget` (per-agent 5-belief floor can push total over budget)
@@ -32859,7 +32859,7 @@ The `remaining = max(5, max_beliefs - count)` floor can return 5 even when fewer
 When sampling is enabled, `_sample_beliefs(all_items, max_beliefs, rng)` provides a second global-cap control point.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 
-### [REJECT] agent-budget-formula-enforces-global-max
+### [ACCEPT] agent-budget-formula-enforces-global-max
 The formula computes a per-agent quota only; global enforcement comes from `count` checks and optional sampling.
 - Source: summaries/2026/11/24/topic-proportional-budget-allocation.md
 
@@ -32879,7 +32879,7 @@ In `reasons/propose_update.py`, `"stale"` is a member of `FAILURE_MODES` describ
 `format_proposal_markdown` renders cascade-impact text only when a `cascade` argument is supplied, otherwise it renders `not computed`.
 - Source: summaries/2026/11/24/topic-proposal-status-lifecycle.md
 
-### [REJECT] proposal-pending-stale-accepted-state-machine-exists
+### [ACCEPT] proposal-pending-stale-accepted-state-machine-exists
 The observed code contains zero `pending` or `accepted` proposal-state matches, so the claimed state machine is not supported by the observations.
 - Source: summaries/2026/11/24/topic-proposal-status-lifecycle.md
 
@@ -32905,19 +32905,19 @@ Supersession fields written into node `metadata` by `reasons/network.py` are dis
 `publish` catches and logs subscriber exceptions rather than propagating them to the write caller.
 - Source: summaries/2026/11/24/topic-pubsub-change-events.md
 
-### [REJECT] _with_network-write-true-enables-pubsub-side-effects
+### [ACCEPT] _with_network-write-true-enables-pubsub-side-effects
 Duplicate of existing pubsub/write-context beliefs such as `pubsub-publish-requires-write-true` and `pubsub-events-fire-post-persistence`.
 - Source: summaries/2026/11/24/topic-pubsub-change-events.md
 
-### [REJECT] grep-for-reasons-lib-reexports-is-scope-blind
+### [ACCEPT] grep-for-reasons-lib-reexports-is-scope-blind
 Tooling artifact rather than a codebase invariant; also unstable as an exploration note.
 - Source: summaries/2026/11/24/topic-reasons-lib-shim-vs-mirror.md
 
-### [REJECT] forge-proposed-entries-lack-merkle-shim
+### [ACCEPT] forge-proposed-entries-lack-merkle-shim
 Generated documentation artifact rather than a runtime/code invariant.
 - Source: summaries/2026/11/24/topic-reasons-vs-reasons_lib-duality.md
 
-### [REJECT] reasons-lib-api-was-public-in-0.1.0
+### [ACCEPT] reasons-lib-api-was-public-in-0.1.0
 Historical/version-specific claim; exact version details are unstable and not needed for code work.
 - Source: summaries/2026/11/24/topic-reasons_lib deprecation strategy.md
 
@@ -32928,12 +32928,12 @@ Historical/version-specific claim; exact version details are unstable and not ne
 **Generated:** 2026-11-24 (batch 17/19)
 **Model:** openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017
 
-### [REJECT] repair-orchestrator-name-mismatch-between-test-and-docstring
+### [ACCEPT] repair-orchestrator-name-mismatch-between-test-and-docstring
 The repair orchestrator name is inconsistent: tests import `repair_smuggled_beliefs`, while the `reasons/repair.py` docstring names `repair_beliefs`.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 - Rejected: trivial: naming/docstring mismatch is obvious and transient
 
-### [REJECT] reasons-lib-repair-is-star-shim
+### [ACCEPT] reasons-lib-repair-is-star-shim
 Duplicate of existing shim beliefs covering per-module `from reasons.<module> import *` re-exports.
 - Source: summaries/2026/11/24/topic-repair_smuggled_beliefs-vs-repair_beliefs.md
 
@@ -32945,7 +32945,7 @@ Duplicate of existing shim beliefs covering per-module `from reasons.<module> im
 `reasons/api.py` never references `dependents`; reverse-index maintenance lives in `Network` methods, not the API wrappers.
 - Source: summaries/2026/11/24/topic-reverse-index-consistency.md
 
-### [REJECT] add-justification-mirrors-reverse-edges
+### [ACCEPT] add-justification-mirrors-reverse-edges
 Duplicate of existing add-justification propagation and dependents-index coverage beliefs.
 - Source: summaries/2026/11/24/topic-reverse-index-consistency.md
 
@@ -32953,7 +32953,7 @@ Duplicate of existing add-justification propagation and dependents-index coverag
 `REVIEW_PROMPT` requires the LLM to populate `scope_findings` (antecedent/establishes/does-not-establish entries) and `missing_property` whenever `valid` is false.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 
-### [REJECT] challenge-is-defined-in-reasons-api
+### [ACCEPT] challenge-is-defined-in-reasons-api
 `challenge` is defined as a function in `reasons/api.py`; no other definition of the symbol is observed.
 - Source: summaries/2026/11/24/topic-review-to-dialectic-wiring.md
 - Rejected: trivial: function definition location is obvious from file structure/naming
@@ -32970,7 +32970,7 @@ Duplicate of existing add-justification propagation and dependents-index coverag
 `cluster_beliefs` allocates selection budget across clusters and samples members from each, unlike `list_clusters`, which returns a hard one-cluster-per-belief partition.
 - Source: summaries/2026/11/24/topic-semantic-clustering-contradiction-coverage.md
 
-### [REJECT] tests-conftest-imports-only-os-uuid-pytest
+### [ACCEPT] tests-conftest-imports-only-os-uuid-pytest
 Trivial import inventory and unstable detail rather than a significant developer invariant.
 - Source: summaries/2026/11/24/topic-test-imports-audit.md
 
@@ -33028,7 +33028,7 @@ Compact suppresses a section header entirely if the header itself would exceed b
 `Storage.save` serializes `node.metadata` into `metadata_json` and `Storage.load` deserializes it, so `metadata["example"]` persists through normal storage.
 - Source: summaries/2026/11/24/topic-update-command-implementation.md
 
-### [REJECT] derived-tag-union-enables-target-only-visibility-check
+### [ACCEPT] derived-tag-union-enables-target-only-visibility-check
 Derived nodes inherit the union of antecedent `access_tags`, so explain/trace can check only the target node without per-antecedent visibility checks.
 - Source: summaries/2026/11/24/topic-visible-to-command-matrix.md
 - Rejected: duplicate: Existing access-tag inheritance and transitive subset-gating beliefs already capture the union and target-visibility consequence.
