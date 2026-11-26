@@ -3,8 +3,8 @@
     "schema_version": "1.0",
     "project_name": "reasons",
     "created_at": "2026-07-08T10:24:03+00:00",
-    "updated_at": "2026-11-26T01:00:18+00:00",
-    "node_count": 9129,
+    "updated_at": "2026-11-26T09:02:36+00:00",
+    "node_count": 9141,
     "generator": "reasonsforge/0.74.0"
   },
   "nodes": {
@@ -933,6 +933,25 @@
       "metadata": {},
       "created_at": "2026-11-21T01:00:12+00:00",
       "updated_at": "2026-11-21T01:00:12+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "accept-step-preserves-total-beliefs": {
+      "text": "In this snapshot, `accept-beliefs` accepted 0 beliefs while `total_beliefs` remained 201, so `total_beliefs` is not computed as `proposed - accepted`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "e8cb29aae1f40aa61ab27a925482c6039d31290e968243c122b92cb8c40c05c6",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -46959,6 +46978,44 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "diary-update-has-daily-cadence": {
+      "text": "the diary-update pipeline is scheduled daily: consecutive report timestamps are exactly 24 hours apart (`2026-11-24T18:00:07Z` \u2192 `2026-11-25T18:00:09Z`).",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/diff-2a676a2e-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "6b9a6ff599d9cda84a99e397b169d32320bc0890b1c71b5522f20ef4bfc03ae0",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "diary-update-orders-propose-before-accept": {
+      "text": "the `diary-update` pipeline defines its steps in order `propose-beliefs` then `accept-beliefs`, with the accept step operating on the proposals from the propose step.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/diff-2a676a2e-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "238c6cc08e51b8467651a947720b149d1ec47fe79179986d1de1ccef979f2cea",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "diary-update-pipeline-has-propose-and-accept-steps": {
       "text": "The `diary-update` pipeline records two ordered steps: `propose-beliefs` followed by `accept-beliefs`.",
       "truth_value": "IN",
@@ -58732,6 +58789,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "forge-report-accepted-never-exceeds-proposed": {
+      "text": "For a normal `.forge/report.json` proposal/acceptance run, `accepted` should never exceed `proposed`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b2f435044c91986560e8329b3296b600033d0aa7b5312d2cb905f101c0d793e4",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "forge-report-completed-status-implies-all-steps-completed": {
       "text": "When `.forge/report.json` has top-level `status == \"completed\"`, `completed_at` is present and every `steps[*].status` is `\"completed\"`.",
       "truth_value": "IN",
@@ -58787,6 +58863,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "forge-report-completed-status-requires-completed-at-and-summary": {
+      "text": "When the top-level `status` in `.forge/report.json` is `\"completed\"`, `completed_at` and `summary` are expected to be present.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "cb2bf551f80a876c52ab043acd793f986588b658805e578d9ac4cb046e2bd496",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "forge-report-consumers-use-counts-not-detail": {
       "text": "Machine consumers should read `counts`/`summary`, not parse the human-readable `detail` strings.",
       "truth_value": "IN",
@@ -58838,6 +58933,25 @@
       },
       "created_at": "2026-11-18T20:17:57+00:00",
       "updated_at": "2026-11-18T20:17:57+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "forge-report-failures-encoded-via-status-not-error-field": {
+      "text": "The observed `.forge/report.json` schema has no top-level `error`, `exception`, or `message` field; failure state must be represented through `status` and `detail` or an expanded schema.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "dedcbcc375525e5ead12f399e9e67e4624d2bf4c4959e87073a987dea20f8239",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -59026,6 +59140,25 @@
       },
       "created_at": "2026-11-23T09:01:30+00:00",
       "updated_at": "2026-11-23T09:01:30+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "forge-report-schema-lacks-schema-version": {
+      "text": "`.forge/report.json` has no `schema_version` field; schema changes are not versioned in the report itself.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "5c33ddb03903981613277f0a868def1f975958c1ce877c489d9a1136521a244d",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -137920,6 +138053,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-consumers-include-api-and-reporting-modules": {
+      "text": "The file is referenced by `reasons/api.py`, `reasons_lib/report_belief.py`, `reasons_lib/report_gated.py`, and their tests.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "1bba39d81a3b3f11a0dd31b20c2b841d99aeb0e1a622416bedd43016f6b153a9",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-detail-strings-must-agree-with-counts": {
       "text": "The `detail` strings in `.forge/report.json` numerically agree with the corresponding `counts` values, e.g. `\"proposed 260 from 17 entries\"` and `\"accepted 78 beliefs\"`.",
       "truth_value": "IN",
@@ -139249,6 +139401,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-json-is-diary-update-artifact": {
+      "text": "`.forge/report.json` is a generated artifact of the `diary-update` pipeline: this commit changes only its timestamps, confirming the file is rewritten wholesale each run rather than edited in place.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/diff-2a676a2e-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "f13ef9e8f38fb3d4be8f116367c05e22be3433d88fb72a501767e872d3a764b2",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-json-is-regenerated-per-run": {
       "text": "`.forge/report.json` is rewritten (not appended) each run; the diff shows every timestamp field (`started_at`, `updated_at`, `completed_at`, and each step's timestamps) changing together while counts stay identical, indicating a per-run snapshot rather than a cumulative log.",
       "truth_value": "IN",
@@ -139281,6 +139452,25 @@
       "metadata": {},
       "created_at": "2026-11-25T01:00:07+00:00",
       "updated_at": "2026-11-25T01:00:07+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-json-is-run-manifest": {
+      "text": "`.forge/report.json` is a JSON run manifest for the `diary-update` pipeline, not executable code.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "3d2117dc2bebaa2f9400798fa8a14c0de75c1294e41212996318eb53293bcbe6",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
@@ -139543,6 +139733,25 @@
       "verified_at": "",
       "retracted_at": ""
     },
+    "report-orders-propose-then-accept": {
+      "text": "The `steps` array contains `propose-beliefs` first and `accept-beliefs` second, both with status `completed`.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "b4bb4e023d076562177189e693e00f1f09904083cdb58fd4f1230430d7056716",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
     "report-partial-step-records-must-be-tolerated": {
       "text": "The entry does not provide evidence that readers must tolerate partially populated step records; this is an inference from incremental writing rather than a demonstrated contract.",
       "truth_value": "IN",
@@ -139556,6 +139765,25 @@
       "metadata": {},
       "created_at": "2026-11-22T01:00:04+00:00",
       "updated_at": "2026-11-22T01:00:04+00:00",
+      "reviewed_at": "",
+      "verified_at": "",
+      "retracted_at": ""
+    },
+    "report-records-pipeline-and-step-timing": {
+      "text": "`.forge/report.json` stores `started_at`/`updated_at`/`completed_at` at the pipeline level and `started_at`/`completed_at`/`duration_seconds` per step, enabling both total and per-step latency measurement.",
+      "truth_value": "IN",
+      "supporting_justification": null,
+      "justifications": [],
+      "source": "summaries/2026/11/26/diff-2a676a2e-.forge-report.md",
+      "source_url": "",
+      "source_hash": "",
+      "text_hash": "84ce884bdde5e5791cd9030c1a6357e2ca26103730f31b594a3c914b133933c7",
+      "date": "",
+      "metadata": {
+        "accepted_at": "2026-11-26T09:01:17"
+      },
+      "created_at": "2026-11-26T09:01:17+00:00",
+      "updated_at": "2026-11-26T09:01:17+00:00",
       "reviewed_at": "",
       "verified_at": "",
       "retracted_at": ""
