@@ -1,0 +1,45 @@
+{
+  "pipeline": "code-explore-propose-accept",
+  "job_id": "52d80f3dabec",
+  "started_at": "2026-11-26T16:00:42+00:00",
+  "updated_at": "2026-11-26T16:39:37+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "name": "explore",
+      "status": "completed",
+      "started_at": "2026-11-26T16:00:42+00:00",
+      "completed_at": "2026-11-26T16:15:20+00:00",
+      "detail": "14m 38s",
+      "duration_seconds": 878.11
+    },
+    {
+      "name": "propose-beliefs",
+      "status": "completed",
+      "started_at": "2026-11-26T16:15:20+00:00",
+      "completed_at": "2026-11-26T16:33:23+00:00",
+      "detail": "18m 3s",
+      "duration_seconds": 1082.95
+    },
+    {
+      "name": "review-proposals",
+      "status": "completed",
+      "started_at": "2026-11-26T16:33:23+00:00",
+      "completed_at": "2026-11-26T16:39:37+00:00",
+      "detail": "6m 14s",
+      "duration_seconds": 373.87
+    },
+    {
+      "name": "accept-beliefs",
+      "status": "completed",
+      "started_at": "2026-11-26T16:39:37+00:00",
+      "completed_at": "2026-11-26T16:39:37+00:00",
+      "detail": "0.7s",
+      "duration_seconds": 0.68
+    }
+  ],
+  "completed_at": "2026-11-26T16:39:37+00:00",
+  "summary": {
+    "duration_seconds": 2335.78
+  }
+}
