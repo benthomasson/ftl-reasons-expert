@@ -7204,7 +7204,7 @@
     "kind": "function",
     "target": "reasons/import_beliefs.py:_normalize_nogoods_markdown",
     "source": "general:beliefs-md-import-normalization",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:09:08"
   },
   {
@@ -7212,7 +7212,7 @@
     "kind": "general",
     "target": "duplicate-of-roundtrip",
     "source": "general:beliefs-md-import-normalization",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:09:08"
   },
   {
@@ -7220,7 +7220,7 @@
     "kind": "general",
     "target": "huggingface-repos-create-api",
     "source": "function:reasons/hf.py:create_repo",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:09:08"
   },
   {
@@ -7228,7 +7228,7 @@
     "kind": "general",
     "target": "hf-repo-id-validation",
     "source": "general:REASONS_HF_ORG-configuration",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:09:08"
   },
   {
@@ -7236,7 +7236,7 @@
     "kind": "general",
     "target": "Doyle-TMS",
     "source": "function:reasons/network.py:_compute_truth",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7244,7 +7244,7 @@
     "kind": "general",
     "target": "tms-fixpoint-convergence",
     "source": "function:reasons/network.py:recompute_all",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7252,7 +7252,7 @@
     "kind": "general",
     "target": "dependents-index-vs-full-recompute",
     "source": "function:reasons/network.py:recompute_all",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7260,7 +7260,7 @@
     "kind": "general",
     "target": "retracted-vs-dangling-dependents",
     "source": "general:retracted-node-semantics",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7268,7 +7268,7 @@
     "kind": "function",
     "target": "reasons/derive.py:memoize_cycle",
     "source": "general:justification-evaluation-around-api-1590",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7276,7 +7276,7 @@
     "kind": "general",
     "target": "truth-cache-sentinels",
     "source": "general:justification-evaluation-around-api-1590",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7284,7 +7284,7 @@
     "kind": "general",
     "target": "langfuse-callback-handler-lifecycle",
     "source": "function:reasons/llm.py:_get_langfuse_handler",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7292,7 +7292,7 @@
     "kind": "general",
     "target": "lazy-singleton-thread-safety",
     "source": "function:reasons/llm.py:_get_langfuse_handler",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7300,7 +7300,7 @@
     "kind": "general",
     "target": "optional-dependency-patterns",
     "source": "function:reasons/llm.py:_get_langfuse_handler",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7308,7 +7308,7 @@
     "kind": "general",
     "target": "argparse-parser-definition",
     "source": "general:optional-dependency-runtime-matrix",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7316,7 +7316,7 @@
     "kind": "general",
     "target": "optional-import-gating",
     "source": "general:optional-dependency-runtime-matrix",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7324,7 +7324,7 @@
     "kind": "function",
     "target": "reasons/mcp_client.py:McpBridge.call_tool",
     "source": "function:reasons/mcp_client.py:_call_tool_async",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7332,7 +7332,7 @@
     "kind": "general",
     "target": "mcp-call-tool-result-content",
     "source": "function:reasons/mcp_client.py:_call_tool_async",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7340,7 +7340,7 @@
     "kind": "general",
     "target": "mcp-session-concurrency",
     "source": "function:reasons/mcp_client.py:_call_tool_async",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7348,7 +7348,7 @@
     "kind": "general",
     "target": "mcp-sdk-error-codes",
     "source": "general:mcp-sdk-calltoolresult",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7356,7 +7356,7 @@
     "kind": "general",
     "target": "ask.py-mcp-dispatch",
     "source": "general:mcp-sdk-calltoolresult",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7364,7 +7364,7 @@
     "kind": "function",
     "target": "reasons/mcp_client.py:close",
     "source": "function:reasons/mcp_client.py:call_tool",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7372,7 +7372,7 @@
     "kind": "general",
     "target": "mcp-calltoolresult-iserror",
     "source": "function:reasons/mcp_client.py:call_tool",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7380,7 +7380,7 @@
     "kind": "general",
     "target": "mcp-client-session-concurrency",
     "source": "function:reasons/mcp_client.py:call_tool",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:10:50"
   },
   {
@@ -7388,7 +7388,7 @@
     "kind": "general",
     "target": "mcp-pydantic-version-resolution",
     "source": "general:fastmcp-schema-generation",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7396,7 +7396,7 @@
     "kind": "general",
     "target": "fastmcp-tool-schema-serialization",
     "source": "general:fastmcp-schema-generation",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7404,7 +7404,7 @@
     "kind": "function",
     "target": "reasons/merkle.py:_fresh_merkle_hash",
     "source": "function:reasons/merkle.py:verify_justification",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7412,7 +7412,7 @@
     "kind": "general",
     "target": "justification-graph-model",
     "source": "function:reasons/merkle.py:verify_justification",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7420,7 +7420,7 @@
     "kind": "general",
     "target": "justification-graph-invariants",
     "source": "function:reasons/merkle.py:compute_content_hash",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7428,7 +7428,7 @@
     "kind": "general",
     "target": "backfill-callers",
     "source": "function:reasons/merkle.py:backfill_hashes",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7436,7 +7436,7 @@
     "kind": "general",
     "target": "cycle-finding-schema",
     "source": "general:cycle-detection-contract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7444,7 +7444,7 @@
     "kind": "general",
     "target": "strict-vs-reporting-modes",
     "source": "general:cycle-detection-contract",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7452,7 +7452,7 @@
     "kind": "general",
     "target": "editable-install-and-packaging",
     "source": "general:importlib.metadata.version",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7460,7 +7460,7 @@
     "kind": "general",
     "target": "packaging-distribution-vs-import-name",
     "source": "general:ftl-reasons-packaging-metadata",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7468,7 +7468,7 @@
     "kind": "general",
     "target": "PackageNotFoundError-behavior",
     "source": "general:ftl-reasons-packaging-metadata",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7476,7 +7476,7 @@
     "kind": "general",
     "target": "installed-vs-checkout-version",
     "source": "general:editable-install-versioning",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7484,7 +7484,7 @@
     "kind": "general",
     "target": "metadata-export-tests",
     "source": "general:editable-install-versioning",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7492,7 +7492,7 @@
     "kind": "function",
     "target": "reasons/storage.py:init_db",
     "source": "general:schema-version-compatibility",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7500,7 +7500,7 @@
     "kind": "function",
     "target": "reasons/pg.py:check_stale",
     "source": "general:schema-version-compatibility",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7508,7 +7508,7 @@
     "kind": "general",
     "target": "schema-version-compatibility-gap",
     "source": "general:schema-version-compatibility",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7516,7 +7516,7 @@
     "kind": "general",
     "target": "pg-backend-dispatch",
     "source": "function:reasons/api.py:import_api",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:12:28"
   },
   {
@@ -7524,7 +7524,7 @@
     "kind": "general",
     "target": "secret-management",
     "source": "general:mind-service-secret-management",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7532,7 +7532,7 @@
     "kind": "file",
     "target": ".gitignore",
     "source": "general:mind-service-secret-management",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7540,7 +7540,7 @@
     "kind": "general",
     "target": "integration-test-boundary",
     "source": "general:mind-service-secret-management",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7548,7 +7548,7 @@
     "kind": "general",
     "target": "doyle-tms-1979",
     "source": "function:reasons/network.py:find_culprits",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7556,7 +7556,7 @@
     "kind": "function",
     "target": "reasons/network.py:explain",
     "source": "function:reasons/network.py:trace_assumptions",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7564,7 +7564,7 @@
     "kind": "general",
     "target": "truth-maintenance-system-semantics",
     "source": "function:reasons/network.py:trace_assumptions",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7572,7 +7572,7 @@
     "kind": "general",
     "target": "nogood-enforcement",
     "source": "function:reasons/network.py:add_nogood",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7580,7 +7580,7 @@
     "kind": "general",
     "target": "doyle-tms-outlist-semantics",
     "source": "function:reasons/network.py:_justification_valid",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7588,7 +7588,7 @@
     "kind": "function",
     "target": "reasons/pg.py:_explain_recursive",
     "source": "function:reasons/pg.py:_justification_valid_cached",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7596,7 +7596,7 @@
     "kind": "general",
     "target": "cp-assumption-consistency",
     "source": "general:nogood-consistency-check",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7604,7 +7604,7 @@
     "kind": "general",
     "target": "jsonb-containment-queries",
     "source": "function:reasons/pg.py:_find_dependents",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7612,7 +7612,7 @@
     "kind": "general",
     "target": "gin-index-or-optimization",
     "source": "function:reasons/pg.py:_find_dependents",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7620,7 +7620,7 @@
     "kind": "function",
     "target": "reasons/pg.py:import_json",
     "source": "function:reasons/pg.py:propagate",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7628,7 +7628,7 @@
     "kind": "general",
     "target": "retracted-vs-derived-out",
     "source": "function:reasons/pg.py:propagate",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7636,7 +7636,7 @@
     "kind": "general",
     "target": "rms-cp-semantics",
     "source": "function:reasons/pg.py:_compute_truth",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:14:34"
   },
   {
@@ -7644,7 +7644,7 @@
     "kind": "function",
     "target": "reasons/api.py:propagate",
     "source": "general:truth-maintenance-rms",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7652,7 +7652,7 @@
     "kind": "general",
     "target": "rms-model-definitions",
     "source": "general:truth-maintenance-rms",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7660,7 +7660,7 @@
     "kind": "function",
     "target": "reasons/pg.py:find_culprits",
     "source": "general:dual-backend-parity",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7668,7 +7668,7 @@
     "kind": "general",
     "target": "entrenchment-parity-tests",
     "source": "general:dual-backend-parity",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7676,7 +7676,7 @@
     "kind": "general",
     "target": "tms-justification-semantics",
     "source": "function:reasons/propose_update.py:format_belief_for_update",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7684,7 +7684,7 @@
     "kind": "general",
     "target": "callback-call-sites",
     "source": "general:on-batch-cumulative-callback-pattern",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7692,7 +7692,7 @@
     "kind": "general",
     "target": "failure-mode-taxonomy-parity",
     "source": "function:reasons/propose_update.py:PROPOSE_UPDATE_PROMPT",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7700,7 +7700,7 @@
     "kind": "function",
     "target": "reasons/api.py:_load_network",
     "source": "general:deepcopy-read-only-network-pattern",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7708,7 +7708,7 @@
     "kind": "general",
     "target": "read-only-network-invariant-tests",
     "source": "general:deepcopy-read-only-network-pattern",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7716,7 +7716,7 @@
     "kind": "general",
     "target": "_with_network transaction hook",
     "source": "function:reasons/pubsub.py:compute_changes",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7724,7 +7724,7 @@
     "kind": "general",
     "target": "truth-value snapshot representation",
     "source": "function:reasons/pubsub.py:compute_changes",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7732,7 +7732,7 @@
     "kind": "function",
     "target": "reasons/repair.py:parse_triage_response",
     "source": "function:reasons/repair.py:triage_belief",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7740,7 +7740,7 @@
     "kind": "general",
     "target": "prompt-injection-surface",
     "source": "function:reasons/repair.py:triage_belief",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7748,7 +7748,7 @@
     "kind": "general",
     "target": "cp-vs-sl-semantics",
     "source": "general:truth-maintenance-system-graph-structure",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7756,7 +7756,7 @@
     "kind": "general",
     "target": "repair-pattern-dry-run-semantics",
     "source": "function:reasons/repair.py:_do_search_and_link",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:16:10"
   },
   {
@@ -7764,7 +7764,7 @@
     "kind": "general",
     "target": "repair-metadata-consumers",
     "source": "general:metadata-taxonomy",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7772,7 +7772,7 @@
     "kind": "function",
     "target": "reasons/repair_premises.py:format_premise_for_repair",
     "source": "function:reasons/repair_premises.py:_repair_one",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7780,7 +7780,7 @@
     "kind": "general",
     "target": "llm-concurrency-and-timeout",
     "source": "function:reasons/repair_premises.py:_repair_one",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7788,7 +7788,7 @@
     "kind": "general",
     "target": "tms-review-to-repair-pipeline",
     "source": "function:reasons/repair_premises.py:repair_premises",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7796,7 +7796,7 @@
     "kind": "general",
     "target": "json-extraction-hardening",
     "source": "general:llm-json-response-parsing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7804,7 +7804,7 @@
     "kind": "general",
     "target": "git-index-modes",
     "source": "general:git-ls-files-mode-bits",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7812,7 +7812,7 @@
     "kind": "general",
     "target": "git-ls-files-verification",
     "source": "general:git-ls-files-mode-bits",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7820,7 +7820,7 @@
     "kind": "general",
     "target": "backwards-compat-shim-policy",
     "source": "general:reasons-lib-drift-audit",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7828,7 +7828,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network._compute_truth",
     "source": "general:cp-justification-semantics",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7836,7 +7836,7 @@
     "kind": "function",
     "target": "reasons/network.py:Network._propagate",
     "source": "general:cp-justification-semantics",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7844,7 +7844,7 @@
     "kind": "function",
     "target": "reasons/cli.py:_parse_visible_to",
     "source": "function:reasons/cli.py:cmd_show",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-22T16:17:50"
   },
   {
@@ -7852,7 +7852,7 @@
     "kind": "general",
     "target": "package-duality",
     "source": "scan:repo",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:00:52"
   },
   {
@@ -7860,7 +7860,7 @@
     "kind": "general",
     "target": "malformed-llm-json-handling",
     "source": "general:robust-llm-json-parsing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7868,7 +7868,7 @@
     "kind": "general",
     "target": "json5-dependency-impact",
     "source": "general:robust-llm-json-parsing",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7876,7 +7876,7 @@
     "kind": "general",
     "target": "pg-backend-support",
     "source": "function:reasons/cli.py:cmd_classify_defeaters",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7884,7 +7884,7 @@
     "kind": "general",
     "target": "dry-run-llm-behavior",
     "source": "function:reasons/cli.py:cmd_classify_defeaters",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7892,7 +7892,7 @@
     "kind": "function",
     "target": "reasons/cli.py:cmd_migrate_defeaters",
     "source": "function:reasons/cli.py:cmd_classify_defeaters",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7900,7 +7900,7 @@
     "kind": "function",
     "target": "reasons/api.py:_is_justification_valid",
     "source": "general:truth-propagation",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7908,7 +7908,7 @@
     "kind": "general",
     "target": "tms-propagation-ordering",
     "source": "general:truth-propagation",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7916,7 +7916,7 @@
     "kind": "general",
     "target": "metadata-roundtrip-tests",
     "source": "general:export-import-roundtrip",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7924,7 +7924,7 @@
     "kind": "general",
     "target": "inlist-outlist-precedence",
     "source": "general:tms-justification-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7932,7 +7932,7 @@
     "kind": "general",
     "target": "truth-maintenance-system-justification-types",
     "source": "function:reasons/review_justifications.py:_has_multi_antecedent_sl",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7940,7 +7940,7 @@
     "kind": "function",
     "target": "reasons/api.py:_add_node_raw",
     "source": "general:justification-storage-schema",
-    "status": "pending",
+    "status": "failed",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7948,7 +7948,7 @@
     "kind": "general",
     "target": "forge-artifact-schema",
     "source": "file:.forge/report.json",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:02:35"
   },
   {
@@ -7956,7 +7956,7 @@
     "kind": "general",
     "target": "git-history-for-proposed-entries",
     "source": "general:forge-propose-apply-pipeline",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -7964,7 +7964,7 @@
     "kind": "general",
     "target": "diary-update-pipeline-entrypoint",
     "source": "general:diary-update-pipeline-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -7972,7 +7972,7 @@
     "kind": "general",
     "target": ".forge-directory-writer",
     "source": "general:diary-update-pipeline-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -7980,7 +7980,7 @@
     "kind": "general",
     "target": "report-summary-vs-step-counts",
     "source": "general:diary-update-pipeline-schema",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -7988,7 +7988,7 @@
     "kind": "general",
     "target": "cost-file-glob",
     "source": "general:costs-directory-convention",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -7996,7 +7996,7 @@
     "kind": "general",
     "target": "aggregate-vs-breakdown-check",
     "source": "general:costs-directory-convention",
-    "status": "pending",
+    "status": "done",
     "added": "2026-11-23T16:04:05"
   },
   {
@@ -12390,5 +12390,1189 @@
     "source": "general:defeater-id-naming-convention",
     "status": "pending",
     "added": "2026-11-26T16:15:20"
+  },
+  {
+    "title": "The truth-value recomputation engine that powers cascades and restoration (README's headline behavior).",
+    "kind": "function",
+    "target": "reasons/storage.py:propagate",
+    "source": "scan:repo",
+    "status": "pending",
+    "added": "2026-11-27T16:00:32"
+  },
+  {
+    "title": "Need external Hub docs or an integration capture to confirm real 2xx/409 response-body shapes and whether 409 has non-\u201calready exists\u201d meanings.",
+    "kind": "general",
+    "target": "huggingface-create-repo-api-contract",
+    "source": "general:huggingface-repos-create-api",
+    "status": "pending",
+    "added": "2026-11-27T16:01:53"
+  },
+  {
+    "title": "Decide whether invalid environment configuration should fail fast or fall back to defaults.",
+    "kind": "general",
+    "target": "configuration-validation",
+    "source": "general:hf-repo-id-validation",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "The PG backend's `recompute_all` (or equivalent) \u2014 does the SQL implementation handle cycles identically to the in-memory one? Divergence here is a likely bug source.",
+    "kind": "function",
+    "target": "reasons/pg.py:1601",
+    "source": "general:tms-fixpoint-convergence",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "Construct an explicit SL cycle via `net.add_node(..., justifications=[Justification(...)])` and observe whether the fixpoint produces `OUT`/`OUT` (Doyle-correct) or oscillates to `IN`/`OUT` depending on iteration order.",
+    "kind": "general",
+    "target": "justification-cycle-handling",
+    "source": "general:tms-fixpoint-convergence",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "Build a chain of retractions and restorations and verify the `max_passes = len(remaining) + 1` heuristic in `reasons/api.py:2137` never terminates early on a still-changing state.",
+    "kind": "general",
+    "target": "restore-chain-bounds",
+    "source": "general:tms-fixpoint-convergence",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "Locate the actual production call sites that use `node.dependents` to limit work; they were not present in the observations.",
+    "kind": "general",
+    "target": "incremental-dependents-update-path",
+    "source": "general:dependents-index-vs-full-recompute",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "How `verify_dependents()` / `_rebuild_dependents()` detect and repair the drift that produces dangling references in the first place.",
+    "kind": "general",
+    "target": "dependents-integrity",
+    "source": "general:retracted-vs-dangling-dependents",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "No cyclic truth-justification tests were observed; add or inspect tests for self-cycles and two-node cycles.",
+    "kind": "general",
+    "target": "cycle-propagation-tests",
+    "source": "general:truth-cache-sentinels",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "Confirm repo-wide that `IN_PROGRESS` and `PENDING` are absent and that `UNKNOWN` never enters `truth_cache`.",
+    "kind": "general",
+    "target": "sentinel-truth-values",
+    "source": "general:truth-cache-sentinels",
+    "status": "pending",
+    "added": "2026-11-27T16:01:54"
+  },
+  {
+    "title": "Inspect the installed `langfuse.langchain.CallbackHandler` implementation to determine whether it is thread-safe, stateful per run, and whether it buffers/flushes events.",
+    "kind": "general",
+    "target": "langfuse-callback-handler-internals",
+    "source": "general:langfuse-callback-handler-lifecycle",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "Determine whether this application needs an explicit `flush()` / shutdown hook so traces are not lost at process exit.",
+    "kind": "general",
+    "target": "langfuse-flush-lifecycle",
+    "source": "general:langfuse-callback-handler-lifecycle",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "Reconstruct what `find_lazy_initialization_terms` was actually scanning, since it returned zero despite the codebase presumably containing an unlocked init.",
+    "kind": "general",
+    "target": "lazy-init-observation-gap",
+    "source": "general:lazy-singleton-thread-safety",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "The standard remedy for the race in an unlocked lazy init; check whether `reasons/llm.py` uses it or a lock-free alternative.",
+    "kind": "general",
+    "target": "double-checked-locking",
+    "source": "general:lazy-singleton-thread-safety",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "Assess whether a single module-wide `_cost_lock` at lines 71/83/89/105/323 creates a bottleneck on the hot LLM-call path, and whether the lock could be narrowed.",
+    "kind": "general",
+    "target": "lock-contention-audit",
+    "source": "general:lazy-singleton-thread-safety",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "Verify whether cost *reads* (e.g., reporting at line 323) are also under `_cost_lock`; asymmetric read/write locking is a common follow-on bug.",
+    "kind": "general",
+    "target": "read-vs-write-locking",
+    "source": "general:lazy-singleton-thread-safety",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "Search the test tree for `monkeypatch` / `sys.modules[...] = None` patterns to confirm whether any test actually asserts behavior when an extra is *not* installed.",
+    "kind": "general",
+    "target": "optional-dependency-test-strategy",
+    "source": "general:optional-dependency-patterns",
+    "status": "pending",
+    "added": "2026-11-27T16:02:56"
+  },
+  {
+    "title": "The zero-match `find_add_argument_calls` result contradicts the argparse import and the handler reads; the search scope, glob, or regex likely needs to be corrected and re-run over the full 4015-line file.",
+    "kind": "general",
+    "target": "cli-grep-verification",
+    "source": "general:argparse-parser-definition",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Search `tests/` for `pytest.raises(ImportError, ...)` assertions to confirm message text is regression-tested.",
+    "kind": "general",
+    "target": "optional-dependency-test-coverage",
+    "source": "general:optional-import-gating",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Design of a normalizer returning `list[Text | Image | ResourceRef]` instead of a single joined `str`.",
+    "kind": "general",
+    "target": "mcp-content-block-handling",
+    "source": "general:mcp-call-tool-result-content",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Whether protocol-level `isError=True` should short-circuit the `ask` tool loop instead of being re-prompted.",
+    "kind": "general",
+    "target": "tool-error-propagation",
+    "source": "general:mcp-call-tool-result-content",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Inspect the installed `mcp` package\u2019s `ClientSession.call_tool` / request-response routing to confirm whether concurrent requests are multiplexed safely.",
+    "kind": "general",
+    "target": "mcp-sdk-client-session-concurrency",
+    "source": "general:mcp-session-concurrency",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "The tests use a synchronous fake, so they do not validate real `ClientSession` concurrency behavior.",
+    "kind": "function",
+    "target": "tests/test_ask_mcp.py:FakeBridge.call_tool",
+    "source": "general:mcp-session-concurrency",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Read `mcp/types.py` (or `mcp/shared/exceptions.py`) in your installed `mcp` version to lock in the exact enum members and ranges.",
+    "kind": "general",
+    "target": "mcp-sdk-errorcode-source",
+    "source": "general:mcp-sdk-error-codes",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "No current test drives the JSON-RPC wire; a malformed-JSON / unknown-method / bad-params test set is what would empirically confirm FastMCP's emission range.",
+    "kind": "general",
+    "target": "protocol-level-tests",
+    "source": "general:mcp-sdk-error-codes",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Upstream repo where `ErrorCode` and FastMCP's error mapping are actually defined, not vendored here.",
+    "kind": "repo",
+    "target": "modelcontextprotocol/python-sdk",
+    "source": "general:mcp-sdk-error-codes",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Determine whether the MCP SDK raises `McpError`, returns an error result object, or both for failed tool calls.",
+    "kind": "general",
+    "target": "mcp-error-semantics",
+    "source": "general:ask.py-mcp-dispatch",
+    "status": "pending",
+    "added": "2026-11-27T16:02:57"
+  },
+  {
+    "title": "Async context-manager teardown triggered by `close`.",
+    "kind": "function",
+    "target": "reasons/mcp_client.py:_session_lifecycle",
+    "source": "function:reasons/mcp_client.py:close",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Readiness handling and why `_shutdown` may be `None` during partial startup.",
+    "kind": "function",
+    "target": "reasons/mcp_client.py:connect",
+    "source": "function:reasons/mcp_client.py:close",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Semantics of `call_soon_threadsafe`, `thread.join` timeouts, and closing running event loops.",
+    "kind": "general",
+    "target": "asyncio-cross-thread-shutdown",
+    "source": "function:reasons/mcp_client.py:close",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "How MCP `ClientSession` and `stdio_client` release subprocess and stdio resources.",
+    "kind": "general",
+    "target": "mcp-stdio-session-lifecycle",
+    "source": "function:reasons/mcp_client.py:close",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Example of a server tool converting domain failures into JSON `{\"error\": ...}` text.",
+    "kind": "function",
+    "target": "reasons/mcp_server.py:show",
+    "source": "general:mcp-calltoolresult-iserror",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Upstream MCP SDK source/docs to verify `ClientSession.call_tool` concurrency and thread-safety semantics.",
+    "kind": "repo",
+    "target": "mcp-sdk",
+    "source": "general:mcp-client-session-concurrency",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Missing tests that would validate multiple threads submitting overlapping tool calls.",
+    "kind": "general",
+    "target": "mcp-client-concurrency-tests",
+    "source": "general:mcp-client-session-concurrency",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Resolve the actual installed `mcp`/`pydantic` pair in the target environment and dump one `inputSchema` to see the empirically emitted dialect",
+    "kind": "general",
+    "target": "mcp-version-resolution",
+    "source": "general:mcp-pydantic-version-resolution",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "The external source of `mcp.server.fastmcp.FastMCP` (typically `mcp/server/fastmcp/tools/base.py` and `utilities/func_metadata.py`) \u2014 this is where `inspect.signature`, pydantic model construction, and `model_json_schema()` actually run.",
+    "kind": "general",
+    "target": "mcp-server-fastmcp-source",
+    "source": "general:fastmcp-tool-schema-serialization",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Where `Tool.inputSchema` is read from the MCP server and re-exposed as `input_schema`; the rename boundary between MCP wire names and internal dicts.",
+    "kind": "function",
+    "target": "reasons/mcp_client.py:82",
+    "source": "general:fastmcp-tool-schema-serialization",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "The pydantic v2 contract (`$defs`, `anyOf`, `required`, default emission) that determines the JSON Schema FastMCP ends up assigning to `Tool.inputSchema`.",
+    "kind": "general",
+    "target": "pydantic-v2-model_json_schema",
+    "source": "general:fastmcp-tool-schema-serialization",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Worth exploring because active cycles return `compute_text_hash(\"\")`, and `visiting` is never pruned.",
+    "kind": "general",
+    "target": "cycle-handling-in-merkle-hash",
+    "source": "function:reasons/merkle.py:_fresh_merkle_hash",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "The exact semantics of `SL`, `CP`, `antecedents`, and `outlist`, and how a valid justification is chosen as the active one.",
+    "kind": "general",
+    "target": "justification-validity-rules",
+    "source": "general:justification-graph-model",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Search and inspect resolver/evaluator paths to confirm whether dangling antecedent IDs are rejected, ignored, or treated as inactive.",
+    "kind": "general",
+    "target": "missing-antecedent-handling",
+    "source": "general:justification-graph-invariants",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Inspect the full command after line 1185 for output formatting, transactions, or verification behavior.",
+    "kind": "function",
+    "target": "reasons/cli.py:cmd_backfill_hashes",
+    "source": "general:backfill-callers",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Confirm there are no dynamic or indirect callers beyond the grep matches, especially via CLI dispatch or test helpers.",
+    "kind": "general",
+    "target": "backfill-hashes-call-graph",
+    "source": "general:backfill-callers",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "The SL semantics at `reasons/__init__.py:11` require a well-founded network; understanding how cycles violate it informs severity levels.",
+    "kind": "general",
+    "target": "tms-well-foundedness",
+    "source": "general:cycle-finding-schema",
+    "status": "pending",
+    "added": "2026-11-27T16:04:03"
+  },
+  {
+    "title": "Need the full command body to see how verification results map to output and exit codes.",
+    "kind": "function",
+    "target": "reasons/cli.py:cmd_verify",
+    "source": "general:strict-vs-reporting-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Decide whether to introduce `VerificationError` / `BackfillError` or reuse `ValueError`.",
+    "kind": "general",
+    "target": "strict-mode-exception-contract",
+    "source": "general:strict-vs-reporting-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Explains how `setuptools.build_meta` produces `.dist-info` plus `__editable__` finder/path artifacts.",
+    "kind": "general",
+    "target": "pep-660-editable-install",
+    "source": "general:editable-install-and-packaging",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Verify the regex `re.sub(r\"[-_.]+\", \"-\", name).lower()` against `packaging.utils.canonicalize_name`, and test `version(\"FTL_Reasons\")` to see normalization in action.",
+    "kind": "general",
+    "target": "pep-503-normalization",
+    "source": "general:packaging-distribution-vs-import-name",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "If the project ever needs Python <3.8 or custom distribution discovery, `packages_distributions()` would let it discover `reasons \u2192 ftl-reasons` instead of hard-coding the string.",
+    "kind": "repo",
+    "target": "importlib-metadata-backport",
+    "source": "general:packaging-distribution-vs-import-name",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Run `python -c \"from importlib.metadata import version; print(version('ftl-reasons'))\"` in three environments: fresh clone, `pip install -e .`, and a built wheel \u2014 compare results.",
+    "kind": "general",
+    "target": "editable-install-behavior",
+    "source": "general:PackageNotFoundError-behavior",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Whether the project (or a downstream consumer) ships a `.pyz`; if so, confirm the build includes `ftl_reasons-0.58.0.dist-info/` inside the archive.",
+    "kind": "general",
+    "target": "zipapp-packaging-strategy",
+    "source": "general:PackageNotFoundError-behavior",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "The other consumer of `importlib.metadata.version`; look at how it's wired into the `reasons` CLI to see what `reasons --version` actually reports.",
+    "kind": "function",
+    "target": "reasons/cli.py:_pkg_version",
+    "source": "general:installed-vs-checkout-version",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Whether to add a test asserting `build_meta()[\"generator\"] == f\"ftl-reasons/{pyproject_version}\"` so drift is caught in CI.",
+    "kind": "general",
+    "target": "version-alignment-test",
+    "source": "general:installed-vs-checkout-version",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Run `pip show ftl-reasons` and `python -c \"from importlib.metadata import version; print(version('ftl-reasons'))\"` in the actual environment to close the gap the observations left open.",
+    "kind": "general",
+    "target": "installed-environment-probe",
+    "source": "general:installed-vs-checkout-version",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "How editable installs expose package metadata and why the current code has no editable-specific branch",
+    "kind": "general",
+    "target": "importlib-metadata-editable-installs",
+    "source": "general:metadata-export-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Sibling routine that backfills `source_hash` for nodes whose value is empty; together with `check_stale(upgrade_hashes=True)` it forms the full source-hash lifecycle.",
+    "kind": "function",
+    "target": "reasons/pg.py:hash_sources",
+    "source": "function:reasons/pg.py:check_stale",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Shows how the repo registry is loaded from `rms_network_meta`, and why it can return `None`.",
+    "kind": "function",
+    "target": "reasons/pg.py:_load_repos",
+    "source": "function:reasons/pg.py:check_stale",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Compare with the file-backed `Network.check_stale` variant to understand intentional behavior drift (which aggregates same outputs, which adds git awareness, etc.).",
+    "kind": "general",
+    "target": "non-pg-check-stale-comparison",
+    "source": "function:reasons/pg.py:check_stale",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Decide exact-vs-major comparison, missing-version behavior, warning-vs-error semantics, and migration expectations before adding a gate.",
+    "kind": "general",
+    "target": "schema-version-policy",
+    "source": "general:schema-version-compatibility-gap",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Verify every `PgApi` query is scoped by `domain_id`, since the schema uses composite keys like `(id, domain_id)`.",
+    "kind": "general",
+    "target": "postgresql-domain-isolation",
+    "source": "general:pg-backend-dispatch",
+    "status": "pending",
+    "added": "2026-11-27T16:05:17"
+  },
+  {
+    "title": "Audit every writer (`storage.py`, `network.py`, `export_markdown.py`, `propose_update.py`, `review*.py`) to confirm its default output path matches a rule here, so generated data cannot leak.",
+    "kind": "general",
+    "target": "output-path-contract",
+    "source": "file:.gitignore",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Practice `git check-ignore -v` against candidate paths (e.g. `tests/reviews/`, `tests/beliefs.md`) to see how unanchored rules behave before adding fixtures.",
+    "kind": "general",
+    "target": "gitignore-anchoring",
+    "source": "file:.gitignore",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "The env/secret search returned zero matches despite `tests/conftest.py` using `os.environ`; determine whether `conftest.py` was excluded or the search result is incomplete.",
+    "kind": "general",
+    "target": "test-search-scope",
+    "source": "general:integration-test-boundary",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Determine whether `DATABASE_URL` is supplied as a CI secret, a local opt-in variable, or both.",
+    "kind": "general",
+    "target": "database-url-secret-handling",
+    "source": "general:integration-test-boundary",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "A short reading list to nail terminology: Doyle 1979 for the algorithm, de Kleer 1986 for the noun *nogood*, G\u00e4rdenfors\u2013Makinson 1988 or Doyle 1983 *The Ins and Outs of Reason Maintenance* for *entrenchment*.",
+    "kind": "general",
+    "target": "Doyle 1979 vs de Kleer 1986 vs AGM",
+    "source": "general:doyle-tms-1979",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "How other TMS implementations structure explanations (`support-list` vs `support-graph`) and whether a single-valid-justification IN report loses information.",
+    "kind": "general",
+    "target": "truth-maintenance-explanation",
+    "source": "function:reasons/network.py:explain",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Search the derive loop and any CP-only tests to determine what `type=\"CP\"` means beyond `type=\"SL\"` (the CHANGELOG and SKILL.md don't say).",
+    "kind": "general",
+    "target": "sl-vs-cp-semantics",
+    "source": "general:truth-maintenance-system-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Trace `_pg_dispatch(..., \"add_nogood\")` and `_pg_dispatch(..., \"propagate\")` to compare PostgreSQL behavior with the in-memory network.",
+    "kind": "general",
+    "target": "pg-backend-propagation",
+    "source": "general:nogood-enforcement",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Since the observed test search found no `nogood` matches, add tests distinguishing add-time application from propagation-time re-checking.",
+    "kind": "general",
+    "target": "nogood-test-coverage",
+    "source": "general:nogood-enforcement",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Shows the outlist being mutated at runtime to encode a defeat relation between an existing belief and a target justification.",
+    "kind": "function",
+    "target": "reasons/api.py:defeat",
+    "source": "general:doyle-tms-outlist-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "The original paper's SL / SUM / GF taxonomy; useful for deciding whether the remaining justification kinds are implemented or only planned (`tests/test_summarize.py:3`).",
+    "kind": "general",
+    "target": "Doyle-1979-SL-justifications",
+    "source": "general:doyle-tms-outlist-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "The public entry point; note the missing `commit/rollback` handling and how `visible_to` is forwarded.",
+    "kind": "function",
+    "target": "reasons/pg.py:explain_node",
+    "source": "function:reasons/pg.py:_explain_recursive",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "`_is_visible` + `_inherit_access_tags` determine whether `[]` is returned for a node, which silently prunes the explanation tree.",
+    "kind": "general",
+    "target": "access-tag-inheritance",
+    "source": "function:reasons/pg.py:_explain_recursive",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Investigate Doyle/ATMS CP semantics (\"assumption-based\" vs \"conditioned\" justifications) to know what \"consistency\" should mean in this codebase versus what is implemented.",
+    "kind": "general",
+    "target": "cp-consistency-semantics",
+    "source": "general:cp-assumption-consistency",
+    "status": "pending",
+    "added": "2026-11-27T16:06:24"
+  },
+  {
+    "title": "Experiment in `psql` with `@>` on flat arrays, nested arrays, and mixed JSON types to verify the edge cases your data model permits.",
+    "kind": "general",
+    "target": "jsonb-containment-semantics",
+    "source": "general:jsonb-containment-queries",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Run `EXPLAIN ANALYZE` on the `antecedents @> ... OR outlist @> ...` query to confirm the GIN indexes from `reasons/pg.py` are used.",
+    "kind": "general",
+    "target": "gin-index-usage",
+    "source": "general:jsonb-containment-queries",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Verify that every node ID stored in `antecedents` and `outlist` is encoded as a JSON string via `json.dumps`, not as a number or object, because `@>` would treat those as different JSON values.",
+    "kind": "general",
+    "target": "node-id-json-encoding",
+    "source": "general:jsonb-containment-queries",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Add a benchmark script that runs `EXPLAIN (ANALYZE, BUFFERS)` against realistic row counts for `rms_justifications` to confirm whether BitmapOr of both GIN indexes is chosen.",
+    "kind": "general",
+    "target": "EXPLAIN-ANALYZE-benchmark",
+    "source": "general:gin-index-or-optimization",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Query `pg_stat_user_indexes` for `idx_rms_justifications_antecedents` and `idx_rms_justifications_outlist` to verify both are actually scanned at runtime.",
+    "kind": "general",
+    "target": "index-usage-counters",
+    "source": "general:gin-index-or-optimization",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Compare the default `jsonb_ops` (supports `@>`) against `jsonb_path_ops` (smaller, but only supports `@>`); the code currently relies on the default.",
+    "kind": "general",
+    "target": "jsonb-ops-vs-jsonb-path-ops",
+    "source": "general:gin-index-or-optimization",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Compare `import_json`, `import_beliefs`, and `import_agent` to see how different importers treat idempotency, cycles, and namespacing differently.",
+    "kind": "general",
+    "target": "import-path-comparison",
+    "source": "function:reasons/pg.py:import_json",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "How `import_agent.py` translates remote `IN`/`OUT`/`STALE` signals into local `truth_value` and `_retracted`; the best worked example of the distinction.",
+    "kind": "general",
+    "target": "import-agent-truth-sync",
+    "source": "general:retracted-vs-derived-out",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Search the whole repo for any code that computes \"consistency of assumptions\" \u2014 the observations suggest none exists, but a repo-wide grep would settle it.",
+    "kind": "general",
+    "target": "cp-consistency-implementation",
+    "source": "general:rms-cp-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "What the remote backend's `propagate` returns and how `domain_id` scopes it.",
+    "kind": "function",
+    "target": "reasons/pg.py:PgApi.propagate",
+    "source": "function:reasons/api.py:propagate",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Understand how `\"SL\"` and `\"CP\"` justifications are evaluated using `antecedents` and `outlist`.",
+    "kind": "general",
+    "target": "justification-types-sl-cp",
+    "source": "general:rms-model-definitions",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Compare the dataclass default, SQLite default, and any loader/constructor behavior for `truth_value`.",
+    "kind": "general",
+    "target": "default-truth-value-consistency",
+    "source": "general:rms-model-definitions",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "The primary consumer that selects `culprits[0].premise` as a backtrack victim and reconciles truth values via `_propagate`.",
+    "kind": "function",
+    "target": "reasons/pg.py:add_nogood",
+    "source": "function:reasons/pg.py:find_culprits",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Understand how `PgApi` tests are set up, skipped, or isolated in this repo.",
+    "kind": "general",
+    "target": "postgres-integration-test-fixtures",
+    "source": "general:entrenchment-parity-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Evaluate whether the scoring logic can be centralized instead of duplicated across backends.",
+    "kind": "general",
+    "target": "shared-entrenchment-scoring",
+    "source": "general:entrenchment-parity-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "The pipeline in `reasons/derive.py` that samples IN beliefs, builds `_build_derived_section`, and turns LLM proposals back into GATE/DERIVE justifications with `label`",
+    "kind": "general",
+    "target": "derive-prompt-assembly",
+    "source": "general:tms-justification-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:07:48"
+  },
+  {
+    "title": "Determines how partial reports are written and whether repeated cumulative writes overwrite or append.",
+    "kind": "function",
+    "target": "reasons/cli.py:_write_report",
+    "source": "general:callback-call-sites",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Determine whether the prompt lists raw keys or human-readable descriptions, since that determines how the synchronization test should parse it.",
+    "kind": "general",
+    "target": "propose-update-prompt-format",
+    "source": "general:failure-mode-taxonomy-parity",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Consider generating the prompt option list from `FAILURE_MODES` / `BASES` to eliminate manual drift.",
+    "kind": "general",
+    "target": "prompt-enum-synchronization",
+    "source": "general:failure-mode-taxonomy-parity",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Search for assertions on node/edge counts, equality, snapshots, or transaction rollback after `what_if_*` calls.",
+    "kind": "general",
+    "target": "network-state-immutability-tests",
+    "source": "general:read-only-network-invariant-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Search for `Network`, `network`, `net`, and aliases of `what_if_*` to catch indirect usage not found by the literal patterns.",
+    "kind": "general",
+    "target": "test-suite-alias-and-fixture-search",
+    "source": "general:read-only-network-invariant-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Trace callers and helper functions around `reasons/api.py:155` to find where database snapshots are captured or read.",
+    "kind": "general",
+    "target": "before-after-snapshot-capture",
+    "source": "general:_with_network transaction hook",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Explore `retracted_at`, `truth_value`, propagation, and any tombstone/soft-delete paths outside the searched terms.",
+    "kind": "general",
+    "target": "retraction-vs-source-deletion",
+    "source": "general:truth-value snapshot representation",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Parallel parser for softened belief text; useful for comparing fallback behavior.",
+    "kind": "function",
+    "target": "reasons/repair.py:parse_soften_response",
+    "source": "function:reasons/repair.py:parse_triage_response",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Explores the tradeoffs of scanning for brace-delimited JSON with `raw_decode` instead of using stricter parsing or schema validation.",
+    "kind": "general",
+    "target": "llm-json-extraction-robustness",
+    "source": "function:reasons/repair.py:parse_triage_response",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Shows the downstream `SOFTEN_PROMPT.format(...)` call and the raw belief/antecedent interpolation path.",
+    "kind": "function",
+    "target": "reasons/repair.py:soften_belief",
+    "source": "general:prompt-injection-surface",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Search for the implementation of the CP semantic \u201cnode is IN iff assumptions are consistent\u201d described at `reasons/__init__.py:13`.",
+    "kind": "general",
+    "target": "CP-consistency-check",
+    "source": "general:cp-vs-sl-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Whether a documented/typed contract exists that `status == \"linked\"` is prospective, and whether `\"dry_run\": True` in a per-result dict is the authoritative signal callers must check before counting mutations.",
+    "kind": "general",
+    "target": "dry-run-contract",
+    "source": "general:repair-pattern-dry-run-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Whether `\"softened\"` and `\"abandoned\"` share the same prospective-vs-applied semantics as `\"linked\"`, so all three counters need the same dry-run suppression.",
+    "kind": "general",
+    "target": "repair-status-taxonomy",
+    "source": "general:repair-pattern-dry-run-semantics",
+    "status": "pending",
+    "added": "2026-11-27T16:09:04"
+  },
+  {
+    "title": "Search for `getattr(`, `importlib`, `f\"repair_`, and `\"repair_\" +` to rule out runtime construction of `repair_action` / `repair_research`.",
+    "kind": "general",
+    "target": "dynamic-command-dispatch",
+    "source": "general:repair-metadata-consumers",
+    "status": "pending",
+    "added": "2026-11-27T16:10:38"
+  },
+  {
+    "title": "The function inserts source text verbatim into an LLM prompt, which is worth reviewing for injection risks.",
+    "kind": "general",
+    "target": "prompt-injection-via-source-content",
+    "source": "function:reasons/repair_premises.py:format_premise_for_repair",
+    "status": "pending",
+    "added": "2026-11-27T16:10:38"
+  },
+  {
+    "title": "Locate where the `error` action is defined (probably in the ask/consolidate path) and confirm which exception types it recognizes.",
+    "kind": "general",
+    "target": "error-action-contract",
+    "source": "general:llm-concurrency-and-timeout",
+    "status": "pending",
+    "added": "2026-11-27T16:10:38"
+  },
+  {
+    "title": "Find the actual retract/OUT propagation implementation; it is not included in the observations.",
+    "kind": "general",
+    "target": "tms-retraction-core",
+    "source": "general:tms-review-to-repair-pipeline",
+    "status": "pending",
+    "added": "2026-11-27T16:10:38"
+  },
+  {
+    "title": "The call site *not included in these observations* where model text is parsed; locate it to confirm the failure point before implementing fence stripping.",
+    "kind": "general",
+    "target": "propose-beliefs-pipeline-stage",
+    "source": "general:json-extraction-hardening",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "Read `Documentation/gitformat-index.adoc` in the Git repo to see how the 32-bit mode is actually stored in `.git/index`, and why the mode is limited to 16 bits even though it is written as 32.",
+    "kind": "general",
+    "target": "git-index-format",
+    "source": "general:git-index-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "These two config flags directly determine whether `100755` and `120000` survive a checkout; understanding them explains most cross-platform symlink bugs.",
+    "kind": "general",
+    "target": "core.fileMode-and-core.symlinks",
+    "source": "general:git-index-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "Compare `-s`, `-t`, `--debug`, `--eol`, and `--format` to see which output is stable to parse and which is human-oriented.",
+    "kind": "general",
+    "target": "git-ls-files-variants",
+    "source": "general:git-index-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "Confirm that `git add` of a symlink stores `readlink` output as a blob via `S_ISLNK` in `read-cache.c` / `entry.c`, so that the \"target is file content\" mental model is exact.",
+    "kind": "general",
+    "target": "symlink-to-blob-model",
+    "source": "general:git-index-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "Distinguish plumbing commands (`ls-files`, `ls-tree`, `cat-file`) from porcelain (`status`, `diff`); only plumbing is safe to parse for authoritative decisions.",
+    "kind": "general",
+    "target": "gitportable-vs-porcelain",
+    "source": "general:git-index-modes",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "Practice distinguishing mode `160000` from `100644` in `git ls-files -s` output so you can spot an accidental submodule in one glance",
+    "kind": "general",
+    "target": "gitlink-vs-directory",
+    "source": "general:git-ls-files-verification",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "How `python -m build` / setuptools decide what ships; an untracked `reasons_lib/` is invisible to a git-based sdist even though it sits on disk",
+    "kind": "general",
+    "target": "sdist-tracking",
+    "source": "general:git-ls-files-verification",
+    "status": "pending",
+    "added": "2026-11-27T16:10:39"
+  },
+  {
+    "title": "The precise rule for \u201caccess_tags are a subset of visible_to\u201d and whether an empty allowed-tag list restricts to untagged nodes.",
+    "kind": "general",
+    "target": "access-tag-subset-semantics",
+    "source": "function:reasons/cli.py:_parse_visible_to",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Enumerate all `reasons_lib/` modules to see which canonical modules have compatibility shims and which do not.",
+    "kind": "general",
+    "target": "reasons_lib-shim-inventory",
+    "source": "general:package-duality",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Test whether `reasons_lib.Node is reasons.Node` and whether rebinding attributes on `reasons_lib.api` affects `reasons.api`.",
+    "kind": "general",
+    "target": "import-identity-and-monkeypatching",
+    "source": "general:package-duality",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Whether the codebase expects a single shared \"lenient JSON loader\" or each module re-implements tolerance locally (currently it looks per-module).",
+    "kind": "general",
+    "target": "json-response-contract",
+    "source": "general:malformed-llm-json-handling",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Context for lines 4020\u20134035; determines whether the input is model output or user input, and whether the narrow `JSONDecodeError` catch is a real bug.",
+    "kind": "function",
+    "target": "reasons/api.py:_extract_ids",
+    "source": "general:json5-dependency-impact",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "The only handler already tolerant of `ValueError`; the argument for using json5 starts here.",
+    "kind": "function",
+    "target": "reasons/llm.py:parse_output",
+    "source": "general:json5-dependency-impact",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Verify exception class hierarchy, BOM handling, and API parity (`parse_float`, `object_pairs_hook`) of the `json5` PyPI package.",
+    "kind": "general",
+    "target": "json5-library-contract",
+    "source": "general:json5-dependency-impact",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Understand how `any_mode` expands a single SL into per-antecedent justifications in the SQLite path, since porting it to `PgApi.add_node`/`add_justification` is likely the smallest gap to close.",
+    "kind": "general",
+    "target": "any-mode-port-to-pg",
+    "source": "general:pg-backend-support",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Grep every `dry_run` signature in `reasons/api.py` and check whether its docstring says \"classify/preview but don't write\" (model runs) vs. \"show what would happen\" (model skipped).",
+    "kind": "general",
+    "target": "dry-run-semantics-audit",
+    "source": "general:dry-run-llm-behavior",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Design rationale for converting `retract_reason` metadata to graph-native defeaters (why the graph replaces strings).",
+    "kind": "general",
+    "target": "defeater-migration-strategy",
+    "source": "function:reasons/cli.py:cmd_migrate_defeaters",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Add a targeted test with `A unless B; B sl=A` and observe whether truth stabilizes, oscillates, or hits `max_iterations`.",
+    "kind": "general",
+    "target": "outlist-antecedent-cycle-behavior",
+    "source": "general:tms-propagation-ordering",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Use this current metadata test as a starting point for a stronger object-level import assertion.",
+    "kind": "function",
+    "target": "tests/test_import_json.py:test_round_trip_metadata",
+    "source": "general:metadata-roundtrip-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "Trace which JSON fields represent scope, defeater association, and defeat edges so the new test can assert the right source-of-truth values.",
+    "kind": "general",
+    "target": "defeat-graph-serialization",
+    "source": "general:metadata-roundtrip-tests",
+    "status": "pending",
+    "added": "2026-11-27T16:11:41"
+  },
+  {
+    "title": "The review tool at `reasons/api.py:4186+` that audits multi-premise SLs for ALL/ANY misclassification",
+    "kind": "general",
+    "target": "llm-all-any-review",
+    "source": "general:truth-maintenance-system-justification-types",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Locate the external forge tool that writes `.forge/proposed-entries.json`; since grep finds 0 references, it lives outside `reasons/` and `reasons_lib/`.",
+    "kind": "general",
+    "target": "forge-manifest-producer",
+    "source": "general:git-history-for-proposed-entries",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Run `git log --stat -- .forge/proposed-entries.json entries/` to count commits that touch both paths versus JSON-only commits (the latter break pairing).",
+    "kind": "diff",
+    "target": "git-log-co-touch-audit",
+    "source": "general:git-history-for-proposed-entries",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Determine whether the 16-hex values in `.forge/proposed-entries.json` are truncated SHA of the entry content, version tags, or cache keys; that determines whether hash-matching can substitute for same-commit atomicity.",
+    "kind": "general",
+    "target": "proposed-entries-hash-semantics",
+    "source": "general:git-history-for-proposed-entries",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "The zero match for `report.json` despite `.forge/report.json` existing indicates the search scope likely missed hidden/generated directories.",
+    "kind": "general",
+    "target": "hidden-and-generated-file-search",
+    "source": "general:diary-update-pipeline-entrypoint",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "If literals like `diary-update` are absent, the orchestrator may build pipeline and step names from variables or config.",
+    "kind": "general",
+    "target": "dynamic-string-construction",
+    "source": "general:diary-update-pipeline-entrypoint",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Search for `proposed-entries.json`, `costs`, `write_json`, `json.dump`, and report serialization helpers.",
+    "kind": "general",
+    "target": "artifact-write-sites",
+    "source": "general:diary-update-pipeline-entrypoint",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Find the CLI command, scheduler task, or CI workflow that invokes the diary update pipeline.",
+    "kind": "general",
+    "target": "pipeline-entrypoint",
+    "source": "general:diary-update-pipeline-entrypoint",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Search callers of `propose_updates` to find where returned proposals are written to disk.",
+    "kind": "repo",
+    "target": "reasons/",
+    "source": "general:.forge-directory-writer",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Re-run the search with hidden and ignored files included, since `.forge/` may be excluded by default search settings.",
+    "kind": "general",
+    "target": "hidden-file-search",
+    "source": "general:.forge-directory-writer",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Investigate whether duplicate proposal suppression happens in a CLI/controller layer rather than in `propose_update.py`.",
+    "kind": "general",
+    "target": "proposed-entries-idempotency",
+    "source": "general:.forge-directory-writer",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Collect `report.json` files from other runs and pipelines to verify the invariant beyond the single `diary-update` sample.",
+    "kind": "general",
+    "target": "additional-report-json-samples",
+    "source": "general:report-summary-vs-step-counts",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Determine whether duplicate counter keys across steps are summed, required to match, or disallowed by the intended schema.",
+    "kind": "general",
+    "target": "duplicate-count-merge-semantics",
+    "source": "general:report-summary-vs-step-counts",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Add or locate validation that recomputes `summary` from `steps[].counts` and fails on drift.",
+    "kind": "general",
+    "target": "report-schema-validation",
+    "source": "general:report-summary-vs-step-counts",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Determine exactly which files/directories `reasons_modules` and `reasons_lib_modules` cover, so the negative results can be scoped correctly.",
+    "kind": "general",
+    "target": "search-scope-definition",
+    "source": "general:cost-file-glob",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Search for `Costs`, `costs_dir`, `COSTS_DIR`, `cost_dir`, `output`, `artifacts`, and `*.json` without a `costs` prefix to find the real directory name.",
+    "kind": "general",
+    "target": "alternate-directory-identifiers",
+    "source": "general:cost-file-glob",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Look for f-strings, `os.path.join`, `Path / \"...\"`, and `importlib.resources` where a base directory is combined with a variable.",
+    "kind": "general",
+    "target": "dynamic-path-construction",
+    "source": "general:cost-file-glob",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Inspect settings/config modules for a constant that resolves to the costs directory name.",
+    "kind": "general",
+    "target": "configuration-constants",
+    "source": "general:cost-file-glob",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Locate the CLI or task/agent entry point that reads cost JSON, then trace downstream to see how it resolves the directory.",
+    "kind": "general",
+    "target": "consumer-entry-point",
+    "source": "general:cost-file-glob",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
+  },
+  {
+    "title": "Search for top-level `calls`, `input_tokens`, `output_tokens`, `cost_dollars` being compared against per-model sums or accumulated values.",
+    "kind": "general",
+    "target": "cost-invariant-search",
+    "source": "general:aggregate-vs-breakdown-check",
+    "status": "pending",
+    "added": "2026-11-27T16:12:53"
   }
 ]

@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-27T16:27:48",
+  "operation": "explore-propose-accept-propose-beliefs",
+  "domain": null,
+  "model": "openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "calls": 19,
+  "input_tokens": 317426,
+  "output_tokens": 183408,
+  "cost_dollars": 0.0,
+  "by_model": {
+    "openai:rits/deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+      "calls": 19,
+      "input_tokens": 317426,
+      "output_tokens": 183408,
+      "total_cost_usd": 0.0
+    }
+  },
+  "beliefs_added": 0,
+  "beliefs_retracted": 0,
+  "beliefs_unchanged": 0,
+  "round_number": 1,
+  "wall_clock_seconds": 895.07
+}

@@ -1,0 +1,366 @@
+=== explore-propose-accept / review-proposals (round 1) — 2026-11-27T16:27:48 ===
+
+=== Round 1: Review proposals ===
+
+Reviewing 709 proposals (41 already rejected)...
+  Batch 4/142 done (1 completed)
+  Batch 5/142 done (2 completed)
+  Batch 2/142 done (3 completed)
+  Batch 3/142 done (4 completed)
+  Batch 6/142 done (5 completed)
+  Batch 11/142 done (6 completed)
+  Batch 8/142 done (7 completed)
+  REJECT find-culprits-sorts-by-entrenchment-ascending: duplicate: Same core claim (weakest/least-entrenched culprit at index 0) is already covered by existing beliefs such as add-nogood-retracts-least-entrenched-culprit and add-nogood-uses-first-culprit.
+  Batch 9/142 done (8 completed)
+  Batch 12/142 done (9 completed)
+  Batch 10/142 done (10 completed)
+  REJECT propagate-enables-pubsub-notification: duplicate: already covered by existing write-context pubsub beliefs such as `_with_network-write-true-enables-pubsub-side-effects` and `pubsub-publish-requires-write-true`
+  REJECT propagate-skips-save-on-exception: duplicate: `_with_network` save-on-clean-exit/rollback behavior is already captured by existing beliefs such as `add-nogood-rolls-back-on-exception` and `add-node-writes-through-with-network`
+  Batch 1/142 done (11 completed)
+  REJECT explain-recursive-emits-one-step-per-node: duplicate: trivial rewording of explain-recursive-uses-shared-visited-set-to-avoid-infinite-recursion's "explain each node once" claim.
+  Batch 7/142 done (12 completed)
+  REJECT argparse-is-imported-in-cli: trivial: an import statement visible in the file header; obvious from file structure.
+  REJECT add-argument-grep-result-is-anomalous: meta: about search tooling/exploration session results, not a codebase fact.
+  Batch 17/142 done (13 completed)
+  REJECT defeat-enables-restoration: duplicate: already covered by `all-defeat-mechanisms-are-reversible`, which states outlist-based defeat operations are reversible upon retraction.
+  Batch 13/142 done (14 completed)
+  Batch 19/142 done (15 completed)
+  REJECT costs-glob-literal-is-absent: meta: negative search-scope result about code exploration, not a durable codebase fact.
+  Batch 21/142 done (16 completed)
+  REJECT compute-changes-is-defined-in-pubsub: trivial: a function's definition site/line is navigation metadata, not an architectural invariant, and the line number is ephemeral.
+  REJECT api-py-155-is-the-production-call-site: meta: describes what the exploration observations list rather than a verified, durable codebase fact; line pinning also makes it ephemeral.
+  REJECT before-after-capture-origin-is-not-observed: meta: reports a gap in the exploration session's observations, not a stable codebase behavior or contract.
+  Batch 15/142 done (17 completed)
+  REJECT no-sum-by-model-pattern-observed: ephemeral: grep result is a point-in-time search snapshot, not a durable codebase invariant
+  REJECT no-named-pydantic-cost-validators-observed: ephemeral: negative grep result, not a stable observable code fact
+  REJECT production-cost-schema-class-not-observed: ephemeral: conclusion from a grep snapshot rather than a durable codebase fact
+  REJECT ci-invariant-enforcement-unverified: speculative: explicitly unverified exploration result, not an observable codebase fact
+  Batch 16/142 done (18 completed)
+  REJECT version-resolution-is-sys-path-not-import: trivial: general importlib.metadata behavior, not a codebase-specific invariant
+  REJECT hardcoded-version-in-pyproject: ephemeral: the specific version literal changes with each release
+  REJECT no-editable-or-zipapp-special-handling: speculative: absence of handling is inferred from a keyword search rather than verified as a stable invariant
+  Batch 14/142 done (19 completed)
+  REJECT visible-callers-do-not-show-persistence: meta: describes what exploration snippets omit, not a stable codebase invariant.
+  REJECT reasons-lib-init-reexports-reasons-names: trivial: direct import/reexport statement obvious from file structure.
+  REJECT reasons-lib-api-is-lazy-submodule-shim: trivial: Python import timing/import statement, not a durable architecture invariant.
+  REJECT reasons-lib-storage-is-lazy-submodule-shim: trivial: same direct submodule import fact.
+  REJECT reasons-lib-has-no-reported-internal-consumers: meta: reports a scan result/exploration artifact rather than a stable codebase fact.
+  Batch 20/142 done (20 completed)
+  REJECT report-json-declares-diary-update-pipeline: ephemeral: point-in-time snapshot of a specific JSON field value in a generated report file, not a stable invariant.
+  REJECT report-json-lists-propose-and-accept-steps: ephemeral: point-in-time snapshot of specific lines/step names in a generated report file.
+  REJECT literal-orchestration-strings-absent-from-search-results: meta: describes search-tool result counts during the exploration session, not a codebase fact.
+  REJECT report-json-pattern-search-has-scope-gap: meta: about search tooling behavior/gaps in the exploration session, not a codebase invariant.
+  REJECT artifact-write-locations-unobserved: meta: describes a limitation of the exploration session's observations, not a durable codebase fact.
+  Batch 26/142 done (21 completed)
+  REJECT no-dedicated-consistency-predicate-exists: meta: negative search result describes exploration scope, not a stable codebase fact.
+  REJECT cp-doc-claims-consistency-requirement-not-backed-by-named-call: meta: about missing evidence in the exploration excerpt, not a durable code invariant.
+  Batch 23/142 done (22 completed)
+  REJECT no-cyclic-tests-exist: ephemeral: zero-match test coverage snapshot can change with any test addition
+  REJECT dependents-index-tracks-antecedents-and-outlists: duplicate: covered by existing add-justification-registers-dependents and add-node-mirrors-justification-edges beliefs
+  REJECT incremental-path-not-observed: meta: describes a gap in exploration search, not codebase behavior
+  Batch 25/142 done (23 completed)
+  REJECT costs-literal-absent-from-reasons-scopes: ephemeral: zero-match search result tied to current file contents, not a durable invariant
+  REJECT costs-directory-name-not-hard-coded-in-searched-scopes: ephemeral: negative search-scope observation, not a stable codebase fact
+  REJECT discovery-mechanism-unconfirmed-by-observations: meta: about exploration observations, not a codebase fact
+  REJECT discovery-likely-external-or-dynamic: speculative: inference about unseen mechanism not grounded in observable code facts
+  Batch 22/142 done (24 completed)
+  REJECT any-mode-is-sl-only: duplicate: already covered by add-justification-any-mode-expands-only-sl and add-justification-any-mode-is-sl-only-and-pg-unsupported.
+  REJECT network-validity-handles-cp-and-sl-together: trivial: a single-line type check is an implementation detail, not a durable architecture/API invariant.
+  REJECT explanations-tag-type-without-observed-branching: speculative: absence of observed CP-specific branching in message code does not establish broader behavior.
+  REJECT justification-has-antecedents-list: trivial: the dataclass field/default is obvious from the class definition and too granular.
+  REJECT no-finding-type-exists: speculative: a negative search over observed files cannot establish codebase-wide absence.
+  Batch 24/142 done (25 completed)
+  REJECT nogood-retraction-requires-tracing-to-premises-first: duplicate: covered by add-nogood-retracts-premises-not-derived-nodes and related backtracking beliefs.
+  REJECT entrenchment-prevents-retracting-evidence-over-speculation: duplicate: entrenchment-based culprit selection is already covered by add-nogood-retraction-prefers-least-entrenched and add-nogood-retracts-least-entrenched-culprit.
+  Batch 27/142 done (26 completed)
+  REJECT absent-outlist-node-counts-as-out: duplicate: same claim as existing `absent-outlist-node-is-treated-as-out`
+  Batch 28/142 done (27 completed)
+  REJECT ask-py-is-the-production-caller: ephemeral: "observed matches" search snapshot is not a durable code invariant
+  REJECT mcperror-has-no-explicit-handler: ephemeral: zero-reference search result is a snapshot, not a stable codebase fact
+  Batch 18/142 done (28 completed)
+  REJECT outlist-only-add-builds-empty-inlist-justification: duplicate: already covered by add-node-outlist-only-creates-empty-antecedent-sl
+  Batch 29/142 done (29 completed)
+  REJECT pgapi-entrenchment-lacks-observed-direct-tests: meta: reports absence in observed grep/test coverage, not a durable codebase invariant.
+  REJECT no-cross-backend-parity-test-observed: meta: describes an exploration-session test-search observation, not a stable code fact.
+  Batch 33/142 done (30 completed)
+  REJECT json-schema-is-not-present: meta: reports a zero-match search result and dependency absence, not a stable codebase invariant
+  REJECT shared-fixture-is-pg-api-lifecycle: trivial: test fixture implementation detail rather than a durable codebase invariant
+  Batch 35/142 done (31 completed)
+  REJECT prompt-constant-sync-is-manual: speculative: "must be updated together by hand" is an editorial process judgment, not an observed code fact.
+  REJECT mcp-server-registers-tools-via-decorator: trivial: decorator-based tool registration is obvious from file structure and imports.
+  Batch 34/142 done (32 completed)
+  Batch 32/142 done (33 completed)
+  REJECT reasons-lib-is-star-import-shim: trivial: basic import statement visible from file structure
+  REJECT or-predicate-plan-is-not-determinable-from-code: meta: describes an observation/runtime-plan limitation, not a codebase invariant
+  REJECT no-explain-tooling-exists-in-codebase: ephemeral: relies on a specific search count snapshot that changes with edits
+  Batch 36/142 done (34 completed)
+  Batch 30/142 done (35 completed)
+  Batch 41/142 done (36 completed)
+  REJECT query-context-is-partially-visible: meta: describes missing context in an extracted code excerpt, not a durable codebase fact.
+  REJECT proposed-entries-json-maps-path-to-hex-id: ephemeral: includes a specific manifest entry count and snapshots a data file's contents.
+  REJECT entries-directory-absent-at-repo-root: ephemeral: point-in-time checkout/file-structure snapshot.
+  Batch 37/142 done (37 completed)
+  Batch 40/142 done (38 completed)
+  REJECT pyproject-declares-static-version: ephemeral: exact version and line numbers are point-in-time snapshot values.
+  REJECT build-backend-is-setuptools-build-meta: trivial: single-line pyproject config fact obvious from file.
+  Batch 31/142 done (39 completed)
+  REJECT diary-update-pipeline-produces-zero-acceptance: ephemeral: point-in-time run counts (260 proposed, 0 accepted) plus a speculative "symptom consistent with" interpretation
+  REJECT json-parsing-call-sites-are-predominantly-internal: ephemeral: specific match count (201) and analytical "majority/predominantly internal" judgment that changes with any edit
+  Batch 45/142 done (40 completed)
+  REJECT conftest-postgres-tests-skip-without-database-url: duplicate: same env-gated Postgres test claim as conftest-database-url-enables-pg-tests
+  REJECT monkeypatch-search-evidence-conflicts-with-conftest: meta: describes search/exploration reliability, not codebase behavior
+  REJECT invoke-model-returns-raw-model-text: duplicate: covered by existing llm-layer-returns-raw-text
+  Batch 44/142 done (41 completed)
+  REJECT single-ci-workflow-cannot-enforce-atomic-dual-commit: ephemeral: exact workflow count and absence conclusion are point-in-time and change with repo edits.
+  REJECT git-ls-files-s-reads-index-not-worktree: trivial: generic Git behavior, not a codebase invariant.
+  REJECT mode-literal-120000-identifies-tracked-symlink: trivial: generic Git index-mode fact, not specific to this codebase.
+  REJECT symlink-target-is-stored-as-blob-content: trivial: generic Git storage detail, not a codebase fact.
+  REJECT git-mode-is-not-unix-permissions: trivial: generic Git permission semantics, not a codebase invariant.
+  Batch 38/142 done (42 completed)
+  REJECT codebase-lacks-git-mode-handling: speculative: absence of search matches does not establish that no file or function implements git-mode handling.
+  REJECT pyproject-lists-reasons-lib-as-a-package: duplicate: already covered by existing beliefs noting pyproject.toml contains `reasons_lib`; also a trivial packaging detail.
+  REJECT reasons-lib-is-unreferenced-by-python-code: speculative: zero search matches does not prove unreferenced and conflicts with accepted beliefs about `reasons_lib` imports.
+  REJECT reasons-lib-maps-to-reasons-via-star-import: duplicate: restates the backwards-compatibility shim/star-import mechanism.
+  Batch 39/142 done (43 completed)
+  REJECT jsonb-containment-direct-tests-absent: meta: Describes a limitation of the exploration search (no @> found in tests), not a stable codebase fact; same class as observation-limitation beliefs.
+  Batch 47/142 done (44 completed)
+  REJECT any-mode-does-not-apply-to-cp-justifications: duplicate: already covered by add-justification-any-mode-expands-only-sl
+  REJECT any-mode-outlist-semantics-is-untested: meta: test-coverage observation, not a durable code invariant
+  REJECT pyproject-toml-declares-version-0-58-0: ephemeral: specific version snapshot that changes with releases
+  Batch 42/142 done (45 completed)
+  REJECT missing-antecedent-handling-is-not-established-by-the-gathered-evidence: meta: describes limitations of the exploration evidence, not a stable codebase fact
+  REJECT node-can-have-multiple-justifications: duplicate: already covered by add-justification-appends-not-replaces and related append beliefs
+  Batch 48/142 done (46 completed)
+  REJECT unlocked-lazy-init-is-not-observed: meta: describes search-result absence, not a codebase fact.
+  REJECT cost-term-search-is-inconsistent: meta: about observation pipeline inconsistency, not codebase behavior.
+  REJECT lazy-init-safety-unverifiable: meta: limitation of exploration evidence, not a stable codebase behavior.
+  Batch 51/142 done (47 completed)
+  Batch 49/142 done (48 completed)
+  REJECT version-match-not-asserted-by-tests: ephemeral: test assertion snapshot, not a durable code invariant
+  REJECT ci-workflow-has-no-observed-secrets-reference: meta: reports a search result about CI config rather than a stable codebase invariant
+  Batch 43/142 done (49 completed)
+  REJECT json5-mentions-absent: ephemeral: zero-occurrence search count is a point-in-time snapshot, not a durable codebase invariant.
+  REJECT import-json-tests-accept-only-strict-json: speculative: claims about CI verification under a hypothetical json5 swap are not grounded in current code behavior.
+  Batch 46/142 done (50 completed)
+  Batch 55/142 done (51 completed)
+  REJECT client-session-is-external-dependency: trivial: import/definition fact visible from imports and file structure
+  REJECT no-client-concurrency-tests-found: meta: describes a search result in the exploration session, not a stable codebase invariant
+  Batch 56/142 done (52 completed)
+  Batch 50/142 done (53 completed)
+  REJECT calltool-result-symbol-absent-from-repo: meta: reports a point-in-time grep/symbol-search result rather than a stable codebase invariant.
+  Batch 54/142 done (54 completed)
+  Batch 59/142 done (55 completed)
+  Batch 52/142 done (56 completed)
+  REJECT test-repair-covers-prose-not-fences: ephemeral: point-in-time test-coverage snapshot ("has no test for...") that changes with any test edit.
+  REJECT fence-handling-is-not-shared: trivial: negative import/search observation about absence of a shared extractor, visible from file structure/imports.
+  Batch 53/142 done (57 completed)
+  Batch 60/142 done (58 completed)
+  REJECT import-json-is-defined-in-reasons-api: ephemeral: point-in-time line-number/definition location that changes with edits
+  REJECT import-json-tests-do-not-reference-scope-defeater-symbols: trivial: negative search result about current test file contents, not a durable codebase invariant
+  REJECT metadata-round-trip-test-is-generic: ephemeral: describes specific assertions in a test file, which change with edits
+  REJECT outlist-test-proves-outcome-propagation: ephemeral: describes specific test assertions, a point-in-time snapshot of test content
+  Batch 61/142 done (59 completed)
+  REJECT propose-update-has-optional-list-param: trivial: function parameter signature is directly obvious from the definition and the dialect-risk framing is speculative/editorial.
+  Batch 57/142 done (60 completed)
+  REJECT nogood-test-search-is-empty: meta: exploration-session search result, not a codebase invariant
+  Batch 63/142 done (61 completed)
+  Batch 65/142 done (62 completed)
+  REJECT errorcode-absent-from-repo: ephemeral: zero-definition/zero-reference count is a point-in-time search result
+  REJECT fastmcp-references-limited-to-two-lines: ephemeral: “only usages” is a line-specific inventory that changes with edits
+  REJECT mcp-tests-assert-only-error-key: ephemeral: inventory of current test assertions, not a durable code contract
+  Batch 58/142 done (63 completed)
+  REJECT api-add-nogood-dispatches-to-backend: duplicate: Already covered by add-nogood-dispatches-to-postgres-when-pg-conninfo-set and add-nogood-immediately-mutates-network.
+  REJECT add-nogood-returns-changed-and-backtracked: duplicate: Duplicates add-nogood-returns-backtracked-to-and-changed and add-nogood-contract-includes-backtracking.
+  REJECT propagate-is-truth-value-recomputation: trivial: The command/help naming restates obvious behavior rather than a durable invariant.
+  REJECT network-propagation-has-no-visible-nogood-reference: meta: Reports a negative grep/search result, not a stable codebase fact.
+  Batch 62/142 done (64 completed)
+  REJECT add-node-pg-rejects-any-mode: duplicate: exact duplicate of existing add-node-pg-path-rejects-any-mode
+  Batch 67/142 done (65 completed)
+  Batch 69/142 done (66 completed)
+  REJECT test-suite-has-no-literal-what-if-references: ephemeral: Point-in-time search snapshot ("zero matches") about the exploration session, not a durable codebase invariant.
+  REJECT test-suite-has-no-network-instantiation: ephemeral: Search-result snapshot that expires with any edit; describes the exploration query, not a stable fact.
+  REJECT test-suite-has-no-explicit-unchanged-assertions: ephemeral: Zero-match search result snapshot from the session, not a durable invariant.
+  Batch 70/142 done (67 completed)
+  REJECT repair-action-has-no-static-references: meta: repository grep result about exploration, not a durable code invariant
+  REJECT repair-research-has-no-static-references: meta: repository grep result about exploration, not a durable code invariant
+  REJECT forge-report-has-no-repair-steps: ephemeral: point-in-time report configuration listing pipeline steps
+  REJECT tests-test-repair-smuggled-beliefs-not-repair-action: ephemeral: test-content snapshot, not a stable codebase behavior
+  Batch 71/142 done (68 completed)
+  REJECT any-mode-rejection-prevents-silent-and-semantics: duplicate: add_node half repeats `add-node-pg-path-rejects-any-mode`; add_justification half is covered by `add-justification-any-mode-is-sl-only-and-pg-unsupported`, and the "ensuring OR-expansion is never silently degraded" framing is speculative rationale
+  Batch 68/142 done (69 completed)
+  REJECT no-explicit-reconcile-symbol-exists: ephemeral: zero-match grep is a point-in-time search result, not a durable codebase invariant
+  Batch 72/142 done (70 completed)
+  Batch 74/142 done (71 completed)
+  Batch 75/142 done (72 completed)
+  REJECT report-json-sample-summary-equals-merged-step-counts: ephemeral: specific observed sample/report contents, not a durable code contract.
+  REJECT report-json-sample-step-count-keys-are-disjoint: ephemeral: snapshot of sample data and untested merge semantics.
+  REJECT report-json-generation-literal-absent: ephemeral: zero-hit search is a point-in-time exploration result, not stable behavior.
+  REJECT forge-has-only-one-report-json: ephemeral: directory-entry count snapshot that changes with the workspace.
+  REJECT cli-summary-objects-unlinked-to-report-json: meta: describes what observations do not establish, not an observable code invariant.
+  Batch 73/142 done (73 completed)
+  REJECT cp-any-mode-not-supported: duplicate: same claim as existing `add-justification-any-mode-is-sl-only-and-pg-unsupported` (any_mode expansion is SL-only; ignored for CP).
+  REJECT cp-test-coverage-is-storage-only: speculative: exploration-scoped "no observed test" coverage-gap judgment, not a durable codebase invariant and changes with any test edit.
+  REJECT storage-imports-dataclasses-from-package-root: trivial: import statement evident from naming/imports.
+  Batch 76/142 done (74 completed)
+  REJECT schema-drift-is-undocumented: ephemeral: records a one-time docs-search result rather than a stable code fact
+  REJECT env-vars-are-read-not-injected: speculative: overbroad absence-based claim from observations
+  Batch 78/142 done (75 completed)
+  REJECT tests-yml-contains-no-secrets: ephemeral: Point-in-time scan of workflow contents; expires when the file changes.
+  Batch 79/142 done (76 completed)
+  REJECT shim-star-imports-limit-private-names: trivial: Python star-import behavior and import statements are obvious from shim/file structure.
+  REJECT importlib-metadata-normalizes-via-pep-503: trivial: generic importlib.metadata normalization behavior, not a codebase-specific invariant.
+  Batch 66/142 done (77 completed)
+  REJECT cycle-guard-exists-in-depth-not-propagation: speculative: unverified absence claim ("no guard is visible") reflecting an exploration limitation rather than a durable code invariant
+  Batch 81/142 done (78 completed)
+  Batch 77/142 done (79 completed)
+  Batch 83/142 done (80 completed)
+  REJECT unknown-is-display-default-in-api-and-reporting: ephemeral: occurrence snapshot of where a symbol currently appears, not a durable code invariant
+  Batch 84/142 done (81 completed)
+  REJECT any-mode-implements-convergent-evidence: duplicate: Covered by existing `add-node-any-mode-produces-or-justifications` and `add-justification-any-mode-expands-only-sl`, which already state that `any_mode` splits multi-antecedent SL into one single-antecedent SL per antecedent.
+  Batch 82/142 done (82 completed)
+  Batch 87/142 done (83 completed)
+  REJECT any-mode-converts-all-to-any: duplicate: Already covered by existing beliefs such as `add-node-any-mode-produces-or-justifications` and `add-justification-any-mode-expands-only-sl`.
+  REJECT any-mode-is-unsupported-on-postgresql: duplicate: Already covered by existing `add-node-pg-path-rejects-any-mode` and `add-justification-any-mode-is-sl-only-and-pg-unsupported`.
+  Batch 85/142 done (84 completed)
+  REJECT no-literal-forge-path-matches: ephemeral: point-in-time search result ("observed 0 matches") that expires and describes exploration output rather than a durable codebase fact
+  Batch 88/142 done (85 completed)
+  REJECT strict-mode-does-not-exist-in-current-code: ephemeral: one-time search absence, not a durable code contract
+  REJECT fixpoint-bound-is-implicit-not-verified: speculative: "appears" and "correctness relies" are unverified inference, not an observable invariant
+  Batch 80/142 done (86 completed)
+  REJECT no-proposed-entries-json-literal-matches: ephemeral: zero-match search snapshot, expires with repo edits.
+  REJECT no-report-json-literal-matches: ephemeral: zero-match search snapshot, expires with repo edits.
+  REJECT idempotency-search-does-not-reference-proposed-entries: meta: reports exploration grep results, not a stable codebase invariant.
+  REJECT gitignore-has-no-negation-rules: ephemeral: current count of `!` patterns in a file, changes on edit.
+  Batch 89/142 done (87 completed)
+  REJECT forge-and-costs-artifacts-are-tracked: speculative: inference from absence in one file, not a grounded stable code fact.
+  Batch 91/142 done (88 completed)
+  Batch 93/142 done (89 completed)
+  Batch 92/142 done (90 completed)
+  Batch 94/142 done (91 completed)
+  REJECT uv-lock-is-intentionally-uncommitted: speculative: infers intent and “always” resolution behavior not directly observed; line-specific snapshot.
+  REJECT entries-directory-is-ignored: trivial: simple .gitignore entry, not an architecture/API/data-flow invariant.
+  REJECT generated-markdown-outputs-are-ignored: trivial: just lists ignored generated files, visible from .gitignore.
+  REJECT review-output-directory-is-ignored-unanchored: trivial: .gitignore pattern semantics, not a durable codebase invariant.
+  REJECT dotenv-is-not-ignored: trivial: simple .gitignore omission; better as a security audit note than a belief.
+  Batch 90/142 done (92 completed)
+  Batch 86/142 done (93 completed)
+  Batch 95/142 done (94 completed)
+  Batch 98/142 done (95 completed)
+  Batch 97/142 done (96 completed)
+  Batch 96/142 done (97 completed)
+  REJECT mcp-server-fails-at-import: duplicate: same eager mcp_server ImportError as mcp-server-fails-eagerly, which also adds the mcp_client contrast
+  REJECT deferred-import-scan-is-false-negative: meta: about reliability of an exploration scan, not a durable codebase fact
+  Batch 64/142 done (98 completed)
+  REJECT inactive-nogood-skips-backtracking: duplicate: Already covered by existing `add-nogood-inactive-contradiction-returns-empty` and `add-nogood-inactive-when-either-node-out`.
+  Batch 100/142 done (99 completed)
+  REJECT tests-test-storage-is-behavioral-spec: speculative: “de-facto behavioral spec” is an editorial characterization, not an observable code invariant.
+  REJECT tests-conftest-provides-canonical-engine-fixtures: speculative: “canonical fixtures” and assumed invariants are editorial, not stable code facts.
+  REJECT cli-main-enumerates-user-facing-operations: trivial: `main` being the CLI dispatcher is obvious from file structure/naming and adds no non-obvious invariant.
+  Batch 99/142 done (100 completed)
+  Batch 104/142 done (101 completed)
+  REJECT costs-literal-absent-from-searched-reasons-scopes: meta: reports a limited search-scope absence rather than a durable codebase invariant.
+  REJECT no-named-cp-consistency-predicate-in-searched-code: speculative: absence of named symbols in searched code does not establish that CP consistency has no dedicated implementation.
+  Batch 105/142 done (102 completed)
+  REJECT compute-changes-defined-in-pubsub-module: trivial: just a function-location/definition fact obvious from module structure, not an architecture invariant.
+  Batch 101/142 done (103 completed)
+  REJECT cp-justifications-created-via-api-and-persisted-via-pg: trivial: merely restates module/file roles without stating a constraint or invariant
+  REJECT any-mode-does-not-apply-to-cp: duplicate: already covered by `add-justification-any-mode-is-sl-only-and-pg-unsupported` and `add-justification-any-mode-expands-only-sl`
+  Batch 106/142 done (104 completed)
+  REJECT cost-tests-check-per-model-fields-not-aggregate-invariant: speculative: editorial test-coverage/adequacy gap analysis, not a durable code-behavior invariant
+  Batch 102/142 done (105 completed)
+  REJECT pyproject-uses-static-project-version: trivial: Directly readable surface fact from pyproject.toml (project name and static vs dynamic versioning), not a non-obvious architecture invariant or contract.
+  Batch 110/142 done (106 completed)
+  Batch 108/142 done (107 completed)
+  Batch 109/142 done (108 completed)
+  REJECT pyproject-selects-setuptools-build-meta-backend: trivial: direct packaging configuration line visible in pyproject.toml.
+  REJECT setuptools-packages-are-explicitly-limited: trivial: packaging metadata directly visible in pyproject.toml.
+  REJECT no-cross-backend-entrenchment-parity-test-observed: ephemeral: observed test-coverage gap is a point-in-time snapshot that changes when tests are added.
+  Batch 111/142 done (109 completed)
+  REJECT no-canonical-finding-type-in-observed-code: speculative: absence in observed excerpts is an exploration limitation, not a stable codebase invariant
+  Batch 107/142 done (110 completed)
+  REJECT no-observed-sum-or-pydantic-validator-enforces-cost-totals: ephemeral: negative search snapshot about absence of same-line sum/validator, not a durable invariant
+  Batch 103/142 done (111 completed)
+  Batch 112/142 done (112 completed)
+  REJECT json5-swap-requires-widening-jsondecodeerror-catches: speculative: impact analysis of a hypothetical dependency swap, not observed codebase behavior
+  REJECT import-json-tests-lack-malformed-json-negative-case: ephemeral: point-in-time test-coverage observation
+  REJECT jsonb-containment-not-directly-tested: ephemeral: test-coverage snapshot rather than durable behavioral fact
+  Batch 117/142 done (113 completed)
+  REJECT entries-directory-absent-from-checkout: ephemeral: current-checkout directory absence is a point-in-time snapshot that changes with repository edits.
+  REJECT git-ls-files-s-is-authoritative-for-tracked-mode: trivial: general Git command behavior, not a codebase invariant or API contract.
+  REJECT mode-120000-marks-tracked-symlink: trivial: general Git symlink-mode fact, not codebase-specific.
+  REJECT create-repo-409-testing-uses-empty-body: speculative: coverage-gap judgment about absent tests rather than an observable codebase invariant or API contract.
+  Batch 115/142 done (114 completed)
+  REJECT no-shared-model-text-normalization-helper: trivial: absence of a shared helper is a low-level structural observation, not a durable API/data-flow invariant.
+  REJECT json-parsing-majority-internal-columns: ephemeral: an aggregate “most/mainly” call-site distribution is a point-in-time snapshot that changes with edits.
+  Batch 116/142 done (115 completed)
+  REJECT all-observed-cost-state-mutations-are-locked: speculative: Negative completeness claim ("no unprotected mutation site is visible in the notes") grounded in observation-notes coverage rather than a verified code invariant.
+  Batch 120/142 done (116 completed)
+  Batch 119/142 done (117 completed)
+  REJECT schema-contract-encoded-in-python-not-json-schema: speculative: broad negative absence claim inferred from exploration, not a concrete durable invariant
+  Batch 113/142 done (118 completed)
+  REJECT gin-or-plan-requires-runtime-statistics: speculative: runtime planner statistics and index choice are not observable code facts
+  REJECT no-query-plan-tooling-exists: meta: describes absence of analysis tooling rather than a durable codebase invariant
+  Batch 114/142 done (119 completed)
+  REJECT client-session-is-external-mcp-sdk-dependency: trivial: external dependency is obvious from the import
+  REJECT mcp-client-concurrency-is-untested: ephemeral: test-coverage gap is a point-in-time snapshot, not a durable code invariant
+  Batch 122/142 done (120 completed)
+  Batch 123/142 done (121 completed)
+  Batch 118/142 done (122 completed)
+  REJECT repair-parser-tests-omit-fence-and-trailing-comma-cases: ephemeral: point-in-time description of test coverage, which changes with any test edit
+  Batch 121/142 done (123 completed)
+  REJECT mcp-concurrency-tests-use-synchronous-fake: speculative: test-coverage conclusion rather than a durable codebase invariant
+  REJECT import-json-tests-use-public-api-not-object-level: trivial: test-level observation, not an architecture or API contract
+  Batch 124/142 done (124 completed)
+  REJECT pg-any-mode-rejection-prevents-silent-and-degradation: duplicate: Already covered by add-node-pg-path-rejects-any-mode and add-justification-any-mode-is-sl-only-and-pg-unsupported.
+  Batch 127/142 done (125 completed)
+  REJECT test-suite-lacks-literal-what-if-references: ephemeral: zero-reference test snapshot is point-in-time and expires with test edits
+  REJECT tests-conftest-only-shared-fixture-is-pg-api: ephemeral: fixture inventory snapshot changes with test-suite edits
+  Batch 128/142 done (126 completed)
+  Batch 130/142 done (127 completed)
+  Batch 126/142 done (128 completed)
+  REJECT cp-justifications-excluded-from-any-mode-expansion: duplicate: Same claim as existing `add-justification-any-mode-expands-only-sl` (any_mode only expands SL, not CP).
+  Batch 131/142 done (129 completed)
+  REJECT cp-tests-cover-storage-not-truth-semantics: ephemeral: point-in-time test-coverage observation, not a durable codebase invariant
+  REJECT storage-imports-core-dataclasses-from-package-root: trivial: import statement is obvious from file structure
+  REJECT node-dataclass-defaults-truth-value-to-in: trivial: dataclass field default is visible from the model definition
+  REJECT justification-and-nogood-have-no-truth-value: trivial: absence of fields is obvious from the dataclass definitions
+  Batch 132/142 done (130 completed)
+  REJECT no-observed-test-covers-justification-cycles: ephemeral: A claim about absent test coverage is a point-in-time snapshot that changes as soon as a cycle test is added; the "observed suites" framing also makes it an exploration-scope observation rather than a durable codebase invariant.
+  Batch 135/142 done (131 completed)
+  REJECT test-suite-lacks-direct-unchanged-network-assertions: ephemeral: negative test-coverage snapshot, not a durable code invariant.
+  REJECT repair-action-and-repair-research-have-no-static-references: ephemeral: grep-result absence is a point-in-time search snapshot.
+  Batch 129/142 done (132 completed)
+  REJECT schema-version-drift-is-undocumented: speculative: documentation-absence/editorial judgment, not a stable code invariant
+  REJECT no-observed-code-injects-environment-variables: speculative: exploration-scoped negative plus runtime assumption, not an observable code fact
+  Batch 133/142 done (133 completed)
+  Batch 138/142 done (134 completed)
+  REJECT observed-snapshot-has-no-secret-manager-or-deployment-descriptors: ephemeral: snapshot-specific absence of files/CI steps is not durable.
+  REJECT backfill-hashes-wrapped-by-api-and-cli: trivial: restates API/CLI wrapper wiring visible from function names and imports.
+  REJECT strict-mode-absent-from-verification-and-backfill: speculative: negative search result does not establish a durable code invariant.
+  Batch 134/142 done (135 completed)
+  Batch 137/142 done (136 completed)
+  REJECT agent-namespace-prepends-active-id-premise: duplicate: already covered by existing add-node-namespace-auto-wiring-creates-active-premise and add-node-namespace-auto-creates-active-premise beliefs.
+  Batch 136/142 done (137 completed)
+  REJECT proposed-entries-idempotency-lacks-observed-test-coverage: meta: describes absence of test coverage observed in this exploration session, not a durable codebase behavior
+  REJECT uv-lock-is-intentionally-ignored: speculative: "intentionally" is an editorial judgment about intent and "must be recomputed" is an inferred requirement/prediction rather than an observable code fact
+  Batch 141/142 done (138 completed)
+  Batch 140/142 done (139 completed)
+  REJECT reviews-ignore-matches-any-depth-file-or-directory: speculative: includes hypothetical impact on test fixtures; core ignore-rule detail is trivial repo config.
+  REJECT forge-reports-and-claude-skills-are-git-tracked: ephemeral: current tracked/ignored status is a point-in-time repo snapshot, not a durable code invariant.
+  REJECT proposed-markdown-outputs-are-ignored-anywhere: trivial: standard .gitignore pattern detail visible from file structure.
+  Batch 142/142 done (140 completed)
+  REJECT any-mode-unsupported-on-postgresql: duplicate: already covered by add-node-pg-path-rejects-any-mode and add-justification-any-mode-is-sl-only-and-pg-unsupported.
+  REJECT premise-add-defaults-to-empty-antecedent-sl: duplicate: existing add-node-sl-defaults-to-empty-string and add-node-outlist-only-creates-empty-antecedent-sl cover default/empty-antecedent SL behavior.
+  Batch 139/142 done (141 completed)
+  REJECT mcp-server-fails-fast-on-missing-dependency: duplicate: same core claim as mcp-server-raises-import-error-at-import-time
+  REJECT optional-dependency-degradation-tests-skip-instead-of-exercise: speculative: editorial judgment about test coverage rather than a stable codebase invariant
+  Batch 125/142 done (142 completed)
+
+Reviewed 709 proposals: 499 kept, 210 rejected
+Rejections by category:
+  ephemeral: 62
+  trivial: 44
+  meta: 38
+  duplicate: 34
+  speculative: 32
+  Round 1: Review proposals took 6m 31s
